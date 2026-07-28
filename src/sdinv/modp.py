@@ -90,9 +90,27 @@ def mod_einsum(subscripts, operands, p=P):
                                    if k not in (i, j))) | set(out)
                 keep = [c for c in dict.fromkeys(terms[i] + terms[j])
                         if c in rest]
-                if best is None or len(keep) < len(best[2]):
-                    best = (i, j, keep)
-        i, j, keep = best
+                # Cost of this pair is output size TIMES summed size, i.e.
+                # the product over every index appearing in either operand.
+                # Ranking by len(keep) alone minimises the intermediate but
+                # not the work: a step can have a tiny output and still sum
+                # ~1e9 terms, which passes the overflow guard below and then
+                # runs for hours on numpy's scalar integer loop (there is no
+                # BLAS for int64). Rank by work, break ties on output size so
+                # the original memory behaviour is preserved.
+                d = {}
+                for t, o in ((terms[i], ops[i]), (terms[j], ops[j])):
+                    for c, n in zip(t, o.shape):
+                        d[c] = n
+                work = 1
+                for c in set(terms[i] + terms[j]):
+                    work *= d[c]
+                outsz = 1
+                for c in keep:
+                    outsz *= d[c]
+                if best is None or (work, outsz) < (best[0], best[1]):
+                    best = (work, outsz, i, j, keep)
+        _, _, i, j, keep = best
         ti, tj, oi, oj = terms[i], terms[j], ops[i], ops[j]
 
         dims = {}
