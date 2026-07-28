@@ -74,3 +74,35 @@ def test_10d_quadratic_invariant_vanishes():
     Fd = to_dense(Fv, 10, 5, P)
     M = enumerate_graphs(2, 5, max_mult=5)[0]
     assert value(M, Fd, 10, 5, True, P) == 0
+
+
+def test_wl_hash_collides_on_regular_multigraphs():
+    """WL is NOT a canonical form for these graphs.
+
+    Every contraction graph here is valence-regular, which is the classic
+    Weisfeiler-Lehman failure mode. At order 6 the WL hash merges 49 genuine
+    isomorphism classes into 39 keys. enumerate_graphs keys its dict on
+    canonical(), so a collision means `key not in out` is False for a
+    NON-isomorphic graph and that candidate is dropped -- the rank can then
+    only come out too low. This is the opposite of the harmless duplicate
+    described in the module docstring.
+
+    graphs.py avoids this at n <= EXACT_CANON_MAX_N by using the exact n!
+    canonical form. This test pins the collision so that raising
+    EXACT_CANON_MAX_N to cover order 8 is a deliberate, measured decision.
+    """
+    from sdinv.graphs import _canonical_wl, _canonical_exact, EXACT_CANON_MAX_N
+
+    g6 = enumerate_graphs(6, 5, max_mult=4)
+    assert len(g6) == 49, f"order 6 should have 49 classes, got {len(g6)}"
+
+    exact = {_canonical_exact(M) for M in g6}
+    wl = {_canonical_wl(M) for M in g6}
+    assert len(exact) == 49, "exact canonicalisation must separate all 49"
+    assert len(wl) < len(exact), "expected WL to collide on regular multigraphs"
+
+    # Order 8 is enumerated with WL today, so its candidate set is not
+    # provably complete. Any completeness claim at order 8 needs this raised.
+    assert EXACT_CANON_MAX_N == 6, (
+        "EXACT_CANON_MAX_N changed -- if it now covers order 8, delete the "
+        "completeness caveat in run_10d.py and this assertion")
