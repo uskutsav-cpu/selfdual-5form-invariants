@@ -27,8 +27,35 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 |---|---|
 | 6D generic 3-form (reproduction) | **PASS** — 5 invariants, pattern 1,2,1,1 at orders 2,4,6,8, confirmed under two primes |
 | 10D self-dual 5-form, order 4 | **1** independent invariant (all 4 candidate graphs enumerated — complete) |
-| 10D, order 6 | not yet run (49 candidate graphs) |
-| 10D, order 8+ | not yet run |
+| 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (all 49 candidate graphs — complete) |
+| 10D, order 8+ | not run — **blocked**, see below |
+
+Raw output: [`results/10d_baseline.json`](results/10d_baseline.json). Orders 4 and 6
+are *complete*: every candidate graph at those orders was enumerated with an exact
+canonical form, so "exactly 1" and "exactly 2 more" are statements about all
+contractions that exist, not about a sample.
+
+### Order 8 is blocked on completeness, not on compute
+
+`graphs.py` deduplicates candidates with an exact canonical form only for
+$n \le$ `EXACT_CANON_MAX_N` (= 6); above that it falls back to a Weisfeiler-Lehman
+hash. Every graph here is valence-regular, which is WL's classic failure case. At
+order 6 the WL hash merges the 49 true isomorphism classes into **39** keys — and
+`enumerate_graphs` keeps only the first graph per key, so a collision **drops a
+genuine candidate** and the rank can only come out too low. Any "exactly N at
+order 8" claim is void until this is exact (`pynauty`, or raising the threshold).
+Pinned by `test_wl_hash_collides_on_regular_multigraphs`.
+
+### Why the tests use a boost, not just a rotation
+
+`test_10d_contractions_survive_a_lorentz_boost` applies a genuine SO(1,9) element.
+This is deliberate: if raised/lowered indices are assigned **per tensor copy**
+rather than **per contracted edge**, an edge joining two same-placement vertices
+contracts with $\delta$ instead of $\eta$. A pure rotation cannot see that error —
+$\delta$ and $\eta$ agree on the spatial block — so the quantity looks invariant
+and is not. A boost mixes the timelike direction and exposes it immediately.
+Any candidate that changes value under a boost is not an invariant, whatever a
+rank count says.
 
 ## Method
 

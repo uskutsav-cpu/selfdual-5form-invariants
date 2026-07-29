@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from sdinv.modp import P, ALT_P, mod_einsum, RankSieve
 from sdinv.forms import (to_dense, random_form, metric_signs, check_star_squared,
                          selfdual_projector)
-from sdinv.graphs import enumerate_graphs
+from sdinv.graphs import enumerate_graphs, graph_label
 from sdinv.contract import _slot_plan, _signed, value, jacobian_row, build_basis_flat
 
 
@@ -106,3 +106,78 @@ def test_wl_hash_collides_on_regular_multigraphs():
     assert EXACT_CANON_MAX_N == 6, (
         "EXACT_CANON_MAX_N changed -- if it now covers order 8, delete the "
         "completeness caveat in run_10d.py and this assertion")
+
+
+def test_10d_contractions_survive_a_lorentz_boost():
+    """A ROTATION cannot catch a wrong metric placement; a BOOST can.
+
+    If raised/lowered indices are assigned per-tensor rather than per-edge,
+    an edge joining two same-placement vertices contracts with delta instead
+    of eta. Under a pure rotation delta and eta agree on the spatial block,
+    so the error hides. A boost mixes the timelike direction and exposes it.
+
+    Over F_p a boost in the 0-1 plane is any (c, s) with c^2 - s^2 = 1:
+    take c = (t + 1/t)/2, s = (1/t - t)/2 for invertible t.
+    """
+    D, PD, mod = 10, 5, P
+    t = 7
+    ti = pow(t, mod - 2, mod)
+    half = pow(2, mod - 2, mod)
+    c = ((t + ti) * half) % mod
+    s = ((ti - t) * half) % mod
+    assert (c * c - s * s) % mod == 1, "not a hyperbolic rotation"
+
+    L = np.eye(D, dtype=np.int64)
+    L[0, 0] = c; L[0, 1] = s; L[1, 0] = s; L[1, 1] = c
+
+    eta = np.diag(metric_signs(D, True)).astype(np.int64) % mod
+    assert np.array_equal((L.T @ eta @ L) % mod, eta % mod), "L is not in SO(1,9)"
+
+    Pr = selfdual_projector(D, PD, True, mod)
+    Fd = to_dense((Pr @ random_form(D, PD, np.random.default_rng(5), mod)) % mod,
+                  D, PD, mod)
+    Fr = np.einsum("ia,jb,kc,ld,me,abcde->ijklm", L, L, L, L, L, Fd,
+                   optimize=True) % mod
+
+    for M in enumerate_graphs(4, PD, max_mult=PD - 1):
+        a = value(M, Fd, D, PD, True, mod)
+        b = value(M, Fr, D, PD, True, mod)
+        assert a == b, f"{graph_label(M)} is not boost invariant: {a} != {b}"
+
+
+def test_order4_is_exactly_one_invariant():
+    """All four order-4 graphs are the SAME invariant, rescaled.
+
+    Order 4 in 10D admits exactly 4 connected valence-5 multigraphs. Their
+    values are pairwise proportional with ratios 1, 1/2, 1/4, 1/6, so the
+    Jacobian rank is 1 -- there is exactly ONE independent invariant at
+    order 4, not two or three. Checked under both primes: a spurious
+    proportionality would not survive a change of modulus.
+    """
+    D, PD = 10, 5
+    expected = [1, 2, 4, 6]          # value_k = value_0 / expected[k]
+
+    for mod in (P, ALT_P):
+        Pr = selfdual_projector(D, PD, True, mod)
+        graphs = enumerate_graphs(4, PD, max_mult=PD - 1)
+        assert len(graphs) == 4, f"expected 4 order-4 graphs, got {len(graphs)}"
+
+        seen = None
+        for seed in (1, 2, 3):
+            Fd = to_dense((Pr @ random_form(D, PD, np.random.default_rng(seed), mod))
+                          % mod, D, PD, mod)
+            vals = [value(M, Fd, D, PD, True, mod) % mod for M in graphs]
+            assert vals[0] != 0
+            ratios = [(v * pow(vals[0], mod - 2, mod)) % mod for v in vals]
+            if seen is None:
+                seen = ratios
+            assert ratios == seen, "ratios drifted between random points"
+
+        for r, d in zip(seen, expected):
+            assert (r * d) % mod == 1, f"ratio {r} is not 1/{d} mod {mod}"
+
+        sieve = RankSieve(build_basis_flat(D, PD, Pr, mod).shape[0], mod)
+        basis = build_basis_flat(D, PD, Pr, mod)
+        for M in graphs:
+            sieve.add(jacobian_row(M, Fd, basis, D, PD, True, mod))
+        assert sieve.rank == 1, f"order-4 rank should be 1, got {sieve.rank}"

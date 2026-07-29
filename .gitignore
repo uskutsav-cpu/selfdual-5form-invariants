@@ -2,4 +2,5 @@ __pycache__/
 *.pyc
 .venv/
 results/*.json
+!results/10d_baseline.json
 .pytest_cache/
