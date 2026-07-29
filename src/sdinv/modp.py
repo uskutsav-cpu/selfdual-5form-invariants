@@ -3,8 +3,8 @@
 Why: invariant values span a huge dynamic range at high order, so float SVD
 forces you to guess a rank tolerance. Over F_p, zero means zero.
 
-p is chosen ~2^20 so that products fit comfortably in int64 during einsum
-accumulation (product < 2^40, summed over <2^17 terms stays < 2^57).
+p is chosen ~2^15 so that products fit comfortably in int64 during einsum
+accumulation (product < 2^30, summed over <2^17 terms stays < 2^47).
 Rank over F_p at a random point equals the true rank with probability
 1 - O(degree/p). Re-run with ALT_P to confirm.
 """
@@ -13,6 +13,7 @@ import numpy as np
 
 P = 32749  # prime, ~2^15 -- see the overflow guard in mod_einsum
 ALT_P = 32719  # second prime for confirmation runs
+FLOAT_BLAS_MIN_WORK = 10_000_000
 
 
 def inv(a, p=P):
@@ -120,12 +121,28 @@ def mod_einsum(subscripts, operands, p=P):
         nterms = 1
         for c in set(ti + tj) - set(keep):
             nterms *= dims[c]
-        if (p - 1) ** 2 * nterms >= 2 ** 63:
+        max_sum = (p - 1) ** 2 * nterms
+        if max_sum >= 2 ** 63:
             raise OverflowError(
                 f"int64 would overflow: p^2 * {nterms} summed terms. "
                 f"Lower P in modp.py.")
 
-        res = np.einsum(f"{ti},{tj}->{''.join(keep)}", oi, oj) % p
+        pair_subscripts = f"{ti},{tj}->{''.join(keep)}"
+        work = best[0]
+        if work >= FLOAT_BLAS_MIN_WORK and max_sum < 2 ** 53:
+            # NumPy's integer einsum does not use BLAS and can be hundreds of
+            # times slower on wide contractions. Float64 is still exact here:
+            # inputs and products are integers, and the guard proves every
+            # unreduced dot-product sum is below the 53-bit integer limit.
+            raw = np.einsum(
+                pair_subscripts,
+                oi.astype(np.float64),
+                oj.astype(np.float64),
+                optimize=True,
+            )
+            res = np.rint(raw).astype(np.int64) % p
+        else:
+            res = np.einsum(pair_subscripts, oi, oj) % p
         for k in sorted((i, j), reverse=True):
             terms.pop(k)
             ops.pop(k)

@@ -1,11 +1,20 @@
 """Correctness gates. Run these before trusting any 10D number."""
+import hashlib
+import json
 import sys, os, numpy as np, pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import sdinv.modp as modp
 from sdinv.modp import P, ALT_P, mod_einsum, RankSieve
 from sdinv.forms import (to_dense, random_form, metric_signs, check_star_squared,
                          selfdual_projector)
-from sdinv.graphs import enumerate_graphs, graph_label
-from sdinv.contract import _slot_plan, _signed, value, jacobian_row, build_basis_flat
+from sdinv.graphs import (canonical, enumerate_graphs, graph_from_label,
+                          graph_label, load_graph_catalog, validate_graph)
+from sdinv.contract import (_slot_plan, _signed, value, jacobian_row,
+                            jacobian_row_amputated, build_basis_flat)
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+CATALOG = os.path.join(ROOT, "results", "10d_graph_catalog.json")
+ORDER8_RESULT = os.path.join(ROOT, "results", "10d_order8.json")
 
 
 def _ops(M, Fd, PD, mod):
@@ -25,6 +34,31 @@ def test_mod_einsum_matches_exact_bigint(n):
         sub, ops = _ops(M, Fd, PD, mod)
         exact = int(np.einsum(sub, *[o.astype(object) for o in ops])) % mod
         assert int(mod_einsum(sub, ops, mod)) == exact
+
+
+def test_float_blas_path_is_exact(monkeypatch):
+    """The accelerated float64 branch must still be exact finite-field math."""
+    rng = np.random.default_rng(17)
+    a = rng.integers(0, P, size=(5, 7, 3), dtype=np.int64)
+    b = rng.integers(0, P, size=(3, 7, 4), dtype=np.int64)
+    subscripts = "abc,cbd->ad"
+    exact = np.einsum(
+        subscripts, a.astype(object), b.astype(object)) % P
+    monkeypatch.setattr(modp, "FLOAT_BLAS_MIN_WORK", 0)
+    got = mod_einsum(subscripts, [a, b], P)
+    assert np.array_equal(got, exact.astype(np.int64))
+
+
+def test_reverse_jacobian_matches_amputated_oracle():
+    D, PD, mod = 6, 3, P
+    Fd = to_dense(
+        random_form(D, PD, np.random.default_rng(23), mod), D, PD, mod)
+    basis = build_basis_flat(D, PD, None, mod)
+    for n in (2, 4, 6):
+        M = enumerate_graphs(n, PD)[0]
+        fast = jacobian_row(M, Fd, basis, D, PD, True, mod)
+        oracle = jacobian_row_amputated(M, Fd, basis, D, PD, True, mod)
+        assert np.array_equal(fast, oracle)
 
 
 def test_contractions_are_lorentz_invariant():
@@ -76,36 +110,76 @@ def test_10d_quadratic_invariant_vanishes():
     assert value(M, Fd, 10, 5, True, P) == 0
 
 
-def test_wl_hash_collides_on_regular_multigraphs():
-    """WL is NOT a canonical form for these graphs.
+def test_exact_catalog_is_complete_and_collision_free():
+    """The committed nauty catalog is exact at orders 4, 6, and 8."""
+    with open(CATALOG) as stream:
+        raw = json.load(stream)
+    assert raw["generator"]["software"] == "nauty gtools 2.9.3"
+    assert {n: raw["orders"][n]["count"] for n in ("4", "6", "8")} == {
+        "4": 4,
+        "6": 49,
+        "8": 1689,
+    }
 
-    Every contraction graph here is valence-regular, which is the classic
-    Weisfeiler-Lehman failure mode. At order 6 the WL hash merges 49 genuine
-    isomorphism classes into 39 keys. enumerate_graphs keys its dict on
-    canonical(), so a collision means `key not in out` is False for a
-    NON-isomorphic graph and that candidate is dropped -- the rank can then
-    only come out too low. This is the opposite of the harmless duplicate
-    described in the module docstring.
+    for order in (4, 6, 8):
+        graphs = load_graph_catalog(CATALOG, order)
+        certificates = set()
+        for M in graphs:
+            validate_graph(M, valence=5, max_mult=4)
+            certificates.add(canonical(M))
+        assert len(certificates) == len(graphs), (
+            f"duplicate isomorphism class in order-{order} catalog")
 
-    graphs.py avoids this at n <= EXACT_CANON_MAX_N by using the exact n!
-    canonical form. This test pins the collision so that raising
-    EXACT_CANON_MAX_N to cover order 8 is a deliberate, measured decision.
+
+def test_order8_basis_is_complete_under_two_primes():
+    """Six new octic directions, matching the published Hilbert series.
+
+    Cederwall et al. arXiv:2509.14350v2 give
+      P(t) = 1 + t^4 + 2 t^6 + 7 t^8 + ...
+    and factor it with (1-t^8)^-6. The seventh degree-8 scalar is I4^2,
+    so six independent order-8 Jacobian directions are both necessary and
+    sufficient for a complete octic generating set.
     """
-    from sdinv.graphs import _canonical_wl, _canonical_exact, EXACT_CANON_MAX_N
+    with open(ORDER8_RESULT) as stream:
+        result = json.load(stream)
+    generators = result["generators"]
+    with open(CATALOG, "rb") as stream:
+        assert hashlib.sha256(stream.read()).hexdigest() == (
+            result["catalog_sha256"])
+    assert [g["order"] for g in generators].count(8) == 6
+    assert result["literature"]["new_generators"]["8"] == 6
+    assert len(result["degree8_basis"]) == 7
+    assert result["degree8_basis"][-1] == {
+        "id": "I4_1^2",
+        "kind": "composite",
+        "expression": "I4_1^2",
+    }
+    for item in generators:
+        catalog_graphs = load_graph_catalog(CATALOG, item["order"])
+        assert graph_label(catalog_graphs[item["catalog_index"]]) == item["graph"]
+    assert all(run["orders"]["8"]["rank"] == 9
+               for run in result["runs"].values())
 
-    g6 = enumerate_graphs(6, 5, max_mult=4)
-    assert len(g6) == 49, f"order 6 should have 49 classes, got {len(g6)}"
-
-    exact = {_canonical_exact(M) for M in g6}
-    wl = {_canonical_wl(M) for M in g6}
-    assert len(exact) == 49, "exact canonicalisation must separate all 49"
-    assert len(wl) < len(exact), "expected WL to collide on regular multigraphs"
-
-    # Order 8 is enumerated with WL today, so its candidate set is not
-    # provably complete. Any completeness claim at order 8 needs this raised.
-    assert EXACT_CANON_MAX_N == 6, (
-        "EXACT_CANON_MAX_N changed -- if it now covers order 8, delete the "
-        "completeness caveat in run_10d.py and this assertion")
+    D, PD = 10, 5
+    for prime in (P, ALT_P):
+        projector = selfdual_projector(D, PD, True, prime)
+        Fd = to_dense(
+            (projector @ random_form(
+                D, PD, np.random.default_rng(20260727), prime)) % prime,
+            D,
+            PD,
+            prime,
+        )
+        basis = build_basis_flat(D, PD, projector, prime)
+        sieve = RankSieve(basis.shape[0], prime)
+        increments = {4: 0, 6: 0, 8: 0}
+        for item in generators:
+            M = graph_from_label(item["graph"])
+            assert sieve.add(jacobian_row(
+                M, Fd, basis, D, PD, True, prime))
+            increments[item["order"]] += 1
+        assert increments == {4: 1, 6: 2, 8: 6}
+        assert sieve.rank == 9
 
 
 def test_10d_contractions_survive_a_lorentz_boost():

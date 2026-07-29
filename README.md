@@ -14,8 +14,16 @@ The **count is known: 81** (Hutomo–Lechner–Sorokin,
 structural analysis in Cederwall–Hutomo–Kuzenko–Lechner–Sorokin,
 [arXiv:2509.14350](https://arxiv.org/abs/2509.14350)).
 
-The **explicit generators are not known.** The literature has only partial
-results at orders 4 and 8. That gap is what this repo attacks.
+The degree-by-degree partition function is also known through order 22. In
+particular,
+
+> $P(t)=1+t^4+2t^6+7t^8+\cdots
+> =(1-t^4)^{-1}(1-t^6)^{-2}(1-t^8)^{-6}\cdots$.
+
+Thus there is one quartic generator, two sextic generators, and six octic
+generators; the seventh degree-8 scalar is the product $I_4^2$. The literature
+gives a tensor basis for the octic generators. This repo supplies an explicit
+contraction-graph basis and independently checks its Jacobian rank.
 
 Physics payoff: the most general Lagrangian depending on $F_5$ but not its
 derivatives is an arbitrary function of those scalars, which controls
@@ -27,24 +35,50 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 |---|---|
 | 6D generic 3-form (reproduction) | **PASS** — 5 invariants, pattern 1,2,1,1 at orders 2,4,6,8, confirmed under two primes |
 | 10D self-dual 5-form, order 4 | **1** independent invariant (all 4 candidate graphs enumerated — complete) |
-| 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (all 49 candidate graphs — complete) |
-| 10D, order 8+ | not run — **blocked**, see below |
+| 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (49 exact graph classes) |
+| 10D, order 8 | **6** new independent invariants, running rank **9 / 81** (1,689 exact graph classes; complete under two primes) |
 
-Raw output: [`results/10d_baseline.json`](results/10d_baseline.json). Orders 4 and 6
-are *complete*: every candidate graph at those orders was enumerated with an exact
-canonical form, so "exactly 1" and "exactly 2 more" are statements about all
-contractions that exist, not about a sample.
+Artifacts:
 
-### Order 8 is blocked on completeness, not on compute
+- [`results/10d_order8.json`](results/10d_order8.json) — the nine graph
+  generators, two-prime rank logs, and completeness claim.
+- [`results/10d_graph_catalog.json`](results/10d_graph_catalog.json) — all
+  4, 49, and 1,689 exact isomorphism classes at orders 4, 6, and 8.
+- [`results/10d_baseline.json`](results/10d_baseline.json) — the original
+  order-4/order-6 baseline.
 
-`graphs.py` deduplicates candidates with an exact canonical form only for
-$n \le$ `EXACT_CANON_MAX_N` (= 6); above that it falls back to a Weisfeiler-Lehman
-hash. Every graph here is valence-regular, which is WL's classic failure case. At
-order 6 the WL hash merges the 49 true isomorphism classes into **39** keys — and
-`enumerate_graphs` keeps only the first graph per key, so a collision **drops a
-genuine candidate** and the rank can only come out too low. Any "exactly N at
-order 8" claim is void until this is exact (`pynauty`, or raising the threshold).
-Pinned by `test_wl_hash_collides_on_regular_multigraphs`.
+### The six order-8 graph generators
+
+`nij^m` means that tensor copies `i` and `j` share `m` contracted indices.
+Every omitted pair has multiplicity zero.
+
+| ID | Exact contraction graph |
+|---|---|
+| $I_{8,1}$ | `n8[04^4,05^1,14^1,16^4,25^4,27^1,36^1,37^4]` |
+| $I_{8,2}$ | `n8[03^4,06^1,14^4,16^1,25^4,26^1,37^1,47^1,57^1,67^2]` |
+| $I_{8,3}$ | `n8[03^4,04^1,14^1,15^1,16^2,17^1,25^4,26^1,37^1,46^1,47^2,67^1]` |
+| $I_{8,4}$ | `n8[03^2,06^2,07^1,14^4,16^1,25^4,26^1,36^1,37^2,47^1,57^1]` |
+| $I_{8,5}$ | `n8[03^2,04^1,06^2,14^2,15^1,17^2,25^4,26^1,36^2,37^1,47^2]` |
+| $I_{8,6}$ | `n8[03^2,06^2,07^1,14^2,15^1,16^2,24^1,25^2,27^2,36^1,37^2,45^2]` |
+
+These six Jacobian rows add six directions to the quartic/sextic basis under
+both primes 32749 and 32719. This meets the published upper bound of six new
+octic generators, so the list is complete. The remaining degree-8 scalar is
+the disconnected product $I_4^2$.
+
+### Exact order-8 enumeration
+
+The catalog is generated with nauty 2.9.3:
+
+```bash
+geng -cq 8 | multig -q -T -m4 -r5
+```
+
+`geng` emits each connected underlying simple graph once. `multig` assigns
+edge multiplicities, enforces degree 5 and maximum multiplicity 4, and
+suppresses isomorphic weighted outputs. The result is exactly **1,689**
+connected candidates. `pynauty` supplies an independent exact certificate in
+the tests; no Weisfeiler-Lehman hash is used for correctness.
 
 ### Why the tests use a boost, not just a rotation
 
@@ -71,15 +105,18 @@ form vanishes), and $m_{ij} \le p-1$ for the self-dual case (multiplicity $p$
 forces a factor $F\cdot F = 0$). Disconnected graphs are products of lower
 invariants and can never raise the rank, so they are dropped.
 
-**Independence is a Jacobian rank, not a search over samples.** Given
-candidates $I_a$, the rank of $\partial I_a/\partial A^k$ at one random point
-*is* the number of functionally independent invariants. Adding more random
-samples cannot raise it; only better candidates can.
+**Independence is a Jacobian rank.** Given candidates $I_a$, the generic rank
+of $\partial I_a/\partial A^k$ is the number of functionally independent
+invariants. A uniformly random point over a large finite field attains that
+generic rank with high probability. The complete order-8 basis is recomputed
+under a second prime to guard against an unlucky specialization.
 
 $I$ is multilinear in its $n$ vertices, so
 $\partial I/\partial A^k = \sum_v [\text{graph with } F \text{ at } v \to P(e_k)]$.
-We contract everything except $v$ once (the *amputated tensor*) and take inner
-products, costing $n$ einsums per graph rather than $252n$.
+The production code contracts the tensor network once and reverse-
+differentiates its globally optimized contraction tree, reusing intermediates
+for all vertices. A separate amputated-tensor implementation remains as a
+correctness oracle in the tests.
 
 **Arithmetic is exact over $\mathbb{F}_p$.** Invariant values span an enormous
 dynamic range, so a float SVD forces you to guess a rank tolerance — and that
@@ -99,9 +136,10 @@ rank 7 for a quantity whose mathematical ceiling is 5. It was only ever caught
 by comparing against exact bigint arithmetic.
 
 `mod_einsum` therefore contracts **strictly two operands at a time** with
-reduction after every step, plus an explicit overflow guard. Do not replace it
-with a bare `np.einsum` call. `tests/test_core.py::test_mod_einsum_matches_exact_bigint`
-exists to catch exactly this.
+reduction after every step, plus an explicit overflow guard. Large pairwise
+contractions use float64/BLAS only when every unreduced integer sum is proven
+to stay below $2^{53}$, so the result remains exact. Do not replace this with a
+bare multi-operand `np.einsum` call.
 
 ## Run it
 
@@ -111,43 +149,45 @@ pip install -r requirements.txt
 
 pytest tests/ -v              # gates. must pass before trusting anything.
 python3 scripts/run_6d.py     # reproduction. must print PASS.
-python3 scripts/run_10d.py --orders 4 6
+python3 scripts/run_10d.py    # orders 4, 6, 8 under both primes
 ```
 
 `run_6d.py` is the gate. If it does not print PASS, every 10D number is
 meaningless — fix that first.
 
+The exact catalog is committed. To regenerate it, install
+[nauty](https://pallini.di.uniroma1.it/) so `geng` and `multig` are on `PATH`,
+then run:
+
+```bash
+python3 scripts/generate_graph_catalog.py
+```
+
 ## Scope
 
-**Do not expect to reach 81 by enumeration.** Candidate counts at order $n$
-grow superexponentially (order 6: 49; order 8: thousands; order 12: ~$10^7$),
-and with 81 independent invariants in a 126-dimensional representation the
-required orders run well past 20. Five authors published the count rather than
-the list; the method does not reach.
-
-Achievable target: complete bases at orders 4 and 6, a serious attempt at
-order 8 including reproduction of the five known 8th-order invariants that
-appear in $\alpha'^3$ corrections to the type IIB effective action. That
-reproduction is the strongest available external validation.
+The repository is now complete through order 8. It does **not** claim to have
+all 81 functionally independent invariants: the partition function has 12 new
+generators at order 10 and 62 at order 12, and candidate graph counts grow
+superexponentially. Extending this explicit graph basis beyond order 8 remains
+open.
 
 ## Layout
 
 ```
 src/sdinv/modp.py      exact F_p linear algebra, overflow-safe pairwise einsum
 src/sdinv/forms.py     p-forms, Hodge dual via index complement, self-dual projector
-src/sdinv/graphs.py    valence-regular multigraph enumeration
-src/sdinv/contract.py  contraction evaluation, amputated-tensor Jacobian
+src/sdinv/graphs.py    exact multigraph certificates, nauty generation, catalogs
+src/sdinv/contract.py  contraction evaluation, optimized reverse-mode Jacobian
 scripts/run_6d.py      reproduction gate
-scripts/run_10d.py     the extension
+scripts/run_10d.py     two-prime complete computation through order 8
+scripts/generate_graph_catalog.py  exact nauty catalog generation
 tests/test_core.py     correctness gates
 ```
 
-## Open questions for Prof. Ferko
+## Next questions
 
-1. Is the per-order breakdown of the 81 written down anywhere? A Hilbert
-   series giving the number of primaries at each degree would convert an
-   unbounded search into a checklist with a stopping criterion.
-2. Order 4 gives exactly 1 independent invariant here. Does that match
-   expectations?
-3. Is the target a functionally independent set, or a full generating set
-   with syzygies? Those differ enormously in difficulty.
+1. What is the explicit change of basis between these six graph contractions
+   and the six tensor expressions in arXiv:2509.14350v2?
+2. Which graph topologies give the most efficient order-10 basis?
+3. At what degree do the first nonlinear relations among the published
+   generator counts appear?
