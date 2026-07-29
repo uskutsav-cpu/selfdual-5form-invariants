@@ -7,5 +7,7 @@ results/*.json
 !results/10d_order8.json
 !results/10d_order10.json
 !results/degree10_benchmarks.json
+!results/10d_order12.json
+!results/degree12_benchmarks.json
 .pytest_cache/
 work/

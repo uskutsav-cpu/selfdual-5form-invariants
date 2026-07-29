@@ -146,25 +146,38 @@ def enumerate_graphs(n, valence, max_mult=None, connected_only=True):
 
 def graph_label(M):
     n = M.shape[0]
+    separator = "-" if n > 10 else ""
     return f"n{n}[" + ",".join(
-        f"{i}{j}^{int(M[i, j])}" for i in range(n) for j in range(i + 1, n)
+        f"{i}{separator}{j}^{int(M[i, j])}"
+        for i in range(n) for j in range(i + 1, n)
         if M[i, j]) + "]"
 
 
 def graph_from_label(label):
-    """Inverse of graph_label for catalogs whose vertices are 0,...,9."""
+    """Inverse of graph_label.
+
+    Labels through order 10 retain the historical compact ``ij^m`` syntax so
+    committed result hashes remain stable. Higher orders use ``i-j^m`` to
+    make multi-digit vertex numbers unambiguous.
+    """
     match = re.fullmatch(r"n(\d+)\[(.*)\]", label)
     if not match:
         raise ValueError(f"invalid graph label: {label!r}")
     n = int(match.group(1))
-    if n > 10:
-        raise ValueError("compact graph labels are unambiguous only for n <= 10")
     M = np.zeros((n, n), dtype=np.int64)
     body = match.group(2)
     if not body:
         return M
+    edge_pattern = (
+        r"(\d)-(\d)\^(\d+)"
+        if n <= 10
+        else r"(\d+)-(\d+)\^(\d+)"
+    )
+    legacy_pattern = r"(\d)(\d)\^(\d+)"
     for edge in body.split(","):
-        edge_match = re.fullmatch(r"(\d)(\d)\^(\d+)", edge)
+        edge_match = re.fullmatch(edge_pattern, edge)
+        if edge_match is None and n <= 10:
+            edge_match = re.fullmatch(legacy_pattern, edge)
         if not edge_match:
             raise ValueError(f"invalid edge in graph label: {edge!r}")
         i, j, multiplicity = map(int, edge_match.groups())
