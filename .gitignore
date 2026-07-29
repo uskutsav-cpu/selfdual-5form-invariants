@@ -5,4 +5,7 @@ results/*.json
 !results/10d_baseline.json
 !results/10d_graph_catalog.json
 !results/10d_order8.json
+!results/10d_order10.json
+!results/degree10_benchmarks.json
 .pytest_cache/
+work/

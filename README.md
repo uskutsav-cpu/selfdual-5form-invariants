@@ -37,6 +37,7 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 | 10D self-dual 5-form, order 4 | **1** independent invariant (all 4 candidate graphs enumerated — complete) |
 | 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (49 exact graph classes) |
 | 10D, order 8 | **6** new independent invariants, running rank **9 / 81** (1,689 exact graph classes; complete under two primes) |
+| 10D, order 10 | **12** new connected primitive directions, running rank **21 / 81**; degree-10 value rank **14** after adding $I_4I_{6,1}$ and $I_4I_{6,2}$ (187,392 exact graph classes; two primes, three Jacobian samples per prime) |
 
 Artifacts:
 
@@ -46,6 +47,28 @@ Artifacts:
   4, 49, and 1,689 exact isomorphism classes at orders 4, 6, and 8.
 - [`results/10d_baseline.json`](results/10d_baseline.json) — the original
   order-4/order-6 baseline.
+- [`results/10d_order10.json`](results/10d_order10.json) — the twelve
+  explicit degree-10 graph generators, the two product directions, and exact
+  two-prime validation evidence.
+- [`results/degree10_benchmarks.json`](results/degree10_benchmarks.json) —
+  stage distributions and before/after optimization measurements.
+- [`docs/degree10.md`](docs/degree10.md) — catalog, checkpoint, reproduction,
+  benchmark, and limitation details.
+
+### The degree-10 result
+
+The exact degree-10 value space has rank **14** on the saved basis:
+twelve connected contractions $I_{10,1},\ldots,I_{10,12}$ plus the two lower
+products $I_{4,1}I_{6,1}$ and $I_{4,1}I_{6,2}$. The twelve graph formulas and
+canonical SHA-256 IDs are explicit in
+[`results/10d_order10.json`](results/10d_order10.json).
+
+At each of seeds 20260729, 20260730, and 20260731, and under both primes 32749
+and 32719, the lower generators have cumulative Jacobian rank 9 and the twelve
+degree-10 rows raise it to **21**. Separately, sixteen value samples per prime
+give exact rank **14** for the homogeneous degree-10 basis. Reaching the
+published upper bound of twelve new primitives proves completeness at this
+degree; it does not claim a polynomial generating set through all degrees.
 
 ### The six order-8 graph generators
 
@@ -163,13 +186,28 @@ then run:
 python3 scripts/generate_graph_catalog.py
 ```
 
+The checkpointed degree-10 workflow uses nauty 2.9.3 and is documented with
+copy-paste commands in [`docs/degree10.md`](docs/degree10.md). A clean checkout
+can revalidate the committed formulas without regenerating the discovery
+catalog:
+
+```bash
+python3 scripts/degree10_pipeline.py validate \
+  --selection-result results/10d_order10.json \
+  --skip-catalog-check \
+  --primes 32749 32719 \
+  --jacobian-seeds 20260729 20260730 20260731 \
+  --value-seed-start 20260801 --value-samples 16 \
+  --out /tmp/10d_order10_revalidated.json
+```
+
 ## Scope
 
-The repository is now complete through order 8. It does **not** claim to have
-all 81 functionally independent invariants: the partition function has 12 new
-generators at order 10 and 62 at order 12, and candidate graph counts grow
-superexponentially. Extending this explicit graph basis beyond order 8 remains
-open.
+The repository is now complete through order 10. It does **not** claim to have
+all 81 functionally independent invariants: the partition function has 62 new
+primitive candidates at order 12, of which the independent numerical spinor
+calculation retains 60. Candidate graph counts grow superexponentially.
+Extending the exact trace basis through order 12 remains open.
 
 ## Layout
 
@@ -178,9 +216,13 @@ src/sdinv/modp.py      exact F_p linear algebra, overflow-safe pairwise einsum
 src/sdinv/forms.py     p-forms, Hodge dual via index complement, self-dual projector
 src/sdinv/graphs.py    exact multigraph certificates, nauty generation, catalogs
 src/sdinv/contract.py  contraction evaluation, optimized reverse-mode Jacobian
+src/sdinv/catalog.py   atomic checksummed streaming graph shards
+src/sdinv/checkpoint.py durable identity-checked rank checkpoints
+src/sdinv/spinor_adapter.py future exact trace/spinor column-space comparison
 scripts/run_6d.py      reproduction gate
 scripts/run_10d.py     two-prime complete computation through order 8
 scripts/generate_graph_catalog.py  exact nauty catalog generation
+scripts/degree10_pipeline.py generation, scheduling, discovery, validation, benchmarks
 tests/test_core.py     correctness gates
 ```
 
@@ -188,6 +230,7 @@ tests/test_core.py     correctness gates
 
 1. What is the explicit change of basis between these six graph contractions
    and the six tensor expressions in arXiv:2509.14350v2?
-2. Which graph topologies give the most efficient order-10 basis?
+2. Which sixty trace contractions furnish an efficient order-12 functional
+   basis?
 3. At what degree do the first nonlinear relations among the published
    generator counts appear?

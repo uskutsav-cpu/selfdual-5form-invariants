@@ -152,13 +152,13 @@ def graph_label(M):
 
 
 def graph_from_label(label):
-    """Inverse of graph_label for the n < 10 catalogs in this project."""
+    """Inverse of graph_label for catalogs whose vertices are 0,...,9."""
     match = re.fullmatch(r"n(\d+)\[(.*)\]", label)
     if not match:
         raise ValueError(f"invalid graph label: {label!r}")
     n = int(match.group(1))
-    if n >= 10:
-        raise ValueError("compact graph labels are unambiguous only for n < 10")
+    if n > 10:
+        raise ValueError("compact graph labels are unambiguous only for n <= 10")
     M = np.zeros((n, n), dtype=np.int64)
     body = match.group(2)
     if not body:
@@ -204,43 +204,119 @@ def _parse_multig_t(line):
     return M
 
 
-def generate_graphs_nauty(n, valence, max_mult, geng="geng",
-                           multig="multig", connected_only=True):
-    """Generate exact non-isomorphic multigraphs with nauty's gtools.
+def graph_to_record(M):
+    """Stable, unambiguous JSON record for a contraction graph."""
+    M = np.asarray(M, dtype=np.int64)
+    n = M.shape[0]
+    return {
+        "order": n,
+        "upper_triangle": [
+            int(M[i, j])
+            for i in range(n)
+            for j in range(i + 1, n)
+        ],
+    }
+
+
+def graph_from_record(record):
+    """Inverse of graph_to_record()."""
+    n = int(record["order"])
+    values = [int(x) for x in record["upper_triangle"]]
+    if len(values) != n * (n - 1) // 2:
+        raise ValueError("upper-triangle length does not match graph order")
+    M = np.zeros((n, n), dtype=np.int64)
+    k = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            M[i, j] = M[j, i] = values[k]
+            k += 1
+    return M
+
+
+def iter_graphs_nauty(n, valence, max_mult, geng="geng",
+                      multig="multig", connected_only=True,
+                      min_degree=None, max_degree=None,
+                      residue=None, modulus=None):
+    """Stream exact non-isomorphic multigraphs from nauty's gtools.
 
     geng supplies one copy of each underlying simple graph. multig assigns
     edge multiplicities, enforces regularity, and suppresses isomorphic
     weighted outputs. See the nauty User's Guide, section ``multig``.
+
+    residue/modulus uses geng's exact canonical shard partition. Since the
+    support graph of a multigraph is invariant under isomorphism, outputs from
+    distinct support-graph shards are also disjoint.
     """
     geng_options = "-cq" if connected_only else "-q"
+    geng_command = [geng, geng_options]
+    if min_degree is not None:
+        geng_command.append(f"-d{int(min_degree)}")
+    if max_degree is not None:
+        geng_command.append(f"-D{int(max_degree)}")
+    geng_command.append(str(n))
+    if (residue is None) != (modulus is None):
+        raise ValueError("residue and modulus must be provided together")
+    if modulus is not None:
+        residue, modulus = int(residue), int(modulus)
+        if modulus <= 0 or not 0 <= residue < modulus:
+            raise ValueError("require 0 <= residue < modulus")
+        geng_command.append(f"{residue}/{modulus}")
+
     producer = subprocess.Popen(
-        [geng, geng_options, str(n)],
+        geng_command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
     try:
-        generated = subprocess.run(
+        consumer = subprocess.Popen(
             [multig, "-q", "-T", f"-m{max_mult}", f"-r{valence}"],
             stdin=producer.stdout,
-            capture_output=True,
-            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
             text=True,
         )
-    finally:
+    except BaseException:
         producer.stdout.close()
-    geng_stderr = producer.stderr.read().decode()
-    geng_status = producer.wait()
+        if producer.poll() is None:
+            producer.terminate()
+        producer.wait()
+        producer.stderr.close()
+        raise
+    try:
+        producer.stdout.close()
+        for line in consumer.stdout:
+            if not line.strip():
+                continue
+            M = _parse_multig_t(line)
+            validate_graph(M, valence, max_mult, connected_only)
+            yield M
+    finally:
+        if consumer.stdout is not None:
+            consumer.stdout.close()
+        multig_stderr = consumer.stderr.read()
+        multig_status = consumer.wait()
+        geng_stderr = producer.stderr.read().decode()
+        geng_status = producer.wait()
     if geng_status:
-        raise RuntimeError(f"geng failed ({geng_status}): {geng_stderr}")
-    if generated.returncode:
         raise RuntimeError(
-            f"multig failed ({generated.returncode}): {generated.stderr}")
+            f"geng failed ({geng_status}): {geng_stderr.strip()}")
+    if multig_status:
+        raise RuntimeError(
+            f"multig failed ({multig_status}): {multig_stderr.strip()}")
 
-    graphs = [_parse_multig_t(line) for line in generated.stdout.splitlines()
-              if line.strip()]
-    for M in graphs:
-        validate_graph(M, valence, max_mult, connected_only)
-    return graphs
+
+def generate_graphs_nauty(n, valence, max_mult, geng="geng",
+                           multig="multig", connected_only=True, **kwargs):
+    """Materialize iter_graphs_nauty(); intended only for small catalogs."""
+    return list(iter_graphs_nauty(
+        n,
+        valence,
+        max_mult,
+        geng=geng,
+        multig=multig,
+        connected_only=connected_only,
+        **kwargs,
+    ))
 
 
 def load_graph_catalog(path, order):

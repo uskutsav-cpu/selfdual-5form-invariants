@@ -59,6 +59,45 @@ class RankSieve:
     def rank(self):
         return len(self.rows)
 
+    def to_state(self):
+        """Return a JSON-serializable, exact checkpoint state."""
+        return {
+            "p": int(self.p),
+            "ncols": int(self.ncols),
+            "pivots": [int(x) for x in self.pivots],
+            "rows": [
+                [int(x) for x in np.asarray(row, dtype=np.int64)]
+                for row in self.rows
+            ],
+        }
+
+    @classmethod
+    def from_state(cls, state):
+        """Restore and validate a sieve produced by to_state()."""
+        sieve = cls(int(state["ncols"]), int(state["p"]))
+        pivots = [int(x) for x in state["pivots"]]
+        rows = [
+            np.asarray(row, dtype=np.int64) % sieve.p
+            for row in state["rows"]
+        ]
+        if len(rows) != len(pivots):
+            raise ValueError("rank-sieve row/pivot count mismatch")
+        if any(row.shape != (sieve.ncols,) for row in rows):
+            raise ValueError("rank-sieve row has wrong column count")
+        if len(pivots) != len(set(pivots)):
+            raise ValueError("rank-sieve pivots must be unique")
+        for row, pivot in zip(rows, pivots):
+            if not 0 <= pivot < sieve.ncols or int(row[pivot]) != 1:
+                raise ValueError("rank-sieve pivot is not normalized")
+            if np.any(row[:pivot]):
+                raise ValueError("rank-sieve row is not in echelon form")
+        for i, pivot in enumerate(pivots):
+            if any(int(rows[j][pivot]) for j in range(len(rows)) if j != i):
+                raise ValueError("rank-sieve basis is not fully reduced")
+        sieve.rows = rows
+        sieve.pivots = pivots
+        return sieve
+
 
 def mod_einsum(subscripts, operands, p=P):
     """einsum over F_p, contracting STRICTLY TWO AT A TIME with reduction

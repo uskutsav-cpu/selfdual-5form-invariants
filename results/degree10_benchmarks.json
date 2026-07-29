@@ -1,0 +1,137 @@
+{
+  "catalog": {
+    "candidates": 187392,
+    "compressed_bytes": 11214833,
+    "generation_enrichment_seconds_sum": 69.86941499999999,
+    "global_verification_seconds": 34.175465,
+    "logical_sha256": "17b112b6aa4e52ad9a2786802397d03675d9fd5910d59f21208aaa540b01d9e7",
+    "shards": 64
+  },
+  "checkpoint_bytes": {
+    "count": 20,
+    "max": 35929.0,
+    "mean": 35929.0,
+    "min": 35929.0,
+    "p50": 35929.0,
+    "p90": 35929.0,
+    "p99": 35929.0
+  },
+  "discovery_comparison": {
+    "cost_first_before_planner_optimization": {
+      "evaluated": 1000,
+      "new_degree10": 4,
+      "seconds": 225.3
+    },
+    "hash_stratified_before_planner_optimization": {
+      "evaluated": 132,
+      "new_degree10": 12,
+      "seconds": 51.48565558299015
+    },
+    "hash_stratified_final_engine": {
+      "evaluated": 132,
+      "new_degree10": 12,
+      "seconds": 27.309557249987847
+    }
+  },
+  "hardware": {
+    "architecture": "arm64",
+    "logical_cpu_count": 8,
+    "memory_bytes": 8589934592,
+    "numpy": "2.5.1",
+    "operating_system": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "processor": "arm",
+    "python": "3.13.13"
+  },
+  "optimization_comparison": {
+    "full_two_prime_validation_seconds": {
+      "after_bitsets_and_cache": 50.500609,
+      "before_bitsets_and_cache": 116.306579
+    },
+    "globally_optimal_planning_p50_seconds": {
+      "after_bitsets_and_cache": 0.012454165989765897,
+      "before_bitsets_and_cache": 0.09515591600211337
+    },
+    "optimized_value_and_jacobian_p50_seconds": {
+      "after_bitsets_and_cache": 0.19804837500851136,
+      "before_bitsets_and_cache": 0.32989416700729635
+    }
+  },
+  "peak_rss_bytes": 286457856,
+  "prime": 32749,
+  "schema": 1,
+  "seed": 20260729,
+  "stage_seconds": {
+    "atomic_checkpoint_write": {
+      "count": 20,
+      "max": 0.010356917002354749,
+      "mean": 0.0029021291993558407,
+      "min": 0.0009887920023174956,
+      "p50": 0.00135966700327117,
+      "p90": 0.006340249994536862,
+      "p99": 0.010356917002354749
+    },
+    "canonicalization": {
+      "count": 500,
+      "max": 0.0021589590032817796,
+      "mean": 0.00010194989366573281,
+      "min": 5.8125006034970284e-05,
+      "p50": 7.850000110920519e-05,
+      "p90": 0.00014649999502580613,
+      "p99": 0.0002602909953566268
+    },
+    "globally_optimal_planning": {
+      "count": 100,
+      "max": 0.02114774999790825,
+      "mean": 0.012909231240773806,
+      "min": 0.009465208000619896,
+      "p50": 0.012454165989765897,
+      "p90": 0.01584924999042414,
+      "p99": 0.017907665998791344
+    },
+    "greedy_schedule_planning": {
+      "count": 500,
+      "max": 0.0005727080133510754,
+      "mean": 8.546424371888861e-05,
+      "min": 6.52919989079237e-05,
+      "p50": 6.825001037213951e-05,
+      "p90": 0.00012387499737087637,
+      "p99": 0.00026537499797996134
+    },
+    "invariant_value": {
+      "count": 12,
+      "max": 0.09862508298829198,
+      "mean": 0.06422372891878088,
+      "min": 0.027761958001065068,
+      "p50": 0.06583225000940729,
+      "p90": 0.093133582995506,
+      "p99": 0.09862508298829198
+    },
+    "modular_rank_insertion": {
+      "count": 12,
+      "max": 0.0036490000056801364,
+      "mean": 0.0005586597496100391,
+      "min": 2.6708003133535385e-05,
+      "p50": 0.00010624999413266778,
+      "p90": 0.0018662910006241873,
+      "p99": 0.0036490000056801364
+    },
+    "optimized_value_and_reverse_jacobian": {
+      "count": 12,
+      "max": 0.411667041000328,
+      "mean": 0.2118249097499453,
+      "min": 0.05560366700228769,
+      "p50": 0.19804837500851136,
+      "p90": 0.3028839170001447,
+      "p99": 0.411667041000328
+    },
+    "reference_value_and_amputated_jacobian": {
+      "count": 12,
+      "max": 1.2199539170105709,
+      "mean": 0.7225678785010435,
+      "min": 0.29228104099456687,
+      "p50": 0.6350495829974534,
+      "p90": 1.0501136249949923,
+      "p99": 1.2199539170105709
+    }
+  }
+}

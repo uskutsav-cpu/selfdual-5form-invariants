@@ -21,10 +21,12 @@ practical and taking many hours.
 """
 
 import string
+import itertools
+from functools import lru_cache
 import numpy as np
 
-from .modp import P, mod_einsum
-from .forms import basis_tuples, to_dense, metric_signs
+from .modp import P, RankSieve, mod_einsum
+from .forms import basis_tuples, metric_signs, perm_sign, to_dense
 
 LETTERS = string.ascii_letters
 
@@ -85,69 +87,112 @@ def amputated(M, F_dense, v, d, valence, lorentzian=True, mod=P):
 
 def jacobian_row_amputated(M, F_dense, basis_flat, d, valence,
                            lorentzian=True, mod=P):
-    """basis_flat: 2-D array, one flattened dense basis tensor per row."""
+    """Independent reference Jacobian using separately amputated vertices."""
     n = M.shape[0]
-    row = np.zeros(basis_flat.shape[0], dtype=np.int64)
+    gradient = np.zeros_like(F_dense, dtype=np.int64)
     for v in range(n):
         A = amputated(M, F_dense, v, d, valence, lorentzian, mod).ravel()
-        row = (row + (basis_flat @ A) % mod) % mod  # both < p, safe
-    return row
+        gradient = (gradient + A.reshape(F_dense.shape)) % mod
+    return _project_gradient(basis_flat, gradient, mod)
 
 
-def _optimal_contraction_tree(terms, operand_shapes):
+@lru_cache(maxsize=256)
+def _optimal_contraction_tree_cached(terms, operand_shapes):
     """Globally optimal binary tree for this small closed tensor network.
 
     A local greedy choice can create a disastrous later intermediate. There
-    are at most eight operands in the runs here, so dynamic programming over
-    all subsets is tiny. The score first minimises the largest pairwise work,
-    then total forward/reverse work.
+    are at most ten operands in the completed runs here. Boundary label sets
+    are bitsets and proper subset scores are computed in numeric mask order.
+    The score first minimises largest pairwise work, then total
+    forward/reverse work.
     """
     n = len(terms)
     label_dims = {}
+    label_order = list(dict.fromkeys("".join(terms)))
+    label_bits = {label: 1 << k for k, label in enumerate(label_order)}
     label_sets = []
     for term, shape in zip(terms, operand_shapes):
-        labels = set(term)
+        labels = sum(label_bits[label] for label in term)
         label_sets.append(labels)
         for label, size in zip(term, shape):
             old = label_dims.setdefault(label, size)
             assert old == size, f"dimension mismatch for index {label}"
 
-    boundary = [set() for _ in range(1 << n)]
+    dimensions = [label_dims[label] for label in label_order]
+    uniform_dimension = (
+        dimensions[0]
+        if dimensions and len(set(dimensions)) == 1
+        else None
+    )
+    if uniform_dimension is not None:
+        powers = [
+            uniform_dimension ** k for k in range(len(dimensions) + 1)]
+        work_for = lambda bits: powers[bits.bit_count()]
+    else:
+        work_cache = {0: 1}
+
+        def work_for(bits):
+            cached = work_cache.get(bits)
+            if cached is not None:
+                return cached
+            work = 1
+            remaining = bits
+            while remaining:
+                bit = remaining & -remaining
+                work *= dimensions[bit.bit_length() - 1]
+                remaining ^= bit
+            work_cache[bits] = work
+            return work
+
+    boundary = [0 for _ in range(1 << n)]
     for mask in range(1, 1 << n):
         bit = mask & -mask
         v = bit.bit_length() - 1
         boundary[mask] = boundary[mask ^ bit] ^ label_sets[v]
 
     # score[mask] = (largest pair work, total fwd+reverse work).
-    score = [(0, 0) for _ in range(1 << n)]
+    peak_score = [0 for _ in range(1 << n)]
+    total_score = [0 for _ in range(1 << n)]
     split = [None for _ in range(1 << n)]
-    for size in range(2, n + 1):
-        for mask in range(1, 1 << n):
-            if mask.bit_count() != size:
-                continue
-            anchor = mask & -mask
-            part = (mask - 1) & mask
-            best = None
-            while part:
-                if part & anchor:
-                    other = mask ^ part
-                    if other:
-                        pair_work = 1
-                        for label in boundary[part] | boundary[other]:
-                            pair_work *= label_dims[label]
-                        candidate = (
-                            max(score[part][0], score[other][0], pair_work),
-                            score[part][1] + score[other][1] + 3 * pair_work,
-                            part,
-                            other,
-                        )
-                        if best is None or candidate[:2] < best[:2]:
-                            best = candidate
-                part = (part - 1) & mask
-            score[mask] = best[:2]
-            split[mask] = best[2:]
+    for mask in range(1, 1 << n):
+        if mask & (mask - 1) == 0:
+            continue
+        anchor = mask & -mask
+        part = (mask - 1) & mask
+        best_peak = best_total = None
+        best_split = None
+        while part:
+            if part & anchor:
+                other = mask ^ part
+                if other:
+                    pair_work = work_for(
+                        boundary[part] | boundary[other])
+                    candidate_peak = max(
+                        peak_score[part], peak_score[other], pair_work)
+                    candidate_total = (
+                        total_score[part] + total_score[other]
+                        + 3 * pair_work
+                    )
+                    if (
+                        best_peak is None
+                        or (candidate_peak, candidate_total)
+                        < (best_peak, best_total)
+                    ):
+                        best_peak = candidate_peak
+                        best_total = candidate_total
+                        best_split = (part, other)
+            part = (part - 1) & mask
+        peak_score[mask] = best_peak
+        total_score[mask] = best_total
+        split[mask] = best_split
 
-    return split, boundary, score[(1 << n) - 1]
+    full = (1 << n) - 1
+    return split, boundary, (peak_score[full], total_score[full])
+
+
+def _optimal_contraction_tree(terms, operand_shapes):
+    return _optimal_contraction_tree_cached(
+        tuple(terms), tuple(tuple(shape) for shape in operand_shapes))
 
 
 def contraction_plan_cost(M, d, valence):
@@ -159,18 +204,60 @@ def contraction_plan_cost(M, d, valence):
     return score
 
 
-def _network_gradient(terms, operands, mod=P):
+def greedy_contraction_plan_cost(M, d, valence):
+    """Cheap deterministic upper bound used only to schedule candidates.
+
+    Production evaluation still uses the globally optimal dynamic program
+    above. This O(n^3) heuristic is inexpensive enough to enrich an entire
+    large catalog and puts narrow tensor networks first.
+    """
+    slots, _ = _slot_plan(M, valence)
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(
+            "".join(term) for term in slots)))
+    }
+    boundaries = [
+        sum(label_bits[label] for label in term)
+        for term in slots
+    ]
+    peak = total = 0
+    while len(boundaries) > 1:
+        best = None
+        for i in range(len(boundaries)):
+            for j in range(i + 1, len(boundaries)):
+                union = boundaries[i] | boundaries[j]
+                result = boundaries[i] ^ boundaries[j]
+                work = d ** union.bit_count()
+                output = d ** result.bit_count()
+                candidate = (work, output, i, j, result)
+                if best is None or candidate[:4] < best[:4]:
+                    best = candidate
+        work, _, i, j, result = best
+        peak = max(peak, work)
+        total += 3 * work
+        for k in sorted((i, j), reverse=True):
+            boundaries.pop(k)
+        boundaries.append(result)
+    return peak, total
+
+
+def _network_value_gradient(terms, operands, mod=P):
     """Reverse-differentiate a scalar pairwise tensor contraction.
 
     Each index label must occur exactly twice across the input terms, as it
-    does for a fully contracted graph. The returned list is the derivative
-    with respect to each input operand, in the operand's original axis order.
+    does for a fully contracted graph. Return the scalar value plus the
+    derivative with respect to each operand in its original axis order.
     """
     nodes = [{"term": term, "value": np.asarray(op, dtype=np.int64) % mod,
               "left": None, "right": None}
              for term, op in zip(terms, operands)]
     split, boundary, _ = _optimal_contraction_tree(
         terms, [op.shape for op in operands])
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(terms)))
+    }
 
     def forward(mask):
         if mask.bit_count() == 1:
@@ -180,7 +267,7 @@ def _network_gradient(terms, operands, mod=P):
         lt, rt = nodes[left]["term"], nodes[right]["term"]
         keep_labels = boundary[mask]
         keep = "".join(c for c in dict.fromkeys(lt + rt)
-                       if c in keep_labels)
+                       if keep_labels & label_bits[c])
         result = mod_einsum(
             f"{lt},{rt}->{keep}",
             [nodes[left]["value"], nodes[right]["value"]],
@@ -193,6 +280,7 @@ def _network_gradient(terms, operands, mod=P):
 
     root = forward((1 << len(operands)) - 1)
     assert nodes[root]["term"] == "", "network is not fully contracted"
+    scalar = int(np.asarray(nodes[root]["value"]).item()) % mod
     adjoints = {root: np.array(1, dtype=np.int64)}
 
     for parent in range(root, len(operands) - 1, -1):
@@ -206,25 +294,59 @@ def _network_gradient(terms, operands, mod=P):
         adjoints[right] = mod_einsum(
             f"{pt},{lt}->{rt}", [adj, nodes[left]["value"]], mod)
 
-    return [adjoints[k] for k in range(len(operands))]
+    return scalar, [adjoints[k] for k in range(len(operands))]
 
 
-def jacobian_row(M, F_dense, basis_flat, d, valence,
-                 lorentzian=True, mod=P):
-    """Jacobian row from one forward/reverse tensor-network contraction."""
+def _network_gradient(terms, operands, mod=P):
+    """Compatibility wrapper returning only reverse-mode gradients."""
+    return _network_value_gradient(terms, operands, mod)[1]
+
+
+def value_and_jacobian_row(M, F_dense, basis_flat, d, valence,
+                           lorentzian=True, mod=P, backend="optimized"):
+    """Return an exact scalar value and Jacobian row from one graph.
+
+    ``optimized`` shares one contraction tree between the forward scalar and
+    reverse derivative. ``reference`` intentionally uses the independent
+    amputated implementation and is a small-case correctness oracle.
+    """
+    if backend == "reference":
+        return (
+            value(M, F_dense, d, valence, lorentzian, mod),
+            jacobian_row_amputated(
+                M, F_dense, basis_flat, d, valence, lorentzian, mod),
+        )
+    if backend != "optimized":
+        raise ValueError(f"unknown contraction backend: {backend!r}")
+
     slots, tails = _slot_plan(M, valence)
     s = metric_signs(d, lorentzian) % mod
     terms = ["".join(x) for x in slots]
     operands = [_signed(F_dense, tails[v], s, mod)
                 for v in range(M.shape[0])]
-    operand_gradients = _network_gradient(terms, operands, mod)
+    scalar, operand_gradients = _network_value_gradient(terms, operands, mod)
 
     gradient = np.zeros_like(F_dense, dtype=np.int64)
     for v, grad in enumerate(operand_gradients):
         # The forward operand is signed(F), so the chain rule applies the
         # same diagonal metric signs once more to map dI/d(signed F) to dI/dF.
         gradient = (gradient + _signed(grad, tails[v], s, mod)) % mod
-    return (basis_flat @ gradient.ravel()) % mod
+    return scalar, _project_gradient(basis_flat, gradient, mod)
+
+
+def jacobian_row(M, F_dense, basis_flat, d, valence,
+                 lorentzian=True, mod=P, backend="optimized"):
+    """Jacobian row from the selected exact contraction backend."""
+    return value_and_jacobian_row(
+        M,
+        F_dense,
+        basis_flat,
+        d,
+        valence,
+        lorentzian,
+        mod,
+        backend,
+    )[1]
 
 
 def value(M, F_dense, d, valence, lorentzian=True, mod=P):
@@ -243,3 +365,78 @@ def build_basis_flat(d, p_deg, projector=None, mod=P):
             vec = (projector @ vec) % mod
         rows.append(to_dense(vec, d, p_deg, mod).ravel())
     return np.array(rows, dtype=np.int64)
+
+
+class CompactDerivativeBasis:
+    """Project dense antisymmetric gradients without dense basis tensors.
+
+    A dense p-form repeats every sorted component p! times with matching
+    permutation signs. Pulling a dense gradient back to antisymmetric
+    components therefore reduces exactly to signed orbit sums followed by a
+    small compact matrix product.
+    For the 10D self-dual 5-form this replaces a 252 x 100,000 array with a
+    252 x 126 matrix.
+    """
+
+    def __init__(self, d, p_deg, directions, coordinate_indices, mod=P):
+        self.d = int(d)
+        self.p_deg = int(p_deg)
+        self.mod = int(mod)
+        self.tuples = basis_tuples(self.d, self.p_deg)
+        self.directions = np.asarray(directions, dtype=np.int64) % self.mod
+        self.coordinate_indices = [int(x) for x in coordinate_indices]
+        expected = (len(self.tuples), len(self.coordinate_indices))
+        if self.directions.shape != expected:
+            raise ValueError(
+                f"direction matrix has shape {self.directions.shape}, "
+                f"expected {expected}")
+        self.ncols = len(self.coordinate_indices)
+        permutations = list(itertools.permutations(range(self.p_deg)))
+        dense_indices = []
+        signs = []
+        for index in self.tuples:
+            for permutation in permutations:
+                dense_indices.append(tuple(index[k] for k in permutation))
+                signs.append(perm_sign(permutation))
+        self._flat_indices = np.ravel_multi_index(
+            np.asarray(dense_indices, dtype=np.int64).T,
+            (self.d,) * self.p_deg,
+        )
+        self._signs = np.asarray(signs, dtype=np.int64)
+
+    def project(self, gradient):
+        signed = gradient.ravel()[self._flat_indices] * self._signs
+        compact = signed.reshape(len(self.tuples), -1).sum(axis=1) % self.mod
+        return (self.directions.T @ compact) % self.mod
+
+
+def _project_gradient(basis, gradient, mod):
+    if isinstance(basis, CompactDerivativeBasis):
+        if basis.mod != mod:
+            raise ValueError("compact derivative basis uses a different prime")
+        return basis.project(gradient)
+    return (np.asarray(basis, dtype=np.int64) @ gradient.ravel()) % mod
+
+
+def build_compact_derivative_basis(d, p_deg, projector=None, mod=P,
+                                   independent=True):
+    """Build a compact derivative basis, optionally removing redundancies."""
+    component_count = len(basis_tuples(d, p_deg))
+    if projector is None:
+        directions = np.eye(component_count, dtype=np.int64)
+    else:
+        directions = np.asarray(projector, dtype=np.int64) % mod
+        if directions.shape != (component_count, component_count):
+            raise ValueError("projector has the wrong shape")
+
+    if independent:
+        sieve = RankSieve(component_count, mod)
+        indices = [
+            k for k in range(directions.shape[1])
+            if sieve.add(directions[:, k])
+        ]
+        directions = directions[:, indices]
+    else:
+        indices = list(range(directions.shape[1]))
+    return CompactDerivativeBasis(
+        d, p_deg, directions, indices, mod)
