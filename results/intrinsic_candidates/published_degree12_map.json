@@ -1,0 +1,88 @@
+{
+ "Q12_rank_from_published": 0,
+ "consistent": true,
+ "degree": 12,
+ "note": "tr(M^6) rational graph coordinates are NOT reconstructed; only modular quotient statements are certified.",
+ "per_prime": {
+  "32717": {
+   "Q12_rank_from_published": 0,
+   "dim_Q12": 4,
+   "projections": {
+    "P12_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P12_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P12_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   },
+   "seconds": 3248.6
+  },
+  "32749": {
+   "Q12_rank_from_published": 0,
+   "dim_Q12": 4,
+   "projections": {
+    "P12_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P12_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P12_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   },
+   "seconds": 2924.7
+  }
+ },
+ "schema": 1,
+ "structures": [
+  "P12_01",
+  "P12_02",
+  "P12_03"
+ ]
+}

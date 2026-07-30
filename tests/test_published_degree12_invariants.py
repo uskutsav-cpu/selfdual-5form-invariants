@@ -61,3 +61,54 @@ def test_backends_agree_where_a_reference_path_exists():
     optimized = evaluate_all(form, prime, backend="optimized")
     reference = evaluate_all(form, prime, backend="reference")
     assert optimized == reference
+
+
+def test_certified_q12_projection_is_zero_and_non_vacuous():
+    """Both primes must agree, and every structure must actually SOLVE.
+
+    A structure that failed to solve would also contribute rank 0, for an
+    entirely uninformative reason. The status field separates the cases.
+    """
+    import json
+    from pathlib import Path
+    path = (Path(__file__).resolve().parents[1] / "results"
+            / "intrinsic_candidates" / "published_degree12_map.json")
+    if not path.exists():
+        return
+    with path.open() as stream:
+        payload = json.load(stream)
+
+    assert payload["consistent"] is True
+    assert payload["Q12_rank_from_published"] == 0
+    assert len(payload["per_prime"]) >= 2, "need at least two primes"
+
+    for prime, record in payload["per_prime"].items():
+        assert record["dim_Q12"] == 4
+        assert record["Q12_rank_from_published"] == 0
+        assert set(record["projections"]) == {"P12_01", "P12_02", "P12_03"}
+        for name, proj in record["projections"].items():
+            assert proj["status"] == "solved", (
+                f"prime {prime}: {name} did not solve; a rank of 0 would then "
+                f"say nothing about the quotient")
+            assert len(proj["quotient_vector"]) == 4
+            assert all(v == 0 for v in proj["quotient_vector"])
+            assert proj["nonzero"] is False
+
+
+def test_certification_does_not_overclaim():
+    """The doc must carry the forbidden-inference list."""
+    from pathlib import Path
+    doc = (Path(__file__).resolve().parents[1] / "docs"
+           / "PUBLISHED_DEGREE12_MAP.md")
+    if not doc.exists():
+        return
+    # normalise whitespace: the permitted wording is a blockquote that wraps
+    # mid-phrase, so a raw substring search would fail on the line break
+    body = " ".join(doc.read_text().replace(">", " ").split())
+    assert "lie inside the computed reachable closure D12" in body
+    for forbidden in ("complete M/N degree-12 space has zero image",
+                      "no compact tensor representation",
+                      "are redundant",
+                      "no generalized flow can generate Q12"):
+        assert forbidden in body, (
+            f"the doc must explicitly disclaim: {forbidden}")

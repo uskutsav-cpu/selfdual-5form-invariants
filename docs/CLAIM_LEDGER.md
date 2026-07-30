@@ -460,3 +460,34 @@ mistakes is not an audit trail.
 - **Consequence**: combined with C-QUOT-02 (products excluded), the block
   multiset enumeration `M^a (N1050)^b (N4125)^c` with `a+b+c = 5` narrows to
   `b + c >= 1`.
+
+
+## C-P12-01 — the published degree-12 structures have zero image in Q12
+
+- **Wording (the only permitted form)**: "The three degree-12 structures
+  displayed in equation (4.25) lie inside the computed reachable closure D12
+  and have zero image in Q12 under the stated formal flow definition."
+- **Assumptions**: the seed closure D12 as computed by the fixed point; the
+  certificate target rows complete at degree 12; generic samples.
+- **Range**: degree 12.
+- **Scope**: generic, formal, modular.
+- **Class**: `MOD-CERT`
+- **Sources**: `src/sdinv/published_degree12_invariants.py`,
+  `results/intrinsic_candidates/published_degree12_map.json`
+  (sha256 `9a8f4e32627ee5bef06324169dc823a4…`)
+- **Primes**: 32749 and 32717, independently, both giving rank 0 with all
+  vectors of length 4 identically zero.
+- **Non-vacuity**: every structure has `status = "solved"`. A structure that
+  failed to solve would also contribute rank 0 for an uninformative reason.
+- **Independent verification**: **NOT DONE**.
+- **Forbidden stronger wording**, each an available misreading:
+  1. that the complete M/N degree-12 space has zero image in Q12 — only three
+     structures were tested;
+  2. that Q12 has no compact tensor representation — Q12 has dimension 4;
+  3. that the three invariants are redundant — they are nonzero elements of
+     the degree-12 space that happen to lie in D12;
+  4. that no generalized flow can generate Q12 — a different question, about
+     generators rather than these three scalars.
+- **Caveats**: `tr(M^6)` has no certified rational graph-basis coordinates
+  (29 of 72 columns exceed the CRT bound at 15 primes); only the modular span
+  and quotient statements are certified, which suffices for a rank claim.
