@@ -6,7 +6,7 @@ is **forbidden**.
 
 Baseline commit: `3ed32805b38ce34216b34888f6539e3538e90fb9`
 Branch: `research/maximal-chiral-four-form-program`
-Last updated: Phase 1 (deficits located)
+Last updated: Phase 1 Step 1 (quotient spaces constructed)
 
 ## Evidence classes
 
@@ -345,3 +345,54 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 | F-8 | "K6 is the published spinor invariant Σ₂" | change of basis not in the source |
 | F-9 | "the static complement is an obstruction" | contradicted by C-CLOSURE-02 |
 | F-10 | "new nonlinear theory" | no theory constructed yet (Phase 6) |
+
+
+## C-QUOT-01 — the intrinsic quotient spaces
+
+- **Wording**: "The generalized-flow quotients have dimensions dim Q_10 = 3 and
+  dim Q_12 = 4, where Q_d = A_d / D_d and D_d is the reachable seed closure."
+- **Assumptions**: seed closure as computed by the fixed point; certificate
+  target rows complete at each degree.
+- **Range**: degrees 10 and 12.
+- **Class**: `MOD-CERT`
+- **Sources**: `results/generalized_flow/quotient_degree10.json`,
+  `results/generalized_flow/quotient_degree12.json`
+- **Holdout status**: identical at all six available primes (32749, 32719,
+  32717, 32693, 32771, 32713).
+- **Independent verification**: **NOT DONE**.
+- **Permitted**: "the quotient dimensions are 3 and 4"; "dim Q_d is the
+  basis-independent content."
+- **Forbidden**: calling `I10_6, I10_7, I10_12` or `I12_59..I12_62`
+  **intrinsic**. They are coordinate labels of one graph basis, selected by an
+  echelon form. No intrinsic tensor expression exists for any of them.
+- **Caveats**: PO-09 (modular); PO-08 (GL basis change partial).
+
+## C-QUOT-02 — the quotient classes are primitive, not products
+
+- **Wording**: "No quotient direction at degree 10 or 12 is a product of
+  lower-degree invariants: every product entry of both bases lies inside the
+  closure."
+- **Range**: degrees 10 and 12.
+- **Class**: `MOD-CERT`
+- **Evidence**: at degree 10 both product entries (`I4_1*I6_1`, `I4_1*I6_2`)
+  and at degree 12 all ten (`I4_1^3`, `I6_1^2`, `I6_1*I6_2`, `I6_2^2`,
+  `I4_1*I8_1..6`) are in D_d; none is in a missing set.
+- **Permitted**: "the quotient classes are genuinely primitive."
+- **Forbidden**: inferring from this what the classes *are*. It is an exclusion,
+  not an identification.
+
+## C-QUOT-03 — NEGATIVE: no intrinsic spanning set exists yet
+
+- **Wording**: "Intrinsic quotient rank reached: **0 of 3** at degree 10 and
+  **0 of 4** at degree 12."
+- **Class**: bounded negative result
+- **Families searched**: products of lower intrinsics — excluded by C-QUOT-02.
+  **Not searched**: N^(1050)-type primitive contractions at degrees 10/12,
+  mixed M–F channels, epsilon/parity-odd contractions, flow-generated
+  structures. The relation of the static stress span to D_d is **not computed**.
+- **Next input needed**: a generator for primitive scalar contractions at total
+  field degree 10 and 12 from N^(1050) and M, analogous to the eight-term graph
+  expansion defining K6 at degree 6.
+- **Forbidden**: any claim that the seven directions have been intrinsically
+  identified, and any compact tensor formula not verified against fitting
+  primes, holdout primes and fresh samples.

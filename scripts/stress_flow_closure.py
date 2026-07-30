@@ -28,7 +28,8 @@ def monomial_factors(target):
     return [f for f in target["coefficient_monomial"] if f]
 
 
-def closure(certificate, seed_ids, prime, verbose=False):
+def closure(certificate, seed_ids, prime, verbose=False,
+            return_span=False):
     """seed_ids: dict degree -> list of basis ids present in the seed."""
     basis = {}
     for target in certificate["targets"]:
@@ -86,9 +87,24 @@ def closure(certificate, seed_ids, prime, verbose=False):
                 print(f"  fixed point after {iteration} sweeps")
             break
 
-    return {d: rank_mod(np.asarray(span[d] or [[0] * len(basis[d])],
+    dims = {d: rank_mod(np.asarray(span[d] or [[0] * len(basis[d])],
                                    dtype=np.int64) % prime, prime)
-            for d in DEGREES}, basis
+            for d in DEGREES}
+    if return_span:
+        return dims, basis, span
+    return dims, basis
+
+
+def closure_span(certificate, seed_ids, prime):
+    """Closure together with the spanning rows at each degree.
+
+    Same fixed point as closure(); returns the actual subspace D_d rather than
+    only its dimension, which is what the quotient construction Q_d = A_d / D_d
+    needs.
+    """
+    dims, basis, span = closure(
+        certificate, seed_ids, prime, return_span=True)
+    return dims, basis, span
 
 
 def main():

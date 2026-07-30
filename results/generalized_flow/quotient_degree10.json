@@ -1,0 +1,305 @@
+{
+ "basis": [
+  "I10_1",
+  "I10_2",
+  "I10_3",
+  "I10_4",
+  "I10_5",
+  "I10_6",
+  "I10_7",
+  "I10_8",
+  "I10_9",
+  "I10_10",
+  "I10_11",
+  "I10_12",
+  "I4_1*I6_1",
+  "I4_1*I6_2"
+ ],
+ "caveat": "D_d is a SEED closure. The generator-extension problem dV/dlambda = f(T,S,lambda) is different and is not answered here.",
+ "closure_dimension": 11,
+ "consistent_across_primes": true,
+ "degree": 10,
+ "echelon_rows_of_D": [
+  [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ]
+ ],
+ "free_columns": [
+  5,
+  6,
+  11
+ ],
+ "full_dimension": 14,
+ "interpretation": "Q_d is the primary object. The listed representatives are coordinate labels of a particular graph basis and are NOT intrinsic; an intrinsic spanning set is the goal of Step 3-4. Only dim Q_d is basis-independent.",
+ "per_prime": {
+  "32693": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  },
+  "32713": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  },
+  "32717": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  },
+  "32719": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  },
+  "32749": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  },
+  "32771": {
+   "closure_dimension": 11,
+   "free_column_labels": [
+    "I10_6",
+    "I10_7",
+    "I10_12"
+   ],
+   "quotient_dimension": 3
+  }
+ },
+ "pivot_columns": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  7,
+  8,
+  9,
+  10,
+  12,
+  13
+ ],
+ "primes": [
+  32693,
+  32713,
+  32717,
+  32719,
+  32749,
+  32771
+ ],
+ "quotient_dimension": 3,
+ "quotient_representatives": [
+  "I10_6",
+  "I10_7",
+  "I10_12"
+ ],
+ "schema": 1,
+ "seed": {
+  "4": [
+   "I4_1"
+  ],
+  "6": [
+   "I6_2"
+  ],
+  "8": [
+   "I8_3",
+   "I8_4",
+   "I8_5",
+   "I8_6"
+  ]
+ }
+}
