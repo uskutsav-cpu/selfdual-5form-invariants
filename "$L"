@@ -1,0 +1,7 @@
+base closure: {4: 1, 6: 2, 8: 7, 10: 14, 12: 68}
+  RAISES: I12_59  -> deg12=69
+  RAISES: I12_60  -> deg12=69
+  RAISES: I12_61  -> deg12=69
+  RAISES: I12_62  -> deg12=69
+RAISERS: ['I12_59', 'I12_60', 'I12_61', 'I12_62']
+count: 4

@@ -21,9 +21,27 @@
   "static_degree12_per_prime": 154.3
  },
  "nothing_pushed_beyond": "stress-flow/classification-through-degree12",
+ "phase_1": {
+  "closure_is_coordinate_aligned": true,
+  "conjecture_CJ01": "functional dependence implies dynamical unreachability (2/2; converse false)",
+  "degree10_missing": [
+   "I10_6",
+   "I10_7",
+   "I10_12"
+  ],
+  "degree12_missing": [
+   "I12_59",
+   "I12_60",
+   "I12_61",
+   "I12_62"
+  ],
+  "gate_blocker": "directions are graph labels, not intrinsic tensor expressions",
+  "gate_met": false,
+  "total_minimal_completion_through_degree12": 12
+ },
  "phases": {
   "0": "complete",
-  "1": "in_progress",
+  "1": "partial: deficits located and minimal; intrinsic expressions outstanding",
   "10": "not_started",
   "11": "not_started",
   "12": "blocked_by_design",

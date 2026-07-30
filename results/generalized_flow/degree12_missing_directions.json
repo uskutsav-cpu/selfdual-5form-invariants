@@ -1,0 +1,58 @@
+{
+ "base_closure": {
+  "10": 14,
+  "12": 68,
+  "4": 1,
+  "6": 2,
+  "8": 7
+ },
+ "caveat": "These are SEED directions. Adjoining a flow GENERATOR is a different operation and is not established by this computation.",
+ "closure_with_all": {
+  "10": 14,
+  "12": 72,
+  "4": 1,
+  "6": 2,
+  "8": 7
+ },
+ "deficit": 4,
+ "degree": 12,
+ "degree_closed": true,
+ "missing_directions": [
+  "I12_59",
+  "I12_60",
+  "I12_61",
+  "I12_62"
+ ],
+ "primes_confirmed": [
+  32749,
+  32719,
+  32717,
+  32693
+ ],
+ "removal_minimality": {
+  "I12_59": 71,
+  "I12_60": 71,
+  "I12_61": 71,
+  "I12_62": 71
+ },
+ "schema": 1,
+ "seed": {
+  "10": [
+   "I10_6",
+   "I10_7",
+   "I10_12"
+  ],
+  "4": [
+   "I4_1"
+  ],
+  "6": [
+   "I6_2"
+  ],
+  "8": [
+   "I8_3",
+   "I8_4",
+   "I8_5",
+   "I8_6"
+  ]
+ }
+}

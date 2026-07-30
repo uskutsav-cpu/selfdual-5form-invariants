@@ -6,7 +6,7 @@ is **forbidden**.
 
 Baseline commit: `3ed32805b38ce34216b34888f6539e3538e90fb9`
 Branch: `research/maximal-chiral-four-form-program`
-Last updated: Phase 0 (baseline audit)
+Last updated: Phase 1 (deficits located)
 
 ## Evidence classes
 
@@ -85,10 +85,10 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 - **Wording**: "Candidate multigraphs are deduplicated by exact canonical form
   for n ≤ 6 and by pynauty above."
 - **Class**: `EXACT-CA-THM` (given pynauty correctness)
-- **Caveats**: an earlier Weisfeiler–Leman fallback was shown to collide on
-  regular multigraphs (49 classes → 39 keys at order 6) and would silently
-  *drop* candidates. Confirm pynauty is actually in the active path at every
-  degree used; PO-01.
+- **Caveats**: PO-01 **discharged** in Phase 0 — `_canonical_wl` no longer
+  exists, `canonical()` uses pynauty's exact certificate or raises above six
+  vertices, and order 8 comes from nauty `geng | multig`. The historical WL
+  collision (49 classes → 39 keys at order 6) cannot occur at this commit.
 
 ## C-SEXTIC-01/02/03 — intrinsic sextic basis
 
@@ -142,7 +142,9 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 - **Verification**: fit primes 32749/32719/32693/32771/32713; independent
   holdout 32717; `all_modular_and_rational_holdouts_passed: true`.
 - **Independent verification**: **NOT DONE**
-- **Caveats**: a *single* holdout prime. The objective asks for two; PO-06.
+- **Caveats**: PO-06 **discharged** in Phase 0 — two independent holdouts
+  (32713 and 32717) both pass, and the two fit sets give 192/192 identical
+  reconstructions.
 
 ## C-FLOW-02 — the K6 transport equation
 
@@ -201,12 +203,48 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 - **Forbidden**: claiming minimality under *arbitrary* basis change; only
   removal-minimality within the fixed basis is shown. PO-08.
 
-## C-MIN-02 — residual deficit
+## C-MIN-02 — residual deficit — RESOLVED (Phase 1)
 
-- **Wording**: "After that completion, degrees 10 and 12 retain deficits of 3
-  and 4."
+- **Wording**: "The degree-10 deficit of 3 is spanned by I10_6, I10_7, I10_12;
+  the degree-12 deficit of 4 by I12_59, I12_60, I12_61, I12_62. Adjoining all
+  seven closes both degrees. Each is non-redundant under removal."
 - **Class**: `MOD-CERT` + `FINITE-ORDER`
-- **Status**: **the open target of Phase 1.**
+- **Range**: degrees 10, 12.
+- **Sources**: `results/generalized_flow/degree10_missing_directions.json`,
+  `results/generalized_flow/degree12_missing_directions.json`
+- **Verification**: exhaustive scan over every basis direction at each degree;
+  confirmed on primes 32749, 32719, 32717, 32693.
+- **Independent verification**: **NOT DONE**.
+- **Permitted**: "the deficits are located exactly and each element is
+  necessary."
+- **Forbidden**: calling these directions *intrinsic* — they are graph labels
+  in one basis. Also forbidden: presenting them as flow **generators**
+  (C-MIN-03).
+- **Caveats**: Phase 1 gate NOT met pending intrinsic expressions; PO-08
+  (basis-change minimality) still open.
+
+## C-MIN-04 — the closure is coordinate-aligned
+
+- **Wording**: "At degree 12 the 68-dimensional closure contains exactly 68 of
+  the 72 basis vectors; at degree 10, 11 of 14."
+- **Class**: `MOD-CERT`
+- **Permitted**: "the closure coincides with a coordinate subspace of the graph
+  basis, which a generic subspace of that dimension would not."
+- **Forbidden**: treating the coordinate alignment as basis-independent. Under
+  a generic change of basis it disappears; only the quotient dimension is
+  intrinsic.
+
+## CJ-01 — CONJECTURE: functional dependence implies unreachability
+
+- **Wording**: "Every functionally dependent degree-12 candidate is dynamically
+  unreachable."
+- **Class**: `CONJ`
+- **Evidence**: 2 of 2 (`I12_61`, `I12_62` are both the atlas's recorded
+  `functional_dependencies` and members of the unreachable set). The converse
+  is **false**: `I12_59`, `I12_60` are unreachable and functionally
+  independent.
+- **Forbidden**: any manuscript appearance. Two data points, no mechanism.
+- **Target**: Phase 4 must explain it or expose it as coincidence.
 
 ## C-MIN-03 — seeding vs. generators
 
