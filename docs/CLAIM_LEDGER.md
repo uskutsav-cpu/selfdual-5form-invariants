@@ -381,18 +381,54 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 - **Forbidden**: inferring from this what the classes *are*. It is an exclusion,
   not an identification.
 
-## C-QUOT-03 — NEGATIVE: no intrinsic spanning set exists yet
+## C-QUOT-03 — SUPERSEDED, and the error is recorded
 
-- **Wording**: "Intrinsic quotient rank reached: **0 of 3** at degree 10 and
-  **0 of 4** at degree 12."
+The earlier wording — "intrinsic quotient rank 0 of 3 and 0 of 4" — was
+**wrong**. It conflated *no compact named formula* (true) with *no intrinsic
+representative* (false). A verified contraction graph already defines a
+coordinate-independent Lorentz scalar; the missing step was the deterministic
+translation into explicit index form, not new mathematics. Superseded by
+C-LEVELA-01. Retained here because a ledger that silently deletes its own
+mistakes is not an audit trail.
+
+## C-LEVELA-01 — Level-A intrinsic representatives, all seven classes
+
+- **Wording**: "Each of the seven generalized-flow quotient classes has an
+  explicit Einstein-index representative
+  `I = prod_v F_{s(v,1..5)} x prod_pairs eta^{s_a s_b}`, with 25 metric
+  factors at degree 10 and 30 at degree 12."
+- **Assumptions**: the committed contraction graphs are correct (C-ATLAS-05,
+  PO-01 discharged).
+- **Range**: degrees 10 and 12.
+- **Class**: `EXACT-CA-THM`
+- **Sources**: `results/intrinsic_candidates/explicit_F_contractions.json`,
+  `src/sdinv/graph_to_tensor.py`
+- **Holdout status**: 3 primes x 6 samples (4 fitting + 2 fresh) per class =
+  **126 dense-vs-graph checks, 126 agreements**, no sign discrepancy.
+  Homogeneity `F -> cF ~ c^degree` verified on every class.
+- **Independent verification**: the dense evaluator is a second code path
+  within this repository (einsum built from the dummy-index assignment, metric
+  applied by raising one slot). Not clean-room.
+- **Permitted**: "explicit, coordinate-independent intrinsic representatives";
+  "Level A complete for all seven classes."
+- **Forbidden**: calling these **compact**, **canonical**, **simplest**, or
+  **explanatory**. They are 10- and 12-fold contractions. Also forbidden:
+  claiming the quotients are *understood* — that needs Level B.
+- **Caveats**: intrinsic IDs `Q10_A/B/C`, `Q12_A/B/C/D` are provisional; their
+  correspondence to graph labels is recorded, not an identification.
+
+## C-LEVELB-01 — NEGATIVE: no M/N expression for any class
+
+- **Wording**: "Level B (expression in M^(54), N^(1050), N^(4125)) is derived
+  for **0 of 7** classes. Level C is not attempted."
 - **Class**: bounded negative result
-- **Families searched**: products of lower intrinsics — excluded by C-QUOT-02.
-  **Not searched**: N^(1050)-type primitive contractions at degrees 10/12,
-  mixed M–F channels, epsilon/parity-odd contractions, flow-generated
-  structures. The relation of the static stress span to D_d is **not computed**.
-- **Next input needed**: a generator for primitive scalar contractions at total
-  field degree 10 and 12 from N^(1050) and M, analogous to the eight-term graph
-  expansion defining K6 at degree 6.
-- **Forbidden**: any claim that the seven directions have been intrinsically
-  identified, and any compact tensor formula not verified against fitting
+- **Families searched**: products of lower intrinsics — excluded by C-QUOT-02
+  (all product basis entries lie inside the closure, so the classes are
+  genuinely primitive). **Not searched**: quadratic-block multisets
+  `M^a (N1050)^b (N4125)^c` with a+b+c = 5 and 6; epsilon/parity-odd channels;
+  flow-generated structures. Static-span-versus-D_d relation not computed.
+- **Next input needed**: the quadratic-block contraction generator (Stage 2),
+  or the reverse route of Stage 5 — pairing the F's of a known Level-A graph
+  into blocks and reducing.
+- **Forbidden**: any compact tensor formula not validated against fitting
   primes, holdout primes and fresh samples.
