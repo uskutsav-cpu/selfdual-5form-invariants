@@ -34,10 +34,33 @@ def _sample(prime, seed):
     return to_dense((projector @ raw) % prime, 10, 5, prime)
 
 
-def test_only_unambiguous_candidates_are_implemented():
-    assert set(PUBLISHED_DEGREE10) == {"P10_01", "P10_02"}
-    assert len(NOT_IMPLEMENTED) == 10, (
-        "the other ten must stay explicitly unimplemented, not guessed")
+def test_implemented_and_unimplemented_partition_all_twelve():
+    """Every one of the twelve must be either implemented or explicitly not.
+
+    This guard exists so a candidate can never be silently dropped: the two
+    sets must be disjoint and together cover P10_01..P10_12.
+    """
+    from sdinv.published_degree10_invariants import BRACKET_STAGES
+    implemented = set(PUBLISHED_DEGREE10)
+    blocked = set(NOT_IMPLEMENTED)
+    assert implemented & blocked == set(), "a candidate is in both sets"
+    assert implemented | blocked == {f"P10_{i:02d}" for i in range(1, 13)}
+    # every implemented candidate above P10_02 must record its bracket stage,
+    # because that is what decides whether the engine is needed
+    for name in implemented:
+        if name in ("P10_01", "P10_02"):
+            continue
+        assert name in BRACKET_STAGES, f"{name} has no recorded bracket stage"
+
+
+def test_red_bracket_candidates_are_not_implemented_without_the_engine():
+    """P10_04 and P10_09 carry red brackets; they must not be faked."""
+    from sdinv.published_degree10_invariants import BRACKET_STAGES
+    for name in ("P10_04", "P10_09"):
+        assert "RED" in BRACKET_STAGES[name]
+        assert name in NOT_IMPLEMENTED, (
+            f"{name} has red brackets and must not be implemented until the "
+            f"staged bracket program is encoded for it")
 
 
 def test_homogeneity_degree_ten():
