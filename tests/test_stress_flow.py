@@ -18,6 +18,8 @@ from sdinv.exactmap import (  # noqa: E402
     solve_full_column_rank,
 )
 from sdinv.forms import (  # noqa: E402
+    basis_tuples,
+    hodge_matrix,
     metric_signs,
     random_form,
     selfdual_projector,
@@ -33,9 +35,13 @@ from sdinv.graphs import graph_to_record  # noqa: E402
 from sdinv.modp import inv  # noqa: E402
 from sdinv.stress import (  # noqa: E402
     _antisymmetrize_axes,
+    _raise_axes,
     composite_n,
     composite_n4125,
     five_form_moment,
+    interacting_stress,
+    interaction_gradient_i4,
+    interacting_trace_formula,
     matrix_trace_power,
     modmax_stress,
     modmax_stress_square_formula,
@@ -133,6 +139,88 @@ def test_equations_3_3_and_3_4_are_exactly_equivalent(prime):
 
 
 @pytest.mark.parametrize("prime", [32749, 32719, THIRD_PRIME])
+def test_general_interacting_stress_reduces_to_v_i4_formula(prime):
+    """Equation (2.33) must reproduce the independent equation (3.3)."""
+    five_form = _sample(20260903, prime)
+    v, v_i = 137, 211
+    i4 = matrix_trace_power(
+        five_form_moment(five_form, prime)[1], 2, prime)
+    derivative = interaction_gradient_i4(five_form, v_i, prime)
+    general = interacting_stress(
+        five_form,
+        derivative,
+        v=v,
+        euler=4 * i4 * v_i,
+        mod=prime,
+    )
+    assert np.array_equal(
+        general,
+        stress_v_i4_raw(five_form, v=v, v_i=v_i, mod=prime),
+    )
+    derivative_vector = np.asarray([
+        derivative[index] for index in basis_tuples(10, 5)
+    ])
+    assert np.array_equal(
+        hodge_matrix(10, 5, True, prime) @ derivative_vector % prime,
+        -derivative_vector % prime,
+    )
+    assert matrix_trace_power(stress_mixed(general, prime), 1, prime) == (
+        interacting_trace_formula(v, 4 * i4 * v_i, prime)
+    )
+    assert np.array_equal(
+        interaction_gradient_i4(
+            five_form, v_i, prime, backend="reference"),
+        derivative,
+    )
+    assert np.array_equal(
+        interacting_stress(
+            five_form,
+            derivative,
+            v=v,
+            euler=4 * i4 * v_i,
+            mod=prime,
+            backend="reference",
+        ),
+        general,
+    )
+
+
+@pytest.mark.parametrize("prime", [32749, 32719, THIRD_PRIME])
+def test_registry_gradient_has_paper_normalization(prime):
+    """The graph reverse derivative calibrates to the explicit I4 formula."""
+    five_form = _sample(20260909, prime)
+    registry = load_verified_registry(ROOT)
+    graph_i4, graph_gradient = registry.evaluate_item_with_gradient(
+        "I4_1", five_form, prime)
+    paper_gradient = interaction_gradient_i4(five_form, 1, prime)
+    assert np.array_equal(2 * graph_gradient % prime, paper_gradient)
+    assert 2 * graph_i4 % prime == matrix_trace_power(
+        five_form_moment(five_form, prime)[1], 2, prime)
+
+
+@pytest.mark.parametrize("prime", [32749, 32719, THIRD_PRIME])
+def test_registry_gradients_are_anti_selfdual_and_obey_euler(prime):
+    five_form = _sample(20260910, prime)
+    five_form_upper = _raise_axes(five_form, range(5), prime)
+    registry = load_verified_registry(ROOT)
+    hodge = hodge_matrix(10, 5, True, prime)
+    for item_id in ("I4_1", "I6_1", "I6_2", "I4_1^2"):
+        item = registry.item(item_id)
+        scalar, derivative = registry.evaluate_item_with_gradient(
+            item_id, five_form, prime)
+        derivative_vector = np.asarray([
+            derivative[index] for index in basis_tuples(10, 5)
+        ])
+        assert np.array_equal(
+            hodge @ derivative_vector % prime,
+            -derivative_vector % prime,
+        )
+        assert int(np.sum(
+            five_form_upper * derivative, dtype=np.int64
+        ) % prime) == item.degree * scalar % prime
+
+
+@pytest.mark.parametrize("prime", [32749, 32719, THIRD_PRIME])
 def test_published_i8_i12_and_modmax_stress_square(prime):
     five_form = _sample(20260904, prime)
     compact = paper_i4_i8_i12(five_form, prime)
@@ -188,6 +276,15 @@ def test_lorentz_boost_covariance_of_m_r_and_modmax_t():
         lambda tensor: five_form_moment(tensor, prime)[0],
         lambda tensor: stress_correction_r(tensor, prime),
         lambda tensor: modmax_stress(tensor, 17, prime),
+        lambda tensor: interacting_stress(
+            tensor,
+            interaction_gradient_i4(tensor, 23, prime),
+            v=23 * matrix_trace_power(
+                five_form_moment(tensor, prime)[1], 2, prime),
+            euler=4 * 23 * matrix_trace_power(
+                five_form_moment(tensor, prime)[1], 2, prime),
+            mod=prime,
+        ),
     ):
         original = builder(five_form)
         expected = boost @ original @ boost.T % prime
@@ -198,7 +295,7 @@ def test_stress_trace_cayley_hamilton_interface():
     five_form = _sample(20260906, 32749)
     stress = modmax_stress(five_form, 19, 32749)
     traces = stress_traces(stress, 10, 32749)
-    assert tuple(traces) == tuple(range(2, 11))
+    assert tuple(traces) == tuple(range(1, 11))
     with pytest.raises(ValueError, match="CH limit"):
         stress_traces(stress, 11, 32749)
 

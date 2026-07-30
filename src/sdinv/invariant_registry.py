@@ -14,8 +14,11 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 
+import numpy as np
+
 from .contract import value
 from .graphs import graph_from_label, graph_from_record, validate_graph
+from .interaction import invariant_value_and_derivative
 
 
 @dataclass(frozen=True)
@@ -136,6 +139,51 @@ class InvariantRegistry:
             self.evaluate_item(item.id, five_form, mod, cache)
             for item in self.basis(degree)
         ]
+
+    def evaluate_item_with_gradient(self, item_id, five_form, mod, cache=None):
+        """Evaluate an invariant and its paper-normalized form derivative.
+
+        The derivative is the covariant antisymmetric tensor
+        ``dI/dLambda^{mu(5)}``.  Product items use the exact Leibniz rule.
+        """
+        cache = {} if cache is None else cache
+        if item_id in cache:
+            return cache[item_id]
+        item = self.item(item_id)
+        if item.kind == "placeholder":
+            raise RuntimeError(
+                f"{item.id} is a degree-{item.degree} import placeholder")
+        if item.kind in {"graph", "graph_record"}:
+            matrix = (
+                graph_from_label(item.graph)
+                if item.kind == "graph"
+                else graph_from_record(item.graph_record)
+            )
+            scalar, gradient = invariant_value_and_derivative(
+                matrix, five_form, 10, 5, True, mod)
+        else:
+            factors = [
+                self.evaluate_item_with_gradient(
+                    factor, five_form, mod, cache)
+                for factor in item.factors
+            ]
+            scalar = 1
+            for factor_value, _ in factors:
+                scalar = scalar * factor_value % mod
+            gradient = np.zeros((10,) * 5, dtype=np.int64)
+            for index, (_, factor_gradient) in enumerate(factors):
+                coefficient = 1
+                for other, (factor_value, _) in enumerate(factors):
+                    if other != index:
+                        coefficient = coefficient * factor_value % mod
+                gradient = (
+                    gradient + coefficient * factor_gradient
+                ) % mod
+        cache[item_id] = (
+            int(scalar) % mod,
+            np.asarray(gradient, dtype=np.int64) % mod,
+        )
+        return cache[item_id]
 
     def with_degree12_primitives(self, primitives):
         """Return a copy with exactly 62 imported degree-12 primitives.

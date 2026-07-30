@@ -149,6 +149,91 @@ def _antisymmetrize_axes(tensor, axes, mod):
     return result * inv(factorial(len(axes)), mod) % mod
 
 
+def interaction_gradient_i4(five_form, v_i, mod=P, backend="optimized"):
+    """Return ``dV/dLambda^{mu(5)}`` for ``V=V(I4)``.
+
+    Equation (3.2) of arXiv:2509.14351v2 states
+
+    ``F^- = 20 M_[mu1]^rho Lambda_mu2...mu5 rho V_I``,
+
+    while equation (2.20) states ``F^-=5 dV/dLambda^upper``.  Consequently
+    the covariant, anti-self-dual derivative needed in equation (2.33) is
+
+    ``dV/dLambda^{mu(5)}
+      = 4 M_[mu1]^rho Lambda_mu2...mu5 rho V_I``.
+
+    Square brackets are normalized throughout this module.
+    """
+    five_form = _require_five_form(five_form) % mod
+    _, m_mixed = five_form_moment(five_form, mod, backend)
+    if backend == "optimized":
+        raw = mod_einsum(
+            "mr,abcdr->mabcd", [m_mixed, five_form], mod)
+    elif backend == "reference":
+        # Only ten products enter each output component.
+        raw = np.einsum(
+            "mr,abcdr->mabcd", m_mixed, five_form) % mod
+    else:
+        raise ValueError(f"unknown backend: {backend!r}")
+    derivative = _antisymmetrize_axes(raw, range(PDEG), mod)
+    return _scale(derivative, (4, int(v_i)), mod)
+
+
+def interacting_stress(five_form, derivative_lower, v, euler, mod=P,
+                       backend="optimized"):
+    """Return the fully interacting INZ stress tensor, equation (2.33).
+
+    Parameters are exact field values:
+
+    * ``derivative_lower`` is the covariant anti-self-dual tensor
+      ``dV/dLambda^{mu(5)}``;
+    * ``v`` is ``V(Lambda)``;
+    * ``euler`` is ``Lambda_(5) dV/dLambda_(5)``.
+
+    Passing the Euler contraction explicitly avoids silently choosing an
+    ambient extension of a function defined only on the self-dual subspace.
+    For a homogeneous field-degree-``d`` interaction it is simply ``d*v``.
+    """
+    five_form = _require_five_form(five_form) % mod
+    derivative = _require_five_form(derivative_lower) % mod
+    m_lower, _ = five_form_moment(five_form, mod, backend)
+    derivative_moment, _ = five_form_moment(derivative, mod, backend)
+    _, eta = _metric(mod)
+    tensor_part = _scale(
+        (m_lower - 25 * derivative_moment) % mod,
+        (inv(2 * FOUR_FACTORIAL, mod),),
+        mod,
+    )
+    scalar_part = _scale(
+        eta,
+        (
+            -inv(FOUR_FACTORIAL, mod),
+            (int(v) - inv(2, mod) * int(euler)) % mod,
+        ),
+        mod,
+    )
+    return np.asarray((tensor_part + scalar_part) % mod, dtype=np.int64)
+
+
+def interacting_trace_formula(v, euler, mod=P):
+    """Trace implied algebraically by the displayed equation (2.33).
+
+    With ``eta=(-,+,...,+)``, its first bracket is traceless and the
+    ``-g_mu_nu/4!`` term gives
+
+    ``Tr(T) = -5/12 * (V - (Lambda.dV)/2)``.
+
+    Equation (2.36) of arXiv:2509.14351v2 displays the opposite overall sign;
+    the repository records this internal source discrepancy explicitly
+    instead of silently changing equation (2.33).
+    """
+    return int(
+        -5 * inv(12, mod)
+        * (int(v) - inv(2, mod) * int(euler))
+        % mod
+    )
+
+
 def composite_n1050(five_form, mod=P, backend="optimized"):
     """Return the 1050 component defined in paper equation (2.15).
 
@@ -443,13 +528,13 @@ def stress_mixed(stress_lower, mod=P):
 
 
 def stress_traces(stress_lower, max_power=10, mod=P):
-    """Return ``Tr(T^k)`` for ``k=2,...,max_power``."""
-    if not 2 <= max_power <= D:
-        raise ValueError("require 2 <= max_power <= the D=10 CH limit")
+    """Return ``Tr(T^k)`` for ``k=1,...,max_power``."""
+    if not 1 <= max_power <= D:
+        raise ValueError("require 1 <= max_power <= the D=10 CH limit")
     mixed = stress_mixed(stress_lower, mod)
     return {
         power: matrix_trace_power(mixed, power, mod)
-        for power in range(2, max_power + 1)
+        for power in range(1, max_power + 1)
     }
 
 
