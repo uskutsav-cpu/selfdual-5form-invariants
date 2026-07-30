@@ -74,22 +74,37 @@ def registry_items():
     return items
 
 
-def evaluate_atlas_element(item, items, form, prime, cache):
+def evaluate_atlas_element(item, items, form, prime, cache, _seen=None):
     """Exact value of one atlas basis element on `form`.
 
     Primitives evaluate their graph; products multiply their factors, which is
     resolved recursively through the registry rather than assumed.
+
+    Degree 12 stores `graph_record` rather than `graph`, so both are handled.
+    `_seen` breaks self-reference: without it an item carrying neither field
+    falls through to name parsing and recurses on itself until the stack dies,
+    which is what happened on the first degree-12 run.
     """
     if item.id in cache:
         return cache[item.id]
+    _seen = set() if _seen is None else _seen
+    if item.id in _seen:
+        raise ValueError(
+            f"self-referential atlas element {item.id!r}: it has neither a "
+            f"graph nor resolvable factors")
+    _seen = _seen | {item.id}
     if getattr(item, "graph", None):
         g = graph_from_label(item.graph)
+        out = value(g, form, 10, 5, True, prime) % prime
+    elif getattr(item, "graph_record", None):
+        from sdinv.graphs import graph_from_record
+        g = graph_from_record(item.graph_record)
         out = value(g, form, 10, 5, True, prime) % prime
     elif getattr(item, "factors", ()):
         out = 1
         for factor in item.factors:
             out = (out * evaluate_atlas_element(
-                items[factor], items, form, prime, cache)) % prime
+                items[factor], items, form, prime, cache, _seen)) % prime
     else:
         # product ids of the form 'A*B' or 'A^k' with no explicit factors
         name = item.id
@@ -98,11 +113,11 @@ def evaluate_atlas_element(item, items, form, prime, cache):
             if "^" in piece:
                 base, power = piece.split("^")
                 v = evaluate_atlas_element(
-                    items[base], items, form, prime, cache)
+                    items[base], items, form, prime, cache, _seen)
                 out = (out * pow(int(v), int(power), prime)) % prime
             else:
                 out = (out * evaluate_atlas_element(
-                    items[piece], items, form, prime, cache)) % prime
+                    items[piece], items, form, prime, cache, _seen)) % prime
     cache[item.id] = out
     return out
 
