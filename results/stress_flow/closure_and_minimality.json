@@ -1,0 +1,124 @@
+{
+ "caveat": "Closure is reachability under seeding and INCLUDES Tr(tau) propagation. It is not the same as the new-forcing span in interacting_flow_equations.json, which excludes Tr(tau). The two answer different questions and must not be interchanged.",
+ "claim": "Reachable (closure) dimensions of the pure stress flow by seed, and minimality of the generalized-flow completion through degree 8, exact over finite fields and identical on every prime.",
+ "closures": {
+  "free": {
+   "10": 11,
+   "12": 67,
+   "4": 1,
+   "6": 1,
+   "8": 3
+  },
+  "free_plus_J6": {
+   "10": 11,
+   "12": 67,
+   "4": 1,
+   "6": 1,
+   "8": 3
+  },
+  "free_plus_K6": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 3
+  },
+  "free_plus_K6_and_degree8_complement": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 7
+  },
+  "free_plus_degree8_complement_only": {
+   "10": 11,
+   "12": 67,
+   "4": 1,
+   "6": 1,
+   "8": 7
+  }
+ },
+ "degrees": [
+  4,
+  6,
+  8,
+  10,
+  12
+ ],
+ "full_dimension": {
+  "10": 14,
+  "12": 72,
+  "4": 1,
+  "6": 2,
+  "8": 7
+ },
+ "inert_directions_change_nothing": {
+  "I4_1^2": true,
+  "I8_1": true,
+  "I8_2": true
+ },
+ "minimal_completion_through_degree8": [
+  "K6",
+  "I8_3",
+  "I8_4",
+  "I8_5",
+  "I8_6"
+ ],
+ "minimality_by_removal": {
+  "without_I8_3": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 6
+  },
+  "without_I8_4": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 6
+  },
+  "without_I8_5": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 6
+  },
+  "without_I8_6": {
+   "10": 11,
+   "12": 68,
+   "4": 1,
+   "6": 2,
+   "8": 6
+  },
+  "without_K6": {
+   "10": 11,
+   "12": 67,
+   "4": 1,
+   "6": 1,
+   "8": 7
+  }
+ },
+ "primes": [
+  32749,
+  32719,
+  32717,
+  32693
+ ],
+ "reproduction": ".venv/bin/python scripts/emit_closure_certificate.py",
+ "samples_per_prime": 4,
+ "schema": 1,
+ "static_stress_span": {
+  "10": 2,
+  "12": 4,
+  "4": 1,
+  "6": 1,
+  "8": 2
+ },
+ "still_open": {
+  "10": 3,
+  "12": 4
+ }
+}

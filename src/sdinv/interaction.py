@@ -13,6 +13,7 @@ import numpy as np
 from .contract import (
     _contraction_plan_profile,
     _network_value_gradient,
+    _optimal_contraction_tree,
     _signed,
     _slot_plan,
 )
@@ -23,7 +24,7 @@ from .forms import (
     perm_sign,
     to_dense,
 )
-from .modp import P, inv
+from .modp import P, inv, mod_einsum
 
 
 def value_and_dense_gradient(matrix, five_form, d, valence,
@@ -125,3 +126,182 @@ def invariant_value_and_derivative(matrix, five_form, d=10, valence=5,
     ) % mod
     return scalar, to_dense(compact, d, valence, mod)
 
+
+def _network_value_gradient_hvp(terms, operands, tangents, mod=P):
+    """Forward-over-reverse contraction returning leaf Hessian products."""
+    if len(terms) != len(operands) or len(terms) != len(tangents):
+        raise ValueError("terms, operands, and tangents must align")
+    nodes = [
+        {
+            "term": term,
+            "value": np.asarray(operand, dtype=np.int64) % mod,
+            "tangent": np.asarray(tangent, dtype=np.int64) % mod,
+            "left": None,
+            "right": None,
+        }
+        for term, operand, tangent in zip(terms, operands, tangents)
+    ]
+    split, boundary, _ = _optimal_contraction_tree(
+        terms, [np.shape(operand) for operand in operands])
+    label_bits = {
+        label: 1 << index
+        for index, label in enumerate(dict.fromkeys("".join(terms)))
+    }
+
+    def forward(mask):
+        if mask.bit_count() == 1:
+            return (mask & -mask).bit_length() - 1
+        left_mask, right_mask = split[mask]
+        left, right = forward(left_mask), forward(right_mask)
+        left_term = nodes[left]["term"]
+        right_term = nodes[right]["term"]
+        keep_labels = boundary[mask]
+        keep = "".join(
+            label for label in dict.fromkeys(left_term + right_term)
+            if keep_labels & label_bits[label]
+        )
+        expression = f"{left_term},{right_term}->{keep}"
+        value = mod_einsum(
+            expression,
+            [nodes[left]["value"], nodes[right]["value"]],
+            mod,
+        )
+        tangent = (
+            mod_einsum(
+                expression,
+                [nodes[left]["tangent"], nodes[right]["value"]],
+                mod,
+            )
+            + mod_einsum(
+                expression,
+                [nodes[left]["value"], nodes[right]["tangent"]],
+                mod,
+            )
+        ) % mod
+        parent = len(nodes)
+        nodes.append({
+            "term": keep,
+            "value": value,
+            "tangent": tangent,
+            "left": left,
+            "right": right,
+        })
+        return parent
+
+    root = forward((1 << len(operands)) - 1)
+    if nodes[root]["term"]:
+        raise ValueError("network is not fully contracted")
+    adjoints = {root: np.array(1, dtype=np.int64)}
+    tangent_adjoints = {root: np.array(0, dtype=np.int64)}
+    for parent in range(root, len(operands) - 1, -1):
+        node = nodes[parent]
+        left, right = node["left"], node["right"]
+        parent_term = node["term"]
+        left_term = nodes[left]["term"]
+        right_term = nodes[right]["term"]
+        adjoint = adjoints[parent]
+        tangent_adjoint = tangent_adjoints[parent]
+
+        left_expression = (
+            f"{parent_term},{right_term}->{left_term}")
+        adjoints[left] = mod_einsum(
+            left_expression,
+            [adjoint, nodes[right]["value"]],
+            mod,
+        )
+        tangent_adjoints[left] = (
+            mod_einsum(
+                left_expression,
+                [tangent_adjoint, nodes[right]["value"]],
+                mod,
+            )
+            + mod_einsum(
+                left_expression,
+                [adjoint, nodes[right]["tangent"]],
+                mod,
+            )
+        ) % mod
+
+        right_expression = (
+            f"{parent_term},{left_term}->{right_term}")
+        adjoints[right] = mod_einsum(
+            right_expression,
+            [adjoint, nodes[left]["value"]],
+            mod,
+        )
+        tangent_adjoints[right] = (
+            mod_einsum(
+                right_expression,
+                [tangent_adjoint, nodes[left]["value"]],
+                mod,
+            )
+            + mod_einsum(
+                right_expression,
+                [adjoint, nodes[left]["tangent"]],
+                mod,
+            )
+        ) % mod
+    return (
+        int(np.asarray(nodes[root]["value"]).item()) % mod,
+        int(np.asarray(nodes[root]["tangent"]).item()) % mod,
+        [adjoints[index] for index in range(len(operands))],
+        [tangent_adjoints[index] for index in range(len(operands))],
+    )
+
+
+def invariant_value_derivative_hvp(matrix, five_form, direction, d=10,
+                                   valence=5, lorentzian=True, mod=P):
+    """Return value, directional value, derivative, and derivative HVP.
+
+    ``direction`` must be a dense self-dual tangent five-form.  The last
+    output is the directional derivative of
+    ``dI/dLambda^upper`` and therefore has the same covariant anti-self-dual
+    normalization as :func:`invariant_value_and_derivative`.
+    """
+    five_form = np.asarray(five_form, dtype=np.int64) % mod
+    direction = np.asarray(direction, dtype=np.int64) % mod
+    expected = (int(d),) * int(valence)
+    if five_form.shape != expected or direction.shape != expected:
+        raise ValueError(f"five_form and direction must have shape {expected}")
+    slots, tails = _slot_plan(matrix, valence)
+    signs = metric_signs(d, lorentzian) % mod
+    terms = ["".join(labels) for labels in slots]
+    operands = [
+        _signed(five_form, tails[vertex], signs, mod)
+        for vertex in range(matrix.shape[0])
+    ]
+    tangents = [
+        _signed(direction, tails[vertex], signs, mod)
+        for vertex in range(matrix.shape[0])
+    ]
+    scalar, scalar_tangent, gradients, hvps = (
+        _network_value_gradient_hvp(
+            terms, operands, tangents, mod))
+    ambient_gradient = np.zeros_like(five_form, dtype=np.int64)
+    ambient_hvp = np.zeros_like(five_form, dtype=np.int64)
+    for vertex in range(matrix.shape[0]):
+        ambient_gradient = (
+            ambient_gradient
+            + _signed(gradients[vertex], tails[vertex], signs, mod)
+        ) % mod
+        ambient_hvp = (
+            ambient_hvp
+            + _signed(hvps[vertex], tails[vertex], signs, mod)
+        ) % mod
+
+    projector = anti_selfdual_projector(
+        d, valence, lorentzian, mod)
+    tuples = basis_tuples(d, valence)
+
+    def project(ambient):
+        covariant = covariant_antisymmetric_gradient(
+            ambient, d, valence, lorentzian, mod)
+        compact = np.asarray(
+            [covariant[index] for index in tuples],
+            dtype=np.int64,
+        )
+        compact = projector @ compact % mod
+        return to_dense(compact, d, valence, mod)
+
+    return scalar, scalar_tangent, project(ambient_gradient), project(
+        ambient_hvp)
