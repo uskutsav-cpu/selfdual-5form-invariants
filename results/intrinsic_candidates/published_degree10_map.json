@@ -1,0 +1,157 @@
+{
+ "Q10_rank_from_implemented_published": 0,
+ "consistent": true,
+ "degree": 10,
+ "implemented": [
+  "P10_01",
+  "P10_02"
+ ],
+ "not_implemented": 10,
+ "per_prime": {
+  "32693": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32713": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32717": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32719": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32749": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32771": {
+   "Q10_rank_from_published": 0,
+   "dim_Q10": 3,
+   "projections": {
+    "P10_01": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  }
+ },
+ "schema": 1
+}
