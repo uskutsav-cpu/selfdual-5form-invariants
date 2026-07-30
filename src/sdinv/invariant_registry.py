@@ -17,7 +17,12 @@ from pathlib import Path
 import numpy as np
 
 from .contract import value
-from .graphs import graph_from_label, graph_from_record, validate_graph
+from .graphs import (
+    graph_from_label,
+    graph_from_record,
+    graph_to_record,
+    validate_graph,
+)
 from .interaction import invariant_value_and_derivative
 
 
@@ -189,8 +194,8 @@ class InvariantRegistry:
         """Return a copy with exactly 62 imported degree-12 primitives.
 
         Each primitive must be a concrete ``InvariantItem`` of degree 12.
-        Graph labels above ten vertices require a future unambiguous record
-        evaluator; they are therefore not guessed by this interface.
+        The record representation keeps the import independent of graph-label
+        parsing conventions.
         """
         primitives = tuple(primitives)
         if len(primitives) != 62:
@@ -284,15 +289,12 @@ def degree12_product_items():
     """The complete ten-dimensional product space at degree 12."""
     items = [
         InvariantItem(
-            id=f"I4_1*I8_{index}",
+            id="I4_1^3",
             degree=12,
             kind="product",
-            factors=("I4_1", f"I8_{index}"),
+            factors=("I4_1", "I4_1", "I4_1"),
             source="degree12-interface",
-        )
-        for index in range(1, 7)
-    ]
-    items.extend([
+        ),
         InvariantItem(
             id="I6_1^2",
             degree=12,
@@ -314,13 +316,16 @@ def degree12_product_items():
             factors=("I6_2", "I6_2"),
             source="degree12-interface",
         ),
+    ]
+    items.extend([
         InvariantItem(
-            id="I4_1^3",
+            id=f"I4_1*I8_{index}",
             degree=12,
             kind="product",
-            factors=("I4_1", "I4_1", "I4_1"),
+            factors=("I4_1", f"I8_{index}"),
             source="degree12-interface",
-        ),
+        )
+        for index in range(1, 7)
     ])
     return tuple(items)
 
@@ -335,4 +340,41 @@ def degree12_placeholder_items():
             source="awaiting-degree12-import",
         )
         for index in range(1, 63)
+    )
+
+
+def load_verified_registry_through_degree12(repository_root):
+    """Load the committed 72-element degree-12 basis into the registry."""
+    root = Path(repository_root)
+    degree12_path = root / "results" / "10d_order12.json"
+    raw = _load_json(degree12_path)
+    generators = raw.get("generators", ())
+    if len(generators) != 62:
+        raise ValueError("degree-12 artifact must contain 62 generators")
+    primitives = tuple(
+        InvariantItem(
+            id=item["id"],
+            degree=12,
+            kind="graph_record",
+            graph_record=graph_to_record(graph_from_label(item["graph"])),
+            source=str(degree12_path.relative_to(root)),
+        )
+        for item in generators
+    )
+    extended = load_verified_registry(root).with_degree12_primitives(
+        primitives)
+    artifact_basis = tuple(item["id"] for item in raw["degree12_basis"])
+    loaded_basis = tuple(item.id for item in extended.basis(12))
+    if loaded_basis != artifact_basis:
+        raise ValueError(
+            "registry degree-12 ordering differs from committed artifact")
+    metadata = dict(extended.metadata)
+    metadata.update({
+        "verified_through_degree": 12,
+        "degree12_source": str(degree12_path.relative_to(root)),
+        "degree12_dimension": 72,
+    })
+    return InvariantRegistry(
+        {degree: extended.basis(degree) for degree in extended.degrees},
+        metadata,
     )

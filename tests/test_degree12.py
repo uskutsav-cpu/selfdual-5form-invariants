@@ -12,6 +12,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from sdinv.catalog import canonical_graph_id
 from sdinv.graphs import graph_from_label, validate_graph
+from sdinv.invariant_registry import (
+    load_verified_registry_through_degree12,
+)
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -119,3 +122,14 @@ def test_committed_degree12_certificate_is_internally_consistent():
         for sample in run["samples"]:
             assert sample["cumulative_rank"] == 81
             assert sample["dependency_ids"] == ["I12_61", "I12_62"]
+
+
+def test_committed_degree12_basis_loads_in_exact_artifact_order():
+    with open(RESULT) as stream:
+        result = json.load(stream)
+    registry = load_verified_registry_through_degree12(ROOT)
+    assert registry.metadata["verified_through_degree"] == 12
+    assert [item.id for item in registry.basis(12)] == [
+        item["id"] for item in result["degree12_basis"]
+    ]
+    assert len(registry.basis(12)) == 72
