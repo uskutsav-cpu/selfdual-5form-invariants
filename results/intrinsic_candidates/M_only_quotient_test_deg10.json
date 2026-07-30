@@ -1,0 +1,167 @@
+{
+ "M_only_quotient_rank": 0,
+ "consistent": true,
+ "degree": 10,
+ "fit_primes": [
+  32749,
+  32719,
+  32693,
+  32771,
+  32713
+ ],
+ "holdout_primes": [
+  32717,
+  32687
+ ],
+ "monomials": {
+  "tr(M^3)tr(M^2)": [
+   3,
+   2
+  ],
+  "tr(M^5)": [
+   5
+  ]
+ },
+ "note": "M-trace monomials with all parts >= 2, since tr(M)=0. A zero rank bounds the Level-B search to N channels.",
+ "per_prime": {
+  "32693": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32713": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32717": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32719": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32749": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  },
+  "32771": {
+   "M_only_quotient_rank": 0,
+   "projections": {
+    "tr(M^3)tr(M^2)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "tr(M^5)": {
+     "nonzero_quotient": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    }
+   }
+  }
+ },
+ "schema": 1
+}
