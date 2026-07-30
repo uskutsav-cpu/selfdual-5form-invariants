@@ -70,15 +70,76 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
 - **Caveats**: 126 − 45 = 81 is a dimension count for a generic orbit, not a
   proof that these 81 generate the invariant ring.
 
-## C-ATLAS-04 — I12_61 and I12_62 do not raise the rank
+## C-ATLAS-04 — I12_61 and I12_62: polynomially independent, functionally redundant
 
-- **Wording**: "Ordered candidates I12_61 and I12_62 do not increase the
-  cumulative Jacobian rank."
+- **Wording**: "I12_61 and I12_62 are **polynomially independent** degree-12
+  invariants — they are members of the 72-element basis whose polynomial rank
+  is 72 — but they are **not new generic functional directions**: adjoining
+  them leaves the cumulative generic functional rank at 81."
+- **Assumptions**: genericity of the evaluation point; Jacobian rank at a
+  generic point equals functional rank.
+- **Range**: degree 12.
 - **Class**: `MOD-CERT`
-- **Forbidden**: **"these are polynomial syzygies."** A Jacobian dependence is
-  not a polynomial identity. Calling them syzygies requires constructing and
-  verifying an actual polynomial relation (Phase 3).
-- **Caveats**: open proof obligation PO-03.
+- **Sources**: `results/10d_order12.json` →
+  `discovery.degree12_polynomial_rank = 72`,
+  `discovery.cumulative_functional_rank = 81`,
+  `discovery.functional_dependencies = ["I12_61","I12_62"]`
+- **Holdout status**: covered by the atlas's three-prime / four-sample
+  validation; no dedicated holdout for this sub-claim.
+- **Independent verification**: **NOT DONE**.
+- **Permitted**: "polynomially independent but functionally redundant at a
+  generic point."
+- **Forbidden**: **"these are polynomial syzygies"** — a Jacobian dependence
+  is not a polynomial identity (PO-03). Equally forbidden: "these are
+  redundant invariants" without the qualifier *functionally*, since they are
+  linearly independent polynomials and removing them would shrink the
+  degree-12 space from 72 to 70.
+- **Caveats**: PO-03. Note also C-MIN-02 — both are in the degree-12
+  unreachable set, which is conjecture CJ-01, not a theorem.
+
+## C-SCOPE-01 — finite-order versus all-orders language
+
+- **Wording**: "Every quantitative result in this repository is established at
+  field degree ≤ 12 and nowhere above it."
+- **Class**: `EXACT-THM` (a statement about our own evidence)
+- **Permitted**: "verified through degree 12."
+- **Forbidden**: "all orders", "in general", "for every degree", "the pattern
+  continues", or any unqualified present tense that implies unbounded degree.
+  No induction on degree exists (PO-10).
+- **Caveats**: the single exception is C-FLOW-02, which is all-orders **in λ**
+  at **fixed field degree 6**. Those are different variables and the
+  distinction must never be blurred.
+
+## C-SCOPE-02 — formal, local, generic, global
+
+- **Wording**: "Flow statements are **formal** in λ (power series, no
+  convergence proved), **generic** in the field configuration (evaluated at
+  deterministic generic samples), and **local** in theory space (no global
+  orbit statement)."
+- **Class**: `EXACT-THM` (scope declaration)
+- **Assumptions**: samples used are generic; non-generic strata are untested.
+- **Permitted**: "a formal power-series flow, at generic configurations."
+- **Forbidden**: "convergent", "analytic in λ", "globally defined", "for all
+  field configurations", "the orbit is". Special/singular strata have not been
+  examined at all.
+- **Caveats**: falsification test 7 (special non-generic configurations) is
+  **not yet run**. Until it is, every result is a generic-point statement.
+
+## C-SCOPE-03 — Type IIB relevance versus a Type IIB result
+
+- **Wording**: "This work concerns the algebraic invariant theory of a
+  self-dual five-form. **No Type IIB result exists.**"
+- **Class**: `EXACT-THM` (statement of absence)
+- **Permitted**: nothing beyond noting that the same field content appears in
+  Type IIB supergravity, explicitly flagged as motivation, not result.
+- **Forbidden**: any claim that a Type IIB correction is constrained,
+  excluded, matched, or predicted. Sharing a self-dual five-form is not a
+  connection: Type IIB corrections involve curvature, derivatives, other
+  fields, self-duality prescriptions and field-redefinition ambiguities, none
+  of which are modelled here.
+- **Caveats**: **PO-07 gates this absolutely.** The K6 statement is off-shell
+  and convention-fixed; until its behaviour under field redefinitions and the
+  equations of motion is known, no physical reading is permitted at all.
 
 ## C-ATLAS-05 — candidate-set completeness above degree 6
 

@@ -5,6 +5,22 @@
   "transported-not-created wording"
  ],
  "corrections_required": [],
+ "fourteen_point_audit": {
+  "10_degree10_12_deficits": "C-MIN-02 RESOLVED Phase 1: {I10_6,I10_7,I10_12} and {I12_59..62}; gate still unmet (labels not intrinsic)",
+  "11_TrM6_coordinates": "C-TRM6-01 \u2014 rank certified, coordinates BLOCKED (29/72 columns over CRT bound at 15 primes)",
+  "12_finite_vs_all_orders": "C-SCOPE-01 \u2014 everything is degree <= 12; no induction exists (PO-10)",
+  "13_formal_local_generic_global": "C-SCOPE-02 \u2014 formal in lambda, generic in configuration, local in theory space; non-generic strata untested",
+  "14_typeIIB": "C-SCOPE-03 \u2014 NO Type IIB result exists; PO-07 gates any physical reading",
+  "1_degree12_rank_72": "C-ATLAS-02 (MOD-CERT, FINITE-ORDER)",
+  "2_cumulative_functional_rank_81": "C-ATLAS-03 (MOD-CERT); forbidden: 'we have all 81'",
+  "3_I12_61_62": "C-ATLAS-04 \u2014 polynomially independent (in the rank-72 basis) but NOT new generic functional directions; forbidden: 'syzygies' (PO-03)",
+  "4_static_stress_span": "C-STATIC-01 (MOD-CERT); forbidden: presenting as reachable set",
+  "5_new_forcing": "C-FLOW-01 (RAT-RECON); two holdouts, PO-06 discharged",
+  "6_iterative_closure": "C-CLOSURE-01/02 (MOD-CERT); must not be conflated with 4 or 5",
+  "7_K6_transported_not_generated": "C-FLOW-03 (EXACT-CA-THM); forbidden: 'K6 must vanish'",
+  "8_for_all_lambda_scope": "C-FLOW-02 \u2014 all orders in LAMBDA at FIXED field degree 6, formal power series, convergence unproved",
+  "9_generalized_completion_degree8": "C-MIN-01 (MOD-CERT); removal-minimal in a fixed basis only (PO-08)"
+ },
  "numerical_reverification": {
   "all_reported_dimensions_agree_with_artifacts": true,
   "degree12_artifact_sha_matches_certificate_field": true,

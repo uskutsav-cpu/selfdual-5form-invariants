@@ -40,7 +40,7 @@
   "total_minimal_completion_through_degree12": 12
  },
  "phases": {
-  "0": "complete",
+  "0": "complete: baseline reproduced, 14-point claim audit, resource plan",
   "1": "partial: deficits located and minimal; intrinsic expressions outstanding",
   "10": "not_started",
   "11": "not_started",
@@ -61,6 +61,20 @@
   "3_new_theory": "not_started",
   "4_string_theory": "not_started",
   "5_independent_reproducibility": "not_started: no clean-room implementation"
+ },
+ "resource_plan": {
+  "binding_constraint": "RAM not CPU; peak RSS 1.18GB recorded, <100MB often free",
+  "document": "docs/RESOURCE_PLAN.md",
+  "infeasible_on_this_machine": [
+   "degree14_16_extension"
+  ],
+  "not_compute_bound": [
+   "phase1_intrinsic_expressions",
+   "phase2_analytic_identity",
+   "phase5_induction",
+   "phase8_typeIIB_reading",
+   "phase10_independence"
+  ]
  },
  "schema": 1
 }
