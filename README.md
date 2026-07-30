@@ -38,6 +38,7 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 | 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (49 exact graph classes) |
 | 10D, order 8 | **6** new independent invariants, running rank **9 / 81** (1,689 exact graph classes; complete under two primes) |
 | 10D, order 10 | **12** new connected primitive directions, running rank **21 / 81**; degree-10 value rank **14** after adding $I_4I_{6,1}$ and $I_4I_{6,2}$ (187,392 exact graph classes; two primes, three Jacobian samples per prime) |
+| Exact stress-flow map through degree 10 | **PASS** — free-stress dimensions **1,1,2,2** inside five-form value dimensions **1,2,7,14**; exact ModMax $I_8/I_{12}$ reproduction under three primes |
 
 Artifacts:
 
@@ -54,6 +55,12 @@ Artifacts:
   stage distributions and before/after optimization measurements.
 - [`docs/degree10.md`](docs/degree10.md) — catalog, checkpoint, reproduction,
   benchmark, and limitation details.
+- [`results/stress_flow_exact_low_degree.json`](results/stress_flow_exact_low_degree.json)
+  — five-prime rational change-of-basis matrices, exact complement
+  certificates, ModMax regressions, and the flow-closure pilot.
+- [`docs/stress_flow.md`](docs/stress_flow.md) — paper conventions,
+  normalization, maps, obstructions, perturbative scope, and degree-12 import
+  contract.
 
 ### The degree-10 result
 
@@ -219,11 +226,16 @@ src/sdinv/contract.py  contraction evaluation, optimized reverse-mode Jacobian
 src/sdinv/catalog.py   atomic checksummed streaming graph shards
 src/sdinv/checkpoint.py durable identity-checked rank checkpoints
 src/sdinv/spinor_adapter.py future exact trace/spinor column-space comparison
+src/sdinv/stress.py      paper-normalized M, N, T, ModMax I8/I12 identities
+src/sdinv/invariant_registry.py committed low-degree and degree-12 import registry
+src/sdinv/exactmap.py    modular solves, CRT, rational maps, complements
 scripts/run_6d.py      reproduction gate
 scripts/run_10d.py     two-prime complete computation through order 8
 scripts/generate_graph_catalog.py  exact nauty catalog generation
 scripts/degree10_pipeline.py generation, scheduling, discovery, validation, benchmarks
+scripts/stress_flow_pipeline.py exact stress map and physics-stage artifact
 tests/test_core.py     correctness gates
+tests/test_stress_flow.py paper, Lorentz, map, and closure-pilot gates
 ```
 
 ## Next questions

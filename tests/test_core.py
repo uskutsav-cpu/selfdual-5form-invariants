@@ -42,6 +42,16 @@ def _ops(M, Fd, PD, mod):
     return sub, [_signed(Fd, tails[v], s, mod) for v in range(M.shape[0])]
 
 
+def _transform_covariant_tensor(tensor, transformation, mod):
+    """Apply one matrix per covariant index, reducing after every axis."""
+    result = np.asarray(tensor, dtype=np.int64) % mod
+    for axis in range(result.ndim):
+        result = np.tensordot(
+            transformation, result, axes=(1, axis))
+        result = np.moveaxis(result, 0, axis) % mod
+    return result
+
+
 @pytest.mark.parametrize("n", [2, 4, 6])
 def test_mod_einsum_matches_exact_bigint(n):
     """THE critical test. int64 overflow in einsum silently produces wrong
@@ -312,7 +322,7 @@ def test_contractions_are_lorentz_invariant():
     R = np.eye(D, dtype=np.int64)
     R[1, 1] = c; R[1, 2] = s; R[2, 1] = (-s) % mod; R[2, 2] = c
     Fd = to_dense(random_form(D, PD, np.random.default_rng(7), mod), D, PD, mod)
-    Fr = np.einsum("ia,jb,kc,abc->ijk", R, R, R, Fd, optimize=True) % mod
+    Fr = _transform_covariant_tensor(Fd, R, mod)
     for n in [2, 4, 6]:
         for M in enumerate_graphs(n, PD):
             assert value(M, Fd, D, PD, True, mod) == value(M, Fr, D, PD, True, mod)
@@ -519,8 +529,7 @@ def test_10d_contractions_survive_a_lorentz_boost():
     Pr = selfdual_projector(D, PD, True, mod)
     Fd = to_dense((Pr @ random_form(D, PD, np.random.default_rng(5), mod)) % mod,
                   D, PD, mod)
-    Fr = np.einsum("ia,jb,kc,ld,me,abcde->ijklm", L, L, L, L, L, Fd,
-                   optimize=True) % mod
+    Fr = _transform_covariant_tensor(Fd, L, mod)
 
     for M in enumerate_graphs(4, PD, max_mult=PD - 1):
         a = value(M, Fd, D, PD, True, mod)
