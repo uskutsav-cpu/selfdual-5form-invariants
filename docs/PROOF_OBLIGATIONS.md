@@ -15,7 +15,7 @@ Baseline: `3ed32805b38ce34216b34888f6539e3538e90fb9`
 | PO-05 | C-TRM6-01 | OPEN |
 | PO-06 | C-FLOW-01 | **DISCHARGED** (Phase 0) |
 | PO-07 | C-FLOW-03 | OPEN |
-| PO-08 | C-MIN-01 | OPEN |
+| PO-08 | C-MIN-01 | **PARTIAL** (permutation subgroup done) |
 | PO-09 | all `MOD-CERT` | OPEN |
 | PO-10 | Phase 5 | NOT STARTED |
 
@@ -145,17 +145,39 @@ preserved; then repeating modulo the leading equations of motion.
 **Until discharged**, no physical or Type IIB consequence may be drawn from
 C-FLOW-03.
 
-## PO-08 — minimality under basis change
+## PO-08 — minimality under basis change — **PARTIAL**
 
-**Supports** C-MIN-01.
+**Supports** C-MIN-01, C-MIN-02.
 
-Only removal-minimality within one fixed basis is shown. Cardinality
-minimality over *all* admissible bases is not.
+**Done (Phase 1): the permutation subgroup.** Random relabellings of the basis
+at a degree, applied consistently to `basis`, `coordinates` **and**
+`coefficient_monomial`, with the missing set tracked back through the inverse
+relabelling. Four trials per degree, all invariant:
 
-**Discharged by**: random invertible basis changes preserving the grading,
-re-running the closure, and confirming the minimal cardinality is unchanged;
-plus an argument that the intrinsic quotient dimension bounds the cardinality
-from below.
+| degree | closure dim | missing count | recovered set |
+|---|---|---|---|
+| 10 | 11 | 3 | I10_6, I10_7, I10_12 |
+| 12 | 68 | 4 | I12_59, I12_60, I12_61, I12_62 |
+
+Certificate: `results/generalized_flow/minimality_certificates/basis_permutation.json`
+
+**Why this is not the whole obligation, and why the obvious test is invalid.**
+Each certificate target row is indexed by a `coefficient_monomial` that is
+itself expressed in the *same* basis as the output `coordinates`. A general
+invertible change of basis therefore re-expresses **both**. Multiplying the
+coordinate rows by a random matrix `B` and re-running would *look* like a
+basis-change test and would not be one: the resulting rows correspond to no
+actual flow problem, and would very likely still return 3 and 4 while meaning
+nothing.
+
+**Still open: general GL.** Requires regenerating the certificates in the new
+basis (~530 s/prime, plus changes to the generator machinery so the monomial
+index is re-expressed consistently). Not attempted; scope recorded rather than
+claimed.
+
+**Also owed**: an argument that the intrinsic quotient dimension bounds the
+minimal cardinality from below, which would make cardinality minimality
+basis-independent by construction rather than by testing.
 
 ## PO-09 — exceptional primes
 

@@ -35,6 +35,12 @@
    "I12_61",
    "I12_62"
   ],
+  "falsification_tests": {
+   "test_18_minimal_set_removal": "PASSED for removal; subset lattice owed",
+   "test_4_basis_change": "PARTIAL - permutation subgroup passed; general GL open",
+   "test_5_reordering": "PASSED - 5 trials/degree, not an ordering artifact",
+   "test_7_nongeneric_configs": "NOT RUN"
+  },
   "gate_blocker": "directions are graph labels, not intrinsic tensor expressions",
   "gate_met": false,
   "total_minimal_completion_through_degree12": 12

@@ -71,9 +71,11 @@
    ]
   },
   {
+   "certificate": "results/generalized_flow/minimality_certificates/basis_permutation.json",
+   "evidence": "permutation subgroup: 4 trials/degree, closure dim and missing-set identity invariant under consistent relabelling of basis, coordinates and coefficient_monomial",
    "id": "PO-08",
-   "remaining": "minimality shown only under removal in a fixed basis",
-   "state": "OPEN",
+   "remaining": "general GL requires regenerating certificates in the new basis; multiplying coordinates by B alone is NOT a valid test because the coefficient_monomial index is expressed in the same basis",
+   "state": "PARTIAL",
    "supports": [
     "C-MIN-01"
    ]
