@@ -1,0 +1,22 @@
+{
+ "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+ "cores": 8,
+ "machine": "arm64",
+ "nauty_via_pynauty": "2.8.8.1",
+ "numpy": "2.5.1",
+ "numpy_blas": "accelerate",
+ "os": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+ "packages": {
+  "Pygments": "2.20.0",
+  "iniconfig": "2.3.0",
+  "numpy": "2.5.1",
+  "packaging": "26.2",
+  "pluggy": "1.6.0",
+  "pynauty": "2.8.8.1",
+  "pytest": "9.1.1"
+ },
+ "physical_memory_bytes": 8589934592,
+ "processor": "Apple M1",
+ "python": "3.13.13",
+ "python_impl": "CPython"
+}

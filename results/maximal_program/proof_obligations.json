@@ -1,0 +1,99 @@
+{
+ "baseline_commit": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+ "obligations": [
+  {
+   "evidence": "_canonical_wl absent; canonical() uses pynauty exact certificate or raises; pynauty 2.8.8.1 pinned and importable; order 8 via nauty geng|multig",
+   "id": "PO-01",
+   "phase_discharged": 0,
+   "state": "DISCHARGED",
+   "supports": [
+    "C-ATLAS-01",
+    "C-ATLAS-05"
+   ]
+  },
+  {
+   "evidence": "18 expected multisets = 18 present, none missing/extra, leading degrees additive for all generators",
+   "id": "PO-02",
+   "remaining": "leading_field_degree values are computed by the code they validate; needs independent derivation",
+   "state": "PARTIAL",
+   "supports": [
+    "C-GEN-01"
+   ]
+  },
+  {
+   "id": "PO-03",
+   "remaining": "construct and verify an actual polynomial identity, or state the searched range and report none",
+   "state": "OPEN",
+   "supports": [
+    "C-ATLAS-04"
+   ],
+   "target_phase": 3
+  },
+  {
+   "id": "PO-04",
+   "remaining": "authors' change of basis from (Sigma_1,Sigma_2) to (Tr(M^3),K6) is unpublished",
+   "state": "OPEN_EXTERNAL",
+   "supports": [
+    "C-SEXTIC-01",
+    "C-SEXTIC-02",
+    "C-SEXTIC-03"
+   ]
+  },
+  {
+   "evidence": "29 of 72 columns exceed CRT uniqueness bound at 15 primes (modulus ~5.2e67)",
+   "id": "PO-05",
+   "remaining": "analytic reduction, or prove basis-independent formulation suffices",
+   "state": "OPEN",
+   "supports": [
+    "C-TRM6-01"
+   ],
+   "target_phase": 2
+  },
+  {
+   "evidence": "holdouts 32713 and 32717 both passed; two fit sets give 192/192 identical reconstructions",
+   "id": "PO-06",
+   "phase_discharged": 0,
+   "state": "DISCHARGED",
+   "supports": [
+    "C-FLOW-01"
+   ]
+  },
+  {
+   "gates": [
+    "phase_7",
+    "phase_8"
+   ],
+   "id": "PO-07",
+   "remaining": "action of allowed field redefinitions and EOM on q6 is unknown; no physical reading permitted until resolved",
+   "state": "OPEN",
+   "supports": [
+    "C-FLOW-03"
+   ]
+  },
+  {
+   "id": "PO-08",
+   "remaining": "minimality shown only under removal in a fixed basis",
+   "state": "OPEN",
+   "supports": [
+    "C-MIN-01"
+   ]
+  },
+  {
+   "id": "PO-09",
+   "remaining": "exceptional-prime bound; rank mod p is only a lower bound in characteristic zero",
+   "state": "OPEN",
+   "supports": [
+    "all MOD-CERT claims"
+   ]
+  },
+  {
+   "id": "PO-10",
+   "remaining": "no induction on degree exists; 'all orders' forbidden until it does",
+   "state": "NOT_STARTED",
+   "supports": [
+    "phase_5"
+   ]
+  }
+ ],
+ "schema": 1
+}

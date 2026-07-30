@@ -1,0 +1,48 @@
+{
+ "baseline_commit": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+ "branch": "research/maximal-chiral-four-form-program",
+ "current_phase": 1,
+ "hazards": [
+  "canonical tree is iCloud-synced: no active checkpoints there; judge activity by mtime not ps"
+ ],
+ "machine": {
+  "constraint": "frequently <100MB free; three pytest runs killed by memory pressure in Phase 0",
+  "cores": 8,
+  "cpu": "Apple M1",
+  "ram_gib": 8
+ },
+ "measured_costs_seconds": {
+  "closure_fixed_point_four_primes": 95.7,
+  "flow_assembly": 5,
+  "full_test_suite_clean": 170.6,
+  "full_test_suite_under_memory_pressure": 233.2,
+  "interacting_flow_per_prime": 530.2,
+  "order6_10d_graph_enumeration": 64.9,
+  "static_degree12_per_prime": 154.3
+ },
+ "nothing_pushed_beyond": "stress-flow/classification-through-degree12",
+ "phases": {
+  "0": "complete",
+  "1": "in_progress",
+  "10": "not_started",
+  "11": "not_started",
+  "12": "blocked_by_design",
+  "13": "not_started",
+  "2": "not_started",
+  "3": "not_started",
+  "4": "not_started",
+  "5": "not_started",
+  "6": "not_started",
+  "7": "not_started",
+  "8": "not_started",
+  "9": "not_started"
+ },
+ "pillars": {
+  "1_general_structure": "partial: degree-10/12 closure deficits open",
+  "2_proof": "not_started: no induction exists (PO-10)",
+  "3_new_theory": "not_started",
+  "4_string_theory": "not_started",
+  "5_independent_reproducibility": "not_started: no clean-room implementation"
+ },
+ "schema": 1
+}
