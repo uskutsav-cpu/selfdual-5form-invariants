@@ -101,7 +101,7 @@ def _optimal_contraction_tree_cached(terms, operand_shapes):
     """Globally optimal binary tree for this small closed tensor network.
 
     A local greedy choice can create a disastrous later intermediate. There
-    are at most ten operands in the completed runs here. Boundary label sets
+    are at most twelve operands in the completed runs here. Boundary label sets
     are bitsets and proper subset scores are computed in numeric mask order.
     The score first minimises largest pairwise work, then total
     forward/reverse work.
@@ -204,6 +204,95 @@ def contraction_plan_cost(M, d, valence):
     return score
 
 
+def _contraction_plan_profile(terms, operand_shapes, itemsize=8):
+    """Return an allocation-oriented profile of the exact contraction tree.
+
+    ``largest_pair_work`` counts arithmetic terms and is intentionally
+    separate from allocation size. The byte estimate includes every retained
+    forward node, every reverse adjoint, and a conservative fourfold workspace
+    for the largest pair. It is a pre-allocation guard, not an RSS claim:
+    Python/NumPy allocator overhead and the input form live outside it.
+    """
+    split, boundary, score = _optimal_contraction_tree(terms, operand_shapes)
+    n = len(terms)
+    label_dims = {}
+    label_order = list(dict.fromkeys("".join(terms)))
+    for term, shape in zip(terms, operand_shapes):
+        for label, size in zip(term, shape):
+            old = label_dims.setdefault(label, int(size))
+            if old != int(size):
+                raise ValueError(f"dimension mismatch for index {label}")
+
+    def elements(labels):
+        count = 1
+        remaining = labels
+        while remaining:
+            bit = remaining & -remaining
+            count *= label_dims[label_order[bit.bit_length() - 1]]
+            remaining ^= bit
+        return count
+
+    node_elements = []
+    max_output_rank = 0
+    max_pair_union_rank = 0
+    max_pair_elements = 0
+
+    def visit(mask):
+        nonlocal max_output_rank, max_pair_union_rank, max_pair_elements
+        if mask.bit_count() == 1:
+            index = (mask & -mask).bit_length() - 1
+            size = int(np.prod(operand_shapes[index], dtype=object))
+            node_elements.append(size)
+            max_output_rank = max(
+                max_output_rank, len(operand_shapes[index]))
+            return
+        left, right = split[mask]
+        visit(left)
+        visit(right)
+        union = boundary[left] | boundary[right]
+        output = boundary[mask]
+        left_elements = elements(boundary[left])
+        right_elements = elements(boundary[right])
+        output_elements = elements(output)
+        node_elements.append(output_elements)
+        max_output_rank = max(max_output_rank, output.bit_count())
+        max_pair_union_rank = max(
+            max_pair_union_rank, union.bit_count())
+        max_pair_elements = max(
+            max_pair_elements,
+            left_elements + right_elements + output_elements,
+        )
+
+    visit((1 << n) - 1)
+    retained_elements = sum(node_elements)
+    retained_forward_reverse_bytes = (
+        2 * retained_elements * int(itemsize))
+    workspace_bytes = 4 * max_pair_elements * int(itemsize)
+    return {
+        "largest_pair_work": int(score[0]),
+        "total_forward_reverse_work": int(score[1]),
+        "max_output_rank": int(max_output_rank),
+        "max_output_elements": int(max(node_elements, default=1)),
+        "max_output_bytes": int(
+            max(node_elements, default=1) * int(itemsize)),
+        "max_pair_union_rank": int(max_pair_union_rank),
+        "retained_node_elements": int(retained_elements),
+        "retained_forward_reverse_bytes": int(
+            retained_forward_reverse_bytes),
+        "workspace_bytes": int(workspace_bytes),
+        "estimated_peak_bytes": int(
+            retained_forward_reverse_bytes + workspace_bytes),
+    }
+
+
+def contraction_plan_profile(M, d, valence, itemsize=8):
+    """Profile the globally optimal plan without allocating its tensors."""
+    slots, _ = _slot_plan(M, valence)
+    terms = ["".join(x) for x in slots]
+    return _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms], itemsize)
+
+
 def greedy_contraction_plan_cost(M, d, valence):
     """Cheap deterministic upper bound used only to schedule candidates.
 
@@ -242,13 +331,24 @@ def greedy_contraction_plan_cost(M, d, valence):
     return peak, total
 
 
-def _network_value_gradient(terms, operands, mod=P):
+def _network_value_gradient(terms, operands, mod=P, plan_profile=None,
+                            max_memory_bytes=None):
     """Reverse-differentiate a scalar pairwise tensor contraction.
 
     Each index label must occur exactly twice across the input terms, as it
     does for a fully contracted graph. Return the scalar value plus the
     derivative with respect to each operand in its original axis order.
     """
+    if plan_profile is None:
+        plan_profile = _contraction_plan_profile(
+            terms, [np.shape(op) for op in operands])
+    estimated = int(plan_profile["estimated_peak_bytes"])
+    if max_memory_bytes is not None and estimated > int(max_memory_bytes):
+        raise MemoryError(
+            "exact contraction plan rejected before tensor allocation: "
+            f"estimated {estimated} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+
     nodes = [{"term": term, "value": np.asarray(op, dtype=np.int64) % mod,
               "left": None, "right": None}
              for term, op in zip(terms, operands)]
@@ -297,13 +397,63 @@ def _network_value_gradient(terms, operands, mod=P):
     return scalar, [adjoints[k] for k in range(len(operands))]
 
 
+def _network_value(terms, operands, mod=P, max_memory_bytes=None):
+    """Evaluate a closed network on the globally optimal binary tree."""
+    profile = _contraction_plan_profile(
+        terms, [np.shape(op) for op in operands])
+    # The full forward/reverse estimate is conservative for this forward-only
+    # path and therefore safe to reuse as its allocation guard.
+    if (
+        max_memory_bytes is not None
+        and profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact scalar contraction plan rejected before tensor allocation: "
+            f"estimated {profile['estimated_peak_bytes']} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+    split, boundary, _ = _optimal_contraction_tree(
+        terms, [np.shape(op) for op in operands])
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(terms)))
+    }
+    leaves = [
+        np.asarray(op, dtype=np.int64) % mod for op in operands
+    ]
+
+    def forward(mask):
+        if mask.bit_count() == 1:
+            index = (mask & -mask).bit_length() - 1
+            return terms[index], leaves[index]
+        left_mask, right_mask = split[mask]
+        left_term, left_value = forward(left_mask)
+        right_term, right_value = forward(right_mask)
+        keep_labels = boundary[mask]
+        keep = "".join(
+            label for label in dict.fromkeys(left_term + right_term)
+            if keep_labels & label_bits[label]
+        )
+        result = mod_einsum(
+            f"{left_term},{right_term}->{keep}",
+            [left_value, right_value],
+            mod,
+        )
+        return keep, result
+
+    term, result = forward((1 << len(operands)) - 1)
+    if term:
+        raise ValueError("network is not fully contracted")
+    return int(np.asarray(result).item()) % mod
+
+
 def _network_gradient(terms, operands, mod=P):
     """Compatibility wrapper returning only reverse-mode gradients."""
     return _network_value_gradient(terms, operands, mod)[1]
 
 
 def value_and_jacobian_row(M, F_dense, basis_flat, d, valence,
-                           lorentzian=True, mod=P, backend="optimized"):
+                           lorentzian=True, mod=P, backend="optimized",
+                           max_memory_bytes=None):
     """Return an exact scalar value and Jacobian row from one graph.
 
     ``optimized`` shares one contraction tree between the forward scalar and
@@ -322,9 +472,25 @@ def value_and_jacobian_row(M, F_dense, basis_flat, d, valence,
     slots, tails = _slot_plan(M, valence)
     s = metric_signs(d, lorentzian) % mod
     terms = ["".join(x) for x in slots]
+    plan_profile = _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms])
+    if (
+        max_memory_bytes is not None
+        and plan_profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact contraction plan rejected before signed operands: "
+            f"estimated {plan_profile['estimated_peak_bytes']} bytes exceeds "
+            f"limit {int(max_memory_bytes)} bytes")
     operands = [_signed(F_dense, tails[v], s, mod)
                 for v in range(M.shape[0])]
-    scalar, operand_gradients = _network_value_gradient(terms, operands, mod)
+    scalar, operand_gradients = _network_value_gradient(
+        terms,
+        operands,
+        mod,
+        plan_profile=plan_profile,
+        max_memory_bytes=max_memory_bytes,
+    )
 
     gradient = np.zeros_like(F_dense, dtype=np.int64)
     for v, grad in enumerate(operand_gradients):
@@ -351,6 +517,29 @@ def jacobian_row(M, F_dense, basis_flat, d, valence,
 
 def value(M, F_dense, d, valence, lorentzian=True, mod=P):
     return evaluate(M, [F_dense] * M.shape[0], d, valence, lorentzian, mod)
+
+
+def planned_value(M, F_dense, d, valence, lorentzian=True, mod=P,
+                  max_memory_bytes=None):
+    """Scalar value using the same globally optimal plan as the Jacobian."""
+    slots, tails = _slot_plan(M, valence)
+    s = metric_signs(d, lorentzian) % mod
+    terms = ["".join(x) for x in slots]
+    profile = _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms])
+    if (
+        max_memory_bytes is not None
+        and profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact scalar contraction plan rejected before signed operands: "
+            f"estimated {profile['estimated_peak_bytes']} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+    operands = [
+        _signed(F_dense, tails[v], s, mod) for v in range(M.shape[0])
+    ]
+    return _network_value(
+        terms, operands, mod, max_memory_bytes=max_memory_bytes)
 
 
 def build_basis_flat(d, p_deg, projector=None, mod=P):

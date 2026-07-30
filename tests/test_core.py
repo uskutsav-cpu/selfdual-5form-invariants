@@ -16,7 +16,9 @@ from sdinv.contract import (_slot_plan, _signed, value, jacobian_row,
                             jacobian_row_amputated, build_basis_flat,
                             build_compact_derivative_basis,
                             contraction_plan_cost,
+                            contraction_plan_profile,
                             greedy_contraction_plan_cost,
+                            planned_value,
                             value_and_jacobian_row)
 from sdinv.catalog import (candidate_record, iter_graph_shard,
                            canonical_graph_id, write_graph_shard)
@@ -102,6 +104,7 @@ def test_combined_value_jacobian_matches_independent_oracle():
             M, Fd, basis, D, PD, True, mod, backend="reference")
         assert fast_value == reference_value == value(
             M, Fd, D, PD, True, mod)
+        assert planned_value(M, Fd, D, PD, True, mod) == fast_value
         assert np.array_equal(fast_row, reference_row)
 
 
@@ -126,6 +129,36 @@ def test_global_contraction_plan_dominates_greedy_schedule_cost():
         exact = contraction_plan_cost(M, 6, 3)
         greedy = greedy_contraction_plan_cost(M, 6, 3)
         assert exact <= greedy
+
+
+def test_order12_graph_label_is_unambiguous_and_round_trips():
+    M = np.zeros((12, 12), dtype=np.int64)
+    for i, j, multiplicity in ((0, 4, 3), (0, 11, 2), (4, 10, 2)):
+        M[i, j] = M[j, i] = multiplicity
+    label = graph_label(M)
+    assert label == "n12[0-4^3,0-11^2,4-10^2]"
+    assert np.array_equal(graph_from_label(label), M)
+
+    legacy = "n4[01^3,02^2,13^2,23^3]"
+    assert graph_label(graph_from_label(legacy)) == legacy
+    assert np.array_equal(
+        graph_from_label("n4[0-1^3,0-2^2,1-3^2,2-3^3]"),
+        graph_from_label(legacy),
+    )
+
+
+def test_contraction_memory_guard_rejects_before_execution():
+    M = enumerate_graphs(4, 3)[0]
+    profile = contraction_plan_profile(M, 6, 3)
+    assert profile["largest_pair_work"] > 0
+    assert profile["estimated_peak_bytes"] >= profile[
+        "retained_forward_reverse_bytes"]
+    Fd = to_dense(
+        random_form(6, 3, np.random.default_rng(41), P), 6, 3, P)
+    basis = build_basis_flat(6, 3, None, P)
+    with pytest.raises(MemoryError, match="rejected before signed operands"):
+        value_and_jacobian_row(
+            M, Fd, basis, 6, 3, True, P, max_memory_bytes=1)
 
 
 def test_rank_sieve_checkpoint_round_trip_is_deterministic(tmp_path):

@@ -8,6 +8,8 @@ results/*.json
 !results/10d_order10.json
 !results/degree10_benchmarks.json
 !results/stress_flow_exact_low_degree.json
+!results/10d_order12.json
+!results/degree12_benchmarks.json
 .pytest_cache/
 work/
 tmp/

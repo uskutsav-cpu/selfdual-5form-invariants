@@ -1,0 +1,232 @@
+{
+  "canonical_seconds": {
+    "count": 100,
+    "max": 0.0004665419983211905,
+    "mean": 0.0002998783200746402,
+    "min": 0.00022524999803863466,
+    "p50": 0.00028845899214502424,
+    "p90": 0.00035691700759343803,
+    "p99": 0.0004543329996522516
+  },
+  "catalog_generation": {
+    "candidate_counts": [
+      23480,
+      112,
+      53,
+      375,
+      217,
+      28
+    ],
+    "seconds": {
+      "count": 6,
+      "max": 10.70698,
+      "mean": 1.9748293333333333,
+      "min": 0.069011,
+      "p50": 0.086951,
+      "p90": 0.686267,
+      "p99": 10.70698
+    },
+    "sources": [
+      {
+        "compressed_bytes": 1432737,
+        "count": 23480,
+        "generation_seconds": 10.70698,
+        "logical_sha256": "163075c73ae68dc9e25788e80e3646d6921d1ea4603738c6b249df2c5848e53c",
+        "path": "work/degree12-catalog/order12-shard-0063-of-4096.jsonl.gz",
+        "residue": 63
+      },
+      {
+        "compressed_bytes": 7914,
+        "count": 112,
+        "generation_seconds": 0.086951,
+        "logical_sha256": "8eec0cb679495f2f3aea45fa05aa9a470bcd8bad02983e2c35a7dcb728509757",
+        "path": "work/degree12-catalog/order12-shard-0000-of-4096.jsonl.gz",
+        "residue": 0
+      },
+      {
+        "compressed_bytes": 3920,
+        "count": 53,
+        "generation_seconds": 0.069011,
+        "logical_sha256": "f94496d896dc9427342c67c382070cbdb82d02b2ceefbf083d29c24fc8a09036",
+        "path": "work/degree12-catalog/order12-shard-0001-of-4096.jsonl.gz",
+        "residue": 1
+      },
+      {
+        "compressed_bytes": 24737,
+        "count": 375,
+        "generation_seconds": 0.686267,
+        "logical_sha256": "f3b0a9e0ff192099ab23d62a2e6e343d6f5c823171204285da0e1530ef3a4ef5",
+        "path": "work/degree12-catalog/order12-shard-0002-of-4096.jsonl.gz",
+        "residue": 2
+      },
+      {
+        "compressed_bytes": 13685,
+        "count": 217,
+        "generation_seconds": 0.216686,
+        "logical_sha256": "cde856426cc133e8fc47be3801f6d638b67ba4d02a0c04dde60b6c9f11cd3061",
+        "path": "work/degree12-catalog/order12-shard-0003-of-4096.jsonl.gz",
+        "residue": 3
+      },
+      {
+        "compressed_bytes": 2273,
+        "count": 28,
+        "generation_seconds": 0.083081,
+        "logical_sha256": "e4e43ede84fdbd3f68153aad51c887cc30671625fd88d05ab28c65c2ca1141a3",
+        "path": "work/degree12-catalog/order12-shard-0004-of-4096.jsonl.gz",
+        "residue": 4
+      }
+    ]
+  },
+  "checkpoint_seconds": {
+    "count": 126,
+    "max": 4.847351084012189,
+    "mean": 0.09970840184980752,
+    "min": 0.0035415829916018993,
+    "p50": 0.0216892500029644,
+    "p90": 0.1418620420008665,
+    "p99": 0.7875405410013627
+  },
+  "estimated_peak_bytes": {
+    "count": 600,
+    "max": 1363840016.0,
+    "mean": 531405536.0,
+    "min": 96640016.0,
+    "p50": 617603216.0,
+    "p90": 793600016.0,
+    "p99": 1205440016.0
+  },
+  "hardware": {
+    "architecture": "arm64",
+    "logical_cpu_count": 8,
+    "memory_bytes": 8589934592,
+    "numpy": "2.5.1",
+    "operating_system": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "processor": "arm",
+    "python": "3.13.13"
+  },
+  "lower_value_jacobian_seconds": {
+    "count": 30,
+    "max": 0.8690011669968953,
+    "mean": 0.15673683339943334,
+    "min": 0.015433666005264968,
+    "p50": 0.11647591699147597,
+    "p90": 0.28532616700977087,
+    "p99": 0.8690011669968953
+  },
+  "pair_union_rank_histogram": {
+    "8": 21,
+    "9": 579
+  },
+  "plan_width_histogram": {
+    "6": 214,
+    "7": 386
+  },
+  "planner_seconds": {
+    "count": 425,
+    "max": 0.7662467499903869,
+    "mean": 0.21406956784711356,
+    "min": 0.1329016659874469,
+    "p50": 0.19195633399067447,
+    "p90": 0.2980394579935819,
+    "p99": 0.5529451250040438
+  },
+  "product_formation_and_seed_seconds": {
+    "count": 10,
+    "max": 0.000109500004327856,
+    "mean": 5.830410373164341e-05,
+    "min": 2.2124993847683072e-05,
+    "p50": 5.6375007261522114e-05,
+    "p90": 9.300000965595245e-05,
+    "p99": 0.000109500004327856
+  },
+  "rank_update_seconds": {
+    "count": 397,
+    "max": 0.04852691700216383,
+    "mean": 0.0005915904031220181,
+    "min": 1.4792007277719676e-05,
+    "p50": 0.0001993750047404319,
+    "p90": 0.0006470840016845614,
+    "p99": 0.004565291994367726
+  },
+  "result_semantic_sha256": "26b61c440b64b1beefe5d19f8eba4fcb9f299502a58796e82900ed2080605c25",
+  "result_sha256": "9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113",
+  "rss_bytes": {
+    "discovery_peak": 1027866624,
+    "samples": {
+      "count": 377,
+      "max": 1027866624.0,
+      "mean": 769597896.3183024,
+      "min": 222183424.0,
+      "p50": 763428864.0,
+      "p90": 994066432.0,
+      "p99": 1027866624.0
+    },
+    "validation_peak": 1179844608
+  },
+  "schedule_sha256": "d410e39f663c8505c33bca58c87c9d46834db5a22cac50d89aad0560e548bec7",
+  "schema": 1,
+  "selection": {
+    "early_functional_dependencies_skipped": 0,
+    "evaluated": 376,
+    "examined_by_scheduler": 1841,
+    "polynomial_dependencies_skipped": 314,
+    "safe_scheduled": 600,
+    "selected": 62
+  },
+  "serialization_seconds": {
+    "count": 100,
+    "max": 0.00013554200995713472,
+    "mean": 2.936170028988272e-05,
+    "min": 2.2249994799494743e-05,
+    "p50": 2.533399674575776e-05,
+    "p90": 3.754100180231035e-05,
+    "p99": 7.39170063752681e-05
+  },
+  "validation_metrics": {
+    "lorentz_scalar_seconds": {
+      "count": 186,
+      "max": 1.6270873750036117,
+      "mean": 0.2569450495167046,
+      "min": 0.08690616699459497,
+      "p50": 0.2063795419962844,
+      "p90": 0.40214520899462514,
+      "p99": 0.7628892500069924
+    },
+    "product_formation_seconds": {
+      "count": 12,
+      "max": 0.007863291990361176,
+      "mean": 0.0028708193325049556,
+      "min": 0.00010445799853187054,
+      "p50": 0.0018965000053867698,
+      "p90": 0.007066082995152101,
+      "p99": 0.007863291990361176
+    },
+    "rank_seconds": {
+      "count": 1212,
+      "max": 0.027048332995036617,
+      "mean": 0.0006286639468856778,
+      "min": 2.02919909497723e-05,
+      "p50": 0.00038587501330766827,
+      "p90": 0.001040292001562193,
+      "p99": 0.006022790999850258
+    },
+    "value_jacobian_seconds": {
+      "count": 996,
+      "max": 8.147203832995729,
+      "mean": 0.6298598346152303,
+      "min": 0.02671474999806378,
+      "p50": 0.5190209580032388,
+      "p90": 1.206499125008122,
+      "p99": 2.4759050420107087
+    }
+  },
+  "value_jacobian_seconds": {
+    "count": 752,
+    "max": 5.1016957919928245,
+    "mean": 1.0752990035676857,
+    "min": 0.14382283299346454,
+    "p50": 0.9776240000064718,
+    "p90": 1.8363528339978075,
+    "p99": 3.118612791004125
+  }
+}
