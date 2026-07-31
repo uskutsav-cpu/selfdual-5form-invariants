@@ -314,15 +314,74 @@ def test_trM5_matches_the_M_only_result():
             "independent code path")
 
 
-def test_published_q10_rank_is_zero_and_consistent():
+def test_published_projection_artifact_is_internally_sound():
+    """Structural invariants that must hold whatever the rank turns out to be.
+
+    Kept separate from the rank itself so that a change in the rank reads as a
+    result rather than as a broken test.
+    """
     if not MAP.exists():
         return
     with MAP.open() as stream:
         payload = json.load(stream)
-    assert payload["consistent"] is True
-    assert payload["Q10_rank_from_implemented_published"] == 0
+    assert payload["consistent"] is True, (
+        "the Q10 rank disagrees between primes; a modular accident or a "
+        "prime-dependent bug, and either way not a result")
     for record in payload["per_prime"].values():
         assert record["dim_Q10"] == 3
-        for proj in record["projections"].values():
+        for name, proj in record["projections"].items():
             assert proj["status"] == "solved", (
-                "a rank of 0 from an unsolved system would be uninformative")
+                f"{name} did not solve. A rank assembled from unsolved rows is "
+                f"uninformative -- an unsolved candidate contributes 0 for a "
+                f"reason that has nothing to do with the quotient. This is "
+                f"exactly how the non-scalar P10_07 was caught.")
+
+
+def test_published_q10_rank_is_full():
+    """The twelve published candidates span Q10: rank 3 of 3.
+
+    This expectation was 0 until all twelve were implemented. The five simplest
+    candidates -- P10_01 through P10_08 -- all project to the zero vector, and
+    while only those were implemented the evidence pointed at the published
+    list not reaching the quotient at all. It reaches it completely. The
+    candidates that get there are exactly the four hardest to transcribe:
+    P10_09 (a red bracket) and P10_10/11/12 (five N^(1050) blocks each).
+
+    The lesson is worth keeping: a null result over a subset chosen for ease of
+    implementation is not evidence about the whole set.
+    """
+    if not MAP.exists():
+        return
+    with MAP.open() as stream:
+        payload = json.load(stream)
+    rank = payload["Q10_rank_from_implemented_published"]
+    assert rank == 3, (
+        f"published Q10 rank is {rank}, expected 3. If it dropped, a candidate "
+        f"regressed; if it is None, the primes disagree.")
+
+
+def test_only_the_four_hardest_candidates_reach_the_quotient():
+    """Pin which candidates carry the quotient, so a silent swap is caught.
+
+    P10_01..P10_08 must project to zero and P10_09..P10_12 must not. If a
+    transcription error moved a nonzero image onto a different candidate the
+    rank would be unchanged and nothing else in this suite would notice.
+    """
+    if not MAP.exists():
+        return
+    with MAP.open() as stream:
+        payload = json.load(stream)
+    for prime, record in payload["per_prime"].items():
+        p = int(prime)
+        for name, proj in record["projections"].items():
+            if "[" in name or proj["status"] != "solved":
+                continue
+            index = int(name.split("_")[1])
+            hit = any(v % p for v in proj["quotient_vector"])
+            if index <= 8:
+                assert not hit, (
+                    f"{name} reaches Q10 at prime {prime}; it did not before, "
+                    f"and that is a change in the result, not a test failure")
+            else:
+                assert hit, (
+                    f"{name} no longer reaches Q10 at prime {prime}")

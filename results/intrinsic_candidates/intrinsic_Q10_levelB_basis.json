@@ -1,0 +1,80 @@
+{
+ "ambiguity_robust": {
+  "P10_04": true,
+  "P10_10": true,
+  "P10_11": false,
+  "P10_12": true
+ },
+ "claim": "preferred under the simplicity criterion recorded in scripts/build_Q10_levelB_basis.py, and minimal among the twelve published equation-(4.24) candidates",
+ "not_claimed": "canonical in any absolute sense; no larger class was enumerated",
+ "per_prime": {
+  "32717": {
+   "dim_Q10": 3,
+   "forced_members": [
+    "P10_10"
+   ],
+   "independent_triples": [
+    [
+     "P10_09",
+     "P10_10",
+     "P10_11"
+    ],
+    [
+     "P10_09",
+     "P10_10",
+     "P10_12"
+    ],
+    [
+     "P10_10",
+     "P10_11",
+     "P10_12"
+    ]
+   ],
+   "nonzero_candidates": [
+    "P10_09",
+    "P10_10",
+    "P10_11",
+    "P10_12"
+   ],
+   "rank": 3
+  },
+  "32749": {
+   "dim_Q10": 3,
+   "forced_members": [
+    "P10_10"
+   ],
+   "independent_triples": [
+    [
+     "P10_09",
+     "P10_10",
+     "P10_11"
+    ],
+    [
+     "P10_09",
+     "P10_10",
+     "P10_12"
+    ],
+    [
+     "P10_10",
+     "P10_11",
+     "P10_12"
+    ]
+   ],
+   "nonzero_candidates": [
+    "P10_09",
+    "P10_10",
+    "P10_11",
+    "P10_12"
+   ],
+   "rank": 3
+  }
+ },
+ "preferred_basis": [
+  "P10_09",
+  "P10_10",
+  "P10_12"
+ ],
+ "preferred_score": 183.1,
+ "schema": 1,
+ "triples_agree_across_primes": true
+}

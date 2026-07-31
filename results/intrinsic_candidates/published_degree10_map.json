@@ -1,123 +1,60 @@
 {
- "Q10_rank_from_implemented_published": 0,
+ "Q10_rank_from_implemented_published": 3,
  "consistent": true,
  "degree": 10,
+ "evaluator_version": "p10-2026-07-30-boostfix",
+ "fit_holdout_agree": true,
+ "fit_primes": [
+  32749,
+  32719,
+  32693,
+  32771
+ ],
+ "holdout_primes": [
+  32713,
+  32717
+ ],
  "implemented": [
   "P10_01",
   "P10_02",
   "P10_03",
+  "P10_04",
+  "P10_05",
   "P10_06",
-  "P10_07"
+  "P10_07",
+  "P10_08",
+  "P10_09",
+  "P10_10",
+  "P10_11",
+  "P10_12"
  ],
- "not_implemented": 10,
+ "n_not_implemented": 0,
+ "not_implemented": [],
+ "peak_rss_mb": 531.3,
  "per_prime": {
-  "32693": {
-   "Q10_rank_from_published": 0,
-   "dim_Q10": 3,
-   "projections": {
-    "P10_01": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_02": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_03": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_06": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_07": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    }
-   }
-  },
-  "32713": {
-   "Q10_rank_from_published": 0,
-   "dim_Q10": 3,
-   "projections": {
-    "P10_01": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_02": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_03": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_06": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_07": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    }
-   }
-  },
   "32717": {
-   "Q10_rank_from_published": 0,
+   "Q10_rank_from_published": 3,
+   "Q10_rank_including_variants": 3,
+   "atlas_dim": 14,
    "dim_Q10": 3,
    "projections": {
     "P10_01": {
+     "atlas_coordinates": [
+      21457,
+      6062,
+      22310,
+      26694,
+      25133,
+      0,
+      0,
+      26892,
+      3587,
+      28334,
+      32336,
+      0,
+      32517,
+      30908
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -127,6 +64,22 @@
      "status": "solved"
     },
     "P10_02": {
+     "atlas_coordinates": [
+      12413,
+      930,
+      7861,
+      17835,
+      17612,
+      0,
+      0,
+      27211,
+      14534,
+      27417,
+      18641,
+      0,
+      10871,
+      18437
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -136,6 +89,97 @@
      "status": "solved"
     },
     "P10_03": {
+     "atlas_coordinates": [
+      17930,
+      21321,
+      3137,
+      7618,
+      13461,
+      0,
+      0,
+      30162,
+      26832,
+      31206,
+      11037,
+      0,
+      7498,
+      31495
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_04": {
+     "atlas_coordinates": [
+      14397,
+      15659,
+      9521,
+      9928,
+      20091,
+      0,
+      0,
+      20315,
+      10867,
+      16805,
+      30906,
+      0,
+      16379,
+      29253
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_04[pairs]": {
+     "atlas_coordinates": [
+      25496,
+      17033,
+      2347,
+      10817,
+      3172,
+      0,
+      0,
+      5410,
+      31608,
+      13952,
+      21196,
+      0,
+      13408,
+      5460
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_05": {
+     "atlas_coordinates": [
+      32427,
+      30656,
+      10761,
+      15025,
+      9020,
+      0,
+      0,
+      5999,
+      17964,
+      20638,
+      14565,
+      0,
+      20815,
+      19331
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -145,6 +189,22 @@
      "status": "solved"
     },
     "P10_06": {
+     "atlas_coordinates": [
+      6400,
+      9555,
+      4613,
+      4047,
+      18520,
+      0,
+      0,
+      17843,
+      10405,
+      13940,
+      23708,
+      0,
+      14640,
+      14803
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -154,72 +214,257 @@
      "status": "solved"
     },
     "P10_07": {
+     "atlas_coordinates": [
+      26875,
+      18675,
+      10338,
+      28577,
+      13224,
+      0,
+      0,
+      25606,
+      5087,
+      19324,
+      246,
+      0,
+      21798,
+      29499
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
       0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_08": {
+     "atlas_coordinates": [
+      25682,
+      8356,
+      30995,
+      13148,
+      3096,
+      0,
+      0,
+      14746,
+      13880,
+      5855,
+      28394,
+      0,
+      8688,
+      17463
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_09": {
+     "atlas_coordinates": [
+      8594,
+      25167,
+      12308,
+      25976,
+      8364,
+      30992,
+      15284,
+      1629,
+      16912,
+      30353,
+      18278,
+      0,
+      22227,
+      21154
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      30992,
+      15284,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_10": {
+     "atlas_coordinates": [
+      19769,
+      21275,
+      2502,
+      26474,
+      16714,
+      15788,
+      13584,
+      21455,
+      31564,
+      13493,
+      2992,
+      14050,
+      15263,
+      21866
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      15788,
+      13584,
+      14050
+     ],
+     "status": "solved"
+    },
+    "P10_10[nested]": {
+     "atlas_coordinates": [
+      29474,
+      23022,
+      13123,
+      14695,
+      32138,
+      15788,
+      13584,
+      29377,
+      17790,
+      16710,
+      20784,
+      14050,
+      15496,
+      241
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      15788,
+      13584,
+      14050
+     ],
+     "status": "solved"
+    },
+    "P10_11": {
+     "atlas_coordinates": [
+      31230,
+      22670,
+      23844,
+      12559,
+      10184,
+      1539,
+      18934,
+      23586,
+      7514,
+      2433,
+      28519,
+      0,
+      8834,
+      5849
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      1539,
+      18934,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_11[nested]": {
+     "atlas_coordinates": [
+      28026,
+      16303,
+      5410,
+      220,
+      4246,
+      25493,
+      11523,
+      12912,
+      5535,
+      10030,
+      13762,
+      12244,
+      8496,
+      16318
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      25493,
+      11523,
+      12244
+     ],
+     "status": "solved"
+    },
+    "P10_12": {
+     "atlas_coordinates": [
+      23413,
+      23965,
+      19104,
+      26514,
+      18910,
+      9234,
+      28791,
+      14670,
+      14251,
+      31529,
+      20847,
+      0,
+      10955,
+      17517
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      9234,
+      28791,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_12[nested]": {
+     "atlas_coordinates": [
+      23413,
+      23965,
+      19104,
+      26514,
+      18910,
+      9234,
+      28791,
+      14670,
+      14251,
+      31529,
+      20847,
+      0,
+      10955,
+      17517
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      9234,
+      28791,
       0
      ],
      "status": "solved"
     }
-   }
-  },
-  "32719": {
-   "Q10_rank_from_published": 0,
-   "dim_Q10": 3,
-   "projections": {
-    "P10_01": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_02": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_03": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_06": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_07": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    }
-   }
+   },
+   "published_atlas_rank": 12,
+   "role": "holdout"
   },
   "32749": {
-   "Q10_rank_from_published": 0,
+   "Q10_rank_from_published": 3,
+   "Q10_rank_including_variants": 3,
+   "atlas_dim": 14,
    "dim_Q10": 3,
    "projections": {
     "P10_01": {
+     "atlas_coordinates": [
+      28800,
+      29231,
+      23770,
+      18849,
+      4629,
+      0,
+      0,
+      9240,
+      18002,
+      7377,
+      25629,
+      0,
+      25852,
+      31157
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -229,6 +474,22 @@
      "status": "solved"
     },
     "P10_02": {
+     "atlas_coordinates": [
+      22828,
+      27632,
+      17431,
+      16728,
+      19375,
+      0,
+      0,
+      1320,
+      16607,
+      24446,
+      22375,
+      0,
+      6806,
+      4451
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -238,6 +499,97 @@
      "status": "solved"
     },
     "P10_03": {
+     "atlas_coordinates": [
+      30640,
+      25660,
+      825,
+      9511,
+      26763,
+      0,
+      0,
+      12734,
+      11856,
+      116,
+      31119,
+      0,
+      1548,
+      23382
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_04": {
+     "atlas_coordinates": [
+      11920,
+      9281,
+      6952,
+      6500,
+      20499,
+      0,
+      0,
+      5104,
+      32470,
+      29864,
+      31214,
+      0,
+      14503,
+      27154
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_04[pairs]": {
+     "atlas_coordinates": [
+      10229,
+      14819,
+      29154,
+      30971,
+      29207,
+      0,
+      0,
+      14419,
+      28965,
+      4510,
+      31427,
+      0,
+      27003,
+      27484
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_05": {
+     "atlas_coordinates": [
+      18911,
+      24442,
+      32195,
+      12417,
+      19687,
+      0,
+      0,
+      2402,
+      21632,
+      5282,
+      16055,
+      0,
+      13999,
+      32254
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -247,6 +599,22 @@
      "status": "solved"
     },
     "P10_06": {
+     "atlas_coordinates": [
+      22968,
+      28240,
+      436,
+      26699,
+      23113,
+      0,
+      0,
+      25456,
+      28056,
+      22613,
+      31977,
+      0,
+      22823,
+      32405
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -256,67 +624,236 @@
      "status": "solved"
     },
     "P10_07": {
+     "atlas_coordinates": [
+      18687,
+      30751,
+      29962,
+      23203,
+      8782,
+      0,
+      0,
+      10424,
+      10406,
+      17471,
+      25639,
+      0,
+      26951,
+      7296
+     ],
      "nonzero": false,
      "quotient_vector": [
       0,
       0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_08": {
+     "atlas_coordinates": [
+      9385,
+      14260,
+      31870,
+      2010,
+      7616,
+      0,
+      0,
+      9933,
+      3712,
+      25555,
+      29660,
+      0,
+      24443,
+      3749
+     ],
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_09": {
+     "atlas_coordinates": [
+      444,
+      30047,
+      4306,
+      8208,
+      23971,
+      28088,
+      575,
+      12383,
+      29310,
+      18536,
+      30795,
+      0,
+      25937,
+      9612
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      28088,
+      575,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_10": {
+     "atlas_coordinates": [
+      22886,
+      27695,
+      7490,
+      30714,
+      10826,
+      26346,
+      9877,
+      21391,
+      27321,
+      9095,
+      19255,
+      9547,
+      21693,
+      12295
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      26346,
+      9877,
+      9547
+     ],
+     "status": "solved"
+    },
+    "P10_10[nested]": {
+     "atlas_coordinates": [
+      1652,
+      4159,
+      31214,
+      30960,
+      3554,
+      26346,
+      9877,
+      13298,
+      5601,
+      8661,
+      17148,
+      9547,
+      11326,
+      16678
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      26346,
+      9877,
+      9547
+     ],
+     "status": "solved"
+    },
+    "P10_11": {
+     "atlas_coordinates": [
+      17445,
+      4356,
+      1633,
+      12527,
+      4975,
+      15468,
+      21541,
+      650,
+      28596,
+      16918,
+      23055,
+      0,
+      29042,
+      352
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      15468,
+      21541,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_11[nested]": {
+     "atlas_coordinates": [
+      9328,
+      19880,
+      12695,
+      30179,
+      4190,
+      10270,
+      7290,
+      10370,
+      30129,
+      15170,
+      26998,
+      28489,
+      6951,
+      31813
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      10270,
+      7290,
+      28489
+     ],
+     "status": "solved"
+    },
+    "P10_12": {
+     "atlas_coordinates": [
+      10841,
+      19670,
+      27510,
+      7102,
+      16986,
+      27310,
+      1310,
+      17336,
+      23179,
+      961,
+      19623,
+      0,
+      890,
+      19422
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      27310,
+      1310,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_12[nested]": {
+     "atlas_coordinates": [
+      10841,
+      19670,
+      27510,
+      7102,
+      16986,
+      27310,
+      1310,
+      17336,
+      23179,
+      961,
+      19623,
+      0,
+      890,
+      19422
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      27310,
+      1310,
       0
      ],
      "status": "solved"
     }
-   }
-  },
-  "32771": {
-   "Q10_rank_from_published": 0,
-   "dim_Q10": 3,
-   "projections": {
-    "P10_01": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_02": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_03": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_06": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    },
-    "P10_07": {
-     "nonzero": false,
-     "quotient_vector": [
-      0,
-      0,
-      0
-     ],
-     "status": "solved"
-    }
-   }
+   },
+   "published_atlas_rank": 12,
+   "role": "fit"
   }
  },
- "schema": 1
+ "runtime_seconds": 912.0,
+ "schema": 2,
+ "source_commit": "df66f25ac2c1fcbfc523e7daae48e010eaeb5ed3"
 }
