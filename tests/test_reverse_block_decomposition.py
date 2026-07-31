@@ -268,3 +268,49 @@ def test_make_blocks_returns_all_lower_operands():
         "make_blocks handed back the mixed-placement M_{a}{}^{b}; the edge "
         "rule then double-raises or never raises every M edge")
     assert np.array_equal(blocks["M"], _raise_axes(mixed, (1,), P))
+
+
+def test_formula_topology_round_trip_is_exact():
+    """A candidate identifier is not mathematics; the formula must be.
+
+    Renders each topology as an explicit indexed contraction, parses it back
+    from the INDEX PAIRINGS alone, and requires the canonical key to match. A
+    failure means the readable formula does not describe the topology it was
+    generated from -- which would make every published formula in the
+    certificates document wrong while the identifiers stayed reassuringly
+    consistent.
+    """
+    from sdinv.reverse_block_decomposition import (
+        parse_formula, render_formula, stream_candidates)
+    for kinds in (["M"] * 5, ["M", "M", "M", "N1050", "N1050"],
+                  ["N1050"] * 5, ["N4125"] * 5):
+        checked = 0
+        for topo, _ in stream_candidates(list(kinds), cap=20000,
+                                         max_candidates=6):
+            text = render_formula(list(kinds), topo)
+            kinds2, topo2 = parse_formula(text)
+            assert kinds2 == list(kinds), f"kinds changed: {kinds2}"
+            assert canonical_form(list(kinds), topo) == \
+                canonical_form(kinds2, topo2), (
+                    f"round trip changed the topology for {kinds}:\n{text}")
+            checked += 1
+        assert checked, f"nothing checked for {kinds}"
+
+
+def test_rendered_formula_marks_exactly_one_raised_end_per_index():
+    """The readable form must show the variance that makes it a scalar."""
+    from sdinv.reverse_block_decomposition import (
+        render_formula, stream_candidates)
+    kinds = ["N4125"] * 5
+    for topo, _ in stream_candidates(kinds, cap=20000, max_candidates=5):
+        text = render_formula(kinds, topo)
+        seen = {}
+        for factor in text.split("*"):
+            body = factor.partition("{")[2].rstrip(" }")
+            for token in body.split():
+                seen.setdefault(token[1:], []).append(token[0])
+        for name, marks in seen.items():
+            assert len(marks) == 2, f"{name} appears {len(marks)} times"
+            assert sorted(marks) == ["^", "_"], (
+                f"index {name} has variance {marks}; exactly one end must be "
+                f"raised or the contraction uses delta rather than eta")

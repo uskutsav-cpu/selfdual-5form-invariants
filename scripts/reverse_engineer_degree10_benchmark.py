@@ -43,6 +43,16 @@ CKPT = Path(os.environ.get("SDINV_CKPT_ROOT")
             or Path(os.environ.get("TMPDIR", "/tmp")) / "sdinv_ckpt") / "reverse10"
 
 
+def _encode_topology(topology):
+    """JSON-safe encoding of a topology; round-trips via _decode_topology."""
+    return sorted([[list(a), list(b), int(c)]
+                   for (a, b), c in topology.items()])
+
+
+def _decode_topology(encoded):
+    return {(tuple(a), tuple(b)): int(c) for a, b, c in encoded}
+
+
 def sample(prime, seed):
     pr = selfdual_projector(10, 5, True, prime)
     return to_dense((pr @ random_form(10, 5, np.random.default_rng(seed), prime))
@@ -156,13 +166,22 @@ def main():
             "peak_rss_mb_after_sector": round(peak_rss_mb(), 1),
         }
         stats_all[label] = stats
-        for topo in kept:
+        for idx, topo in enumerate(kept):
+            cid = f"{label}#{idx:04d}"
             try:
                 spec, _ = build_einsum(list(ms), topo)
-            except ValueError:
+            except ValueError as exc:
+                # STRUCTURAL rejection is a legitimate outcome and gets a
+                # terminal status. It is not the same as an evaluation error
+                # and must never be conflated with one.
+                plan.append({"multiset": list(ms), "label": label, "id": cid,
+                             "topology": topo, "einsum": None,
+                             "status": "structurally_rejected",
+                             "error": f"{type(exc).__name__}: {exc}"})
                 continue
-            plan.append({"multiset": list(ms), "label": label,
-                         "topology": topo, "einsum": spec})
+            plan.append({"multiset": list(ms), "label": label, "id": cid,
+                         "topology": topo, "einsum": spec,
+                         "status": "planned", "error": None})
         print(f"  {label}: canon={stats['canonical']} "
               f"selected={len(kept)} truncated={stats['truncated']} "
               f"rss={stats['peak_rss_mb_after_sector']}MB "
@@ -183,11 +202,21 @@ def main():
         t0 = time.time()
         blocks = make_blocks(form, FIT)
         for ci, cand in enumerate(plan):
+            if cand["status"] == "structurally_rejected":
+                values[ci][i] = None
+                continue
             try:
                 values[ci][i] = evaluate(cand["multiset"], cand["topology"],
                                          blocks, FIT)
-            except Exception:
+            except Exception as exc:
+                # NOT swallowed. The original pilot dropped nine candidates
+                # here with a bare `continue`, so the planned and evaluated
+                # counts silently disagreed and nothing recorded why.
                 values[ci][i] = None
+                if cand["status"] != "evaluation_error":
+                    cand["status"] = "evaluation_error"
+                    cand["error"] = f"{type(exc).__name__}: {exc}"
+                    cand["error_sample"] = i
         del blocks
         print(f"    sample {i+1}/{n_samples}  {time.time()-t0:.1f}s "
               f"rss={peak_rss_mb():.0f}MB", flush=True)
@@ -198,14 +227,33 @@ def main():
         b = values[ci]
         acc = per_label.setdefault(cand["label"],
                                    {"evaluated": 0, "in_atlas_span": 0,
+                                    "outside_atlas_span": 0,
+                                    "structurally_rejected": 0,
+                                    "evaluation_error": 0,
                                     "nonzero_quotient": 0})
-        if any(v is None for v in b):
+        if cand["status"] == "structurally_rejected":
+            acc["structurally_rejected"] += 1
             continue
+        if cand["status"] == "evaluation_error" or any(v is None for v in b):
+            if cand["status"] == "planned":
+                cand["status"] = "evaluation_error"
+                cand["error"] = "value missing without a recorded exception"
+            acc["evaluation_error"] += 1
+            continue
+        cand["status"] = "evaluated"
         acc["evaluated"] += 1
         x, ok = solve_exact(A, b, FIT)
         if not ok:
+            # A successfully evaluated Lorentz scalar of degree 10 MUST lie in
+            # the atlas span. Failing that is an implementation defect, not a
+            # property of the candidate -- it is how the mixed-variance M block
+            # was found -- so it is recorded per candidate, not counted and
+            # forgotten.
+            acc["outside_atlas_span"] += 1
+            cand["outside_atlas_span"] = True
             continue
         acc["in_atlas_span"] += 1
+        cand["atlas_coordinates"] = [int(v) % FIT for v in x]
         q = project(x, ech, piv, free, FIT)
         if not any(v % FIT for v in q):
             continue
@@ -214,7 +262,10 @@ def main():
         nr = rank_mod(np.asarray(trial, dtype=np.int64) % FIT, FIT)
         if nr > rank:
             rank, quotient_rows = nr, trial
-            found.append({"multiset": cand["multiset"], "einsum": cand["einsum"],
+            found.append({"id": cand["id"], "multiset": cand["multiset"],
+                          "einsum": cand["einsum"],
+                          "topology": _encode_topology(cand["topology"]),
+                          "atlas_coordinates": cand["atlas_coordinates"],
                           "quotient_vector": q, "rank_after": rank})
             print(f"    RANK {rank}/3 from {cand['label']}  {cand['einsum']}",
                   flush=True)
@@ -223,8 +274,37 @@ def main():
     for label, acc in per_label.items():
         stats_all.setdefault(label, {}).update(acc)
 
+    # --- terminal-status accounting; the identity must reconcile exactly ----
+    counts = {"planned": len(plan), "evaluated": 0, "structurally_rejected": 0,
+              "evaluation_error": 0, "interrupted": 0}
+    exceptions = []
+    outside = []
+    for cand in plan:
+        st = cand["status"]
+        if st == "planned":
+            st = cand["status"] = "interrupted"
+        counts[st] = counts.get(st, 0) + 1
+        if st in ("structurally_rejected", "evaluation_error"):
+            exceptions.append({"id": cand["id"], "label": cand["label"],
+                               "status": st, "error": cand.get("error"),
+                               "einsum": cand.get("einsum"),
+                               "error_sample": cand.get("error_sample")})
+        if cand.get("outside_atlas_span"):
+            outside.append({"id": cand["id"], "einsum": cand.get("einsum")})
+    reconciles = (counts["planned"] == counts["evaluated"]
+                  + counts["structurally_rejected"]
+                  + counts["evaluation_error"] + counts["interrupted"])
+    print(f"\naccounting: {counts}  reconciles={reconciles}", flush=True)
+    if outside:
+        print(f"  {len(outside)} evaluated candidates OUTSIDE the atlas span "
+              f"-- implementation defect, not a result", flush=True)
+
     payload = {
-        "schema": 1,
+        "schema": 2,
+        "accounting": counts,
+        "accounting_reconciles": reconciles,
+        "exceptions": exceptions,
+        "outside_atlas_span": outside,
         "independence": ("generation never imports or inspects "
                          "published_degree10_invariants or its coordinates"),
         "fit_prime": FIT,

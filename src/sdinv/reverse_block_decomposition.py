@@ -310,6 +310,80 @@ def build_einsum(kinds, topology):
     return spec, [tuple(sorted(r)) for r in raises]
 
 
+GREEK = ["mu", "nu", "rho", "sigma", "tau", "alpha", "beta", "gamma",
+         "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa",
+         "lambda", "chi", "psi", "omega", "phi"]
+
+
+def render_formula(kinds, topology, index_names=None):
+    """Render a topology as a readable indexed contraction.
+
+    A canonical identifier is not mathematics. This produces the actual
+    contraction: every tensor factor, every index, and its variance, with `^`
+    marking a raised (contravariant) slot and `_` a lowered one. Exactly one
+    end of every contracted pair is raised, which is what makes the expression
+    a Lorentz scalar.
+
+    Round-trips through `parse_formula`.
+    """
+    spec, raises = build_einsum(kinds, topology)
+    subs = spec.split("->")[0].split(",")
+    letters = sorted({ch for sub in subs for ch in sub})
+    if index_names is None:
+        index_names = {ch: GREEK[i % len(GREEK)] + ("'" * (i // len(GREEK)))
+                       for i, ch in enumerate(letters)}
+    parts = []
+    for bi, (kind, sub) in enumerate(zip(kinds, subs)):
+        slots = []
+        for slot, ch in enumerate(sub):
+            up = slot in raises[bi]
+            slots.append(("^" if up else "_") + index_names[ch])
+        parts.append(f"{kind}[{bi}]{{{' '.join(slots)}}}")
+    return " * ".join(parts)
+
+
+def parse_formula(text):
+    """Parse a rendered formula back into (kinds, topology).
+
+    Deliberately reconstructs the topology from the INDEX PAIRINGS rather than
+    trusting any stored structure, so a round-trip failure means the rendered
+    formula does not actually describe the topology it came from.
+    """
+    kinds, per_block = [], []
+    for factor in [f.strip() for f in text.split("*")]:
+        head, _, rest = factor.partition("[")
+        _, _, body = rest.partition("{")
+        body = body.rstrip("}").strip()
+        kinds.append(head.strip())
+        slots = []
+        for token in body.split():
+            slots.append((token[0] == "^", token[1:]))
+        per_block.append(slots)
+
+    # locate the two ends of each index, then map slots back to slot classes
+    where = {}
+    for bi, slots in enumerate(per_block):
+        for slot, (_up, name) in enumerate(slots):
+            where.setdefault(name, []).append((bi, slot))
+
+    def slot_class(kind, slot):
+        for ci, s in block_slot_classes(kind):
+            if slot in s:
+                return ci
+        raise ValueError(f"slot {slot} not in any class of {kind}")
+
+    topology = {}
+    for name, ends in where.items():
+        if len(ends) != 2:
+            raise ValueError(f"index {name!r} appears {len(ends)} times, not 2")
+        (b1, s1), (b2, s2) = ends
+        a = (b1, slot_class(kinds[b1], s1))
+        b = (b2, slot_class(kinds[b2], s2))
+        key = (min(a, b), max(a, b))
+        topology[key] = topology.get(key, 0) + 1
+    return kinds, topology
+
+
 def make_blocks(five_form, mod=P, backend="optimized"):
     """The three verified quadratic-block channels, ALL-LOWER.
 
