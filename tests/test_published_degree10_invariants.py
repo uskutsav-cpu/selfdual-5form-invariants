@@ -262,9 +262,33 @@ def test_p10_05_and_p10_08_black_brackets_are_not_vacuous():
     spec8 = "pqrsnm,ntmk,pqrxyz,stkxzy->"
     with_b8 = int(mod_einsum(spec8, [outer, anti8, n_a, n_b], prime) % prime)
     without8 = int(mod_einsum(spec8, [outer, raw8, n_a, n_b], prime) % prime)
-    assert with_b8 != without8, (
-        "P10_08 is unchanged by its black antisymmetrisation")
     assert with_b8 == PUBLISHED_DEGREE10["P10_08"]["evaluator"](form, prime)
+
+    # P10_08's black bracket is REDUNDANT, and that is a property of the
+    # contraction rather than a defect. The check below states why, which is
+    # stronger than asserting the bracket changes the value: the symmetric
+    # part of the (nu, mu) pair contracts to exactly zero, so the rest of the
+    # contraction already projects onto the antisymmetric part.
+    sym8 = BracketProgram(ops=[
+        BracketOp("sym", (0, 2), BLACK, True, "nu-mu")]).apply(raw8, prime)
+    sym_value = int(mod_einsum(spec8, [outer, sym8, n_a, n_b], prime) % prime)
+    assert sym_value == 0, (
+        f"the (nu,mu)-symmetric part of P10_08 is {sym_value}, not 0. It was 0 "
+        f"at both 32749 and 32719, which is the reason the black bracket is a "
+        f"no-op there. If it is nonzero now, the bracket is doing real work "
+        f"and the redundancy recorded in the index audit is wrong.")
+    assert with_b8 == without8, (
+        "P10_08's black bracket changed the value; given a vanishing symmetric "
+        "part it must not")
+
+    # ...and the engine is genuinely live on this tensor, so the redundancy is
+    # a fact about the contraction and not a silently disabled bracket.
+    other = BracketProgram(ops=[
+        BracketOp("antisym", (0, 1), BLACK, True, "control")]).apply(raw8, prime)
+    assert int(mod_einsum(spec8, [outer, other, n_a, n_b], prime)
+               % prime) != without8, (
+        "no antisymmetrisation of this tensor changes the result, so the "
+        "bracket engine is not acting at all")
 
 
 def test_p10_05_and_p10_08_index_mutation_is_detected():

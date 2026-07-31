@@ -130,3 +130,46 @@ Whether the inner is a genuine nested antisymmetrisation or a red-stage
 operation printed in square glyphs cannot be settled from the text stream.
 
 Resolving either requires a colour render of journal page 17 / arXiv page 25.
+
+## 5. Measured properties of the implemented brackets
+
+**P10_05** — both black antisymmetrisations are non-vacuous: removing them
+changes the value.
+
+**P10_08** — its black antisymmetrisation `[nu ... mu]` is **redundant**, and
+this is a property of the contraction, not a defect. Measured at 32749 and
+32719:
+
+| variant | 32749 | 32719 |
+|---|---:|---:|
+| no bracket | 10763 | 25675 |
+| antisym (nu, mu) | 10763 | 25675 |
+| **sym (nu, mu)** | **0** | **0** |
+| antisym (nu, rho5) — control | 11222 | 2674 |
+| antisym (mu, kappa) — control | 3880 | 27191 |
+
+The symmetric part of the pair contracts to exactly zero, so the rest of the
+contraction already projects onto the antisymmetric part and the explicit
+bracket adds nothing. The two controls show the bracket engine is genuinely
+acting on this tensor, so the redundancy is a fact about I^(8) rather than a
+silently disabled operation.
+
+**Consequence for testing.** A non-vacuity test of the form "removing the
+bracket must change the value" is the wrong guard here: it fails on a correct
+implementation. The test instead asserts the vanishing of the symmetric part,
+which is the *reason* for the redundancy, plus a live-engine control.
+
+## 6. AMB-02 measured
+
+Both readings were implemented and projected. The quotient image is what
+matters, and it is not always sensitive to the ambiguity:
+
+| candidate | raw values differ? | Q10 image differs? |
+|---|---|---|
+| I^(10) | yes | **no** — identical at both primes |
+| I^(11) | yes | **yes** — differs at both primes |
+| I^(12) | no — readings agree exactly | no |
+
+So AMB-02 is harmless for I^(10) and I^(12) at the level of the quotient, and
+live for I^(11). This is what makes `{P10_09, P10_10, P10_12}` preferable to a
+basis containing P10_11; see `intrinsic_degree10_levelB.md` §3.
