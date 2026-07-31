@@ -1,7 +1,7 @@
 {
  "baseline_commit": "3ed32805b38ce34216b34888f6539e3538e90fb9",
  "branch": "research/maximal-chiral-four-form-program",
- "current_phase": 1,
+ "current_phase": "Phase 1: degree-10 reverse benchmark (recovery goal)",
  "hazards": [
   "canonical tree is iCloud-synced: no active checkpoints there; judge activity by mtime not ps"
  ],
@@ -81,6 +81,26 @@
    "phase8_typeIIB_reading",
    "phase10_independence"
   ]
+ },
+ "reverse_pilot": {
+  "candidates": 588,
+  "canonical_candidates_total": 16522,
+  "checkpoint_path": "scratchpad/ckpt/reverse10 (local temp, NOT iCloud)",
+  "checkpoint_units": 309,
+  "commit": "e800e7b140a023fcf0b50e05d1d8d1ba2f68b127",
+  "evaluation_rss_mb": 260,
+  "fit_prime": 32749,
+  "holdout_prime_pending": 32717,
+  "output": "results/intrinsic_candidates/degree10_reverse_benchmark.json",
+  "peak_rss_stage": "enumeration (topology objects retained across sectors)",
+  "pid": 77396,
+  "samples_done": 17,
+  "samples_total": 22,
+  "seconds_per_sample": 133.7,
+  "sectors": 21,
+  "sectors_capped": 5,
+  "state": "running",
+  "worker_peak_rss_mb": 2611
  },
  "schema": 1
 }

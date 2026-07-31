@@ -133,3 +133,58 @@ def test_block_multisets_are_ordered_cheapest_first():
     assert counts == sorted(counts), "multisets are not cost-ordered"
     assert sets[0] == ("M", "M", "M", "M", "M")
     assert len(sets) == 21
+
+
+def test_streaming_matches_the_list_enumeration():
+    """The memory refactor must not change WHICH candidates are produced."""
+    from sdinv.reverse_block_decomposition import stream_candidates
+    for kinds in (["M", "M", "M", "M", "M"], ["M", "M", "M", "N1050", "N1050"]):
+        listed, _ = generate_candidates(kinds)
+        streamed = [t for t, _ in stream_candidates(kinds)]
+        a = sorted(canonical_form(kinds, t) for t in listed)
+        b = sorted(canonical_form(kinds, t) for t in streamed)
+        assert a == b, (
+            f"streamed generation produced a different candidate set for "
+            f"{kinds}; the refactor changed the science, not just the memory")
+
+
+def test_shards_partition_the_candidate_set_exactly():
+    """Two shards must never claim the same scalar, and none may be lost.
+
+    Sharding is tested on the CANONICAL key rather than on the raw topology,
+    so equivalent topologies cannot land in different shards and be counted
+    twice.
+    """
+    from sdinv.reverse_block_decomposition import stream_candidates
+    kinds = ["M", "M", "M", "N1050", "N1050"]
+    whole = {canonical_form(kinds, t) for t, _ in stream_candidates(kinds)}
+    union, seen_twice = set(), set()
+    for residue in range(3):
+        shard = {canonical_form(kinds, t) for t, _ in
+                 stream_candidates(kinds, shard_residue=residue,
+                                   shard_modulus=3)}
+        seen_twice |= (union & shard)
+        union |= shard
+    assert not seen_twice, f"{len(seen_twice)} candidates in multiple shards"
+    assert union == whole, (
+        f"shard union has {len(union)} candidates, unsharded has {len(whole)}")
+
+
+def test_streaming_memory_is_bounded_by_distinct_candidates(tmp_path):
+    """Streaming must not retain the raw topologies it walks past.
+
+    The list form held up to 30 000 dicts per sector, which drove enumeration
+    RSS to ~2.6 GB across 21 sectors. This asserts the streamed form walks far
+    more raw topologies than it retains.
+    """
+    from sdinv.reverse_block_decomposition import stream_candidates
+    kinds = ["N1050"] * 3
+    last = {}
+    count = 0
+    for _, stats in stream_candidates(kinds, cap=20000):
+        last = stats
+        count += 1
+    assert last["raw"] > count, (
+        "streaming yielded as many candidates as raw topologies walked, so "
+        "canonicalisation is not deduplicating and memory is not bounded")
+    assert last["duplicate"] > 0

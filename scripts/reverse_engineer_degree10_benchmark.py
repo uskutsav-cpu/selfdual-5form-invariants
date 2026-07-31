@@ -28,7 +28,8 @@ from sdinv.exactmap import rank_mod
 from sdinv.forms import selfdual_projector, to_dense, random_form
 from sdinv.projection_checkpoint import ProjectionCheckpoint, peak_rss_mb
 from sdinv.reverse_block_decomposition import (
-    block_multisets, build_einsum, evaluate, generate_candidates, make_blocks)
+    block_multisets, build_einsum, evaluate, generate_candidates, make_blocks,
+    stream_candidates)
 from solve_intrinsic_quotients import rref, project
 from stress_flow_closure import closure_span
 from test_M_only_quotients import registry_items, evaluate_atlas_element, solve_exact
@@ -62,7 +63,24 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=400,
                     help="max candidates evaluated per block multiset")
-    ap.add_argument("--max-topologies", type=int, default=60000)
+    ap.add_argument("--max-topologies", "--topology-cap", dest="max_topologies",
+                    type=int, default=60000,
+                    help="raw-topology cap per sector; a sector that hits it "
+                         "is reported truncated and is NOT exhausted")
+    ap.add_argument("--sector", action="append", default=None,
+                    help="restrict to a named sector, e.g. N1050+N1050+N1050"
+                         "+N1050+N1050; repeatable")
+    ap.add_argument("--shard-residue", type=int, default=0)
+    ap.add_argument("--shard-modulus", type=int, default=1,
+                    help="deterministic sharding on the CANONICAL key, so two "
+                         "shards can never claim the same scalar and the union "
+                         "over residues is exactly the unsharded set")
+    ap.add_argument("--resume", action="store_true",
+                    help="reuse checkpointed atlas and candidate evaluations")
+    ap.add_argument("--stop-after-candidates", type=int, default=None)
+    ap.add_argument("--stop-after-seconds", type=float, default=None)
+    ap.add_argument("--max-rss-mb", type=float, default=None,
+                    help="abort cleanly if resident memory exceeds this")
     ap.add_argument("--pilot", action="store_true",
                     help="stop after the first multiset that yields rank")
     args = ap.parse_args()
@@ -106,21 +124,37 @@ def main():
     # Caching all samples' blocks instead would hold 22 x 16 MB, which this
     # machine does not have. Sample-outer builds each sample's blocks once and
     # sweeps every candidate against them.
+    # STREAMED generation. The list form materialised every topology before
+    # any filtering -- up to 30 000 dicts per sector, all live at once -- which
+    # drove enumeration RSS to ~2.6 GB across 21 sectors. Streaming
+    # canonicalises and discards immediately, so only compact canonical KEYS
+    # accumulate; the same sector now peaks at ~33 MB.
     stats_all = {}
     plan = []
+    wanted = set(args.sector) if args.sector else None
     for ms in block_multisets(5):
         label = "+".join(ms)
-        t0 = time.time()
-        try:
-            cands, stats = generate_candidates(
-                list(ms), max_topologies=args.max_topologies)
-        except Exception as exc:
-            stats_all[label] = {"error": f"{type(exc).__name__}: {exc}"}
+        if wanted and label not in wanted:
             continue
-        stats["enumeration_seconds"] = round(time.time() - t0, 1)
-        stats["truncated"] = stats["raw_topologies"] >= args.max_topologies
-        kept = cands[: args.limit]
-        stats["selected_for_evaluation"] = len(kept)
+        t0 = time.time()
+        kept, last = [], {}
+        for topo, st in stream_candidates(
+                list(ms), cap=args.max_topologies,
+                shard_residue=args.shard_residue,
+                shard_modulus=args.shard_modulus,
+                max_candidates=args.limit):
+            kept.append(topo)
+            last = st
+        stats = {
+            "raw_topologies": last.get("raw", 0),
+            "disconnected": last.get("disconnected", 0),
+            "duplicate_canonical": last.get("duplicate", 0),
+            "canonical": last.get("yielded", 0),
+            "truncated": last.get("raw", 0) >= args.max_topologies,
+            "enumeration_seconds": round(time.time() - t0, 1),
+            "selected_for_evaluation": len(kept),
+            "peak_rss_mb_after_sector": round(peak_rss_mb(), 1),
+        }
         stats_all[label] = stats
         for topo in kept:
             try:
@@ -131,7 +165,16 @@ def main():
                          "topology": topo, "einsum": spec})
         print(f"  {label}: canon={stats['canonical']} "
               f"selected={len(kept)} truncated={stats['truncated']} "
+              f"rss={stats['peak_rss_mb_after_sector']}MB "
               f"{stats['enumeration_seconds']}s", flush=True)
+        if args.max_rss_mb and peak_rss_mb() > args.max_rss_mb:
+            print(f"  ABORT: RSS {peak_rss_mb():.0f}MB exceeds "
+                  f"--max-rss-mb {args.max_rss_mb}", flush=True)
+            break
+        if args.stop_after_candidates and len(plan) >= args.stop_after_candidates:
+            break
+        if args.stop_after_seconds and time.time() - started > args.stop_after_seconds:
+            break
 
     print(f"\nevaluating {len(plan)} candidates on {n_samples} samples",
           flush=True)

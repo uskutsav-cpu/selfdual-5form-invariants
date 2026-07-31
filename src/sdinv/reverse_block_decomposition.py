@@ -48,6 +48,7 @@ contracted edge carries exactly one raised end, or it contracts with delta
 instead of eta and is not a Lorentz scalar.
 """
 
+import hashlib
 import itertools
 from collections import Counter
 
@@ -147,6 +148,89 @@ def enumerate_topologies(kinds, max_results=None):
 
     recurse(0, dict(cap), {})
     return results
+
+
+def iter_topologies(kinds, cap=None):
+    """Generator form of `enumerate_topologies`.
+
+    The list form materialises every topology before anything is filtered,
+    which is what drove enumeration RSS to ~2.6 GB across 21 sectors: up to
+    30 000 dicts per sector, all live at once, none released until the sector
+    finished. Yielding lets the caller canonicalise and discard immediately, so
+    only the compact canonical KEYS accumulate.
+    """
+    eps = endpoints(kinds)
+    keys = [k for k, _ in eps]
+    cap_by = dict(eps)
+    pairs = [(a, b) for i, a in enumerate(keys) for b in keys[i:]]
+    pairs = [(a, b) for a, b in pairs if not _is_forbidden_trace(kinds, a, b)]
+    produced = 0
+
+    def recurse(idx, remaining, chosen):
+        nonlocal produced
+        if cap is not None and produced >= cap:
+            return
+        if idx == len(pairs):
+            if all(v == 0 for v in remaining.values()):
+                produced += 1
+                yield dict(chosen)
+            return
+        a, b = pairs[idx]
+        limit = remaining[a] // 2 if a == b else min(remaining[a], remaining[b])
+        for count in range(limit, -1, -1):
+            nxt = dict(remaining)
+            if a == b:
+                nxt[a] -= 2 * count
+            else:
+                nxt[a] -= count
+                nxt[b] -= count
+            if any(v < 0 for v in nxt.values()) or sum(nxt.values()) % 2:
+                continue
+            if count:
+                chosen[(a, b)] = count
+            yield from recurse(idx + 1, nxt, chosen)
+            chosen.pop((a, b), None)
+            if cap is not None and produced >= cap:
+                return
+
+    yield from recurse(0, dict(cap_by), {})
+
+
+def stream_candidates(kinds, cap=None, shard_residue=0, shard_modulus=1,
+                      require_connected=True, max_candidates=None):
+    """Stream canonical candidates, retaining only compact canonical keys.
+
+    Memory is bounded by the number of DISTINCT canonical keys, not by the raw
+    topology count, and a key is a tuple of ints rather than a dict of tuples.
+
+    Sharding is deterministic: a topology belongs to this shard when its
+    canonical key hashes to `shard_residue` mod `shard_modulus`. Because the
+    test is on the CANONICAL key, two shards can never both claim the same
+    scalar, and the union over residues is exactly the unsharded set.
+    """
+    seen = set()
+    stats = {"raw": 0, "disconnected": 0, "duplicate": 0, "yielded": 0,
+             "truncated": False}
+    for topo in iter_topologies(kinds, cap=cap):
+        stats["raw"] += 1
+        if require_connected and not is_connected(kinds, topo):
+            stats["disconnected"] += 1
+            continue
+        key = canonical_form(kinds, topo)
+        if key in seen:
+            stats["duplicate"] += 1
+            continue
+        seen.add(key)
+        if shard_modulus > 1:
+            digest = int(hashlib.sha256(repr(key).encode()).hexdigest()[:8], 16)
+            if digest % shard_modulus != shard_residue:
+                continue
+        stats["yielded"] += 1
+        yield topo, stats
+        if max_candidates is not None and stats["yielded"] >= max_candidates:
+            break
+    if cap is not None and stats["raw"] >= cap:
+        stats["truncated"] = True
 
 
 def canonical_form(kinds, topology):
