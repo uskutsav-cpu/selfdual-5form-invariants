@@ -89,6 +89,59 @@ for prime, rec in sorted(d["per_prime"].items()):
 print("  every projection solved; a zero is a statement about the candidate")
 PYEOF
 
+# --- 4b. Level-B basis, minimality, holdout agreement ----------------------
+echo "--- 4b. Level-B basis, removal minimality, holdout agreement"
+$PY - <<'PYEOF' || fail "Level-B basis check"
+import json, pathlib, sys
+root = pathlib.Path(".")
+b = root / "results/intrinsic_candidates/intrinsic_Q10_levelB_basis.json"
+m = root / "results/intrinsic_candidates/published_degree10_map.json"
+c = root / "results/intrinsic_candidates/degree10_positive_control.json"
+if not b.exists():
+    print("  no basis artifact committed yet"); sys.exit(0)
+basis = json.loads(b.read_text())
+amap = json.loads(m.read_text())
+ctrl = json.loads(c.read_text())
+
+triple = basis["preferred_basis"]
+assert triple and len(triple) == 3, "basis is not three elements"
+print(f"  preferred basis: {triple}")
+assert basis["triples_agree_across_primes"] is True, \
+    "the independent-triple set disagrees between primes"
+
+# removal minimality: forced members must appear in every independent triple
+for prime, rec in sorted(basis["per_prime"].items()):
+    assert rec["rank"] == 3, f"Q10 rank {rec['rank']} at {prime}, expected 3"
+    forced = rec["forced_members"]
+    for f in forced:
+        assert all(f in t for t in rec["independent_triples"]), \
+            f"{f} recorded as forced but is missing from some triple"
+    print(f"  prime {prime}: rank 3/3, forced {forced}, "
+          f"{len(rec['independent_triples'])} independent triples")
+
+# fit / holdout agreement on the rank
+roles = {p: amap["per_prime"][p]["role"] for p in amap["per_prime"]}
+ranks = {r: {amap["per_prime"][p]["Q10_rank_from_published"]
+             for p in roles if roles[p] == r} for r in set(roles.values())}
+print(f"  ranks by role: {ranks}")
+assert all(s == {3} for s in ranks.values()), "fit/holdout rank disagreement"
+
+# Level-A in Level-B must round-trip exactly
+labels = ["Q10_A", "Q10_B", "Q10_C"]
+for prime, ent in sorted(basis.get("levelA_in_levelB", {}).items()):
+    p = int(prime)
+    rows = [amap["per_prime"][prime]["projections"][n]["quotient_vector"]
+            for n in triple]
+    for lbl, coef in sorted(ent.items()):
+        target = ctrl["per_prime"][prime]["vectors"][labels.index(lbl)]
+        recon = [sum(coef[j] * rows[j][i] for j in range(3)) % p
+                 for i in range(3)]
+        assert recon == [t % p for t in target], \
+            f"{lbl} does not reconstruct at {prime}"
+    print(f"  prime {prime}: Level-A -> Level-B round-trips for all three")
+print("  ambiguity-robust: " + str(basis["ambiguity_robust"]))
+PYEOF
+
 # --- 5. mutation cover ------------------------------------------------------
 echo "--- 5. bracket / index / normalisation mutation tests"
 $PY -m pytest -q \
