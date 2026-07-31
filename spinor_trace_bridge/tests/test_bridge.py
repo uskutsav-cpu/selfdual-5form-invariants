@@ -246,3 +246,27 @@ def test_there_are_252_five_form_components_and_136_symmetric_coordinates():
     assert len(sorted_five_index_tuples()) == C.N_FIVE_FORM_COMPONENTS
     assert len(list(itertools.combinations_with_replacement(range(16), 2))) == \
         C.N_SYMMETRIC_SPINOR
+
+
+# --- full rotation-group equivariance ---------------------------------------
+
+@pytest.mark.parametrize("p", PRIMES)
+@pytest.mark.parametrize("n_reflections", [2, 4])
+def test_equivariant_under_the_full_rotation_group(p, bridges, n_reflections):
+    """Reflections generate the whole orthogonal group, so this closes the 20
+    directions of so(10) that the GL(5) test does not reach."""
+    from sdbridge.rotations import rotation_report
+    report = rotation_report(bridges[p], n_elements=2, n_samples=2,
+                             n_reflections=n_reflections, seed=41)
+    assert report["equivariant_on_every_component"]
+    for element in report["elements"]:
+        assert element["scalar_single_valued"]
+        assert element["scalar_matches_clifford_normalisation"], \
+            "character is single-valued but is not the Clifford normalisation"
+
+
+@pytest.mark.parametrize("p", PRIMES)
+def test_reflection_in_a_null_vector_is_refused(p):
+    from sdbridge.rotations import reflection_matrix
+    with pytest.raises(ValueError):
+        reflection_matrix(np.zeros(10, dtype=np.int64), p)
