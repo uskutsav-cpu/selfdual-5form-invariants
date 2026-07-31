@@ -1,0 +1,194 @@
+{
+ "all_checks_pass": true,
+ "labels": [
+  "Q10_A",
+  "Q10_B",
+  "Q10_C"
+ ],
+ "per_prime": {
+  "32717": {
+   "checks_pass": true,
+   "forced_members": [
+    "P10_10"
+   ],
+   "independent_triples": [
+    [
+     "P10_09",
+     "P10_10",
+     "P10_11"
+    ],
+    [
+     "P10_09",
+     "P10_10",
+     "P10_12"
+    ],
+    [
+     "P10_10",
+     "P10_11",
+     "P10_12"
+    ]
+   ],
+   "levelA_in_levelB": {
+    "Q10_A": [
+     0,
+     1933,
+     10789
+    ],
+    "Q10_B": [
+     0,
+     26830,
+     6434
+    ],
+    "Q10_C": [
+     31895,
+     21422,
+     16734
+    ]
+   },
+   "levelB_in_levelA": {
+    "P10_10": [
+     15788,
+     13584,
+     14050
+    ],
+    "P10_11": [
+     1539,
+     18934,
+     0
+    ],
+    "P10_12": [
+     9234,
+     28791,
+     0
+    ]
+   },
+   "mutually_inverse": true,
+   "reconstruction_exact": true,
+   "removal_minimality": {
+    "P10_10": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_11",
+      "P10_12"
+     ]
+    },
+    "P10_11": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_10",
+      "P10_12"
+     ]
+    },
+    "P10_12": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_10",
+      "P10_11"
+     ]
+    }
+   }
+  },
+  "32749": {
+   "checks_pass": true,
+   "forced_members": [
+    "P10_10"
+   ],
+   "independent_triples": [
+    [
+     "P10_09",
+     "P10_10",
+     "P10_11"
+    ],
+    [
+     "P10_09",
+     "P10_10",
+     "P10_12"
+    ],
+    [
+     "P10_10",
+     "P10_11",
+     "P10_12"
+    ]
+   ],
+   "levelA_in_levelB": {
+    "Q10_A": [
+     0,
+     28176,
+     15523
+    ],
+    "Q10_B": [
+     0,
+     24337,
+     1402
+    ],
+    "Q10_C": [
+     17371,
+     32639,
+     26407
+    ]
+   },
+   "levelB_in_levelA": {
+    "P10_10": [
+     26346,
+     9877,
+     9547
+    ],
+    "P10_11": [
+     15468,
+     21541,
+     0
+    ],
+    "P10_12": [
+     27310,
+     1310,
+     0
+    ]
+   },
+   "mutually_inverse": true,
+   "reconstruction_exact": true,
+   "removal_minimality": {
+    "P10_10": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_11",
+      "P10_12"
+     ]
+    },
+    "P10_11": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_10",
+      "P10_12"
+     ]
+    },
+    "P10_12": {
+     "drops_below_3": true,
+     "rank": 2,
+     "remaining": [
+      "P10_10",
+      "P10_11"
+     ]
+    }
+   }
+  }
+ },
+ "preferred_basis": [
+  "P10_10",
+  "P10_11",
+  "P10_12"
+ ],
+ "rational_reconstruction": {
+  "attempted": true,
+  "certified": false,
+  "crt_modulus": "1071449033",
+  "n_primes": 2,
+  "reason": "Two primes give a CRT modulus of about 1.07e9, so a rational lift is only unique when |numerator| and |denominator| are both below roughly 2.3e4. The change-of-basis entries are generic residues of that magnitude, so no lift can be distinguished from a coincidence. The exact modular matrices are preserved instead. Certifying rationals needs more primes, not more analysis.",
+  "uniqueness_bound_numerator_denominator": "23145"
+ },
+ "schema": 1
+}

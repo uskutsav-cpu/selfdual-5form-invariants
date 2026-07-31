@@ -70,6 +70,44 @@ def atomic_write_json(path, payload):
         pass          # directory fsync unsupported on some filesystems
 
 
+def _source_of(obj):
+    try:
+        import inspect
+        return inspect.getsource(obj)
+    except (OSError, TypeError):
+        return f"<unavailable:{getattr(obj, '__name__', obj)!r}>"
+
+
+def block_fingerprint():
+    """Fingerprint of the shared tensor machinery every evaluator depends on.
+
+    An evaluator's own source is not sufficient: almost all of them are thin
+    wrappers over `composite_n1050`, `_raise_axes`, `mod_einsum` and the
+    bracket engine, so a change THERE changes every cached value while leaving
+    each evaluator's own text untouched. Hashing the shared modules closes
+    that hole. It over-invalidates on comment edits, which is the right way to
+    be wrong.
+    """
+    from . import index_symmetry_ops, modp, stress
+    body = "".join(_source_of(m) for m in (stress, modp, index_symmetry_ops))
+    return hashlib.sha256(body.encode()).hexdigest()[:32]
+
+
+def evaluator_fingerprint(evaluator, include_blocks=True):
+    """Semantic key for one evaluator: its own source plus the shared blocks.
+
+    This replaces a hand-maintained version string. A hand-maintained string
+    only invalidates when someone remembers to bump it, and the case where it
+    is forgotten -- a formula edited without a bump -- silently serves stale
+    values that look entirely plausible. Deriving the key from source removes
+    the remembering.
+    """
+    body = _source_of(evaluator)
+    if include_blocks:
+        body += block_fingerprint()
+    return hashlib.sha256(body.encode()).hexdigest()[:32]
+
+
 def peak_rss_mb():
     """Peak resident set size in MiB.
 
@@ -125,7 +163,12 @@ class ProjectionCheckpoint:
         #
         # `evaluator_version` is the field that exists to invalidate, and it
         # must be bumped whenever an existing evaluator's OUTPUT changes.
-        for key in ("atlas_sha256", "basis_sha256", "evaluator_version",
+        # `block_fingerprint` is deliberately NOT here. It is enforced per-unit
+        # instead: a change to the shared tensor machinery should invalidate
+        # the units it actually affects, not detonate the whole store, and the
+        # per-unit key already does that precisely.
+        for key in ("atlas_sha256", "basis_sha256", "quotient_sha256",
+                    "evaluator_version", "modular_backend",
                     "prime", "seed_base", "degree"):
             if key in self.identity and key in stored:
                 if stored[key] != self.identity[key]:
@@ -145,12 +188,19 @@ class ProjectionCheckpoint:
     def key(self, prime, sample, column):
         return f"{prime}/{sample:03d}/{column:03d}"
 
-    def load_unit(self, prime, sample, column):
-        """Return a completed unit's value, or None if absent or corrupt.
+    def load_unit(self, prime, sample, column, fingerprint=None):
+        """Return a completed unit's value, or None if it cannot be trusted.
 
-        A unit that fails its checksum is treated as absent -- that is exactly
-        the partially-written-at-crash case -- so it is recomputed rather than
-        trusted.
+        A unit is rejected -- and therefore recomputed -- when it is absent,
+        unreadable, fails its checksum (the partially-written-at-crash case),
+        or was produced by different code than the caller is running now.
+
+        The `fingerprint` is the per-unit semantic key. Global identity alone
+        is too coarse: it cannot distinguish "the atlas is unchanged but this
+        one formula was reimplemented", which is the common case while a
+        classification is being developed. Passing the evaluator's source
+        fingerprint makes a formula change invalidate exactly that formula's
+        cached values and nothing else.
         """
         path = self.unit_path(prime, sample, column)
         if not path.exists():
@@ -163,15 +213,19 @@ class ProjectionCheckpoint:
         stored = record.pop("checksum", None)
         if stored is None or _checksum(record) != stored:
             return None
+        if fingerprint is not None and record.get("fingerprint") != fingerprint:
+            return None
         return record
 
-    def save_unit(self, prime, sample, column, invariant_id, value, seconds):
+    def save_unit(self, prime, sample, column, invariant_id, value, seconds,
+                  fingerprint=None):
         record = {
             "schema": CHECKPOINT_SCHEMA,
             "prime": int(prime), "sample": int(sample),
             "column": int(column), "invariant_id": invariant_id,
             "value": int(value), "seconds": round(float(seconds), 3),
             "identity": self.identity,
+            "fingerprint": fingerprint,
             "peak_rss_mb": round(peak_rss_mb(), 1),
         }
         record["checksum"] = _checksum(record)

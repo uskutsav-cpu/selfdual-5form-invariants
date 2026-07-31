@@ -39,7 +39,8 @@ sys.path.insert(0, str(ROOT / "tests"))
 
 from sdinv.forms import selfdual_projector, to_dense, random_form
 from sdinv.exactmap import rank_mod
-from sdinv.projection_checkpoint import ProjectionCheckpoint, peak_rss_mb
+from sdinv.projection_checkpoint import (
+    ProjectionCheckpoint, block_fingerprint, evaluator_fingerprint, peak_rss_mb)
 from sdinv.published_degree10_invariants import (
     AMBIGUITY_VARIANTS, NOT_IMPLEMENTED, PUBLISHED_DEGREE10)
 from solve_intrinsic_quotients import rref, project
@@ -54,6 +55,7 @@ PRIMES = FIT_PRIMES + HOLDOUT_PRIMES
 SEED8 = {4: ["I4_1"], 6: ["I6_2"], 8: ["I8_3", "I8_4", "I8_5", "I8_6"]}
 FORMULA_ID_BASE = 1000
 EVALUATOR_VERSION = "p10-2026-07-30-boostfix"
+MODULAR_BACKEND = "mod_einsum-int64-pairwise-v1"
 
 DEFAULT_CKPT = Path(
     os.environ.get("SDINV_CKPT_ROOT")
@@ -100,27 +102,43 @@ def main(seed_base=41000, extra_samples=8):
         free = [j for j in range(len(names)) if j not in set(piv)]
         n_samples = len(names) + extra_samples
 
+        # Atlas hash is ORDER-SENSITIVE on purpose: atlas coordinates are
+        # reported against this exact column order, so a reordering changes
+        # the meaning of every stored vector even though the set is identical.
         atlas_sha = hashlib.sha256(
-            json.dumps(names, sort_keys=True).encode()).hexdigest()[:32]
+            json.dumps(names).encode()).hexdigest()[:32]
+        # Quotient hash covers the projector itself -- the echelon form and the
+        # free-column choice. A different D10 closure yields different quotient
+        # vectors from identical atlas coordinates, so cached PROJECTIONS must
+        # not survive a change here.
+        quotient_sha = hashlib.sha256(
+            json.dumps({"ech": [[int(v) for v in row] for row in ech],
+                        "piv": list(piv), "free": free},
+                       sort_keys=True).encode()).hexdigest()[:32]
         store = ProjectionCheckpoint(
             DEFAULT_CKPT / f"prime_{prime}",
             {"source_commit": source_commit(), "atlas_sha256": atlas_sha,
+             "quotient_sha256": quotient_sha,
+             "block_fingerprint": block_fingerprint(),
+             "modular_backend": MODULAR_BACKEND,
              "evaluator_version": EVALUATOR_VERSION, "degree": 10,
              "prime": prime, "seed_base": seed_base})
 
         forms = [sample(prime, seed_base + 11 * i) for i in range(n_samples)]
 
         # --- atlas columns, checkpointed ------------------------------------
+        atlas_fp = block_fingerprint()
         cols = []
         for j, nm in enumerate(names):
             column = []
             for i, form in enumerate(forms):
-                unit = store.load_unit(prime, i, j)
+                unit = store.load_unit(prime, i, j, fingerprint=atlas_fp)
                 if unit is None:
                     t0 = time.time()
                     val = evaluate_atlas_element(items[nm], items, form,
                                                  prime, {})
-                    store.save_unit(prime, i, j, nm, val, time.time() - t0)
+                    store.save_unit(prime, i, j, nm, val, time.time() - t0,
+                                    fingerprint=atlas_fp)
                     column.append(int(val) % prime)
                 else:
                     column.append(int(unit["value"]) % prime)
@@ -142,14 +160,15 @@ def main(seed_base=41000, extra_samples=8):
 
         proj = {}
         for cid, evaluator, col_id in targets:
+            fp = evaluator_fingerprint(evaluator)
             b = []
             for i, form in enumerate(forms):
-                unit = store.load_unit(prime, i, col_id)
+                unit = store.load_unit(prime, i, col_id, fingerprint=fp)
                 if unit is None:
                     t0 = time.time()
                     val = evaluator(form, prime)
                     store.save_unit(prime, i, col_id, cid, val,
-                                    time.time() - t0)
+                                    time.time() - t0, fingerprint=fp)
                     b.append(int(val) % prime)
                 else:
                     b.append(int(unit["value"]) % prime)
