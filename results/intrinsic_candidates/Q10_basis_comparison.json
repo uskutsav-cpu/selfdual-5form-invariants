@@ -1,0 +1,63 @@
+{
+ "bases": {
+  "published_levelB": {
+   "M_blocks": 0,
+   "N1050_blocks": 5,
+   "N4125_blocks": 0,
+   "ambiguity": "AMB-02; P10_11's quotient image DIFFERS between readings",
+   "black_ops": 0,
+   "coefficient_height": "1",
+   "contractions_per_element": 15,
+   "elements": [
+    "P10_10",
+    "P10_11",
+    "P10_12"
+   ],
+   "evaluator_ms_rebuilding_blocks": 890,
+   "expanded_permutation_terms": 1,
+   "graph_edges_per_element": 15,
+   "manifest_symmetry": "intrinsic Young symmetry of N^(1050)",
+   "red_ops": 0
+  },
+  "pure_N4125": {
+   "M_blocks": 0,
+   "N1050_blocks": 0,
+   "N4125_blocks": 5,
+   "ambiguity": "none -- the sector uses no explicit bracket at all",
+   "black_ops": 0,
+   "coefficient_height": "1 (no rational coefficients; plain contraction)",
+   "contraction_ms_cached_blocks": 119,
+   "contractions_per_element": 15,
+   "elements": [
+    "R1",
+    "R2",
+    "R3"
+   ],
+   "expanded_permutation_terms": 1,
+   "formula_string_chars": 241,
+   "graph_edges_per_element": 15,
+   "manifest_symmetry": "only the intrinsic Young symmetry of N^(4125)",
+   "red_ops": 0
+  }
+ },
+ "do_not_merge": "algebraic, notational, computational and source-robustness simplicity are different notions and are reported separately",
+ "metric_note": "Runtime figures are NOT directly comparable: the published evaluators rebuild composite_n1050 on every call (890 ms mean) while the reverse evaluator receives cached blocks (119 ms mean). The shared block build is 1.62 s. A fair head-to-head would require refactoring the published evaluators to accept cached blocks; until then the runtime row is reported but NOT used to rank the bases.",
+ "published_ambiguity_robust": {
+  "P10_04": true,
+  "P10_09": false,
+  "P10_10": true,
+  "P10_11": false,
+  "P10_12": true
+ },
+ "schema": 1,
+ "verdict_by_notion": {
+  "algebraically_simpler": "NOT ESTABLISHED. Both are five-block, bracket-free, coefficient-free contractions with 15 edges. The block differs (N4125 vs N1050) but neither is algebraically simpler on this metric.",
+  "computationally_faster": "NOT ESTABLISHED by these measurements. The 119 ms vs 890 ms gap is dominated by block caching, not by the contraction. See metric_note.",
+  "free_from_AMB_02": "YES -- vacuously; there is no bracket to disambiguate.",
+  "merely_an_alternative_basis": "This is the accurate default description except for source robustness, where it is strictly better.",
+  "minimal_within_evaluated_pilot": "Within the N4125^5 sector, which WAS fully enumerated (15 of 15 canonical candidates), removal minimality holds: dropping any element drops rank to 2.",
+  "minimal_within_reverse_generated_class": "NO. Not established. The class was sampled, not swept.",
+  "more_source_robust": "YES, and this is the one clear advantage. The pure-N basis uses no explicit bracket, so no reading ambiguity can apply to it. The published basis contains P10_11, whose quotient image moves between AMB-02 readings.",
+  "notationally_simpler": "NOT ESTABLISHED. Formula lengths are comparable; both need five six-index factors and fifteen index pairs."
+ }
+}

@@ -269,8 +269,12 @@ def main():
                           "quotient_vector": q, "rank_after": rank})
             print(f"    RANK {rank}/3 from {cand['label']}  {cand['einsum']}",
                   flush=True)
-            if rank == 3:
-                break
+            # Deliberately NOT breaking at rank 3. Stopping early left the
+            # remaining candidates without a terminal status, and they were
+            # then reported as "interrupted" -- which was simply false: they
+            # had been evaluated, just not projected. The projection is pure
+            # linear algebra on values already computed, so completing it costs
+            # almost nothing and makes the accounting identity honest.
     for label, acc in per_label.items():
         stats_all.setdefault(label, {}).update(acc)
 
