@@ -540,3 +540,47 @@ mistakes is not an audit trail.
 - **Class**: `METHOD`
 - **Forbidden**: claiming the *bracket colour* is similarly recoverable. It is
   not — see AMB-01 and AMB-02 in `PUBLISHED_DEGREE10_INDEX_AUDIT.md`.
+
+
+## C-P10-01 — the twelve published degree-10 candidates span Q10
+
+- **Wording (the only permitted form)**: "The twelve degree-10 structures
+  displayed in equation (4.24) span the quotient Q10, of dimension 3, under the
+  stated formal flow definition; eight of the twelve lie inside the reachable
+  closure D10."
+- **Class**: `MOD-CERT`
+- **Primes**: 32749 (fit) and 32717 (holdout), independently, both rank 3 of 3
+  and published atlas rank 12 of 14.
+- **Non-vacuity**: all thirty-two projections have `status = "solved"`. A rank
+  assembled from unsolved rows would be uninformative.
+- **Positive control**: the Level-A representatives recover rank 3 of 3 through
+  the identical projector at six primes, so a zero row is a statement about the
+  candidate, not about the pipeline.
+- **Which candidates reach Q10**: P10_09, P10_10, P10_11, P10_12 only.
+- **SUPERSEDES** the earlier reading in this branch that every published
+  degree-10 candidate had zero image in Q10. That was drawn from the five
+  simplest candidates, selected for ease of implementation — which correlates
+  with structural simplicity, which is what decides whether a candidate reaches
+  the quotient. A null result over a subset chosen for convenience is not
+  evidence about the whole set.
+- **Forbidden**: extending to Q12; claiming independence of the AMB-01/AMB-02
+  readings; claiming five fitting primes — two primes were used.
+
+
+## C-P10-02 — a preferred Level-B basis for Q10, conditional on source readings
+
+- **Wording**: "{P10_10, P10_11, P10_12} is a three-element Level-B basis for
+  Q10, preferred under the simplicity criterion documented in
+  `scripts/build_Q10_levelB_basis.py` and minimal among the twelve published
+  candidates, conditional on the AMB-02 reading recorded for P10_11."
+- **Removal minimality**: P10_10 appears in every independent triple and cannot
+  be dropped — it is the only candidate reaching the third quotient direction.
+  Established at both primes.
+- **Level-A map**: Q10_A, Q10_B, Q10_C expressed in the basis by exact modular
+  solve; all six round-trips verified.
+- **Conditionality, stated rather than buried**: NO independent triple is free
+  of source ambiguity. P10_10 is forced and the remaining two slots must draw
+  at least one member from {P10_09, P10_11}, both of which move under their
+  unresolved bracket reading. Only P10_10 and P10_12 are unconditional.
+- **Forbidden**: "canonical" — no class larger than the twelve was enumerated;
+  "rational" — the certification is modular, with no CRT reconstruction.
