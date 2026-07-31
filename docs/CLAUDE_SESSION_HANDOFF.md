@@ -1,78 +1,112 @@
 # Session handoff
 
-**Branch** `research/maximal-chiral-four-form-program`. Nothing pushed.
+**Branch** `research/maximal-chiral-four-form-program`. **Nothing pushed.**
+Protected branches untouched.
 
-## Active process
+## 1. State
 
-    PID 62403  scripts/project_published_degree12.py --primes 32749 32717
-    79-98% CPU, RSS 1248-1566 MB, ~39 min elapsed, 36/72 columns (prime 32749)
-    log: /private/tmp/.../scratchpad/p12proj2.log
+All twelve equation-(4.24) degree-10 candidates are implemented in
+`src/sdinv/published_degree10_invariants.py`. Every one passes boost
+invariance and homogeneity at two primes. `NOT_IMPLEMENTED` is empty.
 
-**This run has NO checkpointing** -- it predates the checkpoint layer. If it
-dies, all 36 columns are lost and it must restart. Do not launch any other
-heavy job while it runs.
+## 2. The defect that shaped this session
 
-Measured deceleration (this is why checkpointing was built):
+`P10_07` was **not a Lorentz scalar** as shipped. It raised all six axes on both
+inner `N^(1050)` factors, so three of its edges contracted with `delta` rather
+than `eta`.
 
-    cols  1-12:   76 s   ( 6.3 s/col)
-    cols 13-24:  609 s   (50.8 s/col)
-    cols 25-36: 1086 s   (90.5 s/col)
+It was caught by the degree-10 projection reporting `not_in_atlas_span` on all
+six primes — a consistent failure across independent moduli is structural, not
+modular bad luck. Confirmed by a boost: rotation-invariant but boost-violating,
+which is the unambiguous signature of a metric misplacement.
 
-Extrapolated remaining for prime 32749 alone: ~1.7 h; two primes ~4 h. With
-RSS near the 1.5 GB ceiling and ~60 MB free, an OOM kill before completion is
-likely.
+**No test would have caught it.** The suite checked homogeneity, which catches
+int64 overflow, and nothing that constrains index placement. Three tests now
+close that gap:
 
-## Resource triage performed
+    test_every_published_candidate_is_boost_invariant
+    test_p10_07_alpha_edge_placement_is_free
+    test_the_original_p10_07_placement_really_was_broken
 
-| | |
-|---|---|
-| P10 projection PID 63598 | terminated with SIGTERM (clean, no SIGKILL needed) |
-| work lost | none measurable -- log was 0 lines, still buffered |
-| free RAM before | 62 MB |
-| free RAM after | 1030 MB |
-| P12 | preserved, healthy |
+The general lesson is recorded as `C-P10-METHOD-01`: **index placement is
+derived, not read.** PDF extraction returns stacked scripts in glyph-position
+order and cannot distinguish `M_a{}^b` from `M^a{}_b`. The rule "every
+contracted edge carries exactly one raised end" has a unique answer, and it
+independently reproduces the placement that the boost test verified.
 
-## Formulas
+## 3. Results established
 
-Implemented: P10_01, P10_02, P10_03, P10_06, P10_07; P12_01, P12_02, P12_03.
+| result | value | primes | artifact |
+|---|---|---|---|
+| P10_01/02/03/06/07 → Q10 | all `[0,0,0]`, rank **0** | 6 | `published_degree10_map.json` |
+| Level-A representatives → Q10 | rank **3 of 3** | 6 | `degree10_positive_control.json` |
+| M-only family → Q10 | rank 0 | 6 | `M_only_quotient_test_deg10.json` |
+| P12_01/02/03 → Q12 | rank 0 | 2 | `published_degree12_map.json` |
 
-Blocked, with reasons:
+The positive control is what makes the zero rows meaningful: the projector
+demonstrably *can* return rank 3, so a zero is a statement about the candidate
+rather than about the pipeline. Without it, a projector stuck at zero would
+print an identical table.
 
-| id | reason |
-|---|---|
-| P10_05, P10_08 | black brackets on the M factors, e.g. `(MM)_{[nu1}^{[mu1} M_{nu2]}^{mu2]}`; need BracketOp on the M product |
-| P10_04, P10_09 | RED brackets `(mu ... rho]lambda)`; need staged programs |
-| P10_10, P10_11, P10_12 | nested black structures, larger index bookkeeping |
+Every zero entry has `status = "solved"`, meaning the candidate lies in the
+atlas span and its coordinates were obtained exactly. A candidate that merely
+failed to solve would also contribute rank 0, for an uninformative reason.
 
-## Ranks
+## 4. Open source ambiguities — recorded, not guessed
 
-- M-only Q10 rank: **0** (six primes, non-vacuous)
-- P10 Q10 rank from P10_01/P10_02: **0 / 3**
-- P10_03, P10_06, P10_07 projections: **NOT RUN** (killed during triage)
-- P12 Q12 rank: **pending**
+Bracket **colour** does not survive PDF extraction, and colour is exactly what
+fixes operation order in equation (4.24).
 
-## Next exact command
+- **AMB-01** — extent of the red bracket in I^(4) and I^(9). Measured: the two
+  readings give **different** values for I^(4).
+- **AMB-02** — nested bracket association in I^(10), I^(11), I^(12). Measured:
+  the two readings differ for I^(10) and I^(11), and **agree exactly** for
+  I^(12), so AMB-02 is harmless for that candidate.
 
-Wait for P12 to finish or die. Then, with nothing else running:
+Both readings of each are implemented and projected separately, in a distinct
+checkpoint column-id band, so a reading can never be confused with the
+candidate it varies. Resolving either needs a colour render of journal page 17
+/ arXiv page 25.
 
-    .venv/bin/python scripts/project_published_degree10.py
+## 5. Infrastructure
 
-If P12 died, rewrite it to use `sdinv.projection_checkpoint.ProjectionCheckpoint`
-before rerunning -- do NOT rerun the non-checkpointed version.
+`scripts/project_published_degree10_ckpt.py` supersedes the uncheckpointed
+runner. Every evaluation is an immutable checkpoint unit, so adding a candidate
+no longer re-pays the atlas. The artifact is rewritten after each prime, so a
+kill loses at most one prime.
 
-## Checkpoint capability
+**Checkpoints must not live in iCloud.** The canonical tree is under
+`~/Documents`, which is synced. Default root is a local temp path; override
+with `SDINV_CKPT_ROOT`. Restrict primes with `SDINV_PRIMES`.
 
-`src/sdinv/projection_checkpoint.py` -- one immutable file per
-(prime, sample, column) plus an atomic manifest. Corrupt or truncated units
-fail their checksum and are recomputed; an atlas-hash mismatch refuses the
-resume outright. 8 tests in `tests/test_projection_checkpoint_resume.py`.
+`peak_rss_mb` now decides its unit by `sys.platform`, not by magnitude.
+`ru_maxrss` is bytes on Darwin and KiB on Linux, and at ~1 GB the two are
+indistinguishable by value — the old heuristic reported 958576 MB.
 
-**Not yet wired into the projection scripts.** That is the next code task.
+## 6. Cost
 
-## Safety notes
+~6 s per candidate evaluation at degree 10. A full six-prime, sixteen-evaluator
+pass is ~2.6 h of evaluation plus the atlas. Budget accordingly, or use
+`SDINV_PRIMES` for a first pass and let the checkpoints make the rest
+incremental.
 
-- Bare multi-operand `np.einsum` on modular operands wraps silently; the
-  P10_02 incident (9605 -> 4674) is a permanent regression test.
-- Homogeneity at several `c` is the detector that catches wrapping.
-- `graph_record` vs `graph` caused a RecursionError at degree 12; a `_seen`
-  guard now turns self-reference into an explicit error.
+Do not run two memory-heavy jobs at once; this machine has 8 GB and has
+silently killed pytest at ~60 MB free.
+
+A process whose stdout is redirected is **block buffered**: an empty log does
+not mean an idle job. Check `ps -p <pid> -o time` for CPU accumulation, and
+check the output artifact's mtime — a run killed after it wrote its artifact
+loses only the buffered log. That happened here and briefly looked like lost
+work.
+
+## 7. Next
+
+1. Finish the twelve-candidate projection across all six primes.
+2. If the published Q10 rank is 0, that is a **bounded negative result**, not a
+   failure: the twelve published candidates lie in D10 and a compact Level-B
+   basis for Q10 must be sought outside them. Write it as a failure
+   certificate with the exact scope.
+3. Build the reverse graph-to-block enumeration as an independent search. The
+   positive control already shows the graph side reaches rank 3; the reverse
+   engine's job is to find a *compact block* expression that does.
+4. Clean-clone QUICK reproduction outside iCloud.
