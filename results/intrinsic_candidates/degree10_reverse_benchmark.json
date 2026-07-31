@@ -1,0 +1,312 @@
+{
+ "atlas_columns": 14,
+ "dim_Q10": 3,
+ "fit_prime": 32749,
+ "independence": "generation never imports or inspects published_degree10_invariants or its coordinates",
+ "limit_per_multiset": 40,
+ "max_topologies": 30000,
+ "peak_rss_mb": 3094.9,
+ "per_multiset": {
+  "M+M+M+M+M": {
+   "after_connectivity": 12,
+   "canonical": 1,
+   "enumeration_seconds": 0.0,
+   "evaluated": 1,
+   "in_atlas_span": 0,
+   "nonzero_quotient": 0,
+   "raw_topologies": 22,
+   "selected_for_evaluation": 1,
+   "truncated": false
+  },
+  "M+M+M+M+N1050": {
+   "after_connectivity": 39,
+   "canonical": 4,
+   "enumeration_seconds": 0.0,
+   "evaluated": 4,
+   "in_atlas_span": 4,
+   "nonzero_quotient": 0,
+   "raw_topologies": 45,
+   "selected_for_evaluation": 4,
+   "truncated": false
+  },
+  "M+M+M+M+N4125": {
+   "after_connectivity": 6,
+   "canonical": 1,
+   "enumeration_seconds": 0.0,
+   "evaluated": 1,
+   "in_atlas_span": 1,
+   "nonzero_quotient": 0,
+   "raw_topologies": 6,
+   "selected_for_evaluation": 1,
+   "truncated": false
+  },
+  "M+M+M+N1050+N1050": {
+   "after_connectivity": 354,
+   "canonical": 46,
+   "enumeration_seconds": 0.3,
+   "evaluated": 40,
+   "in_atlas_span": 22,
+   "nonzero_quotient": 0,
+   "raw_topologies": 387,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+M+M+N1050+N4125": {
+   "after_connectivity": 85,
+   "canonical": 19,
+   "enumeration_seconds": 0.0,
+   "evaluated": 19,
+   "in_atlas_span": 13,
+   "nonzero_quotient": 0,
+   "raw_topologies": 95,
+   "selected_for_evaluation": 19,
+   "truncated": false
+  },
+  "M+M+M+N4125+N4125": {
+   "after_connectivity": 25,
+   "canonical": 5,
+   "enumeration_seconds": 0.0,
+   "evaluated": 5,
+   "in_atlas_span": 1,
+   "nonzero_quotient": 0,
+   "raw_topologies": 29,
+   "selected_for_evaluation": 5,
+   "truncated": false
+  },
+  "M+M+N1050+N1050+N1050": {
+   "after_connectivity": 2964,
+   "canonical": 289,
+   "enumeration_seconds": 5.2,
+   "evaluated": 40,
+   "in_atlas_span": 39,
+   "nonzero_quotient": 0,
+   "raw_topologies": 3009,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+M+N1050+N1050+N4125": {
+   "after_connectivity": 696,
+   "canonical": 208,
+   "enumeration_seconds": 0.8,
+   "evaluated": 40,
+   "in_atlas_span": 25,
+   "nonzero_quotient": 0,
+   "raw_topologies": 708,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+M+N1050+N4125+N4125": {
+   "after_connectivity": 176,
+   "canonical": 55,
+   "enumeration_seconds": 0.1,
+   "evaluated": 40,
+   "in_atlas_span": 18,
+   "nonzero_quotient": 0,
+   "raw_topologies": 180,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+M+N4125+N4125+N4125": {
+   "after_connectivity": 45,
+   "canonical": 8,
+   "enumeration_seconds": 0.0,
+   "evaluated": 8,
+   "in_atlas_span": 2,
+   "nonzero_quotient": 0,
+   "raw_topologies": 46,
+   "selected_for_evaluation": 8,
+   "truncated": false
+  },
+  "M+N1050+N1050+N1050+N1050": {
+   "after_connectivity": 29867,
+   "canonical": 1793,
+   "enumeration_seconds": 85.8,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 30000,
+   "selected_for_evaluation": 40,
+   "truncated": true
+  },
+  "M+N1050+N1050+N1050+N4125": {
+   "after_connectivity": 9312,
+   "canonical": 1603,
+   "enumeration_seconds": 16.1,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 9369,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+N1050+N1050+N4125+N4125": {
+   "after_connectivity": 2352,
+   "canonical": 652,
+   "enumeration_seconds": 2.6,
+   "evaluated": 40,
+   "in_atlas_span": 23,
+   "nonzero_quotient": 0,
+   "raw_topologies": 2377,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+N1050+N4125+N4125+N4125": {
+   "after_connectivity": 630,
+   "canonical": 116,
+   "enumeration_seconds": 0.7,
+   "evaluated": 40,
+   "in_atlas_span": 14,
+   "nonzero_quotient": 0,
+   "raw_topologies": 642,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "M+N4125+N4125+N4125+N4125": {
+   "after_connectivity": 180,
+   "canonical": 15,
+   "enumeration_seconds": 0.3,
+   "evaluated": 15,
+   "in_atlas_span": 2,
+   "nonzero_quotient": 0,
+   "raw_topologies": 186,
+   "selected_for_evaluation": 15,
+   "truncated": false
+  },
+  "N1050+N1050+N1050+N1050+N1050": {
+   "after_connectivity": 29886,
+   "canonical": 3014,
+   "enumeration_seconds": 97.6,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 30000,
+   "selected_for_evaluation": 40,
+   "truncated": true
+  },
+  "N1050+N1050+N1050+N1050+N4125": {
+   "after_connectivity": 29882,
+   "canonical": 4667,
+   "enumeration_seconds": 66.4,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 30000,
+   "selected_for_evaluation": 40,
+   "truncated": true
+  },
+  "N1050+N1050+N1050+N4125+N4125": {
+   "after_connectivity": 29906,
+   "canonical": 3057,
+   "enumeration_seconds": 34.0,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 30000,
+   "selected_for_evaluation": 40,
+   "truncated": true
+  },
+  "N1050+N1050+N4125+N4125+N4125": {
+   "after_connectivity": 8802,
+   "canonical": 834,
+   "enumeration_seconds": 8.6,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 8853,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "N1050+N4125+N4125+N4125+N4125": {
+   "after_connectivity": 2329,
+   "canonical": 120,
+   "enumeration_seconds": 2.2,
+   "evaluated": 40,
+   "in_atlas_span": 40,
+   "nonzero_quotient": 0,
+   "raw_topologies": 2351,
+   "selected_for_evaluation": 40,
+   "truncated": false
+  },
+  "N4125+N4125+N4125+N4125+N4125": {
+   "after_connectivity": 644,
+   "canonical": 15,
+   "enumeration_seconds": 0.8,
+   "evaluated": 6,
+   "in_atlas_span": 6,
+   "nonzero_quotient": 3,
+   "raw_topologies": 654,
+   "selected_for_evaluation": 15,
+   "truncated": false
+  }
+ },
+ "recovered_candidates": [
+  {
+   "einsum": "abcdef,abcdgh,efijkl,ghimno,jklmno->",
+   "multiset": [
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    16093,
+    21692,
+    18193
+   ],
+   "rank_after": 1
+  },
+  {
+   "einsum": "abcdef,abcdgh,efijkl,gijmno,hklmno->",
+   "multiset": [
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    31483,
+    19632,
+    27897
+   ],
+   "rank_after": 2
+  },
+  {
+   "einsum": "abcdef,abcdgh,egijkl,fhimno,jklmno->",
+   "multiset": [
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    28082,
+    30819,
+    25471
+   ],
+   "rank_after": 3
+  }
+ ],
+ "recovered_rank": 3,
+ "recovered_vectors": [
+  [
+   16093,
+   21692,
+   18193
+  ],
+  [
+   31483,
+   19632,
+   27897
+  ],
+  [
+   28082,
+   30819,
+   25471
+  ]
+ ],
+ "runtime_seconds": 3113.5,
+ "schema": 1
+}

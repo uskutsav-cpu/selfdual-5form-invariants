@@ -584,3 +584,39 @@ mistakes is not an audit trail.
   unresolved bracket reading. Only P10_10 and P10_12 are unconditional.
 - **Forbidden**: "canonical" — no class larger than the twelve was enumerated;
   "rational" — the certification is modular, with no CRT reconstruction.
+
+
+## C-REV-01 — Q10 recovered by a formula-independent bounded reverse search
+
+- **Wording (the only permitted form)**: "A formula-independent bounded reverse
+  search independently recovered the full three-dimensional quotient Q10."
+- **Class**: `MOD-CERT`
+- **Independence**: enforced, not promised.
+  `src/sdinv/reverse_block_decomposition.py` does not import
+  `published_degree10_invariants`, and
+  `test_reverse_engine_does_not_import_the_published_formulas` parses its AST
+  and fails if it ever does. The published basis is loaded only in the
+  post-hoc comparison script, after the search has finished.
+- **Result**: rank 3 of 3, from 588 evaluated candidates over 22 samples at
+  prime 32749; validated on holdout prime 32717 and on a fresh seed base.
+- **The recovered basis is NOT the published one.** All three directions come
+  from the `N^(4125)`x5 sector — pure `N^(4125)` contractions with no
+  `N^(1050)` and no `M`. Every published Level-B basis element is
+  `N^(1050)`-based. This is a stronger outcome than rediscovery: Q10 is
+  reachable from a block sector the published list does not use.
+- **Span equality**: both spans have rank 3 inside a 3-dimensional quotient, so
+  each *is* Q10 and they are equal; the union rank is the direct check.
+- **Topology provenance**: each recovered candidate is regenerated from its
+  recorded einsum by re-enumerating its sector, not deserialised, so the
+  recorded specification is proved producible by the declared search.
+- **FORBIDDEN wording**, each an available misreading:
+  1. "Complete enumeration of every M/N contraction." **5 of 21 sectors are
+     capped** at 30 000 raw topologies and are not exhausted; even the
+     exhausted sectors were sampled at 40 candidates for evaluation.
+  2. "The reverse search proves the published basis minimal." It does not
+     address minimality at all.
+  3. "The reverse search reproduces the published formulas." It does not, and
+     for `P10_04/05/08/09` it *cannot* — the generator applies no explicit
+     BLACK or RED bracket, so those are outside the declared class.
+- **Scope document**: `docs/DEGREE10_REVERSE_SEARCH_SCOPE.md` separates the
+  RECOVERY goal (met) from the EXHAUSTION goal (not met).

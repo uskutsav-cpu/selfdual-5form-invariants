@@ -311,10 +311,22 @@ def build_einsum(kinds, topology):
 
 
 def make_blocks(five_form, mod=P, backend="optimized"):
-    """The three verified quadratic-block channels, all-lower."""
+    """The three verified quadratic-block channels, ALL-LOWER.
+
+    `build_einsum` assumes every operand is fully covariant and raises exactly
+    one end of each contracted edge itself. `five_form_moment` returns `mixed`
+    as M_{a}{}^{b} -- slot 0 DOWN, slot 1 UP -- so handing it over unchanged
+    made every M-block edge carry either two raised ends or none.
+
+    This shipped, and a boost test over generated candidates is what caught it:
+    pure-N sectors were 100% boost invariant while M-containing sectors were
+    not, and 129 of 579 pilot candidates failed to lie in the degree-10 atlas
+    span -- which a genuine Lorentz scalar cannot do. Lowering the second index
+    (an involution for a diagonal metric) makes M all-lower like the others.
+    """
     _, mixed = five_form_moment(five_form, mod, backend)
     return {
-        "M": mixed,
+        "M": _raise_axes(mixed, (1,), mod),        # M_{a}{}^{b} -> M_{ab}
         "N1050": composite_n1050(five_form, mod, backend),
         "N4125": composite_n4125(five_form, mod, backend),
     }

@@ -188,3 +188,83 @@ def test_streaming_memory_is_bounded_by_distinct_candidates(tmp_path):
         "streaming yielded as many candidates as raw topologies walked, so "
         "canonicalisation is not deduplicating and memory is not bounded")
     assert last["duplicate"] > 0
+
+
+def test_every_generated_candidate_is_boost_invariant():
+    """Generated candidates must be Lorentz scalars, across ALL sectors.
+
+    This caught a real defect. `make_blocks` returned `mixed` for the M block,
+    which is M_{a}{}^{b} -- already one index up -- while `build_einsum`
+    assumes fully covariant operands and raises one end of each edge itself.
+    Every M-block edge therefore carried two raised ends or none.
+
+    The symptom in the pilot was 129 of 579 candidates failing to lie in the
+    degree-10 atlas span, which a genuine Lorentz scalar cannot do. Pure-N
+    sectors were 100% boost invariant and M-containing sectors were not, which
+    localised it immediately.
+
+    A rotation cannot see this: delta and eta agree on the spatial block.
+    """
+    import numpy as np
+    from sdinv.forms import selfdual_projector, to_dense, random_form
+    from sdinv.modp import P
+    from sdinv.reverse_block_decomposition import (
+        evaluate, make_blocks, stream_candidates)
+
+    def _boost(mod, t=7):
+        ti = pow(t, mod - 2, mod)
+        half = pow(2, mod - 2, mod)
+        c = ((t + ti) * half) % mod
+        s = ((ti - t) * half) % mod
+        L = np.eye(10, dtype=np.int64)
+        L[0, 0] = c; L[0, 1] = s; L[1, 0] = s; L[1, 1] = c
+        return L
+
+    def _move(tensor, L, mod):
+        out = np.asarray(tensor, dtype=np.int64) % mod
+        for axis in range(out.ndim):
+            out = np.moveaxis(np.tensordot(L, out, axes=(1, axis)), 0, axis) % mod
+        return out
+
+    pr = selfdual_projector(10, 5, True, P)
+    form = to_dense((pr @ random_form(10, 5, np.random.default_rng(5), P)) % P,
+                    10, 5, P)
+    boosted = _move(form, _boost(P), P)
+    blocks, blocks_b = make_blocks(form, P), make_blocks(boosted, P)
+
+    for kinds in (["M"] * 5, ["M", "M", "M", "N1050", "N1050"],
+                  ["M", "N4125", "N4125", "N4125", "N4125"],
+                  ["N1050"] * 5, ["N4125"] * 5):
+        checked = 0
+        for topo, _ in stream_candidates(list(kinds), cap=20000,
+                                         max_candidates=4):
+            try:
+                a = evaluate(list(kinds), topo, blocks, P)
+                b = evaluate(list(kinds), topo, blocks_b, P)
+            except Exception:
+                continue
+            checked += 1
+            assert a == b, (
+                f"{'+'.join(kinds)} candidate is not boost invariant "
+                f"({a} != {b}); an edge has two raised ends or none, so it "
+                f"contracts with delta instead of eta")
+        assert checked, f"no candidate evaluated for {kinds}"
+
+
+def test_make_blocks_returns_all_lower_operands():
+    """build_einsum's edge rule is only correct on fully covariant operands."""
+    import numpy as np
+    from sdinv.forms import selfdual_projector, to_dense, random_form
+    from sdinv.modp import P
+    from sdinv.reverse_block_decomposition import make_blocks
+    from sdinv.stress import _raise_axes, five_form_moment
+
+    pr = selfdual_projector(10, 5, True, P)
+    form = to_dense((pr @ random_form(10, 5, np.random.default_rng(5), P)) % P,
+                    10, 5, P)
+    _, mixed = five_form_moment(form, P, "optimized")
+    blocks = make_blocks(form, P)
+    assert not np.array_equal(blocks["M"], mixed % P), (
+        "make_blocks handed back the mixed-placement M_{a}{}^{b}; the edge "
+        "rule then double-raises or never raises every M edge")
+    assert np.array_equal(blocks["M"], _raise_axes(mixed, (1,), P))

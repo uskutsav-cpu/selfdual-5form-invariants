@@ -120,11 +120,72 @@ on one worker, and that is a *lower* bound because five sectors are truncated.
 Exhausting the declared space is a multi-day job at this throughput, not a
 session-scale one.
 
-## 5. Result
+## 5. Result — Q10 rank 3 recovered independently
 
-See `results/intrinsic_candidates/degree10_reverse_benchmark.json` for the
-machine-readable record, including every recovered quotient vector and the
-einsum specification of the candidate that produced it.
+> **A formula-independent bounded reverse search independently recovered the
+> full three-dimensional quotient Q10.**
+
+588 candidates, 22 samples, fit prime 32749, 3113 s, peak RSS 3095 MB.
+
+| # | sector | einsum | rank after |
+|---|---|---|---:|
+| 1 | N4125 x5 | `abcdef,abcdgh,efijkl,ghimno,jklmno->` | 1 |
+| 2 | N4125 x5 | `abcdef,abcdgh,efijkl,gijmno,hklmno->` | 2 |
+| 3 | N4125 x5 | `abcdef,abcdgh,egijkl,fhimno,jklmno->` | 3 |
+
+### The recovered basis is NOT the published one
+
+All three recovered directions come from the **`N^(4125)` x5** sector — pure
+`N^(4125)` contractions with no `N^(1050)` and no `M` at all. Every element of
+the published Level-B basis `{P10_10, P10_11, P10_12}` is `N^(1050)`-based.
+
+The reverse search did not rediscover the published formulas. It found an
+independent set spanning the same quotient. That is a stronger outcome than a
+rediscovery would have been: it shows Q10 is reachable from a block sector the
+published list does not use at all, and it could not have been produced by
+leaking the answer into the search.
+
+It is also consistent with the declared scope. The generator applies no
+explicit BLACK or RED bracket beyond what `composite_n1050` carries
+intrinsically, so `P10_04`, `P10_05`, `P10_08` and `P10_09` are **not
+representable** by it — the reverse engine could not have reproduced those by
+name even in principle. `P10_10`, `P10_11` and `P10_12` are bracket-free and in
+principle reachable; the bounded pilot evaluated 40 of the 3014 canonical
+candidates in their sector and did not happen to hit them before rank 3 was
+already complete from the cheaper `N^(4125)` sector.
+
+### Validation
+
+`results/intrinsic_candidates/degree10_reverse_span_validation.json`.
+
+Each recovered topology is **regenerated from its recorded einsum** by
+re-enumerating its sector, rather than deserialised — a stricter check, since it
+confirms the recorded specification is actually producible by the declared
+search and fails loudly if the generator has drifted.
+
+| prime | samples | rank | in atlas span |
+|---|---|---:|---|
+| 32749 (fit) | original | **3/3** | yes |
+| 32749 (fit) | fresh seed base | **3/3** | yes |
+| 32717 (holdout) | original | **3/3** | yes |
+| 32717 (holdout) | fresh seed base | **3/3** | yes |
+
+### Span equality — PROVEN
+
+| prime | rank reverse | rank published | rank union | dim Q10 | spans equal | change-of-basis mutually inverse |
+|---|---:|---:|---:|---:|---|---|
+| 32749 | 3 | 3 | **3** | 3 | **yes** | **yes** |
+| 32717 | 3 | 3 | **3** | 3 | **yes** | **yes** |
+
+Both spans lie inside a 3-dimensional quotient and each has rank 3, so each
+already **is** Q10 and they are therefore equal. The union rank is the direct
+check: six vectors spanning only rank 3 means no direction lies outside the
+common span. Exact change-of-basis matrices in both directions are recorded and
+verified mutually inverse over F_p.
+
+    reverse-generated span  =  Q10  =  published Level-B span
+
+on both the fitting and the holdout prime. **The benchmark passes.**
 
 ## 6. Scope
 
