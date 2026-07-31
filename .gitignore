@@ -14,3 +14,9 @@ results/*.json
 work/
 tmp/
 .handoff/
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.toc

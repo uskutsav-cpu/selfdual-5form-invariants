@@ -15,7 +15,7 @@
   "I4_1*I6_1",
   "I4_1*I6_2"
  ],
- "conclusion": "B10 (published span) and P10 (product subspace) intersect trivially and sum to the full 14-dimensional atlas, so B10 IS a primitive complement. It is NOT, however, equal to the span of the twelve graph generators I10_1..I10_12 unless the last-two-coordinate test also passes.",
+ "conclusion": "B10 (the published-candidate span) is NOT a primitive complement. At both primes dim(B10 cap P10) = 1 and dim(B10 + P10) = 13, so B10 contains exactly one product direction and misses one atlas direction; its primitive content is 11, not 12. The 12 = 12 coincidence with the spinor primitive count is dimensional, not structural. The decomposition that IS structural is A10 = G10 (+) P10 with G10 the span of the twelve graph generators (P10 cap G10 = 0, P10 + G10 = 14); see degree10_space_incidence.json.",
  "per_prime": {
   "32717": {
    "B10_equals_span_of_graph_generators": false,
@@ -41,5 +41,9 @@
   "I4_1*I6_2"
  ],
  "product_source": "explicit lower_product atlas entries: I4_1 x I6_1 and I4_1 x I6_2",
- "schema": 1
+ "schema": 1,
+ "superseded_conclusion": {
+  "text": "B10 (published span) and P10 (product subspace) intersect trivially and sum to the full 14-dimensional atlas, so B10 IS a primitive complement. It is NOT, however, equal to the span of the twelve graph generators I10_1..I10_12 unless the last-two-coordinate test also passes.",
+  "why_wrong": "It asserted trivial intersection and a full sum, which contradicts this file's own per-prime values dim_B10_cap_P10 = 1 and dim_B10_plus_P10 = 13, and contradicts the recorded flag B10_is_complement_of_P10 = false. Preserved rather than deleted so the correction is auditable."
+ }
 }

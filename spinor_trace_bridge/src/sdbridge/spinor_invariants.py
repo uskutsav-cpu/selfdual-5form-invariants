@@ -106,10 +106,15 @@ def random_port_graph(rng: np.random.Generator, n_nodes: int,
 
 
 #: Largest intermediate, in array elements, that a single contraction step may
-#: build.  At 8 bytes per int64 this is about 1.6 GB.  Some port-graph
+#: build.  At 8 bytes per int64 this is about 400 MB.  Some port-graph
 #: topologies genuinely need more than 10 GB with the batch index attached, and
 #: silently attempting those is how a long run dies without a message.
-MAX_INTERMEDIATE_ELEMENTS = 200_000_000
+MAX_INTERMEDIATE_ELEMENTS = 50_000_000
+
+#: Estimated flops a single contraction may cost.  Measured greedy-path costs are
+#: ~1e8 median and ~1e9 worst at degree 10, so this declines only genuine
+#: outliers -- which are then reported as skipped candidates, never hidden.
+MAX_CONTRACTION_FLOPS = 5e9
 
 
 class ContractionTooLarge(RuntimeError):
@@ -123,7 +128,8 @@ class ContractionTooLarge(RuntimeError):
 
 def _modular_contract(operands: list[np.ndarray], subscripts: list[list[int]],
                       p: int, output: list[int] | None = None,
-                      memory_limit: int = MAX_INTERMEDIATE_ELEMENTS):
+                      memory_limit: int = MAX_INTERMEDIATE_ELEMENTS,
+                      flop_limit: float = MAX_CONTRACTION_FLOPS):
     """Contract, reducing mod p after every pairwise step so nothing overflows.
 
     With entries below p ~ 2^15, a product is below 2^30, and reducing after each
@@ -138,11 +144,21 @@ def _modular_contract(operands: list[np.ndarray], subscripts: list[list[int]],
         interleaved: list = []
         for o, s in zip(ops, subs):
             interleaved.extend([o, s])
-        path, info = _oe.contract_path(*interleaved, out_labels, optimize="auto")
+        # 'greedy', not 'auto'.  opt_einsum's 'auto' switches to exact dynamic
+        # programming at around twenty operands, and a degree-10 amputated
+        # contraction has nineteen -- right at the boundary, where the SEARCH
+        # itself runs away long before any array is allocated.  That is what
+        # silently hung the first long runs.  'greedy' finds paths whose cost is
+        # comfortably bounded (max ~1e9 flops, ~7 MB at degree 10) in constant time.
+        path, info = _oe.contract_path(*interleaved, out_labels, optimize="greedy")
         if int(info.largest_intermediate) > memory_limit:
             raise ContractionTooLarge(
                 f"largest intermediate {int(info.largest_intermediate):,} elements "
                 f"exceeds the budget of {memory_limit:,}")
+        if float(info.opt_cost) > flop_limit:
+            raise ContractionTooLarge(
+                f"estimated cost {float(info.opt_cost):.2e} flops exceeds the "
+                f"budget of {flop_limit:.2e}")
     else:  # pragma: no cover - fallback order
         path = [(0, 1)] * (len(ops) - 1)
 
@@ -210,7 +226,7 @@ def sigma_stacks(p: int) -> tuple[np.ndarray, np.ndarray]:
 
 def evaluate_graph_batch(graph: PortGraph, S_batch: np.ndarray, p: int,
                          stacks: tuple[np.ndarray, np.ndarray] | None = None,
-                         chunk: int = 8) -> np.ndarray:
+                         chunk: int = 2) -> np.ndarray:
     """Values of one port graph at every sample at once.
 
     Two changes make this tractable at degree 8 and 10:

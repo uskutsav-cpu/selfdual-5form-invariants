@@ -1,0 +1,18 @@
+The twelve degree-ten graph generators $I_{10,1},\dots,I_{10,12}$ and the two
+products $I_{4,1}I_{6,1}$, $I_{4,1}I_{6,2}$ are serialised in the repository as
+canonical contraction graphs, together with a renderer that emits an indexed
+tensor expression and a parser that reads it back. The renderer/parser round trip
+is tested: rendering a graph and re-parsing the result returns the same canonical
+graph for every atlas element.
+
+Compact representatives of $Q_{10}$ are given in a presentation in which each
+representative is a single indexed contraction. This presentation was chosen to
+avoid a notational ambiguity present in one published expression, where the index
+placement admits more than one reading. We report the consequences of each
+reading --- in particular which readings change coordinates while leaving the
+span unaltered --- and we do not claim to have settled the source's intent.
+
+Machine-readable forms, with hashes, are in \texttt{results/}; the mapping from
+each formula to its atlas and quotient coordinates is in
+\texttt{docs/PUBLISHED\_DEGREE10\_BASIS\_MAP.md} and
+\texttt{docs/DEGREE10\_FORMULA\_CERTIFICATES.md}.

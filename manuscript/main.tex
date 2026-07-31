@@ -1,0 +1,600 @@
+\documentclass[11pt,a4paper]{article}
+\pdfoutput=1
+
+\usepackage{jheppub}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\sloppy
+
+% Loud marker for any number whose artifact was missing at build time.  A
+% missing input must be visible in the PDF, never a silently stale value.
+\newcommand{\ARTIFACTMISSING}[1]{\textbf{\color{red}[ARTIFACT MISSING: #1]}}
+\usepackage{xcolor}
+
+\input{generated/numbers}
+
+\newcommand{\HUMAN}[1]{\textbf{[#1 --- HUMAN ACTION REQUIRED]}}
+
+\title{An exact degree-ten classification of local invariants of the
+       ten-dimensional self-dual five-form}
+
+% Placeholders below are deliberately plain text: they must compile, and they
+% must be impossible to miss in the PDF.  See
+% submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md.
+\author[a]{AUTHOR LIST -- HUMAN ACTION REQUIRED}
+\affiliation[a]{AFFILIATIONS -- HUMAN ACTION REQUIRED}
+\emailAdd{corresponding.author@placeholder.invalid}
+
+\abstract{%
+The self-dual five-form field strength in ten dimensions carries a large ring of
+Lorentz invariants, of which only a handful have been written down explicitly.
+We determine the degree-ten graded piece of that ring exactly. Working over
+finite fields with certified linear algebra, we construct a fourteen-dimensional
+atlas of degree-ten invariants and resolve its internal structure completely:
+the two-dimensional subspace of products of lower-degree invariants, the
+twelve-dimensional span of the published candidate structures, the
+twelve-dimensional span of the graph generators, and the eleven-dimensional
+subspace reachable by the stress-tensor flow that motivates these theories. The
+resulting quotient is three-dimensional, and we give explicit compact
+representatives for it. We show that two decompositions which both read twelve
+plus two are not the same decomposition: the published span contains one product
+direction, so its non-product content is eleven. Independently, we implement a
+bridge between the tensor description and a spinor-variable description, fixing
+every convention explicitly and verifying the map is an isomorphism onto the
+gamma-traceless symmetric chiral square. The two descriptions are then evaluated
+at a common registry of five-forms and their invariant spans compared directly.
+We also replace the floating-point Jacobian rank computation used previously by
+an exact modular one, which turns the numerical evidence for the generic
+functional dimension into a rigorous lower bound.%
+}
+
+\keywords{Extended Supersymmetry, p-branes, Differential and Algebraic Geometry}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\small\textbf{Draft status.}
+This is a private submission candidate. The author list, affiliations,
+acknowledgments, funding, licence and data DOI are unresolved placeholders and
+are listed in \texttt{submission\_candidate/AUTHORSHIP\_DECISION\_REQUIRED.md}.
+The physics interpretation of section~\ref{sec:physics} and the novelty
+statements require coauthor confirmation. Not for distribution.}}
+\end{center}
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+A self-dual five-form field strength $F_{\mu_1\ldots\mu_5}$ in ten Lorentzian
+dimensions has $\dimSelfDualModule$ independent components. The Lorentz group
+$SO(1,9)$ has dimension $\dimLorentzAlgebra$ and acts with trivial generic
+stabiliser, so a generic orbit is $\dimLorentzAlgebra$-dimensional and the number
+of functionally independent invariants is~\cite{Hutomo:2025chiral}
+\begin{equation}
+  \dimSelfDualModule - \dimLorentzAlgebra = \genericFunctionalDim .
+  \label{eq:eightyone}
+\end{equation}
+This count is analytic and is not in question~\cite{Hutomo:2025chiral}. What is much less accessible is
+the \emph{ring} of invariants: which polynomial invariants exist at each degree,
+how they are related, and which of them can be written down.
+
+The contrast with lower dimensions is stark. In four and six dimensions the
+analogous problem has a handful of generators and the invariants relevant to
+non-linear duality-invariant theories can be listed on one line. In ten
+dimensions the number in~\eqref{eq:eightyone} means that no such listing is
+possible, and the explicit structures available in the literature are a small
+and unsystematic sample of a much larger space.
+
+\paragraph{What was previously available.} Twelve explicit degree-ten
+candidate structures and three degree-twelve structures appear in the source
+literature~\cite{Cederwall:2025invariants}. They are given as index expressions, they are not claimed to be a
+basis, and their linear relations were not determined.
+
+\paragraph{The gap addressed here.} Three questions were open at degree ten.
+First, what is the actual dimension of the degree-ten graded piece, and do the
+published structures span it? Second, the theories that motivate this problem
+are generated by a stress-tensor flow; which degree-ten invariants does that flow
+actually reach, and what is the quotient? Third, the same invariant ring can be
+presented in spinor variables, and a separate implementation exists that does so
+--- but the two implementations use different frames, and no map between them had
+been constructed, so their agreement had never been tested at the level of
+values.
+
+\paragraph{Results.} We answer all three, exactly.
+
+\begin{enumerate}
+\item The degree-ten atlas $A_{10}$ has dimension $\dimAten$
+      (section~\ref{sec:atlas}).
+\item Its internal structure is determined completely
+      (section~\ref{sec:decomp}): the product subspace $P_{10}$ has dimension
+      $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+      generator span $G_{10}$ has dimension $\dimGten$, the stress-flow reachable
+      subspace $D_{10}$ has dimension $\dimDten$, and the quotient
+      $Q_{10} = A_{10}/D_{10}$ has dimension $\dimQten$. All pairwise
+      intersections and sums are certified.
+\item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
+      span is \emph{not} a complement of the products: $\dim(B_{10}\cap P_{10})
+      = \dimBcapP$, so the non-product content of the published span is
+      $\publishedPrimitiveContent$, not $\dimBten$.
+\item A convention-controlled bridge to the spinor description is implemented and
+      verified to be an isomorphism onto the gamma-traceless
+      $\dimGammaTraceless$ (section~\ref{sec:bridge}).
+\item The floating-point Jacobian used previously is replaced by an exact modular
+      one (section~\ref{sec:jacobian}), which converts numerical evidence into a
+      rigorous bound.
+\end{enumerate}
+
+\paragraph{What remains unclassified.} Degree twelve is background here, not a
+result. We do not present a generating set for the full invariant ring, we do not
+claim an all-orders statement, and the reverse search of
+section~\ref{sec:reverse} is bounded and is not an exhaustive enumeration. These
+limits are stated precisely in section~\ref{sec:limitations}.
+
+%=============================================================================
+\section{The self-dual five-form and its invariants}
+\label{sec:setup}
+
+\subsection{Conventions}
+
+We work with metric signature $(-,+,\ldots,+)$ and
+$\epsilon_{0 1 \ldots 9} = +1$. The Hodge dual of a $p$-form is
+\begin{equation}
+  (\star F)_{I} = \tfrac{1}{(d-p)!}\,\epsilon_{I}{}^{J} F_{J},
+\end{equation}
+and for $d=10$, $p=5$,
+\begin{equation}
+  \star^2 = (-1)^{p(d-p)}\,\mathrm{sign}(\det\eta)
+          = (-1)^{25}\cdot(-1) = +\starSquared ,
+\end{equation}
+so real self-dual five-forms exist. Self-duality means $\star F = +F$ and the
+projector is $(1+\star)/2$. The $\dimFiveFormComponents$ components of a general
+five-form split as $\dimSelfdual + \dimAntiSelfdual$. Every one of these
+statements is verified at runtime rather than assumed; see
+appendix~\ref{app:conventions}.
+
+\subsection{Invariants, and five things called ``rank''}
+\label{sec:dictionary}
+
+A recurring source of confusion is that several distinct numbers are all
+naturally called a rank or a dimension. We fix the vocabulary once, and use it
+without exception.
+
+\begin{description}
+\item[Atlas dimension.] The dimension of the space of polynomial invariants of a
+  given $F$-degree. Graded, not cumulative. Exact.
+\item[Evaluation rank.] The rank of the matrix of invariant values over a finite
+  set of sample five-forms. Equals the atlas dimension once the sample set is
+  rich enough, and is what a computation actually measures.
+\item[Jacobian rank.] The rank of $\partial I_i/\partial c_r$ at a point. This
+  counts \emph{functionally} independent invariants and is cumulative over all
+  degrees. It is bounded by~\eqref{eq:eightyone}.
+\item[Hilbert-series dimension.] The graded dimension predicted by a generating
+  function. A count of generators, not of functions.
+\item[Quotient dimension.] The dimension of $A_{10}/D_{10}$, a quotient by the
+  stress-flow reachable subspace --- unrelated to any product decomposition.
+\end{description}
+
+These genuinely differ. At degree eight the cumulative atlas dimension is
+$1+2+7=10$ while the cumulative Jacobian rank is $8$: two functional relations
+already exist among polynomially independent invariants. Table~\ref{tab:dims}
+collects the values.
+
+\input{tables/dimensions}
+
+%=============================================================================
+\section{Exact computational framework}
+\label{sec:framework}
+
+\subsection{Graphs, canonicalisation and modular evaluation}
+
+An invariant is represented as a contraction graph: nodes are copies of $F$,
+edges are index contractions carrying exactly one factor of the metric. Graphs
+are canonicalised so that two labellings of the same contraction are identified.
+Evaluation is carried out over $\mathbb{F}_p$ at
+$p \in \{\bridgePrimes\}$ rather than in floating point. The reason is
+structural rather than one of convenience: invariant values span an enormous
+dynamic range at high degree, so a floating-point rank requires choosing a
+tolerance, whereas over $\mathbb{F}_p$ vanishing is unambiguous.
+
+\subsection{What modular arithmetic does and does not establish}
+\label{sec:modular-caveat}
+
+Rank over $\mathbb{F}_p$ at a random specialisation is a \emph{lower} bound on
+the rank in characteristic zero, unconditionally, provided the matrix is the
+reduction of an integer matrix --- reduction can only drop rank. It can fail to
+reach the characteristic-zero rank only on a proper subvariety, whose measure is
+$O(\deg/p)$ by the Schwartz--Zippel bound~\cite{Schwartz:1980,Zippel:1979}. We therefore use agreement at two
+primes as strong evidence, and never as a proof, for any statement that requires
+the \emph{upper} direction. Where an upper bound is needed we take it from an
+analytic argument, as in~\eqref{eq:eightyone}.
+
+Sampling and validation are separated: bases are fitted on one set of five-forms
+and every claimed relation is then checked on a disjoint holdout set that took no
+part in the fit.
+
+%=============================================================================
+\section{The degree-ten atlas}
+\label{sec:atlas}
+
+Enumerating degree-ten contraction graphs, canonicalising, and computing the
+evaluation rank over $\mathbb{F}_p$ gives
+\begin{equation}
+  \dim A_{10} = \dimAten .
+\end{equation}
+The value is identical at both primes and stable under enlarging the sample set.
+Twelve of the fourteen basis elements are graph invariants $I_{10,1},\ldots,
+I_{10,12}$; the remaining two are the products $I_{4,1}I_{6,1}$ and
+$I_{4,1}I_{6,2}$, which are the only products of lower-degree invariants
+available at degree ten, since the ring begins at degree four and $4+6$ is the
+sole splitting.
+
+%=============================================================================
+\section{Product, reachable and quotient decompositions}
+\label{sec:decomp}
+
+\subsection{Three decompositions, two of which look identical}
+
+Three different splittings of the same fourteen-dimensional space are in play:
+\begin{align}
+  \dimAten &= \dimBten + 2  &&\text{published span } B_{10} + \text{complement},\\
+  \dimAten &= \dimGten + \dimPten &&\text{graph generators } G_{10} + \text{products } P_{10},\\
+  \dimAten &= \dimDten + \dimQten &&\text{reachable } D_{10} + \text{quotient } Q_{10}.
+\end{align}
+The first two both read $\dimBten + \dimPten$, which invites the identification
+``the published candidates span the non-product part''.
+
+\subsection{That identification is false}
+
+Computed exactly at $\nIncidencePrimes$ primes:
+\begin{equation}
+  \dim(B_{10}\cap P_{10}) = \dimBcapP,
+  \qquad
+  \dim(B_{10} + P_{10}) = \dimBplusP \ne \dimAten .
+\end{equation}
+The published span therefore contains exactly one product direction and misses
+one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
+$\dimBten$, and the numerical agreement of the two twelves is a coincidence.
+
+The decomposition that \emph{is} structural is
+\begin{equation}
+  P_{10}\cap G_{10} = 0,\quad P_{10}+G_{10} = \dimAten
+  \qquad\Longrightarrow\qquad
+  A_{10} = G_{10}\oplus P_{10}.
+\end{equation}
+Furthermore $P_{10}\subset D_{10}$: products contribute nothing to the quotient
+$Q_{10}$. The complete pairwise incidence data are in
+table~\ref{tab:incidence}.
+
+\input{tables/incidence}
+
+\subsection{The quotient $Q_{10}$}
+
+The stress-flow reachable subspace has $\dim D_{10} = \dimDten$, so
+\begin{equation}
+  \dim Q_{10} = \dim A_{10}/D_{10} = \dimQten .
+\end{equation}
+This is the concrete statement that the flow construction does not reach the
+whole degree-ten space: there are $\dimQten$ independent directions of local
+degree-ten structure that it cannot generate. Explicit compact representatives
+are given in section~\ref{sec:pureN}.
+
+%=============================================================================
+\section{Compact bases for $Q_{10}$}
+\label{sec:pureN}
+
+A basis is only useful if its elements can be written down. We give a
+presentation in which each $Q_{10}$ representative is a single indexed
+contraction, avoiding a notational ambiguity present in the source expressions.
+The formulas, their serialisation, and the renderer/parser round trip are in
+appendix~\ref{app:formulas}.
+
+We do \emph{not} call this basis canonical. It is a choice, certified to span
+$Q_{10}$ and validated on holdout samples; no universal canonicality is claimed
+or proved.
+
+%=============================================================================
+\section{Formula-independent reverse recovery}
+\label{sec:reverse}
+
+To check that the quotient is not an artefact of how the invariants were
+written, $Q_{10}$ is recovered a second time by a search that does not import the
+published-formula evaluators at all. The search is organised into sectors; most
+are capped, one is enumerated fully. It recovers rank three and its span agrees
+with both the graph-derived and the published-candidate quotient spans.
+
+We stress the scope: this is a \emph{bounded} search over a declared class. It is
+not an exhaustive enumeration, and nothing in this paper depends on it being one.
+The reverse recovery is corroboration, not the primary derivation.
+
+%=============================================================================
+\section{Independent spinor-variable calculation}
+\label{sec:spinor}
+
+The same invariant ring can be built in spinor variables. Ten dimensions admits Majorana--Weyl spinors in signatures with $s-t \equiv 0$
+mod $8$~\cite{Kugo:1982bn}, which covers both $(1,9)$ and $(5,5)$. A chiral
+spinor of $\mathrm{Spin}(10)$ has dimension $\spinorDim$, and
+\begin{equation}
+  \mathrm{Sym}^2(\spinorDim) = \dimSymSpinor = 10 \oplus \dimGammaTraceless,
+\end{equation}
+the $\dimGammaTraceless$ being the gamma-traceless part --- which as a module is
+exactly the self-dual five-form. An independently written implementation
+enumerates invariants in these variables.
+
+\subsection{The frames are different, and the difference is not what was thought}
+\label{sec:signature}
+
+That implementation realises the ten vector gamma matrices as five wedge and five
+contraction operators on $\Lambda^\bullet W$ with $\dim W = 5$. The metric this
+induces follows from the exterior algebra alone,
+\begin{equation}
+  \{\Gamma^\mu,\Gamma^\nu\} = 2\eta^{\mu\nu},
+  \qquad
+  \eta = \tfrac12\begin{pmatrix} 0 & \mathbb{1}_5\\ \mathbb{1}_5 & 0\end{pmatrix},
+\end{equation}
+whose real signature is $(5,5)$ --- \emph{split}, not Euclidean. This matters
+because in split signature, exactly as in Lorentzian,
+$\star^2 = (-1)^{25}(-1) = +1$ on five-forms, so real self-dual five-forms exist.
+A null frame of this kind cannot be Euclidean: Euclidean signature has no
+nonzero isotropic vectors, whereas every basis vector here is null.
+
+What does remain true is weaker and precise. Over $\mathbb{R}$, $(5,5)$ and
+$(1,9)$ are inequivalent real forms of $\mathfrak{so}(10,\mathbb{C})$ and no real
+matrix relates them. But both metrics have discriminant $-1$ modulo squares, so
+over $\mathbb{C}$ --- and over $\mathbb{F}_p$, where signature does not exist and
+a nondegenerate form is classified by its discriminant alone --- they are
+congruent, and the transition is exact.
+
+Two consequences, of different strengths, are worth separating.
+\emph{Invariant dimensions are directly comparable} between the two
+implementations with no complexification caveat at all: a real form is Zariski
+dense in its complexification, so the graded dimensions of the invariant ring do
+not depend on which real form is used. \emph{Component values, however, require
+transport}, and we carry that out over $\mathbb{F}_p$.
+
+%=============================================================================
+\section{The spinor--tensor bridge}
+\label{sec:bridge}
+
+\subsection{The map}
+
+With the frame transition $L$ constructed explicitly (rather than assumed to
+exist), the bridge is
+\begin{equation}
+  S_{ab} \;=\; \frac{1}{5!}\,F_{\mu_1\ldots\mu_5}\,
+                (\Gamma^{\mu_1\ldots\mu_5})_{ab}.
+  \label{eq:bridge}
+\end{equation}
+Every convention entering~\eqref{eq:bridge} is pinned as a named constant:
+signature, epsilon, Hodge star, self-duality sign, Clifford normalisation,
+chirality, charge conjugation, antisymmetrisation weight and coefficient field.
+Appendix~\ref{app:conventions} lists them.
+
+\subsection{What is verified}
+
+At each prime, and by two-way span containment rather than by dimension
+counting:
+\begin{itemize}
+\item the kernel of~\eqref{eq:bridge} \emph{equals} the anti-self-dual
+      $\dimAntiSelfdual$;
+\item the image \emph{equals} the gamma-traceless $\dimGammaTraceless$;
+\item the forward map has rank $\bridgeForwardRank$, not $\dimSymSpinor$;
+\item the constructed left inverse satisfies
+      $\mathrm{inverse}\circ\mathrm{forward} = P_{\text{self-dual}}$ exactly ---
+      the identity on self-dual forms, and correctly \emph{not} the identity in
+      general, since the anti-self-dual part is genuinely destroyed;
+\item the map is equivariant, with the character solved for rather than assumed,
+      under both a $GL(5)$ subgroup and products of Clifford reflections. The
+      latter generate the full orthogonal group by Cartan--Dieudonné.
+\end{itemize}
+The bridge contains no floating-point step and no tolerance.
+
+One convention was \emph{determined} rather than chosen. The spinor
+implementation does not document whether its symmetric $\sigma^\mu_{ab}$ carries
+upper or lower spinor indices. Of the eight candidate placements, exactly one
+satisfies the equivariance requirement on every component with a single scalar;
+that one was adopted. This is a reconstruction of an undocumented convention, and
+is flagged as such.
+
+%=============================================================================
+\section{Common-sample comparison}
+\label{sec:comparison}
+
+A registry of $\nCommonSamples$ self-dual five-forms is fixed: $\nSampleSparse$
+sparse, $\nSampleStructured$ structured, $\nSampleGeneric$ generic and
+$\nSampleHoldout$ holdout. Every sample is hashed, and its self-duality and the
+gamma-tracelessness of its image are verified before use. Both descriptions are
+evaluated at the same five-forms in the same field.
+
+\input{tables/comparison}
+
+Where the spans agree, the agreement is established by two-way containment and
+the change-of-basis matrix is fitted on the fitting samples only and then
+validated on the holdout samples. Where a comparison is incomplete, the table
+says so; we do not report a degree as matched on the strength of a dimension
+coincidence.
+
+%=============================================================================
+\section{Exact Jacobian and the generic functional dimension}
+\label{sec:jacobian}
+
+\subsection{Why the previous computation was fragile}
+
+The generic functional dimension $\genericFunctionalDim$
+of~\eqref{eq:eightyone} is analytic. The previously available computational check
+was a float64 central-difference Jacobian followed by a rank tolerance. That
+procedure is genuinely fragile: two archived runs of the same code, differing
+only in the random point, reported ranks of $35$ and $81$. The reason is not a
+bug. In one run a large fraction of the candidate rows evaluated to numerical
+zero at that point; row-normalising such rows rescales rounding noise into unit
+vectors and manufactures rank. Table~\ref{tab:jacruns} in appendix~\ref{app:jacobian} reports a controlled
+matrix over seeds, scales and step sizes, and classifies each run. We keep the
+degenerate example in the paper deliberately: it is the evidence that genericity
+checks are necessary.
+
+\subsection{The exact replacement}
+
+A port-graph invariant is multilinear in its factors of $F$, so its derivative
+can be taken analytically by amputation,
+\begin{equation}
+  \frac{\partial I}{\partial F^{(k)}_{ab}}
+  = \text{the same contraction with the $k$-th $F$ removed},
+  \qquad
+  \frac{\partial I}{\partial c_r} = \Big\langle \sum_k A_k,\; B_r \Big\rangle .
+\end{equation}
+No step size and no tolerance enter. The implementation is validated by Euler's
+identity $\sum_r c_r\,\partial I/\partial c_r = (\deg I)\,I$, which holds exactly
+at every degree tested.
+
+Because the gamma-traceless basis is computed over $\mathbb{Z}$ --- its entries
+are in $\{-1,0,+1\}$ and it is annihilated exactly --- the Jacobian is the
+reduction of a genuine integer matrix, and
+\begin{equation}
+  \mathrm{rank}_{\mathbb{F}_p}(J \bmod p) \;\le\; \mathrm{rank}_{\mathbb{Q}}(J)
+\end{equation}
+holds unconditionally. An exact modular rank is therefore a \emph{rigorous} lower
+bound in characteristic zero, not a probabilistic one.
+
+Applying this to the archive's own candidate selection gives exact modular rank
+$\archiveJacobianRank$ for the port-graph subset of that selection
+($\nArchivePortGraphs$ of $\nArchiveCandidates$ candidates;
+the remaining $\nArchiveStructured$ structured tensor-word candidates were not
+re-implemented and are excluded from the count rather than assumed inert).
+
+\paragraph{Permitted claim.} The generic functional dimension
+$\genericFunctionalDim$ follows analytically from the trivial generic stabiliser.
+The computations here provide an independent, exact, tolerance-free lower bound
+on the same quantity. They did not discover $\genericFunctionalDim$ and are not
+claimed to prove it by themselves.
+
+%=============================================================================
+\section{Physical interpretation}
+\label{sec:physics}
+
+\HUMAN{PHYSICS INTERPRETATION REQUIRES COAUTHOR CONFIRMATION}
+
+The motivation for this ring is the classification of local algebraic
+interactions of a chiral four-form gauge field in ten dimensions. A non-linear
+theory of such a field is specified by a Lagrangian, or by a flow equation, built
+from Lorentz invariants of $F$. In four and six dimensions the available
+invariants are so few that a general deformation can be written explicitly. In
+ten dimensions~\eqref{eq:eightyone} makes that impossible, and progress has
+proceeded through specific constructions --- in particular stress-tensor
+flows~\cite{Hutomo:2025chiral}.
+
+The concrete consequence of the degree-ten result is a statement about what those
+constructions reach. The stress-flow reachable subspace at degree ten has
+dimension $\dimDten$ inside a $\dimAten$-dimensional space. So there are exactly
+$\dimQten$ independent directions of degree-ten local structure that the flow
+cannot generate, and we exhibit representatives of all of them.
+
+This changes what a theorist can do in a specific way. Previously, a candidate
+degree-ten term could be compared against the published structures only, and if
+it failed to match, nothing followed --- the published list was not known to be
+complete or independent. Now any degree-ten invariant can be expanded in a
+certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+computed. That is the difference between recognising a term and locating it.
+
+We deliberately do \emph{not} claim: a Type IIB coefficient, a supersymmetric
+completion, a causality statement, an amplitude, or an all-orders theorem. None
+of these follows from the algebra computed here.
+
+%=============================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\begin{enumerate}
+\item \textbf{Modular, not characteristic zero.} All exact results are certified
+      at $\nBridgePrimes$ primes. Lower bounds transfer to characteristic zero
+      unconditionally; upper bounds do not, and where one is needed it is taken
+      from an analytic argument.
+\item \textbf{The reverse search is bounded.} It is a search over a declared
+      class with most sectors capped. It is not an exhaustive enumeration and is
+      never described as one.
+\item \textbf{No canonicality claim.} The compact $Q_{10}$ basis is a certified
+      choice, not a canonical object.
+\item \textbf{Implementation independence, not clean-room independence.} The two
+      implementations were written separately and neither imports the other;
+      that is weaker than clean-room separation and is not claimed to be it.
+\item \textbf{A source notational ambiguity is avoided, not resolved.} One
+      published expression admits more than one index reading. We report the
+      consequences of each reading and show which of them change coordinates
+      without changing the span. We do not claim to have settled the source's
+      intent.
+\item \textbf{The signature bridge is modular.} Component-level comparison is
+      carried out over $\mathbb{F}_p$, where the frame transition exists. A real
+      Lorentzian-to-split component identification does not exist and is not
+      claimed.
+\item \textbf{Equivariance is verified at sampled group elements}, exactly, and
+      is not a symbolic identity for all elements.
+\item \textbf{One spinor convention is reconstructed.} The index placement in the
+      spinor implementation's $\sigma^\mu_{ab}$ was determined by requiring
+      equivariance, not read from documentation.
+\item \textbf{Degree twelve is not classified.} It appears here only as
+      background and outlook.
+\item \textbf{The structured tensor-word candidates were not re-implemented} in
+      exact arithmetic; the exact Jacobian rank quoted is that of the port-graph
+      subset only.
+\end{enumerate}
+
+%=============================================================================
+\section{Conclusions and outlook}
+\label{sec:conclusions}
+
+The degree-ten graded piece of the invariant ring of the ten-dimensional
+self-dual five-form is now known exactly, together with its product, published,
+graph-generator and stress-flow-reachable subspaces and all their intersections.
+The quotient by the reachable subspace is $\dimQten$-dimensional and has explicit
+representatives. A tempting identification between two decompositions that both
+read $\dimBten+\dimPten$ turns out to be false, and the correct structural
+statement is $A_{10} = G_{10}\oplus P_{10}$.
+
+Separately, the spinor-variable description has been connected to the tensor
+description by an explicit convention-controlled bridge, and the numerical
+Jacobian rank computation has been replaced by an exact modular one that yields a
+rigorous bound.
+
+The natural next targets are degree twelve, where the reachable subspace is
+expected to be a much smaller fraction of the whole, and a generating set for the
+ring itself. Neither is attempted here.
+
+%=============================================================================
+\acknowledgments
+\HUMAN{ACKNOWLEDGMENTS}
+\HUMAN{FUNDING}
+
+%=============================================================================
+\appendix
+
+\section{Ten-dimensional conventions}
+\label{app:conventions}
+\input{appendices/conventions}
+
+\section{Degree-ten formulas}
+\label{app:formulas}
+\input{appendices/formulas}
+
+\section{Basis and quotient certificates}
+\label{app:certificates}
+\input{appendices/certificates}
+
+\section{Algorithms and correctness tests}
+\label{app:algorithms}
+\input{appendices/algorithms}
+
+\section{Jacobian audit}
+\label{app:jacobian}
+\input{appendices/jacobian}
+
+\section{Reproduction}
+\label{app:reproduction}
+\input{appendices/reproduction}
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+
+\end{document}
