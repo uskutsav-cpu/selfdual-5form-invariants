@@ -305,6 +305,28 @@ def main():
 
     payload = {
         "schema": 2,
+        # Emitted by the RUNNER, not injected afterwards: a regenerated
+        # artifact must not silently lose the frozen claim wording. It did
+        # exactly that once, and tests/test_q10_wording_freeze.py caught it.
+        "basis_wording": (
+            "Preferred ambiguity-minimal Level-B basis among the twelve "
+            "published degree-10 candidates under the documented "
+            "deterministic simplicity rule."),
+        "forbidden_wording": ["ambiguity-robust", "universally canonical",
+                              "the unique compact basis"],
+        "ambiguity_facts": {
+            "P10_10": ("forced -- appears in every independent triple; sole "
+                       "carrier of the third quotient coordinate"),
+            "P10_09": ("source-reading dependent (AMB-01); quotient image "
+                       "differs between readings; excluded from the basis, "
+                       "retained as a valid implemented interpretation"),
+            "P10_11": ("source-reading dependent (AMB-02); quotient image "
+                       "differs between readings; in the basis because at "
+                       "least one non-robust member is unavoidable"),
+            "P10_12": ("tested alternative AMB-02 reading gives identical "
+                       "evaluations and identical quotient vectors"),
+            "no_fully_robust_published_triple": True},
+        "search_is_exhaustive": False,
         "accounting": counts,
         "accounting_reconciles": reconciles,
         "exceptions": exceptions,

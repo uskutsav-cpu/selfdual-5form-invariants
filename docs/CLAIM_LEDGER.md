@@ -620,3 +620,48 @@ mistakes is not an audit trail.
      BLACK or RED bracket, so those are outside the declared class.
 - **Scope document**: `docs/DEGREE10_REVERSE_SEARCH_SCOPE.md` separates the
   RECOVERY goal (met) from the EXHAUSTION goal (not met).
+
+
+## C-REV-02 — the corrected degree-10 reverse run
+
+- **Permitted wording (exact)**: "A three-element compact basis for Q10 was
+  independently recovered in the pure `N^(4125)`^5 sector and shown to span the
+  same quotient space as the graph-derived and published-formula bases."
+- **Corrected accounting**, all terminal statuses recorded:
+
+      planned 259 = evaluated 259 + structurally_rejected 0
+                  + evaluation_error 0 + interrupted 0
+
+  Reconciles exactly. **0 candidates outside the atlas span**, so every
+  evaluated candidate is a genuine Lorentz scalar. 22 of 259 have nonzero
+  quotient image; recovered rank **3 of 3**; 926 s; peak 2811 MB.
+- **SUPERSEDES** the original pilot's statistics. That run silently skipped 9
+  of 588 candidates with a bare `continue`, and its M-containing sectors were
+  computed with a mixed-variance `M` block that was not a Lorentz scalar. Those
+  numbers must not be quoted.
+- **The rank-generating candidates CHANGED under the fix.** With a valid `M`
+  block, the first two rank directions now come from `M+N1050+N4125^3` and
+  `M+N4125^4`; the third is the `N4125^5` candidate. In the defective run all
+  three came from `N4125^5`, because the M-containing candidates were not
+  scalars and could not lie in the span.
+- **The pure-`N4125` basis is unaffected** by that change: `N4125^5` contains
+  no `M`, that sector is fully enumerated (15 of 15 canonical), and the triple
+  was validated at two primes, on fresh samples, with determinants 8930 and
+  29506, mutual inverses against both Level-A and the published basis, and
+  removal minimality 3 → 2.
+
+### Required claim distinctions, each machine-tested where possible
+
+| distinction | status |
+|---|---|
+| recovery ≠ exhaustion | 5 of 21 sectors capped; sectors sampled at 15 |
+| pilot coverage ≠ complete sector enumeration | 259 of ≥16 522 canonical |
+| source independence ≠ clean-room independence | AST test proves no import; the author had read the paper |
+| alternative basis ≠ canonical | no universal minimality theorem |
+| minimal within a searched class ≠ universally minimal | `N4125^5` swept; the class was not |
+| modular agreement ≠ characteristic-zero proof | rational reconstruction UNCERTIFIED at 2 primes |
+| ambiguity removal ≠ ambiguity resolution | the pure-N basis avoids AMB-02; it does not settle the source reading |
+
+- **AMB-02, measured**: changes the **coordinates** of `P10_11`, not the
+  **span**. Both readings give rank 3, union rank 3. A span-level basis claim
+  is unaffected; coordinate-level and change-of-basis claims are not.
