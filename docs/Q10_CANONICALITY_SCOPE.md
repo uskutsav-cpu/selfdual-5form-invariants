@@ -51,6 +51,29 @@ The selected basis contains exactly one such member, `P10_11`, which is the
 minimum achievable. Calling the result "the robust basis" would be wrong; it is
 the *ambiguity-minimal* basis. Only `P10_10` and `P10_12` are unconditional.
 
+### How much this actually costs — measured, and less than stated above
+
+An earlier version of this section left the impression that the basis itself is
+in doubt. It is not, and the distinction is worth being exact about.
+
+Measured at both primes (`Q10_ambiguity_relationship.json`):
+
+| quantity | reading A | reading B | union |
+|---|---:|---:|---:|
+| rank of `{P10_10, P10_11, P10_12}` | 3 | 3 | **3** |
+
+Under *either* reading the triple has rank 3 and therefore spans **all** of a
+3-dimensional Q10. The union of both readings still has rank 3, so the two
+readings span the same subspace.
+
+> **AMB-02 changes the COORDINATES of `P10_11`, not the SPAN of the basis.**
+
+So a *span-level* statement — "these three elements are a basis for Q10" — is
+unaffected by the ambiguity. What is reading-dependent is any statement about
+the specific coordinate vector of `P10_11`, and hence the change-of-basis
+matrices. `ambiguity-minimal` remains the correct label for coordinate-level
+claims; it should not be read as doubt about the basis property itself.
+
 **Consequence.** Resolving AMB-01 and AMB-02 from a colour render of journal
 page 17 is a binding scientific prerequisite for an unconditional basis, not a
 tidiness item.
