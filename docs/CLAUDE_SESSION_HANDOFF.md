@@ -1,112 +1,103 @@
 # Session handoff
 
-**Branch** `research/maximal-chiral-four-form-program`. **Nothing pushed.**
-Protected branches untouched.
+**Branch** `research/maximal-chiral-four-form-program`.
+`origin/research/...` is at `5b48209`; everything after that is **local only**.
 
-## 1. State
+## 1. Where the degree-10 work stands
 
-All twelve equation-(4.24) degree-10 candidates are implemented in
-`src/sdinv/published_degree10_invariants.py`. Every one passes boost
-invariance and homogeneity at two primes. `NOT_IMPLEMENTED` is empty.
+| result | value | evidence |
+|---|---|---|
+| twelve published candidates implemented | 12/12 | `published_degree10_invariants.py` |
+| published atlas rank | **12 / 14** | both primes |
+| published Q10 rank | **3 / 3** | fit 32749, holdout 32717 |
+| reverse-recovered Q10 rank | **3 / 3** | independent search |
+| reverse span = published span | **proven** | union rank 3, both primes |
+| Level-A ↔ Level-B maps | both directions, mutually inverse | exact, modular |
+| removal minimality | verified | removing any member drops rank |
 
-## 2. The defect that shaped this session
+### The basis, in the only permitted wording
 
-`P10_07` was **not a Lorentz scalar** as shipped. It raised all six axes on both
-inner `N^(1050)` factors, so three of its edges contracted with `delta` rather
-than `eta`.
+> **Preferred ambiguity-minimal Level-B basis among the twelve published
+> degree-10 candidates under the documented deterministic simplicity rule.**
 
-It was caught by the degree-10 projection reporting `not_in_atlas_span` on all
-six primes — a consistent failure across independent moduli is structural, not
-modular bad luck. Confirmed by a boost: rotation-invariant but boost-violating,
-which is the unambiguous signature of a metric misplacement.
+    { P10_10, P10_11, P10_12 }
 
-**No test would have caught it.** The suite checked homogeneity, which catches
-int64 overflow, and nothing that constrains index placement. Three tests now
-close that gap:
+**Never** "ambiguity-robust", "universally canonical", or "the unique compact
+basis". `tests/test_q10_wording_freeze.py` enforces this across every doc and
+artifact; negated mentions stay allowed because they are the correct statement.
 
-    test_every_published_candidate_is_boost_invariant
-    test_p10_07_alpha_edge_placement_is_free
-    test_the_original_p10_07_placement_really_was_broken
+| candidate | status |
+|---|---|
+| `P10_10` | **forced** — in every independent triple; sole carrier of the third quotient coordinate |
+| `P10_09` | source-reading dependent (AMB-01); excluded from the basis, **retained** as a valid implemented interpretation |
+| `P10_11` | source-reading dependent (AMB-02); in the basis only because at least one such member is unavoidable |
+| `P10_12` | tested alternative reading gives **identical** evaluations and quotient vectors |
 
-The general lesson is recorded as `C-P10-METHOD-01`: **index placement is
-derived, not read.** PDF extraction returns stacked scripts in glyph-position
-order and cannot distinguish `M_a{}^b` from `M^a{}_b`. The rule "every
-contracted edge carries exactly one raised end" has a unique answer, and it
-independently reproduces the placement that the boost test verified.
+**No fully ambiguity-robust published triple exists.** `P10_10` is forced and
+only `P10_12` of the remainder is robust, so two robust members cannot be
+found. That is PO-11 and it is a binding prerequisite for an unconditional
+basis, not a tidiness item.
 
-## 3. Results established
+## 2. The reverse benchmark
 
-| result | value | primes | artifact |
-|---|---|---|---|
-| P10_01/02/03/06/07 → Q10 | all `[0,0,0]`, rank **0** | 6 | `published_degree10_map.json` |
-| Level-A representatives → Q10 | rank **3 of 3** | 6 | `degree10_positive_control.json` |
-| M-only family → Q10 | rank 0 | 6 | `M_only_quotient_test_deg10.json` |
-| P12_01/02/03 → Q12 | rank 0 | 2 | `published_degree12_map.json` |
+> **A formula-independent bounded reverse search independently recovered the
+> full three-dimensional quotient Q10.**
 
-The positive control is what makes the zero rows meaningful: the projector
-demonstrably *can* return rank 3, so a zero is a statement about the candidate
-rather than about the pipeline. Without it, a projector stuck at zero would
-print an identical table.
+All three recovered directions come from the **`N4125`x5** sector — pure
+`N^(4125)`, no `N^(1050)`, no `M`. Every published basis element is
+`N^(1050)`-based, so the search found a **different** compact basis spanning
+the same quotient rather than rediscovering the published one.
 
-Every zero entry has `status = "solved"`, meaning the candidate lies in the
-atlas span and its coordinates were obtained exactly. A candidate that merely
-failed to solve would also contribute rank 0, for an uninformative reason.
+Independence is enforced by AST inspection, not promised in prose.
 
-## 4. Open source ambiguities — recorded, not guessed
+**Not exhaustive**: 5 of 21 sectors are capped at 30 000 raw topologies, and
+even exhausted sectors were sampled at 40 candidates for evaluation. Recovery
+goal met; exhaustion goal not (PO-12). Never write "complete enumeration of
+every M/N contraction".
 
-Bracket **colour** does not survive PDF extraction, and colour is exactly what
-fixes operation order in equation (4.24).
+## 3. Two defects found, both the same kind
 
-- **AMB-01** — extent of the red bracket in I^(4) and I^(9). Measured: the two
-  readings give **different** values for I^(4).
-- **AMB-02** — nested bracket association in I^(10), I^(11), I^(12). Measured:
-  the two readings differ for I^(10) and I^(11), and **agree exactly** for
-  I^(12), so AMB-02 is harmless for that candidate.
+Both were invisible to homogeneity and to rotations, and both were caught by a
+**boost** — `delta` and `eta` agree on the spatial block, so only a boost sees
+a metric misplacement.
 
-Both readings of each are implemented and projected separately, in a distinct
-checkpoint column-id band, so a reading can never be confused with the
-candidate it varies. Resolving either needs a colour render of journal page 17
-/ arXiv page 25.
+1. **`P10_07`** raised all six axes on both inner `N` factors, making three
+   edges `delta`-contractions. Symptom: `not_in_atlas_span` on all six primes.
+2. **The reverse engine's `M` block.** `make_blocks` returned `mixed`, which is
+   already `M_{a}{}^{b}`, to a routine that assumes all-lower operands and
+   raises one end itself. Symptom: 129 of 579 pilot candidates not in the atlas
+   span. Pure-N sectors were 100% boost invariant, M sectors were not, which
+   localised it in one step. **The recovery result was unaffected** — it lives
+   entirely in `N4125`x5 — but the M-sector statistics were invalid and were
+   regenerated.
 
-## 5. Infrastructure
+Boost tests now guard both the published evaluators and the generated ones.
 
-`scripts/project_published_degree10_ckpt.py` supersedes the uncheckpointed
-runner. Every evaluation is an immutable checkpoint unit, so adding a candidate
-no longer re-pays the atlas. The artifact is rewritten after each prime, so a
-kill loses at most one prime.
+## 4. Infrastructure notes
 
-**Checkpoints must not live in iCloud.** The canonical tree is under
-`~/Documents`, which is synced. Default root is a local temp path; override
-with `SDINV_CKPT_ROOT`. Restrict primes with `SDINV_PRIMES`.
+- **Checkpoint validity** is semantic, not commit-based. Fingerprints are
+  derived from source (`evaluator_fingerprint`, `block_fingerprint`), so a
+  reimplemented formula invalidates exactly its own units and the expensive
+  atlas cache survives. Cold two-prime run 912 s, resumed 55 s.
+- **Checkpoints must never live in iCloud.** The tree is under `~/Documents`,
+  which is synced. Use `SDINV_CKPT_ROOT`.
+- **Reverse generation is streamed**: 2611 MB → 33 MB for the same sector.
+  Evaluation still peaks ~2.9 GB holding the candidate plan; that is the next
+  memory target if the sweep is widened.
+- **`python -m pytest` works bare** — `pytest.ini` scopes collection past the
+  `scripts/`↔`tests/` module-name collision.
+- A redirected process is **block buffered**: an empty log does not mean an
+  idle job. Check `ps -p <pid> -o time` for CPU, and the artifact's mtime. A
+  run killed after writing its artifact loses only the buffered log; that
+  happened here and briefly looked like lost work.
 
-`peak_rss_mb` now decides its unit by `sys.platform`, not by magnitude.
-`ru_maxrss` is bytes on Darwin and KiB on Linux, and at ~1 GB the two are
-indistinguishable by value — the old heuristic reported 958576 MB.
+## 5. Next
 
-## 6. Cost
-
-~6 s per candidate evaluation at degree 10. A full six-prime, sixteen-evaluator
-pass is ~2.6 h of evaluation plus the atlas. Budget accordingly, or use
-`SDINV_PRIMES` for a first pass and let the checkpoints make the rest
-incremental.
-
-Do not run two memory-heavy jobs at once; this machine has 8 GB and has
-silently killed pytest at ~60 MB free.
-
-A process whose stdout is redirected is **block buffered**: an empty log does
-not mean an idle job. Check `ps -p <pid> -o time` for CPU accumulation, and
-check the output artifact's mtime — a run killed after it wrote its artifact
-loses only the buffered log. That happened here and briefly looked like lost
-work.
-
-## 7. Next
-
-1. Finish the twelve-candidate projection across all six primes.
-2. If the published Q10 rank is 0, that is a **bounded negative result**, not a
-   failure: the twelve published candidates lie in D10 and a compact Level-B
-   basis for Q10 must be sought outside them. Write it as a failure
-   certificate with the exact scope.
-3. Build the reverse graph-to-block enumeration as an independent search. The
-   positive control already shows the graph side reaches rank 3; the reverse
-   engine's job is to find a *compact block* expression that does.
-4. Clean-clone QUICK reproduction outside iCloud.
+1. Collect the pilot rerun (valid M-sector statistics) and refresh the
+   benchmark artifact.
+2. Clean-clone QUICK reproduction.
+3. **Do not launch the degree-12 search.** It is prepared and refuses to run
+   without `--i-mean-it`; see `DEGREE12_REVERSE_PILOT_PLAN.md`. Run
+   `--measure-only` first — the degree-10 cost per contraction does not
+   transfer.
+4. Resolve PO-11 (bracket colour) if an unconditional basis is wanted.

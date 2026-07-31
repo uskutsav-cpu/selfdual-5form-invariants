@@ -200,3 +200,61 @@ all-orders theorem. Required: base cases, a recursion step, preservation of
 hypotheses, and an argument that no exceptional degree exists.
 
 **Until discharged**, "all orders" is forbidden in every document (ledger F-5).
+
+## PO-11 — bracket colour in equation (4.24)
+
+**Supports** the Q10 Level-B basis.
+
+`AMB-01` and `AMB-02` are unresolved because bracket **colour** does not
+survive PDF text extraction, and colour is what fixes operation order. Both
+readings of every ambiguous candidate are implemented and projected, and the
+measurement is decisive rather than academic:
+
+| candidate | Q10 image under the two readings |
+|---|---|
+| P10_10, P10_12 | identical |
+| P10_09, P10_11 | **differ** |
+
+Because `P10_10` is forced and only `P10_12` of the remainder is robust, **no
+ambiguity-robust triple exists** among the twelve published candidates. The
+selected basis attains the minimum of one source-reading-dependent member.
+
+**Required**: a colour render of journal page 17 / arXiv page 25, or a
+statement from the authors. This is a binding prerequisite for an
+unconditional basis, not a tidiness item.
+
+**Until discharged**: the basis is "preferred ambiguity-minimal", never
+"ambiguity-robust". Only `P10_10` and `P10_12` are unconditional.
+
+## PO-12 — exhaustion of the degree-10 block class
+
+**Supports** any minimality theorem over compact block contractions.
+
+The reverse benchmark met its RECOVERY goal — Q10 rank 3, independently, span
+equal to the published Level-B span on fit and holdout primes. It did **not**
+meet the exhaustion goal: 5 of 21 sectors are capped at 30 000 raw topologies,
+and even the exhausted sectors were sampled at 40 candidates for evaluation.
+
+**Required to discharge**: sweep every canonical candidate in the declared
+class. Lower bound 16 522 candidates at 22 samples and ~150 ms is ≈ 15 h on one
+worker, and the capped sectors add an unknown multiple. Streamed generation
+with `--sector`/`--shard-*` makes this parallelisable.
+
+**Until discharged**: forbidden to claim "complete enumeration of every M/N
+contraction", or that the reverse search establishes minimality of anything.
+
+## PO-13 — rational reconstruction of the Q10 change-of-basis matrices
+
+**Supports** any characteristic-zero statement about the Level-A/Level-B map.
+
+Both directions are certified modularly at two primes and verified mutually
+inverse. Rational reconstruction was **attempted and is not certified**: two
+primes give a CRT modulus of ~1.07e9, so a lift is unique only when numerator
+and denominator are both below ~2.3e4, and the entries are generic residues of
+that magnitude.
+
+**Required**: more primes. The projection is checkpointed, so the four
+remaining primes are incremental rather than a rerun.
+
+**Until discharged**: the maps are modular certificates, not rational
+identities.
