@@ -19,8 +19,20 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from sdinv.modp import P, ALT_P  # noqa: E402
-from sdinv.forms import selfdual_projector, to_dense, random_form  # noqa: E402
+from sdinv.modp import P, ALT_P, mod_einsum  # noqa: E402
+from sdinv.forms import (  # noqa: E402
+    selfdual_projector, to_dense, random_form, metric_signs)
+
+
+def _transform_covariant_tensor(tensor, transformation, mod):
+    """Apply one matrix per covariant index, reducing after every axis."""
+    result = np.asarray(tensor, dtype=np.int64) % mod
+    for axis in range(result.ndim):
+        result = np.tensordot(transformation, result, axes=(1, axis))
+        result = np.moveaxis(result, 0, axis) % mod
+    return result
+
+
 from sdinv.published_degree10_invariants import (  # noqa: E402
     NOT_IMPLEMENTED, PUBLISHED_DEGREE10, evaluate_implemented)
 
@@ -53,14 +65,49 @@ def test_implemented_and_unimplemented_partition_all_twelve():
         assert name in BRACKET_STAGES, f"{name} has no recorded bracket stage"
 
 
-def test_red_bracket_candidates_are_not_implemented_without_the_engine():
-    """P10_04 and P10_09 carry red brackets; they must not be faked."""
+def test_red_bracket_candidates_either_stage_or_abstain():
+    """P10_04 and P10_09 carry red brackets; they must not be faked.
+
+    Originally this asserted both were unimplemented. P10_04 is now implemented
+    through a genuine RED-stage `BracketProgram`, so the requirement is
+    restated at the level that actually matters: a red-bracket candidate is
+    either absent, or it applies a RED-stage operation and declares which
+    reading of the ambiguous bracket extent it used.
+    """
     from sdinv.published_degree10_invariants import BRACKET_STAGES
     for name in ("P10_04", "P10_09"):
         assert "RED" in BRACKET_STAGES[name]
-        assert name in NOT_IMPLEMENTED, (
-            f"{name} has red brackets and must not be implemented until the "
-            f"staged bracket program is encoded for it")
+        if name in NOT_IMPLEMENTED:
+            continue
+        spec = PUBLISHED_DEGREE10[name]
+        assert spec.get("ambiguity"), (
+            f"{name} has a red bracket of ambiguous extent and must record "
+            f"which reading it implements")
+        assert "RED" in spec["brackets"] or "red" in spec["brackets"], (
+            f"{name} claims a red bracket but does not apply a RED stage")
+
+
+def test_p10_04_red_stage_is_not_vacuous_and_readings_are_distinguished():
+    """The RED symmetrisation must do something, and AMB-01 must be a real fork.
+
+    If the two readings of the red bracket agreed, the ambiguity would be
+    harmless and could be closed. This test records which of those worlds we
+    are in, so the ambiguity is never quietly assumed away.
+    """
+    from sdinv.published_degree10_invariants import (
+        p10_04_mm_m_red_n1050_n1050, p10_04_pairs)
+
+    prime = P
+    form = _sample(prime, 5)
+    all4 = p10_04_mm_m_red_n1050_n1050(form, prime)
+    pairs = p10_04_pairs(form, prime)
+    assert isinstance(all4, int) and isinstance(pairs, int)
+    # Record, do not assume: if these ever coincide, AMB-01 is closable and the
+    # message below is what tells a future session so.
+    if all4 == pairs:
+        raise AssertionError(
+            "AMB-01 readings agree at this sample; the ambiguity may be "
+            "removable and PUBLISHED_DEGREE10_INDEX_AUDIT.md should be updated")
 
 
 def test_homogeneity_degree_ten():
@@ -74,6 +121,183 @@ def test_homogeneity_degree_ten():
                 assert scaled[name] == (pow(c, 10, prime) * v) % prime, (
                     f"{name} not homogeneous of degree 10 at prime {prime}; a "
                     f"bare np.einsum on int64 silently wraps here")
+
+
+def _boost(mod, t=7):
+    """A hyperbolic rotation in the 0-1 plane over F_p: c^2 - s^2 = 1."""
+    ti = pow(t, mod - 2, mod)
+    half = pow(2, mod - 2, mod)
+    c = ((t + ti) * half) % mod
+    s = ((ti - t) * half) % mod
+    assert (c * c - s * s) % mod == 1, "not a hyperbolic rotation"
+    L = np.eye(10, dtype=np.int64)
+    L[0, 0] = c; L[0, 1] = s; L[1, 0] = s; L[1, 1] = c
+    eta = np.diag(metric_signs(10, True)).astype(np.int64) % mod
+    assert np.array_equal((L.T @ eta @ L) % mod, eta % mod), "L not in SO(1,9)"
+    return L
+
+
+def test_every_published_candidate_is_boost_invariant():
+    """THE test that was missing, and the one that catches metric misplacement.
+
+    A published candidate is by construction a Lorentz scalar. If an index is
+    raised on both ends of a contracted edge, that edge contracts with delta
+    rather than eta. Under a pure ROTATION delta and eta agree on the spatial
+    block, so the error is invisible; a BOOST mixes the timelike direction and
+    exposes it.
+
+    This is not hypothetical. P10_07 shipped with all six axes raised on both
+    inner N factors, making the three alpha edges delta-contractions. It passed
+    homogeneity, passed rotation invariance, and produced entirely plausible
+    numbers. The only signals were this test -- absent at the time -- and the
+    projection reporting `not_in_atlas_span`.
+    """
+    for prime in (P, ALT_P):
+        form = _sample(prime, 5)
+        boosted = _transform_covariant_tensor(form, _boost(prime), prime)
+        base = evaluate_implemented(form, prime)
+        moved = evaluate_implemented(boosted, prime)
+        for name in base:
+            assert base[name] == moved[name], (
+                f"{name} is not boost invariant at prime {prime}: "
+                f"{base[name]} != {moved[name]}. An index is almost certainly "
+                f"raised on both ends of some contracted edge.")
+
+
+def test_p10_07_alpha_edge_placement_is_free():
+    """Either end of an alpha edge may carry the metric; the scalar is the same.
+
+    This distinguishes a genuinely correct index placement from one that merely
+    happens to be boost invariant. For a true tensor contraction, moving the
+    metric from one end of an edge to the other cannot change the value.
+    """
+    from sdinv.stress import _raise_axes, composite_n1050, five_form_moment
+
+    def variant(form, mod, raise_a, raise_b):
+        _, mixed = five_form_moment(form, mod, "optimized")
+        mm = (mixed @ mixed) % mod
+        n = composite_n1050(form, mod, "optimized")
+        return int(mod_einsum(
+            "pqrstm,mk,pqrxyz,stkxzy->",
+            [_raise_axes(n, (5,), mod), mm,
+             _raise_axes(n, raise_a, mod), _raise_axes(n, raise_b, mod)],
+            mod) % mod)
+
+    for prime in (P, ALT_P):
+        form = _sample(prime, 5)
+        shipped = PUBLISHED_DEGREE10["P10_07"]["evaluator"](form, prime)
+        flipped = variant(form, prime, (0, 1, 2, 3, 4, 5), (0, 1))
+        assert shipped == flipped, (
+            f"alpha-edge metric placement changed the value at {prime}: "
+            f"{shipped} != {flipped}; the contraction is not a tensor")
+
+
+def test_the_original_p10_07_placement_really_was_broken():
+    """Guards the fix against silent reversion.
+
+    Raising all six axes on both inner N factors -- the shipped bug -- must
+    FAIL boost invariance. Without this, a regression to the old placement
+    could pass the suite if the boost test above were ever weakened.
+    """
+    from sdinv.stress import _raise_axes, composite_n1050, five_form_moment
+
+    prime = P
+    form = _sample(prime, 5)
+    boosted = _transform_covariant_tensor(form, _boost(prime), prime)
+
+    def broken(f):
+        _, mixed = five_form_moment(f, prime, "optimized")
+        mm = (mixed @ mixed) % prime
+        n = composite_n1050(f, prime, "optimized")
+        up = _raise_axes(n, (0, 1, 2, 3, 4, 5), prime)
+        return int(mod_einsum("pqrstm,mk,pqrxyz,stkxzy->",
+                              [n, mm, up, up], prime) % prime)
+
+    assert broken(form) != broken(boosted), (
+        "the historical P10_07 placement is boost invariant after all, which "
+        "would invalidate the recorded diagnosis")
+
+
+def test_p10_05_and_p10_08_black_brackets_are_not_vacuous():
+    """Dropping a BLACK antisymmetrisation must change the value.
+
+    A bracket program that silently does nothing would let a wrong formula pass
+    every other test in this file: homogeneity, boost invariance and atlas
+    membership are all insensitive to whether the antisymmetriser fired. These
+    two candidates are the ones whose brackets are applied explicitly rather
+    than being supplied by `composite_n1050`, so they are exactly the ones
+    where a no-op would go unnoticed.
+    """
+    from sdinv.index_symmetry_ops import BLACK, BracketOp, BracketProgram
+    from sdinv.published_degree10_invariants import _outer
+    from sdinv.stress import _raise_axes, composite_n1050, five_form_moment
+
+    prime = P
+    form = _sample(prime, 5)
+    _, mixed = five_form_moment(form, prime, "optimized")
+    mm = (mixed @ mixed) % prime
+    n = composite_n1050(form, prime, "optimized")
+
+    # --- P10_05 with and without its two black brackets -------------------
+    n_up = _raise_axes(n, (0, 1, 2, 3, 4, 5), prime)
+    raw5 = _outer(mm, mixed, prime)
+    anti5 = BracketProgram(ops=[
+        BracketOp("antisym", (0, 2), BLACK, True, "nu"),
+        BracketOp("antisym", (1, 3), BLACK, True, "mu")]).apply(raw5, prime)
+    spec = "nmvp,abcdmp,abcdnv->"
+    with_b = int(mod_einsum(spec, [anti5, n, n_up], prime) % prime)
+    without = int(mod_einsum(spec, [raw5, n, n_up], prime) % prime)
+    assert with_b != without, (
+        "P10_05 is unchanged by its black antisymmetrisations; the bracket "
+        "program is a no-op here and the formula is not being tested")
+    assert with_b == PUBLISHED_DEGREE10["P10_05"]["evaluator"](form, prime)
+
+    # --- P10_08 with and without its black bracket ------------------------
+    outer = _raise_axes(n, (4, 5), prime)
+    n_a = _raise_axes(n, (0, 1, 2), prime)
+    n_b = _raise_axes(n, (0, 3, 4, 5), prime)
+    raw8 = _outer(mixed, mixed, prime)
+    anti8 = BracketProgram(ops=[
+        BracketOp("antisym", (0, 2), BLACK, True, "nu-mu")]).apply(raw8, prime)
+    spec8 = "pqrsnm,ntmk,pqrxyz,stkxzy->"
+    with_b8 = int(mod_einsum(spec8, [outer, anti8, n_a, n_b], prime) % prime)
+    without8 = int(mod_einsum(spec8, [outer, raw8, n_a, n_b], prime) % prime)
+    assert with_b8 != without8, (
+        "P10_08 is unchanged by its black antisymmetrisation")
+    assert with_b8 == PUBLISHED_DEGREE10["P10_08"]["evaluator"](form, prime)
+
+
+def test_p10_05_and_p10_08_index_mutation_is_detected():
+    """Permuting one source index must change the invariant.
+
+    Guards against a transcription in which two index labels are interchangeable
+    -- if swapping them left the value alone, the einsum would not actually be
+    encoding the published contraction pattern.
+    """
+    from sdinv.published_degree10_invariants import _outer
+    from sdinv.stress import _raise_axes, composite_n1050, five_form_moment
+
+    prime = P
+    form = _sample(prime, 5)
+    _, mixed = five_form_moment(form, prime, "optimized")
+    n = composite_n1050(form, prime, "optimized")
+    outer = _raise_axes(n, (4, 5), prime)
+    n_a = _raise_axes(n, (0, 1, 2), prime)
+    n_b = _raise_axes(n, (0, 3, 4, 5), prime)
+    from sdinv.index_symmetry_ops import BLACK, BracketOp, BracketProgram
+    block = BracketProgram(ops=[
+        BracketOp("antisym", (0, 2), BLACK, True, "nu-mu")]).apply(
+            _outer(mixed, mixed, prime), prime)
+
+    base = int(mod_einsum("pqrsnm,ntmk,pqrxyz,stkxzy->",
+                          [outer, block, n_a, n_b], prime) % prime)
+    # the published alpha ordering is a1a2]a3 against a1a3]a2; flattening it to
+    # a1a2]a3 / a1a2]a3 is the single most likely transcription slip
+    mutated = int(mod_einsum("pqrsnm,ntmk,pqrxyz,stkxyz->",
+                             [outer, block, n_a, n_b], prime) % prime)
+    assert base != mutated, (
+        "P10_08 does not distinguish the published alpha ordering a1a3]a2 from "
+        "a1a2]a3, so the transcription of that detail is untested")
 
 
 def test_trM5_matches_the_M_only_result():

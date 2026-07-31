@@ -37,6 +37,7 @@ import hashlib
 import json
 import os
 import resource
+import sys
 import time
 from pathlib import Path
 
@@ -70,9 +71,19 @@ def atomic_write_json(path, payload):
 
 
 def peak_rss_mb():
+    """Peak resident set size in MiB.
+
+    The unit of ru_maxrss is platform-dependent: bytes on Darwin/BSD,
+    kibibytes on Linux. Deciding by MAGNITUDE is wrong -- a genuine ~1 GB
+    peak on macOS reads as 1.03e9 bytes, which sits just under a 1<<30
+    threshold and is then divided as if it were KiB, reporting ~1e6 MB.
+    That is exactly how this function first failed its own test. Decide by
+    platform instead, where the answer is unambiguous.
+    """
     usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    # macOS reports bytes, Linux reports kibibytes
-    return usage / (1024 * 1024) if usage > 1 << 30 else usage / 1024
+    if sys.platform == "darwin":
+        return usage / (1024 * 1024)          # bytes -> MiB
+    return usage / 1024                        # kibibytes -> MiB
 
 
 def current_rss_mb():

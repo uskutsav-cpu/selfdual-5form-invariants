@@ -7,26 +7,40 @@ J. Phys. A 59 (2026) 065203, doi:10.1088/1751-8121/ae3bb8, equation (4.24),
 journal PDF page 17 (printed page 15). Cross-checked against
 arXiv:2509.14350v2 PDF page 25.
 
-Transcribed from a RENDERED image of the page, not from extracted text and not
-from memory. The paper states that "the symmetrization and/or
-anti-symmetrization of the indices within the red brackets is made upon the
-anti-symmetrization within the black brackets"; that colour distinction is
-invisible in the text stream, which is why the image was used.
+The paper states that "the symmetrization and/or anti-symmetrization of the
+indices within the red brackets is made upon the anti-symmetrization within the
+black brackets". That colour distinction does not survive PDF text extraction,
+and neither does reliable up/down placement of stacked scripts.
+
+Index placement is therefore DERIVED, not read: every contracted edge must
+carry exactly one raised end, or it contracts with delta instead of eta. See
+`docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md` §0. Bracket *delimiters* are reliable
+in the text stream; bracket *colour* is not, which is what AMB-01 and AMB-02
+record.
 
 Implementation status
 ---------------------
-Only candidates whose index structure is unambiguous from the render are
-implemented here. The remainder carry nested red/black bracket structures that
-require a dedicated (anti)symmetrisation engine with the correct operation
-ordering; they are deliberately NOT implemented rather than guessed.
-
     P10_01  tr M^5                                     IMPLEMENTED
-    P10_02  (MM)M M N^(4125)                           IMPLEMENTED
-    P10_03..P10_12                                     NOT IMPLEMENTED
+    P10_02  (MM) M M N^(4125)                          IMPLEMENTED
+    P10_03  M^3 (N1050 N1050)                          IMPLEMENTED
+    P10_04  (MM) M red( N1050 N1050 )                  IMPLEMENTED  [AMB-01]
+    P10_05  (MM) M [black] N1050 N1050                 IMPLEMENTED
+    P10_06  (MM) M N1050 N4125                         IMPLEMENTED
+    P10_07  N1050 (MM) (N1050 N1050)                   IMPLEMENTED
+    P10_08  N1050 M M [black] (N1050 N1050)            IMPLEMENTED
+    P10_09  red( N1050 M N1050 ) N1050 N1050           IMPLEMENTED  [AMB-01]
+    P10_10  five N1050, nested brackets                NOT IMPLEMENTED [AMB-02]
+    P10_11  five N1050, nested brackets                NOT IMPLEMENTED [AMB-02]
+    P10_12  five N1050, nested brackets                NOT IMPLEMENTED [AMB-02]
+
+Candidates carrying an unresolved source ambiguity record it in the
+`ambiguity` key of their registry entry and implement one explicitly named
+reading. They are NOT presented as being equation (4.24) without qualification.
 """
 
 import numpy as np
 
+from .index_symmetry_ops import BLACK, RED, BracketOp, BracketProgram
 from .modp import P, inv, mod_einsum
 from .stress import (
     _raise_axes,
@@ -115,23 +129,350 @@ def p10_06_mm_m_n1050_n4125(five_form, mod=P, backend="optimized"):
 
 
 def p10_07_n1050_mm_n1050_n1050(five_form, mod=P, backend="optimized"):
-    """I^(7)_10 = N^(1050)_{[rho1rho2rho3,rho4rho5]mu} (MM)^{mu}{}_{kappa}
+    """I^(7)_10 = N^(1050)_{[rho1rho2rho3,rho4rho5]}{}^{mu} (MM)_{mu}{}^{kappa}
                   ( N_(1050)^{[rho1rho2rho3,}{}_{a1a2]a3}
-                    N_(1050)^{[rho4rho5kappa,a1a3]a2} )
+                    N_(1050)^{[rho4rho5}{}_{kappa,a1a3]a2} )
 
     Black brackets only. Note the alpha ordering differs between the two inner
     N factors -- a1a2]a3 against a1a3]a2 -- which is carried by the einsum
     labels, not by any additional symmetrisation.
+
+    INDEX PLACEMENT. Every contracted edge must have exactly ONE raised end;
+    an edge joining two equally-placed slots contracts with delta instead of
+    eta and is not Lorentz invariant. This function originally raised all six
+    axes on BOTH inner N factors, so the three alpha edges (a1,a2,a3) joined
+    two raised slots. The result was rotation invariant -- delta and eta agree
+    on the spatial block -- but NOT boost invariant, and the degree-10
+    projection correctly reported it as `not_in_atlas_span` on all six primes
+    because a non-scalar cannot lie in the span of genuine invariants.
+
+    The placement that fixes it turns on `mm`. `mixed` is M_{mu}{}^{nu}, so the
+    matrix product `mixed @ mixed` contracts the up index of the first with the
+    down index of the second, giving (MM)_{mu}{}^{kappa} -- slot 0 DOWN, slot 1
+    UP, the opposite of what the original docstring asserted. Hence the outer N
+    carries mu UP (axis 5 raised) and the second inner N carries kappa DOWN
+    (axis 2 NOT raised).
+
+    Which end of an alpha edge carries the metric is arbitrary: raising
+    (0,1,2,3,4,5)/(0,1) instead of (0,1,2)/(0,1,3,4,5) gives bit-identical
+    values, which is the check that this placement is right rather than merely
+    boost invariant by accident. `test_p10_07_alpha_edge_placement_is_free`
+    asserts it.
+    """
+    _, mixed = five_form_moment(five_form, mod, backend)
+    mm = (mixed @ mixed) % mod
+    n = composite_n1050(five_form, mod, backend)
+    # N_{r1 r2 r3 r4 r5}{}^{m} (MM)_{m}{}^{k} N^{r1 r2 r3}{}_{a1 a2 a3}
+    #                                          N^{r4 r5}{}_{k}{}^{a1 a3 a2}
+    n_outer = _raise_axes(n, (5,), mod)
+    n_a = _raise_axes(n, (0, 1, 2), mod)
+    n_b = _raise_axes(n, (0, 1, 3, 4, 5), mod)
+    return int(mod_einsum(
+        "pqrstm,mk,pqrxyz,stkxzy->",
+        [n_outer, mm, n_a, n_b], mod) % mod)
+
+
+def _outer(left, right, mod):
+    """Modular outer product; axes of `left` first, then axes of `right`."""
+    return np.tensordot(left % mod, right % mod, axes=0) % mod
+
+
+def p10_05_mm_m_antisym_n1050_n1050(five_form, mod=P, backend="optimized"):
+    """I^(5)_10 = (MM)_{[nu1}{}^{[mu1} M_{nu2]}{}^{mu2]}
+                  N^(1050)_{[rho1rho2rho3,rho4 mu1] mu2}
+                  N_(1050)^{[rho1rho2rho3,rho4 nu1] nu2}
+
+    Two BLACK antisymmetrisations, both on the M-product indices: one over the
+    nu pair (nu1, nu2), one over the mu pair (mu1, mu2). Neither is supplied by
+    `composite_n1050` -- that routine antisymmetrises only its own first five
+    axes -- so both are applied explicitly through `BracketProgram`.
+
+    Index placement is fixed by consistency, not by the extraction order of the
+    stacked scripts (which is unreliable). `mm` and `mixed` are M_{a}{}^{b},
+    slot 0 DOWN and slot 1 UP, so slot 1 contracts into the all-lower
+    `composite_n1050` and slot 0 into the raised copy. Every contracted edge
+    then has exactly one raised end, which the boost test confirms.
     """
     _, mixed = five_form_moment(five_form, mod, backend)
     mm = (mixed @ mixed) % mod
     n_low = composite_n1050(five_form, mod, backend)
     n_up = _raise_axes(n_low, (0, 1, 2, 3, 4, 5), mod)
-    # N_{r1 r2 r3 r4 r5 mu} (MM)^{mu}{}_{k} N^{r1 r2 r3 a1 a2 a3}
-    #                                        N^{r4 r5 k  a1 a3 a2}
+
+    # slots: 0 = nu1, 1 = mu1, 2 = nu2, 3 = mu2
+    block = _outer(mm, mixed, mod)
+    program = BracketProgram(
+        ops=[BracketOp("antisym", (0, 2), BLACK, True,
+                       "eq (4.24) I^(5)_10 black bracket [nu1 ... nu2]"),
+             BracketOp("antisym", (1, 3), BLACK, True,
+                       "eq (4.24) I^(5)_10 black bracket [mu1 ... mu2]")],
+        source="eq (4.24) I^(5)_10")
+    block = program.apply(block, mod)
+
+    # block[nu1, mu1, nu2, mu2] N_{r1r2r3r4 mu1 mu2} N^{r1r2r3r4 nu1 nu2}
     return int(mod_einsum(
-        "pqrstm,mk,pqrxyz,stkxzy->",
-        [n_low, mm, n_up, n_up], mod) % mod)
+        "nmvp,abcdmp,abcdnv->", [block, n_low, n_up], mod) % mod)
+
+
+def p10_08_n1050_mm_antisym_n1050_n1050(five_form, mod=P, backend="optimized"):
+    """I^(8)_10 = N^(1050)_{[rho1rho2rho3,rho4 nu] mu} M^{[nu}{}_{rho5}
+                  M^{mu]}{}_{kappa}
+                  ( N_(1050)^{[rho1rho2rho3,}{}_{a1a2]a3}
+                    N_(1050)^{[rho4 rho5 kappa, a1a3]a2} )
+
+    Structurally I^(7) with the single factor (MM)_{mu}{}^{kappa} split into
+    two M factors carrying a BLACK antisymmetrisation over [nu ... mu], and the
+    outer N's fifth index renamed rho5 -> nu accordingly. The inner pair is
+    identical to I^(7), including the alpha reordering a1a2]a3 against a1a3]a2.
+
+    The raise pattern is derived by the same edge rule that fixed I^(7): the
+    outer N carries nu and mu UP (axes 4,5) because both meet the DOWN slot 0
+    of an M_{a}{}^{b}; the second inner N carries rho4 UP but rho5 and kappa
+    DOWN because those meet the UP slot 1 of an M.
+    """
+    _, mixed = five_form_moment(five_form, mod, backend)
+    n = composite_n1050(five_form, mod, backend)
+    outer = _raise_axes(n, (4, 5), mod)
+    n_a = _raise_axes(n, (0, 1, 2), mod)
+    n_b = _raise_axes(n, (0, 3, 4, 5), mod)
+
+    # slots: 0 = nu, 1 = rho5, 2 = mu, 3 = kappa
+    block = _outer(mixed, mixed, mod)
+    program = BracketProgram(
+        ops=[BracketOp("antisym", (0, 2), BLACK, True,
+                       "eq (4.24) I^(8)_10 black bracket [nu ... mu]")],
+        source="eq (4.24) I^(8)_10")
+    block = program.apply(block, mod)
+
+    return int(mod_einsum(
+        "pqrsnm,ntmk,pqrxyz,stkxzy->",
+        [outer, block, n_a, n_b], mod) % mod)
+
+
+def p10_04_mm_m_red_n1050_n1050(five_form, mod=P, backend="optimized",
+                                red_reading="all4"):
+    """I^(4)_10 = (MM)^{mu nu} M^{rho lambda}
+                  ( N^(1050)_{[a1a2a3a4(mu] nu} N_(1050)^{[a1a2a3a4}{}_{rho] lambda)} )
+
+    STAGED. The BLACK antisymmetrisations are `[a1a2a3a4 mu]` and
+    `[a1a2a3a4 rho]`, which are exactly the five-index antisymmetrisation that
+    `composite_n1050` performs on its own axes (0,1,2,3,4). They are therefore
+    already complete before this function does anything, which satisfies the
+    source requirement that black executes first -- the black stage is baked
+    into the operand, not applied afterwards.
+
+    The RED operation then acts on the surviving mu, nu, rho, lambda of the
+    contracted N-pair. It is applied to the intermediate
+
+        T_{mu nu rho lambda} = N_{a1a2a3a4 mu nu} N^{a1a2a3a4}{}_{rho lambda}
+
+    and only afterwards contracted with the two M blocks, so the ordering is
+    BLACK -> RED as the paper requires and is not flattened.
+
+    SOURCE AMBIGUITY (AMB-01). The red parenthesis opens before `mu` and closes
+    after `lambda`, enclosing four slots, and the *colour* that would settle its
+    reading does not survive PDF text extraction. Two readings are consistent
+    with the glyph stream:
+
+        red_reading="all4"  symmetrise mu, nu, rho, lambda together
+        red_reading="pairs" symmetrise the pair (mu nu) against (rho lambda)
+
+    Both are implemented and both are evaluated by the projection runner; the
+    result records them separately rather than presenting one as the published
+    value. Neither is asserted to BE equation (4.24) until a colour render
+    settles it.
+    """
+    _, mixed = five_form_moment(five_form, mod, backend)
+    mm = (mixed @ mixed) % mod
+    n_low = composite_n1050(five_form, mod, backend)
+    n_up = _raise_axes(n_low, (0, 1, 2, 3), mod)
+
+    # T_{mu nu rho lambda}; alpha edges carry exactly one raised end
+    tensor = mod_einsum("abcdmn,abcdrl->mnrl", [n_low, n_up], mod)
+
+    if red_reading == "all4":
+        program = BracketProgram(
+            ops=[BracketOp("sym", (0, 1, 2, 3), RED, True,
+                           "eq (4.24) I^(4)_10 red bracket (mu ... rho]lambda)")],
+            source="eq (4.24) I^(4)_10 reading all4")
+        tensor = program.apply(tensor, mod)
+    elif red_reading == "pairs":
+        # symmetrise the (mu nu) block against the (rho lambda) block
+        swapped = np.transpose(tensor, (2, 3, 0, 1))
+        tensor = ((tensor + swapped) % mod
+                  * inv(2 % mod, mod)) % mod
+    else:
+        raise ValueError(f"unknown red_reading {red_reading!r}")
+
+    mm_up = _raise_axes(mm, (0,), mod)
+    m_up = _raise_axes(mixed, (0,), mod)
+    return int(mod_einsum("mnrl,mn,rl->", [tensor, mm_up, m_up], mod) % mod)
+
+
+def p10_04_pairs(five_form, mod=P, backend="optimized"):
+    """I^(4)_10 under the alternative red reading; see AMB-01."""
+    return p10_04_mm_m_red_n1050_n1050(five_form, mod, backend, "pairs")
+
+
+def p10_09_red_n1050_m_n1050_n1050_n1050(five_form, mod=P, backend="optimized"):
+    """I^(9)_10 = N^(1050)_{[a1a2a3a4 kappa](nu} M^{kappa mu}
+                  N_(1050)^{[a1a2a3a4}{}_{rho] lambda)}
+                  N_(1050)^{[b1b2b3b4 mu] nu} N^(1050)_{[b1b2b3b4}{}_{rho] lambda}
+
+    Four N^(1050) blocks and one M: degree 2*4 + 2 = 10.
+
+    STAGED, BLACK then RED. All four black brackets are five-index
+    antisymmetrisations on axes (0,1,2,3,4), which `composite_n1050` has
+    already performed, so the black stage is complete in the operands. The RED
+    operation is then applied to the intermediate
+
+        T_{nu}{}^{mu}{}_{rho lambda}
+            = N_{a1a2a3a4 kappa nu} M^{kappa mu} N^{a1a2a3a4}{}_{rho lambda}
+
+    before it is contracted with the second N pair.
+
+    WHY THE RED EXTENT IS READ AS {nu, rho, lambda}. The red parenthesis opens
+    immediately after the first black bracket closes and shuts after `lambda`,
+    enclosing nu, rho and lambda but not kappa or mu. Independently of the
+    glyph stream, the edge rule assigns all three of nu, rho, lambda a LOWER
+    placement while mu comes out UPPER -- and a symmetrisation can only act on
+    slots of matching type. That the enclosed set is exactly the same-type set
+    is a nontrivial consistency check on this reading, and the same check
+    passes for I^(4). It is corroboration, not proof: see AMB-01.
+    """
+    _, mixed = five_form_moment(five_form, mod, backend)
+    n = composite_n1050(five_form, mod, backend)
+    n_a = n                                        # all lower
+    n_b = _raise_axes(n, (0, 1, 2, 3), mod)
+    n_c = _raise_axes(n, (5,), mod)
+    n_d = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)
+    m_up = _raise_axes(mixed, (0,), mod)           # M^{kappa mu}
+
+    # slots of T: 0 = nu (down), 1 = mu (up), 2 = rho (down), 3 = lambda (down)
+    tensor = mod_einsum("abcdkn,km,abcdrl->nmrl", [n_a, m_up, n_b], mod)
+    program = BracketProgram(
+        ops=[BracketOp("sym", (0, 2, 3), RED, True,
+                       "eq (4.24) I^(9)_10 red bracket (nu ... rho]lambda)")],
+        source="eq (4.24) I^(9)_10")
+    tensor = program.apply(tensor, mod)
+
+    return int(mod_einsum(
+        "nmrl,efghmn,efghrl->", [tensor, n_c, n_d], mod) % mod)
+
+
+# --------------------------------------------------------------------------
+# I^(10), I^(11), I^(12): five N^(1050) blocks each, nested bracket structures.
+#
+# SOURCE AMBIGUITY (AMB-02). Each of these three writes a bracket that OPENS
+# inside another bracket and CLOSES before the outer one does, for example
+# `[rho1rho2rho3,rho4[mu1]mu2]` in I^(10). The outer group is the five-index
+# antisymmetrisation that `composite_n1050` already carries intrinsically, from
+# equation (2.15). What the INNER group is cannot be settled from the glyph
+# stream: it may be a genuine nested black antisymmetrisation on the two
+# remaining slots, or a red-stage operation that happens to be printed with
+# square glyphs. Colour is what distinguishes them and colour does not survive
+# extraction.
+#
+# Both readings are therefore implemented and named:
+#
+#   reading="outer"  only the intrinsic five-index antisymmetrisation
+#   reading="nested" additionally antisymmetrise the two trailing slots
+#
+# Neither is asserted to BE equation (4.24). The projection runner evaluates
+# both and records them separately, so a future session with a colour render
+# can adopt one without recomputing anything.
+#
+# The contraction topologies below were derived by the edge rule of
+# `docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md` §0 and each was checked to use every
+# dummy index exactly twice across the thirty slots (fifteen edges).
+# --------------------------------------------------------------------------
+
+def _nested_pair(tensor, mod, reading, label):
+    """Apply the AMB-02 inner bracket on the two trailing slots, or not."""
+    if reading == "outer":
+        return tensor
+    if reading != "nested":
+        raise ValueError(f"unknown reading {reading!r}")
+    program = BracketProgram(
+        ops=[BracketOp("antisym", (4, 5), BLACK, True, label)], source=label)
+    return program.apply(tensor, mod)
+
+
+def p10_10_five_n1050(five_form, mod=P, backend="optimized", reading="outer"):
+    """I^(10)_10 = ( N_{[r1r2r3,r4[m1]m2]} N^{[r1r2r3,}{}_{a1a2]a3}
+                     N^{[r4 n1n2, a1a3]a2} )
+                   ( N_{[b1b2b3,b4 n1]n2} N^{[b1b2b3,b4 m1]m2} )
+
+    Five N^(1050) blocks, degree 10. See AMB-02 above for `reading`.
+
+    Slots, in the order the einsum uses them:
+        N1 (r1,r2,r3,r4,m1,m2)   N2 (r1,r2,r3,a1,a2,a3)
+        N3 (r4,n1,n2,a1,a3,a2)   N4 (b1,b2,b3,b4,n1,n2)
+        N5 (b1,b2,b3,b4,m1,m2)
+    """
+    n = composite_n1050(five_form, mod, backend)
+    n1 = _nested_pair(n, mod, reading, "eq (4.24) I^(10)_10 inner [m1]m2]")
+    n2 = _raise_axes(n, (0, 1, 2), mod)
+    n3 = _raise_axes(n, (0, 3, 4, 5), mod)
+    n4 = _raise_axes(n, (4, 5), mod)
+    n5 = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)
+    return int(mod_einsum(
+        "abcdmn,abcxyz,dpqxzy,efghpq,efghmn->",
+        [n1, n2, n3, n4, n5], mod) % mod)
+
+
+def p10_11_five_n1050(five_form, mod=P, backend="optimized", reading="outer"):
+    """I^(11)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )
+                   ( N^{[m1m2m3[n1n2]n3]} N^{[r1r2 l1[l2l3]}{}_{n1]}
+                     N^{[r3}{}_{n2 l2[l1l3]n3]} )
+
+    Slots:
+        A (r1,r2,r3,a1,a2,a3)   B (m1,m2,m3,a1,a2,a3)
+        C (m1,m2,m3,n1,n2,n3)   D (r1,r2,l1,l2,l3,n1)
+        E (r3,n2,l2,l1,l3,n3)
+    """
+    n = composite_n1050(five_form, mod, backend)
+    a = n
+    b = _raise_axes(n, (3, 4, 5), mod)
+    c = _nested_pair(_raise_axes(n, (0, 1, 2), mod), mod, reading,
+                     "eq (4.24) I^(11)_10 inner [n1n2]n3]")
+    d = _raise_axes(n, (0, 1, 5), mod)
+    e = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)
+    return int(mod_einsum(
+        "abcxyz,mnoxyz,mnopqr,abstup,cqtsur->",
+        [a, b, c, d, e], mod) % mod)
+
+
+def p10_12_five_n1050(five_form, mod=P, backend="optimized", reading="outer"):
+    """I^(12)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )
+                   ( N^{[m1m2m3[n1n2]n3]} N_{[n1}{}^{r1 l1[r2 l2]l3]}
+                     N^{[r3}{}_{n2 l2[n3 l1]l3]} )
+
+    Differs from I^(11) only in the index arrangement of the last two blocks:
+    D is (n1,r1,l1,r2,l2,l3) and E is (r3,n2,l2,n3,l1,l3).
+    """
+    n = composite_n1050(five_form, mod, backend)
+    a = n
+    b = _raise_axes(n, (3, 4, 5), mod)
+    c = _nested_pair(_raise_axes(n, (0, 1, 2), mod), mod, reading,
+                     "eq (4.24) I^(12)_10 inner [n1n2]n3]")
+    d = _raise_axes(n, (0, 1, 3), mod)
+    e = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)
+    return int(mod_einsum(
+        "abcxyz,mnoxyz,mnopqr,pasbtu,cqtrsu->",
+        [a, b, c, d, e], mod) % mod)
+
+
+def _nested_variant(fn):
+    def wrapped(five_form, mod=P, backend="optimized"):
+        return fn(five_form, mod, backend, reading="nested")
+    wrapped.__name__ = fn.__name__ + "_nested"
+    wrapped.__doc__ = f"{fn.__name__} under the AMB-02 'nested' reading."
+    return wrapped
+
+
+p10_10_nested = _nested_variant(p10_10_five_n1050)
+p10_11_nested = _nested_variant(p10_11_five_n1050)
+p10_12_nested = _nested_variant(p10_12_five_n1050)
 
 
 PUBLISHED_DEGREE10 = {
@@ -152,6 +493,54 @@ PUBLISHED_DEGREE10 = {
                "evaluator": p10_06_mm_m_n1050_n4125, "implemented": True,
                "blocks": {"M": 3, "N1050": 1, "N4125": 1},
                "brackets": "black only"},
+    "P10_04": {"source_label": "I^(4)_10",
+               "formula": "(MM) M red( N^(1050) N^(1050) )",
+               "evaluator": p10_04_mm_m_red_n1050_n1050, "implemented": True,
+               "blocks": {"M": 3, "N1050": 2},
+               "brackets": "black supplied by composite_n1050, then RED "
+                           "symmetrisation; reading AMB-01 'all4'",
+               "ambiguity": "AMB-01"},
+    "P10_05": {"source_label": "I^(5)_10",
+               "formula": "(MM) M [black nu, black mu] N^(1050) N^(1050)",
+               "evaluator": p10_05_mm_m_antisym_n1050_n1050,
+               "implemented": True,
+               "blocks": {"M": 3, "N1050": 2},
+               "brackets": "black only; two explicit BracketOp pairs"},
+    "P10_08": {"source_label": "I^(8)_10",
+               "formula": "N^(1050) M M [black] (N^(1050) N^(1050))",
+               "evaluator": p10_08_n1050_mm_antisym_n1050_n1050,
+               "implemented": True,
+               "blocks": {"M": 2, "N1050": 3},
+               "brackets": "black only; one explicit BracketOp pair"},
+    "P10_09": {"source_label": "I^(9)_10",
+               "formula": "red( N^(1050) M N^(1050) ) N^(1050) N^(1050)",
+               "evaluator": p10_09_red_n1050_m_n1050_n1050_n1050,
+               "implemented": True,
+               "blocks": {"M": 1, "N1050": 4},
+               "brackets": "black supplied by composite_n1050, then RED "
+                           "symmetrisation over (nu, rho, lambda)",
+               "ambiguity": "AMB-01"},
+    "P10_10": {"source_label": "I^(10)_10",
+               "formula": "five N^(1050), nested brackets",
+               "evaluator": p10_10_five_n1050, "implemented": True,
+               "blocks": {"N1050": 5},
+               "brackets": "outer black supplied by composite_n1050; inner "
+                           "group unresolved, reading 'outer'",
+               "ambiguity": "AMB-02"},
+    "P10_11": {"source_label": "I^(11)_10",
+               "formula": "five N^(1050), nested brackets",
+               "evaluator": p10_11_five_n1050, "implemented": True,
+               "blocks": {"N1050": 5},
+               "brackets": "outer black supplied by composite_n1050; inner "
+                           "group unresolved, reading 'outer'",
+               "ambiguity": "AMB-02"},
+    "P10_12": {"source_label": "I^(12)_10",
+               "formula": "five N^(1050), nested brackets",
+               "evaluator": p10_12_five_n1050, "implemented": True,
+               "blocks": {"N1050": 5},
+               "brackets": "outer black supplied by composite_n1050; inner "
+                           "group unresolved, reading 'outer'",
+               "ambiguity": "AMB-02"},
     "P10_07": {"source_label": "I^(7)_10",
                "formula": "N^(1050) (MM) (N^(1050) N^(1050))",
                "evaluator": p10_07_n1050_mm_n1050_n1050, "implemented": True,
@@ -159,10 +548,15 @@ PUBLISHED_DEGREE10 = {
                "brackets": "black only"},
 }
 
-NOT_IMPLEMENTED = {
-    f"P10_{i:02d}": "nested red/black bracket structure; needs an "
-                    "(anti)symmetrisation engine with correct operation order"
-    for i in [4, 5, 8, 9, 10, 11, 12]
+NOT_IMPLEMENTED = {}
+
+# The AMB-02 alternative readings, evaluated alongside the primary registry so
+# the ambiguity is measured rather than assumed away.
+AMBIGUITY_VARIANTS = {
+    "P10_04": ("AMB-01", "pairs", p10_04_pairs),
+    "P10_10": ("AMB-02", "nested", p10_10_nested),
+    "P10_11": ("AMB-02", "nested", p10_11_nested),
+    "P10_12": ("AMB-02", "nested", p10_12_nested),
 }
 
 # Read off the 400 dpi render of eq (4.24), journal p17: which candidates

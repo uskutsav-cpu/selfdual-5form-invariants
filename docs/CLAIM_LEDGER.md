@@ -491,3 +491,52 @@ mistakes is not an audit trail.
 - **Caveats**: `tr(M^6)` has no certified rational graph-basis coordinates
   (29 of 72 columns exceed the CRT bound at 15 primes); only the modular span
   and quotient statements are certified, which suffices for a rank claim.
+
+
+## C-P10-BUG-01 — the shipped P10_07 was not a Lorentz scalar
+
+- **Status**: DEFECT FOUND AND FIXED. Recorded because the *detection route*
+  matters more than the bug.
+- **What was wrong**: `p10_07_n1050_mm_n1050_n1050` raised all six axes on both
+  inner `N^(1050)` factors, so the three alpha edges each joined two raised
+  slots and contracted with `delta` rather than `eta`.
+- **Observable**: `not_in_atlas_span` on all six primes. A consistent failure
+  across independent moduli is structural, never modular bad luck.
+- **Confirmation**: rotation invariant (22769 -> 22769) but boost violating
+  (22769 -> 19807) at 32749, and likewise at 32719. That asymmetry is the
+  signature of a metric misplacement: `delta` and `eta` agree on the spatial
+  block, so a rotation cannot see it.
+- **Fix**: `mm = mixed @ mixed` is `(MM)_{a}{}^{b}` — slot 0 DOWN, slot 1 UP —
+  the opposite of what the docstring asserted. Raise `(5,)` on the outer `N`,
+  `(0,1,2)` and `(0,1,3,4,5)` on the inner pair.
+- **Independent check that the fix is not accidental**: moving the metric to
+  the other end of every alpha edge gives bit-identical values (10384 at
+  32749, 25537 at 32719). A genuine tensor contraction cannot depend on which
+  end carries the metric.
+- **Why it survived review**: no boost test existed for any degree-10
+  candidate. The suite tested homogeneity, which catches int64 overflow, and
+  nothing that constrains index placement.
+- **Permitted**: "a metric-placement defect in P10_07 was found by the atlas
+  projection and confirmed by a boost test."
+- **Forbidden**: treating the earlier `Q10 rank 0` reading as having covered
+  P10_07 — it never contributed a vector, because it never solved.
+- **Regression cover**: `test_every_published_candidate_is_boost_invariant`,
+  `test_p10_07_alpha_edge_placement_is_free`,
+  `test_the_original_p10_07_placement_really_was_broken`.
+
+
+## C-P10-METHOD-01 — index placement is derived, not read
+
+- **Wording**: "Up/down index placement for the equation-(4.24) candidates is
+  determined by the rule that every contracted edge carries exactly one raised
+  end, and validated by a boost test; it is not read from the PDF text
+  stream."
+- **Justification**: PDF extraction returns stacked super/subscripts in
+  glyph-position order, which does not reliably distinguish `M_{a}{}^{b}` from
+  `M^{a}{}_{b}`. The edge rule has a unique answer up to which end carries the
+  metric, and that choice provably cannot change the value.
+- **Validation**: the rule independently reproduces the placement that was
+  verified for P10_07 by boost test.
+- **Class**: `METHOD`
+- **Forbidden**: claiming the *bracket colour* is similarly recoverable. It is
+  not — see AMB-01 and AMB-02 in `PUBLISHED_DEGREE10_INDEX_AUDIT.md`.

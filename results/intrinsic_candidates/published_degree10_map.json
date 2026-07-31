@@ -4,7 +4,10 @@
  "degree": 10,
  "implemented": [
   "P10_01",
-  "P10_02"
+  "P10_02",
+  "P10_03",
+  "P10_06",
+  "P10_07"
  ],
  "not_implemented": 10,
  "per_prime": {
@@ -22,6 +25,33 @@
      "status": "solved"
     },
     "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -53,6 +83,33 @@
       0
      ],
      "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
     }
    }
   },
@@ -70,6 +127,33 @@
      "status": "solved"
     },
     "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
      "nonzero": false,
      "quotient_vector": [
       0,
@@ -101,6 +185,33 @@
       0
      ],
      "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
     }
    }
   },
@@ -125,6 +236,33 @@
       0
      ],
      "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
     }
    }
   },
@@ -142,6 +280,33 @@
      "status": "solved"
     },
     "P10_02": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_03": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_06": {
+     "nonzero": false,
+     "quotient_vector": [
+      0,
+      0,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_07": {
      "nonzero": false,
      "quotient_vector": [
       0,
