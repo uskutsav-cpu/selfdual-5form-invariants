@@ -1,0 +1,127 @@
+{
+  "arithmetic": "exact over F_p, no floating point, no tolerance",
+  "primes": {
+    "32719": {
+      "bridge": {
+        "antiselfdual_dim": 126,
+        "antiselfdual_maps_to_zero": true,
+        "forward_rank": 126,
+        "image_dim": 126,
+        "image_equals_gamma_traceless": true,
+        "kernel_dim": 126,
+        "kernel_equals_antiselfdual": true,
+        "prime": 32719,
+        "round_trip_selfdual": true,
+        "scaling_linear": true,
+        "selfdual_dim": 126,
+        "star_squared": 1
+      },
+      "clifford": {
+        "clifford_relation": true,
+        "gamma_trace_rank": 10,
+        "gamma_traceless_dim": 126,
+        "sigma_bar_symmetric": true,
+        "sigma_symmetric": true
+      },
+      "covariance": {
+        "elements": [
+          {
+            "chi": [
+              5342
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 5342
+          },
+          {
+            "chi": [
+              21669
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 21669
+          },
+          {
+            "chi": [
+              26150
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 26150
+          }
+        ],
+        "equivariant_up_to_character": true
+      },
+      "frame_transition": {
+        "L_invertible": true,
+        "congruence_exact": true,
+        "prime": 32719
+      }
+    },
+    "32749": {
+      "bridge": {
+        "antiselfdual_dim": 126,
+        "antiselfdual_maps_to_zero": true,
+        "forward_rank": 126,
+        "image_dim": 126,
+        "image_equals_gamma_traceless": true,
+        "kernel_dim": 126,
+        "kernel_equals_antiselfdual": true,
+        "prime": 32749,
+        "round_trip_selfdual": true,
+        "scaling_linear": true,
+        "selfdual_dim": 126,
+        "star_squared": 1
+      },
+      "clifford": {
+        "clifford_relation": true,
+        "gamma_trace_rank": 10,
+        "gamma_traceless_dim": 126,
+        "sigma_bar_symmetric": true,
+        "sigma_symmetric": true
+      },
+      "covariance": {
+        "elements": [
+          {
+            "chi": [
+              17596
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 17596
+          },
+          {
+            "chi": [
+              31547
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 31547
+          },
+          {
+            "chi": [
+              31108
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 31108
+          }
+        ],
+        "equivariant_up_to_character": true
+      },
+      "frame_transition": {
+        "L_invertible": true,
+        "congruence_exact": true,
+        "prime": 32749
+      }
+    }
+  },
+  "real_form_obstruction": "Over R the null frame carries signature (5,5) and the trace frame carries signature (1,9). Sylvester's law makes these inequivalent, so the transition matrix is necessarily complex (it multiplies four directions by i). Over C, and over F_p where signature is not defined and only the discriminant survives, the two are congruent and the transition is exact.",
+  "schema": 1
+}
