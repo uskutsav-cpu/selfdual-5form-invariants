@@ -1,0 +1,195 @@
+{
+ "incidence": {},
+ "per_prime": {
+  "32717": {
+   "dims": {
+    "A10": 14,
+    "B10": 12,
+    "D10": 11,
+    "G10": 12,
+    "P10": 2
+   },
+   "incidence": {
+    "A10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 12,
+     "intersection": 12,
+     "sum": 14
+    },
+    "A10|D10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 11,
+     "intersection": 11,
+     "sum": 14
+    },
+    "A10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 12,
+     "intersection": 12,
+     "sum": 14
+    },
+    "A10|P10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 2,
+     "intersection": 2,
+     "sum": 14
+    },
+    "B10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 12,
+     "dim_b": 12,
+     "intersection": 10,
+     "sum": 14
+    },
+    "D10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 11,
+     "dim_b": 12,
+     "intersection": 9,
+     "sum": 14
+    },
+    "D10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 11,
+     "dim_b": 12,
+     "intersection": 9,
+     "sum": 14
+    },
+    "P10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 12,
+     "intersection": 1,
+     "sum": 13
+    },
+    "P10|D10": {
+     "a_subset_b": true,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 11,
+     "intersection": 2,
+     "sum": 11
+    },
+    "P10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 12,
+     "intersection": 0,
+     "sum": 14
+    }
+   }
+  },
+  "32749": {
+   "dims": {
+    "A10": 14,
+    "B10": 12,
+    "D10": 11,
+    "G10": 12,
+    "P10": 2
+   },
+   "incidence": {
+    "A10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 12,
+     "intersection": 12,
+     "sum": 14
+    },
+    "A10|D10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 11,
+     "intersection": 11,
+     "sum": 14
+    },
+    "A10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 12,
+     "intersection": 12,
+     "sum": 14
+    },
+    "A10|P10": {
+     "a_subset_b": false,
+     "b_subset_a": true,
+     "dim_a": 14,
+     "dim_b": 2,
+     "intersection": 2,
+     "sum": 14
+    },
+    "B10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 12,
+     "dim_b": 12,
+     "intersection": 10,
+     "sum": 14
+    },
+    "D10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 11,
+     "dim_b": 12,
+     "intersection": 9,
+     "sum": 14
+    },
+    "D10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 11,
+     "dim_b": 12,
+     "intersection": 9,
+     "sum": 14
+    },
+    "P10|B10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 12,
+     "intersection": 1,
+     "sum": 13
+    },
+    "P10|D10": {
+     "a_subset_b": true,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 11,
+     "intersection": 2,
+     "sum": 11
+    },
+    "P10|G10": {
+     "a_subset_b": false,
+     "b_subset_a": false,
+     "dim_a": 2,
+     "dim_b": 12,
+     "intersection": 0,
+     "sum": 14
+    }
+   }
+  }
+ },
+ "schema": 1,
+ "spaces": {
+  "A10": "full degree-10 atlas (14)",
+  "B10": "published equation-(4.24) candidate span (12)",
+  "D10": "stress-flow reachable closure (11)",
+  "G10": "span of the twelve graph generators I10_1..I10_12 (12)",
+  "P10": "lower-product subspace, I4_1*I6_1 and I4_1*I6_2 (2)"
+ }
+}

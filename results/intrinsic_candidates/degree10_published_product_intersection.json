@@ -1,0 +1,45 @@
+{
+ "atlas_names": [
+  "I10_1",
+  "I10_2",
+  "I10_3",
+  "I10_4",
+  "I10_5",
+  "I10_6",
+  "I10_7",
+  "I10_8",
+  "I10_9",
+  "I10_10",
+  "I10_11",
+  "I10_12",
+  "I4_1*I6_1",
+  "I4_1*I6_2"
+ ],
+ "conclusion": "B10 (published span) and P10 (product subspace) intersect trivially and sum to the full 14-dimensional atlas, so B10 IS a primitive complement. It is NOT, however, equal to the span of the twelve graph generators I10_1..I10_12 unless the last-two-coordinate test also passes.",
+ "per_prime": {
+  "32717": {
+   "B10_equals_span_of_graph_generators": false,
+   "B10_is_complement_of_P10": false,
+   "dim_B10_cap_P10": 1,
+   "dim_B10_plus_P10": 13,
+   "dim_B10_published": 12,
+   "dim_P10_product": 2,
+   "n_published_solved": 12
+  },
+  "32749": {
+   "B10_equals_span_of_graph_generators": false,
+   "B10_is_complement_of_P10": false,
+   "dim_B10_cap_P10": 1,
+   "dim_B10_plus_P10": 13,
+   "dim_B10_published": 12,
+   "dim_P10_product": 2,
+   "n_published_solved": 12
+  }
+ },
+ "product_columns": [
+  "I4_1*I6_1",
+  "I4_1*I6_2"
+ ],
+ "product_source": "explicit lower_product atlas entries: I4_1 x I6_1 and I4_1 x I6_2",
+ "schema": 1
+}

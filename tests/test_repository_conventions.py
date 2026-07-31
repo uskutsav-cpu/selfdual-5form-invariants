@@ -60,3 +60,30 @@ def test_helper_scripts_named_like_tests_are_documented():
         assert "not a pytest" in head.lower() or "helper" in head.lower(), (
             f"{path.name} looks like a test but lives in scripts/. Add a "
             f"docstring saying it is a helper module, or rename it.")
+
+
+def test_published_span_is_not_a_primitive_complement():
+    """Pins the computed product decomposition against a tempting false claim.
+
+    The published span B10 and the product subspace P10 both sit in the
+    14-dimensional degree-10 atlas. Two decompositions both read 12+2, which
+    invites identifying them. They are NOT the same: B10 meets P10 in exactly
+    one dimension and B10+P10 is only 13-dimensional, so B10 has primitive
+    content 11, not 12.
+    """
+    import json
+    path = (ROOT / "results" / "intrinsic_candidates"
+            / "degree10_published_product_intersection.json")
+    if not path.exists():
+        return
+    payload = json.loads(path.read_text())
+    for prime, rec in payload["per_prime"].items():
+        assert rec["dim_B10_published"] == 12, prime
+        assert rec["dim_P10_product"] == 2, prime
+        assert rec["dim_B10_cap_P10"] == 1, (
+            f"at {prime} the published span meets the product subspace in "
+            f"{rec['dim_B10_cap_P10']} dimensions, not 1; the primitive "
+            f"content claim (11) depends on this")
+        assert rec["dim_B10_plus_P10"] == 13, prime
+        assert rec["B10_is_complement_of_P10"] is False, (
+            "B10 must NOT be recorded as a primitive complement")
