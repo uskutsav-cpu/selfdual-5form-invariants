@@ -10,6 +10,8 @@ import json
 import os
 import sys
 import tempfile
+
+import pytest
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
@@ -112,3 +114,29 @@ def test_atomic_write_leaves_no_temp_files():
 def test_peak_rss_is_reported_in_megabytes():
     value = peak_rss_mb()
     assert 1.0 < value < 100000.0, f"implausible peak RSS {value} MB"
+
+
+def test_commit_drift_does_not_block_resume_but_atlas_change_does(tmp_path):
+    """A new commit must not discard valid work; a new atlas must.
+
+    The first version treated `source_commit` as invalidating, so committing a
+    documentation change threw away a completed two-prime projection. Only
+    fields that actually change the computed values may block a resume.
+    """
+    base = {"source_commit": "aaaa", "atlas_sha256": "atlas1",
+            "evaluator_version": "v1", "prime": 32749, "degree": 10}
+    store = ProjectionCheckpoint(tmp_path / "ck", base)
+    store.save_unit(32749, 0, 0, "I10_1", 1234, 0.1)
+    store.flush_manifest()
+
+    moved = dict(base, source_commit="bbbb")
+    resumed = ProjectionCheckpoint(tmp_path / "ck", moved)
+    unit = resumed.load_unit(32749, 0, 0)
+    assert unit is not None and unit["value"] == 1234, (
+        "a commit that changes no input discarded stored units")
+    assert resumed.commit_drift == ("aaaa", "bbbb"), "drift not recorded"
+
+    for key, value in (("atlas_sha256", "atlas2"),
+                       ("evaluator_version", "v2")):
+        with pytest.raises(ValueError, match="identity mismatch"):
+            ProjectionCheckpoint(tmp_path / "ck", dict(base, **{key: value}))

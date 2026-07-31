@@ -30,7 +30,7 @@
  ],
  "n_not_implemented": 0,
  "not_implemented": [],
- "peak_rss_mb": 531.3,
+ "peak_rss_mb": 266.6,
  "per_prime": {
   "32717": {
    "Q10_rank_from_published": 3,
@@ -284,6 +284,31 @@
      "quotient_vector": [
       30992,
       15284,
+      0
+     ],
+     "status": "solved"
+    },
+    "P10_09[rholambda]": {
+     "atlas_coordinates": [
+      27173,
+      17232,
+      19386,
+      26988,
+      27890,
+      29055,
+      18687,
+      20317,
+      1332,
+      23894,
+      4223,
+      0,
+      29116,
+      29968
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      29055,
+      18687,
       0
      ],
      "status": "solved"
@@ -698,6 +723,31 @@
      ],
      "status": "solved"
     },
+    "P10_09[rholambda]": {
+     "atlas_coordinates": [
+      19854,
+      22202,
+      23840,
+      16474,
+      28275,
+      9958,
+      14723,
+      28984,
+      11468,
+      9079,
+      3297,
+      0,
+      25664,
+      12542
+     ],
+     "nonzero": true,
+     "quotient_vector": [
+      9958,
+      14723,
+      0
+     ],
+     "status": "solved"
+    },
     "P10_10": {
      "atlas_coordinates": [
       22886,
@@ -853,7 +903,7 @@
    "role": "fit"
   }
  },
- "runtime_seconds": 912.0,
+ "runtime_seconds": 54.9,
  "schema": 2,
- "source_commit": "df66f25ac2c1fcbfc523e7daae48e010eaeb5ed3"
+ "source_commit": "8f084bcb0c198675fc3aa02761c4868133ab2d09"
 }

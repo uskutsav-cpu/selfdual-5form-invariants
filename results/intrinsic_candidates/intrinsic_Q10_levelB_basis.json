@@ -1,11 +1,48 @@
 {
  "ambiguity_robust": {
   "P10_04": true,
+  "P10_09": false,
   "P10_10": true,
   "P10_11": false,
   "P10_12": true
  },
  "claim": "preferred under the simplicity criterion recorded in scripts/build_Q10_levelB_basis.py, and minimal among the twelve published equation-(4.24) candidates",
+ "levelA_in_levelB": {
+  "32717": {
+   "Q10_A": [
+    0,
+    1933,
+    10789
+   ],
+   "Q10_B": [
+    0,
+    26830,
+    6434
+   ],
+   "Q10_C": [
+    31895,
+    21422,
+    16734
+   ]
+  },
+  "32749": {
+   "Q10_A": [
+    0,
+    28176,
+    15523
+   ],
+   "Q10_B": [
+    0,
+    24337,
+    1402
+   ],
+   "Q10_C": [
+    17371,
+    32639,
+    26407
+   ]
+  }
+ },
  "not_claimed": "canonical in any absolute sense; no larger class was enumerated",
  "per_prime": {
   "32717": {
@@ -70,11 +107,11 @@
   }
  },
  "preferred_basis": [
-  "P10_09",
   "P10_10",
+  "P10_11",
   "P10_12"
  ],
- "preferred_score": 183.1,
+ "preferred_score": 222.2,
  "schema": 1,
  "triples_agree_across_primes": true
 }

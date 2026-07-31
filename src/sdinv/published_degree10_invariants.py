@@ -313,7 +313,8 @@ def p10_04_pairs(five_form, mod=P, backend="optimized"):
     return p10_04_mm_m_red_n1050_n1050(five_form, mod, backend, "pairs")
 
 
-def p10_09_red_n1050_m_n1050_n1050_n1050(five_form, mod=P, backend="optimized"):
+def p10_09_red_n1050_m_n1050_n1050_n1050(five_form, mod=P, backend="optimized",
+                                         red_reading="all3"):
     """I^(9)_10 = N^(1050)_{[a1a2a3a4 kappa](nu} M^{kappa mu}
                   N_(1050)^{[a1a2a3a4}{}_{rho] lambda)}
                   N_(1050)^{[b1b2b3b4 mu] nu} N^(1050)_{[b1b2b3b4}{}_{rho] lambda}
@@ -349,10 +350,15 @@ def p10_09_red_n1050_m_n1050_n1050_n1050(five_form, mod=P, backend="optimized"):
 
     # slots of T: 0 = nu (down), 1 = mu (up), 2 = rho (down), 3 = lambda (down)
     tensor = mod_einsum("abcdkn,km,abcdrl->nmrl", [n_a, m_up, n_b], mod)
+    if red_reading not in ("all3", "rholambda"):
+        raise ValueError(f"unknown red_reading {red_reading!r}")
+    # AMB-01 alternative: the red bracket might enclose only the two slots that
+    # sit on the same tensor, (rho, lambda), rather than nu as well.
+    slots = (0, 2, 3) if red_reading == "all3" else (2, 3)
     program = BracketProgram(
-        ops=[BracketOp("sym", (0, 2, 3), RED, True,
+        ops=[BracketOp("sym", slots, RED, True,
                        "eq (4.24) I^(9)_10 red bracket (nu ... rho]lambda)")],
-        source="eq (4.24) I^(9)_10")
+        source=f"eq (4.24) I^(9)_10 reading {red_reading}")
     tensor = program.apply(tensor, mod)
 
     return int(mod_einsum(
@@ -552,8 +558,15 @@ NOT_IMPLEMENTED = {}
 
 # The AMB-02 alternative readings, evaluated alongside the primary registry so
 # the ambiguity is measured rather than assumed away.
+def p10_09_rholambda(five_form, mod=P, backend="optimized"):
+    """I^(9)_10 with the red bracket enclosing only (rho, lambda); see AMB-01."""
+    return p10_09_red_n1050_m_n1050_n1050_n1050(
+        five_form, mod, backend, red_reading="rholambda")
+
+
 AMBIGUITY_VARIANTS = {
     "P10_04": ("AMB-01", "pairs", p10_04_pairs),
+    "P10_09": ("AMB-01", "rholambda", p10_09_rholambda),
     "P10_10": ("AMB-02", "nested", p10_10_nested),
     "P10_11": ("AMB-02", "nested", p10_11_nested),
     "P10_12": ("AMB-02", "nested", p10_12_nested),

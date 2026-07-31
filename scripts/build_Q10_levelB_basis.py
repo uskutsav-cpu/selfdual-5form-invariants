@@ -33,6 +33,41 @@ RUNTIME = {"P10_01": 0.0, "P10_02": 7.3, "P10_03": 5.8, "P10_04": 5.3,
            "P10_09": 5.1, "P10_10": 5.4, "P10_11": 7.2, "P10_12": 6.6}
 
 
+def _solve3(rows, target, p):
+    """Solve  x . rows = target  over F_p by Gauss-Jordan. Exact, no floats.
+
+    `rows` are the basis quotient vectors as the ROWS of a 3x3 matrix, so the
+    system is rows^T x = target.
+    """
+    n = len(rows)
+    aug = [[int(rows[j][i]) % p for j in range(n)] + [int(target[i]) % p]
+           for i in range(len(target))]
+    piv_row = 0
+    where = []
+    for col in range(n):
+        sel = next((r for r in range(piv_row, len(aug)) if aug[r][col] % p), None)
+        if sel is None:
+            where.append(None)
+            continue
+        aug[piv_row], aug[sel] = aug[sel], aug[piv_row]
+        inv_p = pow(aug[piv_row][col], p - 2, p)
+        aug[piv_row] = [(v * inv_p) % p for v in aug[piv_row]]
+        for r in range(len(aug)):
+            if r != piv_row and aug[r][col] % p:
+                f = aug[r][col]
+                aug[r] = [(a - f * b) % p for a, b in zip(aug[r], aug[piv_row])]
+        where.append(piv_row)
+        piv_row += 1
+    for r in range(piv_row, len(aug)):
+        if aug[r][n] % p:
+            return None                      # inconsistent
+    out = [0] * n
+    for col in range(n):
+        if where[col] is not None:
+            out[col] = aug[where[col]][n] % p
+    return out
+
+
 def score(name, ambiguity_robust):
     """Deterministic simplicity score. LOWER is simpler.
 
@@ -138,6 +173,30 @@ def main():
         print(f"  {entry['total']:8.1f}  {flags}")
 
     preferred = scored[0] if scored else None
+
+    # --- Level-A <-> Level-B change of basis --------------------------------
+    # Express each Level-A quotient class Q10_A/B/C in the preferred Level-B
+    # basis, by exact modular solve. Both sides are vectors in the SAME
+    # 3-dimensional quotient coordinates, so this is a 3x3 solve per prime.
+    control = json.loads(
+        (ROOT / "results" / "intrinsic_candidates"
+         / "degree10_positive_control.json").read_text())
+    level_map = {}
+    for prime, rec in sorted(per_prime.items()):
+        p = int(prime)
+        if preferred is None or prime not in control["per_prime"]:
+            continue
+        basis_rows = np.asarray(
+            [per_prime[prime]["projections"][n]["quotient_vector"]
+             for n in preferred["triple"]], dtype=object) % p
+        entry = {}
+        for label, target in zip(("Q10_A", "Q10_B", "Q10_C"),
+                                 control["per_prime"][prime]["vectors"]):
+            coeffs = _solve3(basis_rows, np.asarray(target, dtype=object) % p, p)
+            entry[label] = None if coeffs is None else [int(c) for c in coeffs]
+        level_map[prime] = entry
+        print(f"  Level-A in Level-B at {prime}: "
+              + ", ".join(f"{k}={v}" for k, v in sorted(entry.items())))
     basis = {
         "schema": 1,
         "claim": ("preferred under the simplicity criterion recorded in "
@@ -150,6 +209,7 @@ def main():
         "ambiguity_robust": {k: bool(v) for k, v in sorted(robust.items())},
         "per_prime": results,
         "triples_agree_across_primes": consistent,
+        "levelA_in_levelB": level_map,
     }
     OUT_BASIS.write_text(json.dumps(basis, indent=1, sort_keys=True) + "\n")
     OUT_SEARCH.write_text(json.dumps(

@@ -5,55 +5,6 @@
   {
    "members": [
     {
-     "ambiguity": "AMB-01",
-     "ambiguity_robust": true,
-     "black_ops": 0,
-     "expanded_permutation_terms": 6,
-     "m_factors": 1,
-     "n1050_factors": 4,
-     "n4125_factors": 0,
-     "name": "P10_09",
-     "red_ops": 1,
-     "runtime_seconds": 5.1,
-     "score": 69.1
-    },
-    {
-     "ambiguity": "AMB-02",
-     "ambiguity_robust": true,
-     "black_ops": 0,
-     "expanded_permutation_terms": 1,
-     "m_factors": 0,
-     "n1050_factors": 5,
-     "n4125_factors": 0,
-     "name": "P10_10",
-     "red_ops": 0,
-     "runtime_seconds": 5.4,
-     "score": 56.4
-    },
-    {
-     "ambiguity": "AMB-02",
-     "ambiguity_robust": true,
-     "black_ops": 0,
-     "expanded_permutation_terms": 1,
-     "m_factors": 0,
-     "n1050_factors": 5,
-     "n4125_factors": 0,
-     "name": "P10_12",
-     "red_ops": 0,
-     "runtime_seconds": 6.6,
-     "score": 57.6
-    }
-   ],
-   "total": 183.1,
-   "triple": [
-    "P10_09",
-    "P10_10",
-    "P10_12"
-   ]
-  },
-  {
-   "members": [
-    {
      "ambiguity": "AMB-02",
      "ambiguity_robust": true,
      "black_ops": 0,
@@ -104,7 +55,7 @@
    "members": [
     {
      "ambiguity": "AMB-01",
-     "ambiguity_robust": true,
+     "ambiguity_robust": false,
      "black_ops": 0,
      "expanded_permutation_terms": 6,
      "m_factors": 1,
@@ -113,7 +64,56 @@
      "name": "P10_09",
      "red_ops": 1,
      "runtime_seconds": 5.1,
-     "score": 69.1
+     "score": 119.1
+    },
+    {
+     "ambiguity": "AMB-02",
+     "ambiguity_robust": true,
+     "black_ops": 0,
+     "expanded_permutation_terms": 1,
+     "m_factors": 0,
+     "n1050_factors": 5,
+     "n4125_factors": 0,
+     "name": "P10_10",
+     "red_ops": 0,
+     "runtime_seconds": 5.4,
+     "score": 56.4
+    },
+    {
+     "ambiguity": "AMB-02",
+     "ambiguity_robust": true,
+     "black_ops": 0,
+     "expanded_permutation_terms": 1,
+     "m_factors": 0,
+     "n1050_factors": 5,
+     "n4125_factors": 0,
+     "name": "P10_12",
+     "red_ops": 0,
+     "runtime_seconds": 6.6,
+     "score": 57.6
+    }
+   ],
+   "total": 233.1,
+   "triple": [
+    "P10_09",
+    "P10_10",
+    "P10_12"
+   ]
+  },
+  {
+   "members": [
+    {
+     "ambiguity": "AMB-01",
+     "ambiguity_robust": false,
+     "black_ops": 0,
+     "expanded_permutation_terms": 6,
+     "m_factors": 1,
+     "n1050_factors": 4,
+     "n4125_factors": 0,
+     "name": "P10_09",
+     "red_ops": 1,
+     "runtime_seconds": 5.1,
+     "score": 119.1
     },
     {
      "ambiguity": "AMB-02",
@@ -142,7 +142,7 @@
      "score": 108.2
     }
    ],
-   "total": 233.7,
+   "total": 283.7,
    "triple": [
     "P10_09",
     "P10_10",

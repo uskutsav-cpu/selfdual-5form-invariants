@@ -106,6 +106,7 @@ class ProjectionCheckpoint:
         self.max_rss_mb = max_rss_mb
         self.root.mkdir(parents=True, exist_ok=True)
         self.manifest_path = self.root / "manifest.json"
+        self.commit_drift = None
         self.manifest = self._load_manifest()
 
     def _load_manifest(self):
@@ -115,14 +116,26 @@ class ProjectionCheckpoint:
         with self.manifest_path.open() as handle:
             manifest = json.load(handle)
         stored = manifest.get("identity", {})
-        for key in ("source_commit", "atlas_sha256", "basis_sha256",
-                    "evaluator_version"):
+        # Only fields that actually INVALIDATE stored values may block a
+        # resume. `source_commit` is provenance, not invalidation: committing a
+        # documentation change, or adding a new evaluator alongside the
+        # existing ones, does not alter any value already computed. Treating it
+        # as blocking discarded a completed two-prime projection the first time
+        # this ran, which is the opposite of what a checkpoint is for.
+        #
+        # `evaluator_version` is the field that exists to invalidate, and it
+        # must be bumped whenever an existing evaluator's OUTPUT changes.
+        for key in ("atlas_sha256", "basis_sha256", "evaluator_version",
+                    "prime", "seed_base", "degree"):
             if key in self.identity and key in stored:
                 if stored[key] != self.identity[key]:
                     raise ValueError(
                         f"checkpoint identity mismatch on {key!r}: stored "
                         f"{stored[key]!r} != current {self.identity[key]!r}. "
-                        f"Refusing to resume against a different atlas.")
+                        f"Refusing to resume against different inputs.")
+        drift = (stored.get("source_commit"), self.identity.get("source_commit"))
+        if drift[0] and drift[1] and drift[0] != drift[1]:
+            self.commit_drift = drift          # recorded, not fatal
         return manifest
 
     def unit_path(self, prime, sample, column):
