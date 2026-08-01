@@ -69,7 +69,8 @@ python manuscript/scripts/make_numbers.py         # regenerate from artifacts
 python manuscript/scripts/make_tables.py
 python manuscript/scripts/make_figures.py
 python scripts/build_submission_package.py        # isolated build + archives
-python manuscript/scripts/check_manuscript.py     # 50 wording, claim and doc gates
+python manuscript/scripts/check_manuscript.py     # wording, claim and doc gates
+python scripts/reproduce_all.py                   # all of the above, recorded
 ```
 
 Long runs write incrementally and skip completed work, so re-issuing the same

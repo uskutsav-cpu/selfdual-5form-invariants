@@ -1,0 +1,68 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/reproduce_all.py",
+ "commit": "a68db7dba4eff9b7b275a1ca215bb17b6d866b3b",
+ "working_tree_clean": false,
+ "when": "2026-08-01T19:43:19Z",
+ "environment": {
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "python": "3.13.5",
+  "interpreter": "/Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/.venv/bin/python"
+ },
+ "not_regenerated": {
+  "results/rank81/certificate.json": "needs the third-party archive",
+  "results/rank81/minor81_certificate.json": "needs the third-party archive",
+  "verification/SPINOR_JACOBIAN_RUNS.json": "needs the third-party archive"
+ },
+ "steps": [
+  {
+   "step": "test suites",
+   "passed": null,
+   "note": "skipped by --skip-tests"
+  },
+  {
+   "step": "regenerate numbers",
+   "passed": true,
+   "seconds": 2.9,
+   "detail": {
+    "macros": 90,
+    "artifacts_missing": 0
+   }
+  },
+  {
+   "step": "regenerate tables",
+   "passed": true,
+   "seconds": 0.1,
+   "detail": null
+  },
+  {
+   "step": "regenerate figures",
+   "passed": true,
+   "seconds": 13.2,
+   "detail": null
+  },
+  {
+   "step": "isolated manuscript build",
+   "passed": true,
+   "seconds": 23.1,
+   "detail": {
+    "errors": 0,
+    "undefined_citations": 0,
+    "undefined_references": 0,
+    "overfull_boxes": 0,
+    "pdf_produced": true,
+    "pages": 21
+   }
+  },
+  {
+   "step": "manuscript gates",
+   "passed": true,
+   "seconds": 0.7,
+   "detail": {
+    "checks": 61
+   },
+   "note": null
+  }
+ ],
+ "all_steps_passed": true
+}

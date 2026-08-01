@@ -184,10 +184,22 @@ without exception.
   stress-flow reachable subspace --- unrelated to any product decomposition.
 \end{description}
 
-These genuinely differ. At degree eight the cumulative atlas dimension is
-$1+2+7=10$ while the cumulative Jacobian rank is $8$: two functional relations
-already exist among polynomially independent invariants. Table~\ref{tab:dims}
-collects the values.
+These genuinely differ, and the cleanest demonstration is at the top of the
+range rather than in the middle. The candidate family whose Jacobian we compute
+in section~\ref{sec:cert81} has $\exactJacRows$ members and Jacobian rank
+$\exactJacRank$, so exactly two functional relations hold among functions that
+are pairwise distinct as polynomials. Both are degree-twelve phenomena: the
+cumulative Jacobian ranks are $\cumRankDegFour, \cumRankDegSix,
+\cumRankDegEight, \cumRankDegTen, \cumRankDegTwelve$ against per-degree candidate
+counts that each contribute in full up to degree ten.
+
+A caution that cost us a wrong sentence in an earlier draft: one may not subtract
+a Jacobian rank taken over the spinor candidate family from a cumulative atlas
+dimension taken on the tensor side. The two are indexed by different sets --- at
+degree eight the tensor atlas has $\traceRankDegEight$ dimensions while the
+spinor family contributes $\spinorRankDegEight$ candidates --- and their
+difference is not a count of anything. Table~\ref{tab:dims} collects the values
+with each one's space named.
 
 \input{tables/dimensions}
 
@@ -619,8 +631,9 @@ Jacobian is $\exactJacRows \times \exactJacCols$ and has exact modular rank
   \mathrm{rank}_{\mathbb{F}_p} J \;=\; \exactJacRank ,
   \label{eq:exactrank}
 \end{equation}
-at $\exactJacPoints$ certified sample point(s) over the prime(s)
-$\exactJacPrimes$, with the per-degree cumulative ranks
+reproduced independently at each of $\exactJacPoints$ certified sample
+\exactJacPointWord{} over the \exactJacPrimeWord{} $\exactJacPrimes$, with the
+per-degree cumulative ranks
 \begin{center}
 \begin{tabular}{lccccc}
 \toprule
@@ -634,7 +647,7 @@ cumulative rank & \cumRankDegFour & \cumRankDegSix & \cumRankDegEight
 
 The rank statement is additionally witnessed by an explicit
 $\minorSize \times \minorSize$ minor whose determinant is nonzero
-(\minorDetNonzero) modulo the prime(s) $\minorPrimes$. Because the matrix is an
+(\minorDetNonzero) modulo $\minorPrimes$. Because the matrix is an
 integer reduction, a single prime with nonvanishing determinant already proves
 the integer minor is nonzero; the determinant is computed by two independent
 routines, which agree, and additional primes guard against an indexing error in
@@ -677,9 +690,13 @@ flows~\cite{Hutomo:2025chiral}.
 
 The concrete consequence of the degree-ten result is a statement about what those
 constructions reach. The stress-flow reachable subspace at degree ten has
-dimension $\dimDten$ inside a $\dimAten$-dimensional space. So there are exactly
+dimension $\dimDten$ inside a $\dimAten$-dimensional space. So there are
 $\dimQten$ independent directions of degree-ten local structure that the flow
-cannot generate, and we exhibit representatives of all of them.
+cannot generate, and we exhibit representatives of all of them. Following the
+limitation in section~\ref{sec:limitations}, this is $\dimQten$ over
+$\mathbb{F}_p$ at each prime tested and at most $\dimQten$ over $\mathbb{Q}$;
+the inequality runs in the direction that preserves the conclusion, since a
+class that is non-zero here remains non-zero against a larger $D_{10}$.
 
 This changes what a theorist can do in a specific way. Previously, a candidate
 degree-ten term could be compared against the published structures only, and if
@@ -697,10 +714,31 @@ of these follows from the algebra computed here.
 \label{sec:limitations}
 
 \begin{enumerate}
-\item \textbf{Modular, not characteristic zero.} All exact results are certified
-      at $\nBridgePrimes$ primes. Lower bounds transfer to characteristic zero
-      unconditionally; upper bounds do not, and where one is needed it is taken
-      from an analytic argument.
+\item \textbf{Modular, not characteristic zero --- and not uniformly so.} Lower
+      bounds transfer to characteristic zero unconditionally; upper bounds do
+      not. Applied to the individual results this separates them, and the
+      separation is worth stating rather than covering with a blanket caveat.
+
+      \emph{Unexposed.} A space spanned by exactly $k$ explicit elements has
+      $\dim_{\mathbb{Q}} \le k$ for free, so if its modular rank is also $k$ then
+      its dimension is $k$ over $\mathbb{Q}$ and no prime can be bad. This
+      covers $\dim A_{10} = \dimAten$, $\dim P_{10} = \dimPten$,
+      $\dim G_{10} = \dimGten$ and $\dim B_{10} = \dimBten$, each spanned by
+      exactly that many explicit invariants. It also covers the Jacobian bound
+      of section~\ref{sec:cert81}, for the separate reason that the matrix is an
+      integer reduction and the claim is one-sided.
+
+      \emph{Exposed, and in a determined direction.} $D_{10}$ is assembled by
+      admitting a generated direction only when it raises the rank modulo $p$, so
+      $\dimDten$ is a lower bound over $\mathbb{Q}$. Hence
+      $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ and
+      $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \le \dimBcapP$. A bad prime could
+      therefore only make the flow reach more than we report and the quotient
+      smaller, and could only weaken --- never strengthen --- the claim that the
+      published span meets the products. Neither has been checked in
+      characteristic zero; doing so needs exact evaluation over $\mathbb{Z}$ at
+      the same sample points, and further primes would lower the probability
+      without discharging it.
 \item \textbf{The reverse search is bounded.} It is a search over a declared
       class with most sectors capped. It is not an exhaustive enumeration and is
       never described as one.

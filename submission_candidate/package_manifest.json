@@ -30,9 +30,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "d652a0c8414ffbcf1ef1220d5febb328b649116a4b7e4f2378276ae13af2ecc1",
- "jhep_source_sha256": "d9ed2406be070363b53fa97b8969455a8dcc58d651d97c4932e61540b8a3ea55",
- "pdf_sha256": "bb692221ed7337e381c8570de38f8b6e8adec1467714e73f70ea2dbedcbdb631",
+ "arxiv_source_sha256": "22fa5431d314ddd9912bad67dc65cc5e852684832e151ecff32db7b20d92e316",
+ "jhep_source_sha256": "fee2f73373667a72d6868256f16abbe49036af5e6ecaebead2cea94333fffd88",
+ "pdf_sha256": "c36f6838292cda5258fc871c989ad28d399cafec305d9ba8623f1607183f7fa4",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false
