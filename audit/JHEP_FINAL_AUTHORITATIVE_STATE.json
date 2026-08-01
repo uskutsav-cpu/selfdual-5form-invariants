@@ -36,5 +36,11 @@
  "active_writer_note": "counted with pgrep -f on the script names. An earlier count of 8 was spurious: it used `ps aux | grep` inside `bash -lc`, where the shell's own command line matched the pattern. The bracketed-grep idiom does not protect against that when the pattern is passed through another shell.",
  "active_writer_pids": [
   "79189"
- ]
+ ],
+ "writers_in_other_repositories": {
+  "observed": [
+   "/Users/swethasunilkumar/mp5d-symmetry-exceptional-topology"
+  ],
+  "note": "a pytest run belonging to a different project and a different session. It shares no artifact with this repository -- no row cache, result JSON, test log, checkpoint directory or generated macro file -- so it does not violate the single-writer requirement, and it was NOT killed: it is not this session's to terminate. It does compete for CPU, which is why the clean-clone suite ran slowly."
+ }
 }

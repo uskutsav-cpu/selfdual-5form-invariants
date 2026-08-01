@@ -36,6 +36,13 @@ directory or the generated macro file. Earlier in this project two did —
 two rank-81 runs against one row cache, and two test runs against one log —
 and the second was discarded rather than trusted.
 
+One `pytest` process belonging to a **different repository**
+(`mp5d-symmetry-exceptional-topology`) and a different session was observed
+running concurrently. It shares no artifact with this repository, so it does not
+violate the single-writer requirement, and it was **not killed** — it is not this
+session's to terminate. It does compete for CPU, which is the reason the
+clean-clone suite ran slowly rather than any fault in the suite.
+
 ## Artifact hashes at this state
 
 | artifact | sha256 |
