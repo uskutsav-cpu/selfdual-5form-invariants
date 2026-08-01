@@ -44,15 +44,44 @@ OUT_MD = ROOT / "verification" / "REPRODUCTION_RECORD.md"
 LOGDIR = ROOT / "verification" / "reproduction-logs"
 
 
-def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600, tag: str = "step"):
+class Result:
+    """Enough of CompletedProcess for the callers, plus where it came from."""
+
+    def __init__(self, returncode: int, stdout: str, resumed: bool = False):
+        self.returncode, self.stdout, self.resumed = returncode, stdout, resumed
+
+
+def complete(tag: str, text: str) -> bool:
+    """Whether a step log records a step that ran to completion.
+
+    A long step on this machine is sometimes killed part-way, leaving a log that
+    looks like progress. Resuming from one of those would report a partial run
+    as a finished one, so each tag says what its own completion marker is.
+    """
+    if tag.startswith("tests-"):
+        return bool(re.search(r"\d+ (passed|failed|error)", text)) or \
+            bool(re.search(r"\[100%\]", text))
+    if tag == "build":
+        return "packaged ->" in text
+    if tag == "gates":
+        return "manuscript gates:" in text
+    return bool(text.strip())
+
+
+def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600, tag: str = "step",
+        resume: bool = False):
     LOGDIR.mkdir(parents=True, exist_ok=True)
     log = LOGDIR / f"{tag}.log"
+    if resume and log.exists():
+        text = log.read_text(errors="replace")
+        if complete(tag, text):
+            return Result(0, text, resumed=True), 0.0
     t0 = time.time()
     with log.open("w") as fh:
         proc = subprocess.run(cmd, cwd=cwd, stdout=fh, stderr=subprocess.STDOUT,
                               text=True, timeout=timeout)
-    proc.stdout = log.read_text(errors="replace")
-    return proc, round(time.time() - t0, 1)
+    return Result(proc.returncode, log.read_text(errors="replace")), \
+        round(time.time() - t0, 1)
 
 
 def count_tests(output: str) -> int | None:
@@ -77,19 +106,20 @@ def flush(record: dict) -> None:
     OUT_JSON.write_text(json.dumps(record, indent=1) + "\n")
 
 
-def step_tests(record: dict) -> bool:
+def step_tests(record: dict, resume: bool) -> bool:
     ok = True
     for label, cwd in (("tensor test suite", ROOT),
                        ("bridge test suite", ROOT / "spinor_trace_bridge")):
         tag = "tests-" + ("bridge" if "bridge" in label else "tensor")
         proc, secs = run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"],
-                         cwd=cwd, tag=tag)
+                         cwd=cwd, tag=tag, resume=resume)
         n = count_tests(proc.stdout)
         passed = proc.returncode == 0
         record["steps"].append({
             "step": label, "passed": passed, "tests": n, "seconds": secs,
             # A killed process exits nonzero with no summary; say so rather than
             # reporting the dots it managed to print as a result.
+            "resumed_from_log": proc.resumed,
             "note": None if passed else "nonzero exit; suite did not complete",
         })
         ok = ok and passed
@@ -97,12 +127,13 @@ def step_tests(record: dict) -> bool:
     return ok
 
 
-def step_regenerate(record: dict) -> bool:
+def step_regenerate(record: dict, resume: bool) -> bool:
     ok = True
     for label, script in (("numbers", "manuscript/scripts/make_numbers.py"),
                           ("tables", "manuscript/scripts/make_tables.py"),
                           ("figures", "manuscript/scripts/make_figures.py")):
-        proc, secs = run([PY, str(ROOT / script)], tag=f"make-{label}")
+        proc, secs = run([PY, str(ROOT / script)], tag=f"make-{label}",
+                         resume=False)
         passed = proc.returncode == 0
         detail = None
         if label == "numbers":
@@ -121,9 +152,9 @@ def step_regenerate(record: dict) -> bool:
     return ok
 
 
-def step_build(record: dict) -> bool:
+def step_build(record: dict, resume: bool) -> bool:
     proc, secs = run([PY, str(ROOT / "scripts/build_submission_package.py")],
-                     tag="build")
+                     tag="build", resume=resume)
     diag = None
     m = re.search(r"isolated build: (\{.*\})", proc.stdout)
     if m:
@@ -137,9 +168,9 @@ def step_build(record: dict) -> bool:
     return passed
 
 
-def step_gates(record: dict) -> bool:
+def step_gates(record: dict, resume: bool) -> bool:
     proc, secs = run([PY, str(ROOT / "manuscript/scripts/check_manuscript.py")],
-                     tag="gates")
+                     tag="gates", resume=False)
     m = re.search(r"manuscript gates: (\d+) checks", proc.stdout)
     passed = proc.returncode == 0
     record["steps"].append({
@@ -156,6 +187,10 @@ def main() -> int:
     ap.add_argument("--skip-tests", action="store_true")
     ap.add_argument("--skip-build", action="store_true",
                     help="skip the LaTeX build, for a machine with no TeX")
+    ap.add_argument("--resume", action="store_true",
+                    help="accept a completed step log instead of re-running the "
+                         "step. Only logs that record a COMPLETED step are "
+                         "accepted; a partial one is re-run.")
     args = ap.parse_args()
 
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
@@ -187,14 +222,14 @@ def main() -> int:
         record["steps"].append({"step": "test suites", "passed": None,
                                 "note": "skipped by --skip-tests"})
     else:
-        ok &= step_tests(record)
-    ok &= step_regenerate(record)
+        ok &= step_tests(record, args.resume)
+    ok &= step_regenerate(record, args.resume)
     if args.skip_build:
         record["steps"].append({"step": "isolated manuscript build",
                                 "passed": None, "note": "skipped by --skip-build"})
     else:
-        ok &= step_build(record)
-    ok &= step_gates(record)
+        ok &= step_build(record, args.resume)
+    ok &= step_gates(record, args.resume)
 
     record["all_steps_passed"] = ok
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
@@ -212,6 +247,8 @@ def main() -> int:
         detail = s.get("detail") or s.get("note") or ""
         if s.get("tests") is not None:
             detail = f"{s['tests']} tests"
+        if s.get("resumed_from_log"):
+            detail = f"{detail} (from a completed step log)"
         rows.append(f"| {s['step']} | {mark} | {detail} | {s.get('seconds', '')} |")
     rows += ["", "## Not regenerated here", ""]
     for path, why in record["not_regenerated"].items():
