@@ -89,6 +89,14 @@ def wording_gates(text: str) -> None:
          r"\bfirst[- ]ever\b|\bfor the first time\b|\brevolutionary\b|"
          r"\bdefinitive(ly)?\b|\bbreakthrough\b", None,
          "prestige language is not supported"),
+        # The Letter once described the degree-ten deficit as "not a bound ---
+        # an exact dimension".  It is a bound: D10 admits directions that raise
+        # the rank mod p, so dim Q10 is an upper bound over Q.  This rule fires
+        # on any phrasing that denies the bound rather than stating it.
+        ("quotient-described-as-not-a-bound",
+         r"not\s+a\s+bound|(deficit|quotient)[^.]{0,40}\bexact\s+dimension",
+         None,
+         "dim Q10 is an upper bound in characteristic zero; see PO-09"),
     ]
     for name, pattern, context, why in rules:
         CHECKS += 1
