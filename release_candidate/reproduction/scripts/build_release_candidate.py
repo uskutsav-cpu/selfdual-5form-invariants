@@ -37,7 +37,11 @@ INCLUDE = [
     ("trace-code", ["src", "tests", "pytest.ini", "requirements.txt",
                     "requirements-lock.txt", "README.md"]),
     ("bridge-code", ["spinor_trace_bridge"]),
-    ("certificates", ["verification", "results/intrinsic_candidates"]),
+    # results/rank81 holds the exact Jacobian certificate and the explicit
+    # 81x81 minor -- the strongest computational claim in the package. It was
+    # absent from the release candidate while the manuscript cited it.
+    ("certificates", ["verification", "results/intrinsic_candidates",
+                      "results/rank81"]),
     ("reproduction", ["manuscript/scripts", "scripts"]),
 ]
 
@@ -128,7 +132,11 @@ def main() -> int:
             if src.is_dir():
                 shutil.copytree(src, dst, dirs_exist_ok=True,
                                 ignore=shutil.ignore_patterns(
-                                    "__pycache__", "*.pyc", ".pytest_cache"))
+                                    "__pycache__", "*.pyc", ".pytest_cache",
+                                    # Raw step logs from a local reproduction
+                                    # run. They are machine-specific, they are
+                                    # gitignored, and they carry absolute paths.
+                                    "reproduction-logs"))
             else:
                 shutil.copy2(src, dst)
 

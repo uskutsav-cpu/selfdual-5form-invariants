@@ -14,6 +14,8 @@ Run:
 from __future__ import annotations
 
 import json
+import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -33,6 +35,28 @@ def load(rel: str):
         return json.loads(p.read_text())
     except json.JSONDecodeError:
         return None
+
+
+def collect_tests(root: Path):
+    """Number of tests pytest collects under `root`, or None if it cannot.
+
+    Returns None rather than a guess: an unavailable count must show as a loud
+    marker in the PDF, not as a plausible stale integer.
+    """
+    import subprocess
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-m", "pytest", "--collect-only", "-q",
+             "-p", "no:cacheprovider"],
+            cwd=root, capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    m = re.search(r"(\d+)\s+tests?\s+collected", proc.stdout)
+    if m:
+        return int(m.group(1))
+    # `-q` prints one "path: N" line per file and no total when it succeeds.
+    counts = re.findall(r"^\S+\.py:\s*(\d+)$", proc.stdout, re.MULTILINE)
+    return sum(int(c) for c in counts) if counts else None
 
 
 def macro(name: str, value) -> str:
@@ -198,6 +222,10 @@ def main() -> int:
             macro("exactJacRank", "/".join(map(str, ranks))),
             macro("exactJacRunsAgree", "yes" if summ.get("all_runs_agree") else "no"),
             macro("exactJacPoints", len(points)),
+            # Emitted so the prose stays grammatical whatever the artifact says,
+            # rather than being written as "point(s)".
+            macro("exactJacPointWord", "point" if len(points) == 1 else "points"),
+            macro("exactJacPrimeWord", "prime" if len(primes) == 1 else "primes"),
             macro("exactJacPrimes", ", ".join(map(str, primes))),
             macro("nExactJacPrimes", len(primes)),
             macro("exactJacRows", runs[0]["jacobian"]["n_rows"]),
@@ -237,6 +265,47 @@ def main() -> int:
     else:
         for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
             lines.append(macro(n, None))
+
+    # --- degree-8 span equality with the full spinor family ------------------
+    # Distinct from the comparison table, which uses the port-graph stream only.
+    d8 = load("verification/degree8_span_equality.json")
+    if d8 and d8.get("primes"):
+        pk = sorted(d8["primes"])[0]
+        r = d8["primes"][pk]
+        fam = r.get("family_contribution", {})
+        indispensable = sorted(k for k, v in fam.items()
+                               if v.get("rank_without_this_family", 0) < r["trace_rank"])
+        lines += [
+            macro("dEightTraceRank", r["trace_rank"]),
+            macro("dEightSpinorRank", r["spinor_rank"]),
+            macro("dEightUnionRank", r["union_rank"]),
+            # The row count is prime-dependent: a randomly drawn port graph
+            # whose evaluation vector vanishes identically mod p is dropped, and
+            # two more vanish at the holdout primes. Ranks and conclusions do
+            # not vary, so a range is reported rather than one prime's value.
+            macro("dEightSpinorRowsMin",
+                  min(v["n_spinor_rows"] for v in d8["primes"].values())),
+            macro("dEightSpinorRowsMax",
+                  max(v["n_spinor_rows"] for v in d8["primes"].values())),
+            macro("dEightPrimes", d8["summary"]["primes_tested"]),
+            macro("dEightPrimesEqual", d8["summary"]["primes_with_span_equality"]),
+            macro("dEightIndispensable",
+                  ", ".join(k.replace("_", " ") for k in indispensable) or "none"),
+            macro("dEightRankWithoutWords",
+                  fam.get("tensor_word", {}).get("rank_without_this_family")),
+        ]
+    else:
+        for n in ("dEightTraceRank dEightSpinorRank dEightUnionRank "
+                  "dEightSpinorRowsMin dEightSpinorRowsMax dEightPrimes dEightPrimesEqual "
+                  "dEightIndispensable dEightRankWithoutWords").split():
+            lines.append(macro(n, None))
+
+    # --- test counts, collected rather than typed --------------------------
+    # These went stale twice (49 -> 72 bridge tests) while sitting in the
+    # manuscript as literals.  Collection is a static import pass, costs about
+    # two seconds, and cannot disagree with the suite it describes.
+    lines += [macro("nTraceTests", collect_tests(ROOT)),
+              macro("nBridgeTests", collect_tests(ROOT / "spinor_trace_bridge"))]
 
     # --- fixed analytic constants (not computed, so stated with provenance) ---
     lines += [

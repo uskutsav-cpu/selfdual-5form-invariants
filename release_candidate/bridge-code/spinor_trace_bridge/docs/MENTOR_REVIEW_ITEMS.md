@@ -109,8 +109,53 @@ author, or confirmation that the manifest-only arrangement is the final one.
 
 - [ ] permission obtained  - [ ] manifest-only is final  - [ ] other: ________
 
+## G-8 — what the exact rank-81 certificate is allowed to say
+
+**What exists.** The exact analytic Jacobian over the complete 83-candidate
+selection has modular rank 81, with a terminal status for every candidate, zero
+evaluation errors, zero zero-rows, Euler homogeneity passing throughout, and an
+explicit 81x81 minor whose determinant is nonzero under two independent
+routines. Because the coordinate basis is integral the Jacobian is an integer
+reduction, so `rank_Q >= 81` holds unconditionally — no height bound, Hadamard
+estimate or rational reconstruction is involved, and the number of primes is not
+what carries the argument.
+
+**What is needed.** Confirmation of the claim split. The draft attributes the
+*upper* bound `126 - 45 = 81` to the analytic trivial-stabiliser argument in the
+literature and claims only the lower bound here, at finitely many sample points.
+A gate fails the build on "proved rank 81 computationally". Confirm that this is
+the right division of credit, and that the literature attribution is to the
+intended source.
+
+**Also worth a decision.** 83 candidates of rank 81 means the selection carries
+functional dependencies. The draft states this plainly rather than leaving it
+implicit; confirm that is wanted.
+
+- [ ] claim split confirmed  - [ ] revise to: ______________________
+
+## G-9 — status of the cardinality proposition
+
+**What exists.** Proposition (manuscript section 6.4): any set closing degree
+`d` has at least `dim Q_d` elements, because the quotient map is linear and a
+span of `k` vectors has dimension at most `k`. This makes cardinality minimality
+basis-independent, where previously it was checked only in the fixed basis and
+under relabellings.
+
+**What is needed.** A judgement on how to present it. It is elementary linear
+algebra and almost certainly not new as mathematics; it is included because it
+discharges half of PO-08 and converts a basis-dependent assertion into a
+basis-free one. The draft states it as a proposition with proof and makes no
+novelty claim for it. Confirm that this is the right treatment, or say whether
+it should be demoted to a remark.
+
+**Note on scope.** It does not give removal-minimality, which stays open under
+general `GL`. The manuscript limitation says so; confirm the wording is
+sufficient.
+
+- [ ] treatment confirmed  - [ ] demote to a remark  - [ ] other: __________
+
 ## Summary for the reviewer
 
 Every item above is a *confirmation* request. None is a request to perform a
-calculation. If all seven are confirmed as-is, the bridge and signature
-workstreams are complete and no wording in the manuscript changes.
+calculation. If all nine are confirmed as-is, the bridge, signature and
+Jacobian workstreams are complete and no wording in the manuscript changes.
