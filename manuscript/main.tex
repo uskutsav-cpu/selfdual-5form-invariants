@@ -525,6 +525,29 @@ not that family, and lands on six. The two numbers are consistent, and together
 they locate the missing direction precisely: it is not reachable by any
 single-graph contraction.
 
+This can be made sharper than ``the two numbers are consistent''. Re-running the
+degree-eight comparison with the \emph{full} spinor candidate family --- port
+graphs, products, structured $\Omega/\Theta$ candidates and tensor words,
+$\dEightSpinorRows$ rows in total --- gives
+\begin{equation}
+  \text{trace rank} = \text{spinor rank} = \text{union rank}
+  = \dEightUnionRank
+\end{equation}
+at all $\dEightPrimes$ primes tested, with two-way containment and a
+change-of-basis map validated on holdout samples. The union rank is the
+load-bearing number: two \emph{different} seven-dimensional subspaces would also
+give equal ranks, and a union of eight; the union being $\dEightUnionRank$ is
+what makes this span equality rather than dimension agreement.
+
+Dropping each spinor family in turn and re-ranking then isolates the
+responsible one. Removing the port graphs, the products or the structured
+candidates leaves the rank at $\dEightUnionRank$; removing the
+\dEightIndispensable{} candidates drops it to $\dEightRankWithoutWords$. So the
+direction that a port-graph-only family misses is not reachable by any
+single-graph contraction of the invariant tensor, and the structured family does
+not supply it either. That is a positive statement about where the invariant
+lives, not merely an observation that two counts differ.
+
 The consequence for reading table~\ref{tab:comparison} is that a ``no'' in the
 degree-eight row is a statement about the candidate family, not about the
 correspondence between the two descriptions.

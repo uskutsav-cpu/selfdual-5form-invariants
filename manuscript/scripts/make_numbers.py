@@ -266,6 +266,33 @@ def main() -> int:
         for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
             lines.append(macro(n, None))
 
+    # --- degree-8 span equality with the full spinor family ------------------
+    # Distinct from the comparison table, which uses the port-graph stream only.
+    d8 = load("verification/degree8_span_equality.json")
+    if d8 and d8.get("primes"):
+        pk = sorted(d8["primes"])[0]
+        r = d8["primes"][pk]
+        fam = r.get("family_contribution", {})
+        indispensable = sorted(k for k, v in fam.items()
+                               if v.get("rank_without_this_family", 0) < r["trace_rank"])
+        lines += [
+            macro("dEightTraceRank", r["trace_rank"]),
+            macro("dEightSpinorRank", r["spinor_rank"]),
+            macro("dEightUnionRank", r["union_rank"]),
+            macro("dEightSpinorRows", r["n_spinor_rows"]),
+            macro("dEightPrimes", d8["summary"]["primes_tested"]),
+            macro("dEightPrimesEqual", d8["summary"]["primes_with_span_equality"]),
+            macro("dEightIndispensable",
+                  ", ".join(k.replace("_", " ") for k in indispensable) or "none"),
+            macro("dEightRankWithoutWords",
+                  fam.get("tensor_word", {}).get("rank_without_this_family")),
+        ]
+    else:
+        for n in ("dEightTraceRank dEightSpinorRank dEightUnionRank "
+                  "dEightSpinorRows dEightPrimes dEightPrimesEqual "
+                  "dEightIndispensable dEightRankWithoutWords").split():
+            lines.append(macro(n, None))
+
     # --- test counts, collected rather than typed --------------------------
     # These went stale twice (49 -> 72 bridge tests) while sitting in the
     # manuscript as literals.  Collection is a static import pass, costs about
