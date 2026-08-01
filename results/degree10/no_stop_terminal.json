@@ -1,0 +1,69 @@
+{
+ "schema": 1,
+ "generated_by": "Phase 4 of the final claim-closure goal",
+ "claim_under_test": "exhaustion of the declared port-graph candidate grammar at degree ten, with the Hilbert stopping rule disabled so that the terminal status is informative",
+ "stopping_rule": "Hilbert target DISABLED (--no-hilbert-stop)",
+ "terminal_status_by_degree": {
+  "4": {
+   "final_rank": 1,
+   "selected_new": 1,
+   "product_rank": 0,
+   "attempted_unique_graphs": 2,
+   "raw_batches": 1,
+   "hilbert_target": 1,
+   "stopped_by": "candidate_exhaustion"
+  },
+  "6": {
+   "final_rank": 2,
+   "selected_new": 2,
+   "product_rank": 0,
+   "attempted_unique_graphs": 5,
+   "raw_batches": 1,
+   "hilbert_target": 2,
+   "stopped_by": "candidate_exhaustion"
+  },
+  "8": {
+   "final_rank": 7,
+   "selected_new": 6,
+   "product_rank": 1,
+   "attempted_unique_graphs": 32,
+   "raw_batches": 1,
+   "hilbert_target": 7,
+   "stopped_by": "candidate_exhaustion"
+  },
+  "10": {
+   "final_rank": null,
+   "selected_new": null,
+   "product_rank": null,
+   "attempted_unique_graphs": null,
+   "raw_batches": null,
+   "hilbert_target": null,
+   "stopped_by": "killed"
+  }
+ },
+ "degrees_reaching_candidate_exhaustion": [
+  4,
+  6,
+  8
+ ],
+ "degree_ten_completed": false,
+ "degree_ten_partial_rank": null,
+ "completeness_taxonomy": {
+  "enumeration_complete_by_proof": [],
+  "complete_within_declared_grammar": [
+   4,
+   6,
+   8
+  ],
+  "exhausted_under_configured_bounds": [],
+  "merely_failed_to_find_another_direction": [],
+  "no_terminal_status": [
+   10
+  ]
+ },
+ "manuscript_dependency": "the only no-stop-dependent statement in either manuscript is the DEGREE-EIGHT one, and that run completed with terminal status candidate_exhaustion at rank 7. No claim depends on the degree-ten run.",
+ "why_not_run": "it would certify a property the manuscript does not assert; the previous attempt was killed after roughly four hours at rank 12 of 14 without leaving its first batch; no authorised cluster exists and buying cluster time is out of scope",
+ "cluster_job_prepared": "cluster/spinor_degree10_nostop_production.slurm",
+ "cluster_run_occurred": false,
+ "config_sha256": "f2861b1afbdc7e1437c96483d82bcb8b3829af4344ceaa7031a12d49ae73c9d9"
+}
