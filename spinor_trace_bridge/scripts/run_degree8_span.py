@@ -134,8 +134,8 @@ def main() -> int:
     ap.add_argument("--out", default=str(ROOT / "verification" / "degree8_span_equality.json"))
     args = ap.parse_args()
 
-    fitting = [int(x) for x in args.fitting_primes.split(",")]
-    holdout = [int(x) for x in args.holdout_primes.split(",")]
+    fitting = [int(x) for x in args.fitting_primes.split(",") if x.strip()]
+    holdout = [int(x) for x in args.holdout_primes.split(",") if x.strip()]
     registry = load_registry()
 
     report = {
@@ -148,8 +148,19 @@ def main() -> int:
     }
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    if out.exists():
+        try:
+            prev = json.loads(out.read_text())
+            report["primes"].update(prev.get("primes", {}))
+            report["fitting_primes"] = sorted(set(prev.get("fitting_primes", [])) | set(fitting))
+            report["holdout_primes"] = sorted(set(prev.get("holdout_primes", [])) | set(holdout))
+        except json.JSONDecodeError:
+            pass
 
     for p in fitting + holdout:
+        if str(p) in report["primes"]:
+            print(f"[p={p}] already done", flush=True)
+            continue
         t0 = time.time()
         b = BridgeMap(p=p)
         samples = build_registry(b)
@@ -194,17 +205,32 @@ def main() -> int:
         # change of basis on fitting columns, validated on holdout columns
         Tf, Sf = T[:, fit_idx], Sp[:, fit_idx]
         Th, Sh = T[:, hold_idx], Sp[:, hold_idx]
+        # Fit X with X @ Sf = Tf, row by row, then require X @ Sh = Th on the
+        # holdout columns.  Solving directly avoids inverting a non-square pivot
+        # block, and the holdout check is the part that carries the evidence:
+        # a fit reproduces its own data by construction.
+        from sdbridge.modular import solve as modsolve
         if row_space_contains(Sf, Tf, p):
-            R, piv = rref(Sf, p)
-            from sdbridge.clifford import _inverse_mod
-            basis = R[:len(piv)]
-            coeff = matmul(Tf[:, piv], _inverse_mod(basis[:, piv], p), p)
-            Tform = matmul(basis[:, piv], _inverse_mod(Sf[:, piv], p), p)
-            predicted = matmul(coeff, matmul(Tform, Sh, p), p)
-            entry["change_of_basis"] = {"shape": list(coeff.shape),
-                                        "fitted_on": "generic + sparse + structured",
-                                        "validated_on": "holdout only"}
-            entry["holdout_validated"] = bool(np.array_equal(predicted % p, Th % p))
+            X = np.zeros((Tf.shape[0], Sf.shape[0]), dtype=np.int64)
+            solved = True
+            for i in range(Tf.shape[0]):
+                x = modsolve(Sf.T % p, Tf[i] % p, p)
+                if x is None:
+                    solved = False
+                    break
+                X[i] = x % p
+            if solved:
+                predicted = matmul(X, Sh, p)
+                entry["change_of_basis"] = {
+                    "shape": list(X.shape),
+                    "fitted_on": "generic + sparse + structured samples",
+                    "validated_on": "holdout samples only",
+                    "sha256": __import__("hashlib").sha256(
+                        X.tobytes()).hexdigest()[:32]}
+                entry["holdout_validated"] = bool(np.array_equal(predicted % p, Th % p))
+            else:
+                entry["change_of_basis"] = None
+                entry["holdout_validated"] = False
         else:
             entry["change_of_basis"] = None
             entry["holdout_validated"] = False
