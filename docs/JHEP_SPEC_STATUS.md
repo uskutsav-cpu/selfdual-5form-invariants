@@ -101,12 +101,39 @@ Cluster job files are prepared in `cluster/` but **no cluster run has occurred**
 
 | item | why not done |
 |---|---|
+| characteristic-zero check of `dim D10` and `dim(B10 cap P10)` | the only two degree-ten numbers a bad prime could change. Needs exact evaluation over `Z`; the obstruction is arithmetic width, not principle. Direction of a possible failure is determined and stated in both manuscripts |
 | certified rational reconstruction | no claim depends on it; every modular result is used as a lower bound only, and the wording gate blocks "exact over `Q`" |
-| degree-10 no-stop terminal status | run did not complete locally; cluster script prepared, no cluster run has occurred |
-| PO-03, PO-05, PO-07, PO-09 | open mathematical debts recorded in `docs/PROOF_OBLIGATIONS.md`; no claim is strengthened while its obligation is open |
+| degree-10 no-stop terminal status | run did not complete locally; `cluster/spinor_degree10_nostop_production.slurm` is prepared, no cluster run has occurred |
+| incidence certificate at the four further primes | the generator exists and reproduces both stored primes exactly; ~15 min per prime, not completed here. Guards against a one-off slip; by the PO-09 analysis it discharges nothing |
+| PO-03, PO-05, PO-07, PO-09 | open mathematical debts recorded in `docs/PROOF_OBLIGATIONS.md`; no claim is strengthened while its obligation is open. PO-08's cardinality half is now **discharged analytically** |
 
 Done since the previous revision: the structured tensor-word candidates were
 implemented in exact arithmetic, closing the 83-candidate gap; a systematic
 primary-literature sweep was completed and is recorded in
 `audit/RELATED_WORK_COMPLETE.md`. Novelty rows remain `PROVISIONAL` because
 confirmation is a coauthor decision, not because the search is outstanding.
+
+Also since then: the rank-81 certificate gained a second sample point; the
+cardinality half of PO-08 was proved; PO-09 was narrowed to the two quantities
+actually exposed; `SPINOR_JACOBIAN_STABILITY.md` was written; the degree-10
+no-stop cluster job was written; and the incidence certificates gained a
+versioned generator, having been produced inline.
+
+## A defect class this revision kept finding
+
+Six separate artifacts asserted a number that a certificate beside them
+contradicted: two status documents on the Jacobian rank, the dimension
+dictionary on the cumulative ranks, the manuscript on the same, the reproduction
+records on test and gate counts, and the arXiv comments field on page and figure
+counts. None was in the manuscript's *scientific* claims, which the existing
+gates covered; all were in prose the gates did not reach.
+
+The pattern in every case was a number maintained by hand next to an artifact
+that already knew it. The response was the same each time: generate it, or gate
+it. `check_manuscript.py` grew from 32 checks to 63, the reproduction record and
+the arXiv comments field became generated, and the test counts are now collected
+rather than typed.
+
+Two of the fixes were themselves wrong on the first attempt and were caught by
+negative-testing the gate — reintroducing the stale value and confirming the
+build fails. Every gate added here was checked that way.
