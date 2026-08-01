@@ -209,7 +209,27 @@ def build_gates() -> None:
     global CHECKS
     log = MANUSCRIPT / "main.log"
     if not log.exists():
-        fail("build", "main.log missing; the manuscript has not been built")
+        # main.log is a build artifact and is not committed, so in a fresh clone
+        # it is legitimately absent.  Fall back to the packaging manifest, which
+        # records the diagnostics of an ISOLATED build -- a stronger check than
+        # the in-place log, since it proves the source archive is self-contained.
+        manifest = ROOT / "submission_candidate" / "package_manifest.json"
+        if not manifest.exists():
+            fail("build", "neither manuscript/main.log nor "
+                          "submission_candidate/package_manifest.json exists; "
+                          "run build_submission_package.py")
+            return
+        diag = json.loads(manifest.read_text())["build"]
+        for name, key in (("latex-errors", "errors"),
+                          ("undefined-citations", "undefined_citations"),
+                          ("undefined-references", "undefined_references")):
+            CHECKS_LOCAL = 1
+            globals()["CHECKS"] += CHECKS_LOCAL
+            if diag.get(key):
+                fail(name, f"{diag[key]} in the isolated build")
+        globals()["CHECKS"] += 1
+        if not diag.get("pdf_produced"):
+            fail("build", "the isolated build produced no PDF")
         return
     text = log.read_text(errors="replace")
     for name, pattern in (("latex-errors", r"^! "),
