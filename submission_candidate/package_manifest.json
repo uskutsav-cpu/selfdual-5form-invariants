@@ -5,9 +5,9 @@
   "undefined_references": 0,
   "overfull_boxes": 0,
   "pdf_produced": true,
-  "pages": 23
+  "pages": 24
  },
- "comments_field": "23 pages, 7 figures, 5 tables",
+ "comments_field": "24 pages, 7 figures, 5 tables",
  "figures": [
   "figures/bridge_diagram.pdf",
   "figures/invariant_space_diagram.pdf",
@@ -51,9 +51,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "dd74730a4227fb626b16f46fa23660d7f03e291cef1e94859c7cf4dc3a95f89a",
- "jhep_source_sha256": "30f089888aab4e0c422074afc567ac53c55192f4e66fb11309676eaa45434f58",
- "pdf_sha256": "5df41ebcd9c5d95dcad181f64e5ee6aa459ea88f9e1a8f6b5c19c0fa5a96adbd",
+ "arxiv_source_sha256": "ef5f5df7ca511173e3fca4bd16cb97824f6e25a7692a10708a5c8605d0933290",
+ "jhep_source_sha256": "d826435f3023439db98c577bbca0e52452dabb656cc46060b0145a91701cfecf",
+ "pdf_sha256": "f007c4a6e079deadcd4c3aec4868ca2d4ce1cc230fd93577e835d0c2c5439693",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false
