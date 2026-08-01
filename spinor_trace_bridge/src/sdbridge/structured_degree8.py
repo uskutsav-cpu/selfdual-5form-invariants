@@ -74,11 +74,35 @@ class StructuredDegree8:
         from .spinor_invariants import invariant_I
         return invariant_I(self.p)
 
-    def omega(self, F: np.ndarray) -> np.ndarray:
-        return _contract("bcde,bf,cg,dh,ei->fghi", self.I, F, F, F, F, p=self.p)
+    def omega(self, *F: np.ndarray) -> np.ndarray:
+        """Omega, multilinear in its four slots.  Called with one argument it is
+        the diagonal Omega(F,F,F,F); with four it is the polarisation."""
+        if len(F) == 1:
+            F = F * 4
+        return _contract("bcde,bf,cg,dh,ei->fghi", self.I, *F, p=self.p)
 
-    def theta(self, F: np.ndarray) -> np.ndarray:
-        return _contract("acde,cf,dg,eh->afgh", self.I, F, F, F, p=self.p)
+    def theta(self, *F: np.ndarray) -> np.ndarray:
+        """Theta, multilinear in its three slots."""
+        if len(F) == 1:
+            F = F * 3
+        return _contract("acde,cf,dg,eh->afgh", self.I, *F, p=self.p)
+
+    def d_omega(self, F: np.ndarray, B: np.ndarray) -> np.ndarray:
+        """d/dt Omega(F + tB) at t=0: one term per slot, exactly."""
+        p = self.p
+        acc = np.zeros((C.SPINOR_DIM,) * 4, dtype=np.int64)
+        for k in range(4):
+            args = [B if j == k else F for j in range(4)]
+            acc = (acc + self.omega(*args)) % p
+        return acc
+
+    def d_theta(self, F: np.ndarray, B: np.ndarray) -> np.ndarray:
+        p = self.p
+        acc = np.zeros((C.SPINOR_DIM,) * 4, dtype=np.int64)
+        for k in range(3):
+            args = [B if j == k else F for j in range(3)]
+            acc = (acc + self.theta(*args)) % p
+        return acc
 
     def values(self, F: np.ndarray) -> dict[str, int]:
         p = self.p
@@ -126,9 +150,15 @@ class StructuredDegree8:
             weights.append(coeffs[1] * inv(denom, p) % p)
         return nodes, weights
 
-    def directional_derivative(self, F: np.ndarray, B: np.ndarray,
-                               names=SELECTED) -> dict[str, int]:
-        """d/dt I(F + tB) at t = 0, exactly."""
+    def directional_derivative_by_interpolation(self, F: np.ndarray, B: np.ndarray,
+                                                names=SELECTED) -> dict[str, int]:
+        """d/dt I(F + tB) at t=0 by exact modular interpolation.
+
+        This is the LITERAL evaluator: it assumes only that the value is a
+        homogeneous polynomial of degree 8, and is therefore immune to any error
+        in the polarisation bookkeeping.  It is roughly seven times slower than
+        `directional_derivative`, and the two are required to agree.
+        """
         p = self.p
         nodes, weights = self._linear_weights
         F = np.asarray(F, dtype=np.int64) % p
@@ -141,6 +171,58 @@ class StructuredDegree8:
             for n in names:
                 acc[n] = (acc[n] + w * vals[n]) % p
         return acc
+
+    def directional_derivative(self, F: np.ndarray, B: np.ndarray,
+                               names=SELECTED) -> dict[str, int]:
+        """d/dt I(F + tB) at t=0 by exact polarisation.
+
+        Each value is multilinear in Omega, Theta and any explicit F, and each of
+        those is multilinear in its own slots, so the product rule applies slot by
+        slot with no expansion of the polynomial.  Checked against the
+        interpolation evaluator by `optimized_matches_literal`.
+        """
+        p = self.p
+        F = np.asarray(F, dtype=np.int64) % p
+        B = np.asarray(B, dtype=np.int64) % p
+        O, T = self.omega(F), self.theta(F)
+        dO, dT = self.d_omega(F, B), self.d_theta(F, B)
+        I = self.I
+        Oa = (O - np.swapaxes(O, 1, 2)) % p
+        dOa = (dO - np.swapaxes(dO, 1, 2)) % p
+        Ia = (I - np.swapaxes(I, 1, 2)) % p
+
+        def two(spec, X, dX, A1, A2):
+            return (_contract(spec, dX, X, A1, A2, p=p)
+                    + _contract(spec, X, dX, A1, A2, p=p)) % p
+
+        def three(spec):
+            return (_contract(spec, dO, T, F, I, I, p=p)
+                    + _contract(spec, O, dT, F, I, I, p=p)
+                    + _contract(spec, O, T, B, I, I, p=p)) % p
+
+        out = {
+            "sd5_spinor_degree8_1": two("abcd,efgh,abef,cdgh->", O, dO, I, I),
+            "sd5_spinor_degree8_2": two("abcd,efgh,abch,efgd->", O, dO, I, I),
+            "sd5_spinor_degree8_3": two("abcd,efgh,afgd,ebch->", Oa, dOa, Ia, Ia),
+            "sd5_spinor_degree8_4": three("dxyz,duvw,pq,puyz,qxvw->"),
+            "sd5_spinor_degree8_5": three("dxyz,duvw,pq,pxyw,quvz->"),
+            "sd5_spinor_degree8_6": three("dxyz,duvw,pq,pxyu,qzvw->"),
+        }
+        return {n: int(np.asarray(out[n]).reshape(())) % p for n in names}
+
+    def optimized_matches_literal(self, F: np.ndarray, basis: np.ndarray,
+                                  n_directions: int = 3,
+                                  names=SELECTED) -> dict:
+        """Require the polarised and interpolated derivatives to agree exactly."""
+        agree, detail = True, []
+        for r in range(min(n_directions, basis.shape[0])):
+            fast = self.directional_derivative(F, basis[r], names)
+            slow = self.directional_derivative_by_interpolation(F, basis[r], names)
+            ok = all(fast[n] == slow[n] for n in names)
+            agree &= ok
+            detail.append({"direction": r, "agree": ok,
+                           "polarised": fast, "interpolated": slow})
+        return {"agree": agree, "directions_checked": len(detail), "detail": detail}
 
     def jacobian_rows(self, F: np.ndarray, basis: np.ndarray,
                       names=SELECTED) -> np.ndarray:

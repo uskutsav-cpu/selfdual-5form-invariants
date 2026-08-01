@@ -33,7 +33,7 @@ sys.path.insert(0, str(ROOT / "spinor_trace_bridge" / "src"))
 
 from sdbridge import conventions as C                    # noqa: E402
 from sdbridge.candidates import (                        # noqa: E402
-    build_context, evaluate_all, load_schedule, schedule_summary,
+    RowCache, build_context, evaluate_all, load_schedule, schedule_summary,
 )
 from sdbridge.modular import rank as modrank, rref       # noqa: E402
 import sdbridge.spinor_invariants as si                  # noqa: E402
@@ -102,8 +102,8 @@ def main() -> int:
 
     selection = Path(args.archive).expanduser().resolve() / \
         "run_4_12_tensor_words_s96" / "selected_graphs.json"
-    fitting = [int(x) for x in args.fitting_primes.split(",")]
-    holdout = [int(x) for x in args.holdout_primes.split(",")]
+    fitting = [int(x) for x in args.fitting_primes.split(",") if x.strip()]
+    holdout = [int(x) for x in args.holdout_primes.split(",") if x.strip()]
     seeds = [int(x) for x in args.seeds.split(",")]
 
     out = Path(args.out)
@@ -143,7 +143,8 @@ def main() -> int:
             t0 = time.time()
             schedule = load_schedule(selection)
             ctx = build_context(p, seed=seed)
-            J, schedule = evaluate_all(schedule, ctx)
+            cache = RowCache(out.parent / f"rowcache_p{p}_s{seed}.json")
+            J, schedule = evaluate_all(schedule, ctx, cache=cache, seed=seed)
             summary = schedule_summary(schedule)
             stats = analyse(schedule, J, p)
 

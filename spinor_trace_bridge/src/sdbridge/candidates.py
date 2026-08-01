@@ -164,8 +164,43 @@ def build_context(p: int, seed: int, n_basis: int = C.N_GAMMA_TRACELESS) -> Eval
     return ctx
 
 
+class RowCache:
+    """Per-candidate checkpoint, so a long run resumes instead of restarting.
+
+    Keyed by (prime, seed, candidate_id, formula_hash).  Including the formula
+    hash means a cached row is invalidated automatically if the candidate's
+    definition ever changes, which is the failure mode a naive cache would hide.
+    """
+
+    def __init__(self, path: Path | None):
+        self.path = Path(path) if path else None
+        self.data: dict = {}
+        if self.path and self.path.exists():
+            try:
+                self.data = json.loads(self.path.read_text())
+            except json.JSONDecodeError:
+                self.data = {}
+
+    def key(self, p: int, seed: int, c: "Candidate") -> str:
+        return f"{p}|{seed}|{c.candidate_id}|{c.formula_hash}"
+
+    def get(self, p: int, seed: int, c: "Candidate"):
+        return self.data.get(self.key(p, seed, c))
+
+    def put(self, p: int, seed: int, c: "Candidate", value: int, row) -> None:
+        self.data[self.key(p, seed, c)] = {
+            "value": int(value), "row": [int(x) for x in row]}
+        self.flush()
+
+    def flush(self) -> None:
+        if self.path:
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+            self.path.write_text(json.dumps(self.data))
+
+
 def evaluate_all(schedule: list[Candidate], ctx: EvaluationContext,
-                 progress=None) -> tuple[np.ndarray, list[Candidate]]:
+                 progress=None, cache: "RowCache | None" = None,
+                 seed: int = 0) -> tuple[np.ndarray, list[Candidate]]:
     """Fill in every terminal record and return the exact Jacobian.
 
     Rows of the returned matrix correspond to candidates whose status is
@@ -180,6 +215,8 @@ def evaluate_all(schedule: list[Candidate], ctx: EvaluationContext,
     # the structured degree-8 family shares its interpolation sweep
     sd8_rows: dict[str, np.ndarray] = {}
     sd8_vals: dict[str, int] = {}
+    if cache and sd8 and all(cache.get(p, seed, c) for c in sd8):
+        sd8 = []
     if sd8:
         from .structured_degree8 import StructuredDegree8
         ev = StructuredDegree8(p=p)
@@ -197,6 +234,9 @@ def evaluate_all(schedule: list[Candidate], ctx: EvaluationContext,
     # tensor words share their expensive polarisations, so evaluate them together
     tw_rows: dict[str, np.ndarray] = {}
     tw_vals: dict[str, int] = {}
+    # a family whose members are all cached needs no shared sweep at all
+    if cache and all(cache.get(p, seed, c) for c in tw_words):
+        tw_words = []
     if tw_words:
         t0 = time.time()
         words = sorted({c.word for c in tw_words})
@@ -220,13 +260,38 @@ def evaluate_all(schedule: list[Candidate], ctx: EvaluationContext,
             continue
         if c.terminal_status == "evaluation_error":
             continue
+        cached = cache.get(p, seed, c) if cache else None
+        if cached is not None:
+            c.value = int(cached["value"]) % p
+            row = np.array(cached["row"], dtype=np.int64) % p
+            c.zero_row = not bool(np.any(row))
+            c.output_hash = _hash([int(x) for x in row])
+            c.terminal_status = "evaluated"
+            c.evaluator += " [cached]"
+            rows.append(row)
+            continue
         t0 = time.time()
         try:
             if c.family == "port_graph":
-                val = int(evaluate_graph_batch(c.graph, ctx.S[None, ...], p,
-                                               ctx.stacks)[0])
-                row = graph_jacobian_row(c.graph, ctx.S, ctx.basis_spinor, p,
-                                         ctx.stacks)
+                try:
+                    val = int(evaluate_graph_batch(c.graph, ctx.S[None, ...], p,
+                                                   ctx.stacks)[0])
+                except ContractionTooLarge:
+                    # same fallback reasoning as for the derivative below: keep
+                    # the invariant-tensor nodes whole instead of factorising
+                    from .spinor_invariants import evaluate_graph, invariant_I
+                    val = int(evaluate_graph(c.graph, ctx.S, invariant_I(p), p))
+                    c.evaluator += " [dense-I fallback plan]"
+                try:
+                    row = graph_jacobian_row(c.graph, ctx.S, ctx.basis_spinor, p,
+                                             ctx.stacks)
+                except ContractionTooLarge:
+                    # a few degree-12 topologies are cheaper with the nodes kept
+                    # whole; same mathematics, different plan
+                    from .jacobian import graph_jacobian_row_dense_I
+                    row = graph_jacobian_row_dense_I(c.graph, ctx.S,
+                                                     ctx.basis_spinor, p)
+                    c.derivative_evaluator += " [dense-I fallback plan]"
             elif c.family == "tensor_word":
                 if c.word not in tw_rows:
                     raise RuntimeError("tensor-word batch did not produce a row")
@@ -245,6 +310,8 @@ def evaluate_all(schedule: list[Candidate], ctx: EvaluationContext,
             c.output_hash = _hash([int(x) % p for x in row])
             c.terminal_status = "evaluated"
             rows.append(np.asarray(row, dtype=np.int64) % p)
+            if cache:
+                cache.put(p, seed, c, c.value, np.asarray(row, dtype=np.int64) % p)
         except ContractionTooLarge as exc:
             c.terminal_status = "evaluation_error"
             c.exception = f"ContractionTooLarge: {exc}"

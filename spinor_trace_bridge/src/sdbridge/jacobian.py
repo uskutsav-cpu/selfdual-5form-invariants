@@ -96,6 +96,50 @@ def graph_jacobian_row(graph: PortGraph, S: np.ndarray, basis: np.ndarray, p: in
     return (B.reshape(B.shape[0], -1) @ gradient.reshape(-1) % p).astype(np.int64)
 
 
+def graph_jacobian_row_dense_I(graph: PortGraph, S: np.ndarray, basis: np.ndarray,
+                               p: int, I: np.ndarray | None = None) -> np.ndarray:
+    """Fallback amputation using the full I tensor instead of the factorised sigmas.
+
+    The factorised form has two operands per invariant-tensor node and is usually
+    much cheaper.  For a handful of degree-12 topologies it is not: splitting each
+    node doubles the operand count to twenty-three and the greedy path it forces
+    is worse than the one available with the nodes kept whole.  Using the
+    65536-entry I tensor directly costs more memory per operand and far fewer
+    operands, and it clears the budget where the factorised form does not.
+
+    Same mathematics, different contraction plan; `test_dense_I_fallback_agrees`
+    requires the two to produce identical rows.
+    """
+    from .spinor_invariants import invariant_I
+
+    if I is None:
+        I = invariant_I(p)
+    port_index: dict = {}
+    counter = itertools.count()
+    for node in range(graph.n_nodes):
+        for q in range(4):
+            port_index[(node, q)] = next(counter)
+
+    S = np.asarray(S, dtype=np.int64) % p
+    gradient = np.zeros((C.SPINOR_DIM, C.SPINOR_DIM), dtype=np.int64)
+    for k, (ea, eb) in enumerate(graph.edges):
+        operands: list[np.ndarray] = []
+        subs: list[list[int]] = []
+        for node in range(graph.n_nodes):
+            operands.append(I)
+            subs.append([port_index[(node, q)] for q in range(4)])
+        for j, (a, b) in enumerate(graph.edges):
+            if j == k:
+                continue
+            operands.append(S)
+            subs.append([port_index[a], port_index[b]])
+        out = [port_index[ea], port_index[eb]]
+        gradient = (gradient + _modular_contract(operands, subs, p, output=out)) % p
+
+    B = np.asarray(basis, dtype=np.int64) % p
+    return (B.reshape(B.shape[0], -1) @ gradient.reshape(-1) % p).astype(np.int64)
+
+
 def jacobian_matrix(graphs: list[PortGraph], S: np.ndarray, p: int) -> np.ndarray:
     """Rows = graphs, columns = the 126 coefficients.  Exact over F_p."""
     basis = gamma_traceless_matrix_basis(p)
