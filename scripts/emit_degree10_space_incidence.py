@@ -153,6 +153,31 @@ def analyse(sp, prime: int) -> tuple[dict, dict]:
     return dims, incidence, intersect
 
 
+def write_certificates(per_prime_inc: dict, per_prime_int: dict, names) -> None:
+    """Write both certificates. Called after every prime, not only at the end."""
+    OUT_INCIDENCE.write_text(json.dumps({
+        "schema": 1,
+        "generated_by": "scripts/emit_degree10_space_incidence.py",
+        "spaces": SPACES,
+        "incidence": {},
+        "per_prime": per_prime_inc,
+    }, indent=1, sort_keys=True) + "\n")
+
+    prev = json.loads(OUT_INTERSECT.read_text()) if OUT_INTERSECT.exists() else {}
+    OUT_INTERSECT.write_text(json.dumps({
+        "schema": 1,
+        "generated_by": "scripts/emit_degree10_space_incidence.py",
+        "atlas_names": names,
+        "product_columns": [n for n in (names or []) if n.startswith("I4_1*")],
+        "product_source": prev.get(
+            "product_source",
+            "explicit lower_product atlas entries: I4_1 x I6_1 and I4_1 x I6_2"),
+        "conclusion": prev.get("conclusion"),
+        "superseded_conclusion": prev.get("superseded_conclusion"),
+        "per_prime": per_prime_int,
+    }, indent=1, sort_keys=True) + "\n")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--primes", default="",
@@ -169,16 +194,41 @@ def main() -> int:
         primes = sorted(int(p.stem.rsplit("_", 1)[1])
                         for p in CERT_DIR.glob("interacting_degree12_*.json"))
 
+    # Snapshot what is already recorded before touching anything. It is both the
+    # resume point and the reference the recomputation is checked against, and
+    # incremental writing would destroy it if it were read later.
+    stored = (json.loads(OUT_INCIDENCE.read_text()).get("per_prime", {})
+              if OUT_INCIDENCE.exists() else {})
     per_prime_inc, per_prime_int, names = {}, {}, None
+    if args.write:
+        per_prime_inc = dict(stored)
+        if OUT_INTERSECT.exists():
+            per_prime_int = dict(
+                json.loads(OUT_INTERSECT.read_text()).get("per_prime", {}))
+        if OUT_INTERSECT.exists():
+            names = json.loads(OUT_INTERSECT.read_text()).get("atlas_names")
+
     for p in primes:
+        if args.write and str(p) in per_prime_inc and str(p) in per_prime_int:
+            print(f"  prime {p}: already recorded, skipped")
+            continue
         sp = build_spaces(p)
         if sp is None:
             print(f"  prime {p}: no closure certificate, skipped")
             continue
         names = sp["names"]
         dims, incidence, intersect = analyse(sp, p)
+        # Check against the stored value before recording it, so a disagreement
+        # stops the run instead of being written and then reported.
+        if str(p) in stored and stored[str(p)]["dims"] != dims:
+            print(f"FAIL: prime {p} disagrees with the existing certificate\n"
+                  f"  stored:   {stored[str(p)]['dims']}\n"
+                  f"  computed: {dims}")
+            return 1
         per_prime_inc[str(p)] = {"dims": dims, "incidence": incidence}
         per_prime_int[str(p)] = intersect
+        if args.write:
+            write_certificates(per_prime_inc, per_prime_int, names)
         print(f"  prime {p}: dims {dims}  B10 cap P10 = "
               f"{intersect['dim_B10_cap_P10']}  solved "
               f"{intersect['n_published_solved']}/{len(PUBLISHED_DEGREE10)}")
@@ -196,16 +246,9 @@ def main() -> int:
         print("FAIL: primes disagree on the dimensions; not writing")
         return 1
 
-    old = json.loads(OUT_INCIDENCE.read_text()) if OUT_INCIDENCE.exists() else None
-    if old:
-        for p, rec in old.get("per_prime", {}).items():
-            if p in per_prime_inc and rec["dims"] != per_prime_inc[p]["dims"]:
-                print(f"FAIL: prime {p} disagrees with the existing certificate\n"
-                      f"  stored:   {rec['dims']}\n"
-                      f"  computed: {per_prime_inc[p]['dims']}")
-                return 1
-        print(f"agrees with the existing certificate on "
-              f"{len(set(old.get('per_prime', {})) & set(per_prime_inc))} shared prime(s)")
+    shared = set(stored) & set(per_prime_inc)
+    if shared:
+        print(f"agrees with the existing certificate on {len(shared)} shared prime(s)")
 
     if not args.write:
         print("check only; pass --write to regenerate")

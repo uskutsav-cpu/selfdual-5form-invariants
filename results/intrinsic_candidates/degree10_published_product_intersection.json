@@ -16,6 +16,7 @@
   "I4_1*I6_2"
  ],
  "conclusion": "B10 (the published-candidate span) is NOT a primitive complement. At both primes dim(B10 cap P10) = 1 and dim(B10 + P10) = 13, so B10 contains exactly one product direction and misses one atlas direction; its primitive content is 11, not 12. The 12 = 12 coincidence with the spinor primitive count is dimensional, not structural. The decomposition that IS structural is A10 = G10 (+) P10 with G10 the span of the twelve graph generators (P10 cap G10 = 0, P10 + G10 = 14); see degree10_space_incidence.json.",
+ "generated_by": "scripts/emit_degree10_space_incidence.py",
  "per_prime": {
   "32717": {
    "B10_equals_span_of_graph_generators": false,
