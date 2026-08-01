@@ -80,14 +80,27 @@ both primes:
 | n | dimensions what | arithmetic |
 |---:|---|---|
 | 126 | gamma-traceless symmetric chiral square `Sym²(16) ⊖ 10` | exact modular (bridge) |
-| 1, 2, 7, 14 | spinor **evaluation rank** at F-degree 4, 6, 8, 10 | exact modular (bridge) |
-| 1, 3, 8, … | **cumulative Jacobian rank** at F-degree 4, 6, 8, … | exact modular (bridge) |
+| 1, 2, 6, 14 | spinor **evaluation rank** at F-degree 4, 6, 8, 10 | exact modular (bridge) |
+| 1, 3, 9, 21, 81 | **cumulative Jacobian rank** at F-degree 4, 6, 8, 10, 12 | exact modular (`results/rank81/certificate.json`) |
 
-The last two rows are different quantities and they diverge by degree 8: the
-cumulative polynomial dimension there is `1 + 2 + 7 = 10` while the cumulative
-functional (Jacobian) rank is `8`. Two functional relations already exist among
-polynomially independent invariants. Conflating these is precisely the error
-this dictionary exists to prevent.
+These are different quantities and must not be read off one another. Two
+corrections to an earlier revision of this table, both of which were exactly the
+error this document exists to prevent:
+
+1. The cumulative Jacobian ranks were given as `1, 3, 8, …`. The certificate
+   records `1, 3, 9, 21, 81`. The per-degree block ranks are `1, 2, 6, 12, 62`
+   against candidate counts `1, 2, 6, 12, 62` — every block is full rank.
+2. The text then compared `1 + 2 + 7 = 10` against that rank and concluded two
+   functional relations exist by degree 8. Both halves are wrong. The `7` is the
+   **trace-side** graded dimension; the Jacobian is taken over the **spinor**
+   candidate family, which has 6 at degree 8. Mixing the two sides in a single
+   subtraction is not a meaningful quantity.
+
+Where the functional relations actually appear: nowhere before degree 12. The
+full selection has 83 candidates and Jacobian rank 81, so exactly **two**
+functional dependencies exist among the selected functions, and both are
+degree-12 phenomena. The candidates are not an independent set and are never
+described as one.
 
 ## 6. Words that are banned without a qualifier
 
@@ -101,7 +114,15 @@ this dictionary exists to prevent.
 
 ## 7. Change log
 
-- **2026-07-31 (this revision).** Section 3 previously said the product/primitive
+- **2026-08-01.** Section 5 corrected. The cumulative Jacobian ranks were wrong
+  (`1, 3, 8, …` for `1, 3, 9, 21, 81`) and the accompanying text subtracted a
+  spinor-side rank from a trace-side dimension to conclude that two functional
+  relations exist by degree 8. Neither the number nor the comparison was sound.
+  The two functional dependencies are real but they are degree-12, and they come
+  from 83 candidates having rank 81. Recorded rather than quietly overwritten,
+  because this document's whole purpose is to stop that class of mistake and it
+  had made one.
+- **2026-07-31.** Section 3 previously said the product/primitive
   relation was uncomputed and must not be asserted. It has since been computed:
   the tempting identification is **false**, and the true structural
   correspondence is `A10 = G10 ⊕ P10`. Sections 4 and 5 added. The

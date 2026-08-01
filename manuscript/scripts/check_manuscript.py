@@ -210,7 +210,13 @@ def claim_diff() -> None:
         check("exactJacErrors", sched["evaluation_errors"])
         check("exactJacZeroRows", sched["zero_rows"])
         check("charZeroLowerBound", summ.get("characteristic_zero_lower_bound"))
-        check("cumRankDegTwelve", cum.get("12"))
+        # Every degree, not just the last.  The dimension dictionary carried a
+        # wrong interior value (8 for 9) for some time precisely because only
+        # the endpoint was ever checked.
+        for degree, word in (("4", "Four"), ("6", "Six"), ("8", "Eight"),
+                             ("10", "Ten"), ("12", "Twelve")):
+            if degree in cum:
+                check(f"cumRankDeg{word}", cum[degree])
 
     mn = ROOT / "results/rank81/minor81_certificate.json"
     if mn.exists():
