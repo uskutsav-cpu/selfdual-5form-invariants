@@ -181,6 +181,63 @@ def main() -> int:
                   "nFloatInconclusive floatNondegenerateRanks").split():
             lines.append(macro(n, None))
 
+    # --- exact analytic Jacobian certificate ---------------------------------
+    # This is the strongest computational statement in the package, so every
+    # number it contributes is read from the certificate and never spelled out
+    # in the manuscript source.
+    ex = load("results/rank81/certificate.json")
+    if ex and ex.get("runs"):
+        runs = ex["runs"]
+        summ = ex["summary"]
+        ranks = sorted({r["jacobian"]["total_rank"] for r in runs})
+        primes = sorted({r["prime"] for r in runs})
+        points = sorted({(r["prime"], r["seed"]) for r in runs})
+        cum = runs[0]["jacobian"]["cumulative_rank_by_degree"]
+        sched = runs[0]["schedule_summary"]
+        lines += [
+            macro("exactJacRank", "/".join(map(str, ranks))),
+            macro("exactJacRunsAgree", "yes" if summ.get("all_runs_agree") else "no"),
+            macro("exactJacPoints", len(points)),
+            macro("exactJacPrimes", ", ".join(map(str, primes))),
+            macro("nExactJacPrimes", len(primes)),
+            macro("exactJacRows", runs[0]["jacobian"]["n_rows"]),
+            macro("exactJacCols", runs[0]["jacobian"]["n_columns"]),
+            macro("exactJacScheduled", sched["planned"]),
+            macro("exactJacEvaluated", sched["by_terminal_status"].get("evaluated", 0)),
+            macro("exactJacErrors", sched["evaluation_errors"]),
+            macro("exactJacZeroRows", sched["zero_rows"]),
+            macro("exactJacScheduleComplete", "yes" if sched["complete"] else "no"),
+            macro("exactJacEulerPass", "yes" if summ.get("all_euler_checks_pass") else "no"),
+            macro("charZeroLowerBound", summ.get("characteristic_zero_lower_bound")),
+            macro("cumRankDegFour", cum.get("4")),
+            macro("cumRankDegSix", cum.get("6")),
+            macro("cumRankDegEight", cum.get("8")),
+            macro("cumRankDegTen", cum.get("10")),
+            macro("cumRankDegTwelve", cum.get("12")),
+        ]
+    else:
+        for n in ("exactJacRank exactJacRunsAgree exactJacPoints exactJacPrimes "
+                  "nExactJacPrimes exactJacRows exactJacCols exactJacScheduled "
+                  "exactJacEvaluated exactJacErrors exactJacZeroRows "
+                  "exactJacScheduleComplete exactJacEulerPass charZeroLowerBound "
+                  "cumRankDegFour cumRankDegSix cumRankDegEight cumRankDegTen "
+                  "cumRankDegTwelve").split():
+            lines.append(macro(n, None))
+
+    # --- explicit non-vanishing minor ----------------------------------------
+    mn = load("results/rank81/minor81_certificate.json")
+    if mn:
+        ms = mn.get("summary", {})
+        lines += [
+            macro("minorSize", mn.get("minor_size")),
+            macro("minorPrimes", ", ".join(sorted(mn.get("per_prime", {})))),
+            macro("nMinorPrimes", ms.get("n_primes_verified")),
+            macro("minorDetNonzero", "yes" if ms.get("integer_minor_nonzero") else "no"),
+        ]
+    else:
+        for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
+            lines.append(macro(n, None))
+
     # --- fixed analytic constants (not computed, so stated with provenance) ---
     lines += [
         "% analytic constants -- literature or elementary, not computed here",
@@ -192,8 +249,20 @@ def main() -> int:
         macro("spinorDim", 16),
     ]
 
+    # one extra macro the Letter needs and the long form does not
+    inc2 = load("results/intrinsic_candidates/degree10_space_incidence.json")
+    if inc2:
+        pr = sorted(inc2["per_prime"])[0]
+        dd = inc2["per_prime"][pr]["dims"]
+        lines.append(macro("dimQtenMinusOne", dd["A10"] - dd["D10"] - 1))
+    else:
+        lines.append(macro("dimQtenMinusOne", None))
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n")
+    prl = ROOT / "manuscript" / "prl" / "generated" / "numbers.tex"
+    prl.parent.mkdir(parents=True, exist_ok=True)
+    prl.write_text("\n".join(lines) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)} ({len(lines)} lines)")
     if MISSING:
         print(f"WARNING: {len(MISSING)} macros have no artifact yet:")

@@ -25,7 +25,8 @@ Literature consulted directly (not from summaries or search snippets):
 | 7 | Exact basis maps among graph, published and compact bases | Not present | none known | — | "explicit change-of-basis matrices, validated on holdout samples" | PROVISIONAL |
 | 8 | Split-signature identification of the oscillator frame | Standard representation theory; the specific identification for this implementation is ours | The mathematics is textbook | The correction of a recorded error is what is new *here*, and it is not a research novelty | **Do not claim as novel.** State as a convention clarification | PROVISIONAL |
 | 9 | Explicit convention-controlled spinor/tensor bridge, exact over $\mathbb{F}_p$ | The gamma-matrix map is standard; a machine-checked implementation with certified kernel and image is not in the literature we consulted | The formula is standard | The certificates, the exactness and the equivariance solve-for-character are ours | "we implement and certify the map"; **not** "we derive the map" | PROVISIONAL |
-| 10 | Exact modular Jacobian replacing float64 finite differences | The count 81 is analytic and is in arXiv:2509.14351 | The number is theirs | The exact, tolerance-free computation is ours, and it is a lower bound only | "the analytic count is reproduced as a rigorous lower bound by an exact computation" | PROVISIONAL |
+| 10 | Exact modular Jacobian replacing float64 finite differences | The count 81 is analytic and is in arXiv:2509.14351 | The number is theirs | The exact, tolerance-free computation is ours, over the complete 83-candidate selection, with an explicit 81x81 minor; it is a lower bound only | "the analytic count is reproduced as a rigorous lower bound by an exact computation" | PROVISIONAL |
+| 11 | Cardinality bound `|S| >= dim Q` making minimality basis-independent | Elementary linear algebra; the rank-nullity style argument is textbook | The mathematics is entirely standard | Nothing. It is included because it discharges half of PO-08, not because it is new | **Do not claim as novel.** State as a proposition with proof and no priority language | PROVISIONAL |
 
 ## Explicitly NOT claimed as novel
 
@@ -33,11 +34,22 @@ Literature consulted directly (not from summaries or search snippets):
 - The Hilbert-series dimensions.
 - The stress-flow construction.
 - The gamma-matrix map itself.
+- The cardinality bound of section 6.4. It is standard linear algebra, stated
+  because it converts a basis-dependent assertion into a basis-free one.
 - Majorana–Weyl existence in signatures with $s-t\equiv 0 \bmod 8$.
 
 ## Search coverage and its limits
 
-The two source papers were consulted directly. A broader systematic sweep of the
-invariant-theory and chiral-form literature has **not** been carried out, so no
-row above may be upgraded from PROVISIONAL on the strength of this file alone.
-See `RELATED_WORK_SEARCH.md` for exactly what was and was not searched.
+A broader sweep has since been carried out and is recorded in
+`RELATED_WORK_COMPLETE.md`, which audits six papers directly at their arXiv or
+publisher landing pages and states for each whether it pre-empts any claim here.
+`RELATED_WORK_SEARCH.md` records the earlier, narrower pass.
+
+Every row nonetheless stays **PROVISIONAL**, and the reason has changed. It is no
+longer that the search is outstanding. It is that a literature search establishes
+absence of evidence, not evidence of absence: a coauthor who knows the field can
+recognise a result the search would not surface — an unpublished note, a
+different formulation of the same statement, a paper in an adjacent literature.
+Upgrading a row is therefore a judgement, and it is a human one.
+
+No row may be upgraded on the strength of this file alone.

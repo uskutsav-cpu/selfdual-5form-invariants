@@ -196,6 +196,28 @@ def claim_diff() -> None:
         check("bridgeForwardRank", one["bridge"]["forward_rank"])
         check("dimGammaTraceless", one["clifford"]["gamma_traceless_dim"])
 
+    ex = ROOT / "results/rank81/certificate.json"
+    if ex.exists():
+        d = json.loads(ex.read_text())
+        runs, summ = d["runs"], d["summary"]
+        sched = runs[0]["schedule_summary"]
+        cum = runs[0]["jacobian"]["cumulative_rank_by_degree"]
+        ranks = sorted({r["jacobian"]["total_rank"] for r in runs})
+        check("exactJacRank", "/".join(map(str, ranks)))
+        check("exactJacPoints", len({(r["prime"], r["seed"]) for r in runs}))
+        check("exactJacScheduled", sched["planned"])
+        check("exactJacEvaluated", sched["by_terminal_status"].get("evaluated", 0))
+        check("exactJacErrors", sched["evaluation_errors"])
+        check("exactJacZeroRows", sched["zero_rows"])
+        check("charZeroLowerBound", summ.get("characteristic_zero_lower_bound"))
+        check("cumRankDegTwelve", cum.get("12"))
+
+    mn = ROOT / "results/rank81/minor81_certificate.json"
+    if mn.exists():
+        d = json.loads(mn.read_text())
+        check("minorSize", d["minor_size"])
+        check("nMinorPrimes", d["summary"]["n_primes_verified"])
+
     # an unresolved artifact must be loud, not silently absent
     CHECKS += 1
     missing = [k for k, v in macros.items() if "ARTIFACTMISSING" in v]
@@ -244,11 +266,101 @@ def build_gates() -> None:
         fail("build", "no PDF was produced")
 
 
+#: Headline numbers that appear in prose under docs/ and must track an artifact.
+#: This gate exists because the wording and claim-diff gates cover manuscript
+#: sources only, and two status documents were once left asserting a superseded
+#: Jacobian rank while the certificate next to them said otherwise. A reader
+#: picking the project up reads those documents first, so a stale number there
+#: is at least as damaging as one in the manuscript.
+DOC_SUPERSEDED = [
+    # (path, forbidden regex, why it is wrong now, artifact that settles it)
+    (
+        "docs/RANK81_EXACT_CERTIFICATE.md",
+        r"Scope:\s*82 of 83|c046_portgraph_d12.*evaluation_error",
+        "the schedule is complete; every candidate is `evaluated`",
+        "results/rank81/certificate.json",
+    ),
+    (
+        "docs/JHEP_SPEC_STATUS.md",
+        r"identical at three independent points",
+        "the exact certificate is reported per (prime, seed) point, not as a "
+        "count of agreeing points",
+        "results/rank81/certificate.json",
+    ),
+]
+
+
+def doc_consistency() -> None:
+    """Status documents must not contradict the certificates beside them.
+
+    Two kinds of check, both narrow on purpose:
+
+    1.  Explicit superseded phrasings, listed above, are forbidden outright.
+    2.  Any document that states an exact Jacobian rank must state the one the
+        certificate currently records.
+    """
+    global CHECKS
+    cert = ROOT / "results/rank81/certificate.json"
+    if not cert.exists():
+        return
+    d = json.loads(cert.read_text())
+    ranks = sorted({r["jacobian"]["total_rank"] for r in d["runs"]})
+    sched = d["runs"][0]["schedule_summary"]
+
+    for rel, pattern, why, artifact in DOC_SUPERSEDED:
+        CHECKS += 1
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        if re.search(pattern, p.read_text(), re.IGNORECASE):
+            fail("doc-consistency",
+                 f"{rel} still contains superseded wording -- {why} "
+                 f"(see {artifact})")
+
+    # A stated *Jacobian* rank in the docs must be one the certificate records.
+    # The pattern is deliberately narrow: the repository states many other exact
+    # ranks (the degree-12 atlas, the I6 obstruction, the stress-flow span) and
+    # none of them has anything to do with this certificate.
+    permitted = {str(r) for r in ranks}
+    for p in sorted((ROOT / "docs").glob("*.md")):
+        body = p.read_text()
+        # The value must follow the phrase directly, through nothing but a
+        # copula, a separator or table/markdown punctuation.  Allowing arbitrary
+        # filler makes the gate reach across a clause and read a degree label as
+        # a rank, which is how it first produced false positives on the degree-12
+        # atlas and the I6 obstruction.
+        for m in re.finditer(
+                r"(?:Jacobian rank|exact modular rank)\s*(?:is|=|of|:|\|)?\s*\**(\d{1,3})",
+                body, re.IGNORECASE):
+            CHECKS += 1
+            if m.group(1) not in permitted:
+                # A superseded value is only a failure when it is asserted as
+                # current; an explicitly retracted one is fine and is how the
+                # record of a correction survives.
+                lo = max(0, m.start() - 300)
+                if re.search(r"supersede|superseded|earlier revision|no longer|retract",
+                             body[lo:m.end() + 200], re.IGNORECASE):
+                    continue
+                fail("doc-consistency",
+                     f"{p.relative_to(ROOT)} asserts exact rank {m.group(1)}, "
+                     f"but the certificate records {'/'.join(sorted(permitted))}")
+
+    CHECKS += 1
+    if not sched["complete"]:
+        # Not a failure -- but the docs must not claim a complete schedule.
+        for p in sorted((ROOT / "docs").glob("*.md")):
+            if re.search(r"Scope:\s*83 of 83", p.read_text()):
+                fail("doc-consistency",
+                     f"{p.relative_to(ROOT)} claims a complete schedule but "
+                     f"the certificate records evaluation errors")
+
+
 def main() -> int:
     text = manuscript_text()
     wording_gates(text)
     required_disclosures(text)
     claim_diff()
+    doc_consistency()
     build_gates()
 
     print(f"manuscript gates: {CHECKS} checks")

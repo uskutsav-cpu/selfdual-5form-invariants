@@ -34,9 +34,23 @@ DIRS = ["appendices", "generated", "tables"]
 TEX = Path.home() / "Library" / "TinyTeX" / "bin" / "universal-darwin"
 
 
+def packaged_sources() -> list[Path]:
+    """The .tex files this package actually compiles.
+
+    Scoped to the long-form manuscript on purpose.  The Letter lives under
+    `manuscript/prl/` with its own figure directory and its own build script; a
+    blind `rglob` pulls its `\\includegraphics` lines in here and then fails
+    looking for Letter figures in the long-form figure directory.
+    """
+    out = [MANUSCRIPT / n for n in SOURCES if n.endswith(".tex")]
+    for d in DIRS:
+        out += sorted((MANUSCRIPT / d).rglob("*.tex")) if (MANUSCRIPT / d).exists() else []
+    return [p for p in out if p.exists()]
+
+
 def figures_used() -> list[str]:
     """Only the figures actually included, so unused files are not shipped."""
-    text = "\n".join(p.read_text() for p in MANUSCRIPT.rglob("*.tex"))
+    text = "\n".join(p.read_text() for p in packaged_sources())
     return sorted(set(re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", text)))
 
 

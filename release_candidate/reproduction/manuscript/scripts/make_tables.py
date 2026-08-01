@@ -122,8 +122,11 @@ def table_comparison() -> None:
         return
     pk = max(c["primes"], key=lambda k: len(c["primes"][k].get("degrees", {})))
     degs = c["primes"][pk]["degrees"]
-    body = ["\\begin{table}[t]", "\\centering",
-            "\\begin{tabular}{rrrlll}", "\\toprule",
+    # The stopping-reason strings are long enough to push this table past the
+    # text block, so the last column is boxed at a fixed width rather than left
+    # to overflow into the margin.
+    body = ["\\begin{table}[t]", "\\centering", "\\small",
+            "\\begin{tabular}{rrrllp{3.4cm}}", "\\toprule",
             "degree & trace rank & spinor rank & spans equal & holdout "
             "validated & spinor stopping \\\\", "\\midrule"]
     for d in sorted(degs, key=int):

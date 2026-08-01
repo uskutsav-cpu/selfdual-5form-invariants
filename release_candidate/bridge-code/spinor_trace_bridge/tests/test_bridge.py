@@ -270,3 +270,74 @@ def test_reflection_in_a_null_vector_is_refused(p):
     from sdbridge.rotations import reflection_matrix
     with pytest.raises(ValueError):
         reflection_matrix(np.zeros(10, dtype=np.int64), p)
+
+
+# --- structured candidate families -------------------------------------------
+
+@pytest.mark.parametrize("p", PRIMES)
+def test_tensor_word_raising_matches_the_metric(p):
+    from sdbridge.tensor_words import verify_raising_convention
+    r = verify_raising_convention(p)
+    assert r["matches_metric_up_to_scale"], \
+        "the null-frame raising permutation was assumed, not verified"
+    assert r["permutation"] == [5, 6, 7, 8, 9, 0, 1, 2, 3, 4]
+
+
+def test_necklace_count_matches_the_selected_families():
+    """Six degree-8 and fourteen degree-12 tensor words exist as cyclic classes."""
+    from sdbridge.tensor_words import necklaces
+    assert len(necklaces(4)) == 6
+    assert len(necklaces(6)) == 14
+
+
+@pytest.mark.parametrize("p", [C.DEFAULT_PRIME])
+def test_structured_degree8_is_homogeneous_of_degree_eight(p):
+    """Catches the int64 overflow that a single unreduced einsum introduces.
+
+    With p ~ 2^15 a four-step contraction reaches ~2^72 and wraps silently.  The
+    wrapped values look perfectly ordinary; only homogeneity exposes them.
+    """
+    import numpy as np
+    from sdbridge.structured_degree8 import StructuredDegree8, SELECTED
+    from sdbridge.candidates import build_context
+    ev = StructuredDegree8(p=p)
+    ctx = build_context(p, seed=11)
+    base = ev.values(ctx.S)
+    for c in (2, 3):
+        scaled = ev.values((c * ctx.S) % p)
+        for n in SELECTED:
+            assert scaled[n] == pow(c, 8, p) * base[n] % p, \
+                f"{n} is not homogeneous of degree 8 at c={c}"
+
+
+@pytest.mark.parametrize("p", [C.DEFAULT_PRIME])
+def test_tensor_word_euler_homogeneity(p):
+    import numpy as np
+    from sdbridge.tensor_words import TensorWordEvaluator, necklaces
+    from sdbridge.candidates import build_context
+    ctx = build_context(p, seed=11)
+    tw = TensorWordEvaluator(p=p)
+    res = tw.euler_check(list(necklaces(4)), ctx.F_null, ctx.coeffs, ctx.basis_null)
+    for word, r in res.items():
+        assert r["ok"], f"Euler identity failed for tensor word {word}"
+
+
+@pytest.mark.parametrize("p", [C.DEFAULT_PRIME])
+def test_full_schedule_has_eighty_three_candidates_with_no_silent_gaps(p):
+    """Every scheduled candidate must carry a terminal record."""
+    import os
+    from pathlib import Path
+    from sdbridge.candidates import load_schedule
+    archive = Path(os.environ.get(
+        "SD5_ARCHIVE",
+        Path.home() / "Documents/Codex/2026-07-29/now/work/spinor-work"))
+    sel = archive / "run_4_12_tensor_words_s96" / "selected_graphs.json"
+    if not sel.exists():
+        pytest.skip("third-party archive not present; see THIRD_PARTY_ARCHIVE_BOUNDARY.md")
+    sched = load_schedule(sel)
+    assert len(sched) == 83
+    fams = {}
+    for c in sched:
+        fams[c.family] = fams.get(c.family, 0) + 1
+    assert fams["port_graph"] == 70
+    assert fams["tensor_word"] + fams["structured_degree8"] == 13
