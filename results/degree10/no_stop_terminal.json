@@ -1,0 +1,57 @@
+{
+ "generated_utc": "2026-08-01T21:33:08+00:00",
+ "final_status": "NOT REQUIRED FOR THE MANUSCRIPT CLAIMS",
+ "production_run_launched": false,
+ "why_not_launched": [
+  "the machine is committed to the rank-certificate matrix and the standing instruction is not to start additional expensive computation",
+  "even completed it would licence a claim this manuscript does not make"
+ ],
+ "terminal_status_by_degree": {
+  "4": {
+   "stopped_by": "candidate_exhaustion",
+   "final_rank": 1,
+   "hilbert_target": 1,
+   "attempted_unique_graphs": 2,
+   "note": null
+  },
+  "6": {
+   "stopped_by": "candidate_exhaustion",
+   "final_rank": 2,
+   "hilbert_target": 2,
+   "attempted_unique_graphs": 5,
+   "note": null
+  },
+  "8": {
+   "stopped_by": "candidate_exhaustion",
+   "final_rank": 7,
+   "hilbert_target": 7,
+   "attempted_unique_graphs": 32,
+   "note": null
+  },
+  "10": {
+   "stopped_by": "killed",
+   "final_rank": 12,
+   "hilbert_target": 14,
+   "attempted_unique_graphs": null,
+   "note": "The process was killed (SIGKILL) after roughly four hours of CPU time. It had reached rank 12 of the target 14 and had not left its first candidate batch. This is NOT a result: no terminal state was reached, so nothing is established about the ansatz at degree 10, in either direction."
+  }
+ },
+ "degrees_searched_out": [
+  4,
+  6,
+  8
+ ],
+ "degree10_stopped_by": "killed",
+ "strongest_claim_a_completed_run_would_licence": "EXHAUSTIVE WITHIN THE DEFINED FINITE GRAMMAR",
+ "why_span_equality_does_not_need_it": "dim_Q A10 = 14 is structural; the tensor side saturates it; the spinor family reaches 14 on the common sample with containment both ways and holdout validation. Both spans therefore equal A10, and any further grammar element is a degree-10 invariant already inside A10, so it cannot enlarge the span.",
+ "argument_scope_limit": "This works at degree 10 only because the tensor side saturates the full atlas there. It does not licence the same move at a degree where the tensor enumeration is itself incomplete.",
+ "forbidden_claims": [
+  "the degree-10 spinor grammar is exhausted",
+  "the enumeration is complete at degree 10",
+  "the spinor family is minimal, unique or canonical",
+  "completeness of the invariant ring"
+ ],
+ "scope_document": "docs/DEGREE10_NO_STOP_SCIENTIFIC_CLAIM.md",
+ "source_artifact": "verification/spinor_degree10_no_stop.json",
+ "source_sha256": "30609265493e4f7cd1bce093bdae994385231e6f5292ae0be98ed1c782125659"
+}
