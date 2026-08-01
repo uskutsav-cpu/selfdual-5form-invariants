@@ -1,0 +1,100 @@
+\documentclass[aps,prl,onecolumn,superscriptaddress,nofootinbib]{revtex4-2}
+\usepackage{amsmath,amssymb,graphicx,booktabs,hyperref}
+\input{macros}
+\input{generated/numbers}
+\begin{document}
+\title{Supplemental Material:\\
+Three local interactions of the ten-dimensional self-dual five-form
+that no stress-tensor flow generates}
+\author{AUTHOR LIST --- HUMAN ACTION REQUIRED}
+\affiliation{AFFILIATIONS --- HUMAN ACTION REQUIRED}
+\maketitle
+
+\noindent\fbox{\parbox{0.95\textwidth}{\small The Letter stands on its own. Nothing
+in this Supplement is needed to believe the central theorem; everything here is
+detail a specialist may want to check. The one thing that cannot be moved here is
+the logic of the theorem itself, and it is not.}}
+
+\section{Conventions}
+Signature $(-,+,\dots,+)$; $\eps_{01\ldots9}=+1$;
+$(\star F)_I = \frac{1}{(d-p)!}\eps_I{}^J F_J$. For $d=10$, $p=5$,
+$\star^2=(-1)^{25}\sgn\det\eta=+1$, computed at runtime rather than assumed.
+Self-duality is $\star F=+F$, projector $(1+\star)/2$ with $1/2$ the modular
+inverse of $2$. Clifford normalisation $\{\Gamma^\mu,\Gamma^\nu\}=2\eta^{\mu\nu}$;
+positive chirality is $\Lambda^{\rm even}W$; the antisymmetrised five-gamma
+carries unit weight on the identity permutation.
+
+Every convention is pinned as a named constant in
+\texttt{sdbridge/conventions.py}; downstream code imports the constant and may not
+re-derive a sign locally.
+
+\section{Arithmetic and primes}
+All ranks are exact over $\Fp$. Fitting primes $32749$, $32719$; holdout primes
+$32717$, $32713$, $32707$. Modular rank bounds the characteristic-zero rank from
+below unconditionally when the matrix is an integer reduction, which holds here
+because the coordinate basis is integral with entries in $\{-1,0,+1\}$.
+No upper bound anywhere in this work is taken from a modular computation.
+
+\section{Sample protocol}
+A registry of $\nCommonSamples$ self-dual five-forms: $\nSampleSparse$ sparse,
+$\nSampleStructured$ structured, $\nSampleGeneric$ generic, $\nSampleHoldout$
+holdout drawn from a disjoint seed stream. Every sample is hashed, checked for
+exact self-duality, and its bridge image checked gamma-traceless before use.
+Change-of-basis maps are fitted on the non-holdout samples and validated on the
+holdout samples only.
+
+\section{The bridge}
+$S_{ab}=\frac{1}{5!}F_{\mu_1\ldots\mu_5}(\Gamma^{\mu_1\ldots\mu_5})_{ab}$.
+Verified at each prime: kernel equals the anti-self-dual $\dimAntiSelfdual$ and
+image equals the gamma-traceless $\dimGammaTraceless$, both by two-way span
+containment; forward rank $\bridgeForwardRank$, not $\dimSymSpinor$; the
+constructed left inverse composes with the forward map to give the self-dual
+projector exactly.
+
+The oscillator frame has real signature $(5,5)$, computed from all one hundred
+anticommutators of the frame's own operators. $(5,5)$ and $(1,9)$ are
+inequivalent real forms; over $\Fp$ they are congruent because both metrics have
+discriminant $-1$ up to squares, and the transition matrix is constructed
+explicitly rather than assumed to exist.
+
+The spinor index placement in $\sigma^\mu_{ab}$ is undocumented upstream. It was
+\emph{determined} by requiring exact equivariance: of eight candidate placements
+exactly one reproduces the transformed image on every component with a single
+scalar. This is a reconstruction of a convention, not a citation of one.
+
+\section{Degree-8 span equality}
+At four primes, trace rank $7$, spinor rank $7$, union rank $7$, with two-way
+containment and holdout-validated change of basis. Dropping each spinor family in
+turn and re-ranking: port graphs $7$, products $7$, structured $\Omega/\Theta$
+$7$, \textbf{tensor words $6$}. Only the tensor words are indispensable, which
+locates the direction a port-graph-only family misses.
+
+\section{Exact Jacobian}
+Analytic derivatives throughout; no finite differences. Port graphs are
+differentiated by amputation, tensor words by the product rule on the trace, and
+the $\Omega/\Theta$ family by exact modular interpolation cross-checked against
+an independent polarisation. Euler homogeneity
+$\sum_r c_r\,\partial_r I = (\deg I)\,I$ holds for every evaluated candidate.
+
+Rank $81$; per-degree block ranks $1,2,6,12,61$; cumulative $1,3,9,21,81$. No row
+normalisation is used, and over $\Fp$ none would be meaningful. Of $83$ scheduled
+candidates, $82$ carry terminal status \texttt{evaluated}; one exceeded the
+wall-clock budget and is recorded as \texttt{evaluation\_error} rather than
+dropped. It cannot change a rank already at the analytic maximum.
+
+\section{What is computer-assisted}
+The dimensions are ranks of explicitly recorded integer matrices. The repository
+ships the matrices, the pivot rows and columns, and a script that recomputes each
+rank from stored data without re-running any search, so the ranks are checkable
+without trusting the enumeration. The enumeration itself is the step that rests
+on search; it is corroborated by an independent formula-free reverse recovery and
+by the spinor computation, but it is not a symbolic proof.
+
+\section{Software}
+Three packages with no shared implementation: the tensor implementation, the
+bridge, and an external third-party spinor archive that is analysed but never
+redistributed. Import audits in both directions are recorded in
+\texttt{docs/SOURCE\_OVERLAP\_AUDIT.md}. Implementation independence holds;
+clean-room independence is not claimed.
+
+\end{document}
