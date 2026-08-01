@@ -178,6 +178,19 @@ def step_build(record: dict, resume: bool) -> bool:
     return passed
 
 
+def step_policy(record: dict) -> bool:
+    """Release-policy facts must match the repository they describe."""
+    proc, secs = run([PY, str(ROOT / "scripts/check_release_policy.py")],
+                     tag="policy", resume=False)
+    passed = proc.returncode == 0
+    record["steps"].append({
+        "step": "release policy check", "passed": passed, "seconds": secs,
+        "note": None if passed else proc.stdout.strip().splitlines()[-3:],
+    })
+    flush(record)
+    return passed
+
+
 def step_gates(record: dict, resume: bool) -> bool:
     proc, secs = run([PY, str(ROOT / "manuscript/scripts/check_manuscript.py")],
                      tag="gates", resume=False)
@@ -243,6 +256,7 @@ def main() -> int:
                                 "passed": None, "note": "skipped by --skip-build"})
     else:
         ok &= step_build(record, args.resume)
+    ok &= step_policy(record)
     ok &= step_gates(record, args.resume)
 
     record["all_steps_passed"] = ok
