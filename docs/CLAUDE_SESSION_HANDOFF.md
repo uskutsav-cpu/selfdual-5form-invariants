@@ -57,19 +57,19 @@ response to a killed run.
 ## Where the human gates are
 
 - `submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md` — ten items
-- `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md` — G-1 to G-7
+- `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md` — G-1 to G-9
 - `audit/NOVELTY_MATRIX.md` — every row PROVISIONAL
 
 ## How to pick this up
 
 ```bash
-python -m pytest                                  # 199
+python -m pytest                                  # 207
 cd spinor_trace_bridge && python -m pytest        # 72
 python manuscript/scripts/make_numbers.py         # regenerate from artifacts
 python manuscript/scripts/make_tables.py
 python manuscript/scripts/make_figures.py
 python scripts/build_submission_package.py        # isolated build + archives
-python manuscript/scripts/check_manuscript.py     # 32 wording and claim gates
+python manuscript/scripts/check_manuscript.py     # 50 wording, claim and doc gates
 ```
 
 Long runs write incrementally and skip completed work, so re-issuing the same

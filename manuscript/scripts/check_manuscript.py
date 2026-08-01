@@ -345,6 +345,63 @@ def doc_consistency() -> None:
                      f"{p.relative_to(ROOT)} asserts exact rank {m.group(1)}, "
                      f"but the certificate records {'/'.join(sorted(permitted))}")
 
+    # Test and gate counts drift the same way a rank does, and they had drifted
+    # twice by the time this was added (49 -> 72 bridge tests, 32 -> 50 gates).
+    # The manuscript takes both from generated macros; the prose under docs/ and
+    # submission_candidate/ cannot, so it is checked instead.
+    gen = MANUSCRIPT / "generated" / "numbers.tex"
+    if gen.exists():
+        macros = dict(re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}",
+                                 gen.read_text()))
+        # The counts are written several different ways across these documents,
+        # so match "N tests" and decide which suite is meant from the nearest
+        # keyword rather than trying to enumerate the phrasings.  Deciding by
+        # *nearest* keyword matters: "tensor ... 199 tests" and "bridge ... 72
+        # tests" sit on consecutive lines in one file, and a plain window
+        # containment test attributes the first to the bridge.
+        #
+        # Coverage is partial and deliberately so.  A count whose sentence names
+        # neither suite -- "...; 72 tests at two primes." in
+        # LIVE_STATE_DISCOVERY.md -- is not attributed and is not checked.
+        # Widening the window until it catches that one also starts attributing
+        # unrelated counts, which is the worse failure: a gate that cries wolf
+        # gets weakened, and this one exists because a real staleness slipped
+        # through.  Three of the four phrasings in the repository are covered.
+        suites = [(r"bridge|test_bridge", macros.get("nBridgeTests"), "bridge"),
+                  (r"tensor|trace side", macros.get("nTraceTests"), "tensor")]
+        roots = [ROOT / "docs", ROOT / "submission_candidate",
+                 ROOT / "spinor_trace_bridge" / "docs"]
+        for d in roots:
+            for p in sorted(d.rglob("*.md")) if d.exists() else []:
+                body = p.read_text()
+                for m in re.finditer(r"(\d{1,4})\s+(?:\w+\s+)?tests\b", body):
+                    lo = max(0, m.start() - 90)
+                    before = body[lo:m.start()]
+                    # "72 bridge tests" puts the keyword after the number, so
+                    # look forward as far as the end of the match and no further.
+                    after = body[m.start():m.end()]
+                    best = None
+                    for pattern, expected, label in suites:
+                        if expected is None:
+                            continue
+                        if re.search(pattern, after, re.IGNORECASE):
+                            best = (0, expected, label)
+                            break
+                        hits = list(re.finditer(pattern, before, re.IGNORECASE))
+                        if hits:
+                            # distance from the keyword to the number
+                            dist = len(before) - hits[-1].end()
+                            if best is None or dist < best[0]:
+                                best = (dist, expected, label)
+                    if best is None:
+                        continue
+                    _, expected, label = best
+                    CHECKS += 1
+                    if m.group(1) != str(expected):
+                        fail("doc-consistency",
+                             f"{p.relative_to(ROOT)} states {m.group(1)} {label} "
+                             f"tests; collection reports {expected}")
+
     CHECKS += 1
     if not sched["complete"]:
         # Not a failure -- but the docs must not claim a complete schedule.

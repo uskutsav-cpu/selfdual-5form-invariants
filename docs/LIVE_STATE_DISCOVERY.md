@@ -29,7 +29,7 @@ packages (`src/sdinv`, `spinor_trace_bridge/src/sdbridge`) with no shared code.
 ## Work already complete, verified rather than repeated
 
 - Exact modular Clifford algebra, frame congruence, forward map and left inverse,
-  with kernel and image identified by **span equality**; 49 tests at two primes.
+  with kernel and image identified by **span equality**; 72 tests at two primes.
 - Common-sample comparison at degrees 4, 6, 8, 10.
 - Exact analytic Jacobian by amputation for port graphs, validated by Euler's identity.
 - Both archived Jacobians re-analysed under an explicit noise-floor rule.

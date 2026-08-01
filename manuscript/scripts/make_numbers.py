@@ -14,6 +14,8 @@ Run:
 from __future__ import annotations
 
 import json
+import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -33,6 +35,28 @@ def load(rel: str):
         return json.loads(p.read_text())
     except json.JSONDecodeError:
         return None
+
+
+def collect_tests(root: Path):
+    """Number of tests pytest collects under `root`, or None if it cannot.
+
+    Returns None rather than a guess: an unavailable count must show as a loud
+    marker in the PDF, not as a plausible stale integer.
+    """
+    import subprocess
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-m", "pytest", "--collect-only", "-q",
+             "-p", "no:cacheprovider"],
+            cwd=root, capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    m = re.search(r"(\d+)\s+tests?\s+collected", proc.stdout)
+    if m:
+        return int(m.group(1))
+    # `-q` prints one "path: N" line per file and no total when it succeeds.
+    counts = re.findall(r"^\S+\.py:\s*(\d+)$", proc.stdout, re.MULTILINE)
+    return sum(int(c) for c in counts) if counts else None
 
 
 def macro(name: str, value) -> str:
@@ -241,6 +265,13 @@ def main() -> int:
     else:
         for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
             lines.append(macro(n, None))
+
+    # --- test counts, collected rather than typed --------------------------
+    # These went stale twice (49 -> 72 bridge tests) while sitting in the
+    # manuscript as literals.  Collection is a static import pass, costs about
+    # two seconds, and cannot disagree with the suite it describes.
+    lines += [macro("nTraceTests", collect_tests(ROOT)),
+              macro("nBridgeTests", collect_tests(ROOT / "spinor_trace_bridge"))]
 
     # --- fixed analytic constants (not computed, so stated with provenance) ---
     lines += [
