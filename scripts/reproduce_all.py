@@ -37,10 +37,21 @@ OUT_JSON = ROOT / "verification" / "REPRODUCTION_RECORD.json"
 OUT_MD = ROOT / "verification" / "REPRODUCTION_RECORD.md"
 
 
-def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600):
+#: Step output goes to files, not pipes.  On a memory-constrained machine the
+#: parent holding a child's buffered output is exactly the wrong place for it,
+#: and a file survives the child being killed -- which is how the interesting
+#: failures here present.
+LOGDIR = ROOT / "verification" / "reproduction-logs"
+
+
+def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600, tag: str = "step"):
+    LOGDIR.mkdir(parents=True, exist_ok=True)
+    log = LOGDIR / f"{tag}.log"
     t0 = time.time()
-    proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
-                          timeout=timeout)
+    with log.open("w") as fh:
+        proc = subprocess.run(cmd, cwd=cwd, stdout=fh, stderr=subprocess.STDOUT,
+                              text=True, timeout=timeout)
+    proc.stdout = log.read_text(errors="replace")
     return proc, round(time.time() - t0, 1)
 
 
@@ -55,12 +66,24 @@ def count_tests(output: str) -> int | None:
     return dots or None
 
 
+def flush(record: dict) -> None:
+    """Write the record after every step.
+
+    A killed run must leave the steps it finished, not an empty file. This
+    project has now been bitten three times by a summary written only at the
+    end of a loop whose body wrote everything else.
+    """
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    OUT_JSON.write_text(json.dumps(record, indent=1) + "\n")
+
+
 def step_tests(record: dict) -> bool:
     ok = True
     for label, cwd in (("tensor test suite", ROOT),
                        ("bridge test suite", ROOT / "spinor_trace_bridge")):
+        tag = "tests-" + ("bridge" if "bridge" in label else "tensor")
         proc, secs = run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"],
-                         cwd=cwd)
+                         cwd=cwd, tag=tag)
         n = count_tests(proc.stdout)
         passed = proc.returncode == 0
         record["steps"].append({
@@ -70,6 +93,7 @@ def step_tests(record: dict) -> bool:
             "note": None if passed else "nonzero exit; suite did not complete",
         })
         ok = ok and passed
+    flush(record)
     return ok
 
 
@@ -78,7 +102,7 @@ def step_regenerate(record: dict) -> bool:
     for label, script in (("numbers", "manuscript/scripts/make_numbers.py"),
                           ("tables", "manuscript/scripts/make_tables.py"),
                           ("figures", "manuscript/scripts/make_figures.py")):
-        proc, secs = run([PY, str(ROOT / script)])
+        proc, secs = run([PY, str(ROOT / script)], tag=f"make-{label}")
         passed = proc.returncode == 0
         detail = None
         if label == "numbers":
@@ -93,11 +117,13 @@ def step_regenerate(record: dict) -> bool:
         record["steps"].append({"step": f"regenerate {label}", "passed": passed,
                                 "seconds": secs, "detail": detail})
         ok = ok and passed
+    flush(record)
     return ok
 
 
 def step_build(record: dict) -> bool:
-    proc, secs = run([PY, str(ROOT / "scripts/build_submission_package.py")])
+    proc, secs = run([PY, str(ROOT / "scripts/build_submission_package.py")],
+                     tag="build")
     diag = None
     m = re.search(r"isolated build: (\{.*\})", proc.stdout)
     if m:
@@ -107,11 +133,13 @@ def step_build(record: dict) -> bool:
         and diag.get("undefined_references") == 0
     record["steps"].append({"step": "isolated manuscript build", "passed": passed,
                             "seconds": secs, "detail": diag})
+    flush(record)
     return passed
 
 
 def step_gates(record: dict) -> bool:
-    proc, secs = run([PY, str(ROOT / "manuscript/scripts/check_manuscript.py")])
+    proc, secs = run([PY, str(ROOT / "manuscript/scripts/check_manuscript.py")],
+                     tag="gates")
     m = re.search(r"manuscript gates: (\d+) checks", proc.stdout)
     passed = proc.returncode == 0
     record["steps"].append({
@@ -119,6 +147,7 @@ def step_gates(record: dict) -> bool:
         "detail": {"checks": int(m.group(1)) if m else None},
         "note": None if passed else proc.stdout.strip().splitlines()[-1:],
     })
+    flush(record)
     return passed
 
 

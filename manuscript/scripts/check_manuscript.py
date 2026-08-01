@@ -226,6 +226,23 @@ def claim_diff() -> None:
             if degree in cum:
                 check(f"cumRankDeg{word}", cum[degree])
 
+        # The certificate's summary must agree with the runs it summarises.
+        # It did not: the runner recomputed the summary only after its loop but
+        # wrote the report inside it, so an interrupted run left n_runs = 1
+        # beside two runs. The runner is fixed; this stops a stale artifact from
+        # being believed if one is ever produced again.
+        CHECKS += 1
+        if summ.get("n_runs") is not None and summ["n_runs"] != len(runs):
+            fail("claim-diff",
+                 f"results/rank81/certificate.json summary says n_runs="
+                 f"{summ['n_runs']} but records {len(runs)} runs")
+        CHECKS += 1
+        if sorted({r["jacobian"]["total_rank"] for r in runs}) != summ.get(
+                "distinct_total_ranks"):
+            fail("claim-diff",
+                 "results/rank81/certificate.json summary ranks disagree with "
+                 "its runs")
+
     mn = ROOT / "results/rank81/minor81_certificate.json"
     if mn.exists():
         d = json.loads(mn.read_text())

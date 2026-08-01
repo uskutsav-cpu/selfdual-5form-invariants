@@ -3479,7 +3479,15 @@
   "all_runs_agree": true,
   "all_schedules_complete": true,
   "all_euler_checks_pass": true,
-  "n_runs": 1,
+  "n_runs": 2,
+  "n_points": 2,
+  "primes": [
+   32749
+  ],
+  "seeds": [
+   11,
+   22
+  ],
   "characteristic_zero_lower_bound": 81,
   "characteristic_zero_justification": "the integral basis makes each Jacobian an integer reduction, so the observed modular rank is an unconditional lower bound on rank over Q"
  }
