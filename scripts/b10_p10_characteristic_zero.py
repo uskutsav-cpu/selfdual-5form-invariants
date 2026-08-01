@@ -52,14 +52,28 @@ def solve_at_prime(prime: int) -> dict:
         registry_items, evaluate_atlas_element, solve_exact,
     )
 
-    cert_path = (ROOT / "results" / "stress_flow" / "certificates" /
-                 f"interacting_degree12_{prime}.json")
-    if not cert_path.exists():
-        return {}
-    cert = json.loads(cert_path.read_text())
-    seed = {4: ["I4_1"], 6: ["I6_2"], 8: ["I8_3", "I8_4", "I8_5", "I8_6"]}
-    _, bmap, _ = closure_span(cert, seed, prime)
-    names = bmap[10]
+    # The degree-10 atlas ordering is prime-independent, so it is taken from
+    # whatever is already recorded rather than from a per-prime closure
+    # certificate. That decoupling is what allows extra primes to be added:
+    # certificates exist for six primes, and six were not enough to lift the
+    # three highest-height candidates.
+    if COORDS.exists():
+        store = json.loads(COORDS.read_text())
+        if store.get("per_prime"):
+            names = store["per_prime"][sorted(store["per_prime"])[0]]["basis"]
+        else:
+            names = None
+    else:
+        names = None
+    if names is None:
+        cert_path = (ROOT / "results" / "stress_flow" / "certificates" /
+                     f"interacting_degree12_{prime}.json")
+        if not cert_path.exists():
+            return {}
+        cert = json.loads(cert_path.read_text())
+        seed = {4: ["I4_1"], 6: ["I6_2"], 8: ["I8_3", "I8_4", "I8_5", "I8_6"]}
+        _, bmap, _ = closure_span(cert, seed, prime)
+        names = bmap[10]
 
     items = registry_items()
     proj = selfdual_projector(10, 5, True, prime)
@@ -156,18 +170,26 @@ def main() -> int:
     b_rows = [lifted[c] for c in sorted(lifted)]
 
     settled = not failed and not mismatches and len(lifted) == len(ids)
-    dim_b = len(rref(b_rows)[1]) if b_rows else 0
+    rank_lifted = len(rref(b_rows)[1]) if b_rows else 0
     dim_p = len(rref(p_rows)[1])
-    dim_sum = len(rref(b_rows + p_rows)[1]) if b_rows else dim_p
-    cap = dim_b + dim_p - dim_sum
+    sum_lifted = len(rref(b_rows + p_rows)[1]) if b_rows else dim_p
+    cap = rank_lifted + dim_p - sum_lifted
 
     print(f"primes: fitting {fit}, holdout {holdout}")
     print(f"lifted {len(lifted)}/{len(ids)} published candidates"
           + (f", failed {failed}" if failed else "")
           + (f", holdout mismatches {mismatches}" if mismatches else ""))
-    print(f"over Q: dim B10 = {dim_b}, dim P10 = {dim_p}, "
-          f"dim(B10+P10) = {dim_sum}, dim(B10 cap P10) = {cap}")
-    print("STATUS:", "exact" if settled else "NOT SETTLED — the bound stands")
+    if settled:
+        print(f"over Q: dim B10 = {rank_lifted}, dim P10 = {dim_p}, "
+              f"dim(B10+P10) = {sum_lifted}, dim(B10 cap P10) = {cap}")
+        print("STATUS: exact")
+    else:
+        # These are ranks of the SUBSET that lifted. Calling them dim B10 would
+        # be false: three unlifted rows can only raise the span.
+        print(f"over Q, LIFTED SUBSET ONLY: rank {rank_lifted}, "
+              f"rank with P10 {sum_lifted}, intersection of the subset {cap}")
+        print("STATUS: NOT SETTLED — these are not dim B10 or dim(B10 cap P10); "
+              "the modular bound stands")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({
@@ -180,10 +202,17 @@ def main() -> int:
         "n_lifted": len(lifted),
         "failed": failed,
         "holdout_mismatches": mismatches,
-        "dim_B10_over_Q": dim_b,
+        "dim_B10_over_Q": rank_lifted if settled else None,
         "dim_P10_over_Q": dim_p,
-        "dim_B10_plus_P10_over_Q": dim_sum,
-        "dim_B10_cap_P10_over_Q": cap,
+        "dim_B10_plus_P10_over_Q": sum_lifted if settled else None,
+        "dim_B10_cap_P10_over_Q": cap if settled else None,
+        "lifted_subset_rank": rank_lifted,
+        "lifted_subset_plus_P10_rank": sum_lifted,
+        "lifted_subset_intersection": cap,
+        "why_subset_values_are_not_dimensions": (
+            "the unlifted rows can only enlarge the span, so the subset's rank "
+            "is a lower bound on dim B10 and its intersection with P10 is not "
+            "comparable to dim(B10 cap P10) in either direction"),
         "settled": settled,
         "permitted_wording": (
             f"dim_Q(B10 cap P10) = {cap}, established by lifting the published "

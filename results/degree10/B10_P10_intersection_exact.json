@@ -1,0 +1,31 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/b10_p10_characteristic_zero.py",
+ "exact_domain": "Q, via CRT + rational reconstruction then Fraction arithmetic",
+ "fitting_primes": [
+  32693,
+  32713,
+  32717,
+  32719,
+  32749
+ ],
+ "holdout_prime": 32771,
+ "n_published": 12,
+ "n_lifted": 9,
+ "failed": [],
+ "holdout_mismatches": [
+  "P10_10",
+  "P10_11",
+  "P10_12"
+ ],
+ "dim_B10_over_Q": null,
+ "dim_P10_over_Q": 2,
+ "dim_B10_plus_P10_over_Q": null,
+ "dim_B10_cap_P10_over_Q": null,
+ "lifted_subset_rank": 9,
+ "lifted_subset_plus_P10_rank": 10,
+ "lifted_subset_intersection": 1,
+ "why_subset_values_are_not_dimensions": "the unlifted rows can only enlarge the span, so the subset's rank is a lower bound on dim B10 and its intersection with P10 is not comparable to dim(B10 cap P10) in either direction",
+ "settled": false,
+ "permitted_wording": "dim_Q(B10 cap P10) <= 1; the lift did not certify, so the modular value is not promoted to a characteristic-zero equality"
+}

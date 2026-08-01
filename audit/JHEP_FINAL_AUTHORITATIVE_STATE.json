@@ -1,0 +1,40 @@
+{
+ "schema": 1,
+ "generated_by": "Phase 0 of the final claim-closure goal",
+ "when": "2026-08-01T21:37:20Z",
+ "branch": "research/maximal-chiral-four-form-program",
+ "local_commit": "69d8d0d8b0af8165c6f6aefcb1ce4754fd2d539d",
+ "remote_commit": "69d8d0d8b0af8165c6f6aefcb1ce4754fd2d539d",
+ "diverged": false,
+ "ahead_behind_left_right": "0\t0",
+ "tree_clean": false,
+ "untracked_files": [],
+ "tags": [
+  "order10-verified-30fd0f6",
+  "prl-submission-package-v1",
+  "q10-freeze-v1",
+  "rank81-certificate-v1",
+  "rank81-certificate-v2",
+  "spinor-trace-bridge-v1",
+  "tensor-spinor-equivalence-v1"
+ ],
+ "active_writers": 1,
+ "single_authoritative_writer": true,
+ "artifact_sha256": {
+  "results/rank81/certificate.json": "6acecda746fd9490c6ff18d4fc4ad10f90c8ecd9e5fd4398cb72b2d90de6a02a",
+  "results/rank81/minor81_certificate.json": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
+  "results/stress_flow/D10_characteristic_zero.json": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+  "results/stress_flow/Q10_characteristic_zero.json": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+  "verification/degree8_span_equality.json": "9100d557a4189185ace35fea1edc6dd2c398676f8a3ad7d0e756385ac639b380",
+  "spinor_trace_bridge/results/bridge_validation.json": "93db9f8af7c6f25d330dc750565d9b3bdcec23f575e470a9a2139a8414e297ea",
+  "verification/spinor_trace_comparison.json": "a3ea0bf9448e65f9b7efeba641bf5fa7d2405b2825c69800c75dce0d5ce49f25",
+  "manuscript/generated/numbers.tex": "367bdbdd17d0c9e8fd835f79610a4b24bdadca32dea4a3f0486e2d22a314d8bd",
+  "submission_candidate/arxiv_source.tar.gz": "27023fc0cf91267ecb264f7fadaa047cb76583e72ae38ab3e6d7cd9d0c661c34",
+  "submission_candidate/jhep_source.zip": "7d22e8836d70f176082b899f165eede9d25a3df9211ce0265c4f7e4faba77428",
+  "submission_candidate/compiled_manuscript.pdf": "890b3ca366d8f592231d70fc9bf95da795a2dbaca339c706f4d1400a7744c88f"
+ },
+ "active_writer_note": "counted with pgrep -f on the script names. An earlier count of 8 was spurious: it used `ps aux | grep` inside `bash -lc`, where the shell's own command line matched the pattern. The bracketed-grep idiom does not protect against that when the pattern is passed through another shell.",
+ "active_writer_pids": [
+  "79189"
+ ]
+}
