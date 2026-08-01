@@ -40,7 +40,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 INCIDENCE = "results/intrinsic_candidates/degree10_space_incidence.json"
-D10_FINAL = "results/stress_flow/D10_characteristic_zero_final.json"
+D10_FINAL = "results/stress_flow/D10_exact_rational_final.json"
+Q10_FINAL = "results/stress_flow/Q10_exact_rational_final.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -56,6 +57,7 @@ def main() -> int:
 
     inc = json.loads((repo / INCIDENCE).read_text())
     d10 = json.loads((repo / D10_FINAL).read_text())
+    q10 = json.loads((repo / Q10_FINAL).read_text())
     per_prime = inc["per_prime"]
     primes = sorted(per_prime)
     dims = {p: per_prime[p]["dims"] for p in primes}
@@ -99,10 +101,27 @@ def main() -> int:
             "description": "the seed closure of the generalized stress flow",
             "construction": "fixed-point closure over Q from the recorded seed",
             "modular_dimension": base["D10"],
-            "exact_over_Q": d10["exact_characteristic_zero_dimension"],
-            "route": ("exact rational closure and elimination; see "
-                      "docs/D10_Q10_FINAL_STATUS.md"),
+            "exact_over_Q": d10["exact_dimension"],
+            "route": ("exact integer closure and fraction-free elimination, "
+                      "independently verified; lower bound by an explicit 11x11 "
+                      "minor, upper bound by three exact annihilating covectors; "
+                      "see docs/D10_Q10_EXACT_RATIONAL_PROOF.md"),
             "status": d10["status"],
+            "seed_independent_at_degree_10": d10["seed_independence"]["spans_equal"],
+            "certificates": [
+                "results/stress_flow/D10_lower_bound_minor.json",
+                "results/stress_flow/D10_annihilator_basis.json",
+            ],
+        },
+        "Q10": {
+            "description": "the quotient A10 / D10",
+            "construction": "exact projection; representatives checked independent "
+                            "modulo D10, spanning, and each one necessary",
+            "modular_dimension": 3,
+            "exact_over_Q": q10["Q10"]["dimension"],
+            "route": "constructed, not inferred from 14 - 11",
+            "status": q10["status"],
+            "representatives": q10["published_representatives"],
         },
         "B10": {
             "description": "the span of the published equation-(4.24) candidates",
@@ -162,6 +181,10 @@ def main() -> int:
 
     out = repo / "results" / "stress_flow" / "degree10_spaces_final.json"
     out.write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8")
+    phase5 = repo / "results" / "degree10"
+    phase5.mkdir(parents=True, exist_ok=True)
+    (phase5 / "space_status_final.json").write_text(
+        json.dumps(record, indent=1) + "\n", encoding="utf-8")
 
     L: list[str] = []
     A = L.append
@@ -209,12 +232,26 @@ def main() -> int:
     A(f"intersection inherits the gap. Its modular value is {cap_value}, consistent")
     A(f"across {len(primes)} primes, and that is what may be stated.")
     A("")
+    A("## B10 rational reconstruction --- practical, not done")
+    A("")
+    A("The route exists and is worth naming rather than dismissing. B10's")
+    A("coefficients are modular images at four primes, giving a CRT modulus of")
+    A("about 1e18, so a rational lift is unique when numerator and denominator")
+    A("are each below roughly 1e9. Whether the entries are that small is not")
+    A("known; the published-candidate solves would have to be rerun at more")
+    A("primes and the lifts revalidated on unused ones.")
+    A("")
+    A("It was not attempted here because the machine is committed to the")
+    A("certificate matrix and no claim in this manuscript depends on it. The")
+    A("finite-field qualification is retained rather than quietly dropped.")
+    A("")
     A("## Consequence for the manuscript")
     A("")
     A("> " + record["manuscript_consequence"])
     A("")
-    (repo / "docs" / "DEGREE10_SPACES_FINAL_STATUS.md").write_text(
-        "\n".join(L) + "\n", encoding="utf-8")
+    body = "\n".join(L) + "\n"
+    (repo / "docs" / "DEGREE10_SPACES_FINAL_STATUS.md").write_text(body, encoding="utf-8")
+    (repo / "docs" / "DEGREE10_SPACE_STATUS_FINAL.md").write_text(body, encoding="utf-8")
 
     for name, s in spaces.items():
         print(f"{name:5s} modular {s['modular_dimension']:3d}  "
