@@ -37,6 +37,19 @@ other side. An exact modular enumeration restricted to port graphs reaches rank
 structured candidates included, reaches 7. The two numbers were consistent but
 neither on its own said *which* family mattered. The drop test does.
 
+## Why the spinor row count varies with the prime
+
+The number of spinor rows is 23 at the fitting primes and 21 at the holdout
+primes, while every rank, containment and drop-test result is identical. The
+cause is benign and worth recording so it is not mistaken for prime-dependence
+of the result: port graphs are drawn at random, and a graph whose evaluation
+vector vanishes identically modulo `p` is dropped rather than kept as a zero row.
+Two more vanish at `32713` and `32717` than at `32719` and `32749`.
+
+A zero row contributes nothing to a span, so dropping it cannot change a rank,
+a containment or which family is indispensable -- and the four primes agreeing on
+all of those while disagreeing on the row count is the evidence for that.
+
 ## Scope
 
 - Exact over `F_p`; no floating point on either side.

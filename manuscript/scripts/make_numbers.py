@@ -279,7 +279,14 @@ def main() -> int:
             macro("dEightTraceRank", r["trace_rank"]),
             macro("dEightSpinorRank", r["spinor_rank"]),
             macro("dEightUnionRank", r["union_rank"]),
-            macro("dEightSpinorRows", r["n_spinor_rows"]),
+            # The row count is prime-dependent: a randomly drawn port graph
+            # whose evaluation vector vanishes identically mod p is dropped, and
+            # two more vanish at the holdout primes. Ranks and conclusions do
+            # not vary, so a range is reported rather than one prime's value.
+            macro("dEightSpinorRowsMin",
+                  min(v["n_spinor_rows"] for v in d8["primes"].values())),
+            macro("dEightSpinorRowsMax",
+                  max(v["n_spinor_rows"] for v in d8["primes"].values())),
             macro("dEightPrimes", d8["summary"]["primes_tested"]),
             macro("dEightPrimesEqual", d8["summary"]["primes_with_span_equality"]),
             macro("dEightIndispensable",
@@ -289,7 +296,7 @@ def main() -> int:
         ]
     else:
         for n in ("dEightTraceRank dEightSpinorRank dEightUnionRank "
-                  "dEightSpinorRows dEightPrimes dEightPrimesEqual "
+                  "dEightSpinorRowsMin dEightSpinorRowsMax dEightPrimes dEightPrimesEqual "
                   "dEightIndispensable dEightRankWithoutWords").split():
             lines.append(macro(n, None))
 
