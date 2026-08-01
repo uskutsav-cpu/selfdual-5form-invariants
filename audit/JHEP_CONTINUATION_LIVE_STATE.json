@@ -1,0 +1,96 @@
+{
+ "generated_utc": "2026-08-01T21:20:20+00:00",
+ "worktree": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
+ "branch": "publication/jhep-tensor-spinor",
+ "head": "28bc57984231d72640e513108ec7831383c124d5",
+ "head_moved_since_freeze": true,
+ "changed_files_since_freeze": [
+  "audit/JHEP_FINAL_RECONCILIATION_PLAN.md",
+  "audit/RANK_MATRIX_EXECUTION_FREEZE.json",
+  "scripts/emit_rank_matrix_freeze.py",
+  "spinor_trace_bridge/scripts/assemble_rank81_matrix.py",
+  "spinor_trace_bridge/tests/test_matrix_aggregator.py"
+ ],
+ "source_critical_drift": [],
+ "drift_classification": "none",
+ "changed_source_critical_files": [],
+ "matrix_valid": true,
+ "freeze_record_present": true,
+ "freeze_missing_fields": [],
+ "reported_vs_live": {
+  "execution_id": {
+   "reported": "rank81-matrix-5f46a2cbbe93-flop1e11",
+   "live": "rank81-matrix-5f46a2cbbe93-flop1e11",
+   "match": true
+  },
+  "frozen_source_commit": {
+   "reported": "5f46a2c",
+   "live": "5f46a2c",
+   "match": true
+  },
+  "flop_budget": {
+   "reported": 100000000000.0,
+   "live": 100000000000.0,
+   "match": true
+  },
+  "cells_planned": {
+   "reported": 15,
+   "live": 15,
+   "match": true
+  },
+  "branch": {
+   "reported": "publication/jhep-tensor-spinor",
+   "live": "publication/jhep-tensor-spinor",
+   "match": true
+  }
+ },
+ "reported_state_confirmed": true,
+ "processes": {
+  "matrix_drivers": [
+   60151
+  ],
+  "cell_workers": [
+   67806
+  ],
+  "pytest": [
+   38503,
+   68851,
+   69145
+  ],
+  "in_any_repo_tree": [
+   {
+    "pid": 60151,
+    "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
+    "ps": "37:19 SN",
+    "in_this_worktree": true
+   },
+   {
+    "pid": 67588,
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/selfdual-5form-invariants",
+    "ps": "06:07 RN",
+    "in_this_worktree": false
+   },
+   {
+    "pid": 67806,
+    "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
+    "ps": "05:02 RN",
+    "in_this_worktree": true
+   }
+  ]
+ },
+ "writer_problems": [],
+ "one_writer_enforced": true,
+ "cells_present": 4,
+ "cells_complete": 4,
+ "cells_planned": 15,
+ "distinct_ranks_so_far": [
+  81
+ ],
+ "uncommitted_paths": [
+  "?? audit/RANK_MATRIX_CELL_PROVENANCE.json",
+  "?? results/rank81/cells/",
+  "?? results/rank81/certificate_matrix.json",
+  "?? scripts/emit_jhep_continuation_state.py"
+ ],
+ "remote_research_head": "783faddbd362b8ff061ffb48869c3467d3243f78"
+}

@@ -41,6 +41,58 @@ def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+CSV_COLUMNS = [
+    "prime", "role", "seed", "total_rank", "n_rows", "n_columns",
+    "euler", "evaluation_errors", "zero_rows", "wall_seconds", "peak_rss_mb",
+    "content_sha256",
+]
+
+
+def _emit_release_artifacts(out_dir: Path, report: dict) -> None:
+    """full_rank_matrix.{json,csv,sha256} and a manifest, all derived."""
+    base = out_dir / "full_rank_matrix"
+    payload = json.dumps(report, indent=1, sort_keys=True) + "\n"
+    (base.with_suffix(".json")).write_text(payload, encoding="utf-8")
+
+    rows = ["\t".join(CSV_COLUMNS).replace("\t", ",")]
+    for c in sorted(report["cells"], key=lambda r: (r["role"], r["prime"], r["seed"])):
+        rows.append(",".join(str(c.get(k, "")) for k in CSV_COLUMNS))
+    (base.with_suffix(".csv")).write_text("\n".join(rows) + "\n", encoding="utf-8")
+
+    sums = []
+    for suffix in (".json", ".csv"):
+        p = base.with_suffix(suffix)
+        sums.append(f"{sha256_text(p.read_text(encoding='utf-8'))}  {p.name}")
+    (out_dir / "full_rank_matrix.sha256").write_text("\n".join(sums) + "\n",
+                                                     encoding="utf-8")
+
+    manifest = {
+        "generated_utc": report["generated_utc"],
+        "scientific_content_sha256": report["scientific_content_sha256"],
+        "matrix_complete": report["matrix_complete"],
+        "n_planned": report["n_planned"],
+        "n_present": report["n_present"],
+        "summary": report["summary"],
+        "files": [
+            {"name": p.name, "bytes": p.stat().st_size,
+             "sha256": sha256_text(p.read_text(encoding="utf-8"))}
+            for p in (base.with_suffix(".json"), base.with_suffix(".csv"),
+                      out_dir / "full_rank_matrix.sha256")
+        ],
+        "cell_files": [
+            {"name": f"cell_p{c['prime']}_s{c['seed']}.json",
+             "sha256": c.get("content_sha256")}
+            for c in sorted(report["cells"], key=lambda r: (r["prime"], r["seed"]))
+        ],
+        "regeneration_command": (
+            "python spinor_trace_bridge/scripts/assemble_rank81_matrix.py "
+            "--emit-release --freeze audit/RANK_MATRIX_EXECUTION_FREEZE.json "
+            "--provenance audit/RANK_MATRIX_CELL_PROVENANCE.json"),
+    }
+    (out_dir / "full_rank_matrix_manifest.json").write_text(
+        json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=".", type=Path)
@@ -53,6 +105,8 @@ def main() -> int:
                     help="RANK_MATRIX_EXECUTION_FREEZE.json to check cells against")
     ap.add_argument("--provenance", default=None,
                     help="RANK_MATRIX_CELL_PROVENANCE.json binding cells to the freeze")
+    ap.add_argument("--emit-release", action="store_true",
+                    help="also write full_rank_matrix.{json,csv,sha256} and a manifest")
     args = ap.parse_args()
 
     repo = args.repo.resolve()
@@ -164,6 +218,31 @@ def main() -> int:
     for p, s in extra:
         problems.append(f"cell prime={p} seed={s} is not in the planned matrix")
 
+    # Terminal status must be one of the two words the driver writes. A cell
+    # carrying anything else is malformed, not merely unfinished.
+    for c in used:
+        key = f"prime={c['cell']['prime']} seed={c['cell']['seed']}"
+        flag = c.get("cell_complete")
+        if flag not in (True, False):
+            problems.append(f"{key}: malformed terminal status {flag!r}")
+        skipped = c["schedule_summary"].get("silently_skipped")
+        if skipped:
+            problems.append(f"{key}: {skipped} silently skipped candidates")
+        evaluated = c["schedule_summary"].get("by_terminal_status", {}).get("evaluated")
+        planned_n = c["schedule_summary"].get("planned")
+        if evaluated is not None and planned_n is not None and evaluated != planned_n:
+            problems.append(f"{key}: {evaluated} of {planned_n} candidates evaluated")
+
+    if provenance is not None:
+        exec_ids = {r.get("execution_id") for r in provenance.get("cells", [])}
+        exec_ids.discard(None)
+        if len(exec_ids) > 1:
+            problems.append(f"cells span more than one execution id: {sorted(exec_ids)}")
+        dep_hashes = {r.get("dependency_hash") for r in provenance.get("cells", [])}
+        dep_hashes.discard(None)
+        if len(dep_hashes) > 1:
+            problems.append(f"dependency hash differs between cells: {sorted(dep_hashes)}")
+
     when = datetime.now(timezone.utc).isoformat(timespec="seconds")
     ranks = sorted({c["jacobian"]["total_rank"] for c in used})
     report = {
@@ -221,8 +300,20 @@ def main() -> int:
         ],
     }
 
+    # Determinism. Everything above the timestamp is a function of the cells
+    # alone, so hash that part and let the timestamp sit outside it. Two runs
+    # over the same cells then produce the same scientific hash, and any change
+    # to any cell's scientific content changes it.
+    scientific = {k: v for k, v in report.items()
+                  if k not in ("generated_utc", "scientific_content_sha256")}
+    report["scientific_content_sha256"] = sha256_text(
+        json.dumps(scientific, indent=1, sort_keys=True))
+
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=1) + "\n", encoding="utf-8")
+    out.write_text(json.dumps(report, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+
+    if args.emit_release:
+        _emit_release_artifacts(out.parent, report)
 
     print(f"cells {len(used)}/{len(planned)} present, ranks {ranks}")
     for c in report["cells"]:

@@ -327,3 +327,146 @@ def test_aggregator_never_repairs(good_matrix: Path, tmp_path: Path):
     run(good_matrix, tmp_path)
     after = {p.name: p.read_bytes() for p in good_matrix.glob("*.json")}
     assert after == before, "aggregator modified cells while rejecting the matrix"
+
+
+def test_silently_skipped_candidate_is_rejected(good_matrix: Path, tmp_path: Path):
+    cell = json.loads((good_matrix / "cell_p32717_s11.json").read_text())
+    cell["schedule_summary"]["silently_skipped"] = 1
+    write_cell(good_matrix, cell)
+    assert_rejected(good_matrix, tmp_path, "silently skipped")
+
+
+def test_malformed_terminal_status_is_rejected(good_matrix: Path, tmp_path: Path):
+    cell = json.loads((good_matrix / "cell_p32707_s33.json").read_text())
+    cell["cell_complete"] = "yes"
+    write_cell(good_matrix, cell)
+    assert_rejected(good_matrix, tmp_path, "malformed terminal status")
+
+
+def test_partial_candidate_count_is_rejected(good_matrix: Path, tmp_path: Path):
+    """planned 83 but evaluated 82, with every other field left plausible."""
+    cell = json.loads((good_matrix / "cell_p32719_s22.json").read_text())
+    cell["schedule_summary"]["by_terminal_status"] = {"evaluated": 82}
+    write_cell(good_matrix, cell)
+    assert_rejected(good_matrix, tmp_path, "82 of 83 candidates evaluated")
+
+
+def test_mixed_execution_ids_are_rejected(good_matrix: Path, tmp_path: Path):
+    fp, pp = _freeze_and_provenance(tmp_path, good_matrix)
+    prov = json.loads(pp.read_text())
+    for row in prov["cells"]:
+        row["execution_id"] = "test-exec"
+    prov["cells"][3]["execution_id"] = "some-other-exec"
+    pp.write_text(json.dumps(prov, indent=1))
+    assert_rejected(good_matrix, tmp_path, "more than one execution id",
+                    "--freeze", str(fp), "--provenance", str(pp))
+
+
+def test_changed_dependency_hash_is_rejected(good_matrix: Path, tmp_path: Path):
+    fp, pp = _freeze_and_provenance(tmp_path, good_matrix)
+    prov = json.loads(pp.read_text())
+    for row in prov["cells"]:
+        row["dependency_hash"] = "d" * 64
+    prov["cells"][2]["dependency_hash"] = "e" * 64
+    pp.write_text(json.dumps(prov, indent=1))
+    assert_rejected(good_matrix, tmp_path, "dependency hash differs",
+                    "--freeze", str(fp), "--provenance", str(pp))
+
+
+# --------------------------------------------------------------------------
+# determinism
+# --------------------------------------------------------------------------
+def _scientific_hash(cells: Path, tmp_path: Path, out_name: str) -> str:
+    out = tmp_path / out_name
+    subprocess.run(
+        [sys.executable, str(AGGREGATOR), "--cells", str(cells), "--out", str(out)],
+        capture_output=True, text=True, check=False,
+    )
+    return json.loads(out.read_text())["scientific_content_sha256"]
+
+
+def test_repeated_aggregation_is_byte_identical_modulo_timestamp(
+        good_matrix: Path, tmp_path: Path):
+    a = tmp_path / "a.json"
+    b = tmp_path / "b.json"
+    for out in (a, b):
+        subprocess.run(
+            [sys.executable, str(AGGREGATOR), "--cells", str(good_matrix),
+             "--out", str(out)], capture_output=True, text=True, check=False)
+    ja, jb = json.loads(a.read_text()), json.loads(b.read_text())
+    ja.pop("generated_utc")
+    jb.pop("generated_utc")
+    assert json.dumps(ja, sort_keys=True) == json.dumps(jb, sort_keys=True)
+    assert ja["scientific_content_sha256"] == jb["scientific_content_sha256"]
+
+
+def test_assembled_order_follows_the_plan_not_the_filesystem(
+        good_matrix: Path, tmp_path: Path):
+    """The assembled cell list must be in planned order.
+
+    Writing the files in a different sequence cannot change glob order, since
+    the names are canonical --- so the property worth testing is the one that
+    actually protects the output: the aggregator indexes cells by (prime, seed)
+    and emits them in the planned order, never in whatever order it read them.
+    A test that shuffled filenames would be testing `sorted`, not the code.
+    """
+    out = tmp_path / "ordered.json"
+    subprocess.run(
+        [sys.executable, str(AGGREGATOR), "--cells", str(good_matrix), "--out", str(out)],
+        capture_output=True, text=True, check=False)
+    report = json.loads(out.read_text())
+    got = [(c["prime"], c["seed"], c["role"]) for c in report["cells"]]
+    want = [(p, s, r) for p, s, r in
+            [(p, s, "fitting") for p in FITTING for s in SEEDS]
+            + [(p, s, "holdout") for p in HOLDOUT for s in SEEDS]]
+    assert got == want
+    # and rebuilding from a directory written in reverse still gives the same
+    # scientific content
+    mirror = tmp_path / "mirror"
+    mirror.mkdir()
+    for p in sorted(good_matrix.glob("cell_p*.json"), reverse=True):
+        (mirror / p.name).write_text(p.read_text(), encoding="utf-8")
+    assert (_scientific_hash(good_matrix, tmp_path, "x.json")
+            == _scientific_hash(mirror, tmp_path, "y.json"))
+
+
+def test_scientific_hash_changes_when_a_rank_changes(good_matrix: Path, tmp_path: Path):
+    before = _scientific_hash(good_matrix, tmp_path, "before.json")
+    cell = json.loads((good_matrix / "cell_p32717_s33.json").read_text())
+    cell["jacobian"]["total_rank"] = 80
+    write_cell(good_matrix, cell)
+    after = _scientific_hash(good_matrix, tmp_path, "after.json")
+    assert before != after, "scientific hash ignored a rank change"
+
+
+def test_scientific_hash_ignores_only_the_timestamp(good_matrix: Path, tmp_path: Path):
+    """A change to a non-scientific field of a cell still changes the hash;
+    only the aggregator's own timestamp is excluded."""
+    before = _scientific_hash(good_matrix, tmp_path, "b.json")
+    cell = json.loads((good_matrix / "cell_p32713_s33.json").read_text())
+    cell["wall_seconds"] = 12345.0
+    write_cell(good_matrix, cell)
+    after = _scientific_hash(good_matrix, tmp_path, "a.json")
+    assert before != after
+
+
+def test_release_artifacts_are_emitted_and_hashed(good_matrix: Path, tmp_path: Path):
+    out = tmp_path / "matrix.json"
+    proc = subprocess.run(
+        [sys.executable, str(AGGREGATOR), "--cells", str(good_matrix),
+         "--out", str(out), "--emit-release"],
+        capture_output=True, text=True, check=False)
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    d = out.parent
+    for name in ("full_rank_matrix.json", "full_rank_matrix.csv",
+                 "full_rank_matrix.sha256", "full_rank_matrix_manifest.json"):
+        assert (d / name).exists(), f"{name} not written"
+    manifest = json.loads((d / "full_rank_matrix_manifest.json").read_text())
+    assert manifest["n_present"] == 15
+    assert len(manifest["cell_files"]) == 15
+    csv_lines = (d / "full_rank_matrix.csv").read_text().strip().splitlines()
+    assert len(csv_lines) == 16, "csv should carry a header plus fifteen cells"
+    # the recorded digests must actually match the files
+    for row in manifest["files"]:
+        text = (d / row["name"]).read_text(encoding="utf-8")
+        assert hashlib.sha256(text.encode()).hexdigest() == row["sha256"]
