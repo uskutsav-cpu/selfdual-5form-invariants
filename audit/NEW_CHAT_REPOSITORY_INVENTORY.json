@@ -1,0 +1,316 @@
+{
+  "authoritative_branch": "publication/jhep-tensor-spinor",
+  "authoritative_tree": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
+  "blockers": {
+    "disk_free_gib": 11,
+    "latex": "NO TeX engine on this machine (pdflatex, latexmk, tectonic, xelatex, lualatex all absent; no /usr/local/texlive, /Library/TeX, or brew tex). Blocks Phases 13, 18, 19, 21."
+  },
+  "generated_utc": "2026-08-01T22:58:35.540511+00:00",
+  "local_head": "c480b350b3888b8fa81fe170335776c523cab821",
+  "local_head_short": "c480b35",
+  "other_trees": {
+    "/private/tmp/jhep-final2": {
+      "branch": "research/maximal-chiral-four-form-program",
+      "head": "ba311a0",
+      "role": "clean-clone reproduction run"
+    },
+    "~/Documents/Codex/2026-07-29/now/work/selfdual-5form-invariants": {
+      "branch": "research/maximal-chiral-four-form-program",
+      "dirty": 0,
+      "head": "7e4ea08",
+      "role": "canonical iCloud tree; holds the PRE-EXISTING manuscript (main.tex, main.pdf, 7 figure PDFs, appendices, tables, PRL variant)",
+      "status": "READ-ONLY REFERENCE for this execution"
+    },
+    "~/Downloads/sdinv": {
+      "branch": "main",
+      "head": "7ed4645",
+      "role": "superseded 4-commit clone",
+      "status": "STALE"
+    },
+    "~/Downloads/sdinv 2": {
+      "role": "not a git repository",
+      "status": "IGNORE"
+    },
+    "~/Downloads/sdinv-classification": {
+      "dirty": 30,
+      "head": "d7d22e4",
+      "role": "frozen working copy, merged 2026-07-29",
+      "status": "STALE"
+    },
+    "~/Downloads/sdinv-jhep": {
+      "branch": "publication/jhep-tensor-spinor",
+      "head": "c480b35",
+      "role": "AUTHORITATIVE science tree"
+    },
+    "~/Downloads/sdinv-phase0-clone": {
+      "head": "3ed3280",
+      "role": "detached phase-0 clone",
+      "status": "STALE"
+    }
+  },
+  "publication_branch_on_remote": false,
+  "rank81_matrix": {
+    "cells": {
+      "cell_p32717_s11.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "931309a51b112e25d833844bdf3b86a275c84d7785979a4f983d11ff6aa20208",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32717,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 11,
+        "wall_seconds": 619.5,
+        "zero_rows": []
+      },
+      "cell_p32717_s22.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "2f6fedd7c48f3b3d8971de74509c17a59dffc73c292d87a7f1352374550df6d1",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32717,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 22,
+        "wall_seconds": 3360.9,
+        "zero_rows": []
+      },
+      "cell_p32719_s11.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "a67a801b15a865d2c0eeacd018f3eb0b98f1042e9a01e75710766bb7d5297b2d",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32719,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 11,
+        "wall_seconds": 1076.3,
+        "zero_rows": []
+      },
+      "cell_p32719_s22.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "926236c55c767a8d07b3d187580b3eb3ebee7f447b1bb6b4249017c335672e80",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32719,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 22,
+        "wall_seconds": 809.3,
+        "zero_rows": []
+      },
+      "cell_p32719_s33.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "f4ba174e5e3b6be53610d293454db160717479c706b071929faf67d6d15852ab",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32719,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 33,
+        "wall_seconds": 561.6,
+        "zero_rows": []
+      },
+      "cell_p32749_s11.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "ccd04a02b738edbeaff5b429be9a673f490275d9cda02e64ac296613d0292e97",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32749,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 11,
+        "wall_seconds": 4.0,
+        "zero_rows": []
+      },
+      "cell_p32749_s22.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "d59cceeefcad15b0dd6ed357428bdaf0e93375d7282b3ae3272238bbca6fd04b",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32749,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 22,
+        "wall_seconds": 268.7,
+        "zero_rows": []
+      },
+      "cell_p32749_s33.json": {
+        "by_terminal_status": {
+          "evaluated": 83
+        },
+        "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+        "cell_complete": true,
+        "content_sha256": "464dfac08d5403eb01ba60c13313168b07b94a2843aab3f319bd9044256cb7d9",
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "euler": {
+          "checked": 83,
+          "failed": [],
+          "passed": 83
+        },
+        "n_scheduled": 83,
+        "prime": 32749,
+        "rank": 81,
+        "role": "fitting",
+        "seed": 33,
+        "wall_seconds": 586.3,
+        "zero_rows": []
+      }
+    },
+    "cells_complete": 8,
+    "cells_in_flight": [
+      "cell_p32717_s33.lock"
+    ],
+    "cells_missing": 6,
+    "cells_planned": 15,
+    "design": {
+      "fitting_primes": [
+        32749,
+        32719,
+        32717
+      ],
+      "holdout_primes": [
+        32713,
+        32707
+      ],
+      "seeds": [
+        11,
+        22,
+        33
+      ]
+    }
+  },
+  "remote_heads": {
+    "degree10/checkpointed-trace-pipeline": "30fd0f63a9806bd2479aaeb402162ddfaad391e6",
+    "degree12/mac-exact-optimized": "de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
+    "fix/exact-canon-order-8": "7ed4645b05294f31e80f73499dc284e20db330cc",
+    "main": "e84339dd3c8b1264765b89dd496323d61af140fc",
+    "research/maximal-chiral-four-form-program": "7e4ea0833fe8916ddbee9810818c50cc6e3dcf31",
+    "stress-flow/classification-through-degree12": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+    "stress-flow/exact-low-degree-map": "04175461fdd55142b17e2e1c4e2fedf2455453ac"
+  },
+  "reported_commit_b77ef4d": {
+    "present_in_canonical_tree": true,
+    "present_in_this_tree": false,
+    "resolution": "b77ef4d is an ancestor of 7e4ea08 on research/maximal-chiral-four-form-program in the iCloud canonical tree; it is NOT an ancestor of the science branch publication/jhep-tensor-spinor."
+  },
+  "tree_dirty_paths": [
+    "M audit/JHEP_CONTINUATION_LIVE_STATE.json",
+    " M audit/JHEP_CONTINUATION_LIVE_STATE.md",
+    "?? audit/RANK_MATRIX_CELL_PROVENANCE.json",
+    "?? results/rank81/cells/",
+    "?? results/rank81/certificate_matrix.json"
+  ],
+  "unpushed_commits_vs_research": 18
+}

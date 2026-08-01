@@ -1,0 +1,218 @@
+{
+  "arithmetic": "exact integers",
+  "counterfactual_phase_3_6": {
+    "dim_D10_baseline": 11,
+    "dim_D10_with_quadratic_trace": 14,
+    "dim_Q10_baseline": 3,
+    "dim_Q10_with_quadratic_trace": 0,
+    "mutation": "strip the activation dependency from the tr_tau family, as a nonvanishing 10*(2-2) would have done",
+    "test": "tests/test_g10_trace_activation.py",
+    "verdict": "G-10 is load-bearing: without it the degree-10 obstruction collapses to nothing, reproducing the historical rank-14/quotient-0 error."
+  },
+  "cross_check_against_production_artifact": {
+    "agreement": "exact, coefficient by coefficient",
+    "analytic_derivation": "Tr(T[V_d]) = (10/48)(d-2)V_d, i.e. Tr(tau)=10(d-2)V_d at tau=48T",
+    "artifact": "results/stress_flow/interacting_flow_equations.json",
+    "artifact_derivation_string": "Tr(tau)[V_d]=10*(d-2)*V_d",
+    "coefficients_matched": {
+      "d=4": 20,
+      "d=6": 40,
+      "d=8": 60
+    },
+    "degree_2_target_present": false,
+    "min_tr_tau_degree": 4
+  },
+  "imports_production_code": false,
+  "obligation": "G-10",
+  "phase": "3.4",
+  "samples": [
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": 1,
+      "sample": 0,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": 1,
+      "sample": 1,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": 1,
+      "sample": 0,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": 1,
+      "sample": 1,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": -1,
+      "sample": 0,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": -1,
+      "sample": 1,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": -1,
+      "sample": 0,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": -1,
+      "sample": 1,
+      "signature": "lorentzian_1_9",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": 1,
+      "sample": 0,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": 1,
+      "sample": 1,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": 1,
+      "sample": 0,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": 1,
+      "sample": 1,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": -1,
+      "sample": 0,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "self_dual",
+      "eps_lower_sign": -1,
+      "sample": 1,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": -1,
+      "sample": 0,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    },
+    {
+      "M_nonzero": true,
+      "M_symmetric": true,
+      "channel": "anti_self_dual",
+      "eps_lower_sign": -1,
+      "sample": 1,
+      "signature": "split_5_5",
+      "trace_M": 0,
+      "trace_T": "0"
+    }
+  ],
+  "star_squared": {
+    "euclidean_10_0|eps_lower=+1": -1,
+    "euclidean_10_0|eps_lower=-1": -1,
+    "lorentzian_1_9|eps_lower=+1": 1,
+    "lorentzian_1_9|eps_lower=-1": 1,
+    "split_5_5|eps_lower=+1": 1,
+    "split_5_5|eps_lower=-1": 1
+  },
+  "statement": "The free stress tensor T = M/(2*4!) of a self-dual five-form in D=10 is identically traceless, off shell, from algebraic self-duality alone.",
+  "status": "PROVED",
+  "summary": {
+    "all_traces_vanish": true,
+    "failures": [],
+    "n_failures": 0,
+    "real_forms_admitting_real_self_duality": [
+      "lorentzian_1_9|eps_lower=+1",
+      "lorentzian_1_9|eps_lower=-1",
+      "split_5_5|eps_lower=+1",
+      "split_5_5|eps_lower=-1"
+    ],
+    "real_forms_without": [
+      "euclidean_10_0|eps_lower=+1",
+      "euclidean_10_0|eps_lower=-1"
+    ],
+    "reason": "Both Lambda-bilinear terms in Tr(T[V]) vanish by (anti-)self-duality (Lambda.Lambda = 0 and V_Lambda.V_Lambda = 0), leaving Tr(T) = -(10/4!)(V - (1/2) Lambda.V_Lambda). For V homogeneous of degree d, Lambda.V_Lambda = d V by Euler, so that bracket is (1 - d/2) V, which vanishes identically at d = 2 and is nonzero for d = 4. Hence Tr(tau) has no quadratic part and begins at degree four.",
+    "samples_tested": 192,
+    "trace_starting_degree_of_Tr_tau": 4
+  }
+}

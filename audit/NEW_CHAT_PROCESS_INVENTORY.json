@@ -1,0 +1,48 @@
+{
+  "generated_utc": "2026-08-01T22:58:54.930815+00:00",
+  "rule": "One authoritative writer per artifact. No process was killed: every live process is doing work this execution requires, and each writes a disjoint artifact set.",
+  "processes": [
+    {
+      "pid": 60151,
+      "ps": "60151     1 02:15:53 SN   sh spinor_trace_bridge/scripts/run_rank81_matrix.sh /Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/spinor-work /Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/.venv/bin/python",
+      "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep"
+    },
+    {
+      "pid": 93680,
+      "ps": "93680 60151   14:24 RN   /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python /Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py --archive /Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/spinor-work --prime 32717 --seed 33 --role fitting",
+      "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep"
+    },
+    {
+      "pid": 87504,
+      "ps": "87504     1   33:35 RN   .venv/bin/python -m pytest -q -p no:cacheprovider",
+      "cwd": "/private/tmp/jhep-final2"
+    }
+  ],
+  "classification": {
+    "60151": {
+      "what": "sh spinor_trace_bridge/scripts/run_rank81_matrix.sh -- the frozen 15-cell rank-81 matrix driver",
+      "writes": "results/rank81/cells/ only",
+      "orphaned": "PPID 1 (launching session gone); still productive",
+      "verdict": "KEEP -- this is the Phase 2.3 job the prompt orders completed. Sequential by design, resumable, one lock at a time."
+    },
+    "93680": {
+      "what": "run_rank81_cell.py --prime 32717 --seed 33 --role fitting (child of 60151)",
+      "writes": "results/rank81/cells/cell_p32717_s33.{lock,json}",
+      "verdict": "KEEP -- cell in flight, holds the single lock."
+    },
+    "87504": {
+      "what": "pytest -q -p no:cacheprovider in /private/tmp/jhep-final2 (clean-clone tensor suite)",
+      "writes": "/private/tmp/final2_tensor.log",
+      "sole_writer_of_log": true,
+      "verdict": "KEEP -- Phase 2.1 authoritative tensor suite; log has exactly one writer (verified by lsof), ~96% complete, all dots, no F/E."
+    }
+  },
+  "stale_processes_removed": [],
+  "duplicate_writer_check": {
+    "rank81_cell_locks_held": 1,
+    "matrix_drivers_running": 1,
+    "pytest_processes_writing_same_log": 1,
+    "agent_sessions_writing_this_tree": 0,
+    "note": "The earlier contamination (6 concurrent pytest writers recorded in audit/JHEP_CONTINUATION_LIVE_STATE.md) has cleared. Only 87504 remains and it is the sole holder of final2_tensor.log."
+  }
+}
