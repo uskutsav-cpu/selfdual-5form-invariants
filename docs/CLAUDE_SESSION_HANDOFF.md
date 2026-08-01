@@ -9,7 +9,7 @@ manuscript compiles from the official journal class with zero errors and zero
 undefined citations or references, every scientific number in it is generated
 from a JSON certificate, and a fresh clone reproduces all of it.
 
-## The three findings a successor should know
+## The findings a successor should know
 
 1. **The signature blocker was wrong.** The oscillator frame is split `(5,5)`,
    not Euclidean. Real self-dual five-forms exist there, `⋆² = +1`, and the
@@ -20,10 +20,13 @@ from a JSON certificate, and a fresh clone reproduces all of it.
    non-product content is eleven. The structural decomposition is
    `A10 = G10 ⊕ P10`. See `docs/DIMENSION_DICTIONARY.md`.
 
-3. **Degree eight disagrees, and should.** The spinor port-graph stream reaches
-   6 where the tensor side reaches 7, with strict containment. This reproduces
-   the archive's own finding that structured tensor-word candidates are needed
-   there. It is corroboration, not a bug.
+3. **Degree eight disagrees, and the drop test says why.** The spinor
+   port-graph stream reaches 6 where the tensor side reaches 7, with strict
+   containment. Run with the *full* spinor family the two sides give
+   `trace = spinor = union = 7` at four primes, and dropping each family in turn
+   shows only the tensor words are indispensable. So the missing direction is not
+   reachable by any single-graph contraction. See
+   `verification/DEGREE8_SPAN_EQUALITY.md`. It is a positive result, not a bug.
 
 4. **The exact Jacobian now covers all 83 candidates and reaches rank 81.** An
    earlier revision of this file said 59 for the port-graph subset; that is
