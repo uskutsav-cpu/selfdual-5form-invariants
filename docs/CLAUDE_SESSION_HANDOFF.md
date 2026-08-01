@@ -28,7 +28,15 @@ from a JSON certificate, and a fresh clone reproduces all of it.
    reachable by any single-graph contraction. See
    `verification/DEGREE8_SPAN_EQUALITY.md`. It is a positive result, not a bug.
 
-4. **The exact Jacobian now covers all 83 candidates and reaches rank 81.** An
+4. **Both characteristic-zero questions are closed.** `dim_Q D10 = 11` and
+   `dim_Q(B10 cap P10) = 1`, exactly, not as bounds. The route in both cases was
+   the same: CRT lift + rational reconstruction + validation at a held-out prime,
+   then exact rational linear algebra. The intersection has an explicit integer
+   generator, verified at a further prime. See
+   `docs/D10_Q10_CHARACTERISTIC_ZERO_STATUS.md` and
+   `docs/B10_P10_INTERSECTION_STATUS.md`.
+
+5. **The exact Jacobian now covers all 83 candidates and reaches rank 81.** An
    earlier revision of this file said 59 for the port-graph subset; that is
    superseded. See `docs/RANK81_EXACT_CERTIFICATE.md`. The bound is
    `rank_Q >= 81` unconditionally, witnessed by an explicit 81x81 minor. The
@@ -41,7 +49,8 @@ from a JSON certificate, and a fresh clone reproduces all of it.
 | float64 seed/scale/step Jacobian matrix | not run; one configuration costs >10 min. Replaced by an exact analytic Jacobian, which is stronger |
 | degree-10 no-stop terminal status | see `verification/SPINOR_DEGREE10_NO_STOP.md`; cluster script prepared, no cluster run has occurred |
 | certified rational reconstruction | not done; no claim depends on it, and every modular result is used as a lower bound only |
-| PO-03 / PO-05 / PO-07 / PO-09 | open, see `docs/PROOF_OBLIGATIONS.md` |
+| PO-09 | **CERTIFIED** for every degree-ten claim: `dim_Q D10 = 11`, `dim_Q Q10 = 3`, `dim_Q(B10 cap P10) = 1`, each by an exact rational lift validated at a held-out prime |
+| PO-03 / PO-05 / PO-07 | `NOT APPLICABLE` to this manuscript — checked, not assumed; see `audit/PROOF_OBLIGATIONS_FINAL.md` |
 | PO-08 | now split: the cardinality bound is **discharged analytically**; removal-minimality under general `GL` is still open |
 | novelty rows | all PROVISIONAL — the literature sweep is *done* (`audit/RELATED_WORK_COMPLETE.md`); what is missing is coauthor confirmation, which is a human gate |
 
