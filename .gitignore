@@ -27,3 +27,4 @@ manuscript/prl/*.blg
 manuscript/prl/mainNotes.bib
 results/rank81/rowcache_*.json
 verification/reproduction-logs/
+audit/.source_cache/

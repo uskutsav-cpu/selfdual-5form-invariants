@@ -1,0 +1,1959 @@
+{
+ "generated_utc": "2026-08-01T19:46:32+00:00",
+ "core": {
+  "Cederwall:2025invariants": {
+   "recid": 2971028,
+   "doi": "10.1088/1751-8121/ae3bb8",
+   "arxiv": "2509.14350",
+   "citation_count": 12,
+   "n_references": 42,
+   "references": [
+    {
+     "recid": null,
+     "label": "19",
+     "title": null,
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "29",
+     "title": null,
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "1",
+     "title": "Finite linear groups whose ring of invariants is a complete intersection",
+     "arxiv": null,
+     "doi": "10.1090/S0273-0979-1982-14989-8"
+    },
+    {
+     "recid": null,
+     "label": "2",
+     "title": "Classical Invariant Theory",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "3",
+     "title": "Representations and Invariants of the Classical Groups",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "782745",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1088/1126-6708/2008/10/047"
+    },
+    {
+     "recid": "1806818",
+     "label": "5",
+     "title": "Stringy corrections to the entropy of electrically charged supersymmetric black holes with asymptotics",
+     "arxiv": null,
+     "doi": "10.1103/PhysRevD.103.066008"
+    },
+    {
+     "recid": "1755457",
+     "label": "6",
+     "title": "Self-interacting chiral p-forms in higher dimensions",
+     "arxiv": null,
+     "doi": "10.1016/j.physletb.2019.135018"
+    },
+    {
+     "recid": "1837102",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1007/JHEP03(2021)022"
+    },
+    {
+     "recid": "2077613",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1007/JHEP08(2022)112"
+    },
+    {
+     "recid": "2971021",
+     "label": null,
+     "title": null,
+     "arxiv": "2509.14351",
+     "doi": null
+    },
+    {
+     "recid": "1748822",
+     "label": "10",
+     "title": "Manifestly duality-invariant interactions in diverse dimensions",
+     "arxiv": null,
+     "doi": "10.1016/j.physletb.2019.134995"
+    },
+    {
+     "recid": "2757560",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1007/JHEP05(2024)320"
+    },
+    {
+     "recid": null,
+     "label": "12",
+     "title": "Rings of invariants of reductive groups acting on regular rings are Cohen-Macaulay",
+     "arxiv": null,
+     "doi": "10.1016/0001-8708(74)90067-X"
+    },
+    {
+     "recid": null,
+     "label": "13",
+     "title": "On Gorenstein Modules of a Ring of Iinvariants",
+     "arxiv": null,
+     "doi": "10.1070/RM1978v033n05ABEH002526"
+    },
+    {
+     "recid": null,
+     "label": "14",
+     "title": "A Course in Ring Theory",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "524463",
+     "label": "15",
+     "title": "Local BRST cohomology in gauge theories",
+     "arxiv": null,
+     "doi": "10.1016/S0370-1573(00)00049-1"
+    },
+    {
+     "recid": null,
+     "label": "16",
+     "title": "Ueber die Theorie der algebraischen Formen",
+     "arxiv": null,
+     "doi": "10.1007/BF01208503"
+    },
+    {
+     "recid": null,
+     "label": "17",
+     "title": "Homology of noetherian rings and local rings",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "18",
+     "title": "Quantization of Gauge Systems",
+     "arxiv": null,
+     "doi": "10.2307/j.ctv10crg0r"
+    },
+    {
+     "recid": null,
+     "label": "20",
+     "title": "Some remarks on nilpotent orbits",
+     "arxiv": null,
+     "doi": "10.1016/0021-8693(80)90141-6"
+    },
+    {
+     "recid": "534776",
+     "label": "21",
+     "title": "The geometry of three-forms in six dimensions",
+     "arxiv": null,
+     "doi": "10.4310/jdg/1090341263"
+    },
+    {
+     "recid": null,
+     "label": "22",
+     "title": "Trilinear alternating forms on a vector space of dimension 8 over a finite field",
+     "arxiv": null,
+     "doi": "10.1080/03081087.2012.661424"
+    },
+    {
+     "recid": null,
+     "label": "23",
+     "title": "A classification of spinors up to dimension twelve",
+     "arxiv": null,
+     "doi": "10.2307/2373406"
+    },
+    {
+     "recid": "2966959",
+     "label": null,
+     "title": null,
+     "arxiv": "2509.05073",
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "25",
+     "title": "On a certain class of prehomogeneous vector spaces",
+     "arxiv": null,
+     "doi": "10.1016/0022-4049(87)90051-X"
+    },
+    {
+     "recid": "743898",
+     "label": "26",
+     "title": "The octic E$_{8}$ invariant",
+     "arxiv": null,
+     "doi": "10.1063/1.2748615"
+    },
+    {
+     "recid": null,
+     "label": "27",
+     "title": "A classification of the three-vectors of nine-dimensional space",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "28",
+     "title": "Tables of the generating functions and groundforms for the binary quantics of the first ten orders",
+     "arxiv": null,
+     "doi": "10.2307/2369240"
+    },
+    {
+     "recid": null,
+     "label": "30",
+     "title": "Affine lie algebras with non-compact rank one levi subalgebra and their invariants",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "339639",
+     "label": "31",
+     "title": "Normal forms for tensor polynomials. 1: the Riemann tensor",
+     "arxiv": null,
+     "doi": "10.1088/0264-9381/9/5/003"
+    },
+    {
+     "recid": "651008",
+     "label": "32",
+     "title": "A classification of local Weyl invariants in D = 8",
+     "arxiv": null,
+     "doi": "10.1088/0264-9381/21/18/003"
+    },
+    {
+     "recid": null,
+     "label": "33",
+     "title": "Spinors of 13-dimensional space",
+     "arxiv": null,
+     "doi": "10.1016/0001-8708(78)90034-8"
+    },
+    {
+     "recid": "111434",
+     "label": "34",
+     "title": "Supersymmetry, supergravity theories and the dual spinor model",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(77)90206-1"
+    },
+    {
+     "recid": null,
+     "label": "35",
+     "title": "Extended supersymmetry and extended supergravity theories",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "168004",
+     "label": "36",
+     "title": "Ten-dimensional Maxwell-Einstein supergravity, its currents and the issue of its auxiliary fields",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(82)90050-5"
+    },
+    {
+     "recid": "181877",
+     "label": "37",
+     "title": "Conformal supergravity in ten-dimensions",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(83)90159-1"
+    },
+    {
+     "recid": "13664",
+     "label": "38",
+     "title": "The complete N = 2, D = 10 supergravity",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(84)90472-3"
+    },
+    {
+     "recid": "230969",
+     "label": "39",
+     "title": "On D\u2009=\u200910, N\u2009=\u20091 supersymmetry, superspace geometry and superstring effects",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(87)90470-6"
+    },
+    {
+     "recid": "2085209",
+     "label": "40",
+     "title": "Lecture note on Clifford algebra",
+     "arxiv": null,
+     "doi": "10.1007/s40042-022-00493-z"
+    },
+    {
+     "recid": "1111593",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1007/JHEP08(2012)075"
+    },
+    {
+     "recid": "1468437",
+     "label": null,
+     "title": null,
+     "arxiv": null,
+     "doi": "10.1007/JHEP12(2016)072"
+    }
+   ],
+   "n_citing": 12,
+   "citing": [
+    {
+     "recid": 3184624,
+     "title": "Non-linear p-form gauge theories and their deformations",
+     "authors": [
+      "Pesce, Filippo"
+     ],
+     "arxiv": null,
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-07-30"
+    },
+    {
+     "recid": 3175945,
+     "title": "Nonlinear Self-Duality for Arbitrary Spin, Superspin, and Supersymmetry Types",
+     "authors": [
+      "Kuzenko, Sergei M."
+     ],
+     "arxiv": null,
+     "doi": "10.3390/universe12060179",
+     "journal": "Universe",
+     "volume": "12",
+     "year": 2026,
+     "artid": "179",
+     "date": "2026-06-15"
+    },
+    {
+     "recid": 3159210,
+     "title": "Linac: linear algebra with CUDA over finite fields",
+     "authors": [
+      "De Laurentis, Giuseppe",
+      "Franklin, Jack"
+     ],
+     "arxiv": "2605.25863",
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-05-25"
+    },
+    {
+     "recid": 3145516,
+     "title": "Euler-Heisenberg actions in higher dimensions",
+     "authors": [
+      "Hatzis, Terry",
+      "Kuzenko, Sergei M."
+     ],
+     "arxiv": "2604.13636",
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-04-15"
+    },
+    {
+     "recid": 3124292,
+     "title": "More on $ T\\overline{T} $-like deformations in higher dimensions",
+     "authors": [
+      "Brizio, Nicol\u00f2",
+      "Kade, Moritz",
+      "Sfondrini, Alessandro",
+      "Sorokin, Dmitri P."
+     ],
+     "arxiv": "2602.24058",
+     "doi": "10.1007/JHEP06(2026)262",
+     "journal": "JHEP",
+     "volume": "06",
+     "year": 2026,
+     "artid": "262",
+     "date": "2026-02-27"
+    },
+    {
+     "recid": 3115453,
+     "title": "Nonlinear self-duality for arbitrary spin, superspin, and supersymmetry type",
+     "authors": [
+      "Kuzenko, Sergei M."
+     ],
+     "arxiv": "2602.04336",
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-02-04"
+    },
+    {
+     "recid": 3109284,
+     "title": "On nonlinear self-duality in $4p$ dimensions",
+     "authors": [
+      "Kuzenko, Sergei M."
+     ],
+     "arxiv": "2601.13022",
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-01-19"
+    },
+    {
+     "recid": 3095844,
+     "title": "Relating auxiliary field formulations of 4d duality-invariant and 2d integrable field theories",
+     "authors": [
+      "Baglioni, Nicola",
+      "Bielli, Daniele",
+      "Galli, Michele",
+      "Tartaglino-Mazzucchelli, Gabriele"
+     ],
+     "arxiv": "2512.21982",
+     "doi": "10.1007/JHEP07(2026)039",
+     "journal": "JHEP",
+     "volume": "07",
+     "year": 2026,
+     "artid": "039",
+     "date": "2025-12-26"
+    },
+    {
+     "recid": 3096404,
+     "title": "Machine learning invariants of tensors",
+     "authors": [
+      "Elamaran, Athithan",
+      "Ferko, Christian",
+      "Scarlett, Sterling"
+     ],
+     "arxiv": "2512.23750",
+     "doi": "10.1103/ny3m-drnj",
+     "journal": "Phys.Rev.D",
+     "volume": "114",
+     "year": 2026,
+     "artid": "026016",
+     "date": "2025-12-26"
+    },
+    {
+     "recid": 3095304,
+     "title": "Entanglement cohomology for GHZ and W states",
+     "authors": [
+      "Ferko, Christian",
+      "Furuya, Keiichiro"
+     ],
+     "arxiv": "2512.19889",
+     "doi": "10.1103/h145-mr8b",
+     "journal": "Phys.Rev.A",
+     "volume": "114",
+     "year": 2026,
+     "artid": "012437",
+     "date": "2025-12-22"
+    },
+    {
+     "recid": 2971021,
+     "title": "On non-linear chiral 4-form theories in D = 10",
+     "authors": [
+      "Hutomo, Jessica",
+      "Lechner, Kurt",
+      "Sorokin, Dmitri P."
+     ],
+     "arxiv": "2509.14351",
+     "doi": "10.1007/JHEP02(2026)147",
+     "journal": "JHEP",
+     "volume": "02",
+     "year": 2026,
+     "artid": "147",
+     "date": "2025-09-17"
+    },
+    {
+     "recid": 2954479,
+     "title": "An analytic result for the 0 \u2192 ggHHH amplitude",
+     "authors": [
+      "Campbell, John M.",
+      "De Laurentis, Giuseppe",
+      "Ellis, R. Keith"
+     ],
+     "arxiv": "2507.19313",
+     "doi": "10.1007/JHEP01(2026)157",
+     "journal": "JHEP",
+     "volume": "01",
+     "year": 2026,
+     "artid": "157",
+     "date": "2025-07-25"
+    }
+   ]
+  },
+  "Hutomo:2025chiral": {
+   "recid": 2971021,
+   "doi": "10.1007/JHEP02(2026)147",
+   "arxiv": "2509.14351",
+   "citation_count": 10,
+   "n_references": 56,
+   "references": [
+    {
+     "recid": null,
+     "label": "19",
+     "title": null,
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "31",
+     "title": null,
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": null,
+     "label": "47",
+     "title": null,
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "1807764",
+     "label": null,
+     "title": null,
+     "arxiv": "2007.09092",
+     "doi": null
+    },
+    {
+     "recid": "1837102",
+     "label": "2",
+     "title": "On p-form gauge theories and their conformal limits",
+     "arxiv": null,
+     "doi": "10.1007/JHEP03(2021)022"
+    },
+    {
+     "recid": "2777292",
+     "label": "3",
+     "title": "Higher-derivative deformations of the ModMax theory",
+     "arxiv": null,
+     "doi": "10.1007/JHEP06(2024)162"
+    },
+    {
+     "recid": "531042",
+     "label": "4",
+     "title": "Nonlinear selfduality and supersymmetry",
+     "arxiv": null,
+     "doi": "10.1002/1521-3978(200102)49:1/3<273::AID-PROP273>3.0.CO;2-0"
+    },
+    {
+     "recid": "2077613",
+     "label": "5",
+     "title": "Nonlinear (chiral) p-form electrodynamics",
+     "arxiv": null,
+     "doi": "10.1007/JHEP08(2022)112"
+    },
+    {
+     "recid": "471853",
+     "label": null,
+     "title": null,
+     "arxiv": "hep-th/9806106",
+     "doi": null
+    },
+    {
+     "recid": "2971028",
+     "label": null,
+     "title": null,
+     "arxiv": "2509.14350",
+     "doi": null
+    },
+    {
+     "recid": "1740153",
+     "label": "8",
+     "title": "Duality invariant self-interactions of abelian p-forms in arbitrary dimensions",
+     "arxiv": null,
+     "doi": "10.1007/JHEP09(2019)022"
+    },
+    {
+     "recid": "1755457",
+     "label": null,
+     "title": null,
+     "arxiv": "1909.10404",
+     "doi": null
+    },
+    {
+     "recid": "782745",
+     "label": "10",
+     "title": "Higher derivative terms including the Ramond-Ramond five-form",
+     "arxiv": null,
+     "doi": "10.1088/1126-6708/2008/10/047"
+    },
+    {
+     "recid": "1806818",
+     "label": null,
+     "title": null,
+     "arxiv": "2007.06582",
+     "doi": null
+    },
+    {
+     "recid": "2087198",
+     "label": null,
+     "title": null,
+     "arxiv": "2205.11530",
+     "doi": null
+    },
+    {
+     "recid": "583515",
+     "label": null,
+     "title": null,
+     "arxiv": "hep-th/0202203",
+     "doi": null
+    },
+    {
+     "recid": "615583",
+     "label": "14",
+     "title": "New approach to nonlinear electrodynamics: Dualities as symmetries of interaction",
+     "arxiv": null,
+     "doi": "10.1134/1.1842299"
+    },
+    {
+     "recid": "1215632",
+     "label": "15",
+     "title": "Duality rotations in supersymmetric nonlinear electrodynamics revisited",
+     "arxiv": null,
+     "doi": "10.1007/JHEP03(2013)153"
+    },
+    {
+     "recid": "1279629",
+     "label": "16",
+     "title": "Unifying the PST and the auxiliary tensor field formulations of 4D self-duality",
+     "arxiv": null,
+     "doi": "10.1016/j.physletb.2014.02.052"
+    },
+    {
+     "recid": "1748822",
+     "label": null,
+     "title": null,
+     "arxiv": "1908.04120",
+     "doi": null
+    },
+    {
+     "recid": "1898308",
+     "label": null,
+     "title": null,
+     "arxiv": "2108.01103",
+     "doi": null
+    },
+    {
+     "recid": "396050",
+     "label": "20",
+     "title": "Electric-magnetic duality rotations in nonlinear electrodynamics",
+     "arxiv": null,
+     "doi": "10.1016/0550-3213(95)00409-L"
+    },
+    {
+     "recid": "425712",
+     "label": "21",
+     "title": "Interacting chiral gauge fields in six-dimensions and Born-Infeld theory",
+     "arxiv": null,
+     "doi": "10.1016/S0550-3213(97)00040-0"
+    },
+    {
+     "recid": "452195",
+     "label": null,
+     "title": null,
+     "arxiv": "hep-th/9712103",
+     "doi": null
+    },
+    {
+     "recid": "501808",
+     "label": "23",
+     "title": "Electric magnetic duality invariant Lagrangians",
+     "arxiv": null,
+     "doi": "10.1016/S0550-3213(99)00509-X"
+    },
+    {
+     "recid": "2746315",
+     "label": null,
+     "title": null,
+     "arxiv": "2401.06707",
+     "doi": null
+    },
+    {
+     "recid": "2907225",
+     "label": "25",
+     "title": "Causal chiral 2-form electrodynamics",
+     "arxiv": null,
+     "doi": "10.1007/JHEP07(2025)048"
+    },
+    {
+     "recid": "2921184",
+     "label": "26",
+     "title": "Simplified self-dual electrodynamics",
+     "arxiv": null,
+     "doi": "10.1007/JHEP10(2025)120"
+    },
+    {
+     "recid": "2911713",
+     "label": null,
+     "title": null,
+     "arxiv": "2504.10361",
+     "doi": null
+    },
+    {
+     "recid": "2695428",
+     "label": null,
+     "title": null,
+     "arxiv": "2309.04253",
+     "doi": null
+    },
+    {
+     "recid": "2757560",
+     "label": null,
+     "title": null,
+     "arxiv": "2402.06947",
+     "doi": null
+    },
+    {
+     "recid": "2907212",
+     "label": null,
+     "title": null,
+     "arxiv": "2504.01421",
+     "doi": null
+    },
+    {
+     "recid": "343511",
+     "label": "32",
+     "title": "Field theory of photon dust",
+     "arxiv": null,
+     "doi": null
+    },
+    {
+     "recid": "537053",
+     "label": "33",
+     "title": "The metric and strong coupling limit of the M5-brane",
+     "arxiv": null,
+     "doi": "10.1063/1.1376158"
+    },
+    {
+     "recid": "1762857",
+     "label": "34",
+     "title": "An interacting conformal chiral 2-form electrodynamics in six dimensions",
+     "arxiv": null,
+     "doi": "10.1098/rspa.2019.0863"
+    },
+    {
+     "recid": "393743",
+     "label": "35",
+     "title": "Note on manifest Lorentz and general coordinate invariance in duality symmetric models",
+     "arxiv": null,
+     "doi": "10.1016/0370-2693(95)00463-U"
+    },
+    {
+     "recid": "396306",
+     "label": "36",
+     "title": "Duality symmetric actions with manifest space-time symmetries",
+     "arxiv": null,
+     "doi": "10.1103/PhysRevD.52.R4277"
+    },
+    {
+     "recid": "2106119",
+     "label": null,
+     "title": null,
+     "arxiv": "2207.01767",
+     "doi": null
+    },
+    {
+     "recid": "2874177",
+     "label": null,
+     "title": null,
+     "arxiv": "2501.17918",
+     "doi": null
+    },
+    {
+     "recid": "1748171",
+     "label": "39",
+     "title": "On Covariant Actions for Chiral p-Forms",
+     "arxiv": null,
+     "doi": "10.1007/JHEP12(2019)076"
+    },
+    {
+     "recid": "1406913",
+     "label": "40",
+     "title": "Covariant Action for Type IIB Supergravity",
+     "arxiv": null,
+     "doi": "10.1007/JHEP07(2016)017"
+    },
+    {
+     "recid": "1727340",
+     "label": null,
+     "title": null,
+     "arxiv": "1903.12196",
+     "doi": null
+    },
+    {
+     "recid": "2839749",
+     "label": null,
+     "title": null,
+     "arxiv": "2410.10206",
+     "doi": null
+    },
+    {
+     "recid": "425886",
+     "label": "43",
+     "title": "On Lorentz invariant actions for chiral p forms",
+     "arxiv": null,
+     "doi": "10.1103/PhysRevD.55.6292"
+    },
+    {
+     "recid": "445211",
+     "label": null,
+     "title": null,
+     "arxiv": "hep-th/9707044",
+     "doi": null
+    },
+    {
+     "recid": "471963",
+     "label": null,
+     "title": null,
+     "arxiv": "hep-th/9806140",
+     "doi": null
+    },
+    {
+     "recid": "23879",
+     "label": "46",
+     "title": "Dynamics of Chiral (Selfdual) P Forms",
+     "arxiv": null,
+     "doi": "10.1016/0370-2693(88)90712-5"
+    },
+    {
+     "recid": "1868404",
+     "label": null,
+     "title": null,
+     "arxiv": "2106.07173",
+     "doi": null
+    },
+    {
+     "recid": "1869265",
+     "label": null,
+     "title": null,
+     "arxiv": "2106.09750",
+     "doi": null
+    },
+    {
+     "recid": "2159450",
+     "label": null,
+     "title": null,
+     "arxiv": "2210.00059",
+     "doi": null
+    },
+    {
+     "recid": "2037007",
+     "label": null,
+     "title": null,
+     "arxiv": "2202.11156",
+     "doi": null
+    },
+    {
+     "recid": "2043569",
+     "label": "52",
+     "title": "On Current-Squared Flows and ModMax Theories",
+     "arxiv": null,
+     "doi": "10.21468/SciPostPhys.13.2.012"
+    },
+    {
+     "recid": "2092653",
+     "label": null,
+     "title": null,
+     "arxiv": "2206.03415",
+     "doi": null
+    },
+    {
+     "recid": "2514331",
+     "label": null,
+     "title": null,
+     "arxiv": "2206.10515",
+     "doi": null
+    },
+    {
+     "recid": "2792984",
+     "label": null,
+     "title": null,
+     "arxiv": "2405.20375",
+     "doi": null
+    },
+    {
+     "recid": "1838421",
+     "label": null,
+     "title": null,
+     "arxiv": "2012.13636",
+     "doi": null
+    }
+   ],
+   "n_citing": 10,
+   "citing": [
+    {
+     "recid": 3184624,
+     "title": "Non-linear p-form gauge theories and their deformations",
+     "authors": [
+      "Pesce, Filippo"
+     ],
+     "arxiv": null,
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-07-30"
+    },
+    {
+     "recid": 3131577,
+     "title": "Type IIB supergravity action and holography",
+     "authors": [
+      "Adhikari, Soumya",
+      "Hong, Junho",
+      "Joung, Chanyoung",
+      "Lee, Geum"
+     ],
+     "arxiv": "2603.18248",
+     "doi": "10.1007/JHEP06(2026)271",
+     "journal": "JHEP",
+     "volume": "06",
+     "year": 2026,
+     "artid": "271",
+     "date": "2026-03-18"
+    },
+    {
+     "recid": 3115106,
+     "title": "Classifying causal nonlinear electrodynamics via \u03c6-parity and irrelevant deformations",
+     "authors": [
+      "Babaei-Aghbolagh, H.",
+      "Babaei Velni, Komeil",
+      "He, Song",
+      "Pezhman, Zahra"
+     ],
+     "arxiv": "2602.03426",
+     "doi": "10.1007/JHEP05(2026)037",
+     "journal": "JHEP",
+     "volume": "05",
+     "year": 2026,
+     "artid": "037",
+     "date": "2026-02-03"
+    },
+    {
+     "recid": 3110491,
+     "title": "On $ \\sqrt{T\\overline{T}} $ deformed pathways: CFT to CCFT",
+     "authors": [
+      "Banerjee, Aritra",
+      "Parekh, Pulastya",
+      "Raj, Robin"
+     ],
+     "arxiv": "2601.15376",
+     "doi": "10.1007/JHEP05(2026)267",
+     "journal": "JHEP",
+     "volume": "05",
+     "year": 2026,
+     "artid": "267",
+     "date": "2026-01-21"
+    },
+    {
+     "recid": 3109284,
+     "title": "On nonlinear self-duality in $4p$ dimensions",
+     "authors": [
+      "Kuzenko, Sergei M."
+     ],
+     "arxiv": "2601.13022",
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-01-19"
+    },
+    {
+     "recid": 3098235,
+     "title": "Interazioni non lineari di p-forme autoduali",
+     "authors": [
+      "Molon, Federico"
+     ],
+     "arxiv": null,
+     "doi": null,
+     "journal": null,
+     "volume": null,
+     "year": null,
+     "artid": null,
+     "date": "2026-01-07"
+    },
+    {
+     "recid": 3095844,
+     "title": "Relating auxiliary field formulations of 4d duality-invariant and 2d integrable field theories",
+     "authors": [
+      "Baglioni, Nicola",
+      "Bielli, Daniele",
+      "Galli, Michele",
+      "Tartaglino-Mazzucchelli, Gabriele"
+     ],
+     "arxiv": "2512.21982",
+     "doi": "10.1007/JHEP07(2026)039",
+     "journal": "JHEP",
+     "volume": "07",
+     "year": 2026,
+     "artid": "039",
+     "date": "2025-12-26"
+    },
+    {
+     "recid": 3096404,
+     "title": "Machine learning invariants of tensors",
+     "authors": [
+      "Elamaran, Athithan",
+      "Ferko, Christian",
+      "Scarlett, Sterling"
+     ],
+     "arxiv": "2512.23750",
+     "doi": "10.1103/ny3m-drnj",
+     "journal": "Phys.Rev.D",
+     "volume": "114",
+     "year": 2026,
+     "artid": "026016",
+     "date": "2025-12-26"
+    },
+    {
+     "recid": 2972024,
+     "title": "Integrable sigma models and universal root $T\\overline{T }$ deformation via Courant-Hilbert approach",
+     "authors": [
+      "Babaei-Aghbolagh, H.",
+      "Chen, Bin",
+      "He, Song"
+     ],
+     "arxiv": "2509.17075",
+     "doi": "10.1007/JHEP01(2026)108",
+     "journal": "JHEP",
+     "volume": "01",
+     "year": 2026,
+     "artid": "108",
+     "date": "2025-09-21"
+    },
+    {
+     "recid": 2971028,
+     "title": "Some remarks on invariants",
+     "authors": [
+      "Cederwall, Martin",
+      "Hutomo, Jessica",
+      "Kuzenko, Sergei M.",
+      "Lechner, Kurt",
+      "Sorokin, Dmitri P."
+     ],
+     "arxiv": "2509.14350",
+     "doi": "10.1088/1751-8121/ae3bb8",
+     "journal": "J.Phys.A",
+     "volume": "59",
+     "year": 2026,
+     "artid": "065203",
+     "date": "2025-09-17"
+    }
+   ]
+  }
+ },
+ "corpus": [
+  {
+   "bibkey": "Cederwall:2025invariants",
+   "section": "2.1",
+   "relevance": "States the ten-dimensional self-dual five-form invariant problem and supplies partial invariant-ring and low-order tensor information.",
+   "supports_claim": "The problem statement; the twelve degree-10 candidate structures; the generic-orbit counting this paper's upper bound rests on.",
+   "arxiv": "2509.14350",
+   "doi": "10.1088/1751-8121/ae3bb8",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Cederwall, Martin",
+    "Hutomo, Jessica",
+    "Kuzenko, Sergei M.",
+    "Lechner, Kurt",
+    "Sorokin, Dmitri P."
+   ],
+   "title": "Some remarks on invariants",
+   "journal": "J.Phys.A",
+   "volume": "59",
+   "year": 2026,
+   "artid": "065203",
+   "pages": null,
+   "inspire_recid": 2971028,
+   "citation_count": 12,
+   "eprint_date": "2025-09-17"
+  },
+  {
+   "bibkey": "Hutomo:2025chiral",
+   "section": "2.1",
+   "relevance": "Non-linear chiral 4-form theories in D=10; establishes the qualitative breakdown of lower-dimensional stress-flow universality.",
+   "supports_claim": "The count 81; the stress-flow construction; the D=10-is-different observation, which is theirs and is cited as theirs.",
+   "arxiv": "2509.14351",
+   "doi": "10.1007/JHEP02(2026)147",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Hutomo, Jessica",
+    "Lechner, Kurt",
+    "Sorokin, Dmitri P."
+   ],
+   "title": "On non-linear chiral 4-form theories in D = 10",
+   "journal": "JHEP",
+   "volume": "02",
+   "year": 2026,
+   "artid": "147",
+   "pages": "147",
+   "inspire_recid": 2971021,
+   "citation_count": 10,
+   "eprint_date": "2025-09-17"
+  },
+  {
+   "bibkey": "Avetisyan:2022nonlinear",
+   "section": "2.2",
+   "relevance": "Nonlinear (chiral) p-form electrodynamics.",
+   "supports_claim": "Physical context for why scalar invariants of a chiral form matter.",
+   "arxiv": "2205.02522",
+   "doi": "10.1007/JHEP08(2022)112",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Avetisyan, Zhirayr",
+    "Evnin, Oleg",
+    "Mkrtchyan, Karapet"
+   ],
+   "title": "Nonlinear (chiral) p-form electrodynamics",
+   "journal": "JHEP",
+   "volume": "08",
+   "year": 2022,
+   "artid": "112",
+   "pages": "112",
+   "inspire_recid": 2077613,
+   "citation_count": 52,
+   "eprint_date": "2022-05-05"
+  },
+  {
+   "bibkey": "Buratti:2019duality",
+   "section": "2.2",
+   "relevance": "Duality-invariant self-interactions of abelian p-forms in arbitrary dimensions.",
+   "supports_claim": "Duality-invariance constraints on invariant functions.",
+   "arxiv": "1906.07094",
+   "doi": "10.1007/JHEP09(2019)022",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Buratti, Ginevra",
+    "Lechner, Kurt",
+    "Melotti, Luca"
+   ],
+   "title": "Duality invariant self-interactions of abelian p-forms in arbitrary dimensions",
+   "journal": "JHEP",
+   "volume": "09",
+   "year": 2019,
+   "artid": "022",
+   "pages": "022",
+   "inspire_recid": 1740153,
+   "citation_count": 22,
+   "eprint_date": "2019-06-17"
+  },
+  {
+   "bibkey": "Buratti:2019selfint",
+   "section": "2.2",
+   "relevance": "Self-interacting chiral p-forms in higher dimensions.",
+   "supports_claim": "The higher-dimensional chiral-form setting.",
+   "arxiv": "1909.10404",
+   "doi": "10.1016/j.physletb.2019.135018",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Buratti, Ginevra",
+    "Lechner, Kurt",
+    "Melotti, Luca"
+   ],
+   "title": "Self-interacting chiral p-forms in higher dimensions",
+   "journal": "Phys.Lett.B",
+   "volume": "798",
+   "year": 2019,
+   "artid": "135018",
+   "pages": null,
+   "inspire_recid": 1755457,
+   "citation_count": 33,
+   "eprint_date": "2019-09-23"
+  },
+  {
+   "bibkey": "Bandos:2020conformal",
+   "section": "2.2",
+   "relevance": "Non-linear duality-invariant conformal extension of Maxwell's equations.",
+   "supports_claim": "ModMax as the four-dimensional contrast case.",
+   "arxiv": "2007.09092",
+   "doi": "10.1103/PhysRevD.102.121703",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Bandos, Igor",
+    "Lechner, Kurt",
+    "Sorokin, Dmitri",
+    "Townsend, Paul K."
+   ],
+   "title": "A non-linear duality-invariant conformal extension of Maxwell's equations",
+   "journal": "Phys.Rev.D",
+   "volume": "102",
+   "year": 2020,
+   "artid": "121703",
+   "pages": null,
+   "inspire_recid": 1807764,
+   "citation_count": 306,
+   "eprint_date": "2020-07-17"
+  },
+  {
+   "bibkey": "Bandos:2021pforms",
+   "section": "2.2",
+   "relevance": "p-form gauge theories and their conformal limits.",
+   "supports_claim": "Conformal limits of p-form theories.",
+   "arxiv": "2012.09286",
+   "doi": "10.1007/JHEP03(2021)022",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Bandos, Igor",
+    "Lechner, Kurt",
+    "Sorokin, Dmitri",
+    "Townsend, Paul K."
+   ],
+   "title": "On p-form gauge theories and their conformal limits",
+   "journal": "JHEP",
+   "volume": "03",
+   "year": 2021,
+   "artid": "022",
+   "pages": "022",
+   "inspire_recid": 1837102,
+   "citation_count": 126,
+   "eprint_date": "2020-12-16"
+  },
+  {
+   "bibkey": "Ferko:2024interacting",
+   "section": "2.2",
+   "relevance": "Interacting chiral form field theories and TTbar-like flows in six and higher dimensions.",
+   "supports_claim": "The D=6 universality baseline this paper's D=10 results contrast with.",
+   "arxiv": "2402.06947",
+   "doi": "10.1007/JHEP05(2024)320",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Ferko, Christian",
+    "Kuzenko, Sergei M.",
+    "Lechner, Kurt",
+    "Sorokin, Dmitri P.",
+    "Tartaglino-Mazzucchelli, Gabriele"
+   ],
+   "title": "Interacting chiral form field theories and $ T\\overline{T} $-like flows in six and higher dimensions",
+   "journal": "JHEP",
+   "volume": "05",
+   "year": 2024,
+   "artid": "320",
+   "pages": "320",
+   "inspire_recid": 2757560,
+   "citation_count": 43,
+   "eprint_date": "2024-02-10"
+  },
+  {
+   "bibkey": "Ferko:2023duality",
+   "section": "2.2",
+   "relevance": "Duality-invariant non-linear electrodynamics and stress tensor flows.",
+   "supports_claim": "Stress-tensor flow formalism.",
+   "arxiv": "2309.04253",
+   "doi": "10.1103/PhysRevD.108.106021",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Ferko, Christian",
+    "Kuzenko, Sergei M.",
+    "Smith, Liam",
+    "Tartaglino-Mazzucchelli, Gabriele"
+   ],
+   "title": "Duality-invariant nonlinear electrodynamics and stress tensor flows",
+   "journal": "Phys.Rev.D",
+   "volume": "108",
+   "year": 2023,
+   "artid": "106021",
+   "pages": null,
+   "inspire_recid": 2695428,
+   "citation_count": 55,
+   "eprint_date": "2023-09-08"
+  },
+  {
+   "bibkey": "Kuzenko:2000nonlinear",
+   "section": "2.2",
+   "relevance": "Nonlinear self-duality and supersymmetry.",
+   "supports_claim": "Self-duality constraints in the supersymmetric setting.",
+   "arxiv": "hep-th/0007231",
+   "doi": "10.1002/1521-3978(200102)49:1/3<273::AID-PROP273>3.0.CO;2-0",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Kuzenko, Sergei M.",
+    "Theisen, Stefan"
+   ],
+   "title": "Nonlinear selfduality and supersymmetry",
+   "journal": "Fortsch.Phys.",
+   "volume": "49",
+   "year": 2001,
+   "artid": null,
+   "pages": "273-309",
+   "inspire_recid": 531042,
+   "citation_count": 120,
+   "eprint_date": "2000-07"
+  },
+  {
+   "bibkey": "Gaillard:1981rj",
+   "section": "2.2",
+   "relevance": "Duality rotations for interacting fields.",
+   "supports_claim": "The origin of duality-invariance conditions on invariant functions.",
+   "arxiv": null,
+   "doi": "10.1016/0550-3213(81)90527-7",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Gaillard, Mary K.",
+    "Zumino, Bruno"
+   ],
+   "title": "Duality Rotations for Interacting Fields",
+   "journal": "Nucl.Phys.B",
+   "volume": "193",
+   "year": 1981,
+   "artid": null,
+   "pages": "221-244",
+   "inspire_recid": 165994,
+   "citation_count": 583,
+   "eprint_date": "1981-05"
+  },
+  {
+   "bibkey": "Gaillard:1997zr",
+   "section": "2.2",
+   "relevance": "Nonlinear electromagnetic self-duality and Legendre transformations.",
+   "supports_claim": "Legendre-transform formulation of self-duality.",
+   "arxiv": "hep-th/9712103",
+   "doi": null,
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Gaillard, Mary K.",
+    "Zumino, Bruno"
+   ],
+   "title": "Nonlinear electromagnetic selfduality and Legendre transformations",
+   "journal": null,
+   "volume": null,
+   "year": null,
+   "artid": null,
+   "pages": "33-48",
+   "inspire_recid": 452195,
+   "citation_count": 103,
+   "eprint_date": "1997-12"
+  },
+  {
+   "bibkey": "Perry:1996mk",
+   "section": "2.2",
+   "relevance": "Interacting chiral gauge fields in six dimensions and Born-Infeld theory.",
+   "supports_claim": "The six-dimensional chiral two-form precedent.",
+   "arxiv": "hep-th/9611065",
+   "doi": "10.1016/S0550-3213(97)00040-0",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Perry, Malcolm",
+    "Schwarz, John H."
+   ],
+   "title": "Interacting chiral gauge fields in six-dimensions and Born-Infeld theory",
+   "journal": "Nucl.Phys.B",
+   "volume": "489",
+   "year": 1997,
+   "artid": null,
+   "pages": "47-64",
+   "inspire_recid": 425712,
+   "citation_count": 246,
+   "eprint_date": "1996-11"
+  },
+  {
+   "bibkey": "Avetisyan:2021democratic",
+   "section": "2.3",
+   "relevance": "Democratic Lagrangians for nonlinear electrodynamics.",
+   "supports_claim": "Action formulations for chiral forms.",
+   "arxiv": "2108.01103",
+   "doi": "10.1103/PhysRevLett.127.271601",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Avetisyan, Zhirayr",
+    "Evnin, Oleg",
+    "Mkrtchyan, Karapet"
+   ],
+   "title": "Democratic Lagrangians for Nonlinear Electrodynamics",
+   "journal": "Phys.Rev.Lett.",
+   "volume": "127",
+   "year": 2021,
+   "artid": "271601",
+   "pages": null,
+   "inspire_recid": 1898308,
+   "citation_count": 70,
+   "eprint_date": "2021-08-02"
+  },
+  {
+   "bibkey": "Evnin:2022three",
+   "section": "2.3",
+   "relevance": "Three approaches to chiral form interactions.",
+   "supports_claim": "Comparison of chiral-form action formulations.",
+   "arxiv": "2207.01767",
+   "doi": "10.1016/j.difgeo.2023.102016",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Evnin, Oleg",
+    "Mkrtchyan, Karapet"
+   ],
+   "title": "Three approaches to chiral form interactions",
+   "journal": "Differ.Geom.Appl.",
+   "volume": "89",
+   "year": 2023,
+   "artid": "102016",
+   "pages": null,
+   "inspire_recid": 2106119,
+   "citation_count": 47,
+   "eprint_date": "2022-07-04"
+  },
+  {
+   "bibkey": "Mkrtchyan:2019covariant",
+   "section": "2.3",
+   "relevance": "Covariant actions for chiral p-forms.",
+   "supports_claim": "Covariant action formulation.",
+   "arxiv": "1908.01789",
+   "doi": "10.1007/JHEP12(2019)076",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Mkrtchyan, Karapet"
+   ],
+   "title": "On Covariant Actions for Chiral $p-$Forms",
+   "journal": "JHEP",
+   "volume": "12",
+   "year": 2019,
+   "artid": "076",
+   "pages": "076",
+   "inspire_recid": 1748171,
+   "citation_count": 65,
+   "eprint_date": "2019-08-05"
+  },
+  {
+   "bibkey": "Sen:2019selfdual",
+   "section": "2.3",
+   "relevance": "Self-dual forms: action, Hamiltonian and compactification.",
+   "supports_claim": "Self-dual form dynamics.",
+   "arxiv": "1903.12196",
+   "doi": "10.1088/1751-8121/ab5423",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Sen, Ashoke"
+   ],
+   "title": "Self-dual forms: Action, Hamiltonian and Compactification",
+   "journal": "J.Phys.A",
+   "volume": "53",
+   "year": 2020,
+   "artid": "084002",
+   "pages": null,
+   "inspire_recid": 1727340,
+   "citation_count": 104,
+   "eprint_date": "2019-03-28"
+  },
+  {
+   "bibkey": "Sen:2015covariant",
+   "section": "2.3",
+   "relevance": "Covariant action for type IIB supergravity.",
+   "supports_claim": "Where a ten-dimensional self-dual five-form actually appears.",
+   "arxiv": "1511.08220",
+   "doi": "10.1007/JHEP07(2016)017",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Sen, Ashoke"
+   ],
+   "title": "Covariant Action for Type IIB Supergravity",
+   "journal": "JHEP",
+   "volume": "07",
+   "year": 2016,
+   "artid": "017",
+   "pages": "017",
+   "inspire_recid": 1406913,
+   "citation_count": 108,
+   "eprint_date": "2015-11-25"
+  },
+  {
+   "bibkey": "Ivanov:2002new",
+   "section": "2.3",
+   "relevance": "New representation for Lagrangians of self-dual nonlinear electrodynamics.",
+   "supports_claim": "Auxiliary-field formulation.",
+   "arxiv": "hep-th/0202203",
+   "doi": null,
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Ivanov, E.A.",
+    "Zupnik, B.M."
+   ],
+   "title": "New representation for Lagrangians of selfdual nonlinear electrodynamics",
+   "journal": null,
+   "volume": null,
+   "year": 2002,
+   "artid": null,
+   "pages": "235-250",
+   "inspire_recid": 583515,
+   "citation_count": 58,
+   "eprint_date": "2002-02"
+  },
+  {
+   "bibkey": "Ivanov:2003dualities",
+   "section": "2.3",
+   "relevance": "Dualities as symmetries of interaction.",
+   "supports_claim": "Auxiliary-field formulation.",
+   "arxiv": "hep-th/0303192",
+   "doi": "10.1134/1.1842299",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Ivanov, E.A.",
+    "Zupnik, B.M."
+   ],
+   "title": "New approach to nonlinear electrodynamics: Dualities as symmetries of interaction",
+   "journal": "Phys.Atom.Nucl.",
+   "volume": "67",
+   "year": 2004,
+   "artid": null,
+   "pages": "2188-2199",
+   "inspire_recid": 615583,
+   "citation_count": 74,
+   "eprint_date": "2003-03"
+  },
+  {
+   "bibkey": "Ivanov:2014pst",
+   "section": "2.3",
+   "relevance": "Unifying the PST and auxiliary tensor field formulations of 4D self-duality.",
+   "supports_claim": "Relation between action formulations.",
+   "arxiv": "1401.7834",
+   "doi": "10.1016/j.physletb.2014.02.052",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Ivanov, E.A.",
+    "Nurmagambetov, A.J.",
+    "Zupnik, B.M."
+   ],
+   "title": "Unifying the PST and the auxiliary tensor field formulations of 4D self-duality",
+   "journal": "Phys.Lett.B",
+   "volume": "731",
+   "year": 2014,
+   "artid": null,
+   "pages": "298-301",
+   "inspire_recid": 1279629,
+   "citation_count": 19,
+   "eprint_date": "2014-01-30"
+  },
+  {
+   "bibkey": "Kuzenko:2019manifestly",
+   "section": "2.3",
+   "relevance": "Manifestly duality-invariant interactions in diverse dimensions.",
+   "supports_claim": "Duality invariance across dimensions.",
+   "arxiv": "1908.04120",
+   "doi": "10.1016/j.physletb.2019.134995",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Kuzenko, Sergei M."
+   ],
+   "title": "Manifestly duality-invariant interactions in diverse dimensions",
+   "journal": "Phys.Lett.B",
+   "volume": "798",
+   "year": 2019,
+   "artid": "134995",
+   "pages": null,
+   "inspire_recid": 1748822,
+   "citation_count": 16,
+   "eprint_date": "2019-08-12"
+  },
+  {
+   "bibkey": "Baglioni:2025auxiliary",
+   "section": "2.3",
+   "relevance": "Relating auxiliary field formulations of 4d duality-invariant and 2d integrable field theories.",
+   "supports_claim": "Current-literature sweep: the most recent auxiliary-field development.",
+   "arxiv": "2512.21982",
+   "doi": "10.1007/JHEP07(2026)039",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Baglioni, Nicola",
+    "Bielli, Daniele",
+    "Galli, Michele",
+    "Tartaglino-Mazzucchelli, Gabriele"
+   ],
+   "title": "Relating auxiliary field formulations of 4d duality-invariant and 2d integrable field theories",
+   "journal": "JHEP",
+   "volume": "07",
+   "year": 2026,
+   "artid": "039",
+   "pages": "039",
+   "inspire_recid": 3095844,
+   "citation_count": 7,
+   "eprint_date": "2025-12-26"
+  },
+  {
+   "bibkey": "Russo:2024causal",
+   "section": "2.4",
+   "relevance": "Causal self-dual electrodynamics.",
+   "supports_claim": "Causality constraints, discussed as a limitation and not as a result here.",
+   "arxiv": "2401.06707",
+   "doi": "10.1103/PhysRevD.109.105023",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Russo, Jorge G.",
+    "Townsend, Paul K."
+   ],
+   "title": "Causal self-dual electrodynamics",
+   "journal": "Phys.Rev.D",
+   "volume": "109",
+   "year": 2024,
+   "artid": "105023",
+   "pages": null,
+   "inspire_recid": 2746315,
+   "citation_count": 40,
+   "eprint_date": "2024-01-12"
+  },
+  {
+   "bibkey": "Russo:2025chiral2form",
+   "section": "2.4",
+   "relevance": "Causal chiral 2-form electrodynamics.",
+   "supports_claim": "The six-dimensional causality analysis this paper does not extend to D=10.",
+   "arxiv": "2504.01467",
+   "doi": "10.1007/JHEP07(2025)048",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Russo, Jorge G.",
+    "Townsend, Paul K."
+   ],
+   "title": "Causal chiral 2-form electrodynamics",
+   "journal": "JHEP",
+   "volume": "07",
+   "year": 2025,
+   "artid": "048",
+   "pages": "048",
+   "inspire_recid": 2907225,
+   "citation_count": 4,
+   "eprint_date": "2025-04-02"
+  },
+  {
+   "bibkey": "Russo:2025simplified",
+   "section": "2.4",
+   "relevance": "Simplified self-dual electrodynamics.",
+   "supports_claim": "Causality and hyperbolicity discussion.",
+   "arxiv": "2505.08869",
+   "doi": "10.1007/JHEP10(2025)120",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Russo, Jorge G.",
+    "Townsend, Paul K."
+   ],
+   "title": "Simplified self-dual electrodynamics",
+   "journal": "JHEP",
+   "volume": "10",
+   "year": 2025,
+   "artid": "120",
+   "pages": "120",
+   "inspire_recid": 2921184,
+   "citation_count": 15,
+   "eprint_date": "2025-05-13"
+  },
+  {
+   "bibkey": "BabaeiAghbolagh:2026classifying",
+   "section": "2.4",
+   "relevance": "Classifying causal nonlinear electrodynamics via phi-parity and irrelevant deformations; cites the core D=10 paper.",
+   "supports_claim": "Current causality literature; a four-dimensional selection principle this paper does not extend to ten dimensions.",
+   "arxiv": "2602.03426",
+   "doi": "10.1007/JHEP05(2026)037",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Babaei-Aghbolagh, H.",
+    "Babaei Velni, Komeil",
+    "He, Song",
+    "Pezhman, Zahra"
+   ],
+   "title": "Classifying causal nonlinear electrodynamics via \u03c6-parity and irrelevant deformations",
+   "journal": "JHEP",
+   "volume": "05",
+   "year": 2026,
+   "artid": "037",
+   "pages": "037",
+   "inspire_recid": 3115106,
+   "citation_count": 3,
+   "eprint_date": "2026-02-03"
+  },
+  {
+   "bibkey": "Paulos:2008tn",
+   "section": "2.5",
+   "relevance": "Higher derivative terms including the Ramond-Ramond five-form.",
+   "supports_claim": "Where five-form invariants would enter an effective action.",
+   "arxiv": "0804.0763",
+   "doi": "10.1088/1126-6708/2008/10/047",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Paulos, Miguel F."
+   ],
+   "title": "Higher derivative terms including the Ramond-Ramond five-form",
+   "journal": "JHEP",
+   "volume": "10",
+   "year": 2008,
+   "artid": "047",
+   "pages": "047",
+   "inspire_recid": 782745,
+   "citation_count": 73,
+   "eprint_date": "2008-04"
+  },
+  {
+   "bibkey": "Liu:2022eight",
+   "section": "2.5",
+   "relevance": "Type IIB at eight derivatives.",
+   "supports_claim": "The state of the art this paper's classification could feed, but does not itself compute.",
+   "arxiv": "2205.11530",
+   "doi": "10.1007/JHEP08(2022)267",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Liu, James T.",
+    "Minasian, Ruben",
+    "Savelli, Raffaele",
+    "Schachner, Andreas"
+   ],
+   "title": "Type IIB at eight derivatives: insights from Superstrings, Superfields and Superparticles",
+   "journal": "JHEP",
+   "volume": "08",
+   "year": 2022,
+   "artid": "267",
+   "pages": "267",
+   "inspire_recid": 2087198,
+   "citation_count": 28,
+   "eprint_date": "2022-05-23"
+  },
+  {
+   "bibkey": "Melo:2020stringy",
+   "section": "2.5",
+   "relevance": "Stringy corrections to the entropy of electrically charged supersymmetric black holes with AdS5 x S5 asymptotics.",
+   "supports_claim": "A physical setting where five-form invariants appear.",
+   "arxiv": "2007.06582",
+   "doi": "10.1103/PhysRevD.103.066008",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Melo, Jo\u00e3o F.",
+    "Santos, Jorge E."
+   ],
+   "title": "Stringy corrections to the entropy of electrically charged supersymmetric black holes with $\\mathrm{AdS}_5\\times S^5$ asymptotics",
+   "journal": "Phys.Rev.D",
+   "volume": "103",
+   "year": 2021,
+   "artid": "066008",
+   "pages": null,
+   "inspire_recid": 1806818,
+   "citation_count": 33,
+   "eprint_date": "2020-07-13"
+  },
+  {
+   "bibkey": "Adhikari:2026typeiib",
+   "section": "2.5",
+   "relevance": "Type IIB supergravity action and holography; cites the core invariant paper.",
+   "supports_claim": "Current Type IIB literature; bounds what this paper may claim about IIB.",
+   "arxiv": "2603.18248",
+   "doi": "10.1007/JHEP06(2026)271",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Adhikari, Soumya",
+    "Hong, Junho",
+    "Joung, Chanyoung",
+    "Lee, Geum"
+   ],
+   "title": "Type IIB supergravity action and holography",
+   "journal": "JHEP",
+   "volume": "06",
+   "year": 2026,
+   "artid": "271",
+   "pages": "271",
+   "inspire_recid": 3131577,
+   "citation_count": 2,
+   "eprint_date": "2026-03-18"
+  },
+  {
+   "bibkey": "VanProeyen:1999ni",
+   "section": "2.6",
+   "relevance": "Tools for supersymmetry: gamma-matrix and spinor conventions by signature.",
+   "supports_claim": "Charge conjugation, chirality and Majorana-Weyl conventions in appendix A.",
+   "arxiv": "hep-th/9910030",
+   "doi": null,
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Van Proeyen, Antoine"
+   ],
+   "title": "Tools for supersymmetry",
+   "journal": "Ann.U.Craiova Phys.",
+   "volume": "9",
+   "year": 1999,
+   "artid": null,
+   "pages": "1-48",
+   "inspire_recid": 508121,
+   "citation_count": 281,
+   "eprint_date": "1999-10"
+  },
+  {
+   "bibkey": "Kugo:1982bn",
+   "section": "2.6",
+   "relevance": "Supersymmetry and the division algebras; Majorana-Weyl existence by signature.",
+   "supports_claim": "Existence of Majorana-Weyl spinors in (1,9) and (5,5).",
+   "arxiv": null,
+   "doi": "10.1016/0550-3213(83)90584-9",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Kugo, Taichiro",
+    "Townsend, Paul K."
+   ],
+   "title": "Supersymmetry and the Division Algebras",
+   "journal": "Nucl.Phys.B",
+   "volume": "221",
+   "year": 1983,
+   "artid": null,
+   "pages": "357-380",
+   "inspire_recid": 181889,
+   "citation_count": 402,
+   "eprint_date": "1982-11"
+  },
+  {
+   "bibkey": "Elamaran:2025machine",
+   "section": "2.6",
+   "relevance": "Machine learning invariants of tensors: enumerate contraction graphs, evaluate on random data, find linear relations to expose syzygies; case study a 3-form in six dimensions. Cites both core papers.",
+   "supports_claim": "PRIOR ART for the enumerate-evaluate-relate method itself. This paper's methodological novelty must be stated as the exact and certified form of that method -- integral basis, modular arithmetic, holdout primes, a characteristic-zero lower bound -- and never as originating the approach.",
+   "arxiv": "2512.23750",
+   "doi": "10.1103/ny3m-drnj",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Elamaran, Athithan",
+    "Ferko, Christian",
+    "Scarlett, Sterling"
+   ],
+   "title": "Machine learning invariants of tensors",
+   "journal": "Phys.Rev.D",
+   "volume": "114",
+   "year": 2026,
+   "artid": "026016",
+   "pages": null,
+   "inspire_recid": 3096404,
+   "citation_count": 3,
+   "eprint_date": "2025-12-26"
+  },
+  {
+   "bibkey": "Harris:2020numpy",
+   "section": "2.7",
+   "relevance": "NumPy.",
+   "supports_claim": "Array arithmetic underlying every evaluator.",
+   "arxiv": "2006.10256",
+   "doi": "10.1038/s41586-020-2649-2",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "Harris, Charles R.",
+    "Millman, K. Jarrod",
+    "van der Walt, St\u00e9fan J.",
+    "Gommers, Ralf",
+    "Virtanen, Pauli",
+    "Cournapeau, David",
+    "Wieser, Eric",
+    "Taylor, Julian",
+    "Berg, Sebastian",
+    "Smith, Nathaniel J.",
+    "Kern, Robert",
+    "Picus, Matti",
+    "Hoyer, Stephan",
+    "van Kerkwijk, Marten H.",
+    "Brett, Matthew",
+    "Haldane, Allan",
+    "del R\u00edo, Jaime Fern\u00e1ndez",
+    "Wiebe, Mark",
+    "Peterson, Pearu",
+    "G\u00e9rard-Marchant, Pierre",
+    "Sheppard, Kevin",
+    "Reddy, Tyler",
+    "Weckesser, Warren",
+    "Abbasi, Hameer",
+    "Gohlke, Christoph",
+    "Oliphant, Travis E."
+   ],
+   "title": "Array programming with NumPy",
+   "journal": "Nature",
+   "volume": "585",
+   "year": 2020,
+   "artid": null,
+   "pages": "357-362",
+   "inspire_recid": 1818116,
+   "citation_count": 5005,
+   "eprint_date": "2020-06-17"
+  },
+  {
+   "bibkey": "McKay:2014nauty",
+   "section": "2.7",
+   "relevance": "nauty and Traces: practical graph isomorphism.",
+   "supports_claim": "Exact canonicalisation of invariant graphs; used through pynauty.",
+   "arxiv": "1301.1493",
+   "doi": "10.1016/j.jsc.2013.09.003",
+   "source_registry": "INSPIRE-HEP",
+   "authors": [
+    "McKay, Brendan D.",
+    "Piperno, Adolfo"
+   ],
+   "title": "Practical graph isomorphism, II",
+   "journal": "J.Symb.Comput.",
+   "volume": "60",
+   "year": 2014,
+   "artid": "1470",
+   "pages": "94-112",
+   "inspire_recid": 2946750,
+   "citation_count": 105,
+   "eprint_date": "2013-01-08"
+  },
+  {
+   "bibkey": "Bareiss:1968",
+   "section": "2.7",
+   "relevance": "Sylvester's identity and multistep integer-preserving Gaussian elimination.",
+   "supports_claim": "The fraction-free determinant routine that independently confirms the 81x81 minor.",
+   "arxiv": null,
+   "doi": "10.1090/S0025-5718-1968-0226829-0",
+   "source_registry": "Crossref",
+   "authors": [
+    "Bareiss, Erwin H."
+   ],
+   "title": "Sylvester\u2019s identity and multistep integer-preserving Gaussian elimination",
+   "journal": "Mathematics of Computation",
+   "volume": "22",
+   "year": 1968,
+   "artid": null,
+   "pages": "565-578",
+   "inspire_recid": null,
+   "citation_count": null,
+   "eprint_date": null
+  },
+  {
+   "bibkey": "Zippel:1979",
+   "section": "2.7",
+   "relevance": "Probabilistic algorithms for sparse polynomials.",
+   "supports_claim": "Why a nonzero value at a sample point certifies a nonvanishing polynomial.",
+   "arxiv": null,
+   "doi": "10.1007/3-540-09519-5_73",
+   "source_registry": "Crossref",
+   "authors": [
+    "Zippel, Richard"
+   ],
+   "title": "Probabilistic algorithms for sparse polynomials",
+   "journal": "Lecture Notes in Computer Science",
+   "volume": null,
+   "year": 1979,
+   "artid": null,
+   "pages": "216-226",
+   "inspire_recid": null,
+   "citation_count": null,
+   "eprint_date": null
+  },
+  {
+   "bibkey": "Schwartz:1980",
+   "section": "2.7",
+   "relevance": "Fast probabilistic algorithms for verification of polynomial identities.",
+   "supports_claim": "The Schwartz-Zippel bound behind the sample-point argument.",
+   "arxiv": null,
+   "doi": "10.1145/322217.322225",
+   "source_registry": "Crossref",
+   "authors": [
+    "Schwartz, J. T."
+   ],
+   "title": "Fast Probabilistic Algorithms for Verification of Polynomial Identities",
+   "journal": "Journal of the ACM",
+   "volume": "27",
+   "year": 1980,
+   "artid": null,
+   "pages": "701-717",
+   "inspire_recid": null,
+   "citation_count": null,
+   "eprint_date": null
+  }
+ ]
+}
