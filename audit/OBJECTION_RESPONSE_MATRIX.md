@@ -13,6 +13,7 @@
 | m2 | no seed/scale/step matrix | minor | stated with the reason; archived pair analysed instead | `SPINOR_JACOBIAN_RUNS.json` | sec. 11, app. E | disclosed |
 | m3 | exact Jacobian reaches 59 | minor | **resolved by computation**: all 83 candidates now implemented exactly; rank 81 with an explicit 81x81 minor | `results/rank81/certificate.json`, `results/rank81/minor81_certificate.json` | sec. 11.3 | resolved |
 | m4 | only two primes | minor | rank bound does not rest on prime count (integer minor); subspace certificates regenerated at every available prime | `scripts/emit_degree10_space_incidence.py` | sec. 11.3, 13 | narrowed |
+| m4b | which numbers a bad prime could change | minor | separated: A10/P10/G10/B10 and the Jacobian bound are unexposed; D10, Q10 and B10 cap P10 are, in a determined direction | `docs/PROOF_OBLIGATIONS.md` PO-09 | sec. 13 | narrowed |
 | m5 | "canonical" | minor | gated | gate `canonical-without-scope` | sec. 6 | resolved |
 | m6 | novelty unestablished | minor | all rows PROVISIONAL; no priority language | `audit/NOVELTY_MATRIX.md` | — | disclosed |
 | m7 | third-party dependency | minor | manifest + adapter instructions | `release_candidate/` | app. F | disclosed |

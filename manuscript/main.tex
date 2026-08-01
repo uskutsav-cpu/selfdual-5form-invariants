@@ -698,10 +698,31 @@ of these follows from the algebra computed here.
 \label{sec:limitations}
 
 \begin{enumerate}
-\item \textbf{Modular, not characteristic zero.} All exact results are certified
-      at $\nBridgePrimes$ primes. Lower bounds transfer to characteristic zero
-      unconditionally; upper bounds do not, and where one is needed it is taken
-      from an analytic argument.
+\item \textbf{Modular, not characteristic zero --- and not uniformly so.} Lower
+      bounds transfer to characteristic zero unconditionally; upper bounds do
+      not. Applied to the individual results this separates them, and the
+      separation is worth stating rather than covering with a blanket caveat.
+
+      \emph{Unexposed.} A space spanned by exactly $k$ explicit elements has
+      $\dim_{\mathbb{Q}} \le k$ for free, so if its modular rank is also $k$ then
+      its dimension is $k$ over $\mathbb{Q}$ and no prime can be bad. This
+      covers $\dim A_{10} = \dimAten$, $\dim P_{10} = \dimPten$,
+      $\dim G_{10} = \dimGten$ and $\dim B_{10} = \dimBten$, each spanned by
+      exactly that many explicit invariants. It also covers the Jacobian bound
+      of section~\ref{sec:cert81}, for the separate reason that the matrix is an
+      integer reduction and the claim is one-sided.
+
+      \emph{Exposed, and in a determined direction.} $D_{10}$ is assembled by
+      admitting a generated direction only when it raises the rank modulo $p$, so
+      $\dimDten$ is a lower bound over $\mathbb{Q}$. Hence
+      $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ and
+      $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \le \dimBcapP$. A bad prime could
+      therefore only make the flow reach more than we report and the quotient
+      smaller, and could only weaken --- never strengthen --- the claim that the
+      published span meets the products. Neither has been checked in
+      characteristic zero; doing so needs exact evaluation over $\mathbb{Z}$ at
+      the same sample points, and further primes would lower the probability
+      without discharging it.
 \item \textbf{The reverse search is bounded.} It is a search over a declared
       class with most sectors capped. It is not an exhaustive enumeration and is
       never described as one.

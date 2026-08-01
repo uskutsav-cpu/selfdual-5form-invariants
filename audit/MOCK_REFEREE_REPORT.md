@@ -40,9 +40,14 @@ directions rather than blurring them:
 - Modular rank is an **unconditional lower bound** on the characteristic-zero
   rank when the matrix is an integer reduction. The gamma-traceless basis is
   computed over `Z` with entries in `{-1,0,+1}`, so this applies.
-- The **upper** direction is not modular. Where an upper bound is needed it is
-  taken from the analytic argument `126 - 45 = 81`.
+- The **upper** direction is never taken from a modular computation. Upper
+  bounds come from one of two places: the analytic argument `126 - 45 = 81`, or
+  counting an explicit spanning set, which caps a dimension over `Q` for free.
 Section 4.2 states this and a wording gate blocks "exact over `Q`".
+
+Where that leaves each individual number is set out under m4b, because "all
+results are modular" is too coarse to be useful and understates some claims while
+overstating others.
 
 ### M3. "The generic dimension 81 is not yours."
 
@@ -148,6 +153,30 @@ probabilistic failure. For the subspace dimensions, which are equalities rather
 than lower bounds, additional primes do reduce risk and the incidence
 certificate is now regenerated at every prime with a stress-flow closure
 certificate by `scripts/emit_degree10_space_incidence.py`.
+
+### m4b. Which numbers a bad prime could actually change. — **NARROWED**
+
+Raised against ourselves, because the blanket phrase "all results are modular"
+was doing too much work. Separating the cases:
+
+`dim A10 = 14`, `dim P10 = 2`, `dim G10 = 12` and `dim B10 = 12` are **not**
+exposed. Each space is spanned by exactly that many explicit invariants, which
+caps the dimension over `Q` for free; the modular rank supplies the matching
+lower bound. No prime can be bad for them. The Jacobian bound is likewise
+unexposed, being one-sided over an integer reduction.
+
+`D10 = 11` **is** exposed, because directions are admitted to it only when they
+raise the rank mod `p`. So over `Q`, `dim D10 >= 11`, `dim Q10 <= 3`, and
+`dim(B10 cap P10) <= 1`.
+
+The consequence is worth being blunt about: a bad prime would make the flow reach
+*more* and the quotient *smaller*, and would weaken rather than strengthen the
+refutation of the `12 = 12` coincidence. That refutation is the claim most in
+need of a characteristic-zero check, not the atlas dimension. Discharging it
+needs exact evaluation over `Z`; further primes lower the probability and prove
+nothing, and are not counted as progress.
+
+Stated in the manuscript limitations and in PO-09.
 
 ### m5. The compact basis is called compact, not canonical.
 

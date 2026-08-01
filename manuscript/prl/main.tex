@@ -151,8 +151,15 @@ be indistinguishable, and at degree ten there really are three distinct ones.
 Modular arithmetic bounds claims in one direction only, and we use it only in
 that direction. A rank over $\mathbb{F}_p$ is an unconditional lower bound on the
 rank in characteristic zero whenever the matrix is the reduction of an integer
-matrix, which holds here because the coordinate basis is integral. Upper bounds
-are never taken from a modular computation; where one is needed it is analytic.
+matrix, which holds here because the coordinate basis is integral. Where an
+upper bound is needed it comes from counting an explicit spanning set, not from
+a modular computation: a space spanned by exactly $k$ invariants has dimension at
+most $k$ for free, and when its modular rank is also $k$ its dimension is $k$
+over $\mathbb{Q}$ with no prime excluded. That covers $A_{10}$, $P_{10}$,
+$G_{10}$ and $B_{10}$. It does not cover $D_{10}$, which is assembled by
+admitting directions that raise the rank modulo $p$; there $\dimDten$ is a lower
+bound over $\mathbb{Q}$, so $\dim Q_{10} \le \dimQten$. A bad prime could only
+make the flow reach more than we report, never less.
 
 The same principle settles the functional count. Replacing the finite-difference
 Jacobian by an exact analytic one --- taken by amputation, with no step size and

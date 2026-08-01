@@ -230,6 +230,54 @@ coincidence unlikely but does not prove it.
 count beyond which agreement forces equality, or one exact
 characteristic-zero computation at a decisive rank.
 
+### Which claims are actually exposed — **PARTIAL DISCHARGE**
+
+PO-09 has been applied to every degree-10 headline number as a blanket caveat.
+That is imprecise, and the imprecision cuts both ways: some of those numbers are
+not exposed at all, and for the ones that are, the *direction* of a possible
+failure is determined and worth stating. Only `rank_{F_p} <= rank_Q` is used
+below.
+
+**Not exposed. Unconditional over `Q`.** A space spanned by exactly `k` explicit
+elements has `dim_Q <= k` for free; if its modular rank is also `k` then
+`dim_Q >= k`, so `dim_Q = k` exactly and no prime can be bad:
+
+| space | spanning set | modular rank | conclusion |
+|---|---|---|---|
+| `A10` | the 14 atlas elements | 14 | `dim_Q = 14` |
+| `P10` | `I4_1*I6_1`, `I4_1*I6_2` | 2 | `dim_Q = 2` |
+| `G10` | `I10_1 .. I10_12` | 12 | `dim_Q = 12` |
+| `B10` | the 12 published candidates | 12 | `dim_Q = 12` |
+
+The exact Jacobian bound `rank_Q >= 81` is likewise unexposed, for the separate
+reason that the matrix is an integer reduction and the claim is one-sided.
+
+**Exposed, with the direction determined.** `D10` is built by admitting a
+generated row only when it raises the rank *modulo p*. A row rejected mod `p`
+still lies in `D10`, so the recorded 11 is a lower bound over `Q`:
+
+    dim_Q D10 >= 11        hence   dim_Q Q10 <= 3
+    dim_Q(B10 + P10) >= 13 hence   dim_Q(B10 cap P10) <= 1
+
+Both consequences use the exact values of `dim_Q B10` and `dim_Q P10` from the
+table above, which is why isolating the unexposed cases first was worth doing.
+
+So a bad prime could only make the flow reach **more** than recorded and the
+quotient **smaller** than 3, and could only make the published span meet the
+products in **fewer** dimensions than 1 — that is, it would restore the `12 = 12`
+coincidence that this project spent a session refuting. The refutation is
+therefore the claim most worth hardening, not the atlas dimension.
+
+**What is not yet done.** Neither exposed statement has been checked in
+characteristic zero. Both would be discharged by exact evaluation over `Z` at the
+same sample points — the samples are integer five-forms and the invariants are
+integer contractions, so the obstruction is arithmetic width, not principle:
+the pipeline is `int64`-modular throughout and would need arbitrary-precision or
+CRT reconstruction with a height bound. Running further primes lowers the
+probability but discharges nothing, and is not counted here as progress.
+
+Recorded in the manuscript limitations rather than left in this file.
+
 ## PO-10 — the induction for any all-orders claim
 
 **Supports** Phase 5.
