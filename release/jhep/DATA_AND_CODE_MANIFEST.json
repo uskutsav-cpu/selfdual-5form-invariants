@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "generated_by": "scripts/build_release_candidate.py + this manifest step",
- "commit": "99b5aa5a2d922ba622714faac2015bc7014e6376",
+ "commit": "01bc357af786d02cfccb71bc123b3d4c53a0c631",
  "n_files": 170,
  "total_bytes": 1900109,
  "excluded": {
@@ -14,7 +14,7 @@
  "files": [
   {
    "path": "CITATION.cff",
-   "sha256": "b76d083cd4a3d82a26cf21399ea721c95679b20a8e34766eb5310946a8539344",
+   "sha256": "8afe1926606827df3c7e9c82ea9b3daf611516b5e0a6dc10244b8d2517e0ffd3",
    "bytes": 438
   },
   {
