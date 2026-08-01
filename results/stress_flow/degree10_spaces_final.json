@@ -1,0 +1,79 @@
+{
+ "generated_utc": "2026-08-01T21:31:07+00:00",
+ "primes": [
+  32717,
+  32749
+ ],
+ "dimensions_consistent_across_primes": true,
+ "spaces": {
+  "A10": {
+   "description": "the full degree-10 atlas",
+   "construction": "all 14 standard basis vectors in atlas coordinates",
+   "modular_dimension": 14,
+   "exact_over_Q": 14,
+   "route": "structural: 14 distinct unit vectors have rank 14 over any field, so no prime can be exceptional",
+   "status": "PROVED"
+  },
+  "G10": {
+   "description": "the span of the twelve graph generators I10_1..I10_12",
+   "construction": "12 distinct standard basis vectors",
+   "modular_dimension": 12,
+   "exact_over_Q": 12,
+   "route": "structural, as for A10",
+   "status": "PROVED"
+  },
+  "P10": {
+   "description": "the lower-product subspace I4_1*I6_1, I4_1*I6_2",
+   "construction": "2 distinct standard basis vectors",
+   "modular_dimension": 2,
+   "exact_over_Q": 2,
+   "route": "structural, as for A10",
+   "status": "PROVED"
+  },
+  "D10": {
+   "description": "the seed closure of the generalized stress flow",
+   "construction": "fixed-point closure over Q from the recorded seed",
+   "modular_dimension": 11,
+   "exact_over_Q": 11,
+   "route": "exact rational closure and elimination; see docs/D10_Q10_FINAL_STATUS.md",
+   "status": "PROVED"
+  },
+  "B10": {
+   "description": "the span of the published equation-(4.24) candidates",
+   "construction": "each candidate recovered by an exact linear solve against a design matrix MOD P; there is no rational solve, so the coefficients themselves are only known modularly",
+   "modular_dimension": 12,
+   "exact_over_Q": null,
+   "lower_bound_over_Q": 12,
+   "lower_bound_route": "rank_{F_p} <= rank_Q",
+   "upper_bound_over_Q": 14,
+   "upper_bound_route": "B10 is a subspace of A10, which is 14-dimensional",
+   "route": null,
+   "status": "CERTIFIED AT THE TESTED PRIMES; NOT PROVED OVER Q",
+   "what_would_close_it": "a rational solve for the published candidates against the design matrix, which needs a rational evaluator for the atlas elements; the present evaluators are modular"
+  }
+ },
+ "intersection_B10_P10": {
+  "quantity": "dim(B10 \u2229 P10)",
+  "identity": "dim(B \u2229 P) = dim B + dim P - dim(B + P)",
+  "modular_value": 1,
+  "consistent_across_primes": true,
+  "primes": [
+   32717,
+   32749
+  ],
+  "exact_over_Q": null,
+  "status": "CERTIFIED AT THE TESTED PRIMES; NOT PROVED OVER Q",
+  "why": "the identity needs all three dimensions over Q, and dim_Q B10 is itself only bounded, so the intersection inherits the gap",
+  "bounds_over_Q": {
+   "dim_Q P10": 2,
+   "dim_Q B10": ">= 12, <= 14",
+   "dim_Q (B10 + P10)": "<= 14",
+   "conclusion": "no exact value follows; the modular value 1 is what is certified, at the tested primes"
+  }
+ },
+ "source_artifacts": {
+  "results/intrinsic_candidates/degree10_space_incidence.json": "fe4d1d629aa89860a286fae7ad582bd010c7183fbc9098e49edca4ed4d858f5d",
+  "results/stress_flow/D10_characteristic_zero_final.json": "1b6b717f14891adf3aa4bef03574bccbe7f7a3e46e9e90526387f783bc48e1cb"
+ },
+ "manuscript_consequence": "A10, G10, P10 and D10 may be stated as exact characteristic-zero dimensions. B10 and B10 \u2229 P10 must carry 'at the tested primes' wherever they appear."
+}
