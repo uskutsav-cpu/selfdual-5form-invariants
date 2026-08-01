@@ -1,0 +1,895 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/emit_claim_certificate_matrix.py",
+ "n_macros": 110,
+ "by_strength": {
+  "exact-modular": 60,
+  "numerical": 5,
+  "exact-char0": 36,
+  "limitation": 2,
+  "analytic": 7
+ },
+ "unclassified": [],
+ "entries": [
+  {
+   "macro": "dimAten",
+   "value": "14",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimBten",
+   "value": "12",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimGten",
+   "value": "12",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimPten",
+   "value": "2",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimDten",
+   "value": "11",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimQten",
+   "value": "3",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "capBG",
+   "value": "10",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "capPB",
+   "value": "1",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "capPG",
+   "value": "0",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "capDB",
+   "value": "9",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "sumPB",
+   "value": "13",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "nIncidencePrimes",
+   "value": "2",
+   "artifact": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set argument; D10 is settled separately, see dimDtenQ"
+  },
+  {
+   "macro": "dimBcapP",
+   "value": "1",
+   "artifact": "results/intrinsic_candidates/degree10_published_product_intersection.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "characteristic-zero status in docs/B10_P10_INTERSECTION_STATUS.md"
+  },
+  {
+   "macro": "dimBplusP",
+   "value": "13",
+   "artifact": "results/intrinsic_candidates/degree10_published_product_intersection.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "characteristic-zero status in docs/B10_P10_INTERSECTION_STATUS.md"
+  },
+  {
+   "macro": "publishedPrimitiveContent",
+   "value": "11",
+   "artifact": "results/intrinsic_candidates/degree10_published_product_intersection.json",
+   "regenerate": "python scripts/emit_degree10_space_incidence.py --write",
+   "strength": "exact-modular",
+   "note": "characteristic-zero status in docs/B10_P10_INTERSECTION_STATUS.md"
+  },
+  {
+   "macro": "bridgePrimes",
+   "value": "32719, 32749",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "nBridgePrimes",
+   "value": "2",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "starSquared",
+   "value": "1",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "dimSelfdual",
+   "value": "126",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "dimAntiSelfdual",
+   "value": "126",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "bridgeForwardRank",
+   "value": "126",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "dimGammaTraceless",
+   "value": "126",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "gammaTraceRank",
+   "value": "10",
+   "artifact": "spinor_trace_bridge/results/bridge_validation.json",
+   "regenerate": "cd spinor_trace_bridge && python -m pytest",
+   "strength": "exact-modular",
+   "note": "kernel and image by two-way span equality, not dimension counting"
+  },
+  {
+   "macro": "comparisonPrime",
+   "value": "32749",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "nCommonSamples",
+   "value": "78",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "nSampleSparse",
+   "value": "10",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "nSampleStructured",
+   "value": "8",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "nSampleGeneric",
+   "value": "40",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "nSampleHoldout",
+   "value": "20",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "traceRankDegFour",
+   "value": "1",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spinorRankDegFour",
+   "value": "1",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spansEqualDegFour",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "holdoutDegFour",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "traceRankDegSix",
+   "value": "2",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spinorRankDegSix",
+   "value": "2",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spansEqualDegSix",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "holdoutDegSix",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "traceRankDegEight",
+   "value": "7",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spinorRankDegEight",
+   "value": "6",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spansEqualDegEight",
+   "value": "no",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "holdoutDegEight",
+   "value": "no",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "traceRankDegTen",
+   "value": "14",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spinorRankDegTen",
+   "value": "14",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "spansEqualDegTen",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "holdoutDegTen",
+   "value": "yes",
+   "artifact": "verification/spinor_trace_comparison.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_comparison.py",
+   "strength": "exact-modular",
+   "note": "spans compared by two-way containment on a hashed common registry"
+  },
+  {
+   "macro": "archiveJacobianRank",
+   "value": "59",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "archiveJacobianRunsAgree",
+   "value": "yes",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "nArchiveCandidates",
+   "value": "83",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "nArchivePortGraphs",
+   "value": "70",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "nArchiveStructured",
+   "value": "13",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "nArchiveJacobianRuns",
+   "value": "3",
+   "artifact": "verification/spinor_archive_jacobian_exact.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+   "strength": "exact-modular",
+   "note": "superseded by the full-selection certificate; retained as history"
+  },
+  {
+   "macro": "nFloatRuns",
+   "value": "2",
+   "artifact": "verification/SPINOR_JACOBIAN_RUNS.json",
+   "regenerate": "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+   "strength": "numerical",
+   "note": "float64 with an explicit noise floor; evidence about METHOD, not rank"
+  },
+  {
+   "macro": "nFloatNondegenerate",
+   "value": "1",
+   "artifact": "verification/SPINOR_JACOBIAN_RUNS.json",
+   "regenerate": "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+   "strength": "numerical",
+   "note": "float64 with an explicit noise floor; evidence about METHOD, not rank"
+  },
+  {
+   "macro": "nFloatDegenerate",
+   "value": "1",
+   "artifact": "verification/SPINOR_JACOBIAN_RUNS.json",
+   "regenerate": "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+   "strength": "numerical",
+   "note": "float64 with an explicit noise floor; evidence about METHOD, not rank"
+  },
+  {
+   "macro": "nFloatInconclusive",
+   "value": "0",
+   "artifact": "verification/SPINOR_JACOBIAN_RUNS.json",
+   "regenerate": "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+   "strength": "numerical",
+   "note": "float64 with an explicit noise floor; evidence about METHOD, not rank"
+  },
+  {
+   "macro": "floatNondegenerateRanks",
+   "value": "81",
+   "artifact": "verification/SPINOR_JACOBIAN_RUNS.json",
+   "regenerate": "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+   "strength": "numerical",
+   "note": "float64 with an explicit noise floor; evidence about METHOD, not rank"
+  },
+  {
+   "macro": "exactJacRank",
+   "value": "81",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacRunsAgree",
+   "value": "yes",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacPoints",
+   "value": "2",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacPointWord",
+   "value": "points",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacPrimeWord",
+   "value": "prime",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacPrimes",
+   "value": "32749",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "nExactJacPrimes",
+   "value": "1",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacRows",
+   "value": "83",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacCols",
+   "value": "126",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacScheduled",
+   "value": "83",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacEvaluated",
+   "value": "83",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacErrors",
+   "value": "0",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacZeroRows",
+   "value": "0",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacScheduleComplete",
+   "value": "yes",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "exactJacEulerPass",
+   "value": "yes",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "charZeroLowerBound",
+   "value": "81",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "cumRankDegFour",
+   "value": "1",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "cumRankDegSix",
+   "value": "3",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "cumRankDegEight",
+   "value": "9",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "cumRankDegTen",
+   "value": "21",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "cumRankDegTwelve",
+   "value": "81",
+   "artifact": "results/rank81/certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "lower bound only; integral basis makes the modular rank unconditional"
+  },
+  {
+   "macro": "minorSize",
+   "value": "81",
+   "artifact": "results/rank81/minor81_certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "a single prime suffices: an integer determinant vanishing mod p would vanish mod every p"
+  },
+  {
+   "macro": "minorPrimes",
+   "value": "32749",
+   "artifact": "results/rank81/minor81_certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "a single prime suffices: an integer determinant vanishing mod p would vanish mod every p"
+  },
+  {
+   "macro": "nMinorPrimes",
+   "value": "1",
+   "artifact": "results/rank81/minor81_certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "a single prime suffices: an integer determinant vanishing mod p would vanish mod every p"
+  },
+  {
+   "macro": "minorDetNonzero",
+   "value": "yes",
+   "artifact": "results/rank81/minor81_certificate.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH",
+   "strength": "exact-char0",
+   "note": "a single prime suffices: an integer determinant vanishing mod p would vanish mod every p"
+  },
+  {
+   "macro": "dimDtenQ",
+   "value": "11",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "dimQtenQ",
+   "value": "3",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "dimAtenQ",
+   "value": "14",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czSettled",
+   "value": "yes",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czMinorSize",
+   "value": "11",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czFitPrimes",
+   "value": "5",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czHoldoutPrime",
+   "value": "32771",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czIntegerRows",
+   "value": "49",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czLiftedRows",
+   "value": "9",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czSweeps",
+   "value": "3",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "czQtenRelation",
+   "value": "=",
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "regenerate": "python scripts/d10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
+  },
+  {
+   "macro": "dEightTraceRank",
+   "value": "7",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightSpinorRank",
+   "value": "7",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightUnionRank",
+   "value": "7",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightSpinorRowsMin",
+   "value": "21",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightSpinorRowsMax",
+   "value": "23",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightPrimes",
+   "value": "4",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightPrimesEqual",
+   "value": "4",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightIndispensable",
+   "value": "tensor word",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "dEightRankWithoutWords",
+   "value": "6",
+   "artifact": "verification/degree8_span_equality.json",
+   "regenerate": "python spinor_trace_bridge/scripts/run_degree8_span.py",
+   "strength": "exact-modular",
+   "note": "four primes, holdout-validated change of basis, family ablation"
+  },
+  {
+   "macro": "nTraceTests",
+   "value": "211",
+   "artifact": "pytest --collect-only",
+   "regenerate": "python manuscript/scripts/make_numbers.py",
+   "strength": "limitation",
+   "note": "reproducibility metadata, not a scientific claim"
+  },
+  {
+   "macro": "nBridgeTests",
+   "value": "72",
+   "artifact": "pytest --collect-only",
+   "regenerate": "python manuscript/scripts/make_numbers.py",
+   "strength": "limitation",
+   "note": "reproducibility metadata, not a scientific claim"
+  },
+  {
+   "macro": "dimFiveFormComponents",
+   "value": "252",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "dimSelfDualModule",
+   "value": "126",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "dimLorentzAlgebra",
+   "value": "45",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "genericFunctionalDim",
+   "value": "81",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "dimSymSpinor",
+   "value": "136",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "spinorDim",
+   "value": "16",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  },
+  {
+   "macro": "dimQtenMinusOne",
+   "value": "2",
+   "artifact": "literature / elementary",
+   "regenerate": "not computed here",
+   "strength": "analytic",
+   "note": "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"
+  }
+ ]
+}

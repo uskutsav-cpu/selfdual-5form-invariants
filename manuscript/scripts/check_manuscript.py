@@ -486,11 +486,58 @@ def doc_consistency() -> None:
                      f"the certificate records evaluation errors")
 
 
+def claim_matrix_gate() -> None:
+    """Every number in the paper must have a recorded provenance and strength.
+
+    A macro with no source mapping is a number a reader cannot trace, and the
+    matrix is only useful if it is complete. This also catches a macro added to
+    make_numbers.py without anyone deciding what kind of evidence it rests on.
+    """
+    global CHECKS
+    mx = ROOT / "audit" / "FINAL_CLAIM_CERTIFICATE_MATRIX.json"
+    CHECKS += 1
+    if not mx.exists():
+        fail("claim-matrix", "audit/FINAL_CLAIM_CERTIFICATE_MATRIX.json is "
+                             "missing; run scripts/emit_claim_certificate_matrix.py")
+        return
+    d = json.loads(mx.read_text())
+    if d.get("unclassified"):
+        fail("claim-matrix",
+             f"{len(d['unclassified'])} manuscript number(s) have no recorded "
+             f"provenance: {', '.join(d['unclassified'][:5])}")
+
+    # The matrix must describe the macros that exist now, not an earlier set.
+    gen = MANUSCRIPT / "generated" / "numbers.tex"
+    CHECKS += 1
+    if gen.exists():
+        live = {m for m, _ in re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}",
+                                         gen.read_text())}
+        recorded = {e["macro"] for e in d.get("entries", [])}
+        missing = live - recorded
+        if missing:
+            fail("claim-matrix",
+                 f"{len(missing)} macro(s) absent from the matrix: "
+                 f"{', '.join(sorted(missing)[:5])}; regenerate it")
+
+    # A number whose value moved must not keep an old row.
+    CHECKS += 1
+    if gen.exists():
+        vals = dict(re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}",
+                               gen.read_text()))
+        stale = [e["macro"] for e in d.get("entries", [])
+                 if e["macro"] in vals and str(e["value"]) != str(vals[e["macro"]])]
+        if stale:
+            fail("claim-matrix",
+                 f"matrix values are stale for {', '.join(stale[:5])}; "
+                 f"regenerate it")
+
+
 def main() -> int:
     text = manuscript_text()
     wording_gates(text)
     required_disclosures(text)
     claim_diff()
+    claim_matrix_gate()
     doc_consistency()
     build_gates()
 
