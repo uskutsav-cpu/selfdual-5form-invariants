@@ -1,0 +1,88 @@
+{
+ "generated_utc": "2026-08-01T22:03:05+00:00",
+ "space": "Q10 = A10 / D10",
+ "arithmetic": "integers only; fraction-free elimination",
+ "A10": {
+  "dimension": 14,
+  "route": "structural: the 14 basis elements are the coordinate system, so nothing spanned by them exceeds 14, and the modular rank 14 gives the matching lower bound",
+  "status": "PROVED"
+ },
+ "D10": {
+  "dimension": 11,
+  "status": "PROVED",
+  "certificates": [
+   "results/stress_flow/D10_lower_bound_minor.json",
+   "results/stress_flow/D10_annihilator_basis.json"
+  ]
+ },
+ "Q10": {
+  "dimension": 3,
+  "status": "PROVED"
+ },
+ "pivot_columns": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  7,
+  8,
+  9,
+  10,
+  12,
+  13
+ ],
+ "free_columns": [
+  5,
+  6,
+  11
+ ],
+ "free_column_labels": [
+  "I10_6",
+  "I10_7",
+  "I10_12"
+ ],
+ "published_representatives": [
+  "I10_6",
+  "I10_7",
+  "I10_12"
+ ],
+ "representative_indices": [
+  5,
+  6,
+  11
+ ],
+ "representatives_equal_free_columns": true,
+ "each_representative_outside_D10": {
+  "I10_6": true,
+  "I10_7": true,
+  "I10_12": true
+ },
+ "representatives_independent_mod_D10": true,
+ "representatives_span_the_quotient": true,
+ "rank_gain_from_representatives": 3,
+ "drop_one_tests": {
+  "I10_6": {
+   "rank_without_it": 13,
+   "still_spans": false
+  },
+  "I10_7": {
+   "rank_without_it": 13,
+   "still_spans": false
+  },
+  "I10_12": {
+   "rank_without_it": 13,
+   "still_spans": false
+  }
+ },
+ "every_representative_is_needed": true,
+ "three_distinct_spaces": {
+  "raw_target_span": 14,
+  "activated_flow_closure": 11,
+  "complete_invariant_space": 14,
+  "quotient_if_raw_span_used_by_mistake": 0
+ },
+ "status": "PROVED",
+ "permitted_wording": "dim_Q A10 = 14, dim_Q D10 = 11, dim_Q Q10 = 3",
+ "scope_caveat": "D_d is a SEED closure. The generator-extension problem dV/dlambda = f(T,S,lambda) is different and is not answered here."
+}

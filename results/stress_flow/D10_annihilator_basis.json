@@ -1,0 +1,71 @@
+{
+ "generated_utc": "2026-08-01T22:01:14+00:00",
+ "claim": "dim_Q D10 <= 11",
+ "method": "exact integer covectors annihilating every spanning vector; their number is the codimension",
+ "ambient_dimension": 14,
+ "n_annihilators": 3,
+ "annihilators": [
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0
+  ]
+ ],
+ "annihilator_labels": [
+  {
+   "I10_6": 1
+  },
+  {
+   "I10_7": 1
+  },
+  {
+   "I10_12": 1
+  }
+ ],
+ "all_annihilate_every_spanning_vector": true,
+ "implied_upper_bound": 11,
+ "arithmetic": "integers only"
+}
