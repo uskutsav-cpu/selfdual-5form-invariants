@@ -414,9 +414,31 @@ evaluated at the same five-forms in the same field.
 
 Where the spans agree, the agreement is established by two-way containment and
 the change-of-basis matrix is fitted on the fitting samples only and then
-validated on the holdout samples. Where a comparison is incomplete, the table
-says so; we do not report a degree as matched on the strength of a dimension
-coincidence.
+validated on the holdout samples. We do not report a degree as matched on the
+strength of a dimension coincidence.
+
+\paragraph{Degrees four, six and ten agree; degree eight does not, and that is a
+result.} At degrees four, six and ten the two evaluation spans are equal, with
+the change-of-basis map validated on holdout samples that took no part in the
+fit. At degree ten in particular both sides reach $\traceRankDegTen$ and the
+spans coincide, which is the cross-validation this comparison was built to test.
+
+At degree eight the spinor-side port-graph stream reaches
+$\spinorRankDegEight$ where the tensor side reaches $\traceRankDegEight$, and the
+containment is strict: every spinor-side invariant lies in the tensor-side span,
+but one tensor-side direction is not reached. This is not a defect of the bridge,
+which is verified to be an isomorphism, nor of the sampling, which had saturated.
+It is a property of the port-graph ansatz: single-graph contractions of the
+invariant tensor miss a degree-eight direction. The original spinor
+implementation reached the same conclusion independently and supplied the missing
+direction from a separate family of structured tensor-word candidates, which we
+did not re-implement in exact arithmetic. Our computation therefore reproduces
+that shortfall rather than papering over it, and we regard the reproduction as
+corroboration of the ansatz limitation.
+
+The consequence for reading table~\ref{tab:comparison} is that a ``no'' in the
+degree-eight row is a statement about the candidate family, not about the
+correspondence between the two descriptions.
 
 %=============================================================================
 \section{Exact Jacobian and the generic functional dimension}

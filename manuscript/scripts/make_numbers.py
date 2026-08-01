@@ -113,8 +113,11 @@ def main() -> int:
     # --- common-sample comparison --------------------------------------------
     cmp_ = load("verification/spinor_trace_comparison.json")
     if cmp_ and cmp_.get("primes"):
-        pk = sorted(cmp_["primes"])[0]
+        # choose the prime with the most completed degrees: picking the first
+        # key alphabetically would silently report a partially finished run
+        pk = max(cmp_["primes"], key=lambda k: len(cmp_["primes"][k].get("degrees", {})))
         slot = cmp_["primes"][pk]
+        lines.append(macro("comparisonPrime", pk))
         lines.append(macro("nCommonSamples", slot.get("n_samples")))
         fam = slot.get("sample_families", {})
         for f in ("sparse", "structured", "generic", "holdout"):

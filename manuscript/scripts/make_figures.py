@@ -176,7 +176,7 @@ def fig_comparison() -> None:
     if not c or not c.get("primes"):
         placeholder("spinor_trace_rank_comparison", "comparison certificate missing")
         return
-    pk = sorted(c["primes"])[0]
+    pk = max(c["primes"], key=lambda k: len(c["primes"][k].get("degrees", {})))
     degs = c["primes"][pk]["degrees"]
     ds = sorted(degs, key=int)
     tr = [degs[d]["trace_evaluation_rank"] for d in ds]

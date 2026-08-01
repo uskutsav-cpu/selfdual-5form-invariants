@@ -120,7 +120,7 @@ def table_comparison() -> None:
     if not c or not c.get("primes"):
         write("comparison", pending("spinor/trace comparison", "tab:comparison"))
         return
-    pk = sorted(c["primes"])[0]
+    pk = max(c["primes"], key=lambda k: len(c["primes"][k].get("degrees", {})))
     degs = c["primes"][pk]["degrees"]
     body = ["\\begin{table}[t]", "\\centering",
             "\\begin{tabular}{rrrlll}", "\\toprule",
