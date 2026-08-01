@@ -1,0 +1,789 @@
+{
+ "generated_utc": "2026-08-01T19:26:08+00:00",
+ "head": "af9e1f226eabcaa8e921aeeaa483b2c912ad32ff",
+ "verdict": "PARTIAL",
+ "degree12_included_in_central_claims": false,
+ "gates": [
+  {
+   "gate": "1.1",
+   "title": "Exact Clifford and real-form structure",
+   "requirement": "Clifford metric extracted from anticommutators; split oscillator realisation; Hodge square per signature; the four real forms kept distinct; frame map exact.",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "p=32719: Clifford relation holds",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: sigma symmetric",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: sigma-bar symmetric",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: gamma-trace has rank 10",
+     "ok": true,
+     "observed": 10
+    },
+    {
+     "name": "p=32719: gamma-traceless dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32719: star squared = +1 on five-forms",
+     "ok": true,
+     "observed": 1
+    },
+    {
+     "name": "p=32719: frame transition invertible",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: congruence exact",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: Clifford relation holds",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: sigma symmetric",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: sigma-bar symmetric",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: gamma-trace has rank 10",
+     "ok": true,
+     "observed": 10
+    },
+    {
+     "name": "p=32749: gamma-traceless dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32749: star squared = +1 on five-forms",
+     "ok": true,
+     "observed": 1
+    },
+    {
+     "name": "p=32749: frame transition invertible",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: congruence exact",
+     "ok": true,
+     "observed": true
+    }
+   ],
+   "notes": [
+    "The oscillator frame's real form is split (5,5), not Euclidean SO(10): a null frame has isotropic vectors and Euclidean signature has none. There *^2 = +1 on five-forms exactly as in Lorentzian (1,9), so real self-dual five-forms exist in both.",
+    "(5,5) and (1,9) are INEQUIVALENT real forms. They are not related by a real orthogonal frame transformation and the manuscript must not say they are. Both metrics have discriminant -1 up to squares, so they are congruent over C and over F_p, and the bridge constructs that congruence explicitly."
+   ],
+   "evidence": [
+    "spinor_trace_bridge/results/bridge_validation.json",
+    "spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md",
+    "spinor_trace_bridge/docs/HODGE_STAR_CONVENTIONS.md"
+   ]
+  },
+  {
+   "gate": "1.2",
+   "title": "Exact tensor-spinor bridge and its inverse",
+   "requirement": "Phi : Lambda^5_+ V -> Sym^2_{gamma-tr} S_+ with domain 126, codomain 126, forward rank 126, zero kernel on the selected channel, exact round trip, linear scaling, and equivariance.",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "p=32719: self-dual domain dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32719: forward rank 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32719: image dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32719: image = gamma-traceless span",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: kernel = anti-self-dual span",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: anti-self-dual maps to zero",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: round trip is the self-dual projector",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: scaling linear",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: GL(5) equivariant up to det character",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: equivariant under 2 Clifford reflections",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: equivariant under 4 Clifford reflections",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: self-dual domain dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32749: forward rank 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32749: image dim 126",
+     "ok": true,
+     "observed": 126
+    },
+    {
+     "name": "p=32749: image = gamma-traceless span",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: kernel = anti-self-dual span",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: anti-self-dual maps to zero",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: round trip is the self-dual projector",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: scaling linear",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: GL(5) equivariant up to det character",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: equivariant under 2 Clifford reflections",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: equivariant under 4 Clifford reflections",
+     "ok": true,
+     "observed": true
+    }
+   ],
+   "notes": [
+    "The kernel and image statements are SPAN equalities, not dimension coincidences: the certificate compares row spaces, not just ranks.",
+    "Reflections generate the full orthogonal group by Cartan-Dieudonne, so checking two- and four-reflection elements certifies equivariance on the group, not on a sample of it."
+   ],
+   "evidence": [
+    "spinor_trace_bridge/results/bridge_validation.json",
+    "spinor_trace_bridge/docs/BRIDGE_DERIVATION.md"
+   ]
+  },
+  {
+   "gate": "1.3",
+   "title": "Candidate accounting and the rank-81 certificate",
+   "requirement": "83 planned, 83 evaluated, 0 errors, 0 interrupted, 0 silently skipped, 0 zero rows, Euler homogeneity 83/83; exact modular Jacobian; explicit 81x81 minor with nonzero determinant from two independent routines; integer-lift argument; matrix over three samples, three fitting primes, two holdout primes.",
+   "status": "PARTIAL",
+   "checks": [
+    {
+     "name": "p=32749 seed=11 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32749 seed=11 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32749 seed=22 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "minor p=32749: two routines agree",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "minor p=32749: determinant nonzero",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "minor size 81",
+     "ok": true,
+     "observed": 81
+    }
+   ],
+   "notes": [
+    "Sample x prime matrix: 2/3 seeds [11, 22], 1/3 fitting primes [32749], 0/2 holdout primes []. INCOMPLETE -- every cell computed so far agrees at rank 81, but the specification's matrix is not filled.",
+    "What the computation gives is the LOWER half only. The coordinate basis is integral, so each Jacobian is the reduction of an integer matrix and rank_{F_p} <= rank_Q holds unconditionally; hence rank_Q >= 81. The matching upper bound 126 - 45 = 81 is analytic, from the generic stabiliser dimension, and is not supplied by any computation here.",
+    "Rank 81 among 83 functions means at least two functional dependencies. The manuscript must never say '83 algebraically independent invariants'."
+   ],
+   "evidence": [
+    "results/rank81/certificate.json",
+    "results/rank81/minor81_certificate.json",
+    "docs/RANK81_CHARACTERISTIC_ZERO_PROOF.md"
+   ]
+  },
+  {
+   "gate": "1.4",
+   "title": "Degree-resolved tensor-spinor span equivalence",
+   "requirement": "At each certified degree: tensor rank, spinor rank, union rank, span equality in both directions, a fitted change of basis, and holdout validation on samples not used in the fit.",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "p=32719: every sample self-dual",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719: every image gamma-traceless",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=4: spans equal on all samples",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=4: tensor contained in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=4: spinor contained in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=4: holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=4: ranks agree (1 = 1)",
+     "ok": true,
+     "observed": [
+      1,
+      1
+     ]
+    },
+    {
+     "name": "p=32719 d=6: spans equal on all samples",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=6: tensor contained in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=6: spinor contained in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=6: holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 d=6: ranks agree (2 = 2)",
+     "ok": true,
+     "observed": [
+      2,
+      2
+     ]
+    },
+    {
+     "name": "p=32749: every sample self-dual",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: every image gamma-traceless",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=4: spans equal on all samples",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=4: tensor contained in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=4: spinor contained in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=4: holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=4: ranks agree (1 = 1)",
+     "ok": true,
+     "observed": [
+      1,
+      1
+     ]
+    },
+    {
+     "name": "p=32749 d=6: spans equal on all samples",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=6: tensor contained in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=6: spinor contained in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=6: holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=6: ranks agree (2 = 2)",
+     "ok": true,
+     "observed": [
+      2,
+      2
+     ]
+    },
+    {
+     "name": "p=32749 d=10: spans equal on all samples",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=10: tensor contained in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=10: spinor contained in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=10: holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 d=10: ranks agree (14 = 14)",
+     "ok": true,
+     "observed": [
+      14,
+      14
+     ]
+    },
+    {
+     "name": "d=8 p=32713 (holdout): spans equal",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32713 (holdout): tensor in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32713 (holdout): spinor in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32713 (holdout): ranks agree",
+     "ok": true,
+     "observed": [
+      7,
+      7
+     ]
+    },
+    {
+     "name": "d=8 p=32713 (holdout): union rank equals both",
+     "ok": true,
+     "observed": 7
+    },
+    {
+     "name": "d=8 p=32713 (holdout): tensor-word family is load-bearing",
+     "ok": true,
+     "observed": "rank without tensor_word = 6"
+    },
+    {
+     "name": "d=8 p=32717 (holdout): spans equal",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32717 (holdout): tensor in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32717 (holdout): spinor in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32717 (holdout): ranks agree",
+     "ok": true,
+     "observed": [
+      7,
+      7
+     ]
+    },
+    {
+     "name": "d=8 p=32717 (holdout): union rank equals both",
+     "ok": true,
+     "observed": 7
+    },
+    {
+     "name": "d=8 p=32717 (holdout): tensor-word family is load-bearing",
+     "ok": true,
+     "observed": "rank without tensor_word = 6"
+    },
+    {
+     "name": "d=8 p=32719 (fitting): spans equal",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32719 (fitting): tensor in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32719 (fitting): spinor in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32719 (fitting): ranks agree",
+     "ok": true,
+     "observed": [
+      7,
+      7
+     ]
+    },
+    {
+     "name": "d=8 p=32719 (fitting): union rank equals both",
+     "ok": true,
+     "observed": 7
+    },
+    {
+     "name": "d=8 p=32719 (fitting): holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32719 (fitting): tensor-word family is load-bearing",
+     "ok": true,
+     "observed": "rank without tensor_word = 6"
+    },
+    {
+     "name": "d=8 p=32749 (fitting): spans equal",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32749 (fitting): tensor in spinor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32749 (fitting): spinor in tensor",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32749 (fitting): ranks agree",
+     "ok": true,
+     "observed": [
+      7,
+      7
+     ]
+    },
+    {
+     "name": "d=8 p=32749 (fitting): union rank equals both",
+     "ok": true,
+     "observed": 7
+    },
+    {
+     "name": "d=8 p=32749 (fitting): holdout validated",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "d=8 p=32749 (fitting): tensor-word family is load-bearing",
+     "ok": true,
+     "observed": "rank without tensor_word = 6"
+    }
+   ],
+   "notes": [
+    "p=32749 d=8: port-graph-only spinor rank 6 against tensor rank 7; containment is strict and this is a property of that candidate family, not of the bridge. Degree 8 is settled by verification/degree8_span_equality.json with the full family.",
+    "Equal dimension is not equal span, and the certificate never uses it as one: containment is checked in both directions and a change of basis is fitted on one sample set and validated on a disjoint one.",
+    "Degree 12: NO spinor-side enumeration exists, so no degree-12 span equivalence is claimed. Degree 12 enters only through the tensor-side atlas and through the degree-12 block of the 83-candidate Jacobian."
+   ],
+   "evidence": [
+    "verification/spinor_trace_comparison.json",
+    "verification/COMMON_SAMPLE_REGISTRY.json",
+    "verification/degree8_span_equality.json"
+   ]
+  },
+  {
+   "gate": "1.5",
+   "title": "Degree-ten application",
+   "requirement": "dim A10 = 14, dim D10 = 11, dim Q10 = 3, P10 contained in D10, reproduced at more than one prime.",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "p=32717: dim A10 = 14",
+     "ok": true,
+     "observed": 14
+    },
+    {
+     "name": "p=32717: dim D10 = 11",
+     "ok": true,
+     "observed": 11
+    },
+    {
+     "name": "p=32717: dim Q10 = 3",
+     "ok": true,
+     "observed": 3
+    },
+    {
+     "name": "p=32717: D10 contained in A10",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32717: P10 contained in D10",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: dim A10 = 14",
+     "ok": true,
+     "observed": 14
+    },
+    {
+     "name": "p=32749: dim D10 = 11",
+     "ok": true,
+     "observed": 11
+    },
+    {
+     "name": "p=32749: dim Q10 = 3",
+     "ok": true,
+     "observed": 3
+    },
+    {
+     "name": "p=32749: D10 contained in A10",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749: P10 contained in D10",
+     "ok": true,
+     "observed": true
+    }
+   ],
+   "notes": [
+    "This is an APPLICATION of the invariant framework in this manuscript, not its headline. The obstruction itself is allocated to the Letter; see docs/PUBLICATION_CLAIM_ALLOCATION.md."
+   ],
+   "evidence": [
+    "results/intrinsic_candidates/degree10_space_incidence.json"
+   ]
+  },
+  {
+   "gate": "1.6",
+   "title": "Degree-twelve inclusion gate",
+   "requirement": "Degree 12 may enter the title, abstract or central claims only with a complete atlas, a verified product/primitive split, an exact rank certificate, a trace/spinor comparison, holdout validation, and no silently omitted candidate sector.",
+   "status": "FAIL",
+   "checks": [
+    {
+     "name": "degree-12 tensor atlas exists",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "degree-12 trace/spinor comparison exists",
+     "ok": false,
+     "observed": false
+    }
+   ],
+   "notes": [
+    "VERDICT: degree 12 does NOT pass the inclusion gate. No spinor-side degree-12 enumeration exists, so no comparison, no holdout validation and no span equivalence can be stated.",
+    "Consequence for the manuscript: degree 12 is excluded from the title, the abstract and the central claims. It appears only (a) as the degree-12 block of the 83-candidate Jacobian, where it is certified, and (b) in a section labelled partial higher-degree evidence."
+   ],
+   "evidence": [
+    "results/10d_order12.json"
+   ]
+  }
+ ]
+}
