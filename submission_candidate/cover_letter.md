@@ -21,6 +21,16 @@ reachable subspace is three-dimensional and we give explicit representatives, so
 the deficit of the flow construction at degree ten is now a concrete, presentable
 object rather than an unknown.
 
+That last dimension is exact over the rationals, not only modulo a prime. The
+reachable subspace is the one object here not given by a spanning set --- it is
+assembled by a closure that admits a direction when it raises the rank modulo p
+--- so its dimension was initially only a lower bound, leaving the quotient
+bounded above by three. Re-running the closure in exact rational arithmetic,
+after lifting its non-integral flow targets by Chinese remaindering and rational
+reconstruction validated against a held-out prime, gives eleven exactly, with an
+explicit non-vanishing integer minor as witness. The quotient is therefore three
+over Q.
+
 One result is a correction. Two natural decompositions of the fourteen-dimensional
 space both read twelve plus two, and it is tempting to identify them. They are not
 the same: the published span contains one product direction, so its non-product
