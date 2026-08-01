@@ -198,6 +198,10 @@ def main() -> int:
             macro("exactJacRank", "/".join(map(str, ranks))),
             macro("exactJacRunsAgree", "yes" if summ.get("all_runs_agree") else "no"),
             macro("exactJacPoints", len(points)),
+            # Emitted so the prose stays grammatical whatever the artifact says,
+            # rather than being written as "point(s)".
+            macro("exactJacPointWord", "point" if len(points) == 1 else "points"),
+            macro("exactJacPrimeWord", "prime" if len(primes) == 1 else "primes"),
             macro("exactJacPrimes", ", ".join(map(str, primes))),
             macro("nExactJacPrimes", len(primes)),
             macro("exactJacRows", runs[0]["jacobian"]["n_rows"]),

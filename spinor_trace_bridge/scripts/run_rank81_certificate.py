@@ -86,6 +86,26 @@ def analyse(schedule, J, p: int) -> dict:
     }
 
 
+def summarise(runs: list) -> dict:
+    """The certificate summary, derived only from the runs it accompanies."""
+    ranks = sorted({r["jacobian"]["total_rank"] for r in runs})
+    return {
+        "distinct_total_ranks": ranks,
+        "max_exact_rank": max(ranks) if ranks else 0,
+        "all_runs_agree": len(ranks) == 1,
+        "all_schedules_complete": all(r["schedule_summary"]["complete"] for r in runs),
+        "all_euler_checks_pass": all(not r["euler_homogeneity"]["failed"] for r in runs),
+        "n_runs": len(runs),
+        "n_points": len({(r["prime"], r["seed"]) for r in runs}),
+        "primes": sorted({r["prime"] for r in runs}),
+        "seeds": sorted({r["seed"] for r in runs}),
+        "characteristic_zero_lower_bound": max(ranks) if ranks else 0,
+        "characteristic_zero_justification": (
+            "the integral basis makes each Jacobian an integer reduction, so the "
+            "observed modular rank is an unconditional lower bound on rank over Q"),
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--archive", required=True)
@@ -179,24 +199,18 @@ def main() -> int:
                   f"errors {summary['evaluation_errors']} "
                   f"euler {euler['passed']}/{euler['checked']} "
                   f"({entry['wall_seconds']}s)", flush=True)
+            # Recompute before every write.  Writing runs while carrying the
+            # previous summary forward leaves an interrupted run with a
+            # certificate whose summary contradicts its own runs list -- and an
+            # interrupted run is not hypothetical here.
+            report["summary"] = summarise(report["runs"])
             out.write_text(json.dumps(report, indent=1))
 
-    ranks = sorted({r["jacobian"]["total_rank"] for r in report["runs"]})
-    complete = all(r["schedule_summary"]["complete"] for r in report["runs"])
-    euler_ok = all(not r["euler_homogeneity"]["failed"] for r in report["runs"])
-    report["summary"] = {
-        "distinct_total_ranks": ranks,
-        "max_exact_rank": max(ranks) if ranks else 0,
-        "all_runs_agree": len(ranks) == 1,
-        "all_schedules_complete": complete,
-        "all_euler_checks_pass": euler_ok,
-        "n_runs": len(report["runs"]),
-        "characteristic_zero_lower_bound": max(ranks) if ranks else 0,
-        "characteristic_zero_justification": (
-            "the integral basis makes each Jacobian an integer reduction, so the "
-            "observed modular rank is an unconditional lower bound on rank over Q"),
-    }
+    report["summary"] = summarise(report["runs"])
     out.write_text(json.dumps(report, indent=1))
+    ranks = report["summary"]["distinct_total_ranks"]
+    complete = report["summary"]["all_schedules_complete"]
+    euler_ok = report["summary"]["all_euler_checks_pass"]
     print("done ->", out, "ranks:", ranks, "complete:", complete,
           "euler:", euler_ok, flush=True)
     return 0
