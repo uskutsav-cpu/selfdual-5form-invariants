@@ -10,9 +10,9 @@ listed as an author.
 | code generation | Substantial. The entire `spinor_trace_bridge` package --- exact modular Clifford algebra, frame congruence, bridge map and inverse, equivariance checks, exact Jacobian, integral basis, sample registry, comparison driver --- was AI-written. |
 | code review | AI reviewed its own code. No independent human review has occurred. |
 | debugging | Several substantive bugs were found and fixed by AI, including an exponential contraction-path search that silently stalled long runs, a memory blowup that killed runs without a message, and an incorrect spinor index placement. |
-| test generation | All 49 bridge tests were AI-written. |
+| test generation | All 72 bridge tests were AI-written, as were the trace-side regression tests added alongside the work described here. |
 | manuscript drafting | The full draft is AI-written. |
-| literature organisation | Two primary sources were fetched and their bibliographic details verified against publisher/arXiv landing pages. No systematic literature sweep was performed. |
+| literature organisation | Six primary sources were fetched and their bibliographic details verified against publisher/arXiv landing pages (`audit/RELATED_WORK_COMPLETE.md`). This is a search, not a survey by someone who knows the field. |
 | analysis and interpretation | AI-performed; the physics interpretation is explicitly marked as requiring coauthor confirmation. |
 
 ## What AI assistance did NOT do
@@ -20,9 +20,18 @@ listed as an author.
 - It did **not** independently verify any result. Where a result was checked, the
   check was written by the same system, in the same session, with the same
   assumptions. Agreement between an implementation and its own test suite is not
-  independent verification, and is not presented as such.
-- It did **not** perform the literature search needed to support a novelty claim.
-  Every row of `audit/NOVELTY_MATRIX.md` is marked PROVISIONAL for this reason.
+  independent verification, and is not presented as such. The adversarial referee
+  and editor simulations in `audit/` are subject to exactly the same limitation
+  and say so.
+- It did **not** establish novelty. A search of six primary sources was
+  performed, but absence of a result from a search is not evidence the result is
+  new, and recognising a prior formulation of the same statement is a judgement
+  that requires knowing the field. Every row of `audit/NOVELTY_MATRIX.md` is
+  marked PROVISIONAL for this reason.
+- It **did** produce one analytic result rather than a computation: the
+  cardinality bound of manuscript section 6.4. It is elementary linear algebra,
+  it is explicitly not claimed as novel, and it is included because it discharges
+  half of an open proof obligation.
 - It did **not** decide authorship, and cannot.
 
 ## Cross-implementation independence, stated precisely

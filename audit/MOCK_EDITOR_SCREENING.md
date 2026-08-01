@@ -7,10 +7,11 @@ The six questions, answered from evidence.
 **Qualified yes, pending literature confirmation.** The degree-ten graded
 dimension, the complete incidence of its natural subspaces, the quotient with
 explicit representatives, the exact bridge with certified kernel and image, and
-the exact modular Jacobian are all absent from the two source papers consulted.
-No systematic sweep beyond those two has been done, so every novelty row remains
-PROVISIONAL. An editor would be right to ask for that sweep before accepting the
-framing.
+the exact modular Jacobian are all absent from the six papers audited directly in
+`audit/RELATED_WORK_COMPLETE.md`. Every novelty row nonetheless remains
+PROVISIONAL, and the reason is no longer an outstanding search: a search
+establishes absence of evidence, not evidence of absence, and an editor would be
+right to want an expert in the field to say so rather than a bibliography.
 
 ### 2. Is the result of interest to the journal's audience?
 
@@ -45,15 +46,24 @@ a manifest with hashes and adapter instructions is provided.
 ### 6. Is the manuscript honest about limitations?
 
 **Yes, and the mechanism is enforced rather than promised.** There is a
-ten-item limitations section, and 32 automated gates fail the build on specific
+limitations section, and 50 automated gates fail the build on specific
 overclaims --- and, symmetrically, on the *absence* of specific required
 disclosures. The gates are negation-aware, because the first version flagged the
 manuscript's own disclaimers and would have created pressure to delete them.
+
+The gates now also cover `docs/`, not just the manuscript sources. That was
+added after two status documents were found asserting a superseded Jacobian rank
+while the certificate beside them said otherwise --- the manuscript was correct
+throughout, but a reader picking the project up reads those documents first.
 
 ---
 
 ## Screening decision (simulated)
 
-**Send for review, with a note to the referee** that the novelty framing rests on
-a literature search the authors describe as incomplete, and that the physics
-significance is the point most in need of expert judgement.
+**Send for review, with a note to the referee** that the novelty framing rests
+on a literature search the authors do not treat as conclusive, and that the
+physics significance is the point most in need of expert judgement.
+
+One caveat on this screening: it is simulated by the same process that wrote the
+manuscript, so it is a checklist, not an independent opinion. It cannot supply
+the judgement question 2 actually turns on.

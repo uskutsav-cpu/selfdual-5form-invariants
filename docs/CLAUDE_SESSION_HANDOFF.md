@@ -39,7 +39,20 @@ from a JSON certificate, and a fresh clone reproduces all of it.
 | degree-10 no-stop terminal status | see `verification/SPINOR_DEGREE10_NO_STOP.md`; cluster script prepared, no cluster run has occurred |
 | certified rational reconstruction | not done; no claim depends on it, and every modular result is used as a lower bound only |
 | PO-03 / PO-05 / PO-07 / PO-09 | open, see `docs/PROOF_OBLIGATIONS.md` |
+| PO-08 | now split: the cardinality bound is **discharged analytically**; removal-minimality under general `GL` is still open |
 | novelty rows | all PROVISIONAL — the literature sweep is *done* (`audit/RELATED_WORK_COMPLETE.md`); what is missing is coauthor confirmation, which is a human gate |
+
+## Machine constraint worth knowing before you start a long run
+
+This machine has 8 GB. The degree-12 exact contractions run close to that, and
+two heavy jobs at once get one of them killed — a `--no-hilbert-stop` scan and
+two separate rank-81 runs died that way, in each case silently, with the process
+simply gone and no traceback. Run one at a time.
+
+Everything long resumes rather than restarts: the rank-81 runner keys its row
+cache by prime, seed, candidate id and formula hash, and the incidence generator
+skips primes already recorded. Re-issuing the identical command is the correct
+response to a killed run.
 
 ## Where the human gates are
 
