@@ -1,0 +1,135 @@
+{
+ "schema": 1,
+ "definition_M": "M_mu^nu = F_{mu abcd} F^{nu abcd}, symmetric and traceless",
+ "why_D_minus_one": "A symmetric traceless D x D matrix has D - 1 independent eigenvalues, so Tr M^n for n = 2..D exhausts the invariants obtainable from M alone. In D = 10 that is nine.",
+ "distinction": "The stress-tensor TRACE subring is not the stress-flow-reachable sector. The flow may reach more. Both are measured separately.",
+ "primes": {
+  "32749": {
+   "n_samples": 78,
+   "registry_sha256": "30448b5021261f2c7b6ddf8e633d1e5c957cda2645698dee5ea195385a496e5c",
+   "per_degree": {
+    "4": {
+     "monomials": [
+      "TrM^2"
+     ],
+     "n_monomials": 1,
+     "M_trace_sector_rank": 1,
+     "full_graded_rank": 1,
+     "union_rank": 1,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 0
+    },
+    "6": {
+     "monomials": [
+      "TrM^3"
+     ],
+     "n_monomials": 1,
+     "M_trace_sector_rank": 1,
+     "full_graded_rank": 2,
+     "union_rank": 2,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 1
+    },
+    "8": {
+     "monomials": [
+      "TrM^2 * TrM^2",
+      "TrM^4"
+     ],
+     "n_monomials": 2,
+     "M_trace_sector_rank": 2,
+     "full_graded_rank": 7,
+     "union_rank": 7,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 5
+    },
+    "10": {
+     "monomials": [
+      "TrM^2 * TrM^3",
+      "TrM^5"
+     ],
+     "n_monomials": 2,
+     "M_trace_sector_rank": 2,
+     "full_graded_rank": 14,
+     "union_rank": 14,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 12
+    }
+   },
+   "wall_seconds": 76.9
+  },
+  "32719": {
+   "n_samples": 78,
+   "registry_sha256": "ca97d98b493d20bf7d989eefca02737986f1dc42d44a5c7badc9be2a18fe9352",
+   "per_degree": {
+    "4": {
+     "monomials": [
+      "TrM^2"
+     ],
+     "n_monomials": 1,
+     "M_trace_sector_rank": 1,
+     "full_graded_rank": 1,
+     "union_rank": 1,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 0
+    },
+    "6": {
+     "monomials": [
+      "TrM^3"
+     ],
+     "n_monomials": 1,
+     "M_trace_sector_rank": 1,
+     "full_graded_rank": 2,
+     "union_rank": 2,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 1
+    },
+    "8": {
+     "monomials": [
+      "TrM^2 * TrM^2",
+      "TrM^4"
+     ],
+     "n_monomials": 2,
+     "M_trace_sector_rank": 2,
+     "full_graded_rank": 7,
+     "union_rank": 7,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 5
+    },
+    "10": {
+     "monomials": [
+      "TrM^2 * TrM^3",
+      "TrM^5"
+     ],
+     "n_monomials": 2,
+     "M_trace_sector_rank": 2,
+     "full_graded_rank": 14,
+     "union_rank": 14,
+     "M_sector_inside_full_space": true,
+     "codimension_of_M_sector": 12
+    }
+   },
+   "wall_seconds": 76.9
+  }
+ },
+ "summary": {
+  "graded_M_sector": {
+   "4": 1,
+   "6": 1,
+   "8": 2,
+   "10": 2
+  },
+  "graded_full": {
+   "4": 1,
+   "6": 2,
+   "8": 7,
+   "10": 14
+  },
+  "graded_codimension": {
+   "4": 0,
+   "6": 1,
+   "8": 5,
+   "10": 12
+  },
+  "interpretation": "Where the codimension is zero the M-trace sector already spans the graded piece. Where it is positive the stress-tensor traces alone cannot reach the whole space at that degree, independently of any flow."
+ }
+}

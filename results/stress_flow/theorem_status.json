@@ -1,0 +1,31 @@
+{
+ "schema": 1,
+ "theorem_proven": false,
+ "what_was_proven": "trace-sector deficiency proposition: the M-trace subring supplies at most D-1 functionally independent invariants; with trivial generic stabiliser the deficiency is at least dim V - dim g - (D-1), which is 72 at D=10",
+ "what_was_not_proven": "any cross-dimensional bound on the full stress-FLOW-reachable sector; the flow reaches 9 dimensions beyond the M-traces at degree 10",
+ "graded_trace_sector_D10": {
+  "4": 1,
+  "6": 1,
+  "8": 2,
+  "10": 2
+ },
+ "graded_full_D10": {
+  "4": 1,
+  "6": 2,
+  "8": 7,
+  "10": 14
+ },
+ "graded_codimension_trace_sector": {
+  "4": 0,
+  "6": 1,
+  "8": 5,
+  "10": 12
+ },
+ "flow_sector_D10_degree10": 11,
+ "quotient_Q10": 3,
+ "Q10_explained_by_theorem": false,
+ "outcome_class": "D \u2014 unresolved theorem with a proven partial result",
+ "degree12_required_to_decide": true,
+ "degree12_launched": false,
+ "degree12_reason_not_launched": "deciding the hypotheses requires the flow closure at degree 12, which exceeds the remaining compute budget; recorded as a resource limit, not a scientific conclusion"
+}
