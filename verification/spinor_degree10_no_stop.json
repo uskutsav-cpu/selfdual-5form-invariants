@@ -45,8 +45,13 @@
   },
   {
    "degree": 10,
-   "stopped_by": "incomplete",
-   "note": "the run did not reach this degree on this machine"
+   "stopped_by": "killed",
+   "note": "The process was killed (SIGKILL) after roughly four hours of CPU time. It had reached rank 12 of the target 14 and had not left its first candidate batch. This is NOT a result: no terminal state was reached, so nothing is established about the ansatz at degree 10, in either direction.",
+   "partial_rank_reached": 12,
+   "target": 14,
+   "candidates_kept_before_kill": 10,
+   "product_rank_preloaded": 2,
+   "batch_state": "still inside the first batch of 64 unique candidates"
   }
  ],
  "degrees_reaching_candidate_exhaustion": [
@@ -55,5 +60,6 @@
   8
  ],
  "degree_ten_completed": false,
- "independent_cross_check": "Independently of this scan, the exact modular enumeration in verification/spinor_trace_comparison.json reaches evaluation rank 14 at degree 10 by rank saturation, and its span equals the tensor-side span with holdout validation. That is a saturation observation, not an exhaustion proof, and is reported as such."
+ "independent_cross_check": "Independently of this scan, the exact modular enumeration in verification/spinor_trace_comparison.json reaches evaluation rank 14 at degree 10 by rank saturation, and its span equals the tensor-side span with holdout validation. That is a saturation observation, not an exhaustion proof, and is reported as such.",
+ "degree_ten_note": "Degree 10 was attempted and killed, not skipped. It reached rank 12 of 14. Whether the remaining two directions are reachable by port graphs is exactly the question the run would have answered, and it is left open. Note the suggestive parallel with degree 8, where the port-graph family fell short by one -- but a parallel is not evidence, and no claim is made."
 }
