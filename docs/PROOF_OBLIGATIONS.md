@@ -6,17 +6,21 @@ strengthened while its supporting obligation is open.
 
 Baseline: `3ed32805b38ce34216b34888f6539e3538e90fb9`
 
+Final classification for the JHEP submission, with one status per
+obligation: `audit/PROOF_OBLIGATIONS_FINAL.md`. This file remains the
+working ledger; that one is the decision record.
+
 | ID | supports | state |
 |---|---|---|
 | PO-01 | C-ATLAS-05 | **DISCHARGED** (Phase 0) |
-| PO-02 | C-GEN-01 | PARTIAL |
+| PO-02 | C-GEN-01 | **CERTIFIED** (rule checked independently; derivation is mentor item G-10) |
 | PO-03 | C-ATLAS-04 | OPEN |
 | PO-04 | C-SEXTIC-* | OPEN (external) |
 | PO-05 | C-TRM6-01 | OPEN |
 | PO-06 | C-FLOW-01 | **DISCHARGED** (Phase 0) |
 | PO-07 | C-FLOW-03 | OPEN |
-| PO-08 | C-MIN-01 | **PARTIAL** (permutation subgroup done) |
-| PO-09 | all `MOD-CERT` | OPEN |
+| PO-08 | C-MIN-01 | **PARTIAL** — cardinality half PROVED; removal / general GL open |
+| PO-09 | all `MOD-CERT` | **CERTIFIED** for degree ten except `B10 cap P10` |
 | PO-10 | Phase 5 | NOT STARTED |
 
 ---
@@ -252,12 +256,18 @@ elements has `dim_Q <= k` for free; if its modular rank is also `k` then
 The exact Jacobian bound `rank_Q >= 81` is likewise unexposed, for the separate
 reason that the matrix is an integer reduction and the claim is one-sided.
 
-**Exposed, with the direction determined.** `D10` is built by admitting a
-generated row only when it raises the rank *modulo p*. A row rejected mod `p`
-still lies in `D10`, so the recorded 11 is a lower bound over `Q`:
+**Was exposed; `D10` is now settled.** `D10` is built by admitting a generated
+row only when it raises the rank *modulo p*, so the recorded 11 was a lower bound
+over `Q` and the quotient was bounded above:
 
-    dim_Q D10 >= 11        hence   dim_Q Q10 <= 3
+    dim_Q D10 >= 11        hence   dim_Q Q10 <= 3      <- SUPERSEDED
     dim_Q(B10 + P10) >= 13 hence   dim_Q(B10 cap P10) <= 1
+
+The first line is superseded. Re-running the closure in exact rational
+arithmetic, after lifting its non-integral targets by CRT and rational
+reconstruction validated at a held-out prime, gives `dim_Q D10 = 11` exactly and
+hence `dim_Q Q10 = 3`, with an explicit non-vanishing integer minor. See
+`docs/D10_Q10_CHARACTERISTIC_ZERO_STATUS.md`. The second line stands.
 
 Both consequences use the exact values of `dim_Q B10` and `dim_Q P10` from the
 table above, which is why isolating the unexposed cases first was worth doing.
