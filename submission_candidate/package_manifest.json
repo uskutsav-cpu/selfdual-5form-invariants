@@ -5,8 +5,25 @@
   "undefined_references": 0,
   "overfull_boxes": 0,
   "pdf_produced": true,
-  "pages": 21
+  "pages": 22
  },
+ "comments_field": "22 pages, 7 figures, 5 tables",
+ "figures": [
+  "figures/bridge_diagram.pdf",
+  "figures/invariant_space_diagram.pdf",
+  "figures/jacobian_spectrum_degenerate.pdf",
+  "figures/jacobian_spectrum_non_degenerate.pdf",
+  "figures/rank_stability_grid.pdf",
+  "figures/spinor_trace_rank_comparison.pdf",
+  "figures/trace_pipeline.pdf"
+ ],
+ "tables": [
+  "comparison",
+  "dimensions",
+  "environment",
+  "incidence",
+  "jacobian_runs"
+ ],
  "files": [
   "JHEP.bst",
   "appendices/algorithms.tex",
@@ -17,6 +34,9 @@
   "appendices/reproduction.tex",
   "figures/bridge_diagram.pdf",
   "figures/invariant_space_diagram.pdf",
+  "figures/jacobian_spectrum_degenerate.pdf",
+  "figures/jacobian_spectrum_non_degenerate.pdf",
+  "figures/rank_stability_grid.pdf",
   "figures/spinor_trace_rank_comparison.pdf",
   "figures/trace_pipeline.pdf",
   "generated/numbers.tex",
@@ -30,9 +50,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "22fa5431d314ddd9912bad67dc65cc5e852684832e151ecff32db7b20d92e316",
- "jhep_source_sha256": "fee2f73373667a72d6868256f16abbe49036af5e6ecaebead2cea94333fffd88",
- "pdf_sha256": "c36f6838292cda5258fc871c989ad28d399cafec305d9ba8623f1607183f7fa4",
+ "arxiv_source_sha256": "24352fc094cb74926531e13970e345edd5c3abe97d884c05e72cb13a2be1b86c",
+ "jhep_source_sha256": "98f3a4bb337e8cedbc786d440ec61578e635c5507f93d2180072751aeabb06c3",
+ "pdf_sha256": "99f1fe00cf117c91b05a6411c8bebcc9cd226a6dd112dee43f0eb9209acb8045",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false

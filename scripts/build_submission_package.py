@@ -151,8 +151,17 @@ def main() -> int:
                 if p.exists():
                     zf.write(p, arcname=rel)
 
+    # The arXiv "Comments" field wants these three and they were typed by hand
+    # once, which is how it came to say 18 pages when the build made 21.
+    figures = sorted({f for f in figures_used()})
+    tables = sorted({m for src in packaged_sources()
+                     for m in re.findall(r"input\{tables/([^}]+)\}", src.read_text())})
     manifest = {
         "build": diag,
+        "comments_field": (f"{diag['pages']} pages, {len(figures)} figures, "
+                           f"{len(tables)} tables"),
+        "figures": figures,
+        "tables": tables,
         "files": sorted(keep),
         "arxiv_source_sha256": sha256(OUT / "arxiv_source.tar.gz"),
         "jhep_source_sha256": sha256(OUT / "jhep_source.zip"),

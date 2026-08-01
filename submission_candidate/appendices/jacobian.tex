@@ -1,5 +1,32 @@
 \input{tables/jacobian_runs}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/jacobian_spectrum_non_degenerate.pdf}
+\hfill
+\includegraphics[width=0.48\textwidth]{figures/jacobian_spectrum_degenerate.pdf}
+\caption{Singular-value spectra of the two archived float64 Jacobians, plotted
+from the stored matrices. \emph{Left:} a nondegenerate generic sample. No row
+sits at the noise floor and the spectrum falls off a cliff at index
+$\genericFunctionalDim$. \emph{Right:} a degenerate sample from the same code at
+a different random point, in which $48$ of $83$ rows evaluate to numerical zero.
+There is no gap anywhere, so no tolerance choice is defensible; row-normalising
+the near-zero rows rescales rounding noise to unit length and manufactures a
+rank of $83$. The exact computation of section~\ref{sec:cert81} is subject to
+neither behaviour, because it involves no tolerance.}
+\label{fig:spectra}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/rank_stability_grid.pdf}
+\caption{Reported rank against rank tolerance for both archived runs. The
+nondegenerate run is flat across six orders of magnitude; the degenerate one is
+not, which is the operational signature of a rank read off a spectrum with no
+gap.}
+\label{fig:rankstability}
+\end{figure}
+
 \paragraph{Why a degenerate run happens.} At certain sample points a large
 fraction of the candidate rows evaluate to numerical zero. Their surviving
 entries are rounding noise. Row-normalising rescales that noise to unit length,

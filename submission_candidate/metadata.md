@@ -37,8 +37,12 @@ equations, no citations, no "first"/"new"/"complete", and no priority claim.
 - **Primary category:** hep-th
 - **Cross-lists (suggested):** math-ph, math.RT
 - **Licence:** [PENDING AUTHORISATION]
-- **Comments field:** 18 pages, 6 figures, 5 tables. Code and certificates
-  available; see the data and code availability statement.
+- **Comments field:** take `comments_field` verbatim from
+  `submission_candidate/package_manifest.json`, which the packaging script
+  derives from the build it just performed. Do not type it: this field said
+  "18 pages, 6 figures" against a 22-page, 7-figure build because it was
+  maintained by hand. Append: "Code and certificates available; see the data and
+  code availability statement."
 
 ## Journal
 
