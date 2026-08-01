@@ -1,0 +1,18 @@
+role,what_was_done,evidence,attributed_to
+research question,"problem posed: classify degree-ten invariants and compare tensor and spinor descriptions",task specification,HUMAN - NAME REQUIRED
+mathematical design,"choice of modular exact arithmetic; graph representation; quotient formulation",repository history predating this session,HUMAN - NAME REQUIRED
+tensor implementation,"sdinv package: graphs, canonicalisation, modular contraction, atlas, quotient, reverse search",git history of src/sdinv,HUMAN - NAME REQUIRED (with AI assistance; see ai_use_disclosure.md)
+spinor implementation,"sd5_invariants archive: oscillator realisation, port-graph enumeration, float64 Jacobian",third-party archive; Windows paths under another user's home directory,THIRD PARTY - NAME AND PERMISSION REQUIRED
+archive generation,"22 enumeration runs, 8 complete and 15 interrupted",run directories and logs in the archive,THIRD PARTY
+code audit,"archive inventory, duplicate report, completion classification, baseline reproduction",audit/STARTING_STATE.md,AI-assisted; human verification required
+signature derivation,"identification of the oscillator frame as split (5,5); correction of a recorded error",spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md; test_null_frame_signature_is_split,AI-assisted; requires confirmation (review item G-2)
+bridge derivation and implementation,"exact modular Clifford, frame congruence, forward map, left inverse, equivariance certificates",spinor_trace_bridge/,AI-assisted; requires confirmation (G-1, G-4)
+exact Jacobian,"analytic amputated derivative; integral basis making the modular rank a rigorous bound",spinor_trace_bridge/src/sdbridge/jacobian.py and integral.py,AI-assisted
+computation,"all runs executed on one laptop; no cluster was used",verification/*.json with wall times,AI-executed
+analysis,"incidence table, product/primitive resolution, common-sample comparison",results/ and verification/,AI-assisted
+visualization,"all figures generated from artifacts by versioned scripts",manuscript/scripts/make_figures.py,AI-generated
+manuscript writing,"full draft, all sections",manuscript/,AI-drafted; requires author review and rewriting as the authors see fit
+supervision,,,HUMAN - NAME REQUIRED
+resources,"one laptop; no institutional compute used",,none
+cluster access,"none used; none required",,not applicable
+funding,,,UNKNOWN - MUST NOT BE INFERRED

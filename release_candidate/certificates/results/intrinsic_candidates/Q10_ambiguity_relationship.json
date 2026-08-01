@@ -1,0 +1,28 @@
+{
+ "conclusion": "AMB-02 changes COORDINATES, not the SPAN. Under both readings the published triple has rank 3 and therefore spans all of Q10, so the union of both readings still has rank 3. The pure-N4125 basis spans the same Q10 under either reading. The pure-N basis therefore REMOVES dependence on the ambiguity for any span-level statement, and gives an unconditional replacement for the ambiguity-sensitive published members. It does NOT resolve which reading the source intends; that needs the source notation.",
+ "per_prime": {
+  "32717": {
+   "pure_span_equals_A": true,
+   "pure_span_equals_B": true,
+   "rank_pure_plus_A": 3,
+   "rank_pure_plus_B": 3,
+   "rank_readingA": 3,
+   "rank_readingB": 3,
+   "rank_union_A_B": 3,
+   "span_unchanged_under_reading": true
+  },
+  "32749": {
+   "pure_span_equals_A": true,
+   "pure_span_equals_B": true,
+   "rank_pure_plus_A": 3,
+   "rank_pure_plus_B": 3,
+   "rank_readingA": 3,
+   "rank_readingB": 3,
+   "rank_union_A_B": 3,
+   "span_unchanged_under_reading": true
+  }
+ },
+ "removes_ambiguity_dependence": true,
+ "resolves_source_reading": false,
+ "schema": 1
+}

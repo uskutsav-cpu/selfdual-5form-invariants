@@ -1,0 +1,169 @@
+{
+ "all_checks_pass": true,
+ "per_prime": {
+  "32717": {
+   "checks_pass": true,
+   "determinants": {
+    "levelA": 1,
+    "published": 8700,
+    "pure": 29506
+   },
+   "levelA_to_pure": [
+    [
+     26031,
+     30531,
+     25735
+    ],
+    [
+     9759,
+     12332,
+     26789
+    ],
+    [
+     10927,
+     18622,
+     17531
+    ]
+   ],
+   "mutually_inverse_levelA": true,
+   "mutually_inverse_published": true,
+   "published_to_pure": [
+    [
+     32349,
+     11966,
+     32033
+    ],
+    [
+     7391,
+     31173,
+     29870
+    ],
+    [
+     28945,
+     6593,
+     24960
+    ]
+   ],
+   "pure_to_levelA": [
+    [
+     2575,
+     23575,
+     14540
+    ],
+    [
+     27240,
+     7380,
+     26658
+    ],
+    [
+     14033,
+     8112,
+     7270
+    ]
+   ],
+   "pure_to_published": [
+    [
+     22542,
+     14020,
+     6511
+    ],
+    [
+     7514,
+     7824,
+     4779
+    ],
+    [
+     11271,
+     19892,
+     11128
+    ]
+   ],
+   "span_equals_levelA": true
+  },
+  "32749": {
+   "checks_pass": true,
+   "determinants": {
+    "levelA": 1,
+    "published": 20024,
+    "pure": 8930
+   },
+   "levelA_to_pure": [
+    [
+     22426,
+     3354,
+     18410
+    ],
+    [
+     22943,
+     24436,
+     25154
+    ],
+    [
+     720,
+     28213,
+     9769
+    ]
+   ],
+   "mutually_inverse_levelA": true,
+   "mutually_inverse_published": true,
+   "published_to_pure": [
+    [
+     24917,
+     23659,
+     24805
+    ],
+    [
+     7964,
+     6455,
+     23434
+    ],
+    [
+     6759,
+     14174,
+     20698
+    ]
+   ],
+   "pure_to_levelA": [
+    [
+     16093,
+     21692,
+     18193
+    ],
+    [
+     31483,
+     19632,
+     27897
+    ],
+    [
+     28082,
+     30819,
+     25471
+    ]
+   ],
+   "pure_to_published": [
+    [
+     2753,
+     27246,
+     18100
+    ],
+    [
+     11834,
+     11404,
+     32259
+    ],
+    [
+     17751,
+     28852,
+     20989
+    ]
+   ],
+   "span_equals_levelA": true
+  }
+ },
+ "rational_reconstruction": {
+  "attempted": true,
+  "certified": false,
+  "reason": "two primes give a CRT modulus of ~1.07e9, so a rational lift is unique only below ~2.3e4; the entries are generic residues of that magnitude. Exact modular matrices are preserved and labelled UNCERTIFIED."
+ },
+ "schema": 1
+}

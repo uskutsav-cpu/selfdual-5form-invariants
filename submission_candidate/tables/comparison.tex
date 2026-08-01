@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\begin{tabular}{rrrlll}
+\toprule
+degree & trace rank & spinor rank & spans equal & holdout validated & spinor stopping \\
+\midrule
+4 & 1 & 1 & yes & yes & draw budget exhausted \\
+6 & 2 & 2 & yes & yes & rank saturation (patience exhausted) \\
+8 & 7 & 6 & NO & NO & rank saturation (patience exhausted) \\
+10 & 14 & 14 & yes & yes & rank saturation (patience exhausted) \\
+\bottomrule
+\end{tabular}
+\caption{Trace and spinor evaluation ranks on the common sample registry, exact over $\mathbb{F}_p$. Span equality is established by two-way containment; the change-of-basis map is fitted on the fitting samples and validated on the holdout samples. The spinor stopping column records that the spinor-side candidate stream is sampled to rank saturation, which is an observation and not a claim of exhaustive enumeration.
+}
+\label{tab:comparison}
+\end{table}

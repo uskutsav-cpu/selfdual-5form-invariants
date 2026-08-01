@@ -1,0 +1,43 @@
+Every convention below is pinned as a named constant in
+\texttt{spinor\_trace\_bridge/src/sdbridge/conventions.py}. Downstream code
+imports the constant and may not re-derive a sign locally; a change to that file
+is a scientific change and triggers a full re-run.
+
+\paragraph{Metric.} Signature $(-,+,\dots,+)$, index $0$ timelike. The tensor
+implementation's own metric function returns exactly this, and a test asserts the
+equality rather than trusting it.
+
+\paragraph{Epsilon and Hodge star.} $\epsilon_{01\ldots 9}=+1$;
+$(\star F)_I = \frac{1}{(d-p)!}\epsilon_I{}^J F_J$, implemented on sorted
+multi-indices as $\pm$ the complementary component times the raising signs, so
+that no $10^{10}$ epsilon tensor is ever built. The value of $\star^2$ is
+\emph{computed} at runtime, not assumed, and asserted to be $+\starSquared$.
+
+\paragraph{Self-duality.} $\star F = +F$; projector $(1+\star)/2$, with $1/2$
+taken as the modular inverse of $2$. Self-dual and anti-self-dual subspaces are
+each $\dimSelfdual$-dimensional.
+
+\paragraph{Clifford algebra.} $\{\Gamma^\mu,\Gamma^\nu\}=2\eta^{\mu\nu}$.
+Chirality: $\Lambda^{\mathrm{even}}W$ is the positive-chirality module. The
+Chevalley pairing carries the reversal sign $(-1)^{p(p-1)/2}$, which is what
+makes $\sigma^\mu_{ab}$ symmetric; the symmetry is asserted, not assumed.
+
+\paragraph{Antisymmetrised five-gamma.}
+$(\Gamma^{\mu_1\ldots\mu_5})_{ab} = \frac{1}{5!}\sum_{\pi}\mathrm{sgn}(\pi)\,
+(\sigma\bar\sigma\sigma\bar\sigma\sigma)_{ab}$, unit weight on the identity
+permutation.
+
+\paragraph{Forward normalisation.} Equation~\eqref{eq:bridge} sums over all index
+tuples with the $1/5!$; because both objects are totally antisymmetric this
+equals the sum over sorted tuples with unit weight, which is what the code does.
+
+\paragraph{Inverse.} No closed form is claimed. A left inverse on the self-dual
+subspace is constructed by inverting the $\dimSelfdual\times\dimSelfdual$
+restriction in an explicit pivot basis; its defining property
+$\mathrm{inverse}\circ\mathrm{forward}=P_{\text{self-dual}}$ is checked exactly.
+
+\paragraph{Coefficient field.} $\mathbb{F}_p$ for $p\in\{\bridgePrimes\}$. The
+bridge contains no floating-point step and no tolerance parameter.
+
+\paragraph{Spinor index placement.} Determined, not chosen: see
+section~\ref{sec:bridge}. Recorded as an open confirmation item.

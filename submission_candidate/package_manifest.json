@@ -1,0 +1,39 @@
+{
+ "build": {
+  "errors": 0,
+  "undefined_citations": 0,
+  "undefined_references": 0,
+  "overfull_boxes": 2,
+  "pdf_produced": true,
+  "pages": 18
+ },
+ "files": [
+  "JHEP.bst",
+  "appendices/algorithms.tex",
+  "appendices/certificates.tex",
+  "appendices/conventions.tex",
+  "appendices/formulas.tex",
+  "appendices/jacobian.tex",
+  "appendices/reproduction.tex",
+  "figures/bridge_diagram.pdf",
+  "figures/invariant_space_diagram.pdf",
+  "figures/spinor_trace_rank_comparison.pdf",
+  "figures/trace_pipeline.pdf",
+  "generated/numbers.tex",
+  "jheppub.sty",
+  "main.bbl",
+  "main.tex",
+  "references.bib",
+  "tables/comparison.tex",
+  "tables/dimensions.tex",
+  "tables/environment.tex",
+  "tables/incidence.tex",
+  "tables/jacobian_runs.tex"
+ ],
+ "arxiv_source_sha256": "877376f1107279e5490389e39f6832aaca88968ab77aa9217e9fd57b5a174912",
+ "jhep_source_sha256": "0fcca475cc0d25b266b668653872dc31d8c51c7e014bcbd87674ab0d73882a7c",
+ "pdf_sha256": "c7573ab4557fb279cf4bd7a659a28a601ab6c23e1c91223dc12538e7dc2e5437",
+ "contents_are_equivalent": true,
+ "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
+ "uploaded": false
+}

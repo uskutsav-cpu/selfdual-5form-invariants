@@ -1,0 +1,22 @@
+\input{tables/jacobian_runs}
+
+\paragraph{Why a degenerate run happens.} At certain sample points a large
+fraction of the candidate rows evaluate to numerical zero. Their surviving
+entries are rounding noise. Row-normalising rescales that noise to unit length,
+after which the singular spectrum shows no gap and the reported rank becomes an
+artefact of the tolerance. The rule enforced here is that a row whose norm is at
+or below the declared noise floor is never normalised; the withheld
+normalisation, and the reason, are recorded in the run record.
+
+\paragraph{Why the exact computation is not subject to this.} The analytic
+amputated derivative involves no step size, and rank over $\mathbb{F}_p$ involves
+no tolerance. Because the gamma-traceless basis is integral --- entries in
+$\{-1,0,+1\}$, annihilated exactly over $\mathbb{Z}$ --- the Jacobian is the
+reduction of an integer matrix, so its modular rank is a rigorous lower bound on
+the rank in characteristic zero.
+
+\paragraph{Scope.} The exact rank quoted is that of the port-graph subset of the
+archived candidate selection: $\nArchivePortGraphs$ of $\nArchiveCandidates$
+candidates. The $\nArchiveStructured$ structured tensor-word candidates were not
+re-implemented in exact arithmetic and are excluded from the count rather than
+assumed to contribute nothing.

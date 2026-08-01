@@ -1,0 +1,46 @@
+# Cover letter — DRAFT, NOT SENT
+
+To the Editors,
+
+We submit *An exact degree-ten classification of local invariants of the
+ten-dimensional self-dual five-form* for consideration.
+
+A self-dual five-form in ten dimensions admits 81 functionally independent
+Lorentz invariants. That count is analytic and known. What has not been available
+is the structure of the invariant ring at fixed degree, and consequently there
+has been no way to decide whether a given local term is new, whether it is
+reachable by the stress-tensor flow constructions that motivate these theories,
+or how a proposed deformation relates to the explicit structures already in the
+literature.
+
+We determine the degree-ten graded piece exactly. It is fourteen-dimensional. We
+resolve its internal structure completely --- products, published span, graph
+generators, and the subspace reachable by the stress flow --- with all pairwise
+intersections certified over finite fields at two primes. The quotient by the
+reachable subspace is three-dimensional and we give explicit representatives, so
+the deficit of the flow construction at degree ten is now a concrete, presentable
+object rather than an unknown.
+
+One result is a correction. Two natural decompositions of the fourteen-dimensional
+space both read twelve plus two, and it is tempting to identify them. They are not
+the same: the published span contains one product direction, so its non-product
+content is eleven rather than twelve. We found this by computing it after nearly
+asserting the opposite, and we report it prominently because a reader who assumes
+otherwise will miscount by one.
+
+We also connect the tensor description to a spinor-variable description through an
+explicitly convention-controlled bridge, verified to be an isomorphism onto the
+gamma-traceless symmetric chiral square with a certified left inverse, and we
+compare the two descriptions at a common registry of five-forms. At degree ten the
+spans coincide. At degree eight they do not, and we report the shortfall as a
+property of the candidate family rather than of the correspondence.
+
+Finally, we replace a floating-point Jacobian rank computation, which we show to
+be genuinely fragile, by an exact modular one that yields a rigorous bound.
+
+We have been careful about what is not claimed. The number 81 is analytic and is
+not ours. The reverse search is bounded and is not exhaustive. No generating set
+for the ring is presented, degree twelve is not classified, and no physical
+prediction is derived. These limits are collected in a dedicated section.
+
+**[COVER LETTER REQUIRES AUTHOR REVIEW AND SIGNATURE — HUMAN ACTION REQUIRED]**

@@ -1,0 +1,246 @@
+{
+  "arithmetic": "exact over F_p; no floating point and no tolerance in the bridge",
+  "environment": {
+    "numpy": "2.5.1",
+    "python": "3.13.5"
+  },
+  "primes": {
+    "32719": {
+      "bridge": {
+        "antiselfdual_dim": 126,
+        "antiselfdual_maps_to_zero": true,
+        "forward_rank": 126,
+        "image_dim": 126,
+        "image_equals_gamma_traceless": true,
+        "kernel_dim": 126,
+        "kernel_equals_antiselfdual": true,
+        "prime": 32719,
+        "round_trip_selfdual": true,
+        "scaling_linear": true,
+        "selfdual_dim": 126,
+        "star_squared": 1
+      },
+      "clifford": {
+        "clifford_relation": true,
+        "gamma_trace_rank": 10,
+        "gamma_traceless_dim": 126,
+        "sigma_bar_symmetric": true,
+        "sigma_symmetric": true
+      },
+      "covariance_gl5": {
+        "elements": [
+          {
+            "chi": [
+              5342
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 5342
+          },
+          {
+            "chi": [
+              21669
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 21669
+          },
+          {
+            "chi": [
+              26150
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 26150
+          }
+        ],
+        "equivariant_up_to_character": true
+      },
+      "covariance_rotations": {
+        "elements": [
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 24680,
+            "scalar": [
+              24680
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 25173,
+            "scalar": [
+              25173
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 26168,
+            "scalar": [
+              26168
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          }
+        ],
+        "equivariant_on_every_component": true,
+        "generates": "the full special orthogonal group (Cartan-Dieudonne)"
+      },
+      "covariance_rotations_4": {
+        "elements": [
+          {
+            "n_reflections": 4,
+            "predicted_scalar": 19635,
+            "scalar": [
+              19635
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 4,
+            "predicted_scalar": 25560,
+            "scalar": [
+              25560
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          }
+        ],
+        "equivariant_on_every_component": true,
+        "generates": "the full special orthogonal group (Cartan-Dieudonne)"
+      },
+      "frame_transition": {
+        "L_invertible": true,
+        "congruence_exact": true,
+        "prime": 32719
+      }
+    },
+    "32749": {
+      "bridge": {
+        "antiselfdual_dim": 126,
+        "antiselfdual_maps_to_zero": true,
+        "forward_rank": 126,
+        "image_dim": 126,
+        "image_equals_gamma_traceless": true,
+        "kernel_dim": 126,
+        "kernel_equals_antiselfdual": true,
+        "prime": 32749,
+        "round_trip_selfdual": true,
+        "scaling_linear": true,
+        "selfdual_dim": 126,
+        "star_squared": 1
+      },
+      "clifford": {
+        "clifford_relation": true,
+        "gamma_trace_rank": 10,
+        "gamma_traceless_dim": 126,
+        "sigma_bar_symmetric": true,
+        "sigma_symmetric": true
+      },
+      "covariance_gl5": {
+        "elements": [
+          {
+            "chi": [
+              17596
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 17596
+          },
+          {
+            "chi": [
+              31547
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 31547
+          },
+          {
+            "chi": [
+              31108
+            ],
+            "chi_equals_det": true,
+            "chi_equals_det_inverse": false,
+            "chi_is_single_valued": true,
+            "det_A": 31108
+          }
+        ],
+        "equivariant_up_to_character": true
+      },
+      "covariance_rotations": {
+        "elements": [
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 7061,
+            "scalar": [
+              7061
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 18863,
+            "scalar": [
+              18863
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 2,
+            "predicted_scalar": 9514,
+            "scalar": [
+              9514
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          }
+        ],
+        "equivariant_on_every_component": true,
+        "generates": "the full special orthogonal group (Cartan-Dieudonne)"
+      },
+      "covariance_rotations_4": {
+        "elements": [
+          {
+            "n_reflections": 4,
+            "predicted_scalar": 20067,
+            "scalar": [
+              20067
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          },
+          {
+            "n_reflections": 4,
+            "predicted_scalar": 8167,
+            "scalar": [
+              8167
+            ],
+            "scalar_matches_clifford_normalisation": true,
+            "scalar_single_valued": true
+          }
+        ],
+        "equivariant_on_every_component": true,
+        "generates": "the full special orthogonal group (Cartan-Dieudonne)"
+      },
+      "frame_transition": {
+        "L_invertible": true,
+        "congruence_exact": true,
+        "prime": 32749
+      }
+    }
+  },
+  "real_form_obstruction": "Over R the null frame carries signature (5,5) and the trace frame carries signature (1,9). Sylvester's law makes these inequivalent, so the transition matrix is necessarily complex (it multiplies four directions by i). Over C, and over F_p where signature is not defined and only the discriminant survives, the two are congruent and the transition is exact.",
+  "schema": 2,
+  "self_sha256": "891e01261a60c192702bff1507980430c2665697f38a191c7e8c5c00964436fe"
+}

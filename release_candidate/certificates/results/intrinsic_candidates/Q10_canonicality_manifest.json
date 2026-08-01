@@ -1,0 +1,105 @@
+{
+ "all_independent_triples": [
+  {
+   "n_non_robust": 1,
+   "non_robust_members": [
+    "P10_11"
+   ],
+   "score": 222.2,
+   "selected": true,
+   "triple": [
+    "P10_10",
+    "P10_11",
+    "P10_12"
+   ]
+  },
+  {
+   "n_non_robust": 1,
+   "non_robust_members": [
+    "P10_09"
+   ],
+   "score": 233.1,
+   "selected": false,
+   "triple": [
+    "P10_09",
+    "P10_10",
+    "P10_12"
+   ]
+  },
+  {
+   "n_non_robust": 2,
+   "non_robust_members": [
+    "P10_09",
+    "P10_11"
+   ],
+   "score": 283.7,
+   "selected": false,
+   "triple": [
+    "P10_09",
+    "P10_10",
+    "P10_11"
+   ]
+  }
+ ],
+ "ambiguity_facts": {
+  "P10_09": "source-reading dependent (AMB-01); quotient image differs between readings; excluded from the basis, retained as a valid implemented interpretation",
+  "P10_10": "forced -- appears in every independent triple; sole carrier of the third quotient coordinate",
+  "P10_11": "source-reading dependent (AMB-02); quotient image differs between readings; in the basis because at least one non-robust member is unavoidable",
+  "P10_12": "tested alternative AMB-02 reading gives identical evaluations and identical quotient vectors",
+  "no_fully_robust_published_triple": true
+ },
+ "ambiguity_penalty_outranks_cost": true,
+ "ambiguity_robust": {
+  "P10_04": true,
+  "P10_09": false,
+  "P10_10": true,
+  "P10_11": false,
+  "P10_12": true
+ },
+ "ambiguity_robust_basis_exists": false,
+ "ambiguity_robust_impossibility_argument": "P10_10 is forced (sole carrier of the third quotient coordinate), so every independent triple contains it. The remaining two slots draw from {P10_09, P10_11, P10_12}, of which only P10_12 is ambiguity-robust. Two robust members cannot be found, so no ambiguity-robust triple exists among the twelve published candidates. The selected basis attains the minimum of one non-robust member.",
+ "basis_wording": "Preferred ambiguity-minimal Level-B basis among the twelve published degree-10 candidates under the documented deterministic simplicity rule.",
+ "change_of_basis_mutually_inverse": true,
+ "claim": "Preferred Level-B basis among the twelve published degree-10 candidates under the documented deterministic simplicity score.",
+ "forbidden_wording": [
+  "ambiguity-robust",
+  "universally canonical",
+  "the unique compact basis"
+ ],
+ "forced_members": [
+  "P10_10"
+ ],
+ "min_non_robust_members": 1,
+ "not_claimed": [
+  "universally canonical",
+  "simplest structure reaching Q10",
+  "ambiguity-robust"
+ ],
+ "preferred_basis": [
+  "P10_10",
+  "P10_11",
+  "P10_12"
+ ],
+ "primes": [
+  "32717",
+  "32749"
+ ],
+ "rational_reconstruction_certified": false,
+ "removal_minimality_verified": true,
+ "schema": 1,
+ "score_terms_declared_but_not_separating": {
+  "coefficient_height": "not implemented; all coefficients are generic residues of comparable height at both primes",
+  "manifest_symmetry": "not implemented; no candidate carries a manifest symmetry the others lack",
+  "peak_RAM": "not separating; allocation dominated by the shared composite_n1050 tensor"
+ },
+ "score_terms_implemented": [
+  "source_ambiguity_penalty",
+  "n_M",
+  "n_N1050",
+  "n_N4125",
+  "black_ops",
+  "red_ops",
+  "expanded_permutation_terms",
+  "runtime_seconds"
+ ]
+}
