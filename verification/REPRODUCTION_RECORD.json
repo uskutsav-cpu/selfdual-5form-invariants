@@ -1,9 +1,9 @@
 {
  "schema": 1,
  "generated_by": "scripts/reproduce_all.py",
- "commit": "a68db7dba4eff9b7b275a1ca215bb17b6d866b3b",
+ "commit": "e519cab9f9418bc1f6b5f5b35f2d4927a4a36737",
  "working_tree_clean": false,
- "when": "2026-08-01T19:43:19Z",
+ "when": "2026-08-01T19:51:52Z",
  "environment": {
   "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
   "python": "3.13.5",
@@ -16,16 +16,25 @@
  },
  "steps": [
   {
-   "step": "test suites",
-   "passed": null,
-   "note": "skipped by --skip-tests"
+   "step": "tensor test suite",
+   "passed": false,
+   "tests": 1,
+   "seconds": 406.9,
+   "note": "nonzero exit; suite did not complete"
+  },
+  {
+   "step": "bridge test suite",
+   "passed": true,
+   "tests": 1,
+   "seconds": 254.6,
+   "note": null
   },
   {
    "step": "regenerate numbers",
    "passed": true,
-   "seconds": 2.9,
+   "seconds": 2.8,
    "detail": {
-    "macros": 90,
+    "macros": 98,
     "artifacts_missing": 0
    }
   },
@@ -38,31 +47,31 @@
   {
    "step": "regenerate figures",
    "passed": true,
-   "seconds": 13.2,
+   "seconds": 11.1,
    "detail": null
   },
   {
    "step": "isolated manuscript build",
    "passed": true,
-   "seconds": 23.1,
+   "seconds": 9.6,
    "detail": {
     "errors": 0,
     "undefined_citations": 0,
     "undefined_references": 0,
     "overfull_boxes": 0,
     "pdf_produced": true,
-    "pages": 21
+    "pages": 23
    }
   },
   {
    "step": "manuscript gates",
    "passed": true,
-   "seconds": 0.7,
+   "seconds": 0.3,
    "detail": {
-    "checks": 61
+    "checks": 63
    },
    "note": null
   }
  ],
- "all_steps_passed": true
+ "all_steps_passed": false
 }
