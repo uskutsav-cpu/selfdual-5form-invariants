@@ -62,6 +62,30 @@ Concretely, and this is the answer to "what new calculation becomes possible":
    and their non-product content is eleven, not twelve. Anyone counting
    "primitive" degree-ten structures from the published list would be off by one.
 
+## The arithmetic caveat that attaches to items 2 and 3
+
+Items 1 and 4 rest on `dim A10`, `dim B10`, `dim G10` and `dim P10`, none of
+which is exposed to an exceptional prime: each space is spanned by exactly as
+many explicit invariants as its modular rank, which pins the dimension over `Q`
+with no prime excluded.
+
+Items 2 and 3 rest on `D10`, which is not in that position. It is assembled by
+admitting a direction only when it raises the rank modulo `p`, so `dim D10 = 11`
+is a lower bound over `Q` and `dim Q10 = 3` is an upper bound. Read carefully,
+that means:
+
+- **Item 2 is safe in the direction that matters.** A term whose class in `Q10`
+  is non-zero is genuinely unreachable, because a bad prime could only make the
+  flow reach *more*, and a class that survives a larger `D10` survives. A term
+  whose class vanishes is reachable modulo `p`; that is the weaker reading.
+- **Item 3's count is "three, or fewer".** A theorist extending the flow needs at
+  most three new degree-ten parameters, and exactly three if 32717 and 32749 are
+  both good primes.
+
+This is stated so that nobody builds on "exactly three" where "at most three" is
+what has been established. Discharging it needs exact evaluation over `Z`; see
+PO-09.
+
 ## What is deliberately NOT claimed
 
 - No Type IIB coefficient.
