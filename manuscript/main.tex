@@ -184,10 +184,22 @@ without exception.
   stress-flow reachable subspace --- unrelated to any product decomposition.
 \end{description}
 
-These genuinely differ. At degree eight the cumulative atlas dimension is
-$1+2+7=10$ while the cumulative Jacobian rank is $8$: two functional relations
-already exist among polynomially independent invariants. Table~\ref{tab:dims}
-collects the values.
+These genuinely differ, and the cleanest demonstration is at the top of the
+range rather than in the middle. The candidate family whose Jacobian we compute
+in section~\ref{sec:cert81} has $\exactJacRows$ members and Jacobian rank
+$\exactJacRank$, so exactly two functional relations hold among functions that
+are pairwise distinct as polynomials. Both are degree-twelve phenomena: the
+cumulative Jacobian ranks are $\cumRankDegFour, \cumRankDegSix,
+\cumRankDegEight, \cumRankDegTen, \cumRankDegTwelve$ against per-degree candidate
+counts that each contribute in full up to degree ten.
+
+A caution that cost us a wrong sentence in an earlier draft: one may not subtract
+a Jacobian rank taken over the spinor candidate family from a cumulative atlas
+dimension taken on the tensor side. The two are indexed by different sets --- at
+degree eight the tensor atlas has $\traceRankDegEight$ dimensions while the
+spinor family contributes $\spinorRankDegEight$ candidates --- and their
+difference is not a count of anything. Table~\ref{tab:dims} collects the values
+with each one's space named.
 
 \input{tables/dimensions}
 
