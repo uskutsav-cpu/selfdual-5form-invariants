@@ -1,0 +1,25 @@
+{
+ "generated_utc": "2026-08-01T21:28:55+00:00",
+ "space": "Q10 = A10 / D10",
+ "A10": {
+  "modular_dimension": 14,
+  "structural_upper_bound": 14,
+  "upper_bound_route": "A10 is spanned by the fourteen basis elements that coordinatise it, so it cannot exceed 14",
+  "lower_bound_route": "modular rank 14 is a lower bound on the rank over Q",
+  "exact_characteristic_zero_dimension": 14,
+  "status": "PROVED"
+ },
+ "D10": {
+  "exact_characteristic_zero_dimension": 11,
+  "status": "PROVED"
+ },
+ "exact_characteristic_zero_dimension": 3,
+ "quotient_representatives": [
+  "I10_6",
+  "I10_7",
+  "I10_12"
+ ],
+ "status": "PROVED",
+ "permitted_wording": "dim_Q A10 = 14, dim_Q D10 = 11, dim_Q Q10 = 3",
+ "scope_caveat": "D_d is a SEED closure. The generator-extension problem dV/dlambda = f(T,S,lambda) is different and is not answered here."
+}

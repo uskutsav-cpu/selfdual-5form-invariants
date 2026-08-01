@@ -1,0 +1,110 @@
+{
+ "generated_utc": "2026-08-01T21:28:55+00:00",
+ "space": "D10",
+ "definition": "The fixed-point closure of the generalized stress flow from the seed {4: [I4_1], 6: [I6_2], 8: [I8_3, I8_4, I8_5, I8_6]}, in the verified degree-10 basis. A target activates once every factor of its coefficient monomial is reachable.",
+ "not_to_be_confused_with": {
+  "span_of_all_degree10_targets": {
+   "rational_rank": 14,
+   "why_different": "includes Tr(tau) and every coefficient monomial, with no activation condition; quotient would be 0"
+  },
+  "new_forcing_space": {
+   "dimension": 5,
+   "quotient": 9,
+   "why_different": "excludes Tr(tau) as a generator entirely"
+  },
+  "static_stress_span": {
+   "dimension": 2,
+   "why_different": "the static span is not the dynamically reachable set"
+  }
+ },
+ "seed": {
+  "4": [
+   "I4_1"
+  ],
+  "6": [
+   "I6_2"
+  ],
+  "8": [
+   "I8_3",
+   "I8_4",
+   "I8_5",
+   "I8_6"
+  ]
+ },
+ "basis": [
+  "I10_1",
+  "I10_2",
+  "I10_3",
+  "I10_4",
+  "I10_5",
+  "I10_6",
+  "I10_7",
+  "I10_8",
+  "I10_9",
+  "I10_10",
+  "I10_11",
+  "I10_12",
+  "I4_1*I6_1",
+  "I4_1*I6_2"
+ ],
+ "ambient_dimension": 14,
+ "arithmetic": "exact rational closure and elimination over Q (fractions.Fraction)",
+ "floating_point_used": false,
+ "modulus_used": false,
+ "fixed_point_sweeps": 3,
+ "rational_rank": 11,
+ "pivot_columns": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  7,
+  8,
+  9,
+  10,
+  12,
+  13
+ ],
+ "free_columns": [
+  5,
+  6,
+  11
+ ],
+ "free_basis_elements": [
+  "I10_6",
+  "I10_7",
+  "I10_12"
+ ],
+ "rational_dimensions_all_degrees": {
+  "4": 1,
+  "6": 2,
+  "8": 7,
+  "10": 11,
+  "12": 21
+ },
+ "modular_rank_previously_reported": 11,
+ "modular_free_columns": [
+  5,
+  6,
+  11
+ ],
+ "rational_and_modular_agree": true,
+ "free_columns_agree": true,
+ "lower_bound": {
+  "value": 11,
+  "route": "rank over F_p is a lower bound on rank over Q",
+  "unconditional": true
+ },
+ "upper_bound": {
+  "value": 11,
+  "route": "the closure is computed over Q and its rank read off by exact rational elimination, so the value is the rank, not a bound",
+  "unconditional": true
+ },
+ "exact_characteristic_zero_dimension": 11,
+ "status": "PROVED",
+ "source_artifact": "results/stress_flow/interacting_flow_equations.json",
+ "source_sha256": "53402d37036a216d0ea77224e15b2243082071ec26d15f3aad1931171d809b16",
+ "holdouts_passed_in_source": true,
+ "scope_caveat": "D_d is a SEED closure. The generator-extension problem dV/dlambda = f(T,S,lambda) is different and is not answered here."
+}
