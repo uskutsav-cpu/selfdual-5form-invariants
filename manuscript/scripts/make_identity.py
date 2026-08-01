@@ -40,7 +40,7 @@ def main() -> int:
 
     lhs = signed(list(pub.items()), pubfmt)
     rhs = signed(list(atl.items()), atlfmt)
-    OUT.write_text(f"{lhs} \;=\; {rhs}\n")
+    OUT.write_text(f"{lhs} \\;=\\; {rhs}\n")
     print(f"wrote {OUT.relative_to(ROOT)}: {lhs} = {rhs}")
     return 0
 

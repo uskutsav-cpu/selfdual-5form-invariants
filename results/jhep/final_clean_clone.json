@@ -1,0 +1,98 @@
+{
+ "schema": 1,
+ "generated_by": "Phase 10 of the final claim-closure goal",
+ "when": "2026-08-01T23:03:41Z",
+ "clone_location": "/tmp (outside iCloud)",
+ "dependencies": "requirements-lock.txt plus opt_einsum, networkx, joblib, python-igraph, pynauty, matplotlib",
+ "checks": [
+  {
+   "check": "tensor test suite",
+   "commit": "ba311a0",
+   "result": 224,
+   "unit": "tests passed",
+   "failures": 0,
+   "note": "run at ba311a0. The four commits since it -- 99b5aa5, fda76a8, b77ef4d, 7e4ea08 -- touch no file under tests/, src/, spinor_trace_bridge/src/, results/ or verification/, so no test can observe them. Verified by inspecting each commit's file list rather than assumed."
+  },
+  {
+   "check": "bridge test suite",
+   "commit": "7e4ea08",
+   "result": 72,
+   "unit": "tests passed",
+   "failures": 0
+  },
+  {
+   "check": "manuscript gates",
+   "commit": "7e4ea08",
+   "result": 72,
+   "unit": "checks",
+   "failures": 0
+  },
+  {
+   "check": "regenerate macros",
+   "commit": "7e4ea08",
+   "result": "122 lines, 0 artifacts missing"
+  },
+  {
+   "check": "regenerate tables",
+   "commit": "7e4ea08",
+   "result": "5 tables"
+  },
+  {
+   "check": "regenerate identity",
+   "commit": "7e4ea08",
+   "result": "from the generator artifact"
+  },
+  {
+   "check": "regenerate figures",
+   "commit": "7e4ea08",
+   "result": "7 figures"
+  },
+  {
+   "check": "release policy",
+   "commit": "7e4ea08",
+   "result": "facts match the repository"
+  },
+  {
+   "check": "isolated manuscript build",
+   "commit": "7e4ea08",
+   "result": {
+    "errors": 0,
+    "undefined_citations": 0,
+    "undefined_references": 0,
+    "overfull_boxes": 0,
+    "pages": 24
+   }
+  },
+  {
+   "check": "release candidate scan",
+   "commit": "7e4ea08",
+   "result": "173 files, secret and path scan clean"
+  },
+  {
+   "check": "archive hashes vs working tree",
+   "commit": "7e4ea08",
+   "result": "IDENTICAL for both arxiv_source.tar.gz and jhep_source.zip"
+  }
+ ],
+ "not_regenerated_without_the_archive": [
+  "results/rank81/certificate.json",
+  "results/rank81/minor81_certificate.json",
+  "verification/SPINOR_JACOBIAN_RUNS.json"
+ ],
+ "archive_sha256": {
+  "arxiv_source.tar.gz": "7046f55c78ba8916f028a3e7187053c5c357c5101886ada4ccec0d30bf7f5de0",
+  "jhep_source.zip": "c813cbb14145a75af68b26ce825c51281a9910f298bd9e9171a02130688b22f4",
+  "compiled_manuscript.pdf": "ee1b2f5eecb78600320b6b4c570826b4ca7c19acb12526e0bed5b5bba0b689bd"
+ },
+ "requirements_met": {
+  "zero_failed_tests": true,
+  "zero_latex_errors": true,
+  "zero_undefined_citations": true,
+  "zero_undefined_references": true,
+  "zero_overfull_boxes": true,
+  "zero_absolute_private_paths": true,
+  "zero_mentor_archive_files": true,
+  "zero_secret_scan_hits": true,
+  "zero_unlisted_large_tracked_files": true
+ }
+}
