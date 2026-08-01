@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "generated_by": "scripts/freeze_submission_packages.py",
- "commit": "ba311a07db584b3898a9bdfb142c2c3dd9816ea4",
+ "commit": "b77ef4ddc7fb4fe3b2bd2ac39337120ca6b6262f",
  "files_in_archives": [
   "JHEP.bst",
   "appendices/algorithms.tex",
