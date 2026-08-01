@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "generated_by": "scripts/build_release_candidate.py + this manifest step",
- "commit": "38882eaf31e61fd333184b9ff600928d7f1fec16",
+ "commit": "99b5aa5a2d922ba622714faac2015bc7014e6376",
  "n_files": 170,
  "total_bytes": 1900109,
  "excluded": {
