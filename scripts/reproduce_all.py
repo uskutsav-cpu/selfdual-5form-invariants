@@ -86,13 +86,21 @@ def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600, tag: str = "step"
 
 
 def count_tests(output: str) -> int | None:
-    """Passed count from pytest, whether or not it printed a summary line."""
+    """Passed count from pytest, whether or not it printed a summary line.
+
+    This configuration prints the progress dots and no summary line, so the
+    fallback is not an edge case -- it is the normal path, and it has to be
+    right. An earlier version matched only the first run of dots on each line
+    and reported 1 for a 72-test suite.
+    """
     m = re.search(r"(\d+) passed", output)
     if m:
         return int(m.group(1))
-    # `-q` under some plugin sets prints only the progress dots.
-    dots = sum(len(re.findall(r"^[.]+", line))
-               for line in output.splitlines() if line.startswith("."))
+    # One dot per passing test. Strip the progress markers first so their
+    # punctuation is not counted, then count what remains.
+    body = re.sub(r"\[\s*\d+%\]", "", output)
+    body = re.sub(r"^\S+\.py\b.*$", "", body, flags=re.MULTILINE)
+    dots = body.count(".")
     return dots or None
 
 
