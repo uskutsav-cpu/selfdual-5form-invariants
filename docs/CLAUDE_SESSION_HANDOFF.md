@@ -42,12 +42,22 @@ from a JSON certificate, and a fresh clone reproduces all of it.
 | PO-08 | now split: the cardinality bound is **discharged analytically**; removal-minimality under general `GL` is still open |
 | novelty rows | all PROVISIONAL — the literature sweep is *done* (`audit/RELATED_WORK_COMPLETE.md`); what is missing is coauthor confirmation, which is a human gate |
 
-## Machine constraint worth knowing before you start a long run
+## Long runs: check for orphans before blaming the machine
 
-This machine has 8 GB. The degree-12 exact contractions run close to that, and
-two heavy jobs at once get one of them killed — a `--no-hilbert-stop` scan and
-two separate rank-81 runs died that way, in each case silently, with the process
-simply gone and no traceback. Run one at a time.
+Several long runs here died silently, with the process simply gone and no
+traceback, and the first diagnosis — 8 GB of RAM, too many heavy jobs — was
+**wrong**. `ps` eventually showed the real cause: two separate rank-81 processes
+running the same command against the same row cache, plus three abandoned
+`pytest` processes from runs that had been reported as dead but were not. They
+were competing for CPU, and each new run made it worse.
+
+A background job that stops producing output has not necessarily stopped. Check
+`ps aux | grep -E "pytest|spinor_trace_bridge"` before concluding anything about
+resources, and kill what you find. After the cleanup the same commands ran fine
+side by side.
+
+The machine does have 8 GB and the degree-12 contractions are not small, so it is
+still worth not stacking heavy jobs. But that was not what killed these.
 
 Everything long resumes rather than restarts: the rank-81 runner keys its row
 cache by prime, seed, candidate id and formula hash, and the incidence generator
@@ -56,7 +66,7 @@ response to a killed run.
 
 ## Where the human gates are
 
-- `submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md` — ten items
+- `submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md` — 22 unticked items
 - `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md` — G-1 to G-9
 - `audit/NOVELTY_MATRIX.md` — every row PROVISIONAL
 

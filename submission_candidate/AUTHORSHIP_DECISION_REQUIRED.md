@@ -66,7 +66,7 @@ No DOI has been created. Doing so is a public act and requires authorisation.
 
 ## 9. Mentor scientific approval — NOT OBTAINED
 
-See `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md`, items G-1 to G-7, and
+See `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md`, items G-1 to G-9, and
 `audit/NOVELTY_MATRIX.md`, every row of which is marked PROVISIONAL.
 
 - [ ] formulas and dimension definitions confirmed

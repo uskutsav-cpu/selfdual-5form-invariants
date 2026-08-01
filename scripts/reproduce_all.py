@@ -37,10 +37,11 @@ OUT_JSON = ROOT / "verification" / "REPRODUCTION_RECORD.json"
 OUT_MD = ROOT / "verification" / "REPRODUCTION_RECORD.md"
 
 
-#: Step output goes to files, not pipes.  On a memory-constrained machine the
-#: parent holding a child's buffered output is exactly the wrong place for it,
-#: and a file survives the child being killed -- which is how the interesting
-#: failures here present.
+#: Step output goes to files, not pipes, so it survives the child being killed.
+#: That mattered here: several runs of this script were reported as dead while
+#: their pytest children were still alive and competing with the next attempt.
+#: A log on disk shows what actually happened; a pipe held by a dead parent does
+#: not.
 LOGDIR = ROOT / "verification" / "reproduction-logs"
 
 
