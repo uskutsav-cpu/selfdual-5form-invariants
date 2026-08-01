@@ -51,10 +51,19 @@ running the same command against the same row cache, plus three abandoned
 `pytest` processes from runs that had been reported as dead but were not. They
 were competing for CPU, and each new run made it worse.
 
-A background job that stops producing output has not necessarily stopped. Check
-`ps aux | grep -E "pytest|spinor_trace_bridge"` before concluding anything about
-resources, and kill what you find. After the cleanup the same commands ran fine
-side by side.
+A background job that stops producing output has not necessarily stopped, and a
+job **reported as completed** has not necessarily taken its children with it —
+two `pytest` processes were found alive twenty minutes after the runs that
+spawned them were reported finished with exit code 0. Check
+
+    ps aux | grep -E "pytest|spinor_trace_bridge"
+
+before concluding anything about resources, and kill what you find. This had to
+be done twice in one session; after each cleanup the same commands ran fine.
+
+`pytest` writing to a redirected file also buffers, so a log that has not grown
+for several minutes is not evidence of a hang. Check the process's CPU
+percentage instead.
 
 The machine does have 8 GB and the degree-12 contractions are not small, so it is
 still worth not stacking heavy jobs. But that was not what killed these.
