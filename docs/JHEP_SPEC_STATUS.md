@@ -1,7 +1,7 @@
 # Status against the JHEP execution specification
 
 Specification: `JHEP_Full_Completion_Execution_Prompt.pdf`.
-Last updated 2026-08-01.
+Last updated 2026-08-01, revised after the exact-Jacobian work landed.
 
 ## Workstream status
 
@@ -14,7 +14,7 @@ Last updated 2026-08-01.
 | **E** | rank-81 numerical certification | **COMPLETE by a different and stronger route**; the seed x scale x step float64 matrix was NOT run |
 | **F** | degree-10 spinor no-Hilbert-stop | **PARTIAL** — an independent exact modular enumeration reaches rank 14 at degree 10 by saturation; the archive's own `--no-hilbert-stop` run did not complete locally |
 | **G** | signature / complexification argument | **COMPLETE**, and it overturned the recorded blocker |
-| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 49 tests |
+| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 72 tests |
 | **I** | spinor–trace common-sample comparison | **COMPLETE** |
 | **J** | physics interpretation | **DRAFTED**; requires coauthor confirmation |
 | **K** | manuscript, figures, tables, bibliography, package, mock review | **COMPLETE** |
@@ -72,10 +72,20 @@ instead, and the second is strictly stronger than what was asked for:
    gamma-traceless basis is integral, the modular rank is a *rigorous* lower
    bound on the characteristic-zero rank rather than a probabilistic one.
 
-Exact modular rank of the port-graph subset of the archive's own selection: 59,
-identical at three independent points. This is reported as the rank of that
-subset — 59 of 70 port graphs evaluated within budget, 13 structured candidates
-not re-implemented — and never as a reproduction of 81.
+An intermediate revision of this file recorded exact modular rank **59** for the
+port-graph subset only, with 13 structured tensor-word candidates not
+re-implemented. That is superseded. All 83 candidates are now implemented in the
+same exact arithmetic and the certificate covers the complete selection:
+
+    scheduled 83, evaluated 83, evaluation errors 0, zero rows 0
+    Jacobian 83 x 126, exact modular rank 81
+    cumulative rank by degree  4:1  6:3  8:9  10:21  12:81
+    explicit 81 x 81 minor, determinant nonzero, two independent routines agree
+    => rank over Q >= 81, unconditionally
+
+The matching upper bound `126 - 45 = 81` remains analytic and from the
+literature. The computation supplies the lower half only, at finitely many
+points, and is never described as proving the generic rank.
 
 ## F — what is and is not established
 
@@ -91,8 +101,12 @@ Cluster job files are prepared in `cluster/` but **no cluster run has occurred**
 
 | item | why not done |
 |---|---|
-| additional primes beyond two | bounded value; two primes already support every claim as stated, and the manuscript never claims characteristic zero from them |
-| certified rational reconstruction | would require additional primes first; no claim depends on it, and the wording gate blocks "exact over `Q`" |
-| degree-10 no-stop terminal status | run did not complete locally; cluster script prepared |
-| structured tensor-word candidates in exact arithmetic | would raise the exact Jacobian rank above 59; scoped out and disclosed |
-| systematic literature sweep | required before any novelty row can leave PROVISIONAL |
+| certified rational reconstruction | no claim depends on it; every modular result is used as a lower bound only, and the wording gate blocks "exact over `Q`" |
+| degree-10 no-stop terminal status | run did not complete locally; cluster script prepared, no cluster run has occurred |
+| PO-03, PO-05, PO-07, PO-09 | open mathematical debts recorded in `docs/PROOF_OBLIGATIONS.md`; no claim is strengthened while its obligation is open |
+
+Done since the previous revision: the structured tensor-word candidates were
+implemented in exact arithmetic, closing the 83-candidate gap; a systematic
+primary-literature sweep was completed and is recorded in
+`audit/RELATED_WORK_COMPLETE.md`. Novelty rows remain `PROVISIONAL` because
+confirmation is a coauthor decision, not because the search is outstanding.

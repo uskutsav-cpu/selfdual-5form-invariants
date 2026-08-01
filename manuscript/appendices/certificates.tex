@@ -6,10 +6,17 @@ All certificates are JSON with recorded hashes.
       dimensions of $A_{10},B_{10},G_{10},P_{10},D_{10}$ and the complete
       pairwise intersection/sum/containment data at each prime.
 \item \texttt{results/intrinsic\_candidates/}\allowbreak
-      \texttt{degree10\_published\_product\_intersection.json}
+      \texttt{degree10\_published\_}\allowbreak\texttt{product\_intersection.json}
       --- the published-span/product-subspace intersection, with the superseded
       earlier conclusion preserved alongside the correction so that the change is
       auditable.
+\item \texttt{results/rank81/certificate.json} --- the exact analytic Jacobian:
+      a terminal status for every scheduled candidate, per-degree block and
+      cumulative ranks, pivot rows and columns, the Euler homogeneity check, and
+      per-candidate runtime and peak RSS.
+\item \texttt{results/rank81/minor81\_certificate.json} --- the explicit
+      $\minorSize\times\minorSize$ minor, its row and column indices, and its
+      determinant computed by two independent routines.
 \item \texttt{spinor\_trace\_bridge/results/}\allowbreak
       \texttt{bridge\_validation.json} --- Clifford
       relation, frame congruence, kernel and image span equalities, round trip,

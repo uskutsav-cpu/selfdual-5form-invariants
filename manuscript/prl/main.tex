@@ -154,6 +154,19 @@ rank in characteristic zero whenever the matrix is the reduction of an integer
 matrix, which holds here because the coordinate basis is integral. Upper bounds
 are never taken from a modular computation; where one is needed it is analytic.
 
+The same principle settles the functional count. Replacing the finite-difference
+Jacobian by an exact analytic one --- taken by amputation, with no step size and
+no rank tolerance, and validated by Euler homogeneity --- gives rank
+$\exactJacRank$ over the complete selection of $\exactJacScheduled$ candidates,
+with $\exactJacErrors$ evaluation errors and $\exactJacZeroRows$ zero rows. An
+explicit $\minorSize\times\minorSize$ minor of the integral Jacobian has
+non-vanishing determinant, so $\mathrm{rank}_{\mathbb{Q}} \ge
+\charZeroLowerBound$ unconditionally. This meets the analytic count
+$\genericFunctionalDim$ from below; the upper half remains analytic, and the
+computation is not claimed to establish the generic rank by itself. That
+$\exactJacRows$ candidates have rank $\exactJacRank$ also says, plainly, that the
+candidates carry functional dependencies.
+
 The spinor description is connected to the tensor description by the map
 $S_{ab} = \tfrac{1}{5!}F_{\mu_1\ldots\mu_5}(\Gamma^{\mu_1\ldots\mu_5})_{ab}$,
 built with every convention pinned and verified: its kernel is exactly the

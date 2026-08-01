@@ -68,20 +68,22 @@ The last is worth stating explicitly: 83 candidates with rank 81 means there are
 **functional dependencies** among the selected functions. The candidates are not
 independent and the certificate does not claim they are.
 
-## Scope: 82 of 83
+## Scope: 83 of 83
 
-One candidate, `c046_portgraph_d12`, exceeded the wall-clock budget available on
-this machine and carries terminal status `evaluation_error` rather than being
-dropped silently.
+The schedule is complete. Every one of the 83 candidates carries terminal status
+`evaluated` with a value, a derivative row, an output hash, a runtime and a
+peak-RSS figure; `evaluation_errors` is zero and no Jacobian row is zero.
 
-Its absence cannot change the result, and the reason is not a judgement call:
-the observed rank already equals the analytic upper bound. Adding any further row
-to a matrix whose rank is already maximal cannot raise it. The certificate is
-therefore complete as an assertion about rank, and incomplete as an assertion
-about the candidate schedule; both are recorded.
+An earlier revision of this document recorded `c046_portgraph_d12` as
+`evaluation_error` after it exceeded the wall-clock budget. It was subsequently
+evaluated under the dense-`I` contraction plan and the raised budget recorded in
+`flop_limit`. The rank is unchanged, and could not have changed: the observed
+rank already equalled the analytic upper bound, and adding a row to a matrix of
+maximal rank cannot raise it. What changed is the *schedule* claim, which is now
+complete rather than 82 of 83.
 
-Every other candidate has terminal status `evaluated` with a value, a derivative
-row, an output hash, a runtime and a peak-RSS figure.
+The family breakdown at the certified point is 70 port graphs, 9 tensor words
+and 4 structured degree-8 candidates, all `evaluated`.
 
 ## Contraction plans
 

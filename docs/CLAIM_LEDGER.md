@@ -69,6 +69,18 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
   Saturating a rank is not exhibiting a generating set.
 - **Caveats**: 126 − 45 = 81 is a dimension count for a generic orbit, not a
   proof that these 81 generate the invariant ring.
+- **Independent verification**: **DONE**, by a second implementation in spinor
+  variables that shares no code with the trace side. See
+  `results/rank81/certificate.json`: the exact analytic Jacobian of the complete
+  83-candidate selection has modular rank 81 with zero evaluation errors and
+  zero zero-rows, and `results/rank81/minor81_certificate.json` exhibits an
+  explicit 81×81 minor with non-vanishing determinant under two independent
+  determinant routines.
+- **Strengthening this permits**: the bound `rank_Q ≥ 81` becomes
+  *unconditional* rather than probabilistic, because the coordinate basis is
+  integral and the Jacobian is therefore the reduction of an integer matrix. The
+  genericity assumption above is still needed for the *upper* direction, which
+  remains analytic. Nothing here licenses "proved 81 computationally".
 
 ## C-ATLAS-04 — I12_61 and I12_62: polynomially independent, functionally redundant
 

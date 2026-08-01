@@ -48,8 +48,11 @@ every convention explicitly and verifying the map is an isomorphism onto the
 gamma-traceless symmetric chiral square. The two descriptions are then evaluated
 at a common registry of five-forms and their invariant spans compared directly.
 We also replace the floating-point Jacobian rank computation used previously by
-an exact modular one, which turns the numerical evidence for the generic
-functional dimension into a rigorous lower bound.%
+an exact modular one over the complete candidate selection. Because the
+coordinate basis is integral, the resulting rank is an unconditional lower bound
+in characteristic zero rather than a tolerance-dependent estimate, and it is
+witnessed by an explicit non-vanishing minor; it meets the analytic count of
+eighty-one from below.%
 }
 
 \keywords{Extended Supersymmetry, p-branes, Differential and Algebraic Geometry}
@@ -561,11 +564,59 @@ reduction of a genuine integer matrix, and
 holds unconditionally. An exact modular rank is therefore a \emph{rigorous} lower
 bound in characteristic zero, not a probabilistic one.
 
-Applying this to the archive's own candidate selection gives exact modular rank
-$\archiveJacobianRank$ for the port-graph subset of that selection
-($\nArchivePortGraphs$ of $\nArchiveCandidates$ candidates;
-the remaining $\nArchiveStructured$ structured tensor-word candidates were not
-re-implemented and are excluded from the count rather than assumed inert).
+An intermediate version of this computation covered only the port-graph subset of
+the archive's candidate selection ($\nArchivePortGraphs$ of
+$\nArchiveCandidates$) and reached exact modular rank $\archiveJacobianRank$. The
+remaining $\nArchiveStructured$ structured tensor-word candidates have since been
+implemented in the same exact arithmetic, and the certificate below covers the
+complete selection.
+
+\subsection{The certificate}
+\label{sec:cert81}
+
+Every one of the $\exactJacScheduled$ scheduled candidates carries a terminal
+status: $\exactJacEvaluated$ are \texttt{evaluated}, with
+$\exactJacErrors$ evaluation errors and $\exactJacZeroRows$ zero rows. Euler's
+identity passes for every evaluated candidate (\exactJacEulerPass). The resulting
+Jacobian is $\exactJacRows \times \exactJacCols$ and has exact modular rank
+\begin{equation}
+  \mathrm{rank}_{\mathbb{F}_p} J \;=\; \exactJacRank ,
+  \label{eq:exactrank}
+\end{equation}
+at $\exactJacPoints$ certified sample point(s) over the prime(s)
+$\exactJacPrimes$, with the per-degree cumulative ranks
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+degree & 4 & 6 & 8 & 10 & 12 \\
+\midrule
+cumulative rank & \cumRankDegFour & \cumRankDegSix & \cumRankDegEight
+                & \cumRankDegTen & \cumRankDegTwelve \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The rank statement is additionally witnessed by an explicit
+$\minorSize \times \minorSize$ minor whose determinant is nonzero
+(\minorDetNonzero) modulo the prime(s) $\minorPrimes$. Because the matrix is an
+integer reduction, a single prime with nonvanishing determinant already proves
+the integer minor is nonzero; the determinant is computed by two independent
+routines, which agree, and additional primes guard against an indexing error in
+selecting the minor rather than against a probabilistic failure. Hence
+\begin{equation}
+  \mathrm{rank}_{\mathbb{Q}} J \;\ge\; \charZeroLowerBound
+\end{equation}
+unconditionally --- no height bound, Hadamard estimate or rational reconstruction
+is involved.
+
+Two consequences deserve stating plainly. First, $\exactJacRows$ candidates of
+rank $\exactJacRank$ means the selected candidates carry functional
+\emph{dependencies}; they are not an independent set, and nothing here says they
+are. Second, this lower bound meets the analytic upper bound
+$\dimSelfDualModule - \dimLorentzAlgebra = \genericFunctionalDim$
+of~\eqref{eq:eightyone} exactly. The two halves together pin the generic
+functional dimension, but only the lower half is established here, and only at
+finitely many points.
 
 \paragraph{Permitted claim.} The generic functional dimension
 $\genericFunctionalDim$ follows analytically from the trivial generic stabiliser.

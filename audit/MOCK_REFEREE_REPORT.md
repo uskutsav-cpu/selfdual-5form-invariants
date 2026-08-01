@@ -121,16 +121,33 @@ with no rows at the noise floor, rank stable across six orders of magnitude of
 tolerance and a `2×10⁷` gap; one with 48 of 83 rows at the noise floor, no gap,
 honest rank 35, and a fabricated 83 if the normalisation rule is broken.
 
-### m3. The exact Jacobian reaches 59, not 81.
+### m3. The exact Jacobian reaches 59, not 81. — **RESOLVED by computation**
 
-Stated plainly, not buried. It is the rank of the port-graph subset only: 59 of
-70 port graphs evaluated within budget, and 13 structured candidates not
-re-implemented. Reported as a rigorous lower bound on that subset, never as a
-reproduction of 81.
+This objection was raised against an intermediate state in which only the
+port-graph subset had been re-implemented exactly. The remaining structured
+tensor-word candidates have since been implemented in the same exact arithmetic.
+The certificate now covers the complete selection: 83 scheduled, 83 evaluated,
+zero evaluation errors, zero zero-rows, exact modular rank 81, witnessed by an
+explicit 81×81 minor with non-vanishing determinant under two independent
+routines. See `docs/RANK81_EXACT_CERTIFICATE.md` and
+`results/rank81/certificate.json`.
+
+The claim is still the lower half only. `rank_Q ≥ 81` is unconditional because
+the matrix is an integer reduction; the matching upper bound `126 − 45 = 81`
+remains analytic and from the literature, and the wording gate continues to fail
+the build on "proved rank 81 computationally".
 
 ### m4. Only two primes.
 
-Conceded. Two primes bound the failure probability; they do not eliminate it.
+Conceded for the subspace certificates. Note the distinction: for the rank
+certificate the number of primes is not what carries the argument. A single
+prime at which an integer minor has non-vanishing determinant already proves the
+integer minor is nonzero, hence the characteristic-zero bound; further primes
+guard against an indexing error in selecting the minor, not against a
+probabilistic failure. For the subspace dimensions, which are equalities rather
+than lower bounds, additional primes do reduce risk and the incidence
+certificate is now regenerated at every prime with a stress-flow closure
+certificate by `scripts/emit_degree10_space_incidence.py`.
 
 ### m5. The compact basis is called compact, not canonical.
 
