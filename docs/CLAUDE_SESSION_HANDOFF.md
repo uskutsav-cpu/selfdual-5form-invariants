@@ -1,103 +1,66 @@
 # Session handoff
 
-**Branch** `research/maximal-chiral-four-form-program`.
-`origin/research/...` is at `5b48209`; everything after that is **local only**.
+Last updated 2026-08-01. Branch `research/maximal-chiral-four-form-program`.
 
-## 1. Where the degree-10 work stands
+## Where things stand
 
-| result | value | evidence |
-|---|---|---|
-| twelve published candidates implemented | 12/12 | `published_degree10_invariants.py` |
-| published atlas rank | **12 / 14** | both primes |
-| published Q10 rank | **3 / 3** | fit 32749, holdout 32717 |
-| reverse-recovered Q10 rank | **3 / 3** | independent search |
-| reverse span = published span | **proven** | union rank 3, both primes |
-| Level-A ↔ Level-B maps | both directions, mutually inverse | exact, modular |
-| removal minimality | verified | removing any member drops rank |
+A complete private scientific and technical submission candidate exists. The
+manuscript compiles from the official journal class with zero errors and zero
+undefined citations or references, every scientific number in it is generated
+from a JSON certificate, and a fresh clone reproduces all of it.
 
-### The basis, in the only permitted wording
+## The three findings a successor should know
 
-> **Preferred ambiguity-minimal Level-B basis among the twelve published
-> degree-10 candidates under the documented deterministic simplicity rule.**
+1. **The signature blocker was wrong.** The oscillator frame is split `(5,5)`,
+   not Euclidean. Real self-dual five-forms exist there, `⋆² = +1`, and the
+   bridge was buildable all along. See `spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md`.
 
-    { P10_10, P10_11, P10_12 }
+2. **`12 = 12` was a coincidence.** The published degree-ten span is not a
+   complement to the products; it contains one product direction, so its
+   non-product content is eleven. The structural decomposition is
+   `A10 = G10 ⊕ P10`. See `docs/DIMENSION_DICTIONARY.md`.
 
-**Never** "ambiguity-robust", "universally canonical", or "the unique compact
-basis". `tests/test_q10_wording_freeze.py` enforces this across every doc and
-artifact; negated mentions stay allowed because they are the correct statement.
+3. **Degree eight disagrees, and should.** The spinor port-graph stream reaches
+   6 where the tensor side reaches 7, with strict containment. This reproduces
+   the archive's own finding that structured tensor-word candidates are needed
+   there. It is corroboration, not a bug.
 
-| candidate | status |
+## What is deliberately incomplete
+
+| item | state |
 |---|---|
-| `P10_10` | **forced** — in every independent triple; sole carrier of the third quotient coordinate |
-| `P10_09` | source-reading dependent (AMB-01); excluded from the basis, **retained** as a valid implemented interpretation |
-| `P10_11` | source-reading dependent (AMB-02); in the basis only because at least one such member is unavoidable |
-| `P10_12` | tested alternative reading gives **identical** evaluations and quotient vectors |
+| float64 seed/scale/step Jacobian matrix | not run; one configuration costs >10 min. Replaced by an exact analytic Jacobian, which is stronger |
+| exact Jacobian rank | 59 for the port-graph subset; 13 structured candidates not re-implemented, so 81 is not reached and is not claimed |
+| degree-10 no-stop terminal status | see `verification/SPINOR_DEGREE10_NO_STOP.md` |
+| additional primes / rational reconstruction | not done; no claim depends on it |
+| literature sweep | only the two source papers consulted; every novelty row is PROVISIONAL |
 
-**No fully ambiguity-robust published triple exists.** `P10_10` is forced and
-only `P10_12` of the remainder is robust, so two robust members cannot be
-found. That is PO-11 and it is a binding prerequisite for an unconditional
-basis, not a tidiness item.
+## Where the human gates are
 
-## 2. The reverse benchmark
+- `submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md` — ten items
+- `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md` — G-1 to G-7
+- `audit/NOVELTY_MATRIX.md` — every row PROVISIONAL
 
-> **A formula-independent bounded reverse search independently recovered the
-> full three-dimensional quotient Q10.**
+## How to pick this up
 
-All three recovered directions come from the **`N4125`x5** sector — pure
-`N^(4125)`, no `N^(1050)`, no `M`. Every published basis element is
-`N^(1050)`-based, so the search found a **different** compact basis spanning
-the same quotient rather than rediscovering the published one.
+```bash
+python -m pytest                                  # 199
+cd spinor_trace_bridge && python -m pytest        # 49
+python manuscript/scripts/make_numbers.py         # regenerate from artifacts
+python manuscript/scripts/make_tables.py
+python manuscript/scripts/make_figures.py
+python scripts/build_submission_package.py        # isolated build + archives
+python manuscript/scripts/check_manuscript.py     # 32 wording and claim gates
+```
 
-Independence is enforced by AST inspection, not promised in prose.
+Long runs write incrementally and skip completed work, so re-issuing the same
+command resumes rather than restarts.
 
-**Not exhaustive**: 5 of 21 sectors are capped at 30 000 raw topologies, and
-even exhausted sectors were sampled at 40 candidates for evaluation. Recovery
-goal met; exhaustion goal not (PO-12). Never write "complete enumeration of
-every M/N contraction".
+## Warnings
 
-## 3. Two defects found, both the same kind
-
-Both were invisible to homogeneity and to rotations, and both were caught by a
-**boost** — `delta` and `eta` agree on the spatial block, so only a boost sees
-a metric misplacement.
-
-1. **`P10_07`** raised all six axes on both inner `N` factors, making three
-   edges `delta`-contractions. Symptom: `not_in_atlas_span` on all six primes.
-2. **The reverse engine's `M` block.** `make_blocks` returned `mixed`, which is
-   already `M_{a}{}^{b}`, to a routine that assumes all-lower operands and
-   raises one end itself. Symptom: 129 of 579 pilot candidates not in the atlas
-   span. Pure-N sectors were 100% boost invariant, M sectors were not, which
-   localised it in one step. **The recovery result was unaffected** — it lives
-   entirely in `N4125`x5 — but the M-sector statistics were invalid and were
-   regenerated.
-
-Boost tests now guard both the published evaluators and the generated ones.
-
-## 4. Infrastructure notes
-
-- **Checkpoint validity** is semantic, not commit-based. Fingerprints are
-  derived from source (`evaluator_fingerprint`, `block_fingerprint`), so a
-  reimplemented formula invalidates exactly its own units and the expensive
-  atlas cache survives. Cold two-prime run 912 s, resumed 55 s.
-- **Checkpoints must never live in iCloud.** The tree is under `~/Documents`,
-  which is synced. Use `SDINV_CKPT_ROOT`.
-- **Reverse generation is streamed**: 2611 MB → 33 MB for the same sector.
-  Evaluation still peaks ~2.9 GB holding the candidate plan; that is the next
-  memory target if the sweep is widened.
-- **`python -m pytest` works bare** — `pytest.ini` scopes collection past the
-  `scripts/`↔`tests/` module-name collision.
-- A redirected process is **block buffered**: an empty log does not mean an
-  idle job. Check `ps -p <pid> -o time` for CPU, and the artifact's mtime. A
-  run killed after writing its artifact loses only the buffered log; that
-  happened here and briefly looked like lost work.
-
-## 5. Next
-
-1. Collect the pilot rerun (valid M-sector statistics) and refresh the
-   benchmark artifact.
-2. Clean-clone QUICK reproduction.
-3. **Do not launch the degree-12 search.** It is prepared and refuses to run
-   without `--i-mean-it`; see `DEGREE12_REVERSE_PILOT_PLAN.md`. Run
-   `--measure-only` first — the degree-10 cost per contraction does not
-   transfer.
-4. Resolve PO-11 (bracket colour) if an unconditional basis is wanted.
+- The scratchpad is wiped between sessions. The working virtualenv lives at
+  `../.venv`, outside the repository.
+- The third-party spinor archive at `../spinor-work` is **not** redistributable
+  and is excluded from the repository and the release candidate.
+- Run the bridge suite from inside `spinor_trace_bridge/`. Invoking it from the
+  repository root with `-c` collects the wrong tests.
