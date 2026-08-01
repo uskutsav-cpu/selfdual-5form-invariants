@@ -89,15 +89,30 @@ def wording_gates(text: str) -> None:
          r"\bfirst[- ]ever\b|\bfor the first time\b|\brevolutionary\b|"
          r"\bdefinitive(ly)?\b|\bbreakthrough\b", None,
          "prestige language is not supported"),
-        # The Letter once described the degree-ten deficit as "not a bound ---
-        # an exact dimension".  It is a bound: D10 admits directions that raise
-        # the rank mod p, so dim Q10 is an upper bound over Q.  This rule fires
-        # on any phrasing that denies the bound rather than stating it.
-        ("quotient-described-as-not-a-bound",
-         r"not\s+a\s+bound|(deficit|quotient)[^.]{0,40}\bexact\s+dimension",
-         None,
-         "dim Q10 is an upper bound in characteristic zero; see PO-09"),
     ]
+
+    # Whether "dim Q10 is not a bound" may be asserted is a question about the
+    # certificate, not about the prose.  The Letter once claimed it while D10 was
+    # modular-only, which is why the rule exists; D10 has since been settled over
+    # Q, so the rule now keys off the artifact instead of forbidding the phrase
+    # outright.  If the certificate regresses to a bound, the phrasing is
+    # forbidden again automatically.
+    CHECKS += 1
+    czp = ROOT / "results/stress_flow/D10_characteristic_zero.json"
+    settled = False
+    if czp.exists():
+        try:
+            settled = bool(json.loads(czp.read_text()).get("settled"))
+        except json.JSONDecodeError:
+            settled = False
+    if not settled:
+        for m in re.finditer(
+                r"not\s+a\s+bound|(deficit|quotient)[^.]{0,40}\bexact\s+dimension",
+                text, re.IGNORECASE):
+            fail("quotient-described-as-not-a-bound",
+                 "dim Q10 is only an upper bound while "
+                 "results/stress_flow/D10_characteristic_zero.json is not "
+                 f"settled. Found: ...{text[max(0, m.start()-60):m.end()+60]}...")
     for name, pattern, context, why in rules:
         CHECKS += 1
         if context:
@@ -242,6 +257,34 @@ def claim_diff() -> None:
             fail("claim-diff",
                  "results/rank81/certificate.json summary ranks disagree with "
                  "its runs")
+
+    # The characteristic-zero D10/Q10 status. The manuscript takes its relation
+    # symbol from a macro, so equality cannot be asserted while the certificate
+    # records only a bound -- but the macro itself must match the artifact.
+    cz = ROOT / "results/stress_flow/D10_characteristic_zero.json"
+    czq = ROOT / "results/stress_flow/Q10_characteristic_zero.json"
+    if cz.exists() and czq.exists():
+        c = json.loads(cz.read_text())
+        cq = json.loads(czq.read_text())
+        check("dimDtenQ", c["D10_dim_over_Q"])
+        check("dimQtenQ", cq["Q10_dim_over_Q"])
+        check("czQtenRelation", "=" if c.get("settled") else "\\le")
+        CHECKS += 1
+        if c.get("settled"):
+            lift = c.get("lift", {})
+            if lift.get("failed") or lift.get("holdout_mismatches"):
+                fail("claim-diff",
+                     "D10 certificate is marked settled but its lift has "
+                     "failures or held-out mismatches")
+            if lift.get("holdout_prime") in lift.get("fitting_primes", []):
+                fail("claim-diff",
+                     "the D10 lift's held-out prime is also a fitting prime, "
+                     "so the validation is vacuous")
+        CHECKS += 1
+        m = c.get("lower_bound_certificate") or {}
+        if c.get("settled") and not m.get("nonzero"):
+            fail("claim-diff",
+                 "D10 marked settled without a non-vanishing minor")
 
     mn = ROOT / "results/rank81/minor81_certificate.json"
     if mn.exists():

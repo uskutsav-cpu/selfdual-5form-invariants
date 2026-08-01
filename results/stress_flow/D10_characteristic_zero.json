@@ -1,0 +1,58 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/d10_characteristic_zero.py",
+ "exact_domain": "Q, via CRT + rational reconstruction then Fraction arithmetic",
+ "primes_used": [
+  32693,
+  32713,
+  32717,
+  32719,
+  32749,
+  32771
+ ],
+ "lift": {
+  "fitting_primes": [
+   32693,
+   32713,
+   32717,
+   32719,
+   32749
+  ],
+  "holdout_prime": 32771,
+  "integer_rows": 49,
+  "reconstructed_rows": 9,
+  "failed": [],
+  "holdout_mismatches": []
+ },
+ "basis_sha256": "080dd2c091d9597d352821e543013232a140c652d29601b655b21fe008cdd052",
+ "closure_sweeps": 3,
+ "dims_over_Q": {
+  "4": 1,
+  "6": 2,
+  "8": 7,
+  "10": 11
+ },
+ "A10_dim": 14,
+ "D10_dim_over_Q": 11,
+ "lower_bound_certificate": {
+  "size": 11,
+  "columns": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   7,
+   8,
+   9,
+   10,
+   12,
+   13
+  ],
+  "scaled_by": 2194857,
+  "integer_determinant": "208649049522176640692643429122240107661950109745496630012445070311220503671642826106470400000000",
+  "nonzero": true
+ },
+ "upper_bound_argument": "The closure was run to its fixed point in exact rational arithmetic. At the fixed point no further generated direction raises the rank over Q, so the reached span IS D10 and its rank is an equality, not a bound. No separate upper-bound argument is needed: running over Q removes the modular admission test that made the earlier number a lower bound.",
+ "settled": true
+}

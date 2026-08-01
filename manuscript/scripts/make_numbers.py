@@ -266,6 +266,33 @@ def main() -> int:
         for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
             lines.append(macro(n, None))
 
+    # --- exact characteristic-zero D10 / Q10 ---------------------------------
+    cz = load("results/stress_flow/D10_characteristic_zero.json")
+    czq = load("results/stress_flow/Q10_characteristic_zero.json")
+    if cz and czq:
+        mn = cz.get("lower_bound_certificate") or {}
+        lift = cz.get("lift", {})
+        lines += [
+            macro("dimDtenQ", cz["D10_dim_over_Q"]),
+            macro("dimQtenQ", czq["Q10_dim_over_Q"]),
+            macro("dimAtenQ", czq["A10_dim_over_Q"]),
+            macro("czSettled", "yes" if cz.get("settled") else "no"),
+            macro("czMinorSize", mn.get("size")),
+            macro("czFitPrimes", len(lift.get("fitting_primes", []))),
+            macro("czHoldoutPrime", lift.get("holdout_prime")),
+            macro("czIntegerRows", lift.get("integer_rows")),
+            macro("czLiftedRows", lift.get("reconstructed_rows")),
+            macro("czSweeps", cz.get("closure_sweeps")),
+            # The relation symbol itself is generated, so the manuscript cannot
+            # assert equality while the certificate records only a bound.
+            macro("czQtenRelation", "=" if cz.get("settled") else "\\le"),
+        ]
+    else:
+        for n in ("dimDtenQ dimQtenQ dimAtenQ czSettled czMinorSize czFitPrimes "
+                  "czHoldoutPrime czIntegerRows czLiftedRows czSweeps "
+                  "czQtenRelation").split():
+            lines.append(macro(n, None))
+
     # --- degree-8 span equality with the full spinor family ------------------
     # Distinct from the comparison table, which uses the port-graph stream only.
     d8 = load("verification/degree8_span_equality.json")
