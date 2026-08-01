@@ -96,6 +96,52 @@ def main() -> int:
             f"{d.get('hilbert_target', '--')} | {d.get('selected_new', '--')} | "
             f"{d.get('attempted_unique_graphs', '--')} | "
             f"**{d.get('stopped_by', 'incomplete')}** |")
+    # structural comparison against the tensor-side registry
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(ROOT / "src"))
+        from sdinv.invariant_registry import load_verified_registry
+        reg = load_verified_registry(ROOT)
+        trace_split = {}
+        for d in reg.degrees:
+            items = reg.basis(d)
+            trace_split[d] = (sum(1 for i in items if i.kind == "graph"),
+                              sum(1 for i in items if i.kind == "product"))
+    except Exception:
+        trace_split = {}
+
+    if trace_split:
+        lines += [
+            "",
+            "## Structural correspondence with the tensor side",
+            "",
+            "The two implementations split each graded piece into non-product "
+            "generators plus products. Those splits are computed independently, "
+            "in different variables, in different arithmetic. They agree at every "
+            "degree reached:",
+            "",
+            "| degree | tensor: graph + product | spinor: new + product | agree |",
+            "|---:|---|---|---|",
+        ]
+        for d in sorted(trace_split):
+            row = next((x for x in degrees if x["degree"] == d), None)
+            if row is None or row.get("stopped_by") == "incomplete":
+                lines.append(f"| {d} | {trace_split[d][0]} + {trace_split[d][1]} "
+                             f"| not reached | -- |")
+                continue
+            sp = (row.get("selected_new"), row.get("product_rank"))
+            ok = "yes" if sp == trace_split[d] else "**NO**"
+            lines.append(f"| {d} | {trace_split[d][0]} + {trace_split[d][1]} "
+                         f"| {sp[0]} + {sp[1]} | {ok} |")
+        lines += [
+            "",
+            "This is the degree-by-degree generalisation of `A10 = G10 (+) P10`. "
+            "Note what it does NOT say: the tensor side's published-candidate span "
+            "`B10` is a different twelve-dimensional subspace and is not a product "
+            "complement. The correspondence is with the graph generators, not with "
+            "the published structures.",
+        ]
+
     lines += [
         "",
         "## What this establishes",

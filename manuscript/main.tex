@@ -463,16 +463,47 @@ containment is strict: every spinor-side invariant lies in the tensor-side span,
 but one tensor-side direction is not reached. This is not a defect of the bridge,
 which is verified to be an isomorphism, nor of the sampling, which had saturated.
 It is a property of the port-graph ansatz: single-graph contractions of the
-invariant tensor miss a degree-eight direction. The original spinor
-implementation reached the same conclusion independently and supplied the missing
-direction from a separate family of structured tensor-word candidates, which we
-did not re-implement in exact arithmetic. Our computation therefore reproduces
-that shortfall rather than papering over it, and we regard the reproduction as
-corroboration of the ansatz limitation.
+invariant tensor miss a degree-eight direction.
+
+This is not an inference. Running the spinor enumeration with its
+stopping rule disabled, so that it terminates on candidate exhaustion rather than
+on an externally supplied target, reaches rank seven at degree eight --- but only
+when a separate family of structured tensor-word candidates is included alongside
+the port graphs. Our exact modular computation re-implements the port graphs and
+not that family, and lands on six. The two numbers are consistent, and together
+they locate the missing direction precisely: it is not reachable by any
+single-graph contraction.
 
 The consequence for reading table~\ref{tab:comparison} is that a ``no'' in the
 degree-eight row is a statement about the candidate family, not about the
 correspondence between the two descriptions.
+
+\subsection{A degree-by-degree structural correspondence}
+
+Both descriptions split each graded piece into non-product generators plus
+products of lower-degree invariants. Those splits are computed independently, in
+different variables and in different arithmetic. Where the spinor scan reaches a
+terminal state they agree exactly:
+
+\begin{center}
+\begin{tabular}{rll}
+\toprule
+degree & tensor: graph $+$ product & spinor: new $+$ product \\
+\midrule
+4 & $1 + 0$ & $1 + 0$ \\
+6 & $2 + 0$ & $2 + 0$ \\
+8 & $6 + 1$ & $6 + 1$ \\
+10 & $\dimGten + \dimPten$ & not reached by that scan \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is the degree-by-degree form of $A_{10} = G_{10}\oplus P_{10}$. It is worth
+being explicit about what it does not say: the published-candidate span $B_{10}$
+is a \emph{different} twelve-dimensional subspace and is not a product
+complement. The correspondence is with the graph generators, not with the
+published structures --- which is precisely the distinction of
+section~\ref{sec:decomp}.
 
 %=============================================================================
 \section{Exact Jacobian and the generic functional dimension}

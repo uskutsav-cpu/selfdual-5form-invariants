@@ -5,7 +5,7 @@
   "undefined_references": 0,
   "overfull_boxes": 2,
   "pdf_produced": true,
-  "pages": 18
+  "pages": 19
  },
  "files": [
   "JHEP.bst",
@@ -30,9 +30,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "877376f1107279e5490389e39f6832aaca88968ab77aa9217e9fd57b5a174912",
- "jhep_source_sha256": "0fcca475cc0d25b266b668653872dc31d8c51c7e014bcbd87674ab0d73882a7c",
- "pdf_sha256": "c7573ab4557fb279cf4bd7a659a28a601ab6c23e1c91223dc12538e7dc2e5437",
+ "arxiv_source_sha256": "8eaf8c1c845db1775d68b29a8a1213c3c823db561ff02cc733cb17bd66b79c6f",
+ "jhep_source_sha256": "0c90728cd8465341be937c53307e02b473ad46ef25a9905a30282d47f2175243",
+ "pdf_sha256": "2ff9c0e663b2d821260b134d81ceea511a6b122877a502a7a0e801d5bf2dba89",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false

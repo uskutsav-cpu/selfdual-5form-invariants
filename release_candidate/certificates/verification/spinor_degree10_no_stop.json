@@ -34,8 +34,14 @@
   },
   {
    "degree": 8,
-   "stopped_by": "incomplete",
-   "note": "the run did not reach this degree on this machine"
+   "hilbert_target": 7,
+   "primitive_target": 6,
+   "product_rank": 1,
+   "selected_new": 6,
+   "final_rank": 7,
+   "attempted_unique_graphs": 32,
+   "raw_batches": 1,
+   "stopped_by": "candidate_exhaustion"
   },
   {
    "degree": 10,
@@ -45,7 +51,8 @@
  ],
  "degrees_reaching_candidate_exhaustion": [
   4,
-  6
+  6,
+  8
  ],
  "degree_ten_completed": false,
  "independent_cross_check": "Independently of this scan, the exact modular enumeration in verification/spinor_trace_comparison.json reaches evaluation rank 14 at degree 10 by rank saturation, and its span equals the tensor-side span with holdout validation. That is a saturation observation, not an exhaustion proof, and is reported as such."

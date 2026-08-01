@@ -8,12 +8,25 @@ Every archived scan stopped at the Hilbert target, which is supplied from outsid
 |---:|---:|---:|---:|---:|---|
 | 4 | 1 | 1 | 1 | 2 | **candidate_exhaustion** |
 | 6 | 2 | 2 | 2 | 5 | **candidate_exhaustion** |
-| 8 | -- | -- | -- | -- | **incomplete** |
+| 8 | 7 | 7 | 6 | 32 | **candidate_exhaustion** |
 | 10 | -- | -- | -- | -- | **incomplete** |
+
+## Structural correspondence with the tensor side
+
+The two implementations split each graded piece into non-product generators plus products. Those splits are computed independently, in different variables, in different arithmetic. They agree at every degree reached:
+
+| degree | tensor: graph + product | spinor: new + product | agree |
+|---:|---|---|---|
+| 4 | 1 + 0 | 1 + 0 | yes |
+| 6 | 2 + 0 | 2 + 0 | yes |
+| 8 | 6 + 1 | 6 + 1 | yes |
+| 10 | 12 + 2 | not reached | -- |
+
+This is the degree-by-degree generalisation of `A10 = G10 (+) P10`. Note what it does NOT say: the tensor side's published-candidate span `B10` is a different twelve-dimensional subspace and is not a product complement. The correspondence is with the graph generators, not with the published structures.
 
 ## What this establishes
 
-Degrees reaching candidate exhaustion: 4, 6.
+Degrees reaching candidate exhaustion: 4, 6, 8.
 
 At those degrees the rank is derived by searching the ansatz out, not by stopping at a number supplied from outside. That is the distinction the specification asks for, and it is the reason the run was made at all.
 
