@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-01T22:01:14+00:00",
+ "generated_utc": "2026-08-01T22:19:34+00:00",
  "verifier": "scripts/verify_D10_independent.py",
  "independence": {
   "imports_production_rank_routine": false,
@@ -55,6 +55,32 @@
   "I10_12"
  ],
  "fixed_point_sweeps": 3,
+ "seed_independence": {
+  "degree_10_rank_with_seed": 11,
+  "degree_10_rank_with_empty_seed": 11,
+  "spans_equal": true,
+  "union_rank": 11,
+  "seed_dependent_degrees": [
+   6,
+   8,
+   12
+  ],
+  "dimensions_with_seed": {
+   "4": 1,
+   "6": 2,
+   "8": 7,
+   "10": 11,
+   "12": 21
+  },
+  "dimensions_without_seed": {
+   "4": 1,
+   "6": 1,
+   "8": 3,
+   "10": 11,
+   "12": 9
+  },
+  "consequence": "At degree 10 the closure is the same space for any seed, so the 'seed closure' qualifier does not limit dim_Q D10 = 11. Degrees 6, 8 and 12 do depend on the seed, so the activation rule is not vacuous."
+ },
  "sweep_order_independent": true,
  "sweep_order_ranks": [
   11,

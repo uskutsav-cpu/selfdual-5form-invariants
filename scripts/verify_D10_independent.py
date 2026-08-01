@@ -301,6 +301,22 @@ def main() -> int:
         order_ranks.append(d2[10])
     order_independent = all(r == rank for r in order_ranks)
 
+    # ---- seed independence ------------------------------------------------
+    # Ten targets carry an empty coefficient monomial and activate
+    # unconditionally; two of them at degree 10. They bootstrap the degree-10
+    # sector without help, so the answer may not depend on the seed at all.
+    # Measured rather than assumed, because it removes a caveat if true.
+    seedless_dims, seedless_info = activated_closure(targets, {})
+    seedless_span = seedless_info["span"][10]
+    union_rank = integer_rank(span10 + seedless_span)
+    seed_independent = (
+        seedless_dims[10] == rank
+        and union_rank == rank
+        and integer_rank(seedless_span) == rank
+    )
+    seed_dependent_degrees = [d for d in DEGREES
+                              if d != 10 and seedless_dims[d] != dims[d]]
+
     # ---- lower bound: an explicit 11x11 minor -----------------------------
     rows_used, cols_used = [], pivots[:rank]
     seen: list[list[int]] = []
@@ -383,6 +399,20 @@ def main() -> int:
         "free_columns": free_columns,
         "free_column_labels": [basis10[c] for c in free_columns],
         "fixed_point_sweeps": info["sweeps"],
+        "seed_independence": {
+            "degree_10_rank_with_seed": rank,
+            "degree_10_rank_with_empty_seed": seedless_dims[10],
+            "spans_equal": seed_independent,
+            "union_rank": union_rank,
+            "seed_dependent_degrees": seed_dependent_degrees,
+            "dimensions_with_seed": {str(k): v for k, v in dims.items()},
+            "dimensions_without_seed": {str(k): v for k, v in seedless_dims.items()},
+            "consequence": (
+                "At degree 10 the closure is the same space for any seed, so the "
+                "'seed closure' qualifier does not limit dim_Q D10 = 11. Degrees "
+                "6, 8 and 12 do depend on the seed, so the activation rule is not "
+                "vacuous."),
+        },
         "sweep_order_independent": order_independent,
         "sweep_order_ranks": order_ranks,
         "rational_dimensions_all_degrees": {str(k): v for k, v in dims.items()},
@@ -409,6 +439,8 @@ def main() -> int:
           f"{[basis10[c] for c in free_columns]}")
     print(f"sweeps {info['sweeps']}, order-independent {order_independent} "
           f"{order_ranks}")
+    print(f"seed-independent at degree 10: {seed_independent} "
+          f"(seed-dependent degrees {seed_dependent_degrees})")
     print(f"lower bound minor {rank}x{rank}, det {det_bareiss} "
           f"(laplace {det_laplace}, agree {lower['routines_agree']})")
     print(f"upper bound: {codim} annihilators, all valid {ann_ok}, "

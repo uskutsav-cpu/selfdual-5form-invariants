@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-01T22:01:14+00:00",
+ "generated_utc": "2026-08-01T22:19:34+00:00",
  "claim": "dim_Q D10 <= 11",
  "method": "exact integer covectors annihilating every spanning vector; their number is the codimension",
  "ambient_dimension": 14,
