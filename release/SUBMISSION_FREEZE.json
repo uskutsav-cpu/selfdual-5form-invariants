@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "generated_by": "scripts/freeze_submission_packages.py",
- "commit": "1a10d895d8e4abaf3fac88e935c553a7f1de0e30",
+ "commit": "b716aa09192a5202f7a04ca5a83c82f682e14dfb",
  "files_in_archives": [
   "JHEP.bst",
   "appendices/algorithms.tex",
@@ -17,6 +17,7 @@
   "figures/rank_stability_grid.pdf",
   "figures/spinor_trace_rank_comparison.pdf",
   "figures/trace_pipeline.pdf",
+  "generated/identity.tex",
   "generated/numbers.tex",
   "jheppub.sty",
   "main.bbl",

@@ -20,7 +20,7 @@ Every scientific number in the manuscript is a generated macro. This table maps 
 | strength | macros |
 |---|---:|
 | `analytic` | 7 |
-| `exact-char0` | 36 |
+| `exact-char0` | 44 |
 | `exact-modular` | 60 |
 | `limitation` | 2 |
 | `numerical` | 5 |
@@ -38,6 +38,14 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
 | `dimSymSpinor` | `136` | `analytic` | `literature / elementary` |
 | `genericFunctionalDim` | `81` | `analytic` | `literature / elementary` |
 | `spinorDim` | `16` | `analytic` | `literature / elementary` |
+| `bpCapQ` | `1` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpCapRelation` | `=` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpFitPrimes` | `7` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpFreshPrime` | `32869` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpFreshSamples` | `6` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpHoldoutPrime` | `32783` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpSettled` | `yes` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
+| `bpSumQ` | `13` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
 | `charZeroLowerBound` | `81` | `exact-char0` | `results/rank81/certificate.json` |
 | `cumRankDegEight` | `9` | `exact-char0` | `results/rank81/certificate.json` |
 | `cumRankDegFour` | `1` | `exact-char0` | `results/rank81/certificate.json` |
@@ -135,7 +143,7 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
 | `traceRankDegSix` | `2` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `traceRankDegTen` | `14` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `nBridgeTests` | `72` | `limitation` | `pytest --collect-only` |
-| `nTraceTests` | `211` | `limitation` | `pytest --collect-only` |
+| `nTraceTests` | `224` | `limitation` | `pytest --collect-only` |
 | `floatNondegenerateRanks` | `81` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
 | `nFloatDegenerate` | `1` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
 | `nFloatInconclusive` | `0` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
@@ -160,6 +168,8 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
   `python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH`
 - `results/stress_flow/D10_characteristic_zero.json`  
   `python scripts/d10_characteristic_zero.py`
+- `results/degree10/B10_P10_intersection_exact.json`  
+  `python scripts/b10_p10_characteristic_zero.py`
 - `verification/degree8_span_equality.json`  
   `python spinor_trace_bridge/scripts/run_degree8_span.py`
 - `pytest --collect-only`  

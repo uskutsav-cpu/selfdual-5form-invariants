@@ -18,7 +18,7 @@ Suggested manuscript text:
 
 ## What is included
 
-- tensor implementation and its 211 tests
+- tensor implementation and its 224 tests
 - bridge implementation and its 72 tests
 - all JSON certificates
 - the common-sample registry

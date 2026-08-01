@@ -61,6 +61,12 @@ SOURCES = [
      "python spinor_trace_bridge/scripts/run_comparison.py",
      "exact-modular",
      "spans compared by two-way containment on a hashed common registry"),
+    (r"^bp(Settled|CapQ|SumQ|FitPrimes|HoldoutPrime|FreshPrime|FreshSamples|CapRelation)$",
+     "results/degree10/B10_P10_intersection_exact.json",
+     "python scripts/b10_p10_characteristic_zero.py",
+     "exact-char0",
+     "CRT lift of the published coordinates validated at a held-out prime; the "
+     "generator is verified at a further prime and samples used nowhere else"),
     (r"^dEight",
      "verification/degree8_span_equality.json",
      "python spinor_trace_bridge/scripts/run_degree8_span.py",

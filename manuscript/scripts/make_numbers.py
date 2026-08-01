@@ -293,6 +293,25 @@ def main() -> int:
                   "czQtenRelation").split():
             lines.append(macro(n, None))
 
+    # --- exact characteristic-zero B10 cap P10 --------------------------------
+    bp = load("results/degree10/B10_P10_intersection_exact.json")
+    if bp:
+        g = bp.get("generator", {})
+        lines += [
+            macro("bpSettled", "yes" if bp.get("settled") else "no"),
+            macro("bpCapQ", bp.get("dim_B10_cap_P10_over_Q")),
+            macro("bpSumQ", bp.get("dim_B10_plus_P10_over_Q")),
+            macro("bpFitPrimes", len(bp.get("fitting_primes", []))),
+            macro("bpHoldoutPrime", bp.get("holdout_prime")),
+            macro("bpFreshPrime", g.get("verified_at_fresh_prime")),
+            macro("bpFreshSamples", g.get("fresh_samples")),
+            macro("bpCapRelation", "=" if bp.get("settled") else "\\le"),
+        ]
+    else:
+        for n in ("bpSettled bpCapQ bpSumQ bpFitPrimes bpHoldoutPrime "
+                  "bpFreshPrime bpFreshSamples bpCapRelation").split():
+            lines.append(macro(n, None))
+
     # --- degree-8 span equality with the full spinor family ------------------
     # Distinct from the comparison table, which uses the port-graph stream only.
     d8 = load("verification/degree8_span_equality.json")

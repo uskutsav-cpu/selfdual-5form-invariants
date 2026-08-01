@@ -1,0 +1,18 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/b10_p10_characteristic_zero.py + generator step",
+ "identity": "an integer combination of published candidates equals an integer multiple of a pure product",
+ "published_combination_integer": {
+  "P10_01": -55,
+  "P10_02": -252,
+  "P10_05": 4200,
+  "P10_06": 5040
+ },
+ "atlas_combination_integer": {
+  "I4_1*I6_1": -1040
+ },
+ "supported_only_on_products": true,
+ "verified_at_fresh_prime": 32869,
+ "fresh_samples": 6,
+ "identity_holds": true
+}

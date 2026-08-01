@@ -39,6 +39,7 @@
   "figures/rank_stability_grid.pdf",
   "figures/spinor_trace_rank_comparison.pdf",
   "figures/trace_pipeline.pdf",
+  "generated/identity.tex",
   "generated/numbers.tex",
   "jheppub.sty",
   "main.bbl",
@@ -50,9 +51,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "27023fc0cf91267ecb264f7fadaa047cb76583e72ae38ab3e6d7cd9d0c661c34",
- "jhep_source_sha256": "7d22e8836d70f176082b899f165eede9d25a3df9211ce0265c4f7e4faba77428",
- "pdf_sha256": "890b3ca366d8f592231d70fc9bf95da795a2dbaca339c706f4d1400a7744c88f",
+ "arxiv_source_sha256": "dd74730a4227fb626b16f46fa23660d7f03e291cef1e94859c7cf4dc3a95f89a",
+ "jhep_source_sha256": "30f089888aab4e0c422074afc567ac53c55192f4e66fb11309676eaa45434f58",
+ "pdf_sha256": "5df41ebcd9c5d95dcad181f64e5ee6aa459ea88f9e1a8f6b5c19c0fa5a96adbd",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false

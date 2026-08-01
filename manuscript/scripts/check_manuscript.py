@@ -82,14 +82,38 @@ def wording_gates(text: str) -> None:
         ("amb02-resolved",
          r"AMB-02\s+(is\s+)?resolv", None,
          "the source ambiguity is avoided, not resolved"),
-        ("uncertified-rational-reconstruction",
-         r"exact\s+over\s+(\\mathbb\{Q\}|the\s+rationals)", None,
-         "results are modular; no certified rational reconstruction exists"),
+
         ("first-ever",
          r"\bfirst[- ]ever\b|\bfor the first time\b|\brevolutionary\b|"
          r"\bdefinitive(ly)?\b|\bbreakthrough\b", None,
          "prestige language is not supported"),
     ]
+
+    # "exact over Q" was forbidden outright while every result was modular. Two
+    # certified rational reconstructions now exist -- D10/Q10 and B10 cap P10 --
+    # each validated at a held-out prime, so a blanket ban would now forbid a
+    # true statement. The rule keys off the artifacts instead: the phrase is
+    # permitted only while BOTH are settled, and returns to being a build
+    # failure the moment either regresses.
+    CHECKS += 1
+    certs = [ROOT / "results/stress_flow/D10_characteristic_zero.json",
+             ROOT / "results/degree10/B10_P10_intersection_exact.json"]
+    all_settled = all(c.exists() for c in certs)
+    if all_settled:
+        for c in certs:
+            try:
+                if not json.loads(c.read_text()).get("settled"):
+                    all_settled = False
+            except json.JSONDecodeError:
+                all_settled = False
+    if not all_settled:
+        for m in re.finditer(r"exact\s+over\s+(\\mathbb\{Q\}|the\s+rationals)",
+                             text, re.IGNORECASE):
+            fail("uncertified-rational-reconstruction",
+                 "no certified rational reconstruction is recorded, so results "
+                 "are modular. Found: ..."
+                 + text[max(0, m.start() - 50):m.end() + 50].replace("\n", " ")
+                 + "...")
 
     # Whether "dim Q10 is not a bound" may be asserted is a question about the
     # certificate, not about the prose.  The Letter once claimed it while D10 was

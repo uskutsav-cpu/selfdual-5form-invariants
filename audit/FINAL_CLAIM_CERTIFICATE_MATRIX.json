@@ -1,11 +1,11 @@
 {
  "schema": 1,
  "generated_by": "scripts/emit_claim_certificate_matrix.py",
- "n_macros": 110,
+ "n_macros": 118,
  "by_strength": {
   "exact-modular": 60,
   "numerical": 5,
-  "exact-char0": 36,
+  "exact-char0": 44,
   "limitation": 2,
   "analytic": 7
  },
@@ -748,6 +748,70 @@
    "note": "CRT lift validated at a held-out prime; explicit non-vanishing minor"
   },
   {
+   "macro": "bpSettled",
+   "value": "yes",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpCapQ",
+   "value": "1",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpSumQ",
+   "value": "13",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpFitPrimes",
+   "value": "7",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpHoldoutPrime",
+   "value": "32783",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpFreshPrime",
+   "value": "32869",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpFreshSamples",
+   "value": "6",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
+   "macro": "bpCapRelation",
+   "value": "=",
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "regenerate": "python scripts/b10_p10_characteristic_zero.py",
+   "strength": "exact-char0",
+   "note": "CRT lift of the published coordinates validated at a held-out prime; the generator is verified at a further prime and samples used nowhere else"
+  },
+  {
    "macro": "dEightTraceRank",
    "value": "7",
    "artifact": "verification/degree8_span_equality.json",
@@ -821,7 +885,7 @@
   },
   {
    "macro": "nTraceTests",
-   "value": "211",
+   "value": "224",
    "artifact": "pytest --collect-only",
    "regenerate": "python manuscript/scripts/make_numbers.py",
    "strength": "limitation",
