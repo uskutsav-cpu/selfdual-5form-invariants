@@ -49,6 +49,10 @@ def main() -> int:
     ap.add_argument("--fitting-primes", default=",".join(map(str, FITTING)))
     ap.add_argument("--holdout-primes", default=",".join(map(str, HOLDOUT)))
     ap.add_argument("--seeds", default=",".join(map(str, SEEDS)))
+    ap.add_argument("--freeze", default=None,
+                    help="RANK_MATRIX_EXECUTION_FREEZE.json to check cells against")
+    ap.add_argument("--provenance", default=None,
+                    help="RANK_MATRIX_CELL_PROVENANCE.json binding cells to the freeze")
     args = ap.parse_args()
 
     repo = args.repo.resolve()
@@ -60,6 +64,10 @@ def main() -> int:
     seeds = [int(x) for x in args.seeds.split(",") if x.strip()]
     planned = [(p, s, "fitting") for p in fitting for s in seeds] + \
               [(p, s, "holdout") for p in holdout for s in seeds]
+
+    freeze = json.loads(Path(args.freeze).read_text()) if args.freeze else None
+    provenance = (json.loads(Path(args.provenance).read_text())
+                  if args.provenance else None)
 
     problems: list[str] = []
     by_key: dict[tuple[int, int], dict] = {}
@@ -118,6 +126,39 @@ def main() -> int:
     budgets = {c.get("flop_limit") for c in used}
     if len(budgets) > 1:
         problems.append(f"contraction flop budget differs between cells: {sorted(budgets)}")
+    samples = {c.get("inputs", {}).get("selection_sha256") for c in used}
+    if len(samples) > 1:
+        problems.append(f"candidate selection list differs between cells: {sorted(samples)}")
+    shapes = {(c["jacobian"]["n_rows"], c["jacobian"]["n_columns"]) for c in used}
+    if len(shapes) > 1:
+        problems.append(f"Jacobian dimensions differ between cells: {sorted(shapes)}")
+
+    # Cross-check against the frozen execution environment, when one is given.
+    # A cell computed under a different source tree is not part of this matrix
+    # even if it looks identical, so the source commit is checked here rather
+    # than assumed.
+    if freeze is not None:
+        for c in used:
+            key = f"prime={c['cell']['prime']} seed={c['cell']['seed']}"
+            if c.get("flop_limit") != freeze.get("flop_budget"):
+                problems.append(f"{key}: flop budget {c.get('flop_limit')} does not "
+                                f"match frozen {freeze.get('flop_budget')}")
+        if provenance is not None:
+            if provenance.get("execution_id") != freeze.get("execution_id"):
+                problems.append("provenance execution_id does not match the freeze record")
+            bound = {(r["prime"], r["seed"]): r for r in provenance.get("cells", [])}
+            for c in used:
+                key = (c["cell"]["prime"], c["cell"]["seed"])
+                row = bound.get(key)
+                if row is None:
+                    problems.append(f"prime={key[0]} seed={key[1]}: not bound to the "
+                                    "frozen execution")
+                elif row.get("source_commit") != freeze.get("jhep_branch_commit"):
+                    problems.append(f"prime={key[0]} seed={key[1]}: source commit "
+                                    f"{row.get('source_commit')} is not the frozen one")
+                elif row.get("result_hash") != c.get("content_sha256"):
+                    problems.append(f"prime={key[0]} seed={key[1]}: provenance result "
+                                    "hash disagrees with the cell")
 
     extra = sorted(set(by_key) - {(p, s) for p, s, _ in planned})
     for p, s in extra:
