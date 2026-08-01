@@ -1,0 +1,189 @@
+{
+ "generated_utc": "2026-08-01T21:37:20+00:00",
+ "claims": [
+  {
+   "id": "N-01",
+   "claim": "A ten-dimensional self-dual five-form admits 81 functionally independent Lorentz invariants.",
+   "classification": "known",
+   "prior": "Hutomo, Lechner and Sorokin, JHEP 02 (2026) 147 [2509.14351]; Cederwall et al., J.Phys.A 59 (2026) 065203 [2509.14350].",
+   "here": "A machine-checkable lower bound of 81 matching the published count, from an exact modular Jacobian over a 15-cell sample-by-prime matrix.",
+   "wording": "The count is attributed to the sources. This paper supplies a certificate for it, and says so."
+  },
+  {
+   "id": "N-02",
+   "claim": "126 - dim so(1,9) = 81 bounds the generic functional rank above.",
+   "classification": "known",
+   "prior": "Cederwall et al. [2509.14350], generic-orbit counting.",
+   "here": "Cited, not reproved. It is the upper half of the rank statement and no computation here supplies it.",
+   "wording": "Stated as analytic and attributed."
+  },
+  {
+   "id": "N-03",
+   "claim": "Enumerate contraction graphs, evaluate on generated tensor data, find linear relations to expose functional dependencies.",
+   "classification": "known",
+   "prior": "Elamaran, Ferko and Scarlett, Phys.Rev.D 114 (2026) 026016 [2512.23750], for a 3-form in six dimensions.",
+   "here": "An exact and certified realization of that workflow for the ten-dimensional self-dual five-form: integral coordinate basis, modular arithmetic throughout, holdout primes, and a characteristic-zero lower bound rather than a numerical rank.",
+   "wording": "MANDATORY. The general workflow is prior art and must be credited as such. The manuscript may claim only the exact and certified realization, never the approach."
+  },
+  {
+   "id": "N-04",
+   "claim": "The tensor and spinor descriptions of the self-dual five-form correspond.",
+   "classification": "known in another representation",
+   "prior": "Standard Clifford algebra; the correspondence is classical and is used in [2509.14350].",
+   "here": "An explicit executable map with an exact left inverse, verified at two primes.",
+   "wording": "The correspondence is classical. The executable exact map is the contribution."
+  },
+  {
+   "id": "N-05",
+   "claim": "An exact equivariant bridge Phi: Lambda^5_+ V -> Sym^2_{gamma-tr} S_+ with forward rank 126, kernel exactly the anti-self-dual 126, image exactly the gamma-traceless 126, and a left inverse composing to the self-dual projector.",
+   "classification": "apparently new after search",
+   "prior": "No source found giving the map with certificates. Searched: both core papers and their 98 combined references, all 18 citing papers, and the spinor-conventions literature.",
+   "here": "Span equalities rather than dimension coincidences; equivariance under GL(5) with the det character and under Clifford reflections, which generate the full group by Cartan-Dieudonne.",
+   "wording": "May be described as, to our knowledge, not previously given with certificates. Not 'first'."
+  },
+  {
+   "id": "N-06",
+   "claim": "The oscillator frame's real form is split (5,5), not Euclidean SO(10); (5,5) and (1,9) are inequivalent real forms, congruent over C and over F_p.",
+   "classification": "made explicit here",
+   "prior": "Real forms of Spin(10,C) are standard. The specific correction and its consequence for this construction are not in the literature because the construction is not either.",
+   "here": "The metric is extracted from the anticommutators rather than assumed, and the frame transition is constructed and checked.",
+   "wording": "A correction to this project's own earlier record. The manuscript states the mathematics, not the history, and must not claim a real orthogonal transformation between inequivalent signatures."
+  },
+  {
+   "id": "N-07",
+   "claim": "Degree-8 tensor and spinor spans are equal, and the structured tensor-word family is what supplies the missing direction.",
+   "classification": "exactly certified here",
+   "prior": "None found.",
+   "here": "Rank 7 on both sides, union rank 7, containment both ways, two fitting and two holdout primes, and a family ablation showing the port-graph family alone reaches only 6.",
+   "wording": "May be stated as certified. The ablation is reported because it is the informative part."
+  },
+  {
+   "id": "N-08",
+   "claim": "Degree-10 tensor and spinor spans are equal.",
+   "classification": "exactly certified here",
+   "prior": "None found.",
+   "here": "Rank 14 on both sides on a common sample, holdout validated. Both spans equal A10, whose dimension 14 is structural.",
+   "wording": "May be stated as certified. Does not depend on exhausting either grammar; see docs/DEGREE10_NO_STOP_SCIENTIFIC_CLAIM.md."
+  },
+  {
+   "id": "N-09",
+   "claim": "An explicit 81x81 minor of the integral Jacobian has nonzero determinant, giving rank_Q >= 81 unconditionally.",
+   "classification": "exactly certified here",
+   "prior": "None found. The count 81 is prior; a certificate for it is not.",
+   "here": "Two independent determinant routines agreeing, over a matrix of sample points and primes, with the integer-lift argument stated.",
+   "wording": "'Certified', not 'proved'. The matching upper bound is analytic and belongs to N-02."
+  },
+  {
+   "id": "N-10",
+   "claim": "The complete degree-10 atlas and its incidence table.",
+   "classification": "strengthened here",
+   "prior": "Twelve degree-10 candidate structures appear in [2509.14350], as expressions rather than a basis, with relations undetermined.",
+   "here": "Dimensions and containments for A10, B10, G10, P10, D10, with the correction that the published span is not a product complement.",
+   "wording": "'Complete' is permitted for the atlas only in the sense certified, and B10 carries 'at the tested primes'."
+  },
+  {
+   "id": "N-11",
+   "claim": "dim_Q A10 = 14, dim_Q D10 = 11, dim_Q Q10 = 3, over the rationals.",
+   "classification": "exactly certified here",
+   "prior": "None. Earlier statements of these numbers, including this project's own, were modular.",
+   "here": "A10's upper bound is structural; D10 is an exact rational fixed-point closure, agreeing with the modular record and with the same free columns.",
+   "wording": "May be stated as exact over Q. The seed-closure scope caveat travels with it."
+  },
+  {
+   "id": "N-12",
+   "claim": "The pure-N^(4125) compact basis for Q10.",
+   "classification": "made explicit here",
+   "prior": "None found.",
+   "here": "Constructed with certificates; described as preferred ambiguity-minimal, since PO-11 leaves one member source-reading-dependent.",
+   "wording": "Never 'canonical', never 'unique', never 'ambiguity-robust'."
+  },
+  {
+   "id": "N-13",
+   "claim": "Formula-independent reverse recovery of the degree-10 quotient.",
+   "classification": "independently reproduced",
+   "prior": "Reproduces the published Level-B span from an independent search.",
+   "here": "Recovery, on fit and holdout primes.",
+   "wording": "'Recovery', never 'exhaustive enumeration'; PO-12 is open."
+  },
+  {
+   "id": "N-14",
+   "claim": "A reproducible computational proof architecture: frozen executions, immutable per-cell artifacts, read-only aggregation with adversarial tests, clean-clone reproduction.",
+   "classification": "apparently new after search",
+   "prior": "No comparable apparatus found in this literature. Finite-field linear algebra itself is standard and is cited.",
+   "here": "32 aggregator tests, each breaking one thing and asserting the named refusal; source-critical hashing; provenance binding.",
+   "wording": "May be described as, to our knowledge, going beyond the reproducibility of the source literature. Not 'first'."
+  },
+  {
+   "id": "N-15",
+   "claim": "A degree-10 stress-flow obstruction with physical consequences.",
+   "classification": "unresolved",
+   "prior": "Qualitative non-universality in D=10 is in [2509.14351].",
+   "here": "The exact codimension is established; the physical reading is not, because PO-07 is open.",
+   "wording": "REMOVED as a physical claim. Appears as a mathematical application with the physical reading explicitly withheld."
+  }
+ ],
+ "classification_counts": {
+  "known": 3,
+  "known in another representation": 1,
+  "apparently new after search": 2,
+  "made explicit here": 2,
+  "exactly certified here": 4,
+  "strengthened here": 1,
+  "independently reproduced": 1,
+  "unresolved": 1
+ },
+ "invalid_classifications": [],
+ "word_licences": {
+  "first": {
+   "licensed_by": [],
+   "rule": "Not licensed anywhere. The priority ledger supports 'to our knowledge, not previously given' at most. Do not use."
+  },
+  "complete": {
+   "licensed_by": [
+    "N-10"
+   ],
+   "rule": "Permitted only for the degree-10 atlas in the certified sense, and never for enumeration (PO-12) or for the invariant ring."
+  },
+  "exact": {
+   "licensed_by": [
+    "N-05",
+    "N-07",
+    "N-08",
+    "N-09",
+    "N-11",
+    "N-14"
+   ],
+   "rule": "Permitted for arithmetic that is exact -- modular or rational -- never for a claim whose bound is one-sided."
+  },
+  "unique": {
+   "licensed_by": [],
+   "rule": "Not licensed. No uniqueness is established for any basis or representative."
+  },
+  "canonical": {
+   "licensed_by": [],
+   "rule": "Not licensed. Forbidden for Q10 representatives; see docs/Q10_CANONICALITY_SCOPE.md."
+  },
+  "minimal": {
+   "licensed_by": [
+    "N-12"
+   ],
+   "rule": "Permitted only as 'minimum cardinality in any basis' (PO-08 cardinality half) or 'preferred ambiguity-minimal'. Never bare."
+  },
+  "exhaustive": {
+   "licensed_by": [],
+   "rule": "Not licensed at degree 10 (PO-12) or for any grammar. Degrees 4, 6, 8 reached candidate_exhaustion and that specific word may be quoted as a terminal state."
+  },
+  "previously unknown": {
+   "licensed_by": [],
+   "rule": "Not licensed. Use 'we have not found it in the literature searched', with the search scope stated."
+  },
+  "all orders": {
+   "licensed_by": [],
+   "rule": "Not licensed (PO-10). No induction exists."
+  },
+  "syzygy": {
+   "licensed_by": [],
+   "rule": "Not licensed for I12_61/I12_62 (PO-03); only a Jacobian dependence is established."
+  }
+ }
+}
