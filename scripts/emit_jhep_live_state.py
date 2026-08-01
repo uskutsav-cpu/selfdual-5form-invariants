@@ -79,11 +79,6 @@ RESULT_ARTIFACTS: list[tuple[str, str, str]] = [
         "python scripts/stress_flow_pipeline.py --exact",
         "exact low-degree stress-flow map (degree-10 application input)",
     ),
-    (
-        "results/live_state.json",
-        "python scripts/emit_jhep_live_state.py",
-        "recorded repository state at generation time",
-    ),
 ]
 
 # Claims the JHEP manuscript intends to make, each bound to the artifacts that
@@ -208,7 +203,43 @@ def collect_repo_state(repo: Path) -> dict:
         "dirty_paths": dirty,
         "tracked_file_count": len(tracked),
         "describe": git(repo, "describe", "--tags", "--always"),
+        "remote_refs": collect_remote_refs(repo),
+        "github_releases": collect_releases(),
     }
+
+
+def collect_remote_refs(repo: Path) -> dict:
+    """Ask the public remote directly, so a stale local fetch cannot mislead."""
+    out = subprocess.run(
+        ["git", "ls-remote", "--heads", "--tags", "origin"],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    heads, tags = {}, {}
+    for line in out.stdout.splitlines():
+        if "\t" not in line:
+            continue
+        sha, ref = line.split("\t", 1)
+        if ref.startswith("refs/heads/"):
+            heads[ref[len("refs/heads/") :]] = sha
+        elif ref.startswith("refs/tags/") and not ref.endswith("^{}"):
+            tags[ref[len("refs/tags/") :]] = sha
+    return {"heads": heads, "tags": tags, "queried": bool(out.stdout)}
+
+
+def collect_releases() -> list[dict]:
+    out = subprocess.run(
+        ["gh", "release", "list", "--json", "tagName,name,publishedAt,isLatest"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    try:
+        return json.loads(out.stdout)
+    except json.JSONDecodeError:
+        return []
 
 
 def collect_inventory(repo: Path) -> list[dict]:
@@ -288,10 +319,29 @@ def render_markdown(state: dict, inventory: list[dict], suites: list[dict]) -> s
     for b in state["remote_branches"]:
         A(f"- `{b}`")
     A("")
-    A("## Tags")
+    A("## Tags (local)")
     A("")
     for t in state["tags"]:
         A(f"- `{t}`")
+    A("")
+    A("## Public remote, queried directly")
+    A("")
+    A("| ref | kind | sha |")
+    A("|---|---|---|")
+    for name, sha in sorted(state["remote_refs"]["heads"].items()):
+        A(f"| `{name}` | branch | `{sha[:12]}` |")
+    for name, sha in sorted(state["remote_refs"]["tags"].items()):
+        A(f"| `{name}` | tag | `{sha[:12]}` |")
+    A("")
+    A("## GitHub releases")
+    A("")
+    if state["github_releases"]:
+        A("| tag | title | published |")
+        A("|---|---|---|")
+        for r in state["github_releases"]:
+            A(f"| `{r['tagName']}` | {r['name']} | {r['publishedAt']} |")
+    else:
+        A("None, or `gh` unavailable.")
     A("")
     A("## Uncommitted paths")
     A("")

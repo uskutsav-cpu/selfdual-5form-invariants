@@ -1,28 +1,32 @@
 {
  "repository_state": {
-  "generated_utc": "2026-08-01T19:13:12+00:00",
-  "head": "a962e7f8111fe90cc02f5fb7760b5fd27db5a1d3",
-  "head_short": "a962e7f",
-  "head_subject": "Second certified sample point at rank 81, and fix a stale-summary trap",
-  "head_committer_date": "2026-08-01T14:13:11-05:00",
-  "branch": "research/maximal-chiral-four-form-program",
+  "generated_utc": "2026-08-01T20:29:11+00:00",
+  "head": "5a5ff7a6cb76a8604dbc28ee78cf0a35d2ca973d",
+  "head_short": "5a5ff7a",
+  "head_subject": "Regenerated artifacts from the final build",
+  "head_committer_date": "2026-08-01T15:14:22-05:00",
+  "branch": "HEAD",
   "remote": "https://github.com/uskutsav-cpu/selfdual-5form-invariants.git",
   "local_branches": [
-   "degree10/checkpointed-trace-pipeline 30fd0f63a9806bd2479aaeb402162ddfaad391e6",
-   "degree12/mac-exact-optimized de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
-   "fix/exact-canon-order-8 7ed4645b05294f31e80f73499dc284e20db330cc",
-   "main e84339dd3c8b1264765b89dd496323d61af140fc",
-   "research/maximal-chiral-four-form-program a962e7f8111fe90cc02f5fb7760b5fd27db5a1d3",
-   "stress-flow/classification-through-degree12 3ed32805b38ce34216b34888f6539e3538e90fb9",
-   "stress-flow/exact-low-degree-map 04175461fdd55142b17e2e1c4e2fedf2455453ac"
+   "(no branch, rebasing publication/jhep-tensor-spinor) 5a5ff7a6cb76a8604dbc28ee78cf0a35d2ca973d",
+   "publication/jhep-tensor-spinor 2763e11f45c4196b77b32d50cfa68e62a7f88fa8",
+   "research/maximal-chiral-four-form-program a962e7f8111fe90cc02f5fb7760b5fd27db5a1d3"
   ],
   "remote_branches": [
+   "canonical 5a5ff7a6cb76a8604dbc28ee78cf0a35d2ca973d",
+   "canonical/degree10/checkpointed-trace-pipeline 30fd0f63a9806bd2479aaeb402162ddfaad391e6",
+   "canonical/degree12/mac-exact-optimized de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
+   "canonical/fix/exact-canon-order-8 7ed4645b05294f31e80f73499dc284e20db330cc",
+   "canonical/main e84339dd3c8b1264765b89dd496323d61af140fc",
+   "canonical/research/maximal-chiral-four-form-program 5a5ff7a6cb76a8604dbc28ee78cf0a35d2ca973d",
+   "canonical/stress-flow/classification-through-degree12 3ed32805b38ce34216b34888f6539e3538e90fb9",
+   "canonical/stress-flow/exact-low-degree-map 04175461fdd55142b17e2e1c4e2fedf2455453ac",
    "origin e84339dd3c8b1264765b89dd496323d61af140fc",
    "origin/degree10/checkpointed-trace-pipeline 30fd0f63a9806bd2479aaeb402162ddfaad391e6",
    "origin/degree12/mac-exact-optimized de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
    "origin/fix/exact-canon-order-8 7ed4645b05294f31e80f73499dc284e20db330cc",
    "origin/main e84339dd3c8b1264765b89dd496323d61af140fc",
-   "origin/research/maximal-chiral-four-form-program 17d7537d708d3708979d9cbfcba6be84f73babd9",
+   "origin/research/maximal-chiral-four-form-program 5a5ff7a6cb76a8604dbc28ee78cf0a35d2ca973d",
    "origin/stress-flow/classification-through-degree12 3ed32805b38ce34216b34888f6539e3538e90fb9",
    "origin/stress-flow/exact-low-degree-map 04175461fdd55142b17e2e1c4e2fedf2455453ac"
   ],
@@ -36,9 +40,68 @@
    "tensor-spinor-equivalence-v1 6935783e21f6696b98e050e887bc42ee8d9703bc"
   ],
   "stashes": [],
-  "dirty_paths": [],
-  "tracked_file_count": 529,
-  "describe": "rank81-certificate-v2-5-ga962e7f"
+  "dirty_paths": [
+   "AA audit/JHEP_CLAIM_INPUTS.json",
+   "AA audit/JHEP_LIVE_REPOSITORY_STATE.md",
+   "AA audit/JHEP_RESULT_INVENTORY.json",
+   "M  scripts/emit_jhep_live_state.py",
+   "?? audit/.source_cache/"
+  ],
+  "tracked_file_count": 552,
+  "describe": "rank81-certificate-v2-30-g5a5ff7a",
+  "remote_refs": {
+   "heads": {
+    "degree10/checkpointed-trace-pipeline": "30fd0f63a9806bd2479aaeb402162ddfaad391e6",
+    "degree12/mac-exact-optimized": "de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
+    "fix/exact-canon-order-8": "7ed4645b05294f31e80f73499dc284e20db330cc",
+    "main": "e84339dd3c8b1264765b89dd496323d61af140fc",
+    "research/maximal-chiral-four-form-program": "bf7b9a2bd29bf43aad71c8d630e21bc2b8b14d66",
+    "stress-flow/classification-through-degree12": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+    "stress-flow/exact-low-degree-map": "04175461fdd55142b17e2e1c4e2fedf2455453ac"
+   },
+   "tags": {
+    "order10-verified-30fd0f6": "12b65ba557e1725a610ded3e29aa42c9d26c9164",
+    "prl-submission-package-v1": "82ec944b79d61c3946e9488b56ec484416aa810c",
+    "q10-freeze-v1": "6e74182681c5b7ef7fd51084d5686a2c0ad5e7ab",
+    "rank81-certificate-v1": "2a9fd62a30c89c21adc0882995cb5dfafeb0468f",
+    "rank81-certificate-v2": "8b9df40d184b31541eae865ae32dd9bd0b356504",
+    "spinor-trace-bridge-v1": "3e73d28de90cafbebe0f2e5e448627764ac62f15",
+    "tensor-spinor-equivalence-v1": "6935783e21f6696b98e050e887bc42ee8d9703bc"
+   },
+   "queried": true
+  },
+  "github_releases": [
+   {
+    "isLatest": true,
+    "name": "Degree-8 span equality with family ablation",
+    "publishedAt": "2026-08-01T17:23:24Z",
+    "tagName": "tensor-spinor-equivalence-v1"
+   },
+   {
+    "isLatest": false,
+    "name": "83/83 candidates, explicit 81x81 minor, trace-sector analysis",
+    "publishedAt": "2026-08-01T17:23:22Z",
+    "tagName": "rank81-certificate-v2"
+   },
+   {
+    "isLatest": false,
+    "name": "PRL draft and editorial package (held back)",
+    "publishedAt": "2026-08-01T16:28:25Z",
+    "tagName": "prl-submission-package-v1"
+   },
+   {
+    "isLatest": false,
+    "name": "Spinor/tensor bridge, exact over F_p",
+    "publishedAt": "2026-08-01T16:28:23Z",
+    "tagName": "spinor-trace-bridge-v1"
+   },
+   {
+    "isLatest": false,
+    "name": "Exact rank-81 Jacobian certificate",
+    "publishedAt": "2026-08-01T16:28:00Z",
+    "tagName": "rank81-certificate-v1"
+   }
+  ]
  },
  "artifacts": [
   {
@@ -47,9 +110,9 @@
    "regeneration_command": "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive <archive> --fitting-primes 32749,32719,32717 --holdout-primes 32713,32707 --seeds 11,22,33",
    "tracked": true,
    "exists": true,
-   "bytes": 110888,
-   "sha256": "caf9b66390fae2cb6994dbd8714d2ae95bacfa89f952d8e61dade26fae6fae32",
-   "mtime_utc": "2026-08-01T19:05:29+00:00",
+   "bytes": 110957,
+   "sha256": "6acecda746fd9490c6ff18d4fc4ad10f90c8ecd9e5fd4398cb72b2d90de6a02a",
+   "mtime_utc": "2026-08-01T20:28:45+00:00",
    "status": "PRESENT"
   },
   {
@@ -60,7 +123,7 @@
    "exists": true,
    "bytes": 4530,
    "sha256": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
-   "mtime_utc": "2026-08-01T16:51:21+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -71,7 +134,7 @@
    "exists": true,
    "bytes": 7141,
    "sha256": "93db9f8af7c6f25d330dc750565d9b3bdcec23f575e470a9a2139a8414e297ea",
-   "mtime_utc": "2026-07-31T21:10:48+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -82,7 +145,7 @@
    "exists": true,
    "bytes": 208923,
    "sha256": "5095d6c3bb8e11f467ca488ebd436641cdbff1b2f53adf41453f4937d89914c8",
-   "mtime_utc": "2026-07-31T22:58:56+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -93,7 +156,7 @@
    "exists": true,
    "bytes": 7538,
    "sha256": "e780f0972fb8bfcfbed0dcda89361fe9810763549bc6f2ac9bf0833585e7f16c",
-   "mtime_utc": "2026-07-29T16:23:13+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -104,7 +167,7 @@
    "exists": true,
    "bytes": 15684,
    "sha256": "92b02433d82e641cce0d2dbb5f1bec9878c191ccbda7e906f27ef1f555b0fee5",
-   "mtime_utc": "2026-07-29T18:18:21+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -115,7 +178,7 @@
    "exists": true,
    "bytes": 134920,
    "sha256": "9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113",
-   "mtime_utc": "2026-07-30T00:23:14+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -126,7 +189,7 @@
    "exists": true,
    "bytes": 144435,
    "sha256": "a9ecaf225b2dac4c67d62abf848ae8b427f1d16242ca7672240797127321788c",
-   "mtime_utc": "2026-07-29T16:09:34+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   },
   {
@@ -137,18 +200,7 @@
    "exists": true,
    "bytes": 206723,
    "sha256": "98f8bd513bbb5c06949a35d2bb8621105e0b8e5ff45294c9b1626df3f9b9442c",
-   "mtime_utc": "2026-07-29T23:58:23+00:00",
-   "status": "PRESENT"
-  },
-  {
-   "path": "results/live_state.json",
-   "certifies": "recorded repository state at generation time",
-   "regeneration_command": "python scripts/emit_jhep_live_state.py",
-   "tracked": false,
-   "exists": true,
-   "bytes": 2730,
-   "sha256": "13d402cbad1550f756bcac92d10b577eb917c53e371740eef4ff0b60d477b73c",
-   "mtime_utc": "2026-08-01T14:36:42+00:00",
+   "mtime_utc": "2026-08-01T19:17:46+00:00",
    "status": "PRESENT"
   }
  ],
