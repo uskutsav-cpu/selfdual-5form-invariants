@@ -164,7 +164,8 @@ def step_build(record: dict, resume: bool) -> bool:
         and diag.get("undefined_citations") == 0 \
         and diag.get("undefined_references") == 0
     record["steps"].append({"step": "isolated manuscript build", "passed": passed,
-                            "seconds": secs, "detail": diag})
+                            "seconds": secs, "detail": diag,
+                            "resumed_from_log": proc.resumed})
     flush(record)
     return passed
 
@@ -253,7 +254,10 @@ def main() -> int:
         if s.get("tests") is not None:
             detail = f"{s['tests']} tests"
         if s.get("resumed_from_log"):
-            detail = f"{detail} (from a completed step log)"
+            # Without this a resumed step reads as a fresh run that took 0.0 s,
+            # which is precisely the impression this file must not give.
+            mark = "pass (resumed)" if s.get("passed") else mark
+            detail = f"{detail} — read from a completed step log, not re-run"
         rows.append(f"| {s['step']} | {mark} | {detail} | {s.get('seconds', '')} |")
     rows += ["", "## Not regenerated here", ""]
     for path, why in record["not_regenerated"].items():

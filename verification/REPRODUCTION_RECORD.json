@@ -1,9 +1,9 @@
 {
  "schema": 1,
  "generated_by": "scripts/reproduce_all.py",
- "commit": "5b381d73fee1593938743ad85890dcc2c3f64b9a",
+ "commit": "43624e8c0b67b1f623b6e3115ba1b150230fc258",
  "working_tree_clean": false,
- "when": "2026-08-01T20:07:14Z",
+ "when": "2026-08-01T20:08:43Z",
  "environment": {
   "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
   "python": "3.13.5",
@@ -23,7 +23,7 @@
   {
    "step": "regenerate numbers",
    "passed": true,
-   "seconds": 2.5,
+   "seconds": 2.3,
    "detail": {
     "macros": 99,
     "artifacts_missing": 0
@@ -32,13 +32,13 @@
   {
    "step": "regenerate tables",
    "passed": true,
-   "seconds": 0.4,
+   "seconds": 0.2,
    "detail": null
   },
   {
    "step": "regenerate figures",
    "passed": true,
-   "seconds": 9.6,
+   "seconds": 8.1,
    "detail": null
   },
   {
@@ -52,12 +52,13 @@
     "overfull_boxes": 0,
     "pdf_produced": true,
     "pages": 23
-   }
+   },
+   "resumed_from_log": true
   },
   {
    "step": "manuscript gates",
    "passed": true,
-   "seconds": 0.5,
+   "seconds": 0.4,
    "detail": {
     "checks": 63
    },
