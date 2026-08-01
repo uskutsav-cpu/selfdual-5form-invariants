@@ -294,7 +294,20 @@ may be upgraded to `EXACT-THM` on the strength of prime agreement alone.
   in one basis. Also forbidden: presenting them as flow **generators**
   (C-MIN-03).
 - **Caveats**: Phase 1 gate NOT met pending intrinsic expressions; PO-08
-  (basis-change minimality) still open.
+  still PARTIAL, but its two halves are now separated:
+  - *cardinality* minimality is **basis-independent and proved**. Any set that
+    closes degree `d` has at least `dim Q_d` elements, because the quotient map
+    is linear and a span of `k` vectors has dimension at most `k`; the exhibited
+    sets have exactly 3 and 4 elements against deficits of 3 and 4, so they are
+    of minimum cardinality **in any basis**. See PO-08 in
+    `docs/PROOF_OBLIGATIONS.md` and `tests/test_quotient_cardinality_bound.py`.
+  - *removal* minimality — that no single exhibited element may be dropped —
+    remains shown only in the fixed basis and under the permutation subgroup,
+    and is **still open** under general `GL`.
+- **Newly permitted by the above**: "no fewer than three degree-10 and four
+  degree-12 directions can close the respective deficits, in any basis."
+- **Still forbidden**: "this is the unique minimal set", and any basis-free
+  claim about *which* directions are required.
 
 ## C-MIN-04 — the closure is coordinate-aligned
 

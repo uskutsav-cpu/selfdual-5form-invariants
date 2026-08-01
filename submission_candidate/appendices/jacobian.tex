@@ -15,8 +15,27 @@ $\{-1,0,+1\}$, annihilated exactly over $\mathbb{Z}$ --- the Jacobian is the
 reduction of an integer matrix, so its modular rank is a rigorous lower bound on
 the rank in characteristic zero.
 
-\paragraph{Scope.} The exact rank quoted is that of the port-graph subset of the
-archived candidate selection: $\nArchivePortGraphs$ of $\nArchiveCandidates$
-candidates. The $\nArchiveStructured$ structured tensor-word candidates were not
-re-implemented in exact arithmetic and are excluded from the count rather than
-assumed to contribute nothing.
+\paragraph{Scope.} The exact computation covers the complete archived candidate
+selection: $\exactJacScheduled$ scheduled, $\exactJacEvaluated$ evaluated,
+$\exactJacErrors$ evaluation errors, $\exactJacZeroRows$ zero rows. Every
+candidate carries a terminal status with a value, a derivative row, an output
+hash, a runtime and a peak-RSS figure, so a candidate that failed would be
+visible rather than silently absent from a rank.
+
+An intermediate version of this appendix quoted $\archiveJacobianRank$ for the
+port-graph subset alone ($\nArchivePortGraphs$ of $\nArchiveCandidates$), with
+the $\nArchiveStructured$ structured tensor-word candidates excluded rather than
+assumed inert. Those candidates were subsequently implemented in the same exact
+arithmetic; section~\ref{sec:cert81} reports the result for the full selection.
+
+\paragraph{What the number of primes does and does not buy.} For the rank
+statement the prime count is not what carries the argument. An integer matrix
+whose determinant vanishes vanishes modulo every prime, so a single prime at
+which the explicit $\minorSize\times\minorSize$ minor has non-vanishing
+determinant already establishes that the integer minor is nonzero, and hence the
+characteristic-zero bound. No height bound, Hadamard estimate or rational
+reconstruction enters. Additional primes are run because they guard against an
+indexing error in selecting the minor --- a different failure mode, and one a
+single prime would not catch. This is in contrast to the subspace dimensions of
+section~\ref{sec:decomp}, which are equalities rather than one-sided bounds and
+where additional primes do reduce genuine risk.

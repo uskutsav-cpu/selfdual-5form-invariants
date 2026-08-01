@@ -175,9 +175,48 @@ basis (~530 s/prime, plus changes to the generator machinery so the monomial
 index is re-expressed consistently). Not attempted; scope recorded rather than
 claimed.
 
-**Also owed**: an argument that the intrinsic quotient dimension bounds the
-minimal cardinality from below, which would make cardinality minimality
-basis-independent by construction rather than by testing.
+### The cardinality half — **DISCHARGED**, analytically
+
+The obligation "an argument that the intrinsic quotient dimension bounds the
+minimal cardinality from below" is discharged by the following, which needs no
+computation and no choice of basis.
+
+**Proposition.** Let `A` be the degree-`d` atlas, `D ⊆ A` the reachable subspace,
+and `π : A → Q = A/D` the quotient map. If a finite set `S ⊆ A` closes the
+degree, i.e. `D + span(S) = A`, then
+
+        |S| ≥ dim Q .
+
+*Proof.* `D + span(S) = A` gives `π(span(S)) = π(A) = Q`, since `π` is surjective
+and kills `D`. But `π` is linear, so `π(span(S)) = span(π(S))`, and a span of
+`|S|` vectors has dimension at most `|S|`. Hence `dim Q ≤ |S|`. ∎
+
+**Why this is basis-independent.** Every object in the statement is defined
+without reference to a basis: `A` is a space of invariants, `D` is the set
+reachable by the flow, `Q` is their quotient, and `dim Q` is an invariant of that
+quotient. A change of basis of `A` induces an isomorphism of `Q` and leaves
+`dim Q` unchanged, so the bound transports unchanged. In particular the observed
+deficits — 3 at degree 10 and 4 at degree 12 — cannot be closed by fewer than 3
+and 4 elements respectively **in any basis**, and the exhibited sets meet the
+bound and are therefore of minimum cardinality.
+
+Checked in `tests/test_quotient_cardinality_bound.py`, which verifies the bound
+numerically against the recorded certificates and also verifies the hypothesis
+the proposition needs (that the exhibited sets do close the degree). The test is
+a guard on the *inputs*, not evidence for the proposition, which is proved above.
+
+**What this does not discharge.** Minimality of *cardinality* is now
+basis-independent. Minimality under *removal* — the statement that no single
+element of the exhibited set can be dropped — is a stronger, set-specific
+property, and it remains shown only in the fixed basis and under the permutation
+subgroup. A general `GL` test still requires regenerating the certificates in the
+new basis as described above, and is still not attempted. So PO-08 stays
+**PARTIAL**, with its two halves now separated:
+
+| half | status |
+|---|---|
+| cardinality bound `|S| ≥ dim Q`, any basis | **DISCHARGED** (analytic, above) |
+| removal-minimality of the exhibited set under general `GL` | **OPEN** |
 
 ## PO-09 — exceptional primes
 

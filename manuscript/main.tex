@@ -4,6 +4,8 @@
 \usepackage{jheppub}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{proposition}{Proposition}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -302,6 +304,40 @@ This is the concrete statement that the flow construction does not reach the
 whole degree-ten space: there are $\dimQten$ independent directions of local
 degree-ten structure that it cannot generate. Explicit compact representatives
 are given in section~\ref{sec:pureN}.
+
+\subsection{How many directions are needed, in any basis}
+\label{sec:cardinality}
+
+Everything above is a statement about dimensions computed in a particular graph
+basis, and it is worth isolating the one consequence that does not depend on that
+choice.
+
+\begin{proposition}
+\label{prop:cardinality}
+Let $A$ be the degree-$d$ atlas, $D\subseteq A$ the reachable subspace, and
+$\pi : A \to Q = A/D$ the quotient map. If a finite set $S\subseteq A$ closes the
+degree, that is $D + \mathrm{span}(S) = A$, then $|S| \ge \dim Q$.
+\end{proposition}
+
+\begin{proof}
+Applying $\pi$ to $D+\mathrm{span}(S)=A$ and using $\pi(D)=0$ and the
+surjectivity of $\pi$ gives $\mathrm{span}(\pi(S)) = Q$. A span of $|S|$ vectors
+has dimension at most $|S|$, so $\dim Q \le |S|$.
+\end{proof}
+
+The statement is basis-free: $A$, $D$ and $Q$ are defined without reference to
+coordinates, and a change of basis of $A$ induces an isomorphism of $Q$ and
+leaves $\dim Q$ unchanged. Since $\dim Q_{10} = \dimQten$ and the exhibited
+completion has exactly $\dimQten$ elements, that completion is of \emph{minimum
+cardinality in any basis} --- no relabelling or linear redefinition of the atlas
+can close degree ten with fewer.
+
+We are deliberately narrow about what this covers. It bounds the \emph{number} of
+directions required. It says nothing about \emph{which} directions those are, and
+it is not the stronger statement that no single element of the exhibited set may
+be dropped. That removal-minimality is verified only in the fixed basis and under
+relabellings of it, and is listed among the limitations of
+section~\ref{sec:limitations}.
 
 %=============================================================================
 \section{Compact bases for $Q_{10}$}
@@ -689,9 +725,16 @@ of these follows from the algebra computed here.
       equivariance, not read from documentation.
 \item \textbf{Degree twelve is not classified.} It appears here only as
       background and outlook.
-\item \textbf{The structured tensor-word candidates were not re-implemented} in
-      exact arithmetic; the exact Jacobian rank quoted is that of the port-graph
-      subset only.
+\item \textbf{Minimality is bounded in cardinality only.}
+      Proposition~\ref{prop:cardinality} shows no basis admits a smaller closing
+      set. It does not show that the particular exhibited set is irredundant
+      under an arbitrary linear change of basis; that is verified in the fixed
+      graph basis and under relabellings of it, and no more.
+\item \textbf{The exact rank is a lower bound at finitely many points.} It is
+      unconditional in characteristic zero because the Jacobian is an integer
+      reduction, but it is evaluated at specific sample points and does not by
+      itself establish a statement about a generic point. The matching upper
+      bound is analytic and taken from the literature.
 \end{enumerate}
 
 %=============================================================================
