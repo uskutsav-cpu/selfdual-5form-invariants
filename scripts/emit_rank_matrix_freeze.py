@@ -136,6 +136,23 @@ def stamp(repo: Path) -> int:
     frozen = json.loads((audit / "RANK_MATRIX_EXECUTION_FREEZE.json").read_text())
     cells_dir = repo / "results" / "rank81" / "cells"
     rows, problems = [], []
+
+    # Re-verify the evaluator surface rather than asserting it from the freeze
+    # record. Binding a cell to a commit is circular if the binding is just the
+    # commit copied across; what makes it evidence is that the files still hash
+    # to what they hashed to when the matrix started. HEAD is allowed to move
+    # for commits that touch nothing source-critical, and it did.
+    drifted = []
+    for rel, want in frozen["source_critical_files"].items():
+        if want is None:
+            continue
+        got = sha256_file(repo / rel)
+        if got != want:
+            drifted.append({"path": rel, "frozen": want, "now": got})
+    if drifted:
+        problems.append(
+            "source-critical files changed since the freeze, so these cells span "
+            "more than one evaluator: " + ", ".join(d["path"] for d in drifted))
     for path in sorted(cells_dir.glob("cell_p*_s*.json")):
         cell = json.loads(path.read_text(encoding="utf-8"))
         budget_ok = cell.get("flop_limit") == frozen["flop_budget"]
@@ -172,6 +189,12 @@ def stamp(repo: Path) -> int:
         "n_cells": len(rows),
         "cells": rows,
         "problems": problems,
+        "source_critical_reverified": not drifted,
+        "source_critical_drift": drifted,
+        "head_at_stamp_time": git(repo, "rev-parse", "HEAD"),
+        "head_moved_since_freeze": git(repo, "rev-parse", "HEAD") != frozen[
+            "jhep_branch_commit"],
+        "head_move_is_benign": not drifted,
         "all_cells_bound_to_freeze": not problems,
         "note": ("Cells are immutable and were not rewritten to carry this "
                  "metadata; rewriting them would break their content hashes and "
