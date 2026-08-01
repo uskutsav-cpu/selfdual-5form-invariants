@@ -192,8 +192,20 @@ def main() -> int:
         macro("spinorDim", 16),
     ]
 
+    # one extra macro the Letter needs and the long form does not
+    inc2 = load("results/intrinsic_candidates/degree10_space_incidence.json")
+    if inc2:
+        pr = sorted(inc2["per_prime"])[0]
+        dd = inc2["per_prime"][pr]["dims"]
+        lines.append(macro("dimQtenMinusOne", dd["A10"] - dd["D10"] - 1))
+    else:
+        lines.append(macro("dimQtenMinusOne", None))
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n")
+    prl = ROOT / "manuscript" / "prl" / "generated" / "numbers.tex"
+    prl.parent.mkdir(parents=True, exist_ok=True)
+    prl.write_text("\n".join(lines) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)} ({len(lines)} lines)")
     if MISSING:
         print(f"WARNING: {len(MISSING)} macros have no artifact yet:")

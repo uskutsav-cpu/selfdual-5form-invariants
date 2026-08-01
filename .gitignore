@@ -20,3 +20,9 @@ manuscript/*.out
 manuscript/*.bbl
 manuscript/*.blg
 manuscript/*.toc
+manuscript/prl/*.aux
+manuscript/prl/*.log
+manuscript/prl/*.out
+manuscript/prl/*.blg
+manuscript/prl/mainNotes.bib
+results/rank81/rowcache_*.json
