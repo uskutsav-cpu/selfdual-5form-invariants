@@ -8,6 +8,7 @@ code audit,"archive inventory, duplicate report, completion classification, base
 signature derivation,"identification of the oscillator frame as split (5,5); correction of a recorded error",spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md; test_null_frame_signature_is_split,AI-assisted; requires confirmation (review item G-2)
 bridge derivation and implementation,"exact modular Clifford, frame congruence, forward map, left inverse, equivariance certificates",spinor_trace_bridge/,AI-assisted; requires confirmation (G-1, G-4)
 exact Jacobian,"analytic amputated derivative; integral basis making the modular rank a rigorous bound",spinor_trace_bridge/src/sdbridge/jacobian.py and integral.py,AI-assisted
+analytic argument,"cardinality bound |S| >= dim Q making minimality basis-independent; classification of which degree-ten dimensions are exposed to an exceptional prime and in which direction",docs/PROOF_OBLIGATIONS.md PO-08 and PO-09; manuscript proposition 6.4,AI-derived; elementary and explicitly not claimed as novel (review item G-9)
 computation,"all runs executed on one laptop; no cluster was used",verification/*.json with wall times,AI-executed
 analysis,"incidence table, product/primitive resolution, common-sample comparison",results/ and verification/,AI-assisted
 visualization,"all figures generated from artifacts by versioned scripts",manuscript/scripts/make_figures.py,AI-generated
