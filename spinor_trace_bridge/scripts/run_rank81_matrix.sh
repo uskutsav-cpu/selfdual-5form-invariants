@@ -1,0 +1,52 @@
+#!/bin/sh
+# Compute the rank-81 certificate matrix ONE CELL AT A TIME.
+#
+# Sequential on purpose. This machine has 8 GiB and running several cells at
+# once put it into swap, which slowed every cell down and produced nothing
+# faster. One process, one cell, then the next.
+#
+# Every cell is resumable: a completed cell is skipped, and a partial cell
+# restarts from its row cache. Interrupting this script at any point loses at
+# most the cell in flight.
+#
+# Usage:
+#   sh spinor_trace_bridge/scripts/run_rank81_matrix.sh <archive> [python]
+
+set -u
+
+ARCHIVE="${1:?usage: run_rank81_matrix.sh <archive-dir> [python]}"
+PY="${2:-python3}"
+HERE="$(cd "$(dirname "$0")/../.." && pwd)"
+DRIVER="$HERE/spinor_trace_bridge/scripts/run_rank81_cell.py"
+
+FITTING="32749 32719 32717"
+HOLDOUT="32713 32707"
+SEEDS="11 22 33"
+
+echo "matrix start $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "fitting: $FITTING"
+echo "holdout: $HOLDOUT"
+echo "seeds:   $SEEDS"
+
+failed=0
+for role in fitting holdout; do
+    case "$role" in
+        fitting) primes="$FITTING" ;;
+        holdout) primes="$HOLDOUT" ;;
+    esac
+    for p in $primes; do
+        for s in $SEEDS; do
+            echo "--- cell p=$p seed=$s role=$role $(date -u +%H:%M:%SZ)"
+            "$PY" "$DRIVER" --archive "$ARCHIVE" \
+                --prime "$p" --seed "$s" --role "$role"
+            rc=$?
+            if [ "$rc" -ne 0 ]; then
+                echo "CELL FAILED p=$p seed=$s rc=$rc"
+                failed=$((failed + 1))
+            fi
+        done
+    done
+done
+
+echo "matrix end $(date -u +%Y-%m-%dT%H:%M:%SZ) failed_cells=$failed"
+exit "$failed"

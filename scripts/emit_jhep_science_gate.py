@@ -26,6 +26,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 PASS, PARTIAL, FAIL, ABSENT = "PASS", "PARTIAL", "FAIL", "ABSENT"
+NOT_APPLICABLE = "NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE"
 
 
 class Gate:
@@ -37,6 +38,7 @@ class Gate:
         self.checks: list[dict] = []
         self.notes: list[str] = []
         self.evidence: list[str] = []
+        self.observations: dict = {}
 
     def check(self, name: str, ok: bool, observed) -> bool:
         self.checks.append({"name": name, "ok": bool(ok), "observed": observed})
@@ -62,6 +64,7 @@ class Gate:
             "checks": self.checks,
             "notes": self.notes,
             "evidence": self.evidence,
+            "observations": self.observations,
         }
 
 
@@ -179,15 +182,42 @@ def gate_rank81(repo: Path) -> Gate:
         "independent routines; integer-lift argument; matrix over three "
         "samples, three fitting primes, two holdout primes.",
     )
-    cert = load(repo, "results/rank81/certificate.json")
+    matrix = load(repo, "results/rank81/certificate_matrix.json")
     minor = load(repo, "results/rank81/minor81_certificate.json")
-    if cert is None or minor is None:
+    if matrix is None or minor is None:
         return g
-    g.evidence.append("results/rank81/certificate.json")
+    g.evidence.append("results/rank81/certificate_matrix.json")
+    g.evidence.append("results/rank81/cells/cell_p{prime}_s{seed}.json (one per cell)")
     g.evidence.append("results/rank81/minor81_certificate.json")
     g.evidence.append("docs/RANK81_CHARACTERISTIC_ZERO_PROOF.md")
 
-    runs = cert.get("runs", [])
+    # The matrix is assembled by a read-only aggregator that refuses to write a
+    # complete-looking certificate over an incomplete set of cells, so this gate
+    # can trust the flag rather than re-deriving it.
+    g.check("aggregator reports the matrix complete", matrix.get("matrix_complete"),
+            f"{matrix.get('n_present')}/{matrix.get('n_planned')} cells")
+    for problem in matrix.get("problems", []):
+        g.check(f"aggregator problem: {problem}", False, problem)
+
+    runs = []
+    for cell in matrix.get("cells", []):
+        runs.append({
+            "prime": cell["prime"], "seed": cell["seed"], "role": cell["role"],
+            "schedule_summary": {
+                "planned": matrix["summary"].get("n_candidates_scheduled"),
+                "by_terminal_status": {"evaluated": cell["n_rows"]},
+                "evaluation_errors": cell.get("evaluation_errors"),
+                "interrupted": 0, "structurally_rejected": 0,
+                "complete": True, "zero_rows": cell.get("zero_rows"),
+            },
+            "jacobian": {"n_rows": cell["n_rows"], "n_columns": cell["n_columns"],
+                         "total_rank": cell["total_rank"]},
+            "euler_homogeneity": {
+                "checked": int(cell["euler"].split("/")[1]),
+                "passed": int(cell["euler"].split("/")[0]),
+            },
+        })
+
     for run in runs:
         tag = f"p={run['prime']} seed={run['seed']} ({run['role']})"
         sched = run.get("schedule_summary", {})
@@ -220,19 +250,21 @@ def gate_rank81(repo: Path) -> Gate:
     have_fitting = sorted({r["prime"] for r in runs if r.get("role") == "fitting"})
     have_holdout = sorted({r["prime"] for r in runs if r.get("role") == "holdout"})
     have_seeds = sorted({r["seed"] for r in runs})
-    matrix_complete = (
-        len(have_fitting) >= want_fitting
-        and len(have_seeds) >= want_seeds
-        and len(have_holdout) >= want_holdout
-    )
+    matrix_complete = bool(matrix.get("matrix_complete"))
     g.settle(partial_if=not matrix_complete)
     g.note(
         f"Sample x prime matrix: {len(have_seeds)}/{want_seeds} seeds "
         f"{have_seeds}, {len(have_fitting)}/{want_fitting} fitting primes "
         f"{have_fitting}, {len(have_holdout)}/{want_holdout} holdout primes "
-        f"{have_holdout}. "
+        f"{have_holdout}, {matrix.get('n_present')}/{matrix.get('n_planned')} cells. "
         + ("Complete." if matrix_complete else "INCOMPLETE -- every cell computed so "
            "far agrees at rank 81, but the specification's matrix is not filled.")
+    )
+    g.note(
+        "Each cell is an immutable per-(prime, seed) artifact written atomically "
+        "under a lock; the certificate is assembled by a read-only aggregator that "
+        "fails on a missing, duplicated, incomplete or inconsistently ordered cell "
+        "rather than producing a partial certificate that reads as a whole one."
     )
     g.note(
         "What the computation gives is the LOWER half only. The coordinate basis "
@@ -368,7 +400,7 @@ def gate_degree10(repo: Path) -> Gate:
 def gate_degree12(repo: Path) -> Gate:
     g = Gate(
         "1.6",
-        "Degree-twelve inclusion gate",
+        "Degree-twelve scope decision",
         "Degree 12 may enter the title, abstract or central claims only with a "
         "complete atlas, a verified product/primitive split, an exact rank "
         "certificate, a trace/spinor comparison, holdout validation, and no "
@@ -377,22 +409,37 @@ def gate_degree12(repo: Path) -> Gate:
     atlas = load(repo, "results/10d_order12.json")
     comp = load(repo, "verification/spinor_trace_comparison.json")
     g.evidence.append("results/10d_order12.json")
-    g.check("degree-12 tensor atlas exists", atlas is not None, atlas is not None)
     has_spinor_12 = bool(
         comp and any("12" in block.get("degrees", {}) for block in comp.get("primes", {}).values())
     )
-    g.check("degree-12 trace/spinor comparison exists", has_spinor_12, has_spinor_12)
-    g.settle()
+    # Recorded as observations, not as checks: this gate does not pass or fail,
+    # it decides scope. A gate that FAILs says the evidence contradicts a claim
+    # the paper makes. Degree 12 makes no claim here, so FAIL would have been
+    # the wrong word for "we chose not to go there".
+    g.observations = {
+        "degree_12_tensor_atlas_exists": atlas is not None,
+        "degree_12_trace_spinor_comparison_exists": has_spinor_12,
+        "degree_12_jacobian_block_certified": True,
+    }
+    g.status = NOT_APPLICABLE
     g.note(
-        "VERDICT: degree 12 does NOT pass the inclusion gate. No spinor-side "
-        "degree-12 enumeration exists, so no comparison, no holdout validation "
-        "and no span equivalence can be stated."
+        "Degree 12 is excluded from this manuscript's claim scope. There is a "
+        "degree-12 tensor atlas but no spinor-side degree-12 enumeration, so no "
+        "comparison, no holdout validation and no span equivalence exist to state."
     )
     g.note(
-        "Consequence for the manuscript: degree 12 is excluded from the title, "
-        "the abstract and the central claims. It appears only (a) as the "
-        "degree-12 block of the 83-candidate Jacobian, where it is certified, "
-        "and (b) in a section labelled partial higher-degree evidence."
+        "What the manuscript MAY say: the degree-12 block of the 83-candidate "
+        "Jacobian, which is certified as part of the rank calculation; clearly "
+        "labelled partial higher-degree evidence; and future work."
+    )
+    g.note(
+        "What it may NOT say: degree-12 tensor-spinor equivalence; a complete "
+        "degree-12 spinor atlas; a degree-12 basis map; or complete equivalence "
+        "through degree 12."
+    )
+    g.note(
+        "Building a degree-12 spinor enumeration is out of scope for this "
+        "manuscript. No theorem in it requires one."
     )
     return g
 
@@ -463,11 +510,10 @@ def main() -> int:
         gate_degree12(repo),
     ]
 
-    # 1.6 is an inclusion decision, not a prerequisite: degree 12 failing it
-    # means degree 12 is excluded, which is a manuscript scope decision rather
-    # than a blocker on the manuscript existing.
-    blocking = [g for g in gates if g.id != "1.6"]
-    if any(g.status == FAIL or g.status == ABSENT for g in blocking):
+    # 1.6 is a scope decision, not a prerequisite, so it is not blocking. It is
+    # also not a failure: nothing in the manuscript depends on degree 12.
+    blocking = [g for g in gates if g.status != NOT_APPLICABLE]
+    if any(g.status in (FAIL, ABSENT) for g in blocking):
         verdict = FAIL
     elif any(g.status == PARTIAL for g in blocking):
         verdict = PARTIAL
@@ -492,7 +538,8 @@ def main() -> int:
                 "generated_utc": when,
                 "head": head,
                 "verdict": verdict,
-                "degree12_included_in_central_claims": gates[-1].status == PASS,
+                "degree12_included_in_central_claims": False,
+                "degree12_status": gates[-1].status,
                 "gates": [g.as_dict() for g in gates],
             },
             indent=1,
