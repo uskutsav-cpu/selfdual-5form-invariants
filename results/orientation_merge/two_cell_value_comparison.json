@@ -1,0 +1,20 @@
+{
+ "generated_utc": "2026-08-02T22:20:44+00:00",
+ "question": "Did the canonical orientation fix change any computed value at primes where the plain square-root branch was already self-dual-surviving?",
+ "answer": "No. Zero value differences across the three cells compared.",
+ "cells_compared": [
+  "cell_p32749_s11.json",
+  "cell_p32749_s22.json",
+  "cell_p32749_s33.json"
+ ],
+ "value_differences": 0,
+ "route_annotations_that_differ": [
+  "[cached]",
+  "[dense-I fallback plan]"
+ ],
+ "why_route_differs": "One row cache was rebuilt by the merge, so those rows were recomputed rather than served from cache, and one derivative row reached its value through the dense-I plan in one run and from cache in the other. output_hash matches in every case.",
+ "why_it_holds": "orientation_normalised_L tries the plain branch first and keeps it when the self-dual space survives. At 32749, 32719, 32717, 32713 and 32693 it does, so the frame L is bit-identical to the pre-fix frame and every downstream value follows. Only 32707 and 32771, where the plain branch fails, get a different -- and correct -- frame.",
+ "consequence": "The pre-fix cell VALUES were mathematically correct. They are superseded as publication certificates because the evaluator provenance changed, not because the arithmetic was wrong.",
+ "pre_fix_cells_preserved_at": "/tmp/preorientation_cells (15 cells), and in git history",
+ "n_pre_fix_cells": 15
+}
