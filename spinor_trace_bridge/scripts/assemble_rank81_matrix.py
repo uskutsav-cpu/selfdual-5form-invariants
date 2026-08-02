@@ -33,7 +33,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 FITTING = [32749, 32719, 32717]
-HOLDOUT = [32713, 32693]   # 32707 is 3 mod 8; see docs/EXCEPTIONAL_PRIMES_DUALITY_CHANNEL.md
+# 32707 is restored. The earlier exclusion rested on a p = 3 mod 8 rule that is
+# refuted: 32633 is 1 mod 8 and needs the same square-root branch. Once the
+# frame orientation is pinned, every residue class works. See
+# docs/CANONICAL_ORIENTATION_FIXED_BRIDGE.md.
+HOLDOUT = [32713, 32707]
+# An ADDITION, never a substitute for 32707. Counted separately so a matrix
+# that quietly swapped one for the other cannot look complete.
+EXTRA = [32693]
 SEEDS = [11, 22, 33]
 
 
@@ -93,6 +100,37 @@ def _emit_release_artifacts(out_dir: Path, report: dict) -> None:
         json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
+
+def check_one_cell(cell: dict, p: int, s: int, role: str, prefix: str = "") -> list[str]:
+    """Per-cell checks, applied identically to required and extra cells."""
+    out: list[str] = []
+    tag = f"{prefix}prime={p} seed={s}"
+    if cell["cell"]["role"] != role:
+        out.append(f"{tag}: role {cell['cell']['role']} != {role}")
+    flag = cell.get("cell_complete")
+    if flag not in (True, False):
+        out.append(f"{tag}: malformed terminal status {flag!r}")
+    elif not flag:
+        out.append(f"{tag}: cell not marked complete")
+    summary = cell["schedule_summary"]
+    if summary.get("evaluation_errors"):
+        out.append(f"{tag}: {summary['evaluation_errors']} evaluation errors")
+    if summary.get("interrupted"):
+        out.append(f"{tag}: {summary['interrupted']} interrupted")
+    if summary.get("silently_skipped"):
+        out.append(f"{tag}: {summary['silently_skipped']} silently skipped candidates")
+    if summary.get("zero_rows"):
+        out.append(f"{tag}: {summary['zero_rows']} zero rows")
+    evaluated = summary.get("by_terminal_status", {}).get("evaluated")
+    planned_n = summary.get("planned")
+    if evaluated is not None and planned_n is not None and evaluated != planned_n:
+        out.append(f"{tag}: {evaluated} of {planned_n} candidates evaluated")
+    euler = cell["euler_homogeneity"]
+    if euler["failed"] or euler["passed"] != euler["checked"]:
+        out.append(f"{tag}: Euler {euler['passed']}/{euler['checked']}")
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=".", type=Path)
@@ -101,6 +139,7 @@ def main() -> int:
     ap.add_argument("--fitting-primes", default=",".join(map(str, FITTING)))
     ap.add_argument("--holdout-primes", default=",".join(map(str, HOLDOUT)))
     ap.add_argument("--seeds", default=",".join(map(str, SEEDS)))
+    ap.add_argument("--extra-primes", default=",".join(map(str, EXTRA)))
     ap.add_argument("--freeze", default=None,
                     help="RANK_MATRIX_EXECUTION_FREEZE.json to check cells against")
     ap.add_argument("--provenance", default=None,
@@ -116,8 +155,10 @@ def main() -> int:
     fitting = [int(x) for x in args.fitting_primes.split(",") if x.strip()]
     holdout = [int(x) for x in args.holdout_primes.split(",") if x.strip()]
     seeds = [int(x) for x in args.seeds.split(",") if x.strip()]
+    extra = [int(x) for x in args.extra_primes.split(",") if x.strip()]
     planned = [(p, s, "fitting") for p in fitting for s in seeds] + \
               [(p, s, "holdout") for p in holdout for s in seeds]
+    planned_extra = [(p, s, "extra") for p in extra for s in seeds]
 
     freeze = json.loads(Path(args.freeze).read_text()) if args.freeze else None
     provenance = (json.loads(Path(args.provenance).read_text())
@@ -149,41 +190,38 @@ def main() -> int:
         if cell is None:
             problems.append(f"missing cell prime={p} seed={s} ({role})")
             continue
-        if cell["cell"]["role"] != role:
-            problems.append(f"prime={p} seed={s}: role {cell['cell']['role']} != {role}")
-        if not cell.get("cell_complete"):
-            problems.append(f"prime={p} seed={s}: cell not marked complete")
-        summary = cell["schedule_summary"]
-        if summary.get("evaluation_errors"):
-            problems.append(f"prime={p} seed={s}: {summary['evaluation_errors']} evaluation errors")
-        if summary.get("interrupted"):
-            problems.append(f"prime={p} seed={s}: {summary['interrupted']} interrupted")
-        if summary.get("zero_rows"):
-            problems.append(f"prime={p} seed={s}: {summary['zero_rows']} zero rows")
-        euler = cell["euler_homogeneity"]
-        if euler["failed"] or euler["passed"] != euler["checked"]:
-            problems.append(f"prime={p} seed={s}: Euler {euler['passed']}/{euler['checked']}")
+        problems.extend(check_one_cell(cell, p, s, role))
 
     used = [by_key[(p, s)] for p, s, _ in planned if (p, s) in by_key]
-    orders = {c.get("candidate_order_sha256") for c in used}
+    extra_rows = []
+    for p, s, role in planned_extra:
+        cell = by_key.get((p, s))
+        if cell is None:
+            problems.append(f"missing extra validation cell prime={p} seed={s}")
+            continue
+        problems.extend(check_one_cell(cell, p, s, role, prefix="extra "))
+        extra_rows.append(cell)
+
+    consistency_set = used + extra_rows  # an extra cell that disagrees is not validating
+    orders = {c.get("candidate_order_sha256") for c in consistency_set}
     if len(orders) > 1:
         problems.append(f"candidate ordering differs between cells: {sorted(orders)}")
-    dims = {c.get("coordinate_dimension") for c in used}
+    dims = {c.get("coordinate_dimension") for c in consistency_set}
     if len(dims) > 1:
         problems.append(f"coordinate dimension differs between cells: {sorted(dims)}")
-    counts = {c.get("n_candidates_scheduled") for c in used}
+    counts = {c.get("n_candidates_scheduled") for c in consistency_set}
     if len(counts) > 1:
         problems.append(f"scheduled candidate count differs between cells: {sorted(counts)}")
     # A differing contraction budget silently changes which candidates evaluate:
     # at 2e10 the degree-12 port graph c046 errors out, at 1e11 it evaluates.
     # Cells computed under different budgets are not comparable.
-    budgets = {c.get("flop_limit") for c in used}
+    budgets = {c.get("flop_limit") for c in consistency_set}
     if len(budgets) > 1:
         problems.append(f"contraction flop budget differs between cells: {sorted(budgets)}")
-    samples = {c.get("inputs", {}).get("selection_sha256") for c in used}
+    samples = {c.get("inputs", {}).get("selection_sha256") for c in consistency_set}
     if len(samples) > 1:
         problems.append(f"candidate selection list differs between cells: {sorted(samples)}")
-    shapes = {(c["jacobian"]["n_rows"], c["jacobian"]["n_columns"]) for c in used}
+    shapes = {(c["jacobian"]["n_rows"], c["jacobian"]["n_columns"]) for c in consistency_set}
     if len(shapes) > 1:
         problems.append(f"Jacobian dimensions differ between cells: {sorted(shapes)}")
 
@@ -192,7 +230,7 @@ def main() -> int:
     # even if it looks identical, so the source commit is checked here rather
     # than assumed.
     if freeze is not None:
-        for c in used:
+        for c in consistency_set:
             key = f"prime={c['cell']['prime']} seed={c['cell']['seed']}"
             if c.get("flop_limit") != freeze.get("flop_budget"):
                 problems.append(f"{key}: flop budget {c.get('flop_limit')} does not "
@@ -201,7 +239,7 @@ def main() -> int:
             if provenance.get("execution_id") != freeze.get("execution_id"):
                 problems.append("provenance execution_id does not match the freeze record")
             bound = {(r["prime"], r["seed"]): r for r in provenance.get("cells", [])}
-            for c in used:
+            for c in consistency_set:
                 key = (c["cell"]["prime"], c["cell"]["seed"])
                 row = bound.get(key)
                 if row is None:
@@ -214,25 +252,27 @@ def main() -> int:
                     problems.append(f"prime={key[0]} seed={key[1]}: provenance result "
                                     "hash disagrees with the cell")
 
-    extra = sorted(set(by_key) - {(p, s) for p, s, _ in planned})
-    for p, s in extra:
+    known = {(p, s) for p, s, _ in planned} | {(p, s) for p, s, _ in planned_extra}
+    for p, s in sorted(set(by_key) - known):
         problems.append(f"cell prime={p} seed={s} is not in the planned matrix")
+
+    # The substitution guard. 32693 was briefly used in place of 32707 while the
+    # orientation bug was open; a matrix carrying 32693 but missing 32707 would
+    # have fifteen cells and look complete.
+    have_707 = any(k[0] == 32707 for k in by_key)
+    have_693 = any(k[0] == 32693 for k in by_key)
+    if have_693 and not have_707:
+        problems.append(
+            "32693 is present and 32707 is absent: 32693 is an EXTRA validation "
+            "prime, never a replacement for the 32707 holdout")
+
+    # Extra validation cells get the SAME per-cell scrutiny as required ones.
+    # They do not count toward the required fifteen, but a broken extra cell is
+    # still a broken cell and reporting it as merely "present" would make the
+    # weaker role a hiding place.
 
     # Terminal status must be one of the two words the driver writes. A cell
     # carrying anything else is malformed, not merely unfinished.
-    for c in used:
-        key = f"prime={c['cell']['prime']} seed={c['cell']['seed']}"
-        flag = c.get("cell_complete")
-        if flag not in (True, False):
-            problems.append(f"{key}: malformed terminal status {flag!r}")
-        skipped = c["schedule_summary"].get("silently_skipped")
-        if skipped:
-            problems.append(f"{key}: {skipped} silently skipped candidates")
-        evaluated = c["schedule_summary"].get("by_terminal_status", {}).get("evaluated")
-        planned_n = c["schedule_summary"].get("planned")
-        if evaluated is not None and planned_n is not None and evaluated != planned_n:
-            problems.append(f"{key}: {evaluated} of {planned_n} candidates evaluated")
-
     if provenance is not None:
         exec_ids = {r.get("execution_id") for r in provenance.get("cells", [])}
         exec_ids.discard(None)
@@ -252,6 +292,15 @@ def main() -> int:
         "assembly_is_read_only": True,
         "planned_cells": [{"prime": p, "seed": s, "role": r} for p, s, r in planned],
         "n_planned": len(planned),
+        "planned_extra_cells": [{"prime": p, "seed": s, "role": r}
+                                for p, s, r in planned_extra],
+        "n_planned_extra": len(planned_extra),
+        "n_extra_present": len(extra_rows),
+        "extra_cells": [
+            {"prime": c["cell"]["prime"], "seed": c["cell"]["seed"],
+             "total_rank": c["jacobian"]["total_rank"],
+             "content_sha256": c.get("content_sha256")} for c in extra_rows],
+        "extra_is_addition_not_substitution": True,
         "n_present": len(used),
         "problems": problems,
         "matrix_complete": not problems and len(used) == len(planned),

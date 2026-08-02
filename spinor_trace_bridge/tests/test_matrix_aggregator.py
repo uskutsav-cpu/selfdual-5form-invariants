@@ -25,7 +25,8 @@ ROOT = Path(__file__).resolve().parents[2]
 AGGREGATOR = ROOT / "spinor_trace_bridge" / "scripts" / "assemble_rank81_matrix.py"
 
 FITTING = [32749, 32719, 32717]
-HOLDOUT = [32713, 32693]
+HOLDOUT = [32713, 32707]
+EXTRA = [32693]
 SEEDS = [11, 22, 33]
 
 SELECTION_SHA = "a" * 64
@@ -110,6 +111,9 @@ def good_matrix(tmp_path: Path) -> Path:
     for p in HOLDOUT:
         for s in SEEDS:
             write_cell(cells, make_cell(p, s, "holdout"))
+    for p in EXTRA:
+        for s in SEEDS:
+            write_cell(cells, make_cell(p, s, "extra"))
     return cells
 
 
@@ -140,6 +144,7 @@ def test_a_clean_matrix_assembles(good_matrix: Path, tmp_path: Path):
     assert rc == 0, text
     assert report["matrix_complete"] is True
     assert report["n_present"] == 15
+    assert report["n_extra_present"] == 3
     assert report["summary"]["distinct_total_ranks"] == [81]
     assert report["summary"]["all_cells_agree"] is True
 
@@ -470,3 +475,25 @@ def test_release_artifacts_are_emitted_and_hashed(good_matrix: Path, tmp_path: P
     for row in manifest["files"]:
         text = (d / row["name"]).read_text(encoding="utf-8")
         assert hashlib.sha256(text.encode()).hexdigest() == row["sha256"]
+
+
+def test_32693_cannot_substitute_for_32707(good_matrix: Path, tmp_path: Path):
+    """The substitution that would have looked complete.
+
+    While the orientation bug was open, 32693 stood in for 32707. A matrix
+    carrying the substitute and missing the original has fifteen cells and
+    passes every per-cell check, so the count alone cannot catch it.
+    """
+    for s in SEEDS:
+        (good_matrix / f"cell_p32707_s{s}.json").unlink()
+    assert_rejected(good_matrix, tmp_path, "never a replacement")
+
+
+def test_extra_cells_do_not_fill_a_missing_required_cell(good_matrix: Path, tmp_path: Path):
+    (good_matrix / "cell_p32713_s22.json").unlink()
+    assert_rejected(good_matrix, tmp_path, "missing cell prime=32713 seed=22")
+
+
+def test_missing_extra_cell_is_reported(good_matrix: Path, tmp_path: Path):
+    (good_matrix / "cell_p32693_s33.json").unlink()
+    assert_rejected(good_matrix, tmp_path, "missing extra validation cell")
