@@ -42,6 +42,10 @@ class BridgeMap:
     """Forward map, left inverse and their certificates, at one prime."""
 
     p: int = C.DEFAULT_PRIME
+    #: Used only by the orientation normaliser, which must build a trial bridge
+    #: from a candidate frame before the frame itself is fixed. Never set by
+    #: ordinary callers.
+    _frame_override: object = None
 
     @cached_property
     def clifford(self) -> NullFrameClifford:
@@ -49,6 +53,8 @@ class BridgeMap:
 
     @cached_property
     def frame(self) -> TransitionFrame:
+        if self._frame_override is not None:
+            return self._frame_override
         return TransitionFrame(p=self.p)
 
     # -- the forward map as an explicit 252 x 136 matrix ----------------------
