@@ -26,7 +26,8 @@ DRIVER="$HERE/spinor_trace_bridge/scripts/run_rank81_cell.py"
 # tests/test_duality_channel_primes.py parses this block and fails if a prime
 # in the bad class is ever added back.
 FITTING="32749 32719 32717"
-HOLDOUT="32713 32693"
+HOLDOUT="32713 32707"
+EXTRA="32693"
 SEEDS="11 22 33"
 
 echo "matrix start $(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -51,6 +52,18 @@ for role in fitting holdout; do
                 failed=$((failed + 1))
             fi
         done
+    done
+done
+
+for p in $EXTRA; do
+    for s in $SEEDS; do
+        echo "--- cell p=$p seed=$s role=extra $(date -u +%H:%M:%SZ)"
+        "$PY" "$DRIVER" --archive "$ARCHIVE" --prime "$p" --seed "$s" --role extra
+        rc=$?
+        if [ "$rc" -ne 0 ]; then
+            echo "CELL FAILED p=$p seed=$s rc=$rc"
+            failed=$((failed + 1))
+        fi
     done
 done
 

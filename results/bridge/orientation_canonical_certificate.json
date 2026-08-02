@@ -1,0 +1,62 @@
+{
+ "generated_utc": "2026-08-02T22:10:48+00:00",
+ "claim": "the orientation-normalised frame puts every tested prime on the self-dual channel",
+ "primes": {
+  "32633": {
+   "mod8": 1,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32647": {
+   "mod8": 7,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32653": {
+   "mod8": 5,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32687": {
+   "mod8": 7,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32693": {
+   "mod8": 5,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32707": {
+   "mod8": 3,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32713": {
+   "mod8": 1,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32717": {
+   "mod8": 5,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32719": {
+   "mod8": 7,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32749": {
+   "mod8": 5,
+   "channel": "selfdual",
+   "left_inverse": true
+  },
+  "32771": {
+   "mod8": 3,
+   "channel": "selfdual",
+   "left_inverse": true
+  }
+ },
+ "holds": true
+}

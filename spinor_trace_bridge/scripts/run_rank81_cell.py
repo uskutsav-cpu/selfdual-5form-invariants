@@ -111,7 +111,7 @@ def main() -> int:
     ap.add_argument("--archive", required=True)
     ap.add_argument("--prime", type=int, required=True)
     ap.add_argument("--seed", type=int, required=True)
-    ap.add_argument("--role", choices=["fitting", "holdout"], required=True)
+    ap.add_argument("--role", choices=["fitting", "holdout", "extra"], required=True)
     # 1e11, matching the flop_limit recorded in the certificate this matrix
     # extends. At 2e10 the degree-12 port graph c046 exceeds the budget on its
     # value contraction, the dense-I fallback exceeds it too, and the cell comes
