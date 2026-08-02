@@ -444,6 +444,83 @@ def gate_degree12(repo: Path) -> Gate:
     return g
 
 
+
+# --------------------------------------------------------------------------
+# 1.5b / 1.5c  exact rational D10 and Q10
+# --------------------------------------------------------------------------
+def gate_d10_exact(repo: Path) -> Gate:
+    g = Gate(
+        "1.5b",
+        "Exact rational D10",
+        "dim_Q D10 established over the rationals, not at good primes: an "
+        "independent verifier using a different algorithm, a lower-bound minor "
+        "with two agreeing determinant routines, and an upper bound by exact "
+        "annihilating covectors.",
+    )
+    d = load(repo, "results/stress_flow/D10_exact_rational_final.json")
+    lo = load(repo, "results/stress_flow/D10_lower_bound_minor.json")
+    hi = load(repo, "results/stress_flow/D10_annihilator_basis.json")
+    if not (d and lo and hi):
+        return g
+    g.evidence += ["results/stress_flow/D10_exact_rational_final.json",
+                   "results/stress_flow/D10_lower_bound_minor.json",
+                   "results/stress_flow/D10_annihilator_basis.json",
+                   "docs/D10_Q10_EXACT_RATIONAL_PROOF.md"]
+    g.check("verifier shares no rank routine with production",
+            d["independence"]["imports_production_rank_routine"] is False,
+            d["independence"]["verifier_algorithm"])
+    g.check("rank is 11", d["rank"] == 11, d["rank"])
+    g.check("free columns are [5, 6, 11]", d["free_columns"] == [5, 6, 11],
+            d["free_columns"])
+    g.check("sweep-order independent", d["sweep_order_independent"],
+            d["sweep_order_ranks"])
+    g.check("seed-independent at degree 10",
+            d["seed_independence"]["spans_equal"],
+            d["seed_independence"]["dimensions_without_seed"])
+    g.check("lower-bound minor nonzero", lo["nonzero"], lo["determinant_bareiss"])
+    g.check("two determinant routines agree", lo["routines_agree"],
+            [lo["determinant_bareiss"], lo["determinant_laplace"]])
+    g.check("annihilators verified against every spanning vector",
+            hi["all_annihilate_every_spanning_vector"], hi["n_annihilators"])
+    g.check("bounds meet", lo["minor_size"] == hi["implied_upper_bound"] == 11,
+            [lo["minor_size"], hi["implied_upper_bound"]])
+    g.settle()
+    g.note("The raw span of all 37 degree-10 targets is 14 and would give a "
+           "quotient of 0. It is a different object; see "
+           "docs/FLOW_ACTIVATION_SEMANTICS.md.")
+    return g
+
+
+def gate_q10_exact(repo: Path) -> Gate:
+    g = Gate(
+        "1.5c",
+        "Exact rational Q10",
+        "Q10 constructed rather than inferred from 14 - 11: representatives "
+        "shown outside D10, independent modulo it, spanning, and each needed.",
+    )
+    q = load(repo, "results/stress_flow/Q10_exact_rational_final.json")
+    if not q:
+        return g
+    g.evidence.append("results/stress_flow/Q10_exact_rational_final.json")
+    g.check("dim_Q A10 = 14", q["A10"]["dimension"] == 14, q["A10"]["dimension"])
+    g.check("dim_Q D10 = 11", q["D10"]["dimension"] == 11, q["D10"]["dimension"])
+    g.check("dim_Q Q10 = 3", q["Q10"]["dimension"] == 3, q["Q10"]["dimension"])
+    g.check("each representative lies outside D10",
+            all(q["each_representative_outside_D10"].values()),
+            q["each_representative_outside_D10"])
+    g.check("representatives independent modulo D10",
+            q["representatives_independent_mod_D10"], True)
+    g.check("representatives span the quotient",
+            q["representatives_span_the_quotient"], True)
+    g.check("every representative is needed", q["every_representative_is_needed"],
+            q["drop_one_tests"])
+    g.check("representatives are the free columns",
+            q["representatives_equal_free_columns"],
+            q["published_representatives"])
+    g.settle()
+    return g
+
+
 def render(gates: list[Gate], verdict: str, head: str, when: str) -> str:
     lines: list[str] = []
     A = lines.append
@@ -507,6 +584,8 @@ def main() -> int:
         gate_rank81(repo),
         gate_degrees(repo),
         gate_degree10(repo),
+        gate_d10_exact(repo),
+        gate_q10_exact(repo),
         gate_degree12(repo),
     ]
 
