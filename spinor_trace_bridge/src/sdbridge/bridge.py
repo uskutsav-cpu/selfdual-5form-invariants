@@ -131,23 +131,71 @@ class BridgeMap:
         return matmul(self.selfdual_basis, self.forward_matrix, self.p)
 
     @cached_property
-    def left_inverse(self) -> np.ndarray:
-        """136 x 252 matrix R with R applied to S returning the self-dual F.
+    def duality_channel(self) -> str:
+        """Which Hodge eigenspace this frame's forward map carries faithfully.
 
-        Built by inverting the 126 x 126 restriction and pushing back through the
-        self-dual basis, so `left_inverse @ forward` is the self-dual projector.
+        The frame congruence relating the split (5,5) oscillator metric to the
+        Lorentzian (1,9) metric is obtained by solving a congruence mod p, and
+        that solution is not unique: distinct solutions can differ by an
+        orientation reversal, which flips the sign of the Hodge star and
+        exchanges its eigenspaces.
+
+        At p = 32707 the solver returns an orientation-reversing congruence, so
+        the forward map annihilates the self-dual 126 and carries the
+        anti-self-dual 126 instead --- exactly swapped against 32749, 32719,
+        32717, 32713 and 32693. Assuming the self-dual channel therefore fails
+        with "image has dimension 0" at that prime.
+
+        The channel is determined here rather than assumed. Where the self-dual
+        channel is already the faithful one this returns "selfdual" and every
+        downstream value is unchanged, so the detection is a no-op at every
+        prime the certificate matrix used.
+        """
+        if rank(self.selfdual_image, self.p) == C.N_SELFDUAL_COMPONENTS:
+            return "selfdual"
+        asd_image = matmul(self.antiselfdual_basis, self.forward_matrix, self.p)
+        if rank(asd_image, self.p) == C.N_SELFDUAL_COMPONENTS:
+            return "antiselfdual"
+        return "neither"
+
+    @cached_property
+    def orientation_reversed(self) -> bool:
+        """True when the frame congruence came out orientation-reversing."""
+        return self.duality_channel == "antiselfdual"
+
+    @cached_property
+    def faithful_basis(self) -> np.ndarray:
+        """The Hodge eigenbasis this frame carries faithfully."""
+        if self.duality_channel == "antiselfdual":
+            return self.antiselfdual_basis
+        return self.selfdual_basis
+
+    @cached_property
+    def faithful_image(self) -> np.ndarray:
+        return matmul(self.faithful_basis, self.forward_matrix, self.p)
+
+    @cached_property
+    def left_inverse(self) -> np.ndarray:
+        """136 x 252 matrix R with R applied to S returning the five-form.
+
+        Built by inverting the 126 x 126 restriction and pushing back through
+        the faithful Hodge eigenbasis, so `left_inverse @ forward` is the
+        projector onto that eigenspace. At every prime used by the certificate
+        matrix the faithful eigenspace is the self-dual one and this is the
+        self-dual projector, unchanged.
         """
         from .clifford import _inverse_mod
         p = self.p
+        image = self.faithful_image
         # 126 columns of the image whose square submatrix is invertible
-        _, sel = rref(self.selfdual_image, p)
+        _, sel = rref(image, p)
         if len(sel) != C.N_SELFDUAL_COMPONENTS:
             raise RuntimeError(
-                f"image has dimension {len(sel)}, not {C.N_SELFDUAL_COMPONENTS}; "
-                "cannot build a left inverse")
-        Minv = _inverse_mod(self.selfdual_image[:, sel], p)   # 126 x 126
-        # S[sel] -> coefficients in the self-dual basis -> five-form components
-        return (list(sel), matmul(Minv, self.selfdual_basis, p))
+                f"image has dimension {len(sel)}, not {C.N_SELFDUAL_COMPONENTS} "
+                f"in either Hodge channel at p={p}; cannot build a left inverse")
+        Minv = _inverse_mod(image[:, sel], p)   # 126 x 126
+        # S[sel] -> coefficients in the faithful basis -> five-form components
+        return (list(sel), matmul(Minv, self.faithful_basis, p))
 
     def inverse(self, S_coords: np.ndarray) -> np.ndarray:
         """Recover the self-dual five-form whose image is S (252 components)."""

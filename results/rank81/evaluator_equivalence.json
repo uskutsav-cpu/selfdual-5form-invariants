@@ -1,0 +1,50 @@
+{
+ "generated_utc": "2026-08-02T03:53:19+00:00",
+ "change": "bridge.py: detect the faithful Hodge channel instead of assuming the self-dual one",
+ "why_equivalence_is_needed": "The change touches a value-determining file, so the freeze rule invalidates every earlier cell unless equivalence is established.",
+ "why_it_should_hold": "The detection returns 'selfdual' whenever the self-dual image already has rank 126, which is the case at all five primes the matrix used. On that branch the code path is the one that ran before, unchanged.",
+ "compared": [
+  "every candidate value, output_hash, terminal_status, zero_row and formula_hash",
+  "the Jacobian block",
+  "Euler",
+  "schedule summary",
+  "candidate ordering",
+  "coordinate dimension",
+  "selection-list hash"
+ ],
+ "excluded_and_why": {
+  "wall_seconds / peak_rss_mb / generated_utc": "properties of the run, not of the mathematics",
+  "[cached] annotation": "records that a row was served from the row cache; the row is the same row, which output_hash confirms",
+  "[dense-I fallback plan] annotation": "records which contraction plan produced a derivative row. The original run reached one row through the fallback plan; the recomputation read it from the cache, so no plan ran at all. Same mathematics, different route, and output_hash matches."
+ },
+ "cells": [
+  {
+   "cell": "cell_p32693_s11.json",
+   "canonical_digest_before": "6e5628bf6a5cb35915512555115685da3231bde198aba0226a6b537442d928a0",
+   "canonical_digest_after": "6e5628bf6a5cb35915512555115685da3231bde198aba0226a6b537442d928a0",
+   "canonical_digests_match": true,
+   "n_candidate_value_differences": 0,
+   "candidate_value_differences": [],
+   "raw_fields_that_differ": [
+    "derivative_evaluator",
+    "evaluator"
+   ],
+   "rank_before": 81,
+   "rank_after": 81,
+   "status": "EQUIVALENT"
+  },
+  {
+   "cell": "cell_p32749_s11.json",
+   "canonical_digest_before": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
+   "canonical_digest_after": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
+   "canonical_digests_match": true,
+   "n_candidate_value_differences": 0,
+   "candidate_value_differences": [],
+   "raw_fields_that_differ": [],
+   "rank_before": 81,
+   "rank_after": 81,
+   "status": "EQUIVALENT"
+  }
+ ],
+ "equivalence_established": true
+}
