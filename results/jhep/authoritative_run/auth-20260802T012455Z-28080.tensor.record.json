@@ -1,0 +1,22 @@
+{
+  "branch": "publication/jhep-tensor-spinor",
+  "claimable_as_passing": true,
+  "collected": null,
+  "commit": "0206f4e2cb28e5f15576a97c45f151344d7b43c4",
+  "counts": {
+    "passed": 252
+  },
+  "elapsed_seconds": 370,
+  "ended_utc": "2026-08-02T01:31:05Z",
+  "execution_id": "auth-20260802T012455Z-28080",
+  "exit_code": 0,
+  "has_terminal_summary": true,
+  "peak_rss_bytes": 1064009728,
+  "started_utc": "2026-08-02T01:24:55Z",
+  "stderr_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T012455Z-28080.tensor.stderr",
+  "stderr_sha256": "2baefd1eb34698e2fde43b22b9f5910b4e6c07a4253e548f7a72a07f46cdf7cc",
+  "stdout_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T012455Z-28080.tensor.stdout",
+  "stdout_sha256": "9c77e0d7490ed209b827f890d85fd7fcb2878dcd8814d7def8691d133dc793f8",
+  "suite": "tensor",
+  "summary_line": "252 passed in 369.47s (0:06:09)"
+}

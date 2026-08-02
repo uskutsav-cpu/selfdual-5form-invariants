@@ -1,0 +1,6 @@
+cells 15 (9 fitting, 6 holdout)
+ranks [81]
+stable pivot rows 81, unstable 0
+stable pivot cols 81, unstable 0
+runtime 15532s, peak 719.9 MB
+wrote docs/RANK81_MULTI_SAMPLE_CERTIFICATE_FINAL.md

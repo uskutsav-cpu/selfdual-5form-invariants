@@ -40,29 +40,35 @@ Both email addresses on the author lines are placeholders.
 still a reasonable thing to send — it states the AI assistance and the credit
 position plainly, which is what the written record needs to show he saw.
 
-## Blocked on the science gate
+## Science gate — PASSED
 
-At the time of writing, `scripts/emit_jhep_science_gate.py` reports:
+At commit `0206f4e` on `publication/jhep-tensor-spinor`:
 
 ```
 1.1  PASS  16/16    Exact Clifford and real-form structure
 1.2  PASS  22/22    Exact tensor-spinor bridge and its inverse
-1.3  FAIL  103/109  Candidate accounting and the rank-81 certificate
+1.3  PASS  154/154  Candidate accounting and the rank-81 certificate
 1.4  PASS  55/55    Degree-resolved tensor-spinor span equivalence
 1.5  PASS  10/10    Degree-ten application
 1.6  N/A            Degree-twelve scope decision (out of claim scope)
+
+VERDICT: PASS
 ```
 
-All six failures in 1.3 are `missing cell` for the five unfinished holdout
-cells of the rank-81 matrix. There is no unresolved mathematics behind the
-FAIL. `scripts/run_authoritative_suite.sh` is chained to the matrix driver and
-will aggregate, emit the multi-sample certificate, run both suites and re-run
-the gate when the driver exits.
+Test suites at the same commit, with full terminal records in
+`results/jhep/authoritative_run/`:
 
-**Section \ref{sec:rank} of the manuscript must be re-read against the final
-aggregate before the draft banner is removed.** The per-cell numbers quoted
-there are from the completed cells and have been identical across all of them,
-but the holdout cells have not reported yet.
+| suite | result | claimable |
+|---|---|---|
+| tensor (`tests/`) | 252 passed | yes |
+| bridge (`spinor_trace_bridge/tests/`) | 115 passed | yes |
+
+Rank-81 matrix: 15/15 cells, 9 fitting and 6 holdout, all rank 81, all Euler
+83/83, 81 stable pivot rows and 81 stable pivot columns with none unstable.
+
+Section 4 has been re-read against the final aggregate and now quotes the
+completed 15-cell numbers, the pivot-stability result, and the exceptional-prime
+observation of §4.4.
 
 ## Not yet done
 

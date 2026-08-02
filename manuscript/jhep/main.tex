@@ -375,6 +375,56 @@ means degree-twelve data is load-bearing for the rank certificate even though,
 as section \ref{sec:limits} explains, degree twelve is deliberately excluded
 from this paper's central claims.
 
+The matrix comprises fifteen cells: three sample seeds at each of three
+fitting primes and three sample seeds at each of two holdout primes. All
+fifteen report rank $81$, and all fifteen report the degree profile above.
+
+\subsection{Pivot stability}
+
+Agreement on the rank across cells is weaker than it first looks: two
+computations can reach the same rank through different eliminations. We
+therefore record which rows and columns the elimination selects as pivots in
+each cell and compare them. Across all fifteen cells there are $81$ stable
+pivot rows and $81$ stable pivot columns, with none unstable --- every cell
+selects the same $81$ rows and the same $81$ columns. The certificate is
+therefore reproducible at the level of the witnessing submatrix, not only at
+the level of the answer.
+
+\subsection{An exceptional class of primes}
+\label{sec:badprimes}
+
+One observation is worth reporting because it would otherwise cost a
+reproducer a day. The bridge map $\Phi$ of section \ref{sec:bridge} has rank
+$126$ at every prime we tested, but the duality channel it preserves depends on
+the prime:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+primes & $p \bmod 8$ & $\mathrm{rank}(\text{SD}\cdot\Phi)$ & $\mathrm{rank}(\text{ASD}\cdot\Phi)$ \\
+\midrule
+$32713$; $32749$, $32717$, $32693$ & $1$, $5$ & $126$ & $0$ \\
+$32719$ & $7$ & $126$ & $0$ \\
+$32707$, $32771$ & $\mathbf{3}$ & $\mathbf{0}$ & $\mathbf{126}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For $p \equiv 3 \pmod 8$ the two channels are exchanged: the subspace the
+construction labels self-dual is precisely the kernel of $\Phi$. Note that
+$p \bmod 4$ does not separate the cases --- $32719$ and $32707$ are both
+$3 \bmod 4$ and behave differently --- so the rule is genuinely modulo eight.
+Among the four classes, $p\equiv3$ is the one in which $-1$ and $2$ are both
+quadratic non-residues. We have not traced the mechanism through the null-frame
+Clifford construction, so we report this as \emph{observed} across seven
+primes, deterministically, and not as a theorem.
+
+The practical rule is to choose primes outside this class, which costs nothing.
+We note that the implementation raises rather than substituting the working
+channel when it meets such a prime; a silent substitution would assemble a
+single certificate out of two conventions, and no downstream check would
+notice.
+
 \subsection{The minor}
 
 Rank alone can be an artefact of elimination order. We therefore exhibit an
@@ -388,8 +438,9 @@ nonzero. They do, and it is.
 Over the $126$ gamma-traceless coordinates, the Jacobian of the $83$ candidate
 invariants has rank $81$, exhibited by an explicit $81\times81$ minor with
 nonzero determinant confirmed by two independent determinant computations.
-Status: \emph{exactly certified} at each tested prime, with agreement across a
-matrix of fitting and holdout primes and sample seeds.
+Status: \emph{exactly certified} at each tested prime, across a complete
+$15$-cell matrix of three fitting primes and two holdout primes with three
+sample seeds each, with identical pivot selection in every cell.
 \end{theorem}
 
 The count $81$ itself is not ours; it is available in the source literature
@@ -918,6 +969,11 @@ latter, and a lift that fails holdout validation is discarded rather than
 refit until it passes. This matters most for the flow coefficient system of
 section \ref{sec:flow}, where the lift succeeded, and for $\tr(M^6)$
 (section \ref{sec:trm6}), where it did not and is reported as not having.
+
+\paragraph{Choice of primes.} Every prime used must satisfy
+$p \not\equiv 3 \pmod 8$, for the reason given in section \ref{sec:badprimes}.
+A cell at such a prime does not produce a wrong answer; it fails to produce one
+at all, which is the intended behaviour.
 
 \paragraph{Determinism.} Sample points are drawn from seeded generators, and
 the seed is recorded in each cell's output alongside the hash of the frozen

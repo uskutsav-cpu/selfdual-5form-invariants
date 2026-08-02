@@ -1,6 +1,6 @@
 # JHEP Stage 1 --- science entry gate
 
-Generated 2026-08-02T01:24:43+00:00 at `b6899184aa82` by `scripts/emit_jhep_science_gate.py`.
+Generated 2026-08-02T01:32:11+00:00 at `0206f4e2cb28` by `scripts/emit_jhep_science_gate.py`.
 
 ## Verdict: **PASS**
 
