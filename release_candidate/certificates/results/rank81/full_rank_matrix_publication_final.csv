@@ -1,0 +1,16 @@
+prime,seed,role,rank,candidates_evaluated,euler_passed,zero_rows
+32693,11,holdout,81,83,83,0
+32693,22,holdout,81,83,83,0
+32693,33,holdout,81,83,83,0
+32713,11,holdout,81,83,83,0
+32713,22,holdout,81,83,83,0
+32713,33,holdout,81,83,83,0
+32717,11,fitting,81,83,83,0
+32717,22,fitting,81,83,83,0
+32717,33,fitting,81,83,83,0
+32719,11,fitting,81,83,83,0
+32719,22,fitting,81,83,83,0
+32719,33,fitting,81,83,83,0
+32749,11,fitting,81,83,83,0
+32749,22,fitting,81,83,83,0
+32749,33,fitting,81,83,83,0

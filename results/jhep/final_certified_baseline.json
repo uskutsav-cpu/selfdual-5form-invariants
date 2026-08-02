@@ -1,0 +1,142 @@
+{
+ "schema": 1,
+ "generated_by": "Phase 1 of the final claim-closure goal",
+ "commit": "69d8d0d8b0af8165c6f6aefcb1ce4754fd2d539d",
+ "checks": [
+  {
+   "check": "83/83 candidates evaluated",
+   "passed": true
+  },
+  {
+   "check": "zero evaluation errors",
+   "passed": true
+  },
+  {
+   "check": "zero interrupted",
+   "passed": true
+  },
+  {
+   "check": "zero structurally rejected (none silently skipped)",
+   "passed": true
+  },
+  {
+   "check": "zero Jacobian zero rows",
+   "passed": true
+  },
+  {
+   "check": "Euler homogeneity 83/83",
+   "passed": true
+  },
+  {
+   "check": "exact modular rank 81",
+   "passed": true
+  },
+  {
+   "check": "explicit 81x81 minor",
+   "passed": true
+  },
+  {
+   "check": "minor determinant nonzero",
+   "passed": true
+  },
+  {
+   "check": "independent determinant routines agree",
+   "passed": true
+  },
+  {
+   "check": "characteristic-zero lower bound 81",
+   "passed": true
+  },
+  {
+   "check": "gamma-traceless dimension 126",
+   "passed": true
+  },
+  {
+   "check": "forward-map rank 126",
+   "passed": true
+  },
+  {
+   "check": "star squared = +1 (split, not Euclidean)",
+   "passed": true
+  },
+  {
+   "check": "degree-8 trace = spinor = union = 7",
+   "passed": true
+  },
+  {
+   "check": "span equality at all four primes",
+   "passed": true
+  },
+  {
+   "check": "dropping tensor words gives 6",
+   "passed": true
+  },
+  {
+   "check": "dropping each other family leaves 7",
+   "passed": true
+  }
+ ],
+ "n_checks": 18,
+ "n_failed": 0,
+ "failed": [],
+ "artifact_sha256": {
+  "results/rank81/certificate.json": "6acecda746fd9490c6ff18d4fc4ad10f90c8ecd9e5fd4398cb72b2d90de6a02a",
+  "results/rank81/minor81_certificate.json": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
+  "spinor_trace_bridge/results/bridge_validation.json": "93db9f8af7c6f25d330dc750565d9b3bdcec23f575e470a9a2139a8414e297ea",
+  "verification/degree8_span_equality.json": "9100d557a4189185ace35fea1edc6dd2c398676f8a3ad7d0e756385ac639b380"
+ },
+ "rank81": {
+  "scheduled": 83,
+  "evaluated": 83,
+  "evaluation_errors": 0,
+  "interrupted": 0,
+  "structurally_rejected": 0,
+  "zero_rows": 0,
+  "schedule_complete": true,
+  "euler_checked": 83,
+  "euler_passed": 83,
+  "euler_failed": 0,
+  "exact_modular_rank": 81,
+  "n_certified_points": 2,
+  "minor_size": 81,
+  "minor_nonzero": true,
+  "minor_routines_agree": true,
+  "char0_lower_bound": 81,
+  "char0_upper_bound": 81,
+  "upper_bound_source": "analytic generic-orbit argument, 126 - 45 = 81, cited from the literature",
+  "lower_bound_source": "integral coordinate basis makes the Jacobian an integer reduction"
+ },
+ "bridge": {
+  "primes": [
+   "32719",
+   "32749"
+  ],
+  "star_squared": 1,
+  "selfdual_dim": 126,
+  "antiselfdual_dim": 126,
+  "forward_rank": 126,
+  "gamma_traceless_dim": 126
+ },
+ "degree8": {
+  "primes": [
+   "32713",
+   "32717",
+   "32719",
+   "32749"
+  ],
+  "trace_rank": 7,
+  "spinor_rank": 7,
+  "union_rank": 7,
+  "primes_with_span_equality": 4,
+  "family_ablation": {
+   "port_graph": 7,
+   "product": 7,
+   "structured": 7,
+   "tensor_word": 6
+  },
+  "indispensable": [
+   "tensor_word"
+  ],
+  "scope": "tensor words are indispensable WITHIN the tested candidate-family decomposition; no universal uniqueness is claimed"
+ }
+}

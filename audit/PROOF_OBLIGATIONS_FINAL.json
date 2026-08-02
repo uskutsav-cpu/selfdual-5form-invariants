@@ -1,0 +1,121 @@
+{
+ "schema": 1,
+ "generated_by": "hand-curated from docs/PROOF_OBLIGATIONS.md, machine-checked statuses",
+ "allowed_statuses": [
+  "PROVED",
+  "CERTIFIED",
+  "DISPROVED",
+  "COUNTEREXAMPLE FOUND",
+  "REMOVED FROM CLAIMS",
+  "OPEN AND EXPLICITLY DELIMITED",
+  "NOT APPLICABLE"
+ ],
+ "obligations": [
+  {
+   "id": "PO-01",
+   "statement": "canonicalisation exact at every degree used",
+   "status": "PROVED",
+   "evidence": "exact canonicalisation replaced a colliding WL fallback",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-02",
+   "statement": "leading_field_degree correct, not self-consistent only",
+   "status": "CERTIFIED",
+   "evidence": "rule stated independently and checked against all 18 generators at 6 primes; tests/test_leading_degree_rule.py",
+   "manuscript_consequence": "derivation of the rule is coauthor item G-10"
+  },
+  {
+   "id": "PO-03",
+   "statement": "are I12_61/I12_62 polynomial syzygies",
+   "status": "NOT APPLICABLE",
+   "evidence": "degree 12 is background; terms absent from the manuscript; closure does not consume them",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-04",
+   "statement": "K6 <-> Sigma_2 identification (external)",
+   "status": "NOT APPLICABLE",
+   "evidence": "K6 and sextic absent from the manuscript",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-05",
+   "statement": "Tr(M^6) has no certified rational lift",
+   "status": "NOT APPLICABLE",
+   "evidence": "Tr(M^6) absent from the manuscript and from the degree<=10 generator set",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-06",
+   "statement": "second independent holdout prime",
+   "status": "PROVED",
+   "evidence": "discharged previously",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-07",
+   "statement": "K6 statement under field redefinitions and EOM",
+   "status": "NOT APPLICABLE",
+   "evidence": "no K6 statement and no physical consequence drawn",
+   "manuscript_consequence": "prohibition retained and gated"
+  },
+  {
+   "id": "PO-08a",
+   "statement": "cardinality minimality, any basis",
+   "status": "PROVED",
+   "evidence": "quotient map is linear; a span of |S| vectors has dim <= |S|",
+   "manuscript_consequence": "stated as a proposition, no novelty claim"
+  },
+  {
+   "id": "PO-08b",
+   "statement": "removal minimality",
+   "status": "OPEN AND EXPLICITLY DELIMITED",
+   "evidence": "shown in the fixed graph basis and permutation subgroup only",
+   "manuscript_consequence": "stated in limitations"
+  },
+  {
+   "id": "PO-08c",
+   "statement": "minimality under arbitrary basis change",
+   "status": "OPEN AND EXPLICITLY DELIMITED",
+   "evidence": "needs certificate regeneration in the new basis; not attempted",
+   "manuscript_consequence": "stated in limitations"
+  },
+  {
+   "id": "PO-08d",
+   "statement": "uniqueness / canonicality",
+   "status": "REMOVED FROM CLAIMS",
+   "evidence": "never claimed; wording gate blocks unscoped 'canonical'",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-09",
+   "statement": "exceptional primes",
+   "status": "CERTIFIED",
+   "evidence": "A10/P10/G10/B10 unexposed by spanning-set argument; D10 settled exactly over Q; only B10 cap P10 remains a bound",
+   "manuscript_consequence": "limitations separates settled from bounded"
+  },
+  {
+   "id": "PO-10",
+   "statement": "induction for an all-orders claim",
+   "status": "REMOVED FROM CLAIMS",
+   "evidence": "no all-orders statement; both occurrences are denials; gated",
+   "manuscript_consequence": "none"
+  },
+  {
+   "id": "PO-11",
+   "statement": "bracket colour in eq (4.24)",
+   "status": "OPEN AND EXPLICITLY DELIMITED",
+   "evidence": "both readings implemented and projected; compact basis avoids the ambiguity",
+   "manuscript_consequence": "stated as avoided not resolved; coauthor item G-6"
+  }
+ ],
+ "summary": {
+  "PROVED": 3,
+  "CERTIFIED": 2,
+  "NOT APPLICABLE": 4,
+  "OPEN AND EXPLICITLY DELIMITED": 3,
+  "REMOVED FROM CLAIMS": 2
+ },
+ "unclassified": 0
+}

@@ -42,9 +42,16 @@ class BridgeMap:
     """Forward map, left inverse and their certificates, at one prime."""
 
     p: int = C.DEFAULT_PRIME
-    # A reversed frame congruence is usable but not interchangeable with the
-    # normal one, so using it is opt-in. See `duality_channel`.
+    # Both are kept. The orientation normaliser in signature.py pins the frame
+    # so the self-dual channel always survives, which makes the reversed path
+    # unreachable through ordinary construction -- and `duality_channel` below
+    # then acts as an assertion that the pinning worked, rather than as an
+    # adaptation to whichever branch turned up.
     allow_reversed_channel: bool = False
+    #: Used only by the orientation normaliser, which must build a trial bridge
+    #: from a candidate frame before the frame itself is fixed. Never set by
+    #: ordinary callers.
+    _frame_override: object = None
 
     @cached_property
     def clifford(self) -> NullFrameClifford:
@@ -52,6 +59,8 @@ class BridgeMap:
 
     @cached_property
     def frame(self) -> TransitionFrame:
+        if self._frame_override is not None:
+            return self._frame_override
         return TransitionFrame(p=self.p)
 
     # -- the forward map as an explicit 252 x 136 matrix ----------------------

@@ -10,7 +10,7 @@ listed as an author.
 | code generation | Substantial. The entire `spinor_trace_bridge` package --- exact modular Clifford algebra, frame congruence, bridge map and inverse, equivariance checks, exact Jacobian, integral basis, sample registry, comparison driver --- was AI-written. |
 | code review | AI reviewed its own code. No independent human review has occurred. |
 | debugging | Several substantive bugs were found and fixed by AI, including an exponential contraction-path search that silently stalled long runs, a memory blowup that killed runs without a message, and an incorrect spinor index placement. |
-| test generation | All 72 bridge tests were AI-written, as were the trace-side regression tests added alongside the work described here. |
+| test generation | All 86 bridge tests were AI-written, as were the trace-side regression tests added alongside the work described here. |
 | manuscript drafting | The full draft is AI-written. |
 | literature organisation | Six primary sources were fetched and their bibliographic details verified against publisher/arXiv landing pages (`audit/RELATED_WORK_COMPLETE.md`). This is a search, not a survey by someone who knows the field. |
 | analysis and interpretation | AI-performed; the physics interpretation is explicitly marked as requiring coauthor confirmation. |

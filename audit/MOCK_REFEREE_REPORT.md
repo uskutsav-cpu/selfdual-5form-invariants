@@ -165,8 +165,10 @@ caps the dimension over `Q` for free; the modular rank supplies the matching
 lower bound. No prime can be bad for them. The Jacobian bound is likewise
 unexposed, being one-sided over an integer reduction.
 
-`D10 = 11` **is** exposed, because directions are admitted to it only when they
-raise the rank mod `p`. So over `Q`, `dim D10 >= 11`, `dim Q10 <= 3`, and
+`D10 = 11` **was** exposed, because directions are admitted to it only when they
+raise the rank mod `p`. That has since been closed: the closure re-run in exact
+rational arithmetic gives `dim_Q D10 = 11` and `dim_Q Q10 = 3` exactly, with an
+explicit non-vanishing integer minor. What remains exposed is only
 `dim(B10 cap P10) <= 1`.
 
 The consequence is worth being blunt about: a bad prime would make the flow reach

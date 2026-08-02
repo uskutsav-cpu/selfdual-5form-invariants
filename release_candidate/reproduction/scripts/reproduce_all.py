@@ -86,13 +86,21 @@ def run(cmd: list[str], cwd: Path = ROOT, timeout: int = 3600, tag: str = "step"
 
 
 def count_tests(output: str) -> int | None:
-    """Passed count from pytest, whether or not it printed a summary line."""
+    """Passed count from pytest, whether or not it printed a summary line.
+
+    This configuration prints the progress dots and no summary line, so the
+    fallback is not an edge case -- it is the normal path, and it has to be
+    right. An earlier version matched only the first run of dots on each line
+    and reported 1 for a 72-test suite.
+    """
     m = re.search(r"(\d+) passed", output)
     if m:
         return int(m.group(1))
-    # `-q` under some plugin sets prints only the progress dots.
-    dots = sum(len(re.findall(r"^[.]+", line))
-               for line in output.splitlines() if line.startswith("."))
+    # One dot per passing test. Strip the progress markers first so their
+    # punctuation is not counted, then count what remains.
+    body = re.sub(r"\[\s*\d+%\]", "", output)
+    body = re.sub(r"^\S+\.py\b.*$", "", body, flags=re.MULTILINE)
+    dots = body.count(".")
     return dots or None
 
 
@@ -164,7 +172,21 @@ def step_build(record: dict, resume: bool) -> bool:
         and diag.get("undefined_citations") == 0 \
         and diag.get("undefined_references") == 0
     record["steps"].append({"step": "isolated manuscript build", "passed": passed,
-                            "seconds": secs, "detail": diag})
+                            "seconds": secs, "detail": diag,
+                            "resumed_from_log": proc.resumed})
+    flush(record)
+    return passed
+
+
+def step_policy(record: dict) -> bool:
+    """Release-policy facts must match the repository they describe."""
+    proc, secs = run([PY, str(ROOT / "scripts/check_release_policy.py")],
+                     tag="policy", resume=False)
+    passed = proc.returncode == 0
+    record["steps"].append({
+        "step": "release policy check", "passed": passed, "seconds": secs,
+        "note": None if passed else proc.stdout.strip().splitlines()[-3:],
+    })
     flush(record)
     return passed
 
@@ -234,6 +256,7 @@ def main() -> int:
                                 "passed": None, "note": "skipped by --skip-build"})
     else:
         ok &= step_build(record, args.resume)
+    ok &= step_policy(record)
     ok &= step_gates(record, args.resume)
 
     record["all_steps_passed"] = ok
@@ -253,7 +276,10 @@ def main() -> int:
         if s.get("tests") is not None:
             detail = f"{s['tests']} tests"
         if s.get("resumed_from_log"):
-            detail = f"{detail} (from a completed step log)"
+            # Without this a resumed step reads as a fresh run that took 0.0 s,
+            # which is precisely the impression this file must not give.
+            mark = "pass (resumed)" if s.get("passed") else mark
+            detail = f"{detail} — read from a completed step log, not re-run"
         rows.append(f"| {s['step']} | {mark} | {detail} | {s.get('seconds', '')} |")
     rows += ["", "## Not regenerated here", ""]
     for path, why in record["not_regenerated"].items():

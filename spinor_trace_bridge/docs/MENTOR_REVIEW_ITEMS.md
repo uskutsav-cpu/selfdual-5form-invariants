@@ -154,8 +154,36 @@ sufficient.
 
 - [ ] treatment confirmed  - [ ] demote to a remark  - [ ] other: __________
 
+## G-10 — the leading-degree rule behind the closure bookkeeping
+
+**What exists.** The stress-flow closure assigns every generated target to a
+graded piece using a leading field degree per generator. PO-02 recorded that
+those values were computed by the same code that validated them. The rule has now
+been stated independently and checked against the certificates:
+
+    Tr(tau)    leading field degree 4, NOT 2
+    Tr(tau^k)  leading field degree 2k for k >= 2
+    products   additive in the factors' leading degrees
+
+All 18 generators, at all six primes, place their first appearance exactly where
+this rule predicts. `tests/test_leading_degree_rule.py`.
+
+**What is needed.** Confirmation of the one step that is physics rather than
+arithmetic: that `Tr(tau)` begins at degree 4 because the free stress tensor is
+traceless, so its degree-2 term vanishes identically.
+
+**Consequence if wrong.** If `Tr(tau)` began at degree 2, every target assigned
+by the rule would land in the wrong graded piece and every closure dimension
+built on it — including `dim D10 = 11` and therefore `dim Q10 = 3` — would be
+suspect. This is the single analytic input the degree-ten result rests on that
+has not been verified by computation.
+
+- [ ] confirmed  - [ ] correction supplied: ______________________
+
 ## Summary for the reviewer
 
 Every item above is a *confirmation* request. None is a request to perform a
-calculation. If all nine are confirmed as-is, the bridge, signature and
-Jacobian workstreams are complete and no wording in the manuscript changes.
+calculation. If all ten are confirmed as-is, the bridge, signature, Jacobian and
+characteristic-zero workstreams are complete and no wording in the manuscript
+changes. G-10 is the only one whose failure would invalidate a headline number
+rather than a wording choice.

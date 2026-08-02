@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/freeze_submission_packages.py",
+ "commit": "0321c704f34b42719a92fdb18211d7a2f2c6a88c",
+ "files_in_archives": [
+  "JHEP.bst",
+  "appendices/algorithms.tex",
+  "appendices/certificates.tex",
+  "appendices/conventions.tex",
+  "appendices/formulas.tex",
+  "appendices/jacobian.tex",
+  "appendices/reproduction.tex",
+  "figures/bridge_diagram.pdf",
+  "figures/invariant_space_diagram.pdf",
+  "figures/jacobian_spectrum_degenerate.pdf",
+  "figures/jacobian_spectrum_non_degenerate.pdf",
+  "figures/rank_stability_grid.pdf",
+  "figures/spinor_trace_rank_comparison.pdf",
+  "figures/trace_pipeline.pdf",
+  "generated/identity.tex",
+  "generated/numbers.tex",
+  "jheppub.sty",
+  "main.bbl",
+  "main.tex",
+  "references.bib",
+  "tables/comparison.tex",
+  "tables/dimensions.tex",
+  "tables/environment.tex",
+  "tables/incidence.tex",
+  "tables/jacobian_runs.tex"
+ ],
+ "identical_file_sets": true,
+ "isolated_build": {
+  "errors": 0,
+  "undefined_citations": 0,
+  "undefined_references": 0,
+  "overfull_boxes": 0,
+  "pdf_produced": true,
+  "pages": 25
+ },
+ "comments_field": "25 pages, 7 figures, 5 tables",
+ "checks": {
+  "master_tex_at_root": true,
+  "bbl_included": true,
+  "no_cover_letter_inside": true,
+  "figures_present": true
+ },
+ "problems": [],
+ "uploaded": false,
+ "submitted": false
+}

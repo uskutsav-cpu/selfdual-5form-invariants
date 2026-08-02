@@ -1,61 +1,137 @@
 # Mentor review package
 
-Short on purpose. The detail is in the repository; this is what to look at and
-what is being asked.
+**HUMAN ACTION REQUIRED.** Ten items, G-1 through G-10. Every one is a
+*confirmation* of something already computed. None asks for a calculation.
 
-## What the paper claims
+Decision form: `review/MENTOR_DECISION_FORM.md`.
+Full item text: `spinor_trace_bridge/docs/MENTOR_REVIEW_ITEMS.md`.
 
-An exact tensor-spinor invariant theory for the ten-dimensional self-dual
-five-form: an equivariant bridge with an exact left inverse, degree-resolved
-span equality through degree 10, and a characteristic-zero certificate for
-generic functional rank 81.
+Read in this order. The first three are the ones where a wrong answer changes a
+number rather than a sentence.
 
-## What it does not claim
+---
 
-The count 81 (yours), the general enumerate-evaluate-relate method (Elamaran,
-Ferko and Scarlett), degree-12 equivalence, all-order results, a complete
-invariant ring, canonicality, or any physical or Type IIB consequence.
+## Priority 1 — G-10: the leading-degree rule
 
-## The four things most worth your scepticism
+**This is the only unverified analytic input the degree-ten result rests on.**
 
-1. **The split-signature correction.** The oscillator frame is (5,5), not
-   Euclidean SO(10). This overturned a recorded blocker in this project's own
-   notes. If it is wrong, the bridge section is wrong.
-   → `spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md`
+The stress-flow closure assigns each generated target to a graded piece using a
+leading field degree per generator. The rule:
 
-2. **dim_Q D10 = 11 by exact rational closure.** Previously this was modular
-   only, and modular is the wrong direction for a subtracted subspace. The
-   claim is now that the closure was recomputed over Q. The first attempt at
-   this returned 14 and a quotient of 0; the difference was which space was
-   being computed.
-   → `docs/D10_Q10_FINAL_STATUS.md`
+    Tr(tau)    leading field degree 4, not 2
+    Tr(tau^k)  leading field degree 2k, k >= 2
+    products   additive
 
-3. **The rank-81 certificate.** 15 cells over three seeds, three fitting primes
-   and two holdout primes, all agreeing. The lower bound is certified; the
-   matching upper bound is your analytic 126 − 45.
-   → `docs/RANK81_MULTI_SAMPLE_CERTIFICATE.md`
+All 18 generators at all six primes place their first appearance exactly where
+this predicts (`tests/test_leading_degree_rule.py`), so the assignments are no
+longer self-referential — they agree with a rule written down separately.
 
-4. **The degree-8 ablation.** Span equality holds at rank 7 only with the
-   structured tensor-word family; the port-graph family alone reaches 6.
-   → `verification/DEGREE8_SPAN_EQUALITY.md`
+**What only you can confirm:** that `Tr(tau)` begins at degree 4 because the free
+stress tensor is traceless, so the degree-2 term vanishes identically.
 
-## What this package is asking you for
+**If this is wrong:** every target lands in the wrong graded piece, and
+`dim D10 = 11` — hence `dim Q10 = 3`, the paper's central number — is wrong with
+it. Nothing else in the paper has this property.
 
-The decisions in `review/MENTOR_DECISION_FORM.md`. Four are scientific
-confirmations, four are credit questions, five are wording, and four can only
-be closed by a person.
+- Manuscript: §6.4, and the closure description in §4.
+- Certificate: `results/stress_flow/D10_characteristic_zero.json`.
 
-## What you should know before reading
+---
 
-- No human has verified any of this. Every check was written by the same system
-  that wrote the code it checks.
-- The AI-assistance disclosure is deliberately unflattering and should be read:
-  `manuscript/jhep/ai_assistance_disclosure.md`.
-- No licence has been chosen, so the code is not currently reusable by anyone.
-- The third-party archive is excluded from every release and its owner has not
-  been contacted.
+## Priority 2 — G-2: the split-signature correction
 
-## What happens if you do nothing
+An earlier record in this project stated the oscillator frame's real form is
+Euclidean `SO(10)`, where `*^2 = -1` admits no real self-dual five-form, and
+treated that as blocking the bridge.
 
-Nothing is submitted. There is no automatic path from this package to arXiv or
-to JHEP, and the submission tag is not created while approvals are outstanding.
+**That was wrong.** Computing the metric from the archive's own wedge and
+contraction operators — all one hundred anticommutators, diagonalised — gives
+eigenvalues `(+1/2)^5, (-1/2)^5`: real signature `(5,5)`, split. A null frame
+cannot be Euclidean at all, since Euclidean signature has no isotropic vectors.
+
+The distinction the paper draws, in one page:
+
+| | real form | `*^2` on 5-forms | real self-dual 5-forms |
+|---|---|---|---|
+| Lorentzian | `Spin(1,9)` | `+1` | yes |
+| split | `Spin(5,5)` | `+1` | yes |
+| Euclidean | `Spin(10)` | `-1` | **no** |
+| complexified | `Spin(10,C)` | — | the common ground |
+
+What survives is weaker and precise: `(5,5)` and `(1,9)` are inequivalent **real**
+forms, so a real frame transformation between them does not exist. But both
+metrics have discriminant `-1` up to squares, so over `C` and over `F_p` they are
+congruent, and the bridge constructs that congruence explicitly and checks it.
+Every component-level comparison in the paper is therefore modular, where the
+transition exists exactly — never a real Lorentzian identification.
+
+**What is needed:** confirmation that the correction is accepted, and — because
+the earlier, wrong statement may already have been communicated to you — that it
+has not been relied on elsewhere.
+
+- Docs: `spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md`,
+  `COMPLEX_REPRESENTATION_BRIDGE.md`.
+- Test: `test_null_frame_signature_is_split`.
+
+---
+
+## Priority 3 — G-8: credit for rank 81
+
+The number 81 is **not ours** and the paper says so. Separating what each party
+contributed:
+
+| element | origin |
+|---|---|
+| the analytic count `126 - 45 = 81` from the trivial generic stabiliser | **literature** (Hutomo–Lechner–Sorokin), cited as the upper bound |
+| earlier float64 finite-difference Jacobian evidence | **mentor archive** — two archived runs, reporting 35 and 81 |
+| exact analytic amputated derivative, no step size, no tolerance | this project |
+| integral gamma-traceless basis making the modular rank a rigorous bound | this project |
+| explicit `81 x 81` minor, two independent determinant routines | this project |
+| complete 83/83 candidate schedule with terminal statuses | this project |
+
+The claim split in the draft: the *upper* bound is analytic and attributed; only
+the *lower* bound `rank_Q >= 81` is claimed here, and only at finitely many
+sample points. A wording gate fails the build on "proved rank 81
+computationally".
+
+**What is needed:** confirm the division of credit and that the literature
+attribution points at the source you intend. Also confirm you want the paper to
+state plainly that 83 candidates of rank 81 means the selection carries
+functional dependencies — it currently does.
+
+---
+
+## Priority 4 — G-9: how to present the cardinality proposition
+
+Any set closing degree `d` has at least `dim Q_d` elements, because the quotient
+map is linear and a span of `k` vectors has dimension at most `k`. Three lines.
+
+It is in the paper because it discharges half of PO-08 and turns a
+basis-dependent assertion into a basis-free one — not because it is new. It is
+almost certainly not new as mathematics, and the draft makes no novelty claim.
+
+**Options:** proposition with proof (current) · lemma · remark · corollary ·
+omit as elementary.
+
+---
+
+## Remaining items
+
+| item | subject | what a wrong answer costs |
+|---|---|---|
+| G-1 | reconstructed spinor index placement | a wording change; the bridge is self-contained either way |
+| G-3 | real-form independence of invariant dimensions | a citation instead of an inline argument |
+| G-4 | equivariance verified at sampled group elements | possibly a symbolic proof instead |
+| G-5 | comparison is modular, not characteristic zero | wording only |
+| G-6 | real-form caveat on component claims; AMB-01/02 source intent | wording; no result depends on the reading |
+| G-7 | redistribution of the spinor archive | release contents only |
+
+---
+
+## What is not being asked
+
+No item asks you to approve a submission, an author list, or a novelty claim.
+Those are separate and are in `audit/AUTHORSHIP_AND_CREDIT_FINAL.md`. Every
+novelty row is `PROVISIONAL` and stays that way until someone who knows the field
+says otherwise — a literature search shows absence of evidence, not evidence of
+absence.

@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "generated_by": "tests/test_G10_trace_activation.py + the counterfactual driver",
+ "commit": "937d97cc73f21e653963292a2e3374d509b2d650",
+ "statement": "The free stress tensor of a self-dual five-form in ten Lorentzian dimensions has vanishing trace at quadratic order, so Tr(tau) first contributes at field degree 4.",
+ "argument": {
+  "step_1": "the free stress tensor of a p-form is quadratic in F, so its trace is a degree-2 scalar",
+  "step_2": "every candidate trace is a multiple of the single quadratic Lorentz scalar <F,F>: for T_{mn} ~ F_{m...}F_n^{...} - c eta_{mn}<F,F> the trace is (1 - c d)<F,F> for ANY improvement coefficient c, so the conclusion is independent of the improvement term and of the overall normalisation",
+  "step_3": "F ^ F is a top form built from two copies of an ODD-degree form in even dimension, hence identically zero; <F,*F> is proportional to F ^ F, so it vanishes",
+  "step_4": "on either eigenspace of the star, F = +-*F gives <F,F> = +-<F,*F> = 0",
+  "conclusion": "the degree-2 part of Tr(tau) vanishes identically; the first possible contribution is degree 4"
+ },
+ "computational_verification": {
+  "star_squared": 1,
+  "self_dual_contraction_vanishes": true,
+  "anti_self_dual_contraction_vanishes": true,
+  "generic_contraction_vanishes": false,
+  "control_present": "unprojected five-forms give NONZERO <F,F>, so the vanishing is not an artefact of the contraction routine",
+  "primes_tested": [
+   32749,
+   32719,
+   32713,
+   32707
+  ],
+  "samples_per_case": 8,
+  "independent_of_flow_code": true
+ },
+ "counterfactual": {
+  "schema": 1,
+  "as_derived_dims": {
+   "4": 1,
+   "6": 2,
+   "8": 7,
+   "10": 11
+  },
+  "as_derived_Q10": 3,
+  "counterfactual_dims": {
+   "4": 1,
+   "6": 2,
+   "8": 7,
+   "10": 14
+  },
+  "counterfactual_Q10": 0,
+  "targets_forced_active": 24,
+  "activation_is_load_bearing": true
+ },
+ "load_bearing": true,
+ "historical_note": "the counterfactual reproduces exactly the earlier error in which the unconditional span gave rank 14 and quotient 0; it is retained as a negative regression fixture",
+ "remaining_for_mentor": "confirmation that the free theory and stress-tensor convention used here are the intended ones, and that no formulation in use (PST, auxiliary-field, clone, Hamiltonian) changes the quadratic trace. The vanishing itself does not depend on the improvement coefficient, which narrows what confirmation is needed."
+}

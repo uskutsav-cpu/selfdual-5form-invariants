@@ -1,58 +1,76 @@
 # Author approval checklist
 
-**Every box below is unchecked. No approval recorded in this repository was
-given by a human.** This file exists so that the absence is explicit and
-countable, not so that it can be filled in by whoever is running the pipeline.
+**Nothing here may be ticked by anyone but the named person.** No item is
+pre-filled. An unticked box is not an oversight; it is the current state.
 
-An AI system cannot give any of these approvals and has not attempted to.
+Factual basis: `audit/AUTHORSHIP_AND_CREDIT_FINAL.md`.
 
-## Per-author sign-off
+## Step 1 — decide the author list
 
-Repeat this block for each proposed author. Names are left blank because
-authorship has not been decided; see `audit/AUTHORSHIP_AND_CREDIT_FINAL.md`.
+This cannot be derived from the contribution matrix. Decide, then record:
 
-| item | approved | by | date |
-|---|---|---|---|
-| inclusion as an author | [ ] | | |
-| position in the author order | [ ] | | |
-| affiliation as stated | [ ] | | |
-| the title | [ ] | | |
-| the abstract | [ ] | | |
-| the central theorem wording | [ ] | | |
-| the degree-10 claim wording, including its scope caveat | [ ] | | |
-| the prior-art attribution to Elamaran, Ferko and Scarlett | [ ] | | |
-| the data availability statement | [ ] | | |
-| the code availability statement | [ ] | | |
-| the AI-assistance disclosure | [ ] | | |
-| posting to arXiv | [ ] | | |
-| submission to JHEP | [ ] | | |
+    Author 1: ______________________  affiliation: ______________________
+    Author 2: ______________________  affiliation: ______________________
+    Author 3: ______________________  affiliation: ______________________
 
-## Corresponding author
+    Corresponding author: ______________________
+    Email:                ______________________
 
-| item | value | approved |
-|---|---|---|
-| name | **not decided** | [ ] |
-| institutional email | **not supplied** | [ ] |
-| willingness to handle correspondence and proofs | | [ ] |
+- [ ] Every person listed has agreed to be listed.
+- [ ] Every person who contributed substantively is listed or acknowledged.
+- [ ] Author order agreed by all listed authors.
+- [ ] The mentor's status (author vs acknowledgement) decided **by the mentor**.
 
-JHEP requires the corresponding author to be one of the authors.
+## Step 2 — per-author approval
 
-## Blocking items that are not approvals
+One column per author. Every author ticks every row for themselves.
 
-These must be resolved before approval is meaningful, and none is a decision
-an AI can make or a computation can supply.
+| item | A1 | A2 | A3 |
+|---|:--:|:--:|:--:|
+| inclusion as an author | [ ] | [ ] | [ ] |
+| author order | [ ] | [ ] | [ ] |
+| own affiliation as printed | [ ] | [ ] | [ ] |
+| corresponding author | [ ] | [ ] | [ ] |
+| exact title | [ ] | [ ] | [ ] |
+| abstract | [ ] | [ ] | [ ] |
+| final manuscript, in full | [ ] | [ ] | [ ] |
+| data and code availability statement | [ ] | [ ] | [ ] |
+| AI-use disclosure as written | [ ] | [ ] | [ ] |
+| acknowledgments | [ ] | [ ] | [ ] |
+| funding statement | [ ] | [ ] | [ ] |
+| competing interests | [ ] | [ ] | [ ] |
+| arXiv posting | [ ] | [ ] | [ ] |
+| JHEP submission | [ ] | [ ] | [ ] |
 
-| item | status | who resolves it |
-|---|---|---|
-| software licence | **not chosen**; the release carries `LICENCE-DECISION-REQUIRED.md` rather than a guessed licence | the authors |
-| third-party archive redistribution | not sought, not granted; the boundary is permanent until it is | the authors and the archive's owner |
-| PO-04, the K6 / Sigma_2 change of basis | inferred, not obtained from the source authors | a person, not a computation |
-| PO-11, bracket colour in equation (4.24) | needs a colour render or a statement from the authors | a person |
-| independent human verification of the bridge and the exact rational closure | **has not occurred** | the authors |
-| whether the degree-10 result belongs in this paper or the Letter | allocation recorded, decision not made | the authors |
+## Step 3 — release and licensing
 
-## What may proceed without these
+- [ ] Software licence chosen (currently **none**, which makes the code
+      non-reusable regardless of where it is hosted).
+- [ ] Public repository contents approved.
+- [ ] Spinor-archive arrangement approved (manifest-only, or permission granted).
+- [ ] Zenodo deposition authorised.
+- [ ] DOI creation authorised.
 
-Everything up to and including a science-freeze tag and a complete manuscript
-draft. Nothing beyond it: no arXiv posting, no journal submission, no public
-claim of authorship, and no submission tag.
+## Step 4 — the two actions no automation may take
+
+- [ ] **arXiv upload** — authorised by the corresponding author.
+- [ ] **JHEP submission** — authorised by the corresponding author.
+
+## Blocking conditions
+
+Submission must not proceed while any of these holds:
+
+1. Any Step 2 box is unticked for any listed author.
+2. The mentor's G-1..G-10 responses are unrecorded (`review/MENTOR_DECISION_FORM.md`),
+   G-10 in particular, since a wrong answer there invalidates `dim Q10 = 3`.
+3. Any novelty row is still `PROVISIONAL` while the manuscript asserts novelty.
+4. No licence is chosen.
+5. The repository is public but the release contents are unapproved.
+
+## Note on the current public state
+
+The repository is already public and carries GitHub releases. That was done on
+explicit instruction and is recorded here because it changes what "approval
+before release" can still mean: the code and certificates are already visible.
+What remains genuinely unreleased is the arXiv posting, the journal submission,
+and the DOI.

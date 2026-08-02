@@ -41,10 +41,12 @@ the two-dimensional subspace of products of lower-degree invariants, the
 twelve-dimensional span of the published candidate structures, the
 twelve-dimensional span of the graph generators, and the eleven-dimensional
 subspace reachable by the stress-tensor flow that motivates these theories. The
-resulting quotient is three-dimensional, and we give explicit compact
-representatives for it. We show that two decompositions which both read twelve
+resulting quotient is three-dimensional --- exactly so over the rationals, not
+only modulo a prime --- and we give explicit compact representatives for it. We show that two decompositions which both read twelve
 plus two are not the same decomposition: the published span contains one product
-direction, so its non-product content is eleven. Independently, we implement a
+direction, so its non-product content is eleven, and we write that direction's
+generator down. The two dimensions that a computation over finite fields could
+not settle are established exactly over the rationals. Independently, we implement a
 bridge between the tensor description and a spinor-variable description, fixing
 every convention explicitly and verifying the map is an isomorphism onto the
 gamma-traceless symmetric chiral square. The two descriptions are then evaluated
@@ -90,10 +92,23 @@ how they are related, and which of them can be written down.
 
 The contrast with lower dimensions is stark. In four and six dimensions the
 analogous problem has a handful of generators and the invariants relevant to
-non-linear duality-invariant theories can be listed on one line. In ten
+non-linear duality-invariant theories can be listed on one
+line~\cite{Bandos:2020hgy,Townsend:2019ftg}. In six dimensions the
+stress-tensor flow is in that sense
+universal~\cite{Bandos:2024chiral,Brizio:2026ttbar}; the degree-ten deficit
+computed below is the precise sense in which ten dimensions is not. In ten
 dimensions the number in~\eqref{eq:eightyone} means that no such listing is
 possible, and the explicit structures available in the literature are a small
 and unsystematic sample of a much larger space.
+
+\paragraph{Method.} The enumerate--evaluate--relate strategy used here ---
+enumerate contraction graphs, evaluate them on random tensors, and recover the
+linear relations numerically --- follows
+Elamaran, Ferko and Scarlett~\cite{Elamaran:2025mlinv}, who introduced it and
+applied it to a three-form in six dimensions. We do not claim that workflow as
+new. What is specific here is carrying it out in exact modular arithmetic with
+certificates, and the characteristic-zero lifts of
+sections~\ref{sec:czero} and~\ref{sec:decomp}.
 
 \paragraph{What was previously available.} Twelve explicit degree-ten
 candidate structures and three degree-twelve structures appear in the source
@@ -123,9 +138,14 @@ values.
       $Q_{10} = A_{10}/D_{10}$ has dimension $\dimQten$. All pairwise
       intersections and sums are certified.
 \item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
-      span is \emph{not} a complement of the products: $\dim(B_{10}\cap P_{10})
-      = \dimBcapP$, so the non-product content of the published span is
-      $\publishedPrimitiveContent$, not $\dimBten$.
+      span is \emph{not} a complement of the products:
+      $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$, so the
+      non-product content of the published span is
+      $\publishedPrimitiveContent$, not $\dimBten$. We exhibit the generator of
+      that intersection explicitly.
+\item Both dimensions that a modular computation could not settle ---
+      $\dim D_{10}$ and $\dim(B_{10}\cap P_{10})$ --- are established exactly
+      over $\mathbb{Q}$ (sections~\ref{sec:czero} and~\ref{sec:decomp}).
 \item A convention-controlled bridge to the spinor description is implemented and
       verified to be an isomorphism onto the gamma-traceless
       $\dimGammaTraceless$ (section~\ref{sec:bridge}).
@@ -285,6 +305,22 @@ The published span therefore contains exactly one product direction and misses
 one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
 $\dimBten$, and the numerical agreement of the two twelves is a coincidence.
 
+This is exact over the rationals, not only modulo a prime: the published
+coordinates were lifted to $\mathbb{Q}$ by Chinese remaindering across
+$\bpFitPrimes$ primes with rational reconstruction, validated at a held-out
+prime~$\bpHoldoutPrime$, giving
+$\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$. The
+intersection is one-dimensional and we can write its generator down: with
+$I^{(k)}$ the published structures in the numbering of~\cite{Cederwall:2025invariants},
+\begin{equation}
+  \input{generated/identity}
+  \label{eq:bpidentity}
+\end{equation}
+so a specific integer combination of four of the twelve published structures is
+a multiple of a pure product. We verified~\eqref{eq:bpidentity} at a prime
+$\bpFreshPrime$ and on $\bpFreshSamples$ five-forms that took no part in its
+construction.
+
 The decomposition that \emph{is} structural is
 \begin{equation}
   P_{10}\cap G_{10} = 0,\quad P_{10}+G_{10} = \dimAten
@@ -316,6 +352,72 @@ This is the concrete statement that the flow construction does not reach the
 whole degree-ten space: there are $\dimQten$ independent directions of local
 degree-ten structure that it cannot generate. Explicit compact representatives
 are given in section~\ref{sec:pureN}.
+
+\subsection{The quotient over the rationals, not only modulo $p$}
+\label{sec:czero}
+
+Every dimension above is a rank computed over $\mathbb{F}_p$, and for most of
+them that costs nothing: a space spanned by exactly $k$ explicit invariants has
+$\dim_{\mathbb{Q}} \le k$ for free, so a modular rank of $k$ pins the
+dimension over $\mathbb{Q}$ with no prime excluded. This covers $A_{10}$,
+$P_{10}$, $G_{10}$ and $B_{10}$.
+
+$D_{10}$ is the exception, and it is the one that matters. It is not given by a
+spanning set; it is assembled by a closure that admits a generated flow direction
+when that direction raises the rank \emph{modulo $p$}. A direction rejected mod
+$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+$\dimDten$ bounded $\dim_{\mathbb{Q}} D_{10}$ only from below, and
+$\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ was all that followed.
+
+Running the same fixed point in exact rational arithmetic removes the modular
+admission test, and with it the gap. The obstacle is that the flow targets are
+not all integral: of the targets at degrees four through ten,
+$\czIntegerRows$ have identical integer coordinates at every prime and
+$\czLiftedRows$ are reductions of rationals. Those were lifted by CRT across
+$\czFitPrimes$ primes followed by rational reconstruction, and every
+reconstructed entry was then required to reduce correctly at a held-out
+prime~$\czHoldoutPrime$ that took no part in the lift. No lift failed and no
+held-out reduction disagreed.
+
+The closure then reaches its fixed point in $\czSweeps$ sweeps under exact
+rational arithmetic, giving
+\begin{equation}
+  \dim_{\mathbb{Q}} D_{10} = \dimDtenQ ,
+  \qquad
+  \dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ .
+  \label{eq:czero}
+\end{equation}
+This is an equality and not a bound, because at a fixed point reached over
+$\mathbb{Q}$ no generated direction raises the rank over $\mathbb{Q}$: the
+reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+checkable witness the certificate records an explicit
+$\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+determinant, computed by fraction-free elimination, is non-zero.
+
+\paragraph{The one analytic input.} The closure assigns each generated target
+to a graded piece using the leading field degree of its generator, and that
+bookkeeping rests on a single physical statement: the free stress tensor of a
+self-dual five-form is traceless, so $\operatorname{Tr}\tau$ first contributes
+at degree four rather than two. The statement is not assumed here. For any
+improvement convention
+$T_{\mu\nu} \sim F_{\mu\ldots}F_\nu{}^{\ldots}
+ - c\,\eta_{\mu\nu}\langle F,F\rangle$
+the trace is $(1-cd)\langle F,F\rangle$, a multiple of the one quadratic scalar
+available; and $\langle F,F\rangle$ vanishes identically on either eigenspace of
+the star, because $F\wedge F$ is a top form built from two copies of an
+odd-degree form and $\langle F,\star F\rangle$ is proportional to it. The
+conclusion is therefore independent of the improvement term and of the
+formulation used to write an action (appendix~\ref{app:conventions}).
+
+It is also load-bearing rather than decorative: re-running the closure with
+$\operatorname{Tr}\tau$ contributing from degree two gives
+$\dim Q_{10} = \gTenCounterfactualQten$ instead of $\gTenDerivedQten$.
+
+What this does \emph{not} do is enlarge the generator set. The statement is that
+the flow image generated by the targets recorded in the stress-flow certificates
+has rank exactly $\dimDtenQ$ over $\mathbb{Q}$; whether that target list is
+itself complete is a separate question and is unchanged.
 
 \subsection{How many directions are needed, in any basis}
 \label{sec:cardinality}
@@ -691,6 +793,17 @@ of~\eqref{eq:eightyone} exactly. The two halves together pin the generic
 functional dimension, but only the lower half is established here, and only at
 finitely many points.
 
+\paragraph{Corroboration across primes and seeds.} The certificate above is
+one point. A matrix of $\matrixCells$ cells --- $\matrixPrimes$ primes by
+$\matrixSeeds$ seeds --- gives rank $\matrixRank$ in every cell, each with the
+full $\exactJacScheduled$-candidate schedule, no evaluation errors, no zero rows
+and Euler homogeneity passing throughout. The stronger statement is the pivot
+structure: the same $\matrixStableRows$ pivot rows and the same
+$\matrixStableCols$ pivot columns in every cell, with
+$\matrixUnstableRows$ unstable. Equal ranks alone would permit each cell to
+reach $\matrixRank$ through a different set of candidates; identical pivots say
+the rank is carried by the same directions at every prime and seed tested.
+
 \paragraph{Permitted claim.} The generic functional dimension
 $\genericFunctionalDim$ follows analytically from the trivial generic stabiliser.
 The computations here provide an independent, exact, tolerance-free lower bound
@@ -716,11 +829,9 @@ The concrete consequence of the degree-ten result is a statement about what thos
 constructions reach. The stress-flow reachable subspace at degree ten has
 dimension $\dimDten$ inside a $\dimAten$-dimensional space. So there are
 $\dimQten$ independent directions of degree-ten local structure that the flow
-cannot generate, and we exhibit representatives of all of them. Following the
-limitation in section~\ref{sec:limitations}, this is $\dimQten$ over
-$\mathbb{F}_p$ at each prime tested and at most $\dimQten$ over $\mathbb{Q}$;
-the inequality runs in the direction that preserves the conclusion, since a
-class that is non-zero here remains non-zero against a larger $D_{10}$.
+cannot generate, and we exhibit representatives of all of them. This is an
+equality over the rationals, not a bound: section~\ref{sec:czero} establishes
+$\dim_{\mathbb{Q}} D_{10} = \dimDtenQ$ exactly.
 
 This changes what a theorist can do in a specific way. Previously, a candidate
 degree-ten term could be compared against the published structures only, and if
@@ -752,17 +863,20 @@ of these follows from the algebra computed here.
       of section~\ref{sec:cert81}, for the separate reason that the matrix is an
       integer reduction and the claim is one-sided.
 
-      \emph{Exposed, and in a determined direction.} $D_{10}$ is assembled by
-      admitting a generated direction only when it raises the rank modulo $p$, so
-      $\dimDten$ is a lower bound over $\mathbb{Q}$. Hence
-      $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ and
-      $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \le \dimBcapP$. A bad prime could
-      therefore only make the flow reach more than we report and the quotient
-      smaller, and could only weaken --- never strengthen --- the claim that the
-      published span meets the products. Neither has been checked in
-      characteristic zero; doing so needs exact evaluation over $\mathbb{Z}$ at
-      the same sample points, and further primes would lower the probability
-      without discharging it.
+      \emph{Settled by exact computation.} $D_{10}$ was the one dimension
+      assembled by a modular admission test, which made $\dimDten$ a lower bound
+      over $\mathbb{Q}$ and $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ the
+      supportable statement. Section~\ref{sec:czero} closes this: the closure
+      run in exact rational arithmetic gives
+      $\dim_{\mathbb{Q}} D_{10} = \dimDtenQ$ and hence
+      $\dim_{\mathbb{Q}} Q_{10} = \dimQtenQ$.
+
+      \emph{Also settled.} $\dim_{\mathbb{Q}}(B_{10}\cap P_{10})
+      \bpCapRelation \bpCapQ$ likewise. The published-candidate coordinates were
+      lifted to $\mathbb{Q}$ by the same route --- CRT across $\bpFitPrimes$
+      primes, rational reconstruction, validation at a held-out
+      prime~$\bpHoldoutPrime$ --- and the intersection is generated by an
+      explicit integer identity, given in section~\ref{sec:decomp}.
 \item \textbf{The reverse search is bounded.} It is a search over a declared
       class with most sectors capped. It is not an exhaustive enumeration and is
       never described as one.
@@ -806,10 +920,20 @@ of these follows from the algebra computed here.
 The degree-ten graded piece of the invariant ring of the ten-dimensional
 self-dual five-form is now known exactly, together with its product, published,
 graph-generator and stress-flow-reachable subspaces and all their intersections.
-The quotient by the reachable subspace is $\dimQten$-dimensional and has explicit
-representatives. A tempting identification between two decompositions that both
-read $\dimBten+\dimPten$ turns out to be false, and the correct structural
-statement is $A_{10} = G_{10}\oplus P_{10}$.
+Every one of those dimensions is exact over $\mathbb{Q}$, not merely modulo a
+prime: the four spanned subspaces are pinned by counting their spanning sets, and
+the two that are not --- the reachable subspace and the intersection of the
+published span with the products --- were settled by exact rational computations
+after lifting the relevant coordinates by Chinese remaindering and validating at
+held-out primes. The quotient by the reachable subspace is
+$\dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ$ and has explicit
+representatives.
+
+A tempting identification between two decompositions that both read
+$\dimBten+\dimPten$ turns out to be false, and the correct structural statement
+is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+meets the products in exactly one dimension over $\mathbb{Q}$, generated by the
+integer identity~\eqref{eq:bpidentity}.
 
 Separately, the spinor-variable description has been connected to the tensor
 description by an explicit convention-controlled bridge, and the numerical

@@ -82,22 +82,61 @@ def wording_gates(text: str) -> None:
         ("amb02-resolved",
          r"AMB-02\s+(is\s+)?resolv", None,
          "the source ambiguity is avoided, not resolved"),
-        ("uncertified-rational-reconstruction",
-         r"exact\s+over\s+(\\mathbb\{Q\}|the\s+rationals)", None,
-         "results are modular; no certified rational reconstruction exists"),
+
         ("first-ever",
          r"\bfirst[- ]ever\b|\bfor the first time\b|\brevolutionary\b|"
          r"\bdefinitive(ly)?\b|\bbreakthrough\b", None,
          "prestige language is not supported"),
-        # The Letter once described the degree-ten deficit as "not a bound ---
-        # an exact dimension".  It is a bound: D10 admits directions that raise
-        # the rank mod p, so dim Q10 is an upper bound over Q.  This rule fires
-        # on any phrasing that denies the bound rather than stating it.
-        ("quotient-described-as-not-a-bound",
-         r"not\s+a\s+bound|(deficit|quotient)[^.]{0,40}\bexact\s+dimension",
-         None,
-         "dim Q10 is an upper bound in characteristic zero; see PO-09"),
     ]
+
+    # "exact over Q" was forbidden outright while every result was modular. Two
+    # certified rational reconstructions now exist -- D10/Q10 and B10 cap P10 --
+    # each validated at a held-out prime, so a blanket ban would now forbid a
+    # true statement. The rule keys off the artifacts instead: the phrase is
+    # permitted only while BOTH are settled, and returns to being a build
+    # failure the moment either regresses.
+    CHECKS += 1
+    certs = [ROOT / "results/stress_flow/D10_characteristic_zero.json",
+             ROOT / "results/degree10/B10_P10_intersection_exact.json"]
+    all_settled = all(c.exists() for c in certs)
+    if all_settled:
+        for c in certs:
+            try:
+                if not json.loads(c.read_text()).get("settled"):
+                    all_settled = False
+            except json.JSONDecodeError:
+                all_settled = False
+    if not all_settled:
+        for m in re.finditer(r"exact\s+over\s+(\\mathbb\{Q\}|the\s+rationals)",
+                             text, re.IGNORECASE):
+            fail("uncertified-rational-reconstruction",
+                 "no certified rational reconstruction is recorded, so results "
+                 "are modular. Found: ..."
+                 + text[max(0, m.start() - 50):m.end() + 50].replace("\n", " ")
+                 + "...")
+
+    # Whether "dim Q10 is not a bound" may be asserted is a question about the
+    # certificate, not about the prose.  The Letter once claimed it while D10 was
+    # modular-only, which is why the rule exists; D10 has since been settled over
+    # Q, so the rule now keys off the artifact instead of forbidding the phrase
+    # outright.  If the certificate regresses to a bound, the phrasing is
+    # forbidden again automatically.
+    CHECKS += 1
+    czp = ROOT / "results/stress_flow/D10_characteristic_zero.json"
+    settled = False
+    if czp.exists():
+        try:
+            settled = bool(json.loads(czp.read_text()).get("settled"))
+        except json.JSONDecodeError:
+            settled = False
+    if not settled:
+        for m in re.finditer(
+                r"not\s+a\s+bound|(deficit|quotient)[^.]{0,40}\bexact\s+dimension",
+                text, re.IGNORECASE):
+            fail("quotient-described-as-not-a-bound",
+                 "dim Q10 is only an upper bound while "
+                 "results/stress_flow/D10_characteristic_zero.json is not "
+                 f"settled. Found: ...{text[max(0, m.start()-60):m.end()+60]}...")
     for name, pattern, context, why in rules:
         CHECKS += 1
         if context:
@@ -242,6 +281,34 @@ def claim_diff() -> None:
             fail("claim-diff",
                  "results/rank81/certificate.json summary ranks disagree with "
                  "its runs")
+
+    # The characteristic-zero D10/Q10 status. The manuscript takes its relation
+    # symbol from a macro, so equality cannot be asserted while the certificate
+    # records only a bound -- but the macro itself must match the artifact.
+    cz = ROOT / "results/stress_flow/D10_characteristic_zero.json"
+    czq = ROOT / "results/stress_flow/Q10_characteristic_zero.json"
+    if cz.exists() and czq.exists():
+        c = json.loads(cz.read_text())
+        cq = json.loads(czq.read_text())
+        check("dimDtenQ", c["D10_dim_over_Q"])
+        check("dimQtenQ", cq["Q10_dim_over_Q"])
+        check("czQtenRelation", "=" if c.get("settled") else "\\le")
+        CHECKS += 1
+        if c.get("settled"):
+            lift = c.get("lift", {})
+            if lift.get("failed") or lift.get("holdout_mismatches"):
+                fail("claim-diff",
+                     "D10 certificate is marked settled but its lift has "
+                     "failures or held-out mismatches")
+            if lift.get("holdout_prime") in lift.get("fitting_primes", []):
+                fail("claim-diff",
+                     "the D10 lift's held-out prime is also a fitting prime, "
+                     "so the validation is vacuous")
+        CHECKS += 1
+        m = c.get("lower_bound_certificate") or {}
+        if c.get("settled") and not m.get("nonzero"):
+            fail("claim-diff",
+                 "D10 marked settled without a non-vanishing minor")
 
     mn = ROOT / "results/rank81/minor81_certificate.json"
     if mn.exists():
@@ -443,11 +510,58 @@ def doc_consistency() -> None:
                      f"the certificate records evaluation errors")
 
 
+def claim_matrix_gate() -> None:
+    """Every number in the paper must have a recorded provenance and strength.
+
+    A macro with no source mapping is a number a reader cannot trace, and the
+    matrix is only useful if it is complete. This also catches a macro added to
+    make_numbers.py without anyone deciding what kind of evidence it rests on.
+    """
+    global CHECKS
+    mx = ROOT / "audit" / "FINAL_CLAIM_CERTIFICATE_MATRIX.json"
+    CHECKS += 1
+    if not mx.exists():
+        fail("claim-matrix", "audit/FINAL_CLAIM_CERTIFICATE_MATRIX.json is "
+                             "missing; run scripts/emit_claim_certificate_matrix.py")
+        return
+    d = json.loads(mx.read_text())
+    if d.get("unclassified"):
+        fail("claim-matrix",
+             f"{len(d['unclassified'])} manuscript number(s) have no recorded "
+             f"provenance: {', '.join(d['unclassified'][:5])}")
+
+    # The matrix must describe the macros that exist now, not an earlier set.
+    gen = MANUSCRIPT / "generated" / "numbers.tex"
+    CHECKS += 1
+    if gen.exists():
+        live = {m for m, _ in re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}",
+                                         gen.read_text())}
+        recorded = {e["macro"] for e in d.get("entries", [])}
+        missing = live - recorded
+        if missing:
+            fail("claim-matrix",
+                 f"{len(missing)} macro(s) absent from the matrix: "
+                 f"{', '.join(sorted(missing)[:5])}; regenerate it")
+
+    # A number whose value moved must not keep an old row.
+    CHECKS += 1
+    if gen.exists():
+        vals = dict(re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}",
+                               gen.read_text()))
+        stale = [e["macro"] for e in d.get("entries", [])
+                 if e["macro"] in vals and str(e["value"]) != str(vals[e["macro"]])]
+        if stale:
+            fail("claim-matrix",
+                 f"matrix values are stale for {', '.join(stale[:5])}; "
+                 f"regenerate it")
+
+
 def main() -> int:
     text = manuscript_text()
     wording_gates(text)
     required_disclosures(text)
     claim_diff()
+    claim_matrix_gate()
     doc_consistency()
     build_gates()
 

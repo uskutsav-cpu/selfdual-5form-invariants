@@ -124,16 +124,74 @@ def congruence(A: np.ndarray, B: np.ndarray, p: int) -> np.ndarray:
     return matmul(left, _inverse_mod(right, p), p)
 
 
+def _raw_L(p: int, flip: bool) -> np.ndarray:
+    """The congruence with an explicit square-root branch."""
+    if not flip:
+        return congruence(null_metric_inverse(p), lorentzian_metric(p), p)
+    import sdbridge.signature as _self
+    saved = _self.sqrt_mod
+    try:
+        _self.sqrt_mod = lambda a, q: (q - saved(a, q)) % q
+        return congruence(null_metric_inverse(p), lorentzian_metric(p), p)
+    finally:
+        _self.sqrt_mod = saved
+
+
+def orientation_normalised_L(p: int) -> np.ndarray:
+    """The frame whose orientation makes the SELF-dual space the surviving one.
+
+    Tries both square-root branches and keeps the one under which the gamma map
+    annihilates the anti-self-dual five-forms, which is the convention the whole
+    package states. Deterministic: the branches are tried in a fixed order and
+    exactly one of them satisfies the test.
+    """
+    from .bridge import BridgeMap
+    from .modular import rank as _rank, matmul as _matmul
+    for flip in (False, True):
+        L = _raw_L(p, flip)
+        b = BridgeMap(p, _frame_override=TransitionFrame(p=p, _L_override=L))
+        if _rank(_matmul(b.selfdual_basis, b.forward_matrix, p), p) == \
+                C.N_SELFDUAL_COMPONENTS:
+            return L
+    raise RuntimeError(
+        f"neither square-root branch of the frame congruence at p={p} leaves "
+        f"the self-dual space surviving; the prime is genuinely exceptional "
+        f"for this construction and must not be used")
+
+
 @dataclass(frozen=True)
 class TransitionFrame:
     """Exact change of frame between the Lorentzian and null presentations."""
 
     p: int = C.DEFAULT_PRIME
+    #: Set only by the orientation normaliser, which must evaluate a candidate
+    #: frame before the canonical one is fixed. Never set by ordinary callers.
+    _L_override: object = None
 
     @cached_property
     def L(self) -> np.ndarray:
-        """L with L^T eta_null L = eta_lorentzian; maps Lorentzian -> null."""
-        return congruence(null_metric_inverse(self.p), lorentzian_metric(self.p), self.p)
+        """L with L^T eta_null L = eta_lorentzian; maps Lorentzian -> null.
+
+        The congruence is fixed only up to the square-root branch chosen inside
+        `congruence`, and that branch is not cosmetic: it reverses the frame's
+        orientation, which reverses the sign of the Hodge star, which swaps
+        which eigenspace the gamma map annihilates. Left unpinned, the bridge is
+        the self-dual projector at some primes and the ANTI-self-dual projector
+        at others -- silently, with no error until a later step reports an image
+        of dimension zero.
+
+        That is what happened at `p = 32707`, where three rank-matrix cells
+        failed. 32707 is not an exceptional prime: flipping the branch there
+        gives the expected behaviour, and flipping it at any working prime breaks
+        that prime in the same way.
+
+        So the branch is pinned here, by construction rather than by luck:
+        `orientation_normalised_L` picks the root for which the self-dual space
+        is the one that survives.
+        """
+        if self._L_override is not None:
+            return self._L_override
+        return orientation_normalised_L(self.p)
 
     @cached_property
     def L_inverse(self) -> np.ndarray:

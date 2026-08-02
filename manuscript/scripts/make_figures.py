@@ -8,8 +8,17 @@ missing input is visible rather than silently stale.
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
+
+# Deterministic figure bytes. Matplotlib stamps /CreationDate into every PDF,
+# and that was the ONLY difference between a clean-clone rebuild and the working
+# tree: all eighteen non-figure files in the source archive were byte-identical
+# and all seven figures differed, each solely by that field. Pinning
+# SOURCE_DATE_EPOCH makes the archives byte-reproducible, so a future hash
+# mismatch means a real content change rather than a rebuild.
+os.environ.setdefault("SOURCE_DATE_EPOCH", "1735689600")  # 2025-01-01T00:00:00Z
 
 import matplotlib
 matplotlib.use("Agg")

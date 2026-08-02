@@ -1,0 +1,14 @@
+{
+ "schema": 1,
+ "n_tracked": 627,
+ "by_provenance": {
+  "unknown provenance": 2,
+  "user-authored (this project)": 288,
+  "generated": 333,
+  "third-party (SISSA Medialab, LPPL 1.3+)": 4
+ },
+ "unknown": [
+  "\"\\\"$L\\\"\"",
+  "third_party/README.md"
+ ]
+}

@@ -15,7 +15,7 @@
 - [x] Citation-to-claim map complete
 - [x] Every figure and table regenerated from artifacts by versioned scripts
 - [x] No scientific value hard-coded in the manuscript
-- [x] Automated wording gates pass (50 checks, covering `docs/` as well as the manuscript)
+- [x] Automated wording gates pass (72 checks, covering `docs/`, the claim matrix and the certificates)
 - [x] Claim diff against artifacts passes
 - [x] Private release candidate built; secret and path scan clean
 - [x] Third-party archive excluded; manifest with hashes shipped instead
@@ -24,9 +24,10 @@
 
 ## Technical — deliberately not complete, and disclosed
 
-- [ ] Characteristic-zero check of `dim D10` and `dim(B10 cap P10)`, the only two
-      degree-ten numbers a bad prime could change. Direction of a possible
-      failure is determined and stated; see PO-09.
+- [x] Characteristic-zero check of `dim D10` and `dim(B10 cap P10)` — **both
+      settled**. `dim_Q D10 = 11`, `dim_Q Q10 = 3`, `dim_Q(B10 cap P10) = 1`,
+      each by an exact rational lift validated at a held-out prime, with an
+      explicit non-vanishing minor and an explicit intersection generator.
 - [ ] Terminal `candidate_exhaustion` at degree ten from the archive's own
       no-Hilbert-stop scan. Killed locally; cluster scripts prepared, no cluster
       run has occurred.
@@ -44,7 +45,7 @@
 - [ ] Competing interests
 - [ ] Licence for the code
 - [ ] Redistribution permission for the third-party archive
-- [ ] Mentor scientific approval (items G-1 to G-9)
+- [ ] Mentor scientific approval (items G-1 to G-10; **G-10 is the one whose failure would invalidate a headline number**)
 - [ ] Novelty confirmation (every row currently PROVISIONAL)
 - [ ] Physics interpretation confirmation
 - [ ] Data DOI creation

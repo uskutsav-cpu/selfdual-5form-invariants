@@ -5,9 +5,9 @@
   "undefined_references": 0,
   "overfull_boxes": 0,
   "pdf_produced": true,
-  "pages": 23
+  "pages": 25
  },
- "comments_field": "23 pages, 7 figures, 5 tables",
+ "comments_field": "25 pages, 7 figures, 5 tables",
  "figures": [
   "figures/bridge_diagram.pdf",
   "figures/invariant_space_diagram.pdf",
@@ -39,6 +39,7 @@
   "figures/rank_stability_grid.pdf",
   "figures/spinor_trace_rank_comparison.pdf",
   "figures/trace_pipeline.pdf",
+  "generated/identity.tex",
   "generated/numbers.tex",
   "jheppub.sty",
   "main.bbl",
@@ -50,9 +51,9 @@
   "tables/incidence.tex",
   "tables/jacobian_runs.tex"
  ],
- "arxiv_source_sha256": "d264f576f89bd76b45e10e06bc37bd87069e5853d59fdc28e00c4e46356d72c3",
- "jhep_source_sha256": "71e94ed8e41ccaaa6707504c6ea5f2c742178a142fb59fe80cd8a7ab85b783ec",
- "pdf_sha256": "eecf5dafaa9831667c63eb1683d92e9ba8d409ae9320aea2cf04b3e16c6fa229",
+ "arxiv_source_sha256": "59665541f7aac335a03de94c325ef36776808d49551a57d7472ea3900af85480",
+ "jhep_source_sha256": "14343c8492b67990161f90f0844cf8780dd42a686da3f3c739726923d0fb6eee",
+ "pdf_sha256": "20fb3a159bbacb28c8f054294d24dff2967798fea9667e71d1d5c4ed6e4de913",
  "contents_are_equivalent": true,
  "note": "Both archives contain the identical file set; they differ only in container format, as the two submission workflows require.",
  "uploaded": false

@@ -1,0 +1,9 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/d10_characteristic_zero.py",
+ "A10_dim_over_Q": 14,
+ "D10_dim_over_Q": 11,
+ "Q10_dim_over_Q": 3,
+ "status": "exact",
+ "permitted_wording": "dim_Q Q10 = 3, established by running the closure to its fixed point in exact rational arithmetic"
+}

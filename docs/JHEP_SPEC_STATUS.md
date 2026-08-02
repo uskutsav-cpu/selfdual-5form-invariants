@@ -14,7 +14,7 @@ Last updated 2026-08-01, revised after the exact-Jacobian work landed.
 | **E** | rank-81 numerical certification | **COMPLETE by a different and stronger route**; the seed x scale x step float64 matrix was NOT run |
 | **F** | degree-10 spinor no-Hilbert-stop | **PARTIAL** — an independent exact modular enumeration reaches rank 14 at degree 10 by saturation; the archive's own `--no-hilbert-stop` run did not complete locally |
 | **G** | signature / complexification argument | **COMPLETE**, and it overturned the recorded blocker |
-| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 72 tests |
+| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 86 tests |
 | **I** | spinor–trace common-sample comparison | **COMPLETE** |
 | **J** | physics interpretation | **DRAFTED**; requires coauthor confirmation |
 | **K** | manuscript, figures, tables, bibliography, package, mock review | **COMPLETE** |
@@ -101,7 +101,7 @@ Cluster job files are prepared in `cluster/` but **no cluster run has occurred**
 
 | item | why not done |
 |---|---|
-| characteristic-zero check of `dim D10` and `dim(B10 cap P10)` | the only two degree-ten numbers a bad prime could change. Needs exact evaluation over `Z`; the obstruction is arithmetic width, not principle. Direction of a possible failure is determined and stated in both manuscripts |
+| characteristic-zero check of `dim(B10 cap P10)` | **`dim D10` is now SETTLED** — `dim_Q D10 = 11`, `dim_Q Q10 = 3`, by exact rational closure with a held-out-prime-validated lift and an explicit non-vanishing minor. `B10 cap P10` remains a bound: three of the twelve published candidates have coordinates of too large a height to lift at the primes available. They are `P10_10`, `P10_11`, `P10_12` — which are exactly the three AMB-02 candidates. The coincidence is worth recording but is not established as causal: AMB-02 is a bracket-association ambiguity, while the lift failure is a height problem, and the plausible common cause is that the nested five-`N1050` structures are the most deeply nested expressions and so carry the largest-height rational coordinates |
 | certified rational reconstruction | no claim depends on it; every modular result is used as a lower bound only, and the wording gate blocks "exact over `Q`" |
 | degree-10 no-stop terminal status | run did not complete locally; `cluster/spinor_degree10_nostop_production.slurm` is prepared, no cluster run has occurred |
 | incidence certificate at the four further primes | the generator exists and reproduces both stored primes exactly; ~15 min per prime, not completed here. Guards against a one-off slip; by the PO-09 analysis it discharges nothing |

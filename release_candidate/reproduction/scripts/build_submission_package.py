@@ -11,7 +11,9 @@ Nothing is uploaded.
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
+import io
 import json
 import os
 import re
@@ -32,6 +34,10 @@ SOURCES = ["main.tex", "references.bib", "jheppub.sty", "JHEP.bst"]
 DIRS = ["appendices", "generated", "tables"]
 
 TEX = Path.home() / "Library" / "TinyTeX" / "bin" / "universal-darwin"
+
+#: Fixed timestamps so the archives are byte-reproducible.
+FIXED_EPOCH = 1735689600           # 2025-01-01T00:00:00Z
+FIXED_ZIP_DATE = (2025, 1, 1, 0, 0, 0)
 
 
 def packaged_sources() -> list[Path]:
@@ -138,18 +144,42 @@ def main() -> int:
         shutil.copytree(tmp / "figures", OUT / "figures", dirs_exist_ok=True)
 
         keep = set(staged) | {"main.bbl"}
+
+        # Deterministic archives. Without this the bytes change on every
+        # rebuild -- tar records each file's mtime, gzip records its own, and
+        # zip records DOS timestamps -- so a hash comparison between two builds
+        # of identical content fails and tells you nothing. With it, a hash
+        # mismatch means the CONTENT changed, which is the only thing worth
+        # being told.
+        def norm(ti: tarfile.TarInfo) -> tarfile.TarInfo:
+            ti.mtime = FIXED_EPOCH
+            ti.uid = ti.gid = 0
+            ti.uname = ti.gname = ""
+            ti.mode = 0o644
+            return ti
+
         tarpath = OUT / "arxiv_source.tar.gz"
-        with tarfile.open(tarpath, "w:gz") as tf:
+        raw = io.BytesIO()
+        with tarfile.open(fileobj=raw, mode="w") as tf:
             for rel in sorted(keep):
                 p = tmp / rel
                 if p.exists():
-                    tf.add(p, arcname=rel)
+                    tf.add(p, arcname=rel, filter=norm)
+        with open(tarpath, "wb") as fh:
+            # mtime=0 keeps the gzip header itself out of the hash
+            with gzip.GzipFile(fileobj=fh, mode="wb", mtime=0) as gz:
+                gz.write(raw.getvalue())
+
         zippath = OUT / "jhep_source.zip"
         with zipfile.ZipFile(zippath, "w", zipfile.ZIP_DEFLATED) as zf:
             for rel in sorted(keep):
                 p = tmp / rel
-                if p.exists():
-                    zf.write(p, arcname=rel)
+                if not p.exists():
+                    continue
+                zi = zipfile.ZipInfo(rel, date_time=FIXED_ZIP_DATE)
+                zi.compress_type = zipfile.ZIP_DEFLATED
+                zi.external_attr = 0o644 << 16
+                zf.writestr(zi, p.read_bytes())
 
     # The arXiv "Comments" field wants these three and they were typed by hand
     # once, which is how it came to say 18 pages when the build made 21.

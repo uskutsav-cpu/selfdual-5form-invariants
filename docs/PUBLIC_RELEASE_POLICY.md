@@ -26,14 +26,18 @@
 | secret scan | pattern match over every text file; build **fails**, not warns |
 | absolute path scan | `/Users/<name>/` pattern; build fails |
 | archive exclusion | archive lives outside the repository tree; allowlist copy |
-| large files | inventory in `results/large_file_inventory.json`; nothing tracked above 1 MB |
+| large files | `scripts/check_release_policy.py` fails if a tracked file exceeds 1 MB without being named, with its reason, in that script's allowed list |
 | history rewriting | **never force-push**; published scientific history is immutable |
 
 ## Current state
 
-Largest tracked file is the compiled manuscript at 378 KB. The two files over
-10 MB on this machine (a `nauty` test answer file and a scheduling SQLite
-database) are both **untracked** and outside the published tree.
+Largest tracked file is `results/stress_flow/interacting_flow_equations.json` at 1223 KB.
+
+1 tracked file(s) exceed 1 MB, each deliberately:
+
+- `results/stress_flow/interacting_flow_equations.json` — the interacting flow equations through degree 12; regenerating them costs hours and every downstream certificate is keyed to them
+
+These figures are checked by `scripts/check_release_policy.py`, which fails if a tracked file grows past the limit without being listed. They were maintained by hand once and were wrong.
 
 ## Licence
 

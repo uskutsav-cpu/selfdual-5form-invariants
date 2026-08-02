@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.7em}
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Mentor review package}}\\[0.4em]
+\textbf{HUMAN ACTION REQUIRED} --- ten items, G-1 through G-10.\\
+Every one is a \emph{confirmation} of something already computed. None asks for a calculation.
+\end{center}
+
+Decision form: \texttt{review/MENTOR\_DECISION\_FORM.md}.\\
+Full item text: \texttt{spinor\_trace\_bridge/docs/MENTOR\_REVIEW\_ITEMS.md}.
+
+Read in this order. The first three are the ones where a wrong answer changes a
+number rather than a sentence.
+
+\hrulefill
+
+\section*{Priority 1 --- G-10: the leading-degree rule}
+
+\textbf{This is the only unverified analytic input the degree-ten result rests on.}
+
+The stress-flow closure assigns each generated target to a graded piece using a
+leading field degree per generator. The rule:
+\begin{align*}
+\mathrm{Tr}(\tau)   &\;\longrightarrow\; 4, \text{ not } 2\\
+\mathrm{Tr}(\tau^k) &\;\longrightarrow\; 2k, \quad k \ge 2\\
+\text{products}     &\;\longrightarrow\; \text{additive}
+\end{align*}
+All 18 generators at all six primes place their first appearance exactly where
+this predicts (\texttt{tests/test\_leading\_degree\_rule.py}), so the assignments
+are no longer self-referential --- they agree with a rule written down separately.
+
+\textbf{What only you can confirm:} that $\mathrm{Tr}(\tau)$ begins at degree 4
+because the free stress tensor is traceless, so the degree-2 term vanishes
+identically.
+
+\textbf{If this is wrong:} every target lands in the wrong graded piece, and
+$\dim D_{10} = 11$ --- hence $\dim Q_{10} = 3$, the paper's central number --- is
+wrong with it. Nothing else in the paper has this property.
+
+\section*{Priority 2 --- G-2: the split-signature correction}
+
+An earlier record in this project stated the oscillator frame's real form is
+Euclidean $SO(10)$, where $\star^2 = -1$ admits no real self-dual five-form, and
+treated that as blocking the bridge.
+
+\textbf{That was wrong.} Computing the metric from the archive's own wedge and
+contraction operators --- all one hundred anticommutators, diagonalised --- gives
+eigenvalues $(+\tfrac12)^5, (-\tfrac12)^5$: real signature $(5,5)$, split. A null
+frame cannot be Euclidean at all, since Euclidean signature has no isotropic
+vectors.
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+ & real form & $\star^2$ on 5-forms & real self-dual 5-forms \\
+\midrule
+Lorentzian   & $\mathrm{Spin}(1,9)$            & $+1$ & yes \\
+split        & $\mathrm{Spin}(5,5)$            & $+1$ & yes \\
+Euclidean    & $\mathrm{Spin}(10)$             & $-1$ & \textbf{no} \\
+complexified & $\mathrm{Spin}(10,\mathbb{C})$  & ---  & the common ground \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+What survives is weaker and precise: $(5,5)$ and $(1,9)$ are inequivalent
+\textbf{real} forms, so a real frame transformation between them does not exist.
+But both metrics have discriminant $-1$ up to squares, so over $\mathbb{C}$ and
+over $\mathbb{F}_p$ they are congruent, and the bridge constructs that congruence
+explicitly and checks it. Every component-level comparison in the paper is
+therefore modular, where the transition exists exactly --- never a real Lorentzian
+identification.
+
+\textbf{What is needed:} confirmation that the correction is accepted, and ---
+because the earlier, wrong statement may already have been communicated to you ---
+that it has not been relied on elsewhere.
+
+\section*{Priority 3 --- G-8: credit for rank 81}
+
+The number 81 is \textbf{not ours} and the paper says so.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+element & origin \\
+\midrule
+analytic count $126-45=81$ from the trivial generic stabiliser & \textbf{literature}, cited \\
+earlier float64 finite-difference Jacobian evidence & \textbf{mentor archive} \\
+exact analytic amputated derivative, no step size, no tolerance & this project \\
+integral basis making the modular rank a rigorous bound & this project \\
+explicit $81\times81$ minor, two determinant routines & this project \\
+complete 83/83 candidate schedule with terminal statuses & this project \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The claim split in the draft: the \emph{upper} bound is analytic and attributed;
+only the \emph{lower} bound $\mathrm{rank}_{\mathbb{Q}} \ge 81$ is claimed here,
+and only at finitely many sample points. A wording gate fails the build on
+``proved rank 81 computationally''.
+
+\textbf{What is needed:} confirm the division of credit and that the literature
+attribution points at the source you intend. Also confirm you want the paper to
+state plainly that 83 candidates of rank 81 means the selection carries
+functional dependencies --- it currently does.
+
+\section*{Priority 4 --- G-9: how to present the cardinality proposition}
+
+Any set closing degree $d$ has at least $\dim Q_d$ elements, because the quotient
+map is linear and a span of $k$ vectors has dimension at most $k$. Three lines.
+
+It is in the paper because it discharges half of PO-08 and turns a
+basis-dependent assertion into a basis-free one --- not because it is new. It is
+almost certainly not new as mathematics, and the draft makes no novelty claim.
+
+\textbf{Options:} proposition with proof (current) $\cdot$ lemma $\cdot$ remark
+$\cdot$ corollary $\cdot$ omit as elementary.
+
+\section*{Remaining items}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+item & subject & what a wrong answer costs \\
+\midrule
+G-1 & reconstructed spinor index placement & a wording change \\
+G-3 & real-form independence of dimensions & a citation instead of an argument \\
+G-4 & equivariance at sampled group elements & possibly a symbolic proof \\
+G-5 & comparison is modular, not char.\ zero & wording only \\
+G-6 & real-form caveat; AMB-01/02 source intent & wording; no result depends on it \\
+G-7 & redistribution of the spinor archive & release contents only \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{What is not being asked}
+
+No item asks you to approve a submission, an author list, or a novelty claim.
+Those are separate and are in \texttt{audit/AUTHORSHIP\_AND\_CREDIT\_FINAL.md}.
+Every novelty row is \texttt{PROVISIONAL} and stays that way until someone who
+knows the field says otherwise --- a literature search shows absence of evidence,
+not evidence of absence.
+
+\end{document}

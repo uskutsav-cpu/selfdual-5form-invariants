@@ -155,4 +155,4 @@ every component with a single scalar. Recorded as review item G-1.
 
 - `spinor_trace_bridge/results/bridge_validation.json` — full certificate at both
   primes, including the solved characters.
-- `spinor_trace_bridge/tests/` — 72 tests (`test_bridge.py` and `test_adversarial.py`).
+- `spinor_trace_bridge/tests/` — 86 tests (`test_bridge.py`, `test_adversarial.py` and `test_orientation.py`).
