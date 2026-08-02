@@ -1,0 +1,60 @@
+--- cell p=32707 seed=11 00:51:36Z
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 248, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 168, in main
+    ctx = build_context(p, seed=seed)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/candidates.py", line 153, in build_context
+    F_lor = b.inverse(coords)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 154, in inverse
+    sel, M = self.left_inverse
+             ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 145, in left_inverse
+    raise RuntimeError(
+        f"image has dimension {len(sel)}, not {C.N_SELFDUAL_COMPONENTS}; "
+        "cannot build a left inverse")
+RuntimeError: image has dimension 0, not 126; cannot build a left inverse
+rc=1
+--- cell p=32707 seed=22 00:51:39Z
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 248, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 168, in main
+    ctx = build_context(p, seed=seed)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/candidates.py", line 153, in build_context
+    F_lor = b.inverse(coords)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 154, in inverse
+    sel, M = self.left_inverse
+             ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 145, in left_inverse
+    raise RuntimeError(
+        f"image has dimension {len(sel)}, not {C.N_SELFDUAL_COMPONENTS}; "
+        "cannot build a left inverse")
+RuntimeError: image has dimension 0, not 126; cannot build a left inverse
+rc=1
+--- cell p=32707 seed=33 00:51:43Z
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 248, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/scripts/run_rank81_cell.py", line 168, in main
+    ctx = build_context(p, seed=seed)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/candidates.py", line 153, in build_context
+    F_lor = b.inverse(coords)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 154, in inverse
+    sel, M = self.left_inverse
+             ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "/Users/swethasunilkumar/Downloads/sdinv-jhep/spinor_trace_bridge/src/sdbridge/bridge.py", line 145, in left_inverse
+    raise RuntimeError(
+        f"image has dimension {len(sel)}, not {C.N_SELFDUAL_COMPONENTS}; "
+        "cannot build a left inverse")
+RuntimeError: image has dimension 0, not 126; cannot build a left inverse
+rc=1

@@ -1,0 +1,24 @@
+{
+  "branch": "publication/jhep-tensor-spinor",
+  "claimable_as_passing": true,
+  "collected": null,
+  "commit": "3fc0e84a8c4681fd472c2b417c5139b2193395ed",
+  "counts": {
+    "passed": 252
+  },
+  "elapsed_seconds": 989,
+  "ended_utc": "2026-08-02T00:49:37Z",
+  "execution_id": "auth-20260802T003307Z-4433",
+  "exit_code": 0,
+  "has_terminal_summary": true,
+  "peak_rss_bytes": 685473792,
+  "reparse_note": "Parsed fields re-derived from the stored stdout after a summary-line regex fix. The suite was NOT re-run; both log hashes were verified against the original record before rewriting.",
+  "reparsed_from_stored_logs": true,
+  "started_utc": "2026-08-02T00:33:08Z",
+  "stderr_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.tensor.stderr",
+  "stderr_sha256": "94516ea175d41e18d583cdb6d10a72018358148a2d157041687740676cd1ccac",
+  "stdout_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.tensor.stdout",
+  "stdout_sha256": "845f0d6a7339f7b01e1a50e11fa9b03d81f8987188daf695c4eb17821b2c0c6c",
+  "suite": "tensor",
+  "summary_line": "252 passed in 988.63s (0:16:28)"
+}

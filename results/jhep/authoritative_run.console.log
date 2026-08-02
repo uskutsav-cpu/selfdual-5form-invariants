@@ -1,0 +1,16 @@
+waiting for rank-81 driver pid=60151 to finish...
+driver exited; starting authoritative suite
+aggregate exit=1 -> /Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.aggregate.log
+certificate exit=1 -> /Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.certificate.log
+tensor: exit=0 ABSENT -- NO TERMINAL SUMMARY LINE claimable=False
+bridge: exit=0 ABSENT -- NO TERMINAL SUMMARY LINE claimable=False
+=== authoritative run auth-20260802T003307Z-4433 @ 3fc0e84a8c4681fd472c2b417c5139b2193395ed (publication/jhep-tensor-spinor) ===
+tensor=0 bridge=0 gate=0
+1.1   PASS     16/16  Exact Clifford and real-form structure
+1.2   PASS     22/22  Exact tensor-spinor bridge and its inverse
+1.3   FAIL     123/127 Candidate accounting and the rank-81 certificate
+1.4   PASS     55/55  Degree-resolved tensor-spinor span equivalence
+1.5   PASS     10/10  Degree-ten application
+1.6   NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE 0/0   Degree-twelve scope decision
+
+VERDICT: FAIL

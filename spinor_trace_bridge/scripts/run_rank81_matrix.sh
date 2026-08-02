@@ -19,8 +19,14 @@ PY="${2:-python3}"
 HERE="$(cd "$(dirname "$0")/../.." && pwd)"
 DRIVER="$HERE/spinor_trace_bridge/scripts/run_rank81_cell.py"
 
+# Every prime here must be NON-congruent to 3 mod 8. For p = 3 (mod 8) the
+# bridge's duality channel inverts and the cell cannot complete -- see
+# docs/EXCEPTIONAL_PRIMES_DUALITY_CHANNEL.md. 32707 was the original third
+# holdout and is 3 mod 8; it is replaced by 32693 (5 mod 8).
+# tests/test_duality_channel_primes.py parses this block and fails if a prime
+# in the bad class is ever added back.
 FITTING="32749 32719 32717"
-HOLDOUT="32713 32707"
+HOLDOUT="32713 32693"
 SEEDS="11 22 33"
 
 echo "matrix start $(date -u +%Y-%m-%dT%H:%M:%SZ)"

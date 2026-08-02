@@ -68,7 +68,13 @@ run_suite() {
 
     # The summary line is the thing the previous run never produced. If it is
     # absent, this record says so rather than implying a pass.
-    summary=$(grep -E '^=+ .*(passed|failed|error|no tests ran).* =+$' "$out" | tail -1)
+    #
+    # It comes in two shapes and the first version of this only matched one.
+    # Verbose pytest decorates it with '=' rules; -q prints a bare
+    # '252 passed in 988.63s'. Matching only the decorated form marked two
+    # clean suites unclaimable, which is the safe direction to be wrong in but
+    # still wrong. Match either.
+    summary=$(grep -E '^(=+ .*(passed|failed|error|no tests ran).* =+|[0-9]+ (passed|failed|error)[^=]*)$' "$out" | tail -1)
     [ -z "$summary" ] && summary="ABSENT -- NO TERMINAL SUMMARY LINE"
 
     "$PY" - "$rec" "$name" "$COMMIT" "$BRANCH" "$EXEC_ID" "$code" \

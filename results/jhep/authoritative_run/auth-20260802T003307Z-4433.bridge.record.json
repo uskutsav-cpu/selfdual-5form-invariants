@@ -1,0 +1,24 @@
+{
+  "branch": "publication/jhep-tensor-spinor",
+  "claimable_as_passing": true,
+  "collected": null,
+  "commit": "3fc0e84a8c4681fd472c2b417c5139b2193395ed",
+  "counts": {
+    "passed": 104
+  },
+  "elapsed_seconds": 53,
+  "ended_utc": "2026-08-02T00:50:30Z",
+  "execution_id": "auth-20260802T003307Z-4433",
+  "exit_code": 0,
+  "has_terminal_summary": true,
+  "peak_rss_bytes": 254590976,
+  "reparse_note": "Parsed fields re-derived from the stored stdout after a summary-line regex fix. The suite was NOT re-run; both log hashes were verified against the original record before rewriting.",
+  "reparsed_from_stored_logs": true,
+  "started_utc": "2026-08-02T00:49:37Z",
+  "stderr_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.bridge.stderr",
+  "stderr_sha256": "49ad8390f87cb868ef8be3c411661ddcb05dec46a935ba064317dc92300a2acc",
+  "stdout_path": "/Users/swethasunilkumar/Downloads/sdinv-jhep/results/jhep/authoritative_run/auth-20260802T003307Z-4433.bridge.stdout",
+  "stdout_sha256": "5474eeae7e36a14d80d1a480e1c66ef2858b1ecd69fe68153264e5570deb77b2",
+  "suite": "bridge",
+  "summary_line": "104 passed in 52.95s"
+}

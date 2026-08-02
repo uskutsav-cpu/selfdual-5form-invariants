@@ -1,0 +1,20 @@
+cells 12/15 present, ranks [81]
+  p=32749  seed=11  fitting  rank 81 rows 83 euler 83/83 4.0s
+  p=32749  seed=22  fitting  rank 81 rows 83 euler 83/83 268.7s
+  p=32749  seed=33  fitting  rank 81 rows 83 euler 83/83 586.3s
+  p=32719  seed=11  fitting  rank 81 rows 83 euler 83/83 1076.3s
+  p=32719  seed=22  fitting  rank 81 rows 83 euler 83/83 809.3s
+  p=32719  seed=33  fitting  rank 81 rows 83 euler 83/83 561.6s
+  p=32717  seed=11  fitting  rank 81 rows 83 euler 83/83 619.5s
+  p=32717  seed=22  fitting  rank 81 rows 83 euler 83/83 3360.9s
+  p=32717  seed=33  fitting  rank 81 rows 83 euler 83/83 1442.7s
+  p=32713  seed=11  holdout  rank 81 rows 83 euler 83/83 1169.0s
+  p=32713  seed=22  holdout  rank 81 rows 83 euler 83/83 2176.2s
+  p=32713  seed=33  holdout  rank 81 rows 83 euler 83/83 1674.6s
+
+3 problems:
+  - missing cell prime=32707 seed=11 (holdout)
+  - missing cell prime=32707 seed=22 (holdout)
+  - missing cell prime=32707 seed=33 (holdout)
+
+MATRIX INCOMPLETE

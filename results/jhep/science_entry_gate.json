@@ -1,8 +1,9 @@
 {
- "generated_utc": "2026-08-01T19:26:08+00:00",
- "head": "af9e1f226eabcaa8e921aeeaa483b2c912ad32ff",
- "verdict": "PARTIAL",
+ "generated_utc": "2026-08-02T00:50:30+00:00",
+ "head": "6af9e423d196d859f6a2cc5f2cff77caab9c5ea5",
+ "verdict": "FAIL",
  "degree12_included_in_central_claims": false,
+ "degree12_status": "NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE",
  "gates": [
   {
    "gate": "1.1",
@@ -99,7 +100,8 @@
     "spinor_trace_bridge/results/bridge_validation.json",
     "spinor_trace_bridge/docs/REAL_FORM_DICTIONARY.md",
     "spinor_trace_bridge/docs/HODGE_STAR_CONVENTIONS.md"
-   ]
+   ],
+   "observations": {}
   },
   {
    "gate": "1.2",
@@ -225,14 +227,35 @@
    "evidence": [
     "spinor_trace_bridge/results/bridge_validation.json",
     "spinor_trace_bridge/docs/BRIDGE_DERIVATION.md"
-   ]
+   ],
+   "observations": {}
   },
   {
    "gate": "1.3",
    "title": "Candidate accounting and the rank-81 certificate",
    "requirement": "83 planned, 83 evaluated, 0 errors, 0 interrupted, 0 silently skipped, 0 zero rows, Euler homogeneity 83/83; exact modular Jacobian; explicit 81x81 minor with nonzero determinant from two independent routines; integer-lift argument; matrix over three samples, three fitting primes, two holdout primes.",
-   "status": "PARTIAL",
+   "status": "FAIL",
    "checks": [
+    {
+     "name": "aggregator reports the matrix complete",
+     "ok": false,
+     "observed": "12/15 cells"
+    },
+    {
+     "name": "aggregator problem: missing cell prime=32707 seed=11 (holdout)",
+     "ok": false,
+     "observed": "missing cell prime=32707 seed=11 (holdout)"
+    },
+    {
+     "name": "aggregator problem: missing cell prime=32707 seed=22 (holdout)",
+     "ok": false,
+     "observed": "missing cell prime=32707 seed=22 (holdout)"
+    },
+    {
+     "name": "aggregator problem: missing cell prime=32707 seed=33 (holdout)",
+     "ok": false,
+     "observed": "missing cell prime=32707 seed=33 (holdout)"
+    },
     {
      "name": "p=32749 seed=11 (fitting): 83 planned",
      "ok": true,
@@ -350,6 +373,586 @@
      ]
     },
     {
+     "name": "p=32749 seed=33 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32749 seed=33 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32719 seed=11 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32719 seed=22 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32719 seed=33 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32717 seed=11 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32717 seed=22 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32717 seed=33 (fitting): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32713 seed=11 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32713 seed=22 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32713 seed=33 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
      "name": "minor p=32749: two routines agree",
      "ok": true,
      "observed": true
@@ -366,15 +969,18 @@
     }
    ],
    "notes": [
-    "Sample x prime matrix: 2/3 seeds [11, 22], 1/3 fitting primes [32749], 0/2 holdout primes []. INCOMPLETE -- every cell computed so far agrees at rank 81, but the specification's matrix is not filled.",
+    "Sample x prime matrix: 3/3 seeds [11, 22, 33], 3/3 fitting primes [32717, 32719, 32749], 1/2 holdout primes [32713], 12/15 cells. INCOMPLETE -- every cell computed so far agrees at rank 81, but the specification's matrix is not filled.",
+    "Each cell is an immutable per-(prime, seed) artifact written atomically under a lock; the certificate is assembled by a read-only aggregator that fails on a missing, duplicated, incomplete or inconsistently ordered cell rather than producing a partial certificate that reads as a whole one.",
     "What the computation gives is the LOWER half only. The coordinate basis is integral, so each Jacobian is the reduction of an integer matrix and rank_{F_p} <= rank_Q holds unconditionally; hence rank_Q >= 81. The matching upper bound 126 - 45 = 81 is analytic, from the generic stabiliser dimension, and is not supplied by any computation here.",
     "Rank 81 among 83 functions means at least two functional dependencies. The manuscript must never say '83 algebraically independent invariants'."
    ],
    "evidence": [
-    "results/rank81/certificate.json",
+    "results/rank81/certificate_matrix.json",
+    "results/rank81/cells/cell_p{prime}_s{seed}.json (one per cell)",
     "results/rank81/minor81_certificate.json",
     "docs/RANK81_CHARACTERISTIC_ZERO_PROOF.md"
-   ]
+   ],
+   "observations": {}
   },
   {
    "gate": "1.4",
@@ -694,7 +1300,8 @@
     "verification/spinor_trace_comparison.json",
     "verification/COMMON_SAMPLE_REGISTRY.json",
     "verification/degree8_span_equality.json"
-   ]
+   ],
+   "observations": {}
   },
   {
    "gate": "1.5",
@@ -758,32 +1365,29 @@
    ],
    "evidence": [
     "results/intrinsic_candidates/degree10_space_incidence.json"
-   ]
+   ],
+   "observations": {}
   },
   {
    "gate": "1.6",
-   "title": "Degree-twelve inclusion gate",
+   "title": "Degree-twelve scope decision",
    "requirement": "Degree 12 may enter the title, abstract or central claims only with a complete atlas, a verified product/primitive split, an exact rank certificate, a trace/spinor comparison, holdout validation, and no silently omitted candidate sector.",
-   "status": "FAIL",
-   "checks": [
-    {
-     "name": "degree-12 tensor atlas exists",
-     "ok": true,
-     "observed": true
-    },
-    {
-     "name": "degree-12 trace/spinor comparison exists",
-     "ok": false,
-     "observed": false
-    }
-   ],
+   "status": "NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE",
+   "checks": [],
    "notes": [
-    "VERDICT: degree 12 does NOT pass the inclusion gate. No spinor-side degree-12 enumeration exists, so no comparison, no holdout validation and no span equivalence can be stated.",
-    "Consequence for the manuscript: degree 12 is excluded from the title, the abstract and the central claims. It appears only (a) as the degree-12 block of the 83-candidate Jacobian, where it is certified, and (b) in a section labelled partial higher-degree evidence."
+    "Degree 12 is excluded from this manuscript's claim scope. There is a degree-12 tensor atlas but no spinor-side degree-12 enumeration, so no comparison, no holdout validation and no span equivalence exist to state.",
+    "What the manuscript MAY say: the degree-12 block of the 83-candidate Jacobian, which is certified as part of the rank calculation; clearly labelled partial higher-degree evidence; and future work.",
+    "What it may NOT say: degree-12 tensor-spinor equivalence; a complete degree-12 spinor atlas; a degree-12 basis map; or complete equivalence through degree 12.",
+    "Building a degree-12 spinor enumeration is out of scope for this manuscript. No theorem in it requires one."
    ],
    "evidence": [
     "results/10d_order12.json"
-   ]
+   ],
+   "observations": {
+    "degree_12_tensor_atlas_exists": true,
+    "degree_12_trace_spinor_comparison_exists": false,
+    "degree_12_jacobian_block_certified": true
+   }
   }
  ]
 }
