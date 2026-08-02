@@ -63,8 +63,16 @@ a tensor--spinor correspondence, an exact rank certificate,
 and an obstruction in the degree-ten stress flow}
 
 \author[a]{Utsav Sunil Kumar}
+\author[b]{and Christian Ferko}
 \affiliation[a]{Heritage High School, Frisco, TX 75035, USA}
+\affiliation[b]{The NSF AI Institute for Artificial Intelligence and
+Fundamental Interactions, Massachusetts Institute of Technology,
+Cambridge, MA 02139, USA}
+%% AFFILIATION UNVERIFIED -- see REVIEW_STATUS.md. This affiliation was
+%% supplied in conversation and has NOT been checked against a current source.
+%% Verify against a recent paper or institutional page before submission.
 \emailAdd{utsav.sunilkumar@example.edu}
+\emailAdd{ferko@example.edu}
 
 \abstract{We study the ring of Lorentz invariants built from a self-dual
 five-form $\Lam$ in ten dimensions, working in two presentations at once: the
@@ -762,6 +770,27 @@ trace sign that appears inconsistent with (2.33) and with the reproduced
 $V(I_4)$ formula; we have not been able to determine which is intended, and our
 implementation follows (2.33).
 
+\section*{Author contributions}
+\addcontentsline{toc}{section}{Author contributions}
+
+We state contributions explicitly because the credit situation here is not the
+default one and would be easy to misread.
+
+The enumerate--evaluate--detect-relations workflow used in section
+\ref{sec:rank} is due to C.F.\ and collaborators \cite{Elamaran:2025ml} and
+predates this work; it is used here, not introduced. U.S.K.\ posed the
+degree-ten closure question, carried out the exact-arithmetic execution of that
+workflow for the five-form problem, produced the rank certificate, proved the
+tracelessness lemma of section \ref{sec:trace}, and computed the degree-ten
+seed closure over $\Q$. C.F.\ acts as corresponding author and is responsible
+for the submission and for correspondence with referees.
+
+The count of $81$ functionally independent invariants, and the degree-ten
+candidate list, are due to the source literature
+\cite{Cederwall:2025invariants}; the nonlinear chiral four-form family and its
+stress flow are due to \cite{Hutomo:2025chiral}. This paper contributes
+certificates, a proof, and an exact closure computation on top of those.
+
 \acknowledgments
 This work made substantial use of AI assistance. The extent is documented in
 \texttt{manuscript/jhep/ai\_assistance\_disclosure.md} and is summarised here:
@@ -831,6 +860,79 @@ thm.~\ref{thm:d10} & \texttt{D10\_exact\_rational\_final.json} & \texttt{test\_s
 \bottomrule
 \end{tabular}
 \end{center}
+
+%% ==========================================================================
+\section{Conventions, and how they compare to the literature}
+\label{app:conventions}
+
+Sign conventions are the usual source of irreproducibility in this area, so we
+record ours against the sources rather than leaving them implicit.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+quantity & this paper & note \\
+\midrule
+signature & $(-,+,\dots,+)$ & mostly plus \\
+$\varepsilon^{01\cdots9}$ & $-1$ & fixes the sign of $\star$ \\
+duality & $\star\Lam=\Lam$ & $\Lam$ self-dual \\
+$V_\Lam$ duality & anti-self-dual & structural, used in prop.~\ref{prop:eulertrace} \\
+$\Lam$ on shell & $\Lam_5=-F_5^+$ & identification of \cite{Hutomo:2025chiral} \\
+degree & polynomial degree in $\Lam$ & \emph{not} coupling order \\
+$\tau$ & $48\,T$ & the $M$-normalised tensor \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Nothing in section \ref{sec:trace} depends on the choice of
+$\varepsilon^{01\cdots9}$: the independent verifier tests both signs and both
+duality channels and finds the trace vanishing in all of them. The $48$ in the
+definition of $\tau$ is a normalisation and propagates into the coefficient
+$10(d-2)$; a different normalisation rescales that coefficient without moving
+its zero, which is at $d=2$ regardless.
+
+One discrepancy in the sources should be flagged. Equation (2.36) of
+arXiv:2509.14351v2 prints a trace sign that we were unable to reconcile with
+(2.33) of the same paper or with the reproduced $V(I_4)$ formula. Our
+implementation follows (2.33). Readers reproducing this work who follow (2.36)
+instead should expect a sign mismatch at that step, and we would welcome
+clarification.
+
+%% ==========================================================================
+\section{Reproduction}
+\label{app:repro}
+
+The computational record is designed to be re-run rather than trusted.
+
+\paragraph{What a reproduction has to produce.} Re-running the rank certificate
+should yield, for every (prime, seed) cell independently: $83$ candidates
+scheduled, $83$ evaluated, zero errors, zero interrupted, zero skipped, Euler
+homogeneity $83/83$, no zero rows, coordinate dimension $126$, rank $81$, and
+cumulative rank by degree $(1,3,9,21,81)$ at degrees $(4,6,8,10,12)$. A cell
+that disagrees with any of these is a failed reproduction and should be
+reported as one; none of these numbers is a tolerance.
+
+\paragraph{Fitting and holdout.} The prime matrix separates fitting primes from
+holdout primes. Rational lifts are fit on the former and validated on the
+latter, and a lift that fails holdout validation is discarded rather than
+refit until it passes. This matters most for the flow coefficient system of
+section \ref{sec:flow}, where the lift succeeded, and for $\tr(M^6)$
+(section \ref{sec:trm6}), where it did not and is reported as not having.
+
+\paragraph{Determinism.} Sample points are drawn from seeded generators, and
+the seed is recorded in each cell's output alongside the hash of the frozen
+source, the candidate-list hash and the coordinate-ordering hash. Two runs with
+the same seed and the same source hash must agree bit for bit; two runs with
+different seeds must agree on every rank.
+
+\paragraph{Independence of the degree-ten result.} Theorem \ref{thm:d10} is
+reproduced by a verifier that shares no code with the production closure: it
+recomputes the raw target span, the activated closure and the complete
+invariant space from the flow artifact directly, checks order-independence
+across sweeps, and certifies the lower and upper bounds by different arguments
+(an explicit minor, and a set of annihilators). Agreement between the
+production path and this verifier is the check we would want a referee to run
+first.
 
 \bibliographystyle{JHEP}
 \bibliography{references}

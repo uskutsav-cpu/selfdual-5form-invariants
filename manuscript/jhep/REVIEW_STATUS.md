@@ -4,30 +4,41 @@
 carries a draft banner on every page. This file says what would have to change
 before that banner comes off.
 
-## Authorship — unresolved
+## Authorship — listed, provenance of consent still thin
 
 | slot | name | state |
 |---|---|---|
 | author | Utsav Sunil Kumar, Heritage High School, Frisco, TX | listed |
-| corresponding author | — | **empty** |
+| corresponding author | Christian Ferko, MIT / IAIFI | listed on reported agreement |
 
-The corresponding-author slot is deliberately empty. It was requested that
-Christian Ferko (prior-art author on arXiv:2512.23750, the source of the
-enumerate–evaluate–relate workflow this paper uses) be listed there. That has
-not been done, for two reasons already recorded in this repository:
+Christian Ferko is now on the author line. The basis is that the first author
+reported in conversation, on 2026-08-01, that Dr. Ferko had agreed. That is
+recorded here as exactly what it is — a report — because
+`audit/AUTHOR_APPROVAL_CHECKLIST.md` asks for a written record and no written
+record has been supplied to this repository.
 
-- the project's own operating rules forbid fabricating author approval;
-- `audit/AUTHORSHIP_AND_CREDIT_FINAL.md` states that mentorship, code access,
-  discussion and institutional position are not, by themselves, authorship.
+**Three things still have to happen before submission, and none is a
+formality:**
 
-Corresponding author is a role with content: that person handles submission,
-answers referees, and vouches for the work. Assigning it to someone who has not
-agreed in writing would misrepresent them to the journal.
+1. **Retain the actual reply.** File Dr. Ferko's written agreement in
+   `audit/AUTHOR_APPROVAL_CHECKLIST.md`. Reported consent is enough to draft
+   with; it is not enough to file with.
+2. **He must read this text.** Corresponding author means he handles the
+   submission, answers the referees, and vouches for the contents. Agreeing to
+   co-author before seeing a draft is not agreement to *this* draft — in
+   particular to the AI-assistance disclosure, to the exactness qualifiers, and
+   to section 6, which states what the paper does not establish. He files it,
+   not the first author.
+3. **Verify the affiliation.** "MIT / IAIFI" was supplied in conversation and
+   has **not** been checked against a current source. The `.tex` carries a
+   comment marking it unverified. A wrong affiliation in print is its own
+   problem, and it is trivially avoidable.
 
-**To resolve:** send `AUTHORSHIP_INVITATION.md`. If written agreement comes
-back, add the author line and record the agreement in
-`audit/AUTHOR_APPROVAL_CHECKLIST.md`. The email placeholder on the existing
-author line must also be replaced with a real address.
+Both email addresses on the author lines are placeholders.
+
+`AUTHORSHIP_INVITATION.md` is retained. If the agreement was informal, it is
+still a reasonable thing to send — it states the AI assistance and the credit
+position plainly, which is what the written record needs to show he saw.
 
 ## Blocked on the science gate
 
