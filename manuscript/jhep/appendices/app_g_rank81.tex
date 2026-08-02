@@ -1,0 +1,74 @@
+\section{The generic-rank certificate}
+\label{app:rank81}
+
+\paragraph{Coordinate basis.}
+The $\dimSelfDualModule$ coordinates are the independent components of a
+self-dual five-form in a fixed ordering of index five-tuples. All derivatives are
+taken with respect to these, so the Jacobian is
+$\exactJacRows \times \exactJacCols$.
+
+\paragraph{Candidate ordering.}
+The $\exactJacScheduled$ candidates are ordered by a fixed rule and the ordering
+is hashed. Every cell records the hash, and cells whose hashes differ are not
+comparable. All $\matrixCells$ cells aggregated here share one ordering hash.
+
+\paragraph{Schedule completeness.}
+\begin{center}
+\begin{tabular}{lc}
+\hline
+scheduled & $\exactJacScheduled$ \\
+evaluated & $\exactJacEvaluated$ \\
+errors & $\exactJacErrors$ \\
+interrupted & $0$ \\
+silently skipped & $0$ \\
+identically-zero rows & $\exactJacZeroRows$ \\
+Euler homogeneity & $\exactJacEulerPass$ \\
+\hline
+\end{tabular}
+\end{center}
+The distinction between ``evaluated'' and ``scheduled'' is tracked explicitly
+because an earlier stage of this project reported a rank from an incomplete
+schedule, with the missing candidates invisible in the output.
+
+\paragraph{Prime and sample design.}
+$\matrixPrimes$ primes $\times$ $\matrixSeeds$ seeds $= \matrixCells$ cells. The
+primes are near $2^{15}$, chosen so that products of two residues fit in machine
+integers without overflow; the seeds control the sample point.
+
+\paragraph{Pivots.}
+Every cell returns the same $\matrixStableRows$ pivot rows and
+$\matrixStableCols$ pivot columns, with $\matrixUnstableRows$ unstable. The pivot
+row identities are recorded as candidate identifiers, not as indices, so the
+comparison is meaningful across runs.
+
+\paragraph{The minor.}
+An explicit $\minorSize \times \minorSize$ submatrix is fixed and its determinant
+computed at prime $\minorPrimes$. The determinant is non-zero, and it is computed
+by two independent routines --- fraction-free Bareiss elimination and a separate
+exact routine --- which agree.
+
+\paragraph{From the minor to characteristic zero.}
+The chosen submatrix has integer entries, being an integer reduction of an
+analytic derivative evaluated at an integer point. Its determinant is therefore an
+integer $D$, and the computation shows $D \not\equiv 0 \bmod p$. Hence
+$D \neq 0$ over $\mathbb{Z}$, so the corresponding minor over $\Q$ is non-zero and
+\begin{equation}
+\text{generic functional rank} \;\ge\; \charZeroLowerBound .
+\end{equation}
+No prime is excluded and no genericity assumption on the sample point is needed:
+a specific point exhibiting rank $\charZeroLowerBound$ bounds the generic rank
+from below.
+
+\paragraph{The upper bound.}
+The matching upper bound $\genericFunctionalDim$ is analytic, following from the
+generic orbit dimension of the Lorentz action on
+$\Lambda^5_+$~\cite{Hutomo:2025chiral}. We cite it and do not reprove it. The
+combination of the two gives the exact value, and we are explicit about which
+half is ours.
+
+\paragraph{Scope.}
+The certified statement is that \emph{the selected family has generic functional
+rank $\genericFunctionalDim$}. It is not the statement that all
+$\exactJacScheduled$ candidates are algebraically independent: functional
+independence at a generic point and algebraic independence are different
+properties, and only the former is established here.

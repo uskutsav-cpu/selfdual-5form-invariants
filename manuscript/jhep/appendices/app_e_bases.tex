@@ -1,0 +1,62 @@
+\section{Invariant bases}
+\label{app:bases}
+
+\paragraph{Identifiers.}
+Candidates carry stable identifiers combining a serial number, a family name and
+a field degree, as in \texttt{c046\_portgraph\_d12}. The family is one of
+\texttt{portgraph}, \texttt{structured} or \texttt{trace}. Identifiers are fixed once
+and never reused, so a candidate referenced in a certificate can always be
+located. The candidate ordering used in the rank computation is itself hashed and
+the hash is recorded with every cell, which is what allows cells produced in
+different working trees to be compared at all.
+
+\paragraph{Degree-four and degree-six.}
+$A_4$ is one-dimensional, spanned by $\operatorname{Tr}(M^2)$ in the normalisation
+of appendix~\ref{app:blocks}, equivalently by $I^{(4)}_1$. $A_6$ is
+two-dimensional; a convenient basis is $\{\operatorname{Tr}(M^3), I^{(6)}_1\}$.
+
+\paragraph{Degree eight.}
+$\dim A_8 = \dEightUnionRank$. The tensor-side basis consists of trace monomials
+in $M$ together with contractions involving the quartic blocks. On the spinor side
+the corresponding family requires the tensor words discussed in
+section~\ref{sec:deg8}: without them the family spans only
+$\dEightRankWithoutWords$ dimensions.
+
+\paragraph{Degree ten.}
+$\dim_\Q \Ften = \dimAtenQ$, decomposing as
+\begin{equation}
+\Ften = \Gten \oplus \Pten,
+\qquad
+\dim \Gten = \dimGten,
+\qquad
+\dim \Pten = \dimPten .
+\end{equation}
+Three subspaces of $\Ften$ recur:
+\begin{itemize}\itemsep2pt
+\item $\Bten$, the span of the published structures, $\dim_\Q \Bten = \dimBten$;
+\item $\Dten$, the flow-reachable subspace, $\dim_\Q \Dten = \dimDtenQ$;
+\item $\Pten$, the products, $\dim_\Q \Pten = \dimPten$.
+\end{itemize}
+Their pairwise incidences are tabulated in table~\ref{tab:spans}.
+
+\paragraph{The $\Omega$ and $\Theta$ candidates.}
+Two families on the spinor side are written $\Omega$ and $\Theta$; they are the
+tensor words of section~\ref{sec:spinor}, distinguished by whether the
+intermediate tensor structure is quadratic or quartic. They are listed
+separately because the degree-eight ablation removes exactly these.
+
+\paragraph{The ambiguous published candidates.}
+Two of the published degree-ten expressions cannot be read unambiguously from the
+source PDF, because bracket colour --- which fixes the order of operations ---
+does not survive text extraction. Both readings of each are implemented, denoted
+by an \texttt{-a} or \texttt{-b} suffix on the identifier, and both are projected
+and reported. The compact $\Qten$ basis is deliberately chosen to avoid these
+candidates, so no result in this paper depends on which reading is correct. This
+is an avoidance, not a resolution; see section~\ref{sec:limitations}.
+
+\paragraph{Quotient representatives.}
+The $\dimQtenQ$ quotient representatives are indexed by the free columns of the
+rank-$\czMinorSize$ certificate of appendix~\ref{app:closure}, and are listed in
+table~\ref{tab:quotient}. They are one choice among many: proposition
+\ref{prop:cardinality} bounds the cardinality of any closing set from below, but
+says nothing about uniqueness, and we make no canonicality claim for this choice.

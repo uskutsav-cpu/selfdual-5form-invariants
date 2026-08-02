@@ -1,0 +1,75 @@
+\section{Reproduction}
+\label{app:reproduction}
+
+\paragraph{Environment.}
+See table~\ref{tab:environment}. The dependencies are NumPy~\cite{Harris:2020},
+\texttt{pynauty} (bindings to \texttt{nauty}~\cite{McKay:2013}) and
+\texttt{pytest}. \texttt{opt\_einsum}~\cite{Smith:2018} is optional and was
+\emph{not} installed for the certified runs; the built-in contraction ordering
+was used instead. A reproducer who installs it should expect identical results
+and shorter runtimes, since the ordering affects speed and not value.
+
+\paragraph{Obtaining the source.}
+\begin{verbatim}
+git clone https://github.com/uskutsav-cpu/selfdual-5form-invariants
+cd selfdual-5form-invariants
+git switch publication/jhep-mentor-draft
+python3 -m venv .venv
+.venv/bin/python3 -m pip install -r requirements.txt
+\end{verbatim}
+
+\paragraph{Running the test suites.}
+\begin{verbatim}
+.venv/bin/python3 -m pytest tests -q
+.venv/bin/python3 -m pytest spinor_trace_bridge/tests -q
+\end{verbatim}
+Expected: $\nTraceTests$ and $\nBridgeTests$ tests respectively, no failures.
+
+\paragraph{Regenerating the certificates.}
+\begin{verbatim}
+.venv/bin/python3 scripts/d10_characteristic_zero.py
+.venv/bin/python3 scripts/b10_p10_characteristic_zero.py
+.venv/bin/python3 scripts/aggregate_rank_matrix.py --self-test
+\end{verbatim}
+The first two are the exact rational computations of
+appendices~\ref{app:closure} and~\ref{app:b10}. The third re-aggregates the rank
+matrix; it is read-only with respect to the cells and is order-independent, so it
+may be run at any time without disturbing them.
+
+\paragraph{Rebuilding the manuscript.}
+\begin{verbatim}
+.venv/bin/python3 manuscript/scripts/make_numbers.py
+.venv/bin/python3 manuscript/jhep/scripts/make_figures.py
+.venv/bin/python3 manuscript/jhep/scripts/make_tables.py
+cd manuscript/jhep && tectonic -X compile main.tex
+\end{verbatim}
+The macro, figure and table steps must precede the compile; the manuscript reads
+their output and does not contain any scientific value of its own.
+
+\paragraph{Expected outputs.}
+The headline values are
+$\dim_\Q\Ften = \dimAtenQ$,
+$\dim_\Q\Dten = \dimDtenQ$,
+$\dim_\Q\Qten = \dimQtenQ$,
+$\dim_\Q(\Bten\cap\Pten) = \dimBcapP$,
+generic functional rank lower bound $\charZeroLowerBound$,
+bridge rank $\bridgeForwardRank$, and $\matrixCells$ rank-matrix cells all of
+rank $\matrixRank$.
+
+\paragraph{Runtimes and memory.}
+The exact rational closure is the most expensive step, dominated by the rational
+arithmetic in the final sweeps. Peak resident memory recorded across the
+rank-matrix cells was under $720$\,MB. The rank matrix as a whole is the longest
+job; individual cells are independent and may be run in parallel, but they must
+not share a row cache --- two processes writing one cache is a defect this
+project has actually experienced.
+
+\paragraph{Determinism.}
+Figures are byte-identical across runs: matplotlib's PDF creation timestamp is
+suppressed explicitly, without which otherwise identical figures differ and
+archive reproducibility fails. Archives normalise member metadata and use a fixed
+epoch for the same reason.
+
+\paragraph{Hashes.}
+The build manifest accompanying this draft records the commit, the SHA-256 of
+every generated artifact, and the hash of the compiled PDF.

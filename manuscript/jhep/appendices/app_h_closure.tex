@@ -1,0 +1,73 @@
+\section{The exact degree-ten flow closure}
+\label{app:closure}
+
+\paragraph{Targets and generators.}
+At degrees four through ten the closure consumes exactly the generators
+\begin{equation}
+\operatorname{Tr}\tau,\;
+\operatorname{Tr}\tau_2,\;
+\operatorname{Tr}\tau_3,\;
+\operatorname{Tr}\tau_4,\;
+\operatorname{Tr}\tau_5,\;
+(\operatorname{Tr}\tau)^2,\;
+\operatorname{Tr}\tau\operatorname{Tr}\tau_2,\;
+\operatorname{Tr}\tau\operatorname{Tr}\tau_3,\;
+(\operatorname{Tr}\tau_2)^2,\;
+\operatorname{Tr}\tau_2\operatorname{Tr}\tau_3 .
+\end{equation}
+This list was determined by instrumenting the closure rather than by reading the
+construction, so that a generator consumed but not documented would show up.
+
+\paragraph{Activation rules.}
+A target is \emph{generated} when the flow produces it formally, and
+\emph{activated} when the leading field degree of the generating expression is
+low enough for it to contribute at the degree under consideration. The leading
+degrees follow the rule: $\operatorname{Tr}(\tau)$ has leading field degree four
+--- not two, by theorem~\ref{thm:gten} --- while $\operatorname{Tr}(\tau^k)$ has
+$2k$ for $k \ge 2$, and products add. All generators were checked against this
+rule independently at every prime, with no exceptions.
+
+\paragraph{Why the distinction is the whole result.}
+The span of \emph{generated} targets has dimension $\dimAten$, equal to
+$\dim\Ften$. The span of \emph{activated} targets, closed under iteration, has
+dimension $\dimDtenQ$. Identifying the two returns $\dim\Qten = 0$. The raw span
+is retained in the test suite as a negative fixture for exactly this reason.
+
+\paragraph{Fixed-point algorithm.}
+Starting from the degree-four seed, repeatedly: generate targets from the current
+span, admit those whose leading degree permits activation, and re-rank. Terminate
+when a sweep raises no rank. Termination occurred after $\czSweeps$ sweeps.
+
+\paragraph{The exact rational calculation.}
+Of the closure's target rows, $\czIntegerRows$ were already integral. The
+remaining $\czLiftedRows$ were reconstructed as follows: evaluate at
+$\czFitPrimes$ fitting primes, combine by the Chinese remainder theorem, and
+recover a rational by rational reconstruction~\cite{Wang:1982}. The reconstructed
+rows were then validated at the held-out prime $\czHoldoutPrime$, which took no
+part in the fit; there were no mismatches. The closure was then run entirely in
+exact $\mathbb{Q}$ arithmetic.
+
+\paragraph{Dimensions by degree.}
+Over $\Q$ the reachable dimensions are $1$, $2$, $7$ and $\dimDtenQ$ at degrees
+four, six, eight and ten.
+
+\paragraph{Lower-bound certificate.}
+An explicit $\czMinorSize \times \czMinorSize$ integer minor of the reachable
+span has non-zero determinant. The submatrix, the column set, the integer scale
+factor by which the rows were cleared of denominators, and the full integer
+determinant are recorded in the artifact. The determinant was computed by Bareiss
+elimination~\cite{Bareiss:1968} and confirmed by an independent exact rational
+routine.
+
+\paragraph{Upper bound: why none is needed.}
+Running the closure over $\Q$ removes the modular admission test that made the
+earlier figure a lower bound. At the fixed point, no further generated direction
+raises the rank over $\Q$; therefore the reached span \emph{is} $\Dten$, and
+$\dim_\Q\Dten = \dimDtenQ$ is an equality. This is the substantive difference
+between the present computation and its modular predecessor.
+
+\paragraph{Quotient maps.}
+Three exact annihilating covectors are exhibited, each vanishing on $\Dten$ and
+independent on $\Ften$. They give the quotient map to $\Qten$ directly, and the
+quotient representatives are indexed by the free columns
+(table~\ref{tab:quotient}).

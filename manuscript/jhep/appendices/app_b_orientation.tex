@@ -1,0 +1,65 @@
+\section{The orientation-fixed finite-field bridge}
+\label{app:orientation}
+
+This appendix records the construction of the null frame over $\Fp$, the
+square-root branch that it leaves free, and the regression that exposed the
+consequences of leaving it free.
+
+\paragraph{The frame congruence.}
+The oscillator basis diagonalises the metric into $5$ hyperbolic pairs. Passing
+to it requires a matrix $L$ with
+\begin{equation}
+L^{T}\,\eta\,L \;=\; \eta_{\mathrm{null}},
+\label{eq:congruence}
+\end{equation}
+where $\eta_{\mathrm{null}}$ is the off-diagonal pairing of the null frame. Over
+$\mathbb{R}$ one fixes $L$ by continuity from the identity. Over $\Fp$ there is
+no such notion, and \eqref{eq:congruence} determines $L$ only up to the choices
+made when extracting square roots.
+
+\paragraph{The determinant character.}
+Any two solutions of \eqref{eq:congruence} differ by an element of the orthogonal
+group of $\eta$, which has two components. The component is detected by
+$\det L$, and the two branches of the square root land in different components.
+This is the entire mechanism: the branch choice is an orientation choice.
+
+\paragraph{How the orientation propagates.}
+An orientation reversal flips the sign of $\epsilon$, hence of $\star$, hence
+exchanges the $+1$ and $-1$ eigenspaces. The gamma map of
+appendix~\ref{app:bridge-exact} annihilates one eigenspace and is injective on
+the other. Composing an orientation-reversed frame with the same gamma map
+therefore yields the projector onto the \emph{anti}-self-dual space while every
+variable in the program is still named as though it were the self-dual one.
+Nothing raises an error; the first symptom is a downstream rank of zero where
+$\dimSelfDualModule$ was expected.
+
+\paragraph{The $p = 32707$ regression.}
+Three cells of the rank matrix failed at $p = 32707$, at every seed. Two
+observations show the prime is not exceptional:
+\begin{enumerate}\itemsep2pt
+\item Flipping the branch by hand at $p = 32707$ restores the expected rank.
+\item Flipping the branch by hand at a prime that had been working breaks that
+      prime in exactly the same way.
+\end{enumerate}
+The failure therefore tracks the branch, not the prime, and excluding the prime
+would have concealed a defect that was live at every prime and merely latent at
+most of them.
+
+\paragraph{The fix.}
+The frame routine now enumerates both branches, constructs the bridge with each,
+and returns the one under which the self-dual space is the surviving one --- that
+is, the branch for which the composite has rank $\dimSelfDualModule$. If neither
+branch works it raises rather than returning a guess. The selection is
+deterministic and depends only on $p$.
+
+\paragraph{Independent verification.}
+A dedicated test suite covers the fix. Beyond checking that all primes now
+behave identically, it contains a test that deliberately selects the other branch
+and asserts that the construction breaks. Without that test a future refactor
+could drop the normalisation and the suite would still pass at most primes,
+which is precisely the situation that produced the defect in the first place.
+
+\paragraph{Effect on published values.}
+None. Every certificate had been computed at a prime where the unpinned code
+already selected correctly, and recomputation after the fix returned identical
+values. The change is that the convention now holds by construction.
