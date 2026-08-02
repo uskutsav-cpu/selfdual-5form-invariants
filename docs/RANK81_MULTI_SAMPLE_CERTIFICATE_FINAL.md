@@ -1,6 +1,6 @@
 # Rank-81 multi-sample certificate --- final
 
-Generated 2026-08-02T01:24:55+00:00 by `scripts/emit_rank81_multi_sample_certificate.py`.
+Generated 2026-08-02T03:47:52+00:00 by `scripts/emit_rank81_multi_sample_certificate.py`.
 
 Execution `rank81-matrix-5f46a2cbbe93-flop1e11`, frozen at commit `5f46a2cbbe93`, contraction budget 1e+11.
 
@@ -107,7 +107,7 @@ in the selected family. The manuscript never says 83 independent invariants.
 ## Hashes
 
 - assembled matrix scientific content `5180e03d38e62ff1184ff4d525bcc17b`
-- frozen source tree `09abe782ecb5eb606b4d67ecdf4c07e8`
+- frozen source tree `82d60fa6482a65140a8e1179dd87c56c`
 - dependency lock `095e3141babb343e9ce8ab05b4cd4e20`
 
 | cell | content sha256 |

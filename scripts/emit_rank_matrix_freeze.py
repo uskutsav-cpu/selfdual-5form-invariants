@@ -32,8 +32,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Everything whose contents can change what a cell means. A change to any of
-# these invalidates cells produced before it.
+# VALUE-DETERMINING. A cell's contents are a function of these files plus its
+# prime, seed and selection list. Changing any of them invalidates every cell
+# produced beforehand, and the remedy is a new execution id.
 SOURCE_CRITICAL = [
     "spinor_trace_bridge/src/sdbridge/candidates.py",
     "spinor_trace_bridge/src/sdbridge/jacobian.py",
@@ -41,6 +42,17 @@ SOURCE_CRITICAL = [
     "spinor_trace_bridge/src/sdbridge/modular.py",
     "spinor_trace_bridge/src/sdbridge/conventions.py",
     "spinor_trace_bridge/scripts/run_rank81_cell.py",
+]
+
+# PLAN-DETERMINING. These decide WHICH cells get computed, not WHAT a cell
+# computes. The shell driver invokes run_rank81_cell.py with explicit --prime,
+# --seed and --role and passes nothing else it reads from itself, so no edit to
+# it can move a cell's content hash. Changing it amends the plan; it does not
+# invalidate a computed cell.
+#
+# The two were originally one list, which reported the 32707 -> 32693 holdout
+# swap as evaluator drift and would have condemned fifteen good cells.
+PLAN_DETERMINING = [
     "spinor_trace_bridge/scripts/run_rank81_matrix.sh",
 ]
 
@@ -67,6 +79,7 @@ def git(repo: Path, *args: str) -> str:
 def freeze(repo: Path) -> dict:
     head = git(repo, "rev-parse", "HEAD")
     per_file = {p: sha256_file(repo / p) for p in SOURCE_CRITICAL}
+    plan_files = {p: sha256_file(repo / p) for p in PLAN_DETERMINING}
     missing = [p for p, h in per_file.items() if h is None]
     source_tree_hash = sha256_text(
         "\n".join(f"{p}:{per_file[p]}" for p in sorted(per_file) if per_file[p])
@@ -91,6 +104,13 @@ def freeze(repo: Path) -> dict:
             repo, "ls-remote", "--heads", "origin",
             "research/maximal-chiral-four-form-program").split("\t")[0] or None,
         "source_critical_files": per_file,
+        "plan_determining_files": plan_files,
+        "why_the_split": (
+            "A cell's contents depend on the value-determining files, its prime, "
+            "its seed and the selection list. The shell driver only decides which "
+            "cells are computed; it is invoked per cell with explicit arguments "
+            "and a cell reads nothing from it, so no edit to it can change a "
+            "content hash. Amending the plan is not invalidating the cells."),
         "source_critical_missing": missing,
         "source_tree_hash": source_tree_hash,
         "dependency_lock": {
@@ -143,6 +163,11 @@ def stamp(repo: Path) -> int:
     # to what they hashed to when the matrix started. HEAD is allowed to move
     # for commits that touch nothing source-critical, and it did.
     drifted = []
+    plan_drift = []
+    for rel, want in (frozen.get("plan_determining_files") or {}).items():
+        got = sha256_file(repo / rel)
+        if got != want:
+            plan_drift.append({"path": rel, "frozen": want, "now": got})
     for rel, want in frozen["source_critical_files"].items():
         if want is None:
             continue
@@ -191,6 +216,8 @@ def stamp(repo: Path) -> int:
         "problems": problems,
         "source_critical_reverified": not drifted,
         "source_critical_drift": drifted,
+        "plan_determining_drift": plan_drift,
+        "plan_amended_without_invalidating_cells": bool(plan_drift) and not drifted,
         "head_at_stamp_time": git(repo, "rev-parse", "HEAD"),
         "head_moved_since_freeze": git(repo, "rev-parse", "HEAD") != frozen[
             "jhep_branch_commit"],

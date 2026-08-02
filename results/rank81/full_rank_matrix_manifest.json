@@ -1,0 +1,112 @@
+{
+ "cell_files": [
+  {
+   "name": "cell_p32693_s11.json",
+   "sha256": "41b8fdba0a1ff9b9246099c93e57b62bf531eaaecf8674e6b0ee726a12cfaa66"
+  },
+  {
+   "name": "cell_p32693_s22.json",
+   "sha256": "ffbf8492aeb7e4bd98a966e61b982bf2617a34045a7bd0218042a5335d74bc96"
+  },
+  {
+   "name": "cell_p32693_s33.json",
+   "sha256": "fa888abea2d57b9b26971e95f9106a85723595c301c8aac25a968448b4aec741"
+  },
+  {
+   "name": "cell_p32713_s11.json",
+   "sha256": "bb831ef8c882fa00eff8596128666d6113d5838ca10916db4d800456a3ee49dc"
+  },
+  {
+   "name": "cell_p32713_s22.json",
+   "sha256": "b05cfb2e22c7529303021d2199a2ea4f3f4f8bc123ada5787cd867bde9dc2d6b"
+  },
+  {
+   "name": "cell_p32713_s33.json",
+   "sha256": "549457c9f0014f18694e037cd86f328c554927103aff283df55267a84ae50681"
+  },
+  {
+   "name": "cell_p32717_s11.json",
+   "sha256": "931309a51b112e25d833844bdf3b86a275c84d7785979a4f983d11ff6aa20208"
+  },
+  {
+   "name": "cell_p32717_s22.json",
+   "sha256": "2f6fedd7c48f3b3d8971de74509c17a59dffc73c292d87a7f1352374550df6d1"
+  },
+  {
+   "name": "cell_p32717_s33.json",
+   "sha256": "eb714ea57d24c7fe8f778fc726d2d46159afbd2a61a8bd06b6edb8e0fb6aef0d"
+  },
+  {
+   "name": "cell_p32719_s11.json",
+   "sha256": "a67a801b15a865d2c0eeacd018f3eb0b98f1042e9a01e75710766bb7d5297b2d"
+  },
+  {
+   "name": "cell_p32719_s22.json",
+   "sha256": "926236c55c767a8d07b3d187580b3eb3ebee7f447b1bb6b4249017c335672e80"
+  },
+  {
+   "name": "cell_p32719_s33.json",
+   "sha256": "f4ba174e5e3b6be53610d293454db160717479c706b071929faf67d6d15852ab"
+  },
+  {
+   "name": "cell_p32749_s11.json",
+   "sha256": "ccd04a02b738edbeaff5b429be9a673f490275d9cda02e64ac296613d0292e97"
+  },
+  {
+   "name": "cell_p32749_s22.json",
+   "sha256": "d59cceeefcad15b0dd6ed357428bdaf0e93375d7282b3ae3272238bbca6fd04b"
+  },
+  {
+   "name": "cell_p32749_s33.json",
+   "sha256": "464dfac08d5403eb01ba60c13313168b07b94a2843aab3f319bd9044256cb7d9"
+  }
+ ],
+ "files": [
+  {
+   "bytes": 33824,
+   "name": "full_rank_matrix.json",
+   "sha256": "1441b0df9956a0df7802df4bcea24ef85d9e6ec758f891be9b0dfdc0f563eaf1"
+  },
+  {
+   "bytes": 1832,
+   "name": "full_rank_matrix.csv",
+   "sha256": "67c9883820957d5827e6a8d0c13107c9fdc607d7cff4360a27c6831c7b5bc36b"
+  },
+  {
+   "bytes": 175,
+   "name": "full_rank_matrix.sha256",
+   "sha256": "2e64e464861b7a2c19720e4f2c8625dc4b18a8eca567d50e3421b6dcb9b6c255"
+  }
+ ],
+ "generated_utc": "2026-08-02T03:47:51+00:00",
+ "matrix_complete": true,
+ "n_planned": 15,
+ "n_present": 15,
+ "regeneration_command": "python spinor_trace_bridge/scripts/assemble_rank81_matrix.py --emit-release --freeze audit/RANK_MATRIX_EXECUTION_FREEZE.json --provenance audit/RANK_MATRIX_CELL_PROVENANCE.json",
+ "scientific_content_sha256": "5180e03d38e62ff1184ff4d525bcc17b1e7f9045ac3e9afb40214cb940699ab3",
+ "summary": {
+  "all_cells_agree": true,
+  "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
+  "characteristic_zero_lower_bound": 81,
+  "coordinate_dimension": 126,
+  "distinct_total_ranks": [
+   81
+  ],
+  "fitting_primes": [
+   32749,
+   32719,
+   32717
+  ],
+  "flop_limit": 100000000000.0,
+  "holdout_primes": [
+   32713,
+   32693
+  ],
+  "n_candidates_scheduled": 83,
+  "seeds": [
+   11,
+   22,
+   33
+  ]
+ }
+}
