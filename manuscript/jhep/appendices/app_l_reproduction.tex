@@ -4,10 +4,20 @@
 \paragraph{Environment.}
 See table~\ref{tab:environment}. The dependencies are NumPy~\cite{Harris:2020},
 \texttt{pynauty} (bindings to \texttt{nauty}~\cite{McKay:2013}) and
-\texttt{pytest}. \texttt{opt\_einsum}~\cite{Smith:2018} is optional and was
-\emph{not} installed for the certified runs; the built-in contraction ordering
-was used instead. A reproducer who installs it should expect identical results
-and shorter runtimes, since the ordering affects speed and not value.
+\texttt{pytest} and \texttt{opt\_einsum}~\cite{Smith:2018}.
+
+\texttt{opt\_einsum} is \emph{required}, and an earlier version of this appendix
+described it as optional. It supplies both the contraction order and the
+intermediate-size and floating-point-operation estimates that the modular
+contractor enforces as an explicit budget. Without it the code took a naive
+left-to-right pairwise order with those checks skipped altogether, so the two
+budgets silently ceased to be budgets. Measured on an 8\,GiB host, the
+degree-eight evaluator then moves from $0.4$\,s at $0.27$\,GB peak resident set
+to an unbounded allocation terminated by the kernel; the failure surfaces as
+\texttt{SIGKILL} with no traceback, which is precisely what such a guard exists
+to prevent. The fallback now raises rather than running unguarded. Computed
+values are unaffected: the bridge suite passes identically once it is installed.
+This was found by a clean-clone reproduction, not known in advance.
 
 \paragraph{Python version.}
 Python 3.10 or newer is required: the source uses PEP 604 union annotations, and

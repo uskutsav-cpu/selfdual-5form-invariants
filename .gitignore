@@ -27,3 +27,6 @@ manuscript/prl/*.blg
 manuscript/prl/mainNotes.bib
 results/rank81/rowcache_*.json
 verification/reproduction-logs/
+
+# local test scratch logs
+.testlogs/

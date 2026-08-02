@@ -1,18 +1,18 @@
 {
  "appendices": 12,
- "approx_source_words": 13926,
+ "approx_source_words": 14024,
  "artifacts": {
-  "SHA256SUMS": "fe351570015cc38180fe99d8f9cdf1fdfdef0e925b99bff20dfe4b0b1a7e3446",
+  "SHA256SUMS": "a90837b2e1cd2a1642e9506015de43ff1a9d49fa545058eec424f32edb7ee96a",
   "certificate_manifest.json": "cc8dd55ea2354fbe32e8e2ccbfce0ef75e3b1b953ef87051cf424efef03caa94",
-  "claim_ledger.pdf": "f5a0bd020d010da75194aaf47aac53fb1e085ebf0e6518027b9197a008a18be7",
-  "figure_book.pdf": "5e51c4747d99cb53ebf8f233312c077dc65d6ee072c6b803cf54ba3efc2cc383",
-  "mentor_review_guide.pdf": "74b8d55df7de71c68230eb6896786304fade91d39c3dc351f4a9bf453c7ffd3f",
-  "paper.pdf": "06520114e1cee7339d49f629cc5f2ed16fd0b15b8fc1d478062f26b0d5eff8bf",
-  "paper_source.tar.gz": "53fe759dd539845c80ff62fdba5f667b2caef0b276d9ac14ec74487f266eadfd",
-  "reproduction_quickstart.pdf": "bcc64632186d5b580026c08fceae9c491a5ccf80a6c1e60e47339c7ef07b057e"
+  "claim_ledger.pdf": "06ebe5c2c465ebb635e6ff239e2613017c5e08be174985aedc9a739405c4c0f0",
+  "figure_book.pdf": "74dfa39b78329e0e19e5b13b6497c14306b84c92c508395b593e1d36ad4911c2",
+  "mentor_review_guide.pdf": "8ee8a466b2f4b9a9883003e97ad086f62b8b71e6a99de77d385341154748ca7c",
+  "paper.pdf": "9a80770c0b17d6a148a0cf1832f33356489316e9012479657bd899c84188c066",
+  "paper_source.tar.gz": "6f6d4e08f680fa56ff2e0b77ef4a50216863d309850faccb1d6801b01493cd50",
+  "reproduction_quickstart.pdf": "1782022aafa95fc1292eb12def45fa304777bbaae3d073145d49d76762d2cfe6"
  },
  "branch": "publication/jhep-mentor-draft",
- "commit": "0b8498ea43b452c9e52b381b0dab8c8e6b22924e",
+ "commit": "038c95b9a3e651dcb7a227ae0145c55221fc14ec",
  "figures": 10,
  "latex": {
   "errors": 0,

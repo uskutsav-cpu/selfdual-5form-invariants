@@ -31,10 +31,22 @@ import numpy as np
 from . import conventions as C
 from .clifford import NullFrameClifford
 
-try:  # opt_einsum gives much better contraction orders, but is optional
+try:
     import opt_einsum as _oe
 except ImportError:  # pragma: no cover
     _oe = None
+
+# opt_einsum is REQUIRED, not optional, and was previously described as
+# optional in both this file and the reproduction documents. It is what chooses
+# the contraction order *and* what supplies the intermediate-size and flop
+# estimates that `_modular_contract` enforces. Without it the old code fell back
+# to a naive left-to-right pairwise order with the budget checks skipped
+# entirely, so the two limits below silently stopped being limits. Measured on
+# an 8 GiB host, that fallback takes `StructuredDegree8.values` from 0.4 s at
+# 0.27 GB peak
+# to an unbounded allocation that the kernel kills; the failure arrives as
+# SIGKILL with no traceback, which is exactly what a memory guard exists to
+# prevent. We now refuse to run rather than run unguarded.
 
 
 def flip(mu: int) -> int:
@@ -159,8 +171,14 @@ def _modular_contract(operands: list[np.ndarray], subscripts: list[list[int]],
             raise ContractionTooLarge(
                 f"estimated cost {float(info.opt_cost):.2e} flops exceeds the "
                 f"budget of {flop_limit:.2e}")
-    else:  # pragma: no cover - fallback order
-        path = [(0, 1)] * (len(ops) - 1)
+    else:
+        raise ContractionTooLarge(
+            "opt_einsum is required: it supplies both the contraction order and "
+            "the intermediate-size and flop estimates enforced above. The former "
+            "fallback used a naive left-to-right order with no budget check, "
+            "which allocates without bound and is killed by the kernel rather "
+            "than raising. Install it with `pip install opt_einsum` (it is in "
+            "requirements.txt).")
 
     for step in path:
         idx = sorted(step, reverse=True)

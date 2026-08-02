@@ -42,10 +42,15 @@ computation whose result is quoted.
 
 Two notes that will otherwise cost you time:
 
-- `opt_einsum` is imported by the spinor code but is **optional**, is **not** in
-  `requirements.txt`, and was **not installed** in the environment that produced
-  the certified results. The built-in contraction ordering was used. Installing
-  it should change speed and not values, but that was not certified both ways.
+- `opt_einsum` is **required** and is now in `requirements.txt`. This corrects
+  an earlier note here that called it optional and said the certified runs ran
+  without it. It supplies the contraction order *and* the intermediate-size and
+  flop estimates that the modular contractor enforces as a budget. Without it
+  the old code took an unguarded naive contraction order: on an 8 GiB host
+  `StructuredDegree8.values` goes from 0.4 s at 0.27 GB peak to an unbounded
+  allocation that the kernel kills, and the bridge suite dies with SIGKILL and
+  no traceback. The fallback now raises instead of running unguarded. Values are
+  unchanged — the 86 bridge tests pass identically once it is installed.
 - If you use the repository's committed `.venv`, its `pip` shebang points at a
   path that no longer exists. Use `.venv/bin/python3 -m pip` rather than
   `.venv/bin/pip`.

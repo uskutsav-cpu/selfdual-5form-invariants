@@ -28,10 +28,10 @@ import numpy as np
 from . import conventions as C
 from .modular import inv
 
-try:
-    import opt_einsum as _oe
-except ImportError:  # pragma: no cover
-    _oe = None
+# No opt_einsum import here: every contraction in this file goes through
+# `_contract` -> `spinor_invariants._modular_contract`, which owns the path
+# choice and the memory/flop budget. This module used to carry its own unused
+# optional import, which made opt_einsum look more optional than it is.
 
 #: The four selected here; the other two of the family were not selected by the
 #: archived run and are therefore not part of the scientific set.

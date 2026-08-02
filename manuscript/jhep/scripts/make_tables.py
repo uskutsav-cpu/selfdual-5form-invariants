@@ -290,19 +290,22 @@ def t_environment():
     except Exception:
         commit = "unavailable"
     import numpy
+    import opt_einsum
     rows = [
         ("Python", platform.python_version()),
         ("NumPy", numpy.__version__),
         ("pynauty", "2.8.8.1"),
-        ("opt\\_einsum", "optional; not installed for the certified runs"),
+        ("opt\\_einsum", opt_einsum.__version__),
         ("commit", f"\\texttt{{{commit}}}"),
     ]
     write("tab12_environment.tex", tabular(
         "ll", ["component", "version"], rows,
-        "Reproduction environment. \\texttt{opt\\_einsum} is an optional "
-        "accelerator for contraction ordering; it was absent from the "
-        "environment that produced the certified results, so the built-in "
-        "fallback ordering was used.",
+        "Reproduction environment. \\texttt{opt\\_einsum} is required, not "
+        "optional: it supplies the contraction order and the "
+        "intermediate-size and flop budgets the modular contractor enforces. "
+        "Without it those budgets are not checked at all and the degree-eight "
+        "evaluator is terminated by the kernel rather than raising. Computed "
+        "values are unaffected.",
         "tab:environment"))
 
 
