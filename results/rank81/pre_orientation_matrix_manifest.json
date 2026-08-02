@@ -1,0 +1,164 @@
+{
+ "generated_utc": "2026-08-02T22:21:26+00:00",
+ "status": "SUPERSEDED AS FINAL PUBLICATION CERTIFICATES",
+ "explicitly_not": "invalid mathematical calculations",
+ "reason": "The evaluator provenance changed. signature.py now pins the frame orientation canonically, so certificates must come from one post-fix execution rather than from a mixture.",
+ "values_were_correct": true,
+ "evidence_values_unchanged": "results/orientation_merge/two_cell_value_comparison.json",
+ "superseded_execution_id": "rank81-matrix-5f46a2cbbe93-flop1e11",
+ "superseded_source_commit": "5f46a2cbbe93a0143e63916ce0bdc1a94c8fd89b",
+ "superseded_source_tree_hash": "82d60fa6482a65140a8e1179dd87c56cedb09f0d584d07fb3d977b257946fbda",
+ "superseded_prime_design": {
+  "fitting": [
+   32749,
+   32719,
+   32717
+  ],
+  "holdout_at_freeze": [
+   32713,
+   32707
+  ],
+  "holdout_as_run": [
+   32713,
+   32693
+  ]
+ },
+ "superseded_cells": [
+  {
+   "file": "cell_p32693_s11.json",
+   "prime": 32693,
+   "seed": 11,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "f70e02fb886634bcf474bf8f6eb5ddfa07f7f9e13a713058bdef62a39f6aa334"
+  },
+  {
+   "file": "cell_p32693_s22.json",
+   "prime": 32693,
+   "seed": 22,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "ffbf8492aeb7e4bd98a966e61b982bf2617a34045a7bd0218042a5335d74bc96"
+  },
+  {
+   "file": "cell_p32693_s33.json",
+   "prime": 32693,
+   "seed": 33,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "fa888abea2d57b9b26971e95f9106a85723595c301c8aac25a968448b4aec741"
+  },
+  {
+   "file": "cell_p32713_s11.json",
+   "prime": 32713,
+   "seed": 11,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "bb831ef8c882fa00eff8596128666d6113d5838ca10916db4d800456a3ee49dc"
+  },
+  {
+   "file": "cell_p32713_s22.json",
+   "prime": 32713,
+   "seed": 22,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "b05cfb2e22c7529303021d2199a2ea4f3f4f8bc123ada5787cd867bde9dc2d6b"
+  },
+  {
+   "file": "cell_p32713_s33.json",
+   "prime": 32713,
+   "seed": 33,
+   "role": "holdout",
+   "total_rank": 81,
+   "content_sha256": "549457c9f0014f18694e037cd86f328c554927103aff283df55267a84ae50681"
+  },
+  {
+   "file": "cell_p32717_s11.json",
+   "prime": 32717,
+   "seed": 11,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "931309a51b112e25d833844bdf3b86a275c84d7785979a4f983d11ff6aa20208"
+  },
+  {
+   "file": "cell_p32717_s22.json",
+   "prime": 32717,
+   "seed": 22,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "2f6fedd7c48f3b3d8971de74509c17a59dffc73c292d87a7f1352374550df6d1"
+  },
+  {
+   "file": "cell_p32717_s33.json",
+   "prime": 32717,
+   "seed": 33,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "eb714ea57d24c7fe8f778fc726d2d46159afbd2a61a8bd06b6edb8e0fb6aef0d"
+  },
+  {
+   "file": "cell_p32719_s11.json",
+   "prime": 32719,
+   "seed": 11,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "a67a801b15a865d2c0eeacd018f3eb0b98f1042e9a01e75710766bb7d5297b2d"
+  },
+  {
+   "file": "cell_p32719_s22.json",
+   "prime": 32719,
+   "seed": 22,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "926236c55c767a8d07b3d187580b3eb3ebee7f447b1bb6b4249017c335672e80"
+  },
+  {
+   "file": "cell_p32719_s33.json",
+   "prime": 32719,
+   "seed": 33,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "f4ba174e5e3b6be53610d293454db160717479c706b071929faf67d6d15852ab"
+  },
+  {
+   "file": "cell_p32749_s11.json",
+   "prime": 32749,
+   "seed": 11,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "05b7dd0b861e9d2cef652c677797d6cd66cf2b71db5a66b45c34ed22cb466612"
+  },
+  {
+   "file": "cell_p32749_s22.json",
+   "prime": 32749,
+   "seed": 22,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "d59cceeefcad15b0dd6ed357428bdaf0e93375d7282b3ae3272238bbca6fd04b"
+  },
+  {
+   "file": "cell_p32749_s33.json",
+   "prime": 32749,
+   "seed": 33,
+   "role": "fitting",
+   "total_rank": 81,
+   "content_sha256": "464dfac08d5403eb01ba60c13313168b07b94a2843aab3f319bd9044256cb7d9"
+  }
+ ],
+ "n_superseded_cells": 15,
+ "all_superseded_ranks": [
+  81
+ ],
+ "merged_orientation_commit": "73846f4",
+ "merge_commit": "8719579",
+ "what_remains_informative": [
+  "Every rank is 81, matching the post-fix values, which is corroboration across two evaluator provenances rather than one.",
+  "The 32707 failures under the old evaluator are the evidence that found the unpinned branch, and are preserved as such.",
+  "The pivot-stability result (81 stable rows and columns) was first observed here and is re-derived post-fix."
+ ],
+ "preserved_at": [
+  "/tmp/preorientation_cells",
+  "git history at 8719579^"
+ ],
+ "deleted": false
+}
