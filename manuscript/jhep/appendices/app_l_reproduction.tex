@@ -9,12 +9,19 @@ See table~\ref{tab:environment}. The dependencies are NumPy~\cite{Harris:2020},
 was used instead. A reproducer who installs it should expect identical results
 and shorter runtimes, since the ordering affects speed and not value.
 
+\paragraph{Python version.}
+Python 3.10 or newer is required: the source uses PEP 604 union annotations, and
+on Python 3.9 both test suites fail at collection before any test runs. The
+certified results were produced under Python 3.13. This requirement was
+discovered by a clean-clone reproduction rather than known in advance, and it is
+recorded because on a stock macOS the default \texttt{python3} is 3.9.
+
 \paragraph{Obtaining the source.}
 \begin{verbatim}
 git clone https://github.com/uskutsav-cpu/selfdual-5form-invariants
 cd selfdual-5form-invariants
 git switch publication/jhep-mentor-draft
-python3 -m venv .venv
+python3.13 -m venv .venv
 .venv/bin/python3 -m pip install -r requirements.txt
 \end{verbatim}
 
@@ -64,11 +71,21 @@ job; individual cells are independent and may be run in parallel, but they must
 not share a row cache --- two processes writing one cache is a defect this
 project has actually experienced.
 
-\paragraph{Determinism.}
-Figures are byte-identical across runs: matplotlib's PDF creation timestamp is
-suppressed explicitly, without which otherwise identical figures differ and
-archive reproducibility fails. Archives normalise member metadata and use a fixed
-epoch for the same reason.
+\paragraph{Determinism, and the limit of it.}
+Figures are byte-identical across repeated runs \emph{within a fixed
+environment}: matplotlib's PDF creation timestamp is suppressed explicitly,
+without which otherwise identical figures differ and archive reproducibility
+fails. Archives normalise member metadata and use a fixed epoch for the same
+reason.
+
+Byte-identity does \emph{not} survive a change of matplotlib version. A
+clean-clone run that resolved matplotlib 3.9.4 produced figures visually
+identical to, and byte-different from, those built with 3.11.1. The plotting
+library is therefore pinned exactly, in the documentation requirements file,
+rather than floored. We record this
+because ``byte-reproducible'' is otherwise read as a stronger property than it
+is: what is reproducible is the pipeline given a pinned toolchain, not the bytes
+under an arbitrary one.
 
 \paragraph{Hashes.}
 The build manifest accompanying this draft records the commit, the SHA-256 of

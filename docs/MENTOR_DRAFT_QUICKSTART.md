@@ -13,8 +13,16 @@ git switch publication/jhep-mentor-draft
 
 ## 2. Environment
 
+**Python 3.10 or newer is required.** This is not optional and it is not
+documented anywhere else in the repository — it was found by a clean-clone run.
+The source uses PEP 604 union annotations (`X | Y`), so on Python 3.9 both test
+suites fail at *collection* with `TypeError: unsupported operand type(s) for |`
+before a single test runs. On a stock macOS, `python3` is 3.9.6 and the obvious
+command below will therefore fail unless you name a newer interpreter. The
+certified results were produced under Python 3.13.
+
 ```
-python3 -m venv .venv
+python3.13 -m venv .venv        # or any python >= 3.10
 .venv/bin/python3 -m pip install -r requirements.txt
 ```
 
@@ -118,9 +126,15 @@ XeTeX engine — `main.tex` passes `xetex` to `hyperref` before the class is
 loaded. The official JHEP style file is not modified. Compiling with pdfLaTeX
 instead should also work and does not need that line.
 
-## 8. Determinism
+## 8. Determinism, and its limit
 
-Figures are byte-identical across runs; matplotlib's PDF creation timestamp is
-suppressed explicitly. Archives use a fixed epoch and normalised member metadata.
-If you regenerate the figures and the hashes differ, that is a finding, not
-noise.
+Figures are byte-identical across repeated runs **in a fixed environment**;
+matplotlib's PDF creation timestamp is suppressed explicitly. Archives use a
+fixed epoch and normalised member metadata.
+
+Byte-identity does **not** hold across matplotlib versions. A clean-clone run
+that resolved matplotlib 3.9.4 produced figures visually identical to, and
+byte-different from, those built with 3.11.1. That is why
+`manuscript/requirements-docs.txt` pins the version exactly. If you install the
+pinned version and the figure hashes still differ, that is a finding. If you
+install a different version, expect different bytes and identical pictures.

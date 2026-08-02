@@ -12,4 +12,14 @@
 #   * pandoc, only for rendering the mentor-package markdown documents to PDF
 #     (tested: 3.10.1)
 
-matplotlib>=3.8
+# Requires Python >= 3.11 (matplotlib 3.11.1 does not build for older). The
+# project as a whole requires Python >= 3.10 for PEP 604 union annotations; the
+# certified environment was Python 3.13.
+#
+# Pinned exactly, not floored. Figure output is byte-reproducible for a FIXED
+# matplotlib version, but not across versions: 3.9.4 and 3.11.1 emit different
+# PDF bytes for identical input. A clean clone resolving a different version
+# therefore produces figures that are visually identical and byte-different,
+# which breaks archive hash comparison. This was found by a clean-clone run, not
+# assumed.
+matplotlib==3.11.1
