@@ -1,0 +1,15 @@
+# Dependencies for BUILDING THE MANUSCRIPT only.
+#
+# Kept separate from the top-level requirements.txt on purpose. That file pins
+# the environment the scientific results were certified in, and adding a
+# plotting library to it would misrepresent what the certified runs needed.
+# Nothing here participates in any computation whose result is quoted.
+#
+#     python3 -m pip install -r manuscript/requirements-docs.txt
+#
+# Also required, but not installable via pip:
+#   * a TeX engine -- Tectonic (tested: 0.17.0) or a TeX Live pdflatex
+#   * pandoc, only for rendering the mentor-package markdown documents to PDF
+#     (tested: 3.10.1)
+
+matplotlib>=3.8

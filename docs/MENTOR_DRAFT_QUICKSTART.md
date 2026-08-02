@@ -20,6 +20,18 @@ python3 -m venv .venv
 
 Dependencies are NumPy, `pynauty` and `pytest`.
 
+To rebuild the figures and the manuscript you additionally need:
+
+```
+.venv/bin/python3 -m pip install -r manuscript/requirements-docs.txt
+```
+
+which installs matplotlib, plus a TeX engine (Tectonic 0.17.0 was used) and,
+only for the mentor-package documents, pandoc. These are kept out of the
+top-level `requirements.txt` deliberately: that file pins the environment the
+science was certified in, and nothing in the docs set participates in a
+computation whose result is quoted.
+
 Two notes that will otherwise cost you time:
 
 - `opt_einsum` is imported by the spinor code but is **optional**, is **not** in
