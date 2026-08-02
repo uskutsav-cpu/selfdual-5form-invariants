@@ -58,13 +58,29 @@ def test_exactly_one_channel_is_faithful(p):
         f"p={p}: self-dual image {sd}, anti-self-dual image {asd}")
 
 
-@pytest.mark.parametrize("p", MATRIX_PRIMES + (REVERSED_PRIME,))
-def test_left_inverse_exists_at_every_prime(p):
-    """Including the reversed one. This is what the fix bought."""
+@pytest.mark.parametrize("p", MATRIX_PRIMES)
+def test_left_inverse_exists_on_the_normal_channel(p):
     b = BridgeMap(p)
     sel, M = b.left_inverse
     assert len(sel) == C.N_SELFDUAL_COMPONENTS
     assert M.shape[0] == C.N_SELFDUAL_COMPONENTS
+
+
+def test_reversed_channel_is_opt_in_not_automatic():
+    """Usable, but only when asked for.
+
+    A bridge that quietly switched channel would let two cells be evaluated
+    against different conventions and a matrix compare incomparable things.
+    So the default still raises, loudly, and naming the channel is a
+    deliberate act.
+    """
+    b = BridgeMap(REVERSED_PRIME)
+    with pytest.raises(RuntimeError, match="orientation-reversing"):
+        _ = b.left_inverse
+    ok = BridgeMap(REVERSED_PRIME, allow_reversed_channel=True)
+    sel, M = ok.left_inverse
+    assert len(sel) == C.N_SELFDUAL_COMPONENTS
+    assert ok.duality_channel == "antiselfdual"
 
 
 def test_the_channel_is_detected_not_assumed():

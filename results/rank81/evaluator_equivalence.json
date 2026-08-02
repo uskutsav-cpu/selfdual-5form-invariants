@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-02T03:53:19+00:00",
+ "generated_utc": "2026-08-02T04:12:01+00:00",
  "change": "bridge.py: detect the faithful Hodge channel instead of assuming the self-dual one",
  "why_equivalence_is_needed": "The change touches a value-determining file, so the freeze rule invalidates every earlier cell unless equivalence is established.",
  "why_it_should_hold": "The detection returns 'selfdual' whenever the self-dual image already has rank 126, which is the case at all five primes the matrix used. On that branch the code path is the one that ran before, unchanged.",

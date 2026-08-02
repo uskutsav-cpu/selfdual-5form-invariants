@@ -42,6 +42,9 @@ class BridgeMap:
     """Forward map, left inverse and their certificates, at one prime."""
 
     p: int = C.DEFAULT_PRIME
+    # A reversed frame congruence is usable but not interchangeable with the
+    # normal one, so using it is opt-in. See `duality_channel`.
+    allow_reversed_channel: bool = False
 
     @cached_property
     def clifford(self) -> NullFrameClifford:
@@ -186,6 +189,16 @@ class BridgeMap:
         """
         from .clifford import _inverse_mod
         p = self.p
+        # A reversed channel is usable but is NOT interchangeable with the
+        # normal one: cells computed on different channels would be evaluated
+        # against different conventions, and a matrix mixing them would compare
+        # incomparable things. So it must be asked for, never assumed.
+        if self.orientation_reversed and not self.allow_reversed_channel:
+            raise RuntimeError(
+                f"image has dimension 0, not {C.N_SELFDUAL_COMPONENTS}; the "
+                f"frame congruence at p={p} is orientation-reversing, so the "
+                "faithful channel is the anti-self-dual one. Construct with "
+                "allow_reversed_channel=True to use it deliberately.")
         image = self.faithful_image
         # 126 columns of the image whose square submatrix is invertible
         _, sel = rref(image, p)

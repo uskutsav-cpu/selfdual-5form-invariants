@@ -1,6 +1,6 @@
 # The duality-channel fix changed no computed value
 
-Generated 2026-08-02T03:53:19+00:00 by `scripts/prove_evaluator_equivalence.py`.
+Generated 2026-08-02T04:12:01+00:00 by `scripts/prove_evaluator_equivalence.py`.
 
 ## Why this is needed
 

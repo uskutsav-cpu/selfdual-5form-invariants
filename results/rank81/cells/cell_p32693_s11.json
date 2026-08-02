@@ -6,7 +6,7 @@
   "seed": 11
  },
  "cell_complete": true,
- "content_sha256": "46c2b766c0eccbabd781763bbe36641d720cd5b5b7331458f5be7a065423398b",
+ "content_sha256": "f70e02fb886634bcf474bf8f6eb5ddfa07f7f9e13a713058bdef62a39f6aa334",
  "coordinate_dimension": 126,
  "environment": {
   "host": "Swethas-MacBook-Pro.local",
@@ -20,7 +20,7 @@
   "passed": 83
  },
  "flop_limit": 100000000000.0,
- "generated_utc": "2026-08-02T03:51:07+00:00",
+ "generated_utc": "2026-08-02T04:12:01+00:00",
  "inputs": {
   "rowcache": "rowcache_p32693_s11.json",
   "selection_list": "selected_graphs.json",
@@ -313,7 +313,7 @@
  },
  "method": "exact analytic Jacobian; no finite differences, no tolerance",
  "n_candidates_scheduled": 83,
- "peak_rss_mb": 218.3,
+ "peak_rss_mb": 227.3,
  "schedule_summary": {
   "by_family_and_status": {
    "port_graph/evaluated": 70,
@@ -1744,7 +1744,7 @@
    "zero_row_explanation": null
   }
  ],
- "wall_seconds": 12.9,
+ "wall_seconds": 4.5,
  "zero_row_explanations": {},
  "zero_rows": []
 }
