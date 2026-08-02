@@ -14,7 +14,7 @@ Last updated 2026-08-01, revised after the exact-Jacobian work landed.
 | **E** | rank-81 numerical certification | **COMPLETE by a different and stronger route**; the seed x scale x step float64 matrix was NOT run |
 | **F** | degree-10 spinor no-Hilbert-stop | **PARTIAL** — an independent exact modular enumeration reaches rank 14 at degree 10 by saturation; the archive's own `--no-hilbert-stop` run did not complete locally |
 | **G** | signature / complexification argument | **COMPLETE**, and it overturned the recorded blocker |
-| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 72 tests |
+| **H** | gamma bridge | **COMPLETE**, exact over `F_p`, 86 tests |
 | **I** | spinor–trace common-sample comparison | **COMPLETE** |
 | **J** | physics interpretation | **DRAFTED**; requires coauthor confirmation |
 | **K** | manuscript, figures, tables, bibliography, package, mock review | **COMPLETE** |

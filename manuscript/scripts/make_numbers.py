@@ -346,6 +346,37 @@ def main() -> int:
                   "dEightIndispensable dEightRankWithoutWords").split():
             lines.append(macro(n, None))
 
+    # --- rank matrix ---------------------------------------------------------
+    rm = load("results/rank81/full_rank_matrix_publication_final.json")
+    if rm:
+        lines += [
+            macro("matrixCells", rm["cells_complete"]),
+            macro("matrixPrimes", len(rm["primes"])),
+            macro("matrixSeeds", len(rm["seeds"])),
+            macro("matrixRank", "/".join(map(str, rm["distinct_total_ranks"]))),
+            macro("matrixAgree", "yes" if rm["all_cells_agree"] else "no"),
+            macro("matrixStableRows", len(rm["stable_pivot_rows"])),
+            macro("matrixStableCols", len(rm["stable_pivot_columns"])),
+            macro("matrixUnstableRows", len(rm["unstable_pivot_rows"])),
+        ]
+    else:
+        for n in ("matrixCells matrixPrimes matrixSeeds matrixRank matrixAgree "
+                  "matrixStableRows matrixStableCols matrixUnstableRows").split():
+            lines.append(macro(n, None))
+
+    # --- G-10 ----------------------------------------------------------------
+    g10 = load("results/stress_flow/G10_publication_certificate.json")
+    if g10:
+        cf = g10.get("counterfactual", {})
+        lines += [
+            macro("gTenLoadBearing", "yes" if g10.get("load_bearing") else "no"),
+            macro("gTenCounterfactualQten", cf.get("counterfactual_Q10")),
+            macro("gTenDerivedQten", cf.get("as_derived_Q10")),
+        ]
+    else:
+        for n in ("gTenLoadBearing gTenCounterfactualQten gTenDerivedQten").split():
+            lines.append(macro(n, None))
+
     # --- test counts, collected rather than typed --------------------------
     # These went stale twice (49 -> 72 bridge tests) while sitting in the
     # manuscript as literals.  Collection is a static import pass, costs about

@@ -266,6 +266,52 @@ def main() -> int:
         for n in ("minorSize minorPrimes nMinorPrimes minorDetNonzero").split():
             lines.append(macro(n, None))
 
+    # --- exact characteristic-zero D10 / Q10 ---------------------------------
+    cz = load("results/stress_flow/D10_characteristic_zero.json")
+    czq = load("results/stress_flow/Q10_characteristic_zero.json")
+    if cz and czq:
+        mn = cz.get("lower_bound_certificate") or {}
+        lift = cz.get("lift", {})
+        lines += [
+            macro("dimDtenQ", cz["D10_dim_over_Q"]),
+            macro("dimQtenQ", czq["Q10_dim_over_Q"]),
+            macro("dimAtenQ", czq["A10_dim_over_Q"]),
+            macro("czSettled", "yes" if cz.get("settled") else "no"),
+            macro("czMinorSize", mn.get("size")),
+            macro("czFitPrimes", len(lift.get("fitting_primes", []))),
+            macro("czHoldoutPrime", lift.get("holdout_prime")),
+            macro("czIntegerRows", lift.get("integer_rows")),
+            macro("czLiftedRows", lift.get("reconstructed_rows")),
+            macro("czSweeps", cz.get("closure_sweeps")),
+            # The relation symbol itself is generated, so the manuscript cannot
+            # assert equality while the certificate records only a bound.
+            macro("czQtenRelation", "=" if cz.get("settled") else "\\le"),
+        ]
+    else:
+        for n in ("dimDtenQ dimQtenQ dimAtenQ czSettled czMinorSize czFitPrimes "
+                  "czHoldoutPrime czIntegerRows czLiftedRows czSweeps "
+                  "czQtenRelation").split():
+            lines.append(macro(n, None))
+
+    # --- exact characteristic-zero B10 cap P10 --------------------------------
+    bp = load("results/degree10/B10_P10_intersection_exact.json")
+    if bp:
+        g = bp.get("generator", {})
+        lines += [
+            macro("bpSettled", "yes" if bp.get("settled") else "no"),
+            macro("bpCapQ", bp.get("dim_B10_cap_P10_over_Q")),
+            macro("bpSumQ", bp.get("dim_B10_plus_P10_over_Q")),
+            macro("bpFitPrimes", len(bp.get("fitting_primes", []))),
+            macro("bpHoldoutPrime", bp.get("holdout_prime")),
+            macro("bpFreshPrime", g.get("verified_at_fresh_prime")),
+            macro("bpFreshSamples", g.get("fresh_samples")),
+            macro("bpCapRelation", "=" if bp.get("settled") else "\\le"),
+        ]
+    else:
+        for n in ("bpSettled bpCapQ bpSumQ bpFitPrimes bpHoldoutPrime "
+                  "bpFreshPrime bpFreshSamples bpCapRelation").split():
+            lines.append(macro(n, None))
+
     # --- degree-8 span equality with the full spinor family ------------------
     # Distinct from the comparison table, which uses the port-graph stream only.
     d8 = load("verification/degree8_span_equality.json")
@@ -298,6 +344,37 @@ def main() -> int:
         for n in ("dEightTraceRank dEightSpinorRank dEightUnionRank "
                   "dEightSpinorRowsMin dEightSpinorRowsMax dEightPrimes dEightPrimesEqual "
                   "dEightIndispensable dEightRankWithoutWords").split():
+            lines.append(macro(n, None))
+
+    # --- rank matrix ---------------------------------------------------------
+    rm = load("results/rank81/full_rank_matrix_publication_final.json")
+    if rm:
+        lines += [
+            macro("matrixCells", rm["cells_complete"]),
+            macro("matrixPrimes", len(rm["primes"])),
+            macro("matrixSeeds", len(rm["seeds"])),
+            macro("matrixRank", "/".join(map(str, rm["distinct_total_ranks"]))),
+            macro("matrixAgree", "yes" if rm["all_cells_agree"] else "no"),
+            macro("matrixStableRows", len(rm["stable_pivot_rows"])),
+            macro("matrixStableCols", len(rm["stable_pivot_columns"])),
+            macro("matrixUnstableRows", len(rm["unstable_pivot_rows"])),
+        ]
+    else:
+        for n in ("matrixCells matrixPrimes matrixSeeds matrixRank matrixAgree "
+                  "matrixStableRows matrixStableCols matrixUnstableRows").split():
+            lines.append(macro(n, None))
+
+    # --- G-10 ----------------------------------------------------------------
+    g10 = load("results/stress_flow/G10_publication_certificate.json")
+    if g10:
+        cf = g10.get("counterfactual", {})
+        lines += [
+            macro("gTenLoadBearing", "yes" if g10.get("load_bearing") else "no"),
+            macro("gTenCounterfactualQten", cf.get("counterfactual_Q10")),
+            macro("gTenDerivedQten", cf.get("as_derived_Q10")),
+        ]
+    else:
+        for n in ("gTenLoadBearing gTenCounterfactualQten gTenDerivedQten").split():
             lines.append(macro(n, None))
 
     # --- test counts, collected rather than typed --------------------------

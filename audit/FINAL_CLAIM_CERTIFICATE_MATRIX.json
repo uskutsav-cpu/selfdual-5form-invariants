@@ -1,13 +1,13 @@
 {
  "schema": 1,
  "generated_by": "scripts/emit_claim_certificate_matrix.py",
- "n_macros": 118,
+ "n_macros": 129,
  "by_strength": {
-  "exact-modular": 60,
+  "exact-modular": 68,
   "numerical": 5,
   "exact-char0": 44,
-  "limitation": 2,
-  "analytic": 7
+  "analytic": 10,
+  "limitation": 2
  },
  "unclassified": [],
  "entries": [
@@ -884,8 +884,96 @@
    "note": "four primes, holdout-validated change of basis, family ablation"
   },
   {
+   "macro": "matrixCells",
+   "value": "15",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixPrimes",
+   "value": "5",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixSeeds",
+   "value": "3",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixRank",
+   "value": "81",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixAgree",
+   "value": "yes",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixStableRows",
+   "value": "81",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixStableCols",
+   "value": "81",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "matrixUnstableRows",
+   "value": "0",
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "regenerate": "python scripts/aggregate_rank_matrix.py",
+   "strength": "exact-modular",
+   "note": "15 cells, 5 primes x 3 seeds, identical rank and identical pivot structure; corroboration, not the basis of the rank claim"
+  },
+  {
+   "macro": "gTenLoadBearing",
+   "value": "yes",
+   "artifact": "results/stress_flow/G10_publication_certificate.json",
+   "regenerate": "python -m pytest tests/test_G10_trace_activation.py",
+   "strength": "analytic",
+   "note": "the vanishing of the quadratic stress trace is derived, not computed; the counterfactual is a computation showing it is load-bearing"
+  },
+  {
+   "macro": "gTenCounterfactualQten",
+   "value": "0",
+   "artifact": "results/stress_flow/G10_publication_certificate.json",
+   "regenerate": "python -m pytest tests/test_G10_trace_activation.py",
+   "strength": "analytic",
+   "note": "the vanishing of the quadratic stress trace is derived, not computed; the counterfactual is a computation showing it is load-bearing"
+  },
+  {
+   "macro": "gTenDerivedQten",
+   "value": "3",
+   "artifact": "results/stress_flow/G10_publication_certificate.json",
+   "regenerate": "python -m pytest tests/test_G10_trace_activation.py",
+   "strength": "analytic",
+   "note": "the vanishing of the quadratic stress trace is derived, not computed; the counterfactual is a computation showing it is load-bearing"
+  },
+  {
    "macro": "nTraceTests",
-   "value": "224",
+   "value": "254",
    "artifact": "pytest --collect-only",
    "regenerate": "python manuscript/scripts/make_numbers.py",
    "strength": "limitation",
@@ -893,7 +981,7 @@
   },
   {
    "macro": "nBridgeTests",
-   "value": "72",
+   "value": "86",
    "artifact": "pytest --collect-only",
    "regenerate": "python manuscript/scripts/make_numbers.py",
    "strength": "limitation",

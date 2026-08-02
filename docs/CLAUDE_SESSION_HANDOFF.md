@@ -94,8 +94,8 @@ response to a killed run.
 ## How to pick this up
 
 ```bash
-python -m pytest                                  # 207
-cd spinor_trace_bridge && python -m pytest        # 72
+python -m pytest                                  # 254
+cd spinor_trace_bridge && python -m pytest        # 86
 python manuscript/scripts/make_numbers.py         # regenerate from artifacts
 python manuscript/scripts/make_tables.py
 python manuscript/scripts/make_figures.py

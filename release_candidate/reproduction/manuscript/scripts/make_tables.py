@@ -52,18 +52,31 @@ def table_dimensions() -> None:
         return
     prime = sorted(inc["per_prime"])[0]
     d = inc["per_prime"][prime]["dims"]
+    # The arithmetic column is the point of this table: the four spanned spaces
+    # are pinned over Q for free by counting their spanning sets, while D10 --
+    # which is NOT given by a spanning set -- needed the exact rational closure.
+    # Reporting them all as "exact modular" understates four rows and, before
+    # that computation, overstated two.
+    cz = load("results/stress_flow/D10_characteristic_zero.json")
+    settled = bool(cz and cz.get("settled"))
+    dz = cz.get("D10_dim_over_Q") if cz else None
+    spanned = "exact over $\\mathbb{Q}$, by spanning set"
+    closed = ("exact over $\\mathbb{Q}$, by closure" if settled
+              else "exact modular; a bound over $\\mathbb{Q}$")
     rows = [
         ("$\\dim$ self-dual module", 126, "analytic", "--"),
         ("$\\dim \\mathfrak{so}(1,9)$", 45, "analytic", "--"),
         ("generic functional dimension", 126 - 45, "analytic", "cumulative"),
-        ("atlas $A_{10}$", d["A10"], "exact modular", "graded, degree 10"),
-        ("published span $B_{10}$", d["B10"], "exact modular", "graded, degree 10"),
-        ("graph generators $G_{10}$", d["G10"], "exact modular", "graded, degree 10"),
-        ("products $P_{10}$", d["P10"], "exact modular", "graded, degree 10"),
-        ("reachable $D_{10}$", d["D10"], "exact modular", "graded, degree 10"),
-        ("quotient $Q_{10}$", d["A10"] - d["D10"], "exact modular", "graded, degree 10"),
+        ("atlas $A_{10}$", d["A10"], spanned, "graded, degree 10"),
+        ("published span $B_{10}$", d["B10"], spanned, "graded, degree 10"),
+        ("graph generators $G_{10}$", d["G10"], spanned, "graded, degree 10"),
+        ("products $P_{10}$", d["P10"], spanned, "graded, degree 10"),
+        ("reachable $D_{10}$", dz if settled else d["D10"], closed,
+         "graded, degree 10"),
+        ("quotient $Q_{10}$", d["A10"] - (dz if settled else d["D10"]), closed,
+         "graded, degree 10"),
     ]
-    body = ["\\begin{table}[t]", "\\centering",
+    body = ["\\begin{table}[t]", "\\centering", "\\small",
             "\\begin{tabular}{lrll}", "\\toprule",
             "space & dimension & arithmetic & grading \\\\", "\\midrule"]
     for name, dim, arith, grading in rows:
@@ -71,7 +84,13 @@ def table_dimensions() -> None:
     body += ["\\bottomrule", "\\end{tabular}",
              "\\caption{Degree-ten dimensions. Each row dimensions a different "
              "space; several coincide numerically and must not be conflated. "
-             f"Modular values are identical at all {len(inc['per_prime'])} primes "
+             "The arithmetic column distinguishes how each is established. A "
+             "space spanned by exactly $k$ explicit invariants has "
+             "$\\dim_{\\mathbb{Q}} \\le k$ for free, so a modular rank of $k$ "
+             "pins it over $\\mathbb{Q}$ with no prime excluded. $D_{10}$ is not "
+             "given by a spanning set and required the exact rational closure of "
+             "section~\\ref{sec:czero}. "
+             f"Modular values agree at all {len(inc['per_prime'])} primes "
              "tested.}",
              "\\label{tab:dims}", "\\end{table}", ""]
     write("dimensions", "\n".join(body))

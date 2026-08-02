@@ -19,9 +19,9 @@ Every scientific number in the manuscript is a generated macro. This table maps 
 
 | strength | macros |
 |---|---:|
-| `analytic` | 7 |
+| `analytic` | 10 |
 | `exact-char0` | 44 |
-| `exact-modular` | 60 |
+| `exact-modular` | 68 |
 | `limitation` | 2 |
 | `numerical` | 5 |
 
@@ -36,6 +36,9 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
 | `dimQtenMinusOne` | `2` | `analytic` | `literature / elementary` |
 | `dimSelfDualModule` | `126` | `analytic` | `literature / elementary` |
 | `dimSymSpinor` | `136` | `analytic` | `literature / elementary` |
+| `gTenCounterfactualQten` | `0` | `analytic` | `results/stress_flow/G10_publication_certificate.json` |
+| `gTenDerivedQten` | `3` | `analytic` | `results/stress_flow/G10_publication_certificate.json` |
+| `gTenLoadBearing` | `yes` | `analytic` | `results/stress_flow/G10_publication_certificate.json` |
 | `genericFunctionalDim` | `81` | `analytic` | `literature / elementary` |
 | `spinorDim` | `16` | `analytic` | `literature / elementary` |
 | `bpCapQ` | `1` | `exact-char0` | `results/degree10/B10_P10_intersection_exact.json` |
@@ -116,6 +119,14 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
 | `holdoutDegFour` | `yes` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `holdoutDegSix` | `yes` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `holdoutDegTen` | `yes` | `exact-modular` | `verification/spinor_trace_comparison.json` |
+| `matrixAgree` | `yes` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixCells` | `15` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixPrimes` | `5` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixRank` | `81` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixSeeds` | `3` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixStableCols` | `81` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixStableRows` | `81` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
+| `matrixUnstableRows` | `0` | `exact-modular` | `results/rank81/full_rank_matrix_publication_final.json` |
 | `nArchiveCandidates` | `83` | `exact-modular` | `verification/spinor_archive_jacobian_exact.json` |
 | `nArchiveJacobianRuns` | `3` | `exact-modular` | `verification/spinor_archive_jacobian_exact.json` |
 | `nArchivePortGraphs` | `70` | `exact-modular` | `verification/spinor_archive_jacobian_exact.json` |
@@ -142,8 +153,8 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
 | `traceRankDegFour` | `1` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `traceRankDegSix` | `2` | `exact-modular` | `verification/spinor_trace_comparison.json` |
 | `traceRankDegTen` | `14` | `exact-modular` | `verification/spinor_trace_comparison.json` |
-| `nBridgeTests` | `72` | `limitation` | `pytest --collect-only` |
-| `nTraceTests` | `224` | `limitation` | `pytest --collect-only` |
+| `nBridgeTests` | `86` | `limitation` | `pytest --collect-only` |
+| `nTraceTests` | `254` | `limitation` | `pytest --collect-only` |
 | `floatNondegenerateRanks` | `81` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
 | `nFloatDegenerate` | `1` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
 | `nFloatInconclusive` | `0` | `numerical` | `verification/SPINOR_JACOBIAN_RUNS.json` |
@@ -172,6 +183,10 @@ No unclassified macros: every number in the manuscript has a recorded artifact a
   `python scripts/b10_p10_characteristic_zero.py`
 - `verification/degree8_span_equality.json`  
   `python spinor_trace_bridge/scripts/run_degree8_span.py`
+- `results/rank81/full_rank_matrix_publication_final.json`  
+  `python scripts/aggregate_rank_matrix.py`
+- `results/stress_flow/G10_publication_certificate.json`  
+  `python -m pytest tests/test_G10_trace_activation.py`
 - `pytest --collect-only`  
   `python manuscript/scripts/make_numbers.py`
 - `literature / elementary`  
