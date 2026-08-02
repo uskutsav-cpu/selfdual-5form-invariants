@@ -21,9 +21,9 @@
   {
    "id": "PO-02",
    "statement": "leading_field_degree correct, not self-consistent only",
-   "status": "CERTIFIED",
-   "evidence": "rule stated independently and checked against all 18 generators at 6 primes; tests/test_leading_degree_rule.py",
-   "manuscript_consequence": "derivation of the rule is coauthor item G-10"
+   "status": "PROVED",
+   "evidence": "the rule is now DERIVED, not merely checked: the trace is (1-cd)<F,F> for any improvement coefficient and <F,F> vanishes on either eigenspace of the star. Verified with a control at four primes by tests/test_G10_trace_activation.py, which imports no flow code, and shown load-bearing by a counterfactual giving Q10 = 0.",
+   "manuscript_consequence": "stated in the closure section as a derived input with its counterfactual; mentor confirms conventions only (G-10)"
   },
   {
    "id": "PO-03",
@@ -108,14 +108,21 @@
    "status": "OPEN AND EXPLICITLY DELIMITED",
    "evidence": "both readings implemented and projected; compact basis avoids the ambiguity",
    "manuscript_consequence": "stated as avoided not resolved; coauthor item G-6"
+  },
+  {
+   "id": "PO-12",
+   "statement": "the frame orientation must be pinned, not left to the square-root branch",
+   "status": "PROVED",
+   "evidence": "found via three failed rank-matrix cells at p=32707; the branch reverses orientation, which flips the Hodge sign, which swaps the annihilated eigenspace. orientation_normalised_L pins it; three regression tests including one asserting the wrong branch breaks it",
+   "manuscript_consequence": "none -- every certificate was computed at a prime where the old code already chose correctly; the construction is now correct BY CONSTRUCTION rather than by luck"
   }
  ],
  "summary": {
-  "PROVED": 3,
-  "CERTIFIED": 2,
+  "PROVED": 5,
   "NOT APPLICABLE": 4,
   "OPEN AND EXPLICITLY DELIMITED": 3,
-  "REMOVED FROM CLAIMS": 2
+  "REMOVED FROM CLAIMS": 2,
+  "CERTIFIED": 1
  },
  "unclassified": 0
 }

@@ -50,10 +50,14 @@ degree 4 (not 2, because the free stress tensor is traceless), `Tr(tau^k)` has
 certificate was checked against it.
 **Result.** All 18 generators agree, at all six primes, with no exceptions.
 `tests/test_leading_degree_rule.py`.
-**Status: `CERTIFIED`, with one analytic input flagged.** The assignments are no
-longer self-referential. The *derivation* of the rule — specifically why `Tr(tau)`
-begins at degree 4 — is a one-line physics statement and is coauthor review item
-**G-10**.
+**Status: `PROVED`.** The rule is now derived, not merely checked against the
+certificates. For any improvement coefficient the trace is `(1-cd)<F,F>`, and
+`<F,F>` vanishes identically on either eigenspace because `F ^ F` is a top form
+built from two copies of an odd-degree form. Verified with a control at four
+primes by code importing no flow machinery, and shown load-bearing by a
+counterfactual that gives `Q10 = 0`. See `docs/G10_ANALYTIC_PROOF_FINAL.md`.
+Coauthor item **G-10** now asks only whether the intended free theory and stress
+convention are the ones used.
 **Manuscript consequence.** None while G-10 is confirmed. If `Tr(tau)` began at
 degree 2 the closure bookkeeping would be wrong; the test names that consequence
 so it cannot fail quietly.
@@ -138,8 +142,11 @@ validated against a held-out prime. Result: `dim_Q D10 = 11`, `dim_Q Q10 = 3`,
 with an explicit non-vanishing `11 x 11` integer minor.
 `results/stress_flow/D10_characteristic_zero.json`.
 
-**Status: `CERTIFIED` for every degree-ten claim in the manuscript, except one.**
-`dim_Q(B10 cap P10) <= 1` remains an inequality — see
+**Status: `CERTIFIED` for every degree-ten claim in the manuscript.**
+`dim_Q(B10 cap P10) = 1` has since been settled too, exactly over `Q`, by lifting
+the published coordinates with CRT across seven primes, validating at a held-out
+prime, and exhibiting the generator as an explicit integer identity verified at a
+further prime on fresh samples. Nothing degree-ten remains exposed. See
 `docs/B10_P10_INTERSECTION_STATUS.md` for its final state. The direction is the
 one that would weaken, never strengthen, the paper's claim about the published
 span, so no result depends on the equality.
@@ -170,8 +177,8 @@ the source's intent needs its authors — review item **G-6**.
 
 | status | obligations |
 |---|---|
-| `PROVED` | PO-01, PO-06, PO-08 (cardinality half) |
-| `CERTIFIED` | PO-02 (pending G-10), PO-09 (except `B10 cap P10`) |
+| `PROVED` | PO-01, PO-02, PO-06, PO-08 (cardinality half), PO-12 (frame orientation) |
+| `CERTIFIED` | PO-09 — now including `B10 cap P10`, settled exactly over `Q` |
 | `OPEN AND EXPLICITLY DELIMITED` | PO-08 (removal / general `GL`), PO-11 |
 | `REMOVED FROM CLAIMS` | PO-08 (uniqueness), PO-10 |
 | `NOT APPLICABLE` | PO-03, PO-04, PO-05, PO-07 |
@@ -180,3 +187,29 @@ the source's intent needs its authors — review item **G-6**.
 No obligation is unresolved and hidden. Every one either supports no claim in
 this manuscript, is discharged, or appears in the limitations section in the
 words this table uses.
+
+
+## PO-12 — the frame orientation must be pinned
+
+**Statement.** The null-frame congruence is determined only up to a square-root
+branch. That branch reverses the frame's orientation, which reverses the sign of
+the Hodge star, which swaps which eigenspace the gamma map annihilates.
+
+**Why it matters.** Left unpinned, the bridge is the self-dual projector at some
+primes and the ANTI-self-dual projector at others, silently, with no error until
+a later step reports an image of dimension zero.
+
+**How it surfaced.** Three rank-matrix cells failed at `p = 32707`, at every
+seed. The prime is not exceptional: flipping the branch there restores the
+expected behaviour, and flipping it at a working prime breaks that prime
+identically.
+
+**Status: `PROVED`.** `orientation_normalised_L` selects the branch under which
+the self-dual space survives, deterministically, and raises rather than guesses
+if neither branch works. All six primes now behave identically.
+
+**Manuscript consequence.** None on any number: every certificate was computed at
+a prime where the old code already chose correctly, and the recomputed values are
+identical. What changes is that the stated convention is true *by construction*
+rather than true at the primes that happened to be used.
+See `docs/FRAME_ORIENTATION_FINDING.md`.
