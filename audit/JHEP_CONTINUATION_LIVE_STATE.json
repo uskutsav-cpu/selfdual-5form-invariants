@@ -1,15 +1,43 @@
 {
- "generated_utc": "2026-08-01T21:20:20+00:00",
+ "generated_utc": "2026-08-01T21:59:26+00:00",
  "worktree": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
  "branch": "publication/jhep-tensor-spinor",
- "head": "28bc57984231d72640e513108ec7831383c124d5",
+ "head": "dd08ecd3198349ad1a6d8efe76d3401bdfc2c54a",
  "head_moved_since_freeze": true,
  "changed_files_since_freeze": [
+  "audit/AUTHORSHIP_AND_CREDIT_FINAL.md",
+  "audit/AUTHOR_APPROVAL_CHECKLIST.md",
+  "audit/JHEP_CONTINUATION_LIVE_STATE.json",
+  "audit/JHEP_CONTINUATION_LIVE_STATE.md",
   "audit/JHEP_FINAL_RECONCILIATION_PLAN.md",
+  "audit/JHEP_NOVELTY_FINAL.json",
+  "audit/JHEP_NOVELTY_MATRIX_FINAL.md",
+  "audit/JHEP_PRIORITY_LEDGER_FINAL.md",
+  "audit/JHEP_PROHIBITED_CLAIMS_FINAL.md",
+  "audit/JHEP_PROOF_OBLIGATIONS_FINAL.json",
+  "audit/JHEP_PROOF_OBLIGATIONS_FINAL.md",
   "audit/RANK_MATRIX_EXECUTION_FREEZE.json",
+  "docs/D10_Q10_FINAL_STATUS.md",
+  "docs/DEGREE10_NO_STOP_SCIENTIFIC_CLAIM.md",
+  "docs/DEGREE10_SPACES_FINAL_STATUS.md",
+  "manuscript/jhep/ai_assistance_disclosure.md",
+  "results/degree10/no_stop_terminal.json",
+  "results/stress_flow/D10_characteristic_zero_final.json",
+  "results/stress_flow/Q10_characteristic_zero_final.json",
+  "results/stress_flow/degree10_spaces_final.json",
+  "review/MENTOR_DECISION_FORM.md",
+  "review/MENTOR_REVIEW_PACKAGE.md",
+  "scripts/emit_degree10_no_stop_status.py",
+  "scripts/emit_degree10_space_status.py",
+  "scripts/emit_jhep_continuation_state.py",
+  "scripts/emit_jhep_novelty_final.py",
+  "scripts/emit_jhep_proof_obligations_final.py",
   "scripts/emit_rank_matrix_freeze.py",
+  "scripts/exact_D10_Q10_characteristic_zero.py",
+  "scripts/pytest_report.py",
   "spinor_trace_bridge/scripts/assemble_rank81_matrix.py",
-  "spinor_trace_bridge/tests/test_matrix_aggregator.py"
+  "spinor_trace_bridge/tests/test_matrix_aggregator.py",
+  "tests/test_pytest_report.py"
  ],
  "source_critical_drift": [],
  "drift_classification": "none",
@@ -50,38 +78,35 @@
    60151
   ],
   "cell_workers": [
-   67806
+   80300
   ],
   "pytest": [
    38503,
-   68851,
-   69145
+   80766,
+   80789,
+   81370,
+   81623,
+   81752
   ],
   "in_any_repo_tree": [
    {
     "pid": 60151,
     "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
-    "ps": "37:19 SN",
+    "ps": "01:16:26 SN",
     "in_this_worktree": true
    },
    {
-    "pid": 67588,
-    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/selfdual-5form-invariants",
-    "ps": "06:07 RN",
-    "in_this_worktree": false
-   },
-   {
-    "pid": 67806,
+    "pid": 80300,
     "cwd": "/Users/swethasunilkumar/Downloads/sdinv-jhep",
-    "ps": "05:02 RN",
+    "ps": "10:57 RN",
     "in_this_worktree": true
    }
   ]
  },
  "writer_problems": [],
  "one_writer_enforced": true,
- "cells_present": 4,
- "cells_complete": 4,
+ "cells_present": 7,
+ "cells_complete": 7,
  "cells_planned": 15,
  "distinct_ranks_so_far": [
   81
@@ -89,8 +114,7 @@
  "uncommitted_paths": [
   "?? audit/RANK_MATRIX_CELL_PROVENANCE.json",
   "?? results/rank81/cells/",
-  "?? results/rank81/certificate_matrix.json",
-  "?? scripts/emit_jhep_continuation_state.py"
+  "?? results/rank81/certificate_matrix.json"
  ],
- "remote_research_head": "783faddbd362b8ff061ffb48869c3467d3243f78"
+ "remote_research_head": "effa384de89376c9290ff21b4fb6675490d0eb2b"
 }

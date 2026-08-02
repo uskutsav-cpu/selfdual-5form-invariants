@@ -1,27 +1,5 @@
 {
   "arithmetic": "exact integers",
-  "counterfactual_phase_3_6": {
-    "dim_D10_baseline": 11,
-    "dim_D10_with_quadratic_trace": 14,
-    "dim_Q10_baseline": 3,
-    "dim_Q10_with_quadratic_trace": 0,
-    "mutation": "strip the activation dependency from the tr_tau family, as a nonvanishing 10*(2-2) would have done",
-    "test": "tests/test_g10_trace_activation.py",
-    "verdict": "G-10 is load-bearing: without it the degree-10 obstruction collapses to nothing, reproducing the historical rank-14/quotient-0 error."
-  },
-  "cross_check_against_production_artifact": {
-    "agreement": "exact, coefficient by coefficient",
-    "analytic_derivation": "Tr(T[V_d]) = (10/48)(d-2)V_d, i.e. Tr(tau)=10(d-2)V_d at tau=48T",
-    "artifact": "results/stress_flow/interacting_flow_equations.json",
-    "artifact_derivation_string": "Tr(tau)[V_d]=10*(d-2)*V_d",
-    "coefficients_matched": {
-      "d=4": 20,
-      "d=6": 40,
-      "d=8": 60
-    },
-    "degree_2_target_present": false,
-    "min_tr_tau_degree": 4
-  },
   "imports_production_code": false,
   "obligation": "G-10",
   "phase": "3.4",
@@ -196,7 +174,6 @@
     "split_5_5|eps_lower=-1": 1
   },
   "statement": "The free stress tensor T = M/(2*4!) of a self-dual five-form in D=10 is identically traceless, off shell, from algebraic self-duality alone.",
-  "status": "PROVED",
   "summary": {
     "all_traces_vanish": true,
     "failures": [],

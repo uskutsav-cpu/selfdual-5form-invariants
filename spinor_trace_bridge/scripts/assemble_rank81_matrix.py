@@ -33,7 +33,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 FITTING = [32749, 32719, 32717]
-HOLDOUT = [32713, 32707]
+HOLDOUT = [32713, 32693]   # 32707 is 3 mod 8; see docs/EXCEPTIONAL_PRIMES_DUALITY_CHANNEL.md
 SEEDS = [11, 22, 33]
 
 

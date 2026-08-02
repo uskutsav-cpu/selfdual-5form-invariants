@@ -1,6 +1,6 @@
 # JHEP continuation --- live state
 
-Generated 2026-08-01T21:20:20+00:00 by `scripts/emit_jhep_continuation_state.py`.
+Generated 2026-08-01T21:59:26+00:00 by `scripts/emit_jhep_continuation_state.py`.
 
 ## Reported state, checked against the worktree
 
@@ -23,42 +23,72 @@ Generated 2026-08-01T21:20:20+00:00 by `scripts/emit_jhep_continuation_state.py`
 | changed source-critical files | none |
 | **matrix valid** | **yes** |
 
-HEAD has moved from `5f46a2cbbe93` to `28bc57984231` since the
-freeze, across 5 files. None is source-critical,
+HEAD has moved from `5f46a2cbbe93` to `dd08ecd31983` since the
+freeze, across 33 files. None is source-critical,
 so the cells produced before and after that movement were produced by the
 same evaluator and belong to the same execution.
 
 Files changed since the freeze:
 
+- `audit/AUTHORSHIP_AND_CREDIT_FINAL.md`
+- `audit/AUTHOR_APPROVAL_CHECKLIST.md`
+- `audit/JHEP_CONTINUATION_LIVE_STATE.json`
+- `audit/JHEP_CONTINUATION_LIVE_STATE.md`
 - `audit/JHEP_FINAL_RECONCILIATION_PLAN.md`
+- `audit/JHEP_NOVELTY_FINAL.json`
+- `audit/JHEP_NOVELTY_MATRIX_FINAL.md`
+- `audit/JHEP_PRIORITY_LEDGER_FINAL.md`
+- `audit/JHEP_PROHIBITED_CLAIMS_FINAL.md`
+- `audit/JHEP_PROOF_OBLIGATIONS_FINAL.json`
+- `audit/JHEP_PROOF_OBLIGATIONS_FINAL.md`
 - `audit/RANK_MATRIX_EXECUTION_FREEZE.json`
+- `docs/D10_Q10_FINAL_STATUS.md`
+- `docs/DEGREE10_NO_STOP_SCIENTIFIC_CLAIM.md`
+- `docs/DEGREE10_SPACES_FINAL_STATUS.md`
+- `manuscript/jhep/ai_assistance_disclosure.md`
+- `results/degree10/no_stop_terminal.json`
+- `results/stress_flow/D10_characteristic_zero_final.json`
+- `results/stress_flow/Q10_characteristic_zero_final.json`
+- `results/stress_flow/degree10_spaces_final.json`
+- `review/MENTOR_DECISION_FORM.md`
+- `review/MENTOR_REVIEW_PACKAGE.md`
+- `scripts/emit_degree10_no_stop_status.py`
+- `scripts/emit_degree10_space_status.py`
+- `scripts/emit_jhep_continuation_state.py`
+- `scripts/emit_jhep_novelty_final.py`
+- `scripts/emit_jhep_proof_obligations_final.py`
 - `scripts/emit_rank_matrix_freeze.py`
+- `scripts/exact_D10_Q10_characteristic_zero.py`
+- `scripts/pytest_report.py`
 - `spinor_trace_bridge/scripts/assemble_rank81_matrix.py`
 - `spinor_trace_bridge/tests/test_matrix_aggregator.py`
+- `tests/test_pytest_report.py`
 
 ## Writers
 
 - matrix drivers: [60151]
-- cell workers: [67806]
-- pytest processes: [38503, 68851, 69145]
-- cell locks held: ['cell_p32719_s22.lock']
+- cell workers: [80300]
+- pytest processes: [38503, 80766, 80789, 81370, 81623, 81752]
+- cell locks held: ['cell_p32717_s22.lock']
 
 | pid | in this worktree | elapsed/state | cwd |
 |---|---|---|---|
-| 60151 | yes | `37:19 SN` | `/Users/swethasunilkumar/Downloads/sdinv-jhep` |
-| 67588 | no (other session) | `06:07 RN` | `/Users/swethasunilkumar/Documents/Codex/2026-07-29/now/work/selfdual-5form-invariants` |
-| 67806 | yes | `05:02 RN` | `/Users/swethasunilkumar/Downloads/sdinv-jhep` |
+| 60151 | yes | `01:16:26 SN` | `/Users/swethasunilkumar/Downloads/sdinv-jhep` |
+| 80300 | yes | `10:57 RN` | `/Users/swethasunilkumar/Downloads/sdinv-jhep` |
 
 One writer enforced: at most one driver, at most one cell worker, at most
 one lock. A process in the other session's tree cannot reach these cells.
 
 ## Matrix progress
 
-4 of 15 cells complete; distinct ranks so far [81].
+7 of 15 cells complete; distinct ranks so far [81].
 
 | prime | seed | role | rank | rows | euler | seconds | peak MB |
 |---|---|---|---|---|---|---|---|
+| 32717 | 11 | fitting | 81 | 83 | 83/83 | 619.5 | 571.0 |
 | 32719 | 11 | fitting | 81 | 83 | 83/83 | 1076.3 | 607.9 |
+| 32719 | 22 | fitting | 81 | 83 | 83/83 | 809.3 | 594.3 |
+| 32719 | 33 | fitting | 81 | 83 | 83/83 | 561.6 | 587.3 |
 | 32749 | 11 | fitting | 81 | 83 | 83/83 | 4.0 | 233.3 |
 | 32749 | 22 | fitting | 81 | 83 | 83/83 | 268.7 | 508.9 |
 | 32749 | 33 | fitting | 81 | 83 | 83/83 | 586.3 | 591.1 |

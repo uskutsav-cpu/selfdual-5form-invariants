@@ -1,1 +1,9 @@
 --- cell p=32693 seed=11 00:54:26Z
+[p=32693 seed=11] rank 81 rows 83 errors 0 euler 83/83 zero_rows 0 complete True (694.0s, peak 573.9 MB)
+rc=0
+--- cell p=32693 seed=22 01:06:00Z
+[p=32693 seed=22] rank 81 rows 83 errors 0 euler 83/83 zero_rows 0 complete True (535.0s, peak 719.9 MB)
+rc=0
+--- cell p=32693 seed=33 01:14:55Z
+[p=32693 seed=33] rank 81 rows 83 errors 0 euler 83/83 zero_rows 0 complete True (553.7s, peak 699.3 MB)
+rc=0

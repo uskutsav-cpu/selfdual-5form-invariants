@@ -1,17 +1,17 @@
 # JHEP Stage 1 --- science entry gate
 
-Generated 2026-08-01T19:26:08+00:00 at `af9e1f226eab` by `scripts/emit_jhep_science_gate.py`.
+Generated 2026-08-02T01:24:43+00:00 at `b6899184aa82` by `scripts/emit_jhep_science_gate.py`.
 
-## Verdict: **PARTIAL**
+## Verdict: **PASS**
 
 | gate | subject | status | checks |
 |---|---|---|---|
 | 1.1 | Exact Clifford and real-form structure | **PASS** | 16/16 |
 | 1.2 | Exact tensor-spinor bridge and its inverse | **PASS** | 22/22 |
-| 1.3 | Candidate accounting and the rank-81 certificate | **PARTIAL** | 23/23 |
+| 1.3 | Candidate accounting and the rank-81 certificate | **PASS** | 154/154 |
 | 1.4 | Degree-resolved tensor-spinor span equivalence | **PASS** | 55/55 |
 | 1.5 | Degree-ten application | **PASS** | 10/10 |
-| 1.6 | Degree-twelve inclusion gate | **FAIL** | 1/2 |
+| 1.6 | Degree-twelve scope decision | **NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE** | 0/0 |
 
 A gate is `PASS` only when every predicate over its artifacts holds.
 `PARTIAL` means every predicate holds but the specified evidence matrix
@@ -54,19 +54,22 @@ All 22 checks hold.
 
 ## 1.3 Candidate accounting and the rank-81 certificate
 
-**Status: PARTIAL**
+**Status: PASS**
 
 *Requirement.* 83 planned, 83 evaluated, 0 errors, 0 interrupted, 0 silently skipped, 0 zero rows, Euler homogeneity 83/83; exact modular Jacobian; explicit 81x81 minor with nonzero determinant from two independent routines; integer-lift argument; matrix over three samples, three fitting primes, two holdout primes.
 
 *Evidence.*
 
-- `results/rank81/certificate.json`
+- `results/rank81/certificate_matrix.json`
+- `results/rank81/cells/cell_p{prime}_s{seed}.json (one per cell)`
 - `results/rank81/minor81_certificate.json`
 - `docs/RANK81_CHARACTERISTIC_ZERO_PROOF.md`
 
-All 23 checks hold.
+All 154 checks hold.
 
-> Sample x prime matrix: 2/3 seeds [11, 22], 1/3 fitting primes [32749], 0/2 holdout primes []. INCOMPLETE -- every cell computed so far agrees at rank 81, but the specification's matrix is not filled.
+> Sample x prime matrix: 3/3 seeds [11, 22, 33], 3/3 fitting primes [32717, 32719, 32749], 2/2 holdout primes [32693, 32713], 15/15 cells. Complete.
+
+> Each cell is an immutable per-(prime, seed) artifact written atomically under a lock; the certificate is assembled by a read-only aggregator that fails on a missing, duplicated, incomplete or inconsistently ordered cell rather than producing a partial certificate that reads as a whole one.
 
 > What the computation gives is the LOWER half only. The coordinate basis is integral, so each Jacobian is the reduction of an integer matrix and rank_{F_p} <= rank_Q holds unconditionally; hence rank_Q >= 81. The matching upper bound 126 - 45 = 81 is analytic, from the generic stabiliser dimension, and is not supplied by any computation here.
 
@@ -106,9 +109,9 @@ All 10 checks hold.
 
 > This is an APPLICATION of the invariant framework in this manuscript, not its headline. The obstruction itself is allocated to the Letter; see docs/PUBLICATION_CLAIM_ALLOCATION.md.
 
-## 1.6 Degree-twelve inclusion gate
+## 1.6 Degree-twelve scope decision
 
-**Status: FAIL**
+**Status: NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE**
 
 *Requirement.* Degree 12 may enter the title, abstract or central claims only with a complete atlas, a verified product/primitive split, an exact rank certificate, a trace/spinor comparison, holdout validation, and no silently omitted candidate sector.
 
@@ -116,13 +119,13 @@ All 10 checks hold.
 
 - `results/10d_order12.json`
 
-*Failing checks.*
+All 0 checks hold.
 
-| check | observed |
-|---|---|
-| degree-12 trace/spinor comparison exists | `False` |
+> Degree 12 is excluded from this manuscript's claim scope. There is a degree-12 tensor atlas but no spinor-side degree-12 enumeration, so no comparison, no holdout validation and no span equivalence exist to state.
 
-> VERDICT: degree 12 does NOT pass the inclusion gate. No spinor-side degree-12 enumeration exists, so no comparison, no holdout validation and no span equivalence can be stated.
+> What the manuscript MAY say: the degree-12 block of the 83-candidate Jacobian, which is certified as part of the rank calculation; clearly labelled partial higher-degree evidence; and future work.
 
-> Consequence for the manuscript: degree 12 is excluded from the title, the abstract and the central claims. It appears only (a) as the degree-12 block of the 83-candidate Jacobian, where it is certified, and (b) in a section labelled partial higher-degree evidence.
+> What it may NOT say: degree-12 tensor-spinor equivalence; a complete degree-12 spinor atlas; a degree-12 basis map; or complete equivalence through degree 12.
+
+> Building a degree-12 spinor enumeration is out of scope for this manuscript. No theorem in it requires one.
 

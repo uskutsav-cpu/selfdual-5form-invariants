@@ -1,7 +1,7 @@
 {
- "generated_utc": "2026-08-02T00:50:30+00:00",
- "head": "6af9e423d196d859f6a2cc5f2cff77caab9c5ea5",
- "verdict": "FAIL",
+ "generated_utc": "2026-08-02T01:24:43+00:00",
+ "head": "b6899184aa82c265cc98448967dcf06edee6eac3",
+ "verdict": "PASS",
  "degree12_included_in_central_claims": false,
  "degree12_status": "NOT APPLICABLE --- EXCLUDED FROM THIS MANUSCRIPT'S CLAIM SCOPE",
  "gates": [
@@ -234,27 +234,12 @@
    "gate": "1.3",
    "title": "Candidate accounting and the rank-81 certificate",
    "requirement": "83 planned, 83 evaluated, 0 errors, 0 interrupted, 0 silently skipped, 0 zero rows, Euler homogeneity 83/83; exact modular Jacobian; explicit 81x81 minor with nonzero determinant from two independent routines; integer-lift argument; matrix over three samples, three fitting primes, two holdout primes.",
-   "status": "FAIL",
+   "status": "PASS",
    "checks": [
     {
      "name": "aggregator reports the matrix complete",
-     "ok": false,
-     "observed": "12/15 cells"
-    },
-    {
-     "name": "aggregator problem: missing cell prime=32707 seed=11 (holdout)",
-     "ok": false,
-     "observed": "missing cell prime=32707 seed=11 (holdout)"
-    },
-    {
-     "name": "aggregator problem: missing cell prime=32707 seed=22 (holdout)",
-     "ok": false,
-     "observed": "missing cell prime=32707 seed=22 (holdout)"
-    },
-    {
-     "name": "aggregator problem: missing cell prime=32707 seed=33 (holdout)",
-     "ok": false,
-     "observed": "missing cell prime=32707 seed=33 (holdout)"
+     "ok": true,
+     "observed": "15/15 cells"
     },
     {
      "name": "p=32749 seed=11 (fitting): 83 planned",
@@ -953,6 +938,180 @@
      ]
     },
     {
+     "name": "p=32693 seed=11 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32693 seed=11 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32693 seed=22 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 83 planned",
+     "ok": true,
+     "observed": 83
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 83 evaluated",
+     "ok": true,
+     "observed": {
+      "evaluated": 83
+     }
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 0 evaluation errors",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 0 interrupted",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 0 structurally rejected",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): schedule complete",
+     "ok": true,
+     "observed": true
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): 0 zero Jacobian rows",
+     "ok": true,
+     "observed": 0
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): Jacobian 83 x 126",
+     "ok": true,
+     "observed": [
+      83,
+      126
+     ]
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): exact modular rank 81",
+     "ok": true,
+     "observed": 81
+    },
+    {
+     "name": "p=32693 seed=33 (holdout): Euler homogeneity all rows",
+     "ok": true,
+     "observed": [
+      83,
+      83
+     ]
+    },
+    {
      "name": "minor p=32749: two routines agree",
      "ok": true,
      "observed": true
@@ -969,7 +1128,7 @@
     }
    ],
    "notes": [
-    "Sample x prime matrix: 3/3 seeds [11, 22, 33], 3/3 fitting primes [32717, 32719, 32749], 1/2 holdout primes [32713], 12/15 cells. INCOMPLETE -- every cell computed so far agrees at rank 81, but the specification's matrix is not filled.",
+    "Sample x prime matrix: 3/3 seeds [11, 22, 33], 3/3 fitting primes [32717, 32719, 32749], 2/2 holdout primes [32693, 32713], 15/15 cells. Complete.",
     "Each cell is an immutable per-(prime, seed) artifact written atomically under a lock; the certificate is assembled by a read-only aggregator that fails on a missing, duplicated, incomplete or inconsistently ordered cell rather than producing a partial certificate that reads as a whole one.",
     "What the computation gives is the LOWER half only. The coordinate basis is integral, so each Jacobian is the reduction of an integer matrix and rank_{F_p} <= rank_Q holds unconditionally; hence rank_Q >= 81. The matching upper bound 126 - 45 = 81 is analytic, from the generic stabiliser dimension, and is not supplied by any computation here.",
     "Rank 81 among 83 functions means at least two functional dependencies. The manuscript must never say '83 algebraically independent invariants'."

@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[2]
 AGGREGATOR = ROOT / "spinor_trace_bridge" / "scripts" / "assemble_rank81_matrix.py"
 
 FITTING = [32749, 32719, 32717]
-HOLDOUT = [32713, 32707]
+HOLDOUT = [32713, 32693]
 SEEDS = [11, 22, 33]
 
 SELECTION_SHA = "a" * 64
@@ -195,7 +195,7 @@ def test_changed_candidate_order_is_rejected(good_matrix: Path, tmp_path: Path):
 
 
 def test_changed_coordinate_order_is_rejected(good_matrix: Path, tmp_path: Path):
-    cell = json.loads((good_matrix / "cell_p32707_s22.json").read_text())
+    cell = json.loads((good_matrix / "cell_p32693_s22.json").read_text())
     cell["coordinate_dimension"] = 125
     cell["jacobian"]["n_columns"] = 125
     write_cell(good_matrix, cell)
@@ -224,7 +224,7 @@ def test_nonzero_error_count_is_rejected(good_matrix: Path, tmp_path: Path):
 
 
 def test_interrupted_cell_is_rejected(good_matrix: Path, tmp_path: Path):
-    cell = json.loads((good_matrix / "cell_p32707_s11.json").read_text())
+    cell = json.loads((good_matrix / "cell_p32693_s11.json").read_text())
     cell["schedule_summary"]["interrupted"] = 1
     write_cell(good_matrix, cell)
     assert_rejected(good_matrix, tmp_path, "interrupted")
@@ -337,7 +337,7 @@ def test_silently_skipped_candidate_is_rejected(good_matrix: Path, tmp_path: Pat
 
 
 def test_malformed_terminal_status_is_rejected(good_matrix: Path, tmp_path: Path):
-    cell = json.loads((good_matrix / "cell_p32707_s33.json").read_text())
+    cell = json.loads((good_matrix / "cell_p32693_s33.json").read_text())
     cell["cell_complete"] = "yes"
     write_cell(good_matrix, cell)
     assert_rejected(good_matrix, tmp_path, "malformed terminal status")
