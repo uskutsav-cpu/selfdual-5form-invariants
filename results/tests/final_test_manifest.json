@@ -1,0 +1,44 @@
+{
+ "generated_utc": "2026-08-02T16:38:50+00:00",
+ "counted_by": "scripts/pytest_report.py (19 regression tests)",
+ "suites": [
+  {
+   "suite": "tensor",
+   "log": "results/tests/final_tensor.log",
+   "command": "python -m pytest tests/ -q",
+   "root": ".",
+   "returncode": null,
+   "status": "INCOMPLETE",
+   "problems": [
+    "no exit= line in the log; the suite has not finished, so its counts are a lower bound"
+   ],
+   "passed_so_far": 24
+  },
+  {
+   "suite": "bridge",
+   "log": "results/tests/final_bridge.log",
+   "command": "cd spinor_trace_bridge && python -m pytest -q",
+   "root": "spinor_trace_bridge",
+   "returncode": 0,
+   "count_source": "progress",
+   "collected": null,
+   "passed": 135,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "deselected": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "warnings": 0,
+   "runtime_seconds": null,
+   "interrupted": false,
+   "contaminated": false,
+   "problems": [],
+   "log_sha256": "f2a2851fd07d932c49660c7f57aef37289927105e202692b6b4a7a987b70a9ff",
+   "status": "PASS"
+  }
+ ],
+ "total_passed": 135,
+ "total_failed_or_error": 0,
+ "all_suites_clean": false
+}

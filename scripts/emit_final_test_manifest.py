@@ -53,6 +53,20 @@ def main() -> int:
         text = path.read_text(encoding="utf-8", errors="replace")
         m = EXIT_LINE.search(text)
         rc = int(m.group(1)) if m else None
+        if rc is None:
+            # No recorded exit status means the runner has not finished. A
+            # suite mid-flight has a growing pile of dots and no failures yet,
+            # which is indistinguishable from a clean short suite. Reporting
+            # that as PASS is how an in-progress run becomes a result.
+            rows.append({
+                "suite": name, "log": rel, "command": command, "root": root,
+                "returncode": None,
+                "status": "INCOMPLETE",
+                "problems": ["no exit= line in the log; the suite has not "
+                             "finished, so its counts are a lower bound"],
+                "passed_so_far": parse(text).passed,
+            })
+            continue
         counts = parse(EXIT_LINE.sub("", text), returncode=rc)
         rows.append({
             "suite": name, "log": rel, "command": command, "root": root,
@@ -71,11 +85,13 @@ def main() -> int:
             "status": "PASS" if counts.ok else "NOT CLEAN",
         })
 
-    ran = [r for r in rows if r.get("status") not in ("NOT RUN",)]
+    ran = [r for r in rows if r.get("status") not in ("NOT RUN", "INCOMPLETE")]
     total_passed = sum(r.get("passed", 0) for r in ran)
     total_failed = sum(r.get("failed", 0) + r.get("errors", 0) for r in ran)
-    all_clean = bool(ran) and all(r["status"] == "PASS" for r in ran) \
-        and len(ran) == len(SUITES)
+    all_clean = (bool(ran) and all(r["status"] == "PASS" for r in ran)
+                 and len(ran) == len(SUITES)
+                 and not any(r.get("status") in ("NOT RUN", "INCOMPLETE")
+                             for r in rows))
 
     record = {
         "generated_utc": when,
@@ -97,8 +113,10 @@ def main() -> int:
          "| suite | passed | failed | errors | skipped | source | exit | status |",
          "|---|---|---|---|---|---|---|---|"]
     for r in rows:
-        if r.get("status") == "NOT RUN":
-            L.append(f"| {r['suite']} | --- | --- | --- | --- | --- | --- | **NOT RUN** |")
+        if r.get("status") in ("NOT RUN", "INCOMPLETE"):
+            note = r.get("passed_so_far")
+            L.append(f"| {r['suite']} | {note if note is not None else '---'} | "
+                     f"--- | --- | --- | --- | --- | **{r['status']}** |")
             continue
         L.append(f"| {r['suite']} | {r['passed']} | {r['failed']} | {r['errors']} | "
                  f"{r['skipped']} | {r['count_source']} | {r['returncode']} | "
@@ -119,8 +137,9 @@ def main() -> int:
                                                              encoding="utf-8")
 
     for r in rows:
-        if r.get("status") == "NOT RUN":
-            print(f"{r['suite']:8s} NOT RUN")
+        if r.get("status") in ("NOT RUN", "INCOMPLETE"):
+            print(f"{r['suite']:8s} {r['status']} "
+                  f"(passed so far {r.get('passed_so_far', '-')})")
         else:
             print(f"{r['suite']:8s} {r['status']:10s} passed {r['passed']:4d} "
                   f"failed {r['failed']} errors {r['errors']} "
