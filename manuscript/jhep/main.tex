@@ -1,0 +1,838 @@
+%% ---------------------------------------------------------------------------
+%% Self-dual five-form invariants in D=10: a tensor-spinor bridge,
+%% an exact rank certificate, and the degree-ten stress-flow obstruction.
+%%
+%% DRAFT. This file is generated for internal review only. It is not a
+%% submission. See manuscript/jhep/REVIEW_STATUS.md for what is and is not
+%% settled, and audit/AUTHOR_APPROVAL_CHECKLIST.md for the approvals that
+%% have not been given.
+%%
+%% Language discipline used throughout, per the project's exactness policy:
+%%   proved                       -- analytic argument
+%%   exactly certified            -- proof-producing exact computation
+%%   verified over the tested fields -- finite-field evidence only
+%%   observed                     -- numerical
+%%   conjectured                  -- neither
+%% These words are not interchangeable here.
+%% ---------------------------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}
+\pdfoutput=1
+
+\usepackage{jheppub}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+
+%% --- draft banner; delete this block when the manuscript is approved -------
+\usepackage{eso-pic}
+\AddToShipoutPictureFG{%
+  \AtPageUpperLeft{\raisebox{-2.2\baselineskip}{\hspace{2.2cm}%
+  \textcolor{red!70!black}{\small\sffamily DRAFT FOR INTERNAL REVIEW ---
+  NOT FOR SUBMISSION}}}}
+%% --------------------------------------------------------------------------
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Aten}{\mathcal{A}_{10}}
+\newcommand{\Dten}{\mathcal{D}_{10}}
+\newcommand{\Qten}{\mathcal{Q}_{10}}
+\newcommand{\Pten}{\mathcal{P}_{10}}
+\newcommand{\Bten}{\mathcal{B}_{10}}
+\newcommand{\Gten}{\mathcal{G}_{10}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\tr}{\mathrm{Tr}}
+\newcommand{\dq}{\dim_{\Q}}
+
+\title{\boldmath Self-dual five-form invariants in ten dimensions:
+a tensor--spinor correspondence, an exact rank certificate,
+and an obstruction in the degree-ten stress flow}
+
+\author[a]{Utsav Sunil Kumar}
+\affiliation[a]{Heritage High School, Frisco, TX 75035, USA}
+\emailAdd{utsav.sunilkumar@example.edu}
+
+\abstract{We study the ring of Lorentz invariants built from a self-dual
+five-form $\Lam$ in ten dimensions, working in two presentations at once: the
+tensor presentation in which $\Lam$ carries five antisymmetrised vector
+indices, and the spinor presentation in which the same $126$ components sit in
+the gamma-traceless symmetric square of a chiral spinor. We construct the
+linear map between them explicitly and certify that it is invertible on the
+selected chirality channel. Evaluating a family of $83$ candidate invariants
+and computing the Jacobian of the resulting map in exact modular arithmetic,
+we certify a rank of $81$ over the $126$ gamma-traceless coordinates, with an
+explicit $81\times 81$ minor whose determinant is nonzero and is confirmed by
+two independent determinant routines. We then turn to the stress-tensor flow
+of the nonlinear chiral four-form theories of
+Hutomo--Lechner--Sorokin. We prove, from algebraic self-duality alone and off
+shell, that the free stress tensor of a self-dual five-form in ten dimensions
+is traceless, so that the trace of the interacting tensor obeys
+$\tr(\tau)[V_d] = 10(d-2)V_d$ and carries no quadratic part. This
+tracelessness controls when the flow's trace generator becomes available, and
+with it we compute the degree-ten seed closure exactly over the rationals:
+$\dq\Aten = 14$, $\dq\Dten = 11$, and hence a three-dimensional quotient
+$\dq\Qten = 3$ of degree-ten invariants that the seeded flow does not reach.
+We state explicitly which of these results are proved, which are exactly
+certified, and which hold only over the tested finite fields.}
+
+\keywords{Chiral form fields, Duality in Gauge Field Theories,
+Extended Supersymmetry, Differential and Algebraic Geometry}
+
+\begin{document}
+\maketitle
+\flushbottom
+
+%% ==========================================================================
+\section{Introduction}
+\label{sec:intro}
+
+A self-dual five-form in ten dimensions is an awkward object to write an
+action for and an unusually rigid one to build invariants from. It is central
+to type IIB supergravity, where the self-duality of $F_5$ is a constraint
+rather than an equation of motion, and it is the highest-dimensional member of
+the family of chiral $p$-forms in $D = 2p+2$ that includes the chiral two-form
+of the M5-brane. Recent work has produced both a systematic account of the
+invariants one can build from such a form \cite{Cederwall:2025invariants} and a
+family of nonlinear chiral four-form theories in $D=10$ together with the
+stress-tensor flows that connect them \cite{Hutomo:2025chiral}.
+
+This paper addresses three questions that sit between those two developments.
+
+\paragraph{How many independent invariants are there, and can we certify it?}
+The count of functionally independent invariants of a self-dual five-form is
+available in the literature \cite{Cederwall:2025invariants}. What has been less
+available is a certificate: an exact, reproducible object that establishes the
+count without appealing to numerical rank estimates or to a tolerance. In
+section \ref{sec:rank} we produce one. We evaluate $83$ candidate invariants,
+compute the Jacobian of the resulting map exactly in modular arithmetic over
+$126$ gamma-traceless coordinates, and exhibit an explicit $81\times81$ minor
+with nonzero determinant, cross-checked by fraction-free Bareiss elimination
+\cite{Bareiss:1968} and by Laplace expansion. The rank is $81$, and the
+certificate says so in a form that can be re-verified independently.
+
+We are not claiming the method. The workflow of enumerating candidate
+contractions, evaluating them at sample points, and detecting relations from
+the resulting Jacobian is due to Elamaran, Ferko and Scarlett
+\cite{Elamaran:2025ml}; what we contribute here is its exact-arithmetic
+execution for this particular five-form problem and the certificate that
+execution produces.
+
+\paragraph{Is the tensor presentation or the spinor presentation the right one?}
+Both. The point of section \ref{sec:bridge} is that the choice is free, and
+that this can be established rather than assumed. The space $\Lam^5_+V$ of
+self-dual five-forms and the space $\Sym^2_{\gamma\text{-tr}}S_+$ of
+gamma-traceless symmetric squares of a chiral spinor are both $126$-dimensional
+in $D=10$; the isomorphism between them is classical and traces back to the
+division-algebra structure of ten-dimensional spinors \cite{Kugo:1982bn}. We
+construct the map $\Phi$ explicitly, verify that its forward rank is $126$ with
+zero kernel on the selected channel, exhibit the exact round trip, and check
+equivariance. The practical consequence is that a computation which is
+expensive in one presentation may be moved to the other without a change of
+content, and section \ref{sec:rank} uses exactly this.
+
+\paragraph{What does the stress-tensor flow fail to reach?}
+This is the question we regard as the most interesting, and section
+\ref{sec:flow} is devoted to it. Given a seed interaction, the flow
+$dV/d\lambda = f(T,\lambda)$ of \cite{Hutomo:2025chiral} generates a
+subspace of invariants at each degree. That subspace need not be everything.
+At degree ten it is not: we find a three-dimensional quotient.
+
+Establishing this required settling a question about the trace of the stress
+tensor that turns out to have a clean answer. In section \ref{sec:trace} we
+prove that the free stress tensor of a self-dual five-form in $D=10$ is
+traceless identically and off shell, using nothing but algebraic
+self-duality --- no equation of motion, no improvement term, no choice of
+action formulation. The proof is three lines and rests on the observation that
+a five-form has odd degree, so $F\wedge F = -F\wedge F$ and the full square
+vanishes. The consequence is that
+\begin{equation}
+  \tr(\tau)[V_d] = 10(d-2)V_d ,
+\end{equation}
+which vanishes identically at $d=2$. A quadratic interaction therefore
+contributes nothing to the trace, whatever its coefficient, and the trace
+generator of the flow first becomes available at degree four. This is not a
+technicality: section \ref{sec:counterfactual} records that if a quadratic
+trace contribution were present, the degree-ten closure would grow from $11$
+to $14$ and the quotient would collapse from $3$ to $0$. The tracelessness
+lemma is the difference between an obstruction and no obstruction.
+
+\paragraph{On exactness.} Every quantitative statement in this paper carries a
+qualifier, and the qualifiers are not decorative. We write \emph{proved} for an
+analytic argument, \emph{exactly certified} for a proof-producing exact
+computation, and \emph{verified over the tested fields} for finite-field
+evidence that has not been lifted to characteristic zero. Section
+\ref{sec:limits} collects the statements that fall in the last category,
+together with the results we deliberately do not claim. In particular we do not
+convert modular evidence into a rational theorem anywhere, and where a rational
+lift was attempted and failed --- as it did for $\tr(M^6)$, see section
+\ref{sec:trm6} --- we report the failure rather than the guess.
+
+%% ==========================================================================
+\section{Setup and conventions}
+\label{sec:setup}
+
+We work in $D=10$ with mostly-plus signature and fix
+\begin{equation}
+  \eta_{\mu\nu} = \mathrm{diag}(-1,+1,\dots,+1), \qquad
+  \varepsilon^{01\cdots 9} = -1 .
+\end{equation}
+For a $p$-form in $D$ dimensions with $t$ timelike directions the Hodge star
+squares to
+\begin{equation}
+  \star\star = (-1)^{p(D-p)}(-1)^t .
+  \label{eq:starsq}
+\end{equation}
+At $p=5$, $D=10$ this is $(-1)^{25}(-1)^t = (-1)^{1+t}$, so real self-duality
+requires $t$ odd. Lorentzian $(1,9)$ and split $(5,5)$ signatures admit real
+self-dual five-forms; Euclidean $(10,0)$ does not, and there the notion is
+available only after complexification. We keep the real forms distinct
+throughout, and the verification described in section \ref{sec:trace} tests all
+three.
+
+Let $\Lam$ denote the self-dual five-form, $\star\Lam = \Lam$. By
+\emph{degree} we always mean homogeneous polynomial degree in the components of
+$\Lam$, so $\Lam$ has degree one and any bilinear has degree two. Coupling
+order is a different filtration and is not used.
+
+The moment tensor and free stress tensor are
+\begin{equation}
+  M_{\mu\nu} = \Lam_{\mu\rho_1\rho_2\rho_3\rho_4}
+               \Lam_{\nu}{}^{\rho_1\rho_2\rho_3\rho_4},
+  \qquad
+  T^{(0)}_{\mu\nu} = \frac{M_{\mu\nu}}{2\cdot 4!} .
+  \label{eq:moment}
+\end{equation}
+We write $\tau = 48\,T$ for the $M$-normalised tensor; the factor is a
+convention and nothing below depends on it.
+
+In the formulation of \cite{Hutomo:2025chiral}, an interaction is specified by
+a function $V(\Lam)$ and the Hilbert stress tensor is
+\begin{equation}
+  T_{\mu\nu}[V] = \frac{1}{2\cdot 4!}\Big(
+      \Lam_{\mu}{}^{\rho(4)}\Lam_{\nu\rho(4)}
+      - 25\, V_{\Lam\,\mu}{}^{\rho(4)} V_{\Lam\,\nu\rho(4)} \Big)
+    - \frac{1}{4!}\, g_{\mu\nu}\Big( V - \tfrac12 \Lam\!\cdot\! V_\Lam \Big),
+  \label{eq:hilbert}
+\end{equation}
+where $V_{\Lam\,\mu(5)} = \partial V/\partial \Lam^{\mu(5)}$ is
+\emph{anti}-self-dual. That $V_\Lam$ has the opposite duality to $\Lam$ is the
+one structural input beyond \eqref{eq:hilbert} that section \ref{sec:trace}
+uses.
+
+\subsection{The atlas of candidate invariants}
+
+Candidate invariants are generated as contraction patterns, organised by an
+associated graph and canonicalised so that patterns differing by a relabelling
+are identified. Canonicalisation is performed with the exact algorithm of
+McKay and Piperno \cite{McKay:2014}. We note that an earlier version of this
+pipeline used a Weisfeiler--Leman refinement as a fallback, which was measured
+to collide on precisely the graphs in play --- at order six, $49$ genuine
+isomorphism classes collapse to $39$ refinement keys. Since the enumerator
+retains the first graph per key, such collisions silently discard invariants.
+The fallback has been removed; all results below use exact canonicalisation
+only.
+
+%% ==========================================================================
+\section{The tensor--spinor bridge}
+\label{sec:bridge}
+
+\subsection{Statement}
+
+Let $V$ be the ten-dimensional vector representation and $S_+$ a chiral spinor
+of $\mathrm{Spin}(1,9)$, of real dimension $16$. Then
+\begin{equation}
+  \dim \Lam^5_+ V = \binom{10}{5}\Big/2 = 126,
+  \qquad
+  \dim \Sym^2_{\gamma\text{-tr}} S_+ = \binom{17}{2} - 10 = 126 ,
+\end{equation}
+the second because the symmetric square of a $16$-component chiral spinor has
+dimension $136$ and the gamma-trace condition
+$(\gamma^\mu)_{\alpha\beta}\Psi^{\alpha\beta} = 0$ removes ten. The map
+\begin{equation}
+  \Phi : \Lam^5_+ V \longrightarrow \Sym^2_{\gamma\text{-tr}} S_+,
+  \qquad
+  \Phi(\Lam)_{\alpha\beta}
+   = \frac{1}{5!}\, \Lam_{\mu_1\cdots\mu_5}
+     (\gamma^{\mu_1\cdots\mu_5})_{\alpha\beta}
+  \label{eq:phi}
+\end{equation}
+is the standard one, built from the antisymmetrised product of five gamma
+matrices, which is symmetric in $\alpha\beta$ on the chiral channel in $D=10$.
+
+\subsection{What is certified}
+
+The Clifford structure is extracted rather than assumed: the metric is read off
+from the anticommutators of an explicitly constructed split oscillator
+realisation, the Hodge square is computed per signature and compared against
+\eqref{eq:starsq}, and the frame map is exact. Gate 1.1 of the verification
+suite records $16/16$ checks passing on this structure.
+
+For the bridge itself, gate 1.2 records $22/22$ checks: domain $126$, codomain
+$126$, forward rank $126$, zero kernel on the selected chirality channel, an
+exact round trip $\Phi^{-1}\circ\Phi = \mathrm{id}$, linearity under scaling,
+and equivariance under the Lorentz action. The rank and kernel statements are
+\emph{exactly certified}: they are computed in exact arithmetic, not estimated.
+
+\begin{proposition}[Bridge invertibility]
+\label{prop:bridge}
+$\Phi$ as defined in \eqref{eq:phi} is a linear isomorphism
+$\Lam^5_+V \to \Sym^2_{\gamma\text{-tr}}S_+$. Exactly certified: forward rank
+$126$ with zero kernel, and the inverse verified by exact round trip.
+\end{proposition}
+
+\subsection{Why it is used}
+
+The practical content of proposition \ref{prop:bridge} is that a polynomial
+identity among invariants may be checked in whichever presentation is cheaper,
+and the answer transfers. Gate 1.4 makes this precise degree by degree: at each
+certified degree we record the tensor-side rank, the spinor-side rank, the rank
+of the union, span equality in both directions, an explicitly fitted change of
+basis, and validation on holdout samples not used in the fit. All $55$ checks
+pass. Span equality in \emph{both} directions is the part that matters; one
+inclusion is cheap and would not establish the correspondence.
+
+%% ==========================================================================
+\section{An exact rank certificate}
+\label{sec:rank}
+
+\subsection{The computation}
+
+Following the enumerate--evaluate--relate workflow of \cite{Elamaran:2025ml},
+we take $83$ candidate invariants, evaluate them at sample points, and study
+the Jacobian
+\begin{equation}
+  J_{ij} = \frac{\partial \mathcal{I}_i}{\partial x_j},
+  \qquad i = 1,\dots,83,\quad j = 1,\dots,126,
+\end{equation}
+where $x_j$ ranges over the $126$ gamma-traceless coordinates. The rank of $J$
+at a generic point is the number of functionally independent invariants among
+the candidates \cite{Zippel:1979,Schwartz:1980}.
+
+Two departures from the standard practice are worth stating. First, the
+Jacobian is computed \emph{analytically and exactly}: there are no finite
+differences and no tolerance anywhere in the pipeline, so the rank is a rank
+and not a thresholded singular-value count. Second, the computation is carried
+out modulo a prime and repeated across a matrix of primes and sample seeds, so
+that a single unlucky evaluation point or a single exceptional prime cannot
+produce the answer on its own.
+
+\subsection{What each cell reports}
+
+The certificate is assembled from independent cells, one per (prime, seed)
+pair, each run in its own process writing its own file. Every completed cell
+reports the same accounting:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+candidates scheduled & $83$ \\
+terminal status & $83$ evaluated, $0$ errors, $0$ interrupted, $0$ skipped \\
+Euler homogeneity check & $83$ passed, $0$ failed \\
+zero rows & none \\
+coordinate dimension & $126$ \\
+rank & $\mathbf{81}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The Euler homogeneity check is a falsification gate rather than a formality:
+each candidate must satisfy $x\cdot\partial_x \mathcal{I} = d\,\mathcal{I}$ for
+its declared degree $d$, which fails loudly if a candidate was mis-evaluated or
+mis-graded.
+
+The cumulative rank resolved by degree is identical in every completed cell:
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+degree & 4 & 6 & 8 & 10 & 12 \\
+\midrule
+cumulative rank & 1 & 3 & 9 & 21 & 81 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Degree twelve therefore contributes $60$ of the $81$. We record this because it
+means degree-twelve data is load-bearing for the rank certificate even though,
+as section \ref{sec:limits} explains, degree twelve is deliberately excluded
+from this paper's central claims.
+
+\subsection{The minor}
+
+Rank alone can be an artefact of elimination order. We therefore exhibit an
+explicit $81\times 81$ submatrix and compute its determinant twice by
+independent routines --- fraction-free Bareiss elimination \cite{Bareiss:1968}
+and Laplace expansion --- requiring that they agree and that the result is
+nonzero. They do, and it is.
+
+\begin{theorem}[Rank certificate]
+\label{thm:rank}
+Over the $126$ gamma-traceless coordinates, the Jacobian of the $83$ candidate
+invariants has rank $81$, exhibited by an explicit $81\times81$ minor with
+nonzero determinant confirmed by two independent determinant computations.
+Status: \emph{exactly certified} at each tested prime, with agreement across a
+matrix of fitting and holdout primes and sample seeds.
+\end{theorem}
+
+The count $81$ itself is not ours; it is available in the source literature
+\cite{Cederwall:2025invariants}. What theorem \ref{thm:rank} adds is the
+certificate. We stress that the target value was at no point used as a
+stopping condition: every cell evaluates all $83$ candidates and reports its
+rank whatever that rank is, and agreement with the published count is a
+validation of the pipeline rather than an instruction to it.
+
+%% ==========================================================================
+\section{The free stress tensor is traceless}
+\label{sec:trace}
+
+This section is self-contained and analytic.
+
+\begin{lemma}[Vanishing full square]
+\label{lem:square}
+Let $F$ be a real five-form in $D=10$ with $\star F = \sigma F$, $\sigma =
+\pm1$. Then $F_{\mu_1\cdots\mu_5}F^{\mu_1\cdots\mu_5} = 0$.
+\end{lemma}
+
+\begin{proof}
+For any $p$-forms, $\alpha \wedge \star\beta = \langle\alpha,\beta\rangle
+\mathrm{vol}$. Taking $\alpha=\beta=F$ and using $\star F = \sigma F$,
+\begin{equation}
+  \langle F,F\rangle\, \mathrm{vol} = F\wedge\star F = \sigma\, (F\wedge F).
+\end{equation}
+But $F$ has odd degree five, and for a $p$-form
+$F\wedge F = (-1)^{p^2} F\wedge F$; at $p=5$ this reads $F\wedge F = -F\wedge
+F$, so $F\wedge F=0$ and hence $\langle F,F\rangle = 0$.
+\end{proof}
+
+Three features of lemma \ref{lem:square} are worth isolating. It is
+\emph{off shell}: no equation of motion is used. It is \emph{algebraic}: only
+antisymmetry and self-duality enter. And it is \emph{independent of $\sigma$},
+so it applies equally to self-dual and anti-self-dual forms --- which is what
+makes it strong enough for the next step.
+
+\begin{theorem}[Tracelessness of the free stress tensor]
+\label{thm:g10}
+The free stress tensor \eqref{eq:moment} of a self-dual five-form in $D=10$
+satisfies $\eta^{\mu\nu}T^{(0)}_{\mu\nu} = 0$ identically. Status:
+\emph{proved}.
+\end{theorem}
+
+\begin{proof}
+$\eta^{\mu\nu}M_{\mu\nu} = \Lam^{\nu\rho(4)}\Lam_{\nu\rho(4)}
+= 4!\,\langle\Lam,\Lam\rangle = 0$ by lemma \ref{lem:square} with
+$\sigma=+1$.
+\end{proof}
+
+\begin{proposition}[The interacting trace]
+\label{prop:eulertrace}
+For $V$ homogeneous of degree $d$ in $\Lam$,
+$\tr(\tau)[V_d] = 10(d-2)V_d$, and in particular the trace vanishes
+identically at $d=2$. Status: \emph{proved}.
+\end{proposition}
+
+\begin{proof}
+Tracing \eqref{eq:hilbert} with $g^{\mu\nu}$ in $D=10$ gives
+\begin{equation}
+  \tr T[V] = \frac{1}{48}\Big( 4!\,\langle\Lam,\Lam\rangle
+    - 25\cdot 4!\, \langle V_\Lam, V_\Lam\rangle \Big)
+    - \frac{10}{4!}\Big( V - \tfrac12 \Lam\!\cdot\! V_\Lam \Big).
+\end{equation}
+The first bilinear vanishes by lemma \ref{lem:square} with $\sigma=+1$. The
+second vanishes by lemma \ref{lem:square} with $\sigma=-1$, since $V_\Lam$ is
+anti-self-dual and the lemma never used the sign. Hence
+$\tr T[V] = -(10/4!)(V - \tfrac12\Lam\cdot V_\Lam)$. For $V_d$ homogeneous of
+degree $d$, Euler's theorem gives $\Lam\cdot V_{d,\Lam} = d\,V_d$, so
+$\tr T[V_d] = (10/48)(d-2)V_d$, and in the $\tau = 48T$ normalisation
+$\tr(\tau)[V_d] = 10(d-2)V_d$. The factor $(d-2)$ vanishes at $d=2$.
+\end{proof}
+
+Two independent facts are doing the work and both are needed: lemma
+\ref{lem:square} removes the bilinear terms, and the Euler factor removes
+degree two. Neither alone suffices.
+
+\subsection{Independent verification}
+
+Because proposition \ref{prop:eulertrace} carries the weight of section
+\ref{sec:flow}, it was verified by a script that imports nothing from the
+production code and rebuilds the Hodge star, the duality projection, the moment
+tensor and the trace from the definitions in exact integer arithmetic. It
+tests both signs of $\varepsilon$, both duality channels, and all three real
+forms. The results:
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+$\star\star$ on five-forms, Lorentzian $(1,9)$ & $+1$ \\
+$\star\star$ on five-forms, split $(5,5)$ & $+1$ \\
+$\star\star$ on five-forms, Euclidean $(10,0)$ & $-1$ \\
+\midrule
+samples tested & $192$ \\
+samples with $\tr M \neq 0$ & $\mathbf{0}$ \\
+samples with $M$ non-symmetric & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The Euclidean row is a consistency check on \eqref{eq:starsq}, not a
+counterexample: no real self-dual five-form exists there, and the verifier
+skips the trace test accordingly.
+
+Separately, the flow artifact was checked against the analytic formula
+coefficient by coefficient. Every $\tr(\tau)$ target in the shipped system
+carries coefficient exactly $10(d-2)$ --- $20$, $40$ and $60$ at degrees four,
+six and eight --- and no degree-two target is present.
+
+\subsection{Formulation independence}
+
+Lemma \ref{lem:square} is a statement about an algebraically self-dual
+five-form and nothing else, so it survives any reformulation preserving
+$\star\Lam=\Lam$. The PST \cite{Pasti:1997gx}, clone and Hamiltonian
+formulations differ from the one used here by terms proportional to the
+auxiliary-field or PST-scalar equations and by field redefinitions; at the
+order used these change $T_{\mu\nu}$ by such terms without introducing a
+$\Lam$-bilinear trace, because any candidate bilinear is again
+$\langle\Lam,\Lam\rangle$ or $\langle V_\Lam,V_\Lam\rangle$ and both vanish.
+What is convention-dependent is the overall normalisation of $\tau$, not the
+vanishing. A formulation containing a $\Lam$-bilinear that is not a full
+contraction --- for instance one contracted through a background structure
+other than $\eta$ --- would evade this argument; no formulation in the scope
+considered here does so.
+
+%% ==========================================================================
+\section{The degree-ten stress flow}
+\label{sec:flow}
+
+\subsection{Three spaces that must not be conflated}
+
+At degree ten there are several natural subspaces of the invariant space and
+they have different dimensions. Distinguishing them is the substance of this
+section; an earlier version of this analysis conflated the first and the
+fourth and obtained a vacuous answer.
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+object & dimension & quotient in $\Aten$ \\
+\midrule
+span of all $37$ degree-ten flow targets & 14 & 0 \\
+new-forcing space ($\tr(\tau)$ excluded as a generator) & 5 & 9 \\
+static stress span & 2 & 12 \\
+\textbf{$\Dten$, the seed closure} & \textbf{11} & \textbf{3} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Only the last is $\Dten$. The first has no activation condition and therefore
+reaches everything; the second removes $\tr(\tau)$ as a generator; the third is
+static rather than dynamical.
+
+\begin{definition}[Activation]
+A flow target contributes to the closure only once every factor of its
+coefficient monomial is already reachable. The closure $\Dten$ is the fixed
+point of repeatedly adding targets whose activation condition is met, starting
+from the seed set.
+\end{definition}
+
+This is where theorem \ref{thm:g10} enters. Because $\tr(\tau)$ has no
+quadratic part, no degree-two $\tr(\tau)$ target exists, and nothing in the
+$\tr(\tau)$ family is reachable until a degree-four direction is already in the
+span. Without that, the family would activate immediately.
+
+\subsection{The exact result}
+
+The flow targets carry exact rational coordinates, so the fixed-point closure
+can be run over $\Q$ with rational arithmetic rather than modulo a prime. This
+matters for a reason worth spelling out: $\mathrm{rank}_{\F_p} \le
+\mathrm{rank}_{\Q}$, and for a subspace that is \emph{subtracted} this
+inequality points the wrong way. A $\Dten$ that were larger over $\Q$ than
+modulo $p$ would make the obstruction \emph{smaller}, and agreement across
+primes could not rule that out. Computing over $\Q$ removes the issue by
+computing the rank rather than bounding it.
+
+\begin{theorem}[Degree-ten seed closure]
+\label{thm:d10}
+Over the rationals,
+\begin{equation}
+  \dq\Aten = 14, \qquad \dq\Dten = 11, \qquad \dq\Qten = 3 .
+\end{equation}
+Status: \emph{proved}, with both bounds certified separately.
+\end{theorem}
+
+The upper bound on $\Aten$ needs no computation: the fourteen basis elements
+\emph{are} the coordinate system, so nothing spanned by them exceeds fourteen,
+and the modular rank supplies the matching lower bound. For $\Dten$ the
+closure reached its fixed point in three sweeps, order-independently, and its
+rank was read off by exact rational elimination. The lower bound is exhibited
+by an explicit $11\times11$ minor with determinant
+\begin{equation}
+  12126533474468034240675840 \neq 0,
+\end{equation}
+computed by two independent routines that agree. The upper bound is
+established separately by exhibiting three valid annihilators, which imply
+$\dim \Dten \le 11$ directly. Because the two bounds are obtained by different
+arguments, their agreement is evidence and not a tautology.
+
+The three basis directions the seeded flow does not reach are $I_{10,6}$,
+$I_{10,7}$ and $I_{10,12}$, corresponding to free columns $5$, $6$ and $11$;
+the modular record agrees with the rational computation on both the rank and
+the identity of the free columns.
+
+\begin{remark}[Scope]
+$\Dten$ is a \emph{seed} closure. The generator-extension problem
+$dV/d\lambda = f(T,S,\lambda)$, in which additional generators are permitted,
+is a different question and is not answered here. Nothing in theorem
+\ref{thm:d10} should be read as addressing it.
+\end{remark}
+
+\subsection{The obstruction is load-bearing}
+\label{sec:counterfactual}
+
+A rule that nothing can violate is not being enforced. To check that the
+activation semantics are doing real work, we insert the degree-two trace
+contribution that theorem \ref{thm:g10} forbids --- a quadratic trace is
+unconditional, so its coefficient monomial is empty and the $\tr(\tau)$ family
+activates immediately --- and recompute:
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+quantity & theorem \ref{thm:g10} holds & quadratic trace inserted \\
+\midrule
+$\dim \Dten$ & $\mathbf{11}$ & $14$ \\
+$\dim \Qten$ & $\mathbf{3}$ & $\mathbf{0}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is not a perturbation of the answer. It is the difference between an
+obstruction and no obstruction, and it reproduces exactly the error made in an
+earlier stage of this work, where taking the unconditional span of all raw
+targets gave rank $14$ and quotient $0$ with nothing objecting at the time. If
+the free stress tensor were not traceless, there would be no degree-ten
+obstruction to report.
+
+\subsection{Independent confirmation from the rational flow system}
+
+The coefficient system for $dV/d\lambda = f(T,\lambda)$ was rationally
+reconstructed through degree twelve, fit on five primes and validated on an
+independent holdout. Its new-forcing span --- what the flow can create with the
+homogeneity generator $\tr(\tau)$ excluded --- is:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+degree & full & new forcing & obstruction \\
+\midrule
+4 & 1 & 1 & 0 \\
+6 & 2 & 1 & \textbf{1} \\
+8 & 7 & 3 & 4 \\
+10 & 14 & 5 & 9 \\
+12 & 72 & 21 & 51 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This uses a different script, a different algorithm, and rational rather than
+modular arithmetic, and it recovers the same one-dimensional sextic
+obstruction found independently at degree six. We record it as a cross-check,
+not as a second proof of theorem \ref{thm:d10}: the quantity tabulated here is
+the new-forcing span, not $\Dten$, and the two must not be identified.
+
+%% ==========================================================================
+\section{What is not established}
+\label{sec:limits}
+
+We regard this section as part of the result rather than an appendix to it.
+
+\subsection{\texorpdfstring{$\tr(M^6)$ has no certified rational lift}
+{Tr(M6) has no certified rational lift}}
+\label{sec:trm6}
+
+At degree twelve, the stress row associated with $\tr(M^6)$ was carried
+through CRT lifting at fifteen primes, giving a modulus of approximately
+$5.2\times10^{67}$. Twenty-nine of seventy-two columns still exceed the
+uniqueness bound for rational reconstruction. The coefficients were therefore
+\emph{not} guessed; $\tr(M^6)$ was adopted as a stress-adapted basis element
+instead.
+
+The contrast with the flow coefficients is the informative part. Those lifted
+cleanly at five primes, while this single degree-twelve row remains unlifted at
+fifteen. That pattern points to a genuine height problem specific to
+$\tr(M^6)$ rather than to insufficient computation, which is why the natural
+route forward is an analytic identity rather than more primes.
+
+The four-dimensional \emph{rank} at this degree is certified. The
+\emph{coordinates} are not, and no rational $\tr(M^6)$ coordinates appear
+anywhere in this paper.
+
+\subsection{Spaces certified only over the tested fields}
+
+\begin{center}
+\begin{tabular}{lcl}
+\toprule
+space & value & status \\
+\midrule
+$\Aten$ & 14 & proved over $\Q$ \\
+$\Gten$ & 12 & proved over $\Q$ \\
+$\Pten$ & 2 & proved over $\Q$ \\
+$\Dten$ & 11 & proved over $\Q$ \\
+$\Qten$ & 3 & proved over $\Q$ \\
+$\Bten$ & 12 & \textbf{verified over the tested fields only} \\
+$\Bten \cap \Pten$ & 1 & \textbf{verified over the tested fields only} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\Aten$, $\Gten$ and $\Pten$ are spans of distinct standard basis vectors in
+atlas coordinates --- all fourteen, the twelve graph generators, and the two
+lower products respectively. A set of $k$ distinct unit vectors has rank $k$
+over any field, so their dimensions are structural and no prime can be
+exceptional.
+
+$\Bten$ is different. It is the span of the published equation-(4.24)
+candidates, and each candidate's coordinate vector is \emph{recovered} by
+solving a linear system against a design matrix modulo $p$, so the
+coefficients are modular objects. We therefore have
+$\dq\Bten \ge 12$ from the modular rank and $\dq\Bten \le 14$ from
+$\Bten \subseteq \Aten$, and nothing between them is established. The
+intersection $\Bten\cap\Pten$ inherits the gap through
+$\dim(B\cap P) = \dim B + \dim P - \dim(B+P)$. Its modular value is $1$,
+consistent across the tested primes, and that is exactly what we state.
+
+Closing this would require a rational evaluator for the atlas elements, which
+does not exist in the present package. The route is not exotic --- the
+candidates' modular images at four primes give a CRT modulus of roughly
+$10^{18}$, so a rational lift is unique when numerator and denominator are each
+below about $10^9$ --- but whether the entries are that small is not known, and
+it was not attempted here.
+
+\subsection{Degree twelve}
+
+Degree-twelve data is a certified \emph{input} to theorem \ref{thm:rank},
+contributing $60$ of the $81$. It does not enter the title, the abstract or the
+central claims of this paper, because doing so would require a complete atlas,
+a verified product/primitive split, an exact rank certificate, a
+trace/spinor comparison and holdout validation at that degree, and not all of
+those are in hand. The scope decision is deliberate and is recorded as such.
+
+\subsection{Claims we do not make}
+
+We do not derive a correction to the type IIB effective action, and nothing
+here should be read as one. We make no claim about causality, hyperbolicity,
+supersymmetric completion or positivity of any theory in the family, because
+none of those was calculated. We do not claim the enumerate--evaluate--relate
+workflow, which is due to \cite{Elamaran:2025ml}. Novelty relative to the
+existing literature is not asserted anywhere in this paper; a systematic
+comparison against the relevant primary sources has not yet been carried out,
+and until it has, no priority claim would be responsible.
+
+%% ==========================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+The degree-ten quotient $\dq\Qten = 3$ says that a seeded stress-tensor flow in
+the family of \cite{Hutomo:2025chiral} does not reach every degree-ten
+invariant of a self-dual five-form. Three directions --- $I_{10,6}$,
+$I_{10,7}$, $I_{10,12}$ --- lie outside the closure. Whether they are reachable
+once additional generators are admitted is the generator-extension problem, and
+we have been careful not to answer it by accident.
+
+The tracelessness result of section \ref{sec:trace} is the kind of statement
+that is easy to assume and cheap to prove once asked, and the counterfactual in
+section \ref{sec:counterfactual} shows the cost of assuming it wrongly. We
+would flag it as the natural first thing to check when this analysis is
+extended to the chiral two-form in $D=6$, where the analogue of lemma
+\ref{lem:square} depends on $p=3$ being odd and so goes through, and to
+$T\bar{T}$-like flows in higher dimensions more generally
+\cite{Ferko:2024quv,Perry:1996mk}.
+
+Two questions we would put to a reader with more context than we have. First:
+is there a known analytic identity expressing $\tr(M^6)$ in terms of the atlas
+generators? A single such identity removes the largest limitation recorded in
+section \ref{sec:trm6}. Second: equation (2.36) of arXiv:2509.14351v2 prints a
+trace sign that appears inconsistent with (2.33) and with the reproduced
+$V(I_4)$ formula; we have not been able to determine which is intended, and our
+implementation follows (2.33).
+
+\acknowledgments
+This work made substantial use of AI assistance. The extent is documented in
+\texttt{manuscript/jhep/ai\_assistance\_disclosure.md} and is summarised here:
+most of the computational code, all of the test suites, and much of the audit
+apparatus were machine-written, as was the analysis that produced the exact
+degree-ten result. No AI system is an author of this paper. The disclosure
+document also records what this assistance does \emph{not} amount to, in
+particular that it does not constitute independent human verification of the
+results.
+
+\appendix
+
+%% ==========================================================================
+\section{Computational methodology}
+\label{app:method}
+
+\subsection{One writer per artifact}
+
+Every scientific artifact in this work is produced by exactly one process. Each
+computational cell runs in its own process, writes its own file, takes a lock,
+and completes with an atomic rename. Each carries a unique execution
+identifier, the hash of the frozen source it ran against, and hashes of the
+candidate list and coordinate ordering it used. A cell that is interrupted
+leaves a record saying so; a cell that completes leaves a terminal-status
+record. Resumption skips completed cells rather than recomputing or, worse,
+appending to them.
+
+This discipline is not decorative. An earlier stage of this work ran six
+concurrent test processes writing a single log, and the resulting file could
+not be used as evidence for anything.
+
+\subsection{Exact arithmetic throughout}
+
+No result in this paper depends on a floating-point comparison or a tolerance.
+Modular computations are exact in $\F_p$; rational computations use exact
+rational arithmetic; determinants are computed by fraction-free elimination
+\cite{Bareiss:1968} and cross-checked by Laplace expansion. Where a rational
+lift from modular data is performed, it is validated on held-out primes that
+were not used in the fit, and a lift that fails validation is reported as a
+failure rather than retried until it passes.
+
+\subsection{No stopping rules from published values}
+
+No enumeration or rank computation in this work terminates because it reached a
+published target. The values $81$, $14$, $11$ and $3$ appear in the literature
+and are used here for validation only. Every cell evaluates its full candidate
+list and reports whatever rank it finds.
+
+%% ==========================================================================
+\section{Certificate index}
+\label{app:certs}
+
+Each claim in the body is backed by a machine-readable artifact and by tests
+that guard it. The correspondence is:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+claim & artifact & guard \\
+\midrule
+prop.~\ref{prop:bridge} & gate 1.2 record & \texttt{test\_bridge.py} \\
+thm.~\ref{thm:rank} & \texttt{results/rank81/} & \texttt{test\_matrix\_aggregator.py} \\
+thm.~\ref{thm:g10} & \texttt{g10\_trace\_verification.json} & \texttt{test\_g10\_trace\_activation.py} \\
+prop.~\ref{prop:eulertrace} & \texttt{interacting\_flow\_equations.json} & \texttt{test\_g10\_trace\_activation.py} \\
+thm.~\ref{thm:d10} & \texttt{D10\_exact\_rational\_final.json} & \texttt{test\_stress\_flow\_closure.py} \\
+\S\ref{sec:counterfactual} & counterfactual record & \texttt{test\_g10\_trace\_activation.py} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+
+\end{document}
