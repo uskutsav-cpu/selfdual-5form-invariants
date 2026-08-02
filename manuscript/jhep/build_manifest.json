@@ -1,0 +1,37 @@
+{
+ "appendices": 12,
+ "approx_source_words": 13777,
+ "artifacts": {
+  "SHA256SUMS": "927458d64799dbd191d8e0cb4bb912e7811f097ce63f1ee75b48d5fcd448d1bf",
+  "certificate_manifest.json": "cc8dd55ea2354fbe32e8e2ccbfce0ef75e3b1b953ef87051cf424efef03caa94",
+  "claim_ledger.pdf": "7d4eb4c6fa4387c44e7b424f69a01aeef6e8aed10da9f0f650d9fcca3343f950",
+  "figure_book.pdf": "07d7297e0ba43f1403ae4024e5e8470e6af88532d7e3b3f77303b72bf353ee19",
+  "mentor_review_guide.pdf": "07ca86dc04bfa42d295498cdada5e9899a9a9cecb69d46f4d6e6695f70df4653",
+  "paper.pdf": "2a275473929b757980187f53dacb323b0687c908f11f4601a1df7373c9c83420",
+  "paper_source.tar.gz": "5cbe382429112a73184cb5eb2b9a6557cfd715061943200bc4257b2de53ef088",
+  "reproduction_quickstart.pdf": "999da5f542df9a4e5e9f1f25124cfa7694477dc87cc73bca7fe54a1f2a99eb4b"
+ },
+ "branch": "publication/jhep-mentor-draft",
+ "commit": "aa0f98e9054ab1725d6093ce81a80a4960673e60",
+ "figures": 10,
+ "latex": {
+  "errors": 0,
+  "overfull": 0,
+  "undefined_citations": 0,
+  "undefined_references": 0,
+  "underfull": 0
+ },
+ "pages": 41,
+ "references": 24,
+ "schema": 1,
+ "tables": 13,
+ "uncited_references": [],
+ "unresolved_human_decisions": [
+  "author list, order, corresponding author, affiliations, ORCIDs",
+  "software licence",
+  "Zenodo DOI",
+  "arXiv posting",
+  "JHEP submission",
+  "mentor approval"
+ ]
+}

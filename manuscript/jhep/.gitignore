@@ -1,0 +1,9 @@
+# LaTeX intermediates. main.bbl, main.pdf and build.log are tracked deliberately:
+# the .bbl because JHEP submission requires it, the log because the build
+# manifest quotes its warning counts and a reviewer should be able to check them.
+main.aux
+main.blg
+main.out
+main.toc
+main.log
+_figure_book.*

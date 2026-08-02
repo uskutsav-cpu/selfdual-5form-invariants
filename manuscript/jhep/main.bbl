@@ -1,0 +1,147 @@
+
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+\bibitem{Marcus:1982yu}
+N.~Marcus and J.H.~Schwarz, \emph{Field theories that have no manifestly
+  {L}orentz invariant formulation},
+  \href{https://doi.org/10.1016/0370-2693(82)90807-3}{\emph{Phys. Lett. B}
+  {\bfseries 115} (1982) 111}.
+
+\bibitem{Henneaux:1988gg}
+M.~Henneaux and C.~Teitelboim, \emph{Dynamics of chiral (self-dual)
+  {$p$}-forms}, \href{https://doi.org/10.1016/0370-2693(88)90712-5}{\emph{Phys.
+  Lett. B} {\bfseries 206} (1988) 650}.
+
+\bibitem{Pasti:1995tn}
+P.~Pasti, D.P.~Sorokin and M.~Tonin, \emph{Note on manifest {L}orentz and
+  general coordinate invariance in duality symmetric models},
+  \href{https://doi.org/10.1016/0370-2693(95)00463-U}{\emph{Phys. Lett. B}
+  {\bfseries 352} (1995) 59}
+  [\href{https://arxiv.org/abs/hep-th/9503182}{{\ttfamily hep-th/9503182}}].
+
+\bibitem{Pasti:1997gx}
+P.~Pasti, D.P.~Sorokin and M.~Tonin, \emph{On {L}orentz invariant actions for
+  chiral {$p$}-forms},
+  \href{https://doi.org/10.1103/PhysRevD.55.6292}{\emph{Phys. Rev. D}
+  {\bfseries 55} (1997) 6292}
+  [\href{https://arxiv.org/abs/hep-th/9611100}{{\ttfamily hep-th/9611100}}].
+
+\bibitem{Sen:2019qit}
+A.~Sen, \emph{Self-dual forms: Action, {H}amiltonian and compactification},
+  \href{https://doi.org/10.1088/1751-8121/ab5423}{\emph{J. Phys. A} {\bfseries
+  53} (2020) 084002} [\href{https://arxiv.org/abs/1903.12196}{{\ttfamily
+  1903.12196}}].
+
+\bibitem{Mkrtchyan:2019wnk}
+K.~Mkrtchyan, \emph{On covariant actions for chiral {$p$}-forms},
+  \href{https://doi.org/10.1007/JHEP12(2019)076}{\emph{JHEP} {\bfseries 12}
+  (2019) 076} [\href{https://arxiv.org/abs/1908.01789}{{\ttfamily
+  1908.01789}}].
+
+\bibitem{Bandos:2020hgy}
+I.~Bandos, K.~Lechner, D.~Sorokin and P.K.~Townsend, \emph{A non-linear
+  duality-invariant conformal extension of {M}axwell's equations},
+  \href{https://doi.org/10.1103/PhysRevD.102.121703}{\emph{Phys. Rev. D}
+  {\bfseries 102} (2020) 121703}
+  [\href{https://arxiv.org/abs/2007.09092}{{\ttfamily 2007.09092}}].
+
+\bibitem{Townsend:2019ftg}
+P.K.~Townsend, \emph{Self-interacting chiral {$p$}-forms in higher dimensions},
+  \href{https://doi.org/10.1016/j.physletb.2019.134998}{\emph{Phys. Lett. B}
+  {\bfseries 798} (2019) 134998}
+  [\href{https://arxiv.org/abs/1909.10404}{{\ttfamily 1909.10404}}].
+
+\bibitem{Ferko:2024chiral}
+C.~Ferko, S.M.~Kuzenko, K.~Lechner, D.P.~Sorokin and
+  G.~Tartaglino-Mazzucchelli, \emph{Interacting chiral form field theories and
+  {$T\bar T$}-like flows in six and higher dimensions},
+  \href{https://doi.org/10.1007/JHEP05(2024)320}{\emph{JHEP} {\bfseries 05}
+  (2024) 320} [\href{https://arxiv.org/abs/2402.06947}{{\ttfamily
+  2402.06947}}].
+
+\bibitem{Brizio:2026ttbar}
+M.~Brizio, L.~Kade, A.~Sfondrini and D.~Sorokin, \emph{More on {$T\bar T$}-like
+  deformations in higher dimensions},
+  \href{https://arxiv.org/abs/2602.24058}{{\ttfamily 2602.24058}}.
+
+\bibitem{Cederwall:2025invariants}
+M.~Cederwall, J.~Hutomo, S.M.~Kuzenko, K.~Lechner and D.P.~Sorokin, \emph{Some
+  remarks on invariants},
+  \href{https://doi.org/10.1088/1751-8121/ae3bb8}{\emph{J. Phys. A} {\bfseries
+  59} (2026) 065203} [\href{https://arxiv.org/abs/2509.14350}{{\ttfamily
+  2509.14350}}].
+
+\bibitem{Hutomo:2025chiral}
+J.~Hutomo, K.~Lechner and D.P.~Sorokin, \emph{On non-linear chiral 4-form
+  theories in {D}=10},  \href{https://arxiv.org/abs/2509.14351}{{\ttfamily
+  2509.14351}}.
+
+\bibitem{Elamaran:2025mlinv}
+A.~Elamaran, C.~Ferko and S.~Scarlett, \emph{Machine learning invariants of
+  tensors},  \href{https://arxiv.org/abs/2512.23750}{{\ttfamily 2512.23750}}.
+
+\bibitem{McKay:2013}
+B.D.~McKay and A.~Piperno, \emph{Practical graph isomorphism, {II}},
+  \href{https://doi.org/10.1016/j.jsc.2013.09.003}{\emph{J. Symb. Comput.}
+  {\bfseries 60} (2014) 94}.
+
+\bibitem{Kugo:1982bn}
+T.~Kugo and P.~Townsend, \emph{Supersymmetry and the division algebras},
+  \href{https://doi.org/10.1016/0550-3213(83)90584-9}{\emph{Nucl. Phys. B}
+  {\bfseries 221} (1983) 357}.
+
+\bibitem{Smith:2018}
+D.G.A.~Smith and J.~Gray, \emph{opt\_einsum -- {A} {P}ython package for
+  optimizing contraction order for einsum-like expressions},
+  \href{https://doi.org/10.21105/joss.00753}{\emph{J. Open Source Softw.}
+  {\bfseries 3} (2018) 753}.
+
+\bibitem{Harris:2020}
+C.R.~Harris, K.J.~Millman, S.J.~van~der Walt, R.~Gommers, P.~Virtanen et~al.,
+  \emph{Array programming with {N}um{P}y},
+  \href{https://doi.org/10.1038/s41586-020-2649-2}{\emph{Nature} {\bfseries
+  585} (2020) 357}.
+
+\bibitem{Wang:1982}
+P.S.~Wang, M.J.T.~Guy and J.H.~Davenport, \emph{P-adic reconstruction of
+  rational numbers},
+  \href{https://doi.org/10.1145/1089292.1089293}{\emph{SIGSAM Bull.} {\bfseries
+  16} (1982) 2}.
+
+\bibitem{Zippel:1979}
+R.~Zippel, \emph{Probabilistic algorithms for sparse polynomials},  in
+  \emph{Symbolic and Algebraic Computation (EUROSAM '79)}, vol.~72 of
+  \emph{Lecture Notes in Computer Science}, pp.~216--226, Springer, 1979,
+  \href{https://doi.org/10.1007/3-540-09519-5_73}{DOI}.
+
+\bibitem{Schwartz:1980}
+J.T.~Schwartz, \emph{Fast probabilistic algorithms for verification of
+  polynomial identities}, \href{https://doi.org/10.1145/322217.322225}{\emph{J.
+  ACM} {\bfseries 27} (1980) 701}.
+
+\bibitem{Bareiss:1968}
+E.H.~Bareiss, \emph{Sylvester's identity and multistep integer-preserving
+  {G}aussian elimination},
+  \href{https://doi.org/10.1090/S0025-5718-1968-0226829-0}{\emph{Math. Comp.}
+  {\bfseries 22} (1968) 565}.
+
+\bibitem{Paulos:2008tn}
+M.F.~Paulos, \emph{Higher derivative terms including the {R}amond-{R}amond
+  five-form}, \href{https://doi.org/10.1088/1126-6708/2008/10/047}{\emph{JHEP}
+  {\bfseries 10} (2008) 047} [\href{https://arxiv.org/abs/0804.0763}{{\ttfamily
+  0804.0763}}].
+
+\bibitem{Green:1997as}
+M.B.~Green, M.~Gutperle and P.~Vanhove, \emph{One loop in eleven dimensions},
+  \href{https://doi.org/10.1016/S0370-2693(97)00931-3}{\emph{Phys. Lett. B}
+  {\bfseries 409} (1997) 177}
+  [\href{https://arxiv.org/abs/hep-th/9706175}{{\ttfamily hep-th/9706175}}].
+
+\bibitem{Liu:2022bfg}
+J.T.~Liu, R.~Minasian, R.~Savelli and A.~Schachner, \emph{Type {IIB} at eight
+  derivatives: insights from superstrings, superfields and superparticles},
+  \href{https://doi.org/10.1007/JHEP08(2022)267}{\emph{JHEP} {\bfseries 08}
+  (2022) 267} [\href{https://arxiv.org/abs/2205.11530}{{\ttfamily
+  2205.11530}}].
+
+\end{thebibliography}\endgroup

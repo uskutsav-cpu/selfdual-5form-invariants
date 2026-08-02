@@ -1,0 +1,63 @@
+{
+ "branch": "publication/jhep-mentor-draft",
+ "certificates": {
+  "B10_P10": {
+   "path": "results/degree10/B10_P10_intersection_exact.json",
+   "present": true,
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59"
+  },
+  "B10_P10_generator": {
+   "path": "results/degree10/B10_P10_intersection_generator.json",
+   "present": true,
+   "sha256": "bed2fc6d3623b02537a7702923b457f263d095c3f66c43c63d410c2830ee778b"
+  },
+  "D10": {
+   "path": "results/stress_flow/D10_characteristic_zero.json",
+   "present": true,
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce"
+  },
+  "G10_certificate": {
+   "path": "results/stress_flow/G10_publication_certificate.json",
+   "present": true,
+   "sha256": "97e8e65f748813348cc602d691bc95561ed52f183b4cc814bedec481b5058f31"
+  },
+  "G10_counterfactual": {
+   "path": "results/stress_flow/G10_counterfactual.json",
+   "present": true,
+   "sha256": "f40ae706e5a021344bfdfd0fa5de9271e6531e6b74ca20679d96350c73df2c9d"
+  },
+  "Q10": {
+   "path": "results/stress_flow/Q10_characteristic_zero.json",
+   "present": true,
+   "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194"
+  },
+  "minor81": {
+   "path": "results/rank81/minor81_certificate.json",
+   "present": true,
+   "sha256": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e"
+  },
+  "rank_matrix": {
+   "path": "results/rank81/full_rank_matrix_publication_final.json",
+   "present": true,
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4"
+  }
+ },
+ "commit": "aa0f98e9054ab1725d6093ce81a80a4960673e60",
+ "generic_functional_rank": {
+  "lower_bound_certified_here": 81,
+  "upper_bound": "analytic, cited (arXiv:2509.14351), not proved here"
+ },
+ "schema": 1,
+ "spaces_over_Q": {
+  "A10": 14,
+  "B10": 12,
+  "B10_cap_P10": 1,
+  "D10": 11,
+  "P10": 2,
+  "Q10": 3
+ },
+ "test_suites": {
+  "bridge": 86,
+  "tensor": 254
+ }
+}
