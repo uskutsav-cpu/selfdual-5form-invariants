@@ -1,0 +1,108 @@
+{
+ "cited_but_undefined": [],
+ "edges": {
+  "Bandos:2020hgy": [
+   "main:Introduction"
+  ],
+  "Bareiss:1968": [
+   "app_h_closure:Lower-bound certificate.",
+   "app_k_algorithms:Elimination and determinants.",
+   "main:Determinants."
+  ],
+  "Brizio:2026ttbar": [
+   "main:Introduction",
+   "main:Physical interpretation"
+  ],
+  "Cederwall:2025invariants": [
+   "main:Consequences.",
+   "main:Introduction",
+   "main:The published basis and the product sector"
+  ],
+  "Elamaran:2025mlinv": [
+   "main:Prior computational method.",
+   "main:What is prior work."
+  ],
+  "Ferko:2024chiral": [
+   "main:Introduction",
+   "main:Physical interpretation",
+   "main:Reachability of the stress flow at degree ten"
+  ],
+  "Green:1997as": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Harris:2020": [
+   "app_l_reproduction:Environment.",
+   "main:Exact modular evaluation."
+  ],
+  "Henneaux:1988gg": [
+   "main:Introduction"
+  ],
+  "Hutomo:2025chiral": [
+   "app_g_rank81:The upper bound.",
+   "main:Generic functional rank",
+   "main:Generic orbit dimension.",
+   "main:Introduction",
+   "main:Physical interpretation",
+   "main:Reachability of the stress flow at degree ten",
+   "main:The free stress-tensor trace and activation"
+  ],
+  "Kugo:1982bn": [
+   "main:Spinor formulation"
+  ],
+  "Liu:2022bfg": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Marcus:1982yu": [
+   "main:Introduction",
+   "main:Type IIB, as motivation only."
+  ],
+  "McKay:2013": [
+   "app_k_algorithms:Graph canonicalisation.",
+   "app_l_reproduction:Environment.",
+   "main:Tensor formulation",
+   "main:What is prior work."
+  ],
+  "Mkrtchyan:2019wnk": [
+   "main:Introduction"
+  ],
+  "Pasti:1995tn": [
+   "main:Introduction"
+  ],
+  "Pasti:1997gx": [
+   "main:Introduction"
+  ],
+  "Paulos:2008tn": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Schwartz:1980": [
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ],
+  "Sen:2019qit": [
+   "main:Introduction",
+   "main:Type IIB, as motivation only."
+  ],
+  "Smith:2018": [
+   "app_k_algorithms:Tensor contractions.",
+   "app_l_reproduction:Environment.",
+   "main:Exact modular evaluation."
+  ],
+  "Townsend:2019ftg": [
+   "main:Introduction"
+  ],
+  "Wang:1982": [
+   "app_h_closure:The exact rational calculation.",
+   "app_j_b10:CRT and rational reconstruction.",
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ],
+  "Zippel:1979": [
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ]
+ },
+ "n_cited": 24,
+ "n_entries": 24,
+ "schema": 1,
+ "uncited": []
+}
