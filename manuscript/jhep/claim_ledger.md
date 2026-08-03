@@ -85,14 +85,14 @@ artifact. Certificate hashes are in
 - **Status:** settled
 
 ### C-08 · Tensor and spinor spans agree at `d = 4, 6, 8, 10`
-- **Location:** §7; table 2 [`tab:degranks`]; figure 4 [`fig:degranks`]
+- **Location:** §7; table 2 [`tab:degranks`]; figure 1 [`fig:degranks`]
 - **Type:** exact finite-field, multi-prime, with held-out validation
 - **Status:** settled for the families constructed
 
 ### C-09 · Tensor words indispensable at degree eight
 - **Wording:** "within the tested candidate-family decomposition" — **the
   qualifier is mandatory and is enforced by a gate**
-- **Location:** §7.2; figure 5 [`fig:ablation`]
+- **Location:** §7.2; figure 2 [`fig:ablation`]
 - **Type:** ablation
 - **Status:** settled as qualified; **not** a uniqueness theorem
 

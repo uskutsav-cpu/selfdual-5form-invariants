@@ -243,9 +243,46 @@ space of five-forms splits,
 \qquad
 \dim \Lambda^5_\pm = \dimSelfDualModule .
 \end{equation}
-A self-dual five-form is an element of $\Lambda^5_+$. Throughout, $F$ denotes
-such an element and the whole discussion is about polynomial functions of its
-$\dimSelfDualModule$ components.
+A self-dual five-form is an element of $\Lambda^5_+$, cut out by the projector
+\begin{equation}
+P_\pm \;=\; \tfrac12\bigl(\mathbf{1} \pm \star\bigr),
+\qquad
+P_\pm^{2} = P_\pm,
+\qquad
+P_+ + P_- = \mathbf{1},
+\qquad
+\operatorname{tr} P_\pm = \dimSelfDualModule .
+\label{eq:sdprojector}
+\end{equation}
+Throughout, $F$ denotes an element of $\Lambda^5_+$ and the whole discussion is
+about polynomial functions of its $\dimSelfDualModule$ components.
+
+That $\star^2 = +\starSquared$ rather than $-1$ is what makes
+\eqref{eq:sdprojector} a real projector, and it is a coincidence of signature and
+dimension rather than a general fact. For a $p$-form in $d$ dimensions with
+$d = 2p$ and metric signature $(t,s)$,
+\begin{equation}
+\star^{2} \;=\; (-1)^{p(d-p)+t} \;=\; (-1)^{p^{2}+t}
+\qquad\text{on middle-degree forms,}
+\label{eq:starsquared}
+\end{equation}
+which for $p = 5$, $d = 10$ gives $\star^2 = -(-1)^{t}$: real eigenvalues
+$\pm1$ in Lorentzian signature ($t = 1$), and eigenvalues $\pm i$ with no real
+eigenspace decomposition in Euclidean signature ($t = 0$). Self-duality in ten
+Lorentzian dimensions is thus available for a five-form and unavailable for its
+Euclidean counterpart, and \eqref{eq:starsquared} is asserted by test wherever
+the decomposition is used rather than assumed --- this project once mistook a
+Euclidean projector for an anti-self-dual one and briefly read the resulting
+non-vanishing as signal.
+
+This is also the source of the difficulty that motivates the whole subject. The
+self-duality constraint $\star F = F$ is a first-order condition on the field
+strength, and imposing it on a $p$-form with $p$ odd obstructs the naive
+construction of a manifestly Lorentz-invariant action, as Marcus and
+Schwarz~\cite{Marcus:1982yu} observed: the kinetic term
+$\langle F,F\rangle$ vanishes identically on the constrained surface, by exactly
+the computation carried out in \eqref{eq:wedgevanishes} below. Every construction
+cited in section~\ref{sec:intro} is a way around that vanishing.
 
 The Lorentz group acts on $\Lambda^5_+$, and the objects of interest are the
 polynomial functions invariant under that action. We grade them by degree in
@@ -362,33 +399,83 @@ That $C\Gamma^{(5)}$ is symmetric in $ab$, so that the image lies in the
 symmetric square, is a property of the ten-dimensional Clifford algebra; it is
 verified directly in the implementation rather than assumed.
 
+The target of \eqref{eq:bridge} is not all of $\mathrm{Sym}^2 S_+$. Writing the
+gamma trace as the contraction
+\begin{equation}
+(\gamma\text{-}\mathrm{tr}\,\psi)_\mu
+ \;=\; \eta_{\mu\nu}\,(\Gamma^{\nu})^{ab}\,\psi_{ab},
+\qquad
+\psi \in \mathrm{Sym}^2 S_+,
+\label{eq:gammatrace}
+\end{equation}
+a dimension count fixes the image exactly. With $\dim S_+ = \spinorDim$ we have
+$\dim \mathrm{Sym}^2 S_+ = \tfrac12\spinorDim(\spinorDim+1) = \dimSymSpinor$,
+while \eqref{eq:gammatrace} has rank $\gammaTraceRank$, one for each value of
+$\mu$. Hence
+\begin{equation}
+\dim\ker(\gamma\text{-}\mathrm{tr})
+ \;=\; \dimSymSpinor - \gammaTraceRank
+ \;=\; \dimGammaTraceless
+ \;=\; \dim\Lambda^5_+ ,
+\label{eq:dimcount}
+\end{equation}
+and the two spaces have equal dimension. Equality of dimensions is of course not
+equality of spaces, and the substance of the following proposition is that the
+map realises the isomorphism the count permits.
+
 \begin{proposition}[Certified properties of the bridge]
 \label{prop:bridge}
-Over $\Fp$ for each prime used, the map \eqref{eq:bridge} satisfies:
-its image lies in the gamma-traceless subspace; its rank is
-$\bridgeForwardRank$; its kernel on $\Lambda^5_+$ is zero; it admits an exact
-left inverse $\Phi^-$ with $\Phi^-\Phi = \mathrm{id}$; and it is equivariant
-for the Lorentz action, in the sense that the intertwining character solved for
-on the spinor side reproduces the tensor-side action.
+Over $\Fp$, for each prime used, the map \eqref{eq:bridge} satisfies
+\begin{align}
+\mathrm{im}\,\Phi &\;=\; \ker(\gamma\text{-}\mathrm{tr}),
+  &\mathrm{rank}\,\Phi &\;=\; \bridgeForwardRank,
+  \label{eq:bridgerank}\\
+\ker\Phi \cap \Lambda^5_+ &\;=\; 0,
+  &\Phi\big|_{\Lambda^5_-} &\;\equiv\; 0,
+  \label{eq:bridgekernel}\\
+\Phi^-\Phi &\;=\; \mathrm{id}_{\dimSelfDualModule},
+  &\Phi\,\Phi^- &\;=\; \Pi_{\gamma\text{-}\mathrm{tr}},
+  \label{eq:bridgeinverse}
+\end{align}
+where $\Pi_{\gamma\text{-}\mathrm{tr}}$ is the projector onto
+$\ker(\gamma\text{-}\mathrm{tr})$, and, for $\Lambda$ in the Lorentz group with
+spinor representative $S(\Lambda)$,
+\begin{equation}
+\Phi(\Lambda\cdot F)
+ \;=\; \chi(\Lambda)\; S(\Lambda)\,\Phi(F)\,S(\Lambda)^{T},
+\qquad
+\chi \equiv 1 .
+\label{eq:equivariance}
+\end{equation}
 \end{proposition}
 
-These are computational statements and each is checked by an explicit test rather
-than inferred; the tests are listed in appendix~\ref{app:bridge-exact}. It is
-worth being precise about what proposition~\ref{prop:bridge} does and does not
-say. The \emph{formula} \eqref{eq:bridge} is standard and we do not claim it. The
-content here is that this particular implementation of it has been certified to
-have the properties above, exactly, with no floating-point tolerance anywhere.
-Figure~\ref{fig:bridge} summarises the situation.
+Three of these deserve comment, since each is a place where a weaker statement
+would have been easy to mistake for the real one.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.86\textwidth]{figures/fig01_bridge.pdf}
-\caption{The bridge between self-dual five-forms and gamma-traceless symmetric
-chiral bispinors. Both spaces have dimension $\dimSelfDualModule$; the forward
-map has certified rank $\bridgeForwardRank$ and the left inverse reproduces the
-identity exactly.}
-\label{fig:bridge}
-\end{figure}
+The second identity in \eqref{eq:bridgeinverse} is not a typographical variant of
+the first. $\Phi$ has full column rank but is not surjective onto
+$\mathrm{Sym}^2 S_+$, so it admits a left inverse and no two-sided one;
+$\Phi\Phi^-$ is a projector of rank $\bridgeForwardRank$, not the identity on the
+$\dimSymSpinor$-dimensional space. Both halves are checked as matrix identities
+rather than on sampled vectors, because an identity that holds on a handful of
+random $F$ and fails on a subspace is exactly the failure sampling cannot see.
+
+The second identity in \eqref{eq:bridgekernel} is the sharp one. On the opposite
+eigenspace the map does not merely lose rank, it vanishes identically. This is
+forced by the chirality structure: on $S_+$ the anti-self-dual part of
+$\Gamma^{(5)}$ annihilates the module and only the self-dual part acts, so
+$\Phi$ is blind to $\Lambda^5_-$ by construction. That blindness is precisely
+what makes an orientation error silent, and is the subject of
+section~\ref{sec:orientation}.
+
+In \eqref{eq:equivariance} the character $\chi$ is \emph{solved for} rather than
+assumed. Asserting $\chi = 1$ and checking the resulting identity would test
+nothing, since any discrepancy could be absorbed into an unverified constant;
+solving for $\chi$ and finding it identically unity is a check that can fail.
+Each statement in the proposition is verified by an explicit test at every prime
+used, with no floating-point tolerance anywhere; the inventory is in
+appendix~\ref{app:bridge-exact}. What we claim is the certification, not the
+formula: \eqref{eq:bridge} is standard.
 
 \subsection{Which real form, and why it is not a frame choice}
 
@@ -397,22 +484,26 @@ frame, which is adapted to split signature $(5,5)$. The physical problem is
 Lorentzian, signature $(1,9)$. These two real forms share a complexification,
 $\mathfrak{so}(10,\mathbb{C})$, and every dimension count in this paper is a
 statement about that complexification, so no result depends on which real form
-the arithmetic is done in.
+the arithmetic is done in. Precisely,
+\begin{equation}
+\mathfrak{so}(1,9)\otimes\mathbb{C}
+ \;\cong\; \mathfrak{so}(10,\mathbb{C})
+ \;\cong\; \mathfrak{so}(5,5)\otimes\mathbb{C},
+\label{eq:realforms}
+\end{equation}
+and every dimension, rank and intersection reported below is the dimension of a
+$\mathbb{C}$-linear object, hence constant along \eqref{eq:realforms}.
 
 We state one thing explicitly because an earlier version of this project recorded
 the opposite and it took some effort to correct: the Lorentzian and split real
-forms are \emph{not} related by a real orthogonal frame transformation. They are
-different real forms of the same complex algebra. The correct statement is the
-one about the shared complexification, and figure~\ref{fig:realforms} draws it.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.80\textwidth]{figures/fig02_real_forms.pdf}
-\caption{The two real forms and their common complexification. Dimension counts
-descend from the complexification and are therefore insensitive to the choice;
-statements about \emph{which} eigenspace of $\star$ survives are not.}
-\label{fig:realforms}
-\end{figure}
+forms are \emph{not} related by a real orthogonal frame transformation. There is
+no $\Lambda \in O(1,9;\mathbb{R})$ carrying $\eta_{(1,9)}$ to $\eta_{(5,5)}$,
+since a real congruence preserves the signature; the two are different real forms
+of the same complex algebra, and only after complexifying are they identified.
+What \eqref{eq:realforms} transports is dimension counts. What it does not
+transport is the question of \emph{which} eigenspace of $\star$ survives, because
+$\star$ is defined with $\eta$ and the reality of its eigenspaces is exactly a
+signature-dependent statement --- the subject of the next subsection.
 
 \subsection{The orientation branch, and a prime that exposed it}
 \label{sec:orientation}
@@ -436,7 +527,27 @@ prime in exactly the same way. The failure tracks the branch, not the prime.
 The resolution was to pin the branch by construction rather than to exclude the
 prime. The frame routine now selects, deterministically, the branch under which
 the self-dual space is the surviving one, and raises an error if neither branch
-works rather than guessing. Figure~\ref{fig:orientation} shows the mechanism.
+works rather than guessing.
+
+The mechanism is worth writing down, because the failure is silent. The null
+frame is a matrix $L$ over $\Fp$ solving the congruence
+\begin{equation}
+L^{T}\,\eta\,L \;=\; \eta_{\mathrm{null}},
+\label{eq:congruencebody}
+\end{equation}
+and \eqref{eq:congruencebody} determines $L$ only up to the square-root branches
+taken while solving it. Two solutions $L$ and $L'$ of \eqref{eq:congruencebody}
+with $\det L' = -\det L$ are both legitimate frames, but they induce
+$\star \mapsto +\star$ and $\star \mapsto -\star$ respectively, and therefore
+\begin{equation}
+\Phi\big|_{\Lambda^5_+} \;\text{has rank } \bridgeForwardRank
+\quad\text{versus}\quad
+\Phi\big|_{\Lambda^5_+} \;\equiv\; 0,
+\label{eq:branchconsequence}
+\end{equation}
+by \eqref{eq:bridgekernel}. Nothing in the arithmetic distinguishes them: the
+wrong branch raises no error and returns a perfectly well-formed matrix of the
+wrong eigenspace.
 
 One caution about what this selection does and does not verify. The criterion
 used to \emph{choose} the branch is that the composite have rank
@@ -447,16 +558,6 @@ $\star F = +F$, that is, that the surviving eigenvalue is $+1$ and not $-1$. Tha
 is a property of the output, not the criterion that produced it, and it is what
 ties the implementation to the orientation convention fixed in
 appendix~\ref{app:conventions}.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig03_orientation.pdf}
-\caption{An orientation-reversing frame exchanges the self-dual and
-anti-self-dual channels. The lower path produces no error; the image is simply
-the wrong eigenspace, which is why the defect survived until a rank matrix
-happened to sample the prime that exposed it.}
-\label{fig:orientation}
-\end{figure}
 
 \begin{remark}
 No number in this paper changed as a result of this fix. Every certificate had
@@ -563,7 +664,7 @@ plotted in figure~\ref{fig:degranks}.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{figures/fig04_degree_ranks.pdf}
+\includegraphics[width=0.72\textwidth]{figures/fig01_degree_spectrum.pdf}
 \caption{Degree-resolved tensor, spinor and union ranks. At every degree shown
 the three agree, so neither formulation sees an invariant the other misses.}
 \label{fig:degranks}
@@ -597,7 +698,7 @@ table~\ref{tab:candidates}.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.62\textwidth]{figures/fig05_degree8_ablation.pdf}
+\includegraphics[width=0.62\textwidth]{figures/fig02_degree8_ablation.pdf}
 \caption{Degree-eight family ablation. Removing the tensor words from the spinor
 candidate family lowers the rank by one, so within this decomposition they are
 indispensable.}
@@ -639,28 +740,42 @@ again in section~\ref{sec:limitations}.
 \label{sec:rank}
 
 \subsection{The computation}
-We assemble $\exactJacScheduled$ candidate invariants --- $\nArchivePortGraphs$
-port graphs and $\nArchiveStructured$ structured candidates --- and compute the
-Jacobian of the resulting map at a generic point, in the exact
-$\dimSelfDualModule$-dimensional coordinate basis. The Jacobian is
-$\exactJacRows \times \exactJacCols$. Every scheduled candidate was evaluated:
-$\exactJacEvaluated$ of $\exactJacScheduled$, with $\exactJacErrors$ errors,
-$\exactJacZeroRows$ identically-zero rows, and Euler homogeneity satisfied by
-every row.
+Let $I_1,\dots,I_N$ be the candidate invariants, $N = \exactJacScheduled$, each a
+polynomial in the $n = \dimSelfDualModule$ coordinates $F^A$ of $\Lambda^5_+$.
+The generic functional rank of the family is the rank at a generic point of the
+Jacobian
+\begin{equation}
+J(F)^{\;A}_{i} \;=\; \frac{\partial I_i}{\partial F^A},
+\qquad
+i = 1,\dots,N,\quad A = 1,\dots,n,
+\label{eq:jacobian}
+\end{equation}
+an $\exactJacRows \times \exactJacCols$ matrix. Each row is computed
+\emph{analytically}, by amputating one factor of $F$ from the contraction
+pattern that defines $I_i$, rather than by finite differences; there is no step
+size and no cancellation error.
+
+Each row carries an independent check. Since $I_i$ is homogeneous of field
+degree $d_i$, Euler's relation gives
+\begin{equation}
+\sum_{A=1}^{n} F^{A}\,\frac{\partial I_i}{\partial F^{A}}
+ \;=\; d_i\, I_i ,
+\label{eq:euler}
+\end{equation}
+which relates a differentiated row to an undifferentiated evaluation and is
+therefore sensitive to exactly the errors that differentiation introduces. A row
+failing \eqref{eq:euler} is wrong whatever rank it would have contributed. Every
+scheduled candidate was evaluated --- $\exactJacEvaluated$ of
+$\exactJacScheduled$, with $\exactJacErrors$ errors and $\exactJacZeroRows$
+identically-zero rows --- and \eqref{eq:euler} holds on every row.
 
 The exact modular rank is $\exactJacRank$. Cumulative ranks by degree are
 $\cumRankDegFour$, $\cumRankDegSix$, $\cumRankDegEight$, $\cumRankDegTen$ and
 $\cumRankDegTwelve$ at degrees four, six, eight, ten and twelve respectively.
-Figure~\ref{fig:pipeline} sets out the whole certification route, from the
-candidate family to the fixed explicit minor.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.95\textwidth]{figures/fig06_rank81_pipeline.pdf}
-\caption{The certification pipeline, from the candidate family to a fixed
-explicit minor. No step uses floating point and no step uses a tolerance.}
-\label{fig:pipeline}
-\end{figure}
+These increments are plotted in figure~\ref{fig:degranks}(b). No step in the
+chain uses floating point and no step uses a tolerance: the candidates are
+integer-coefficient polynomials, the Jacobian is differentiated analytically by
+amputation, and the rank is obtained by exact elimination over $\Fp$.
 
 \subsection{The certificate}
 A rank claim backed only by an elimination is a claim about a program. We
@@ -686,7 +801,7 @@ section~\ref{sec:deg8} reaches by a different route.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/fig11_pivot_composition.pdf}
+\includegraphics[width=0.95\textwidth]{figures/fig04_pivot_composition.pdf}
 \caption{The $\minorSize$ pivot rows of the certified minor, read from the
 certificate's own row list. Left, by the field degree of the candidate; right,
 by the family it belongs to. Neither split is uniform, and neither is
@@ -717,7 +832,7 @@ reference to the matrix at all.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.66\textwidth]{figures/fig07_rank_matrix.pdf}
+\includegraphics[width=0.66\textwidth]{figures/fig03_rank_matrix.pdf}
 \caption{The prime/sample rank matrix. Every cell agrees on rank and on pivot
 structure.}
 \label{fig:matrix}
@@ -753,13 +868,61 @@ parameter $\lambda$ drives
  \;=\; \mathcal{O}\bigl[\tau(\mathcal{L})\bigr],
 \label{eq:flow}
 \end{equation}
-where $\mathcal{O}$ is a scalar built from traces of powers of $\tau$. Expanding
-in field degree, each such trace monomial contributes to a definite graded piece,
-and the invariants generated at degree ten are the ones we enumerate in
-appendix~\ref{app:closure}. We do not reproduce the full construction of
-\cite{Hutomo:2025chiral} here; what the argument below needs from it is only the
-list of trace monomials it produces and the field degree at which each begins,
-and both are recorded explicitly in that appendix.
+where $\mathcal{O}$ is a scalar built from traces of powers of $\tau$. We do not
+reproduce the construction of \cite{Hutomo:2025chiral} here; what the argument
+below needs from it is only which trace monomials it produces and the field
+degree at which each begins. Both were determined by instrumenting the closure
+rather than by reading the construction, so that a generator consumed but not
+documented would show up. Through degree ten the generators are exactly
+\begin{equation}
+\begin{aligned}
+&\operatorname{Tr}\tau, &&
+\operatorname{Tr}\tau^{2}, &&
+\operatorname{Tr}\tau^{3}, &&
+\operatorname{Tr}\tau^{4}, &&
+\operatorname{Tr}\tau^{5}, \\
+&(\operatorname{Tr}\tau)^{2}, &&
+\operatorname{Tr}\tau\operatorname{Tr}\tau^{2}, &&
+\operatorname{Tr}\tau\operatorname{Tr}\tau^{3}, &&
+(\operatorname{Tr}\tau^{2})^{2}, &&
+\operatorname{Tr}\tau^{2}\operatorname{Tr}\tau^{3}.
+\end{aligned}
+\label{eq:generators}
+\end{equation}
+
+Write $\deg_F$ for the leading field degree of an expression, that is, the lowest
+power of $F$ appearing in it. The grading that controls the whole calculation is
+\begin{equation}
+\deg_F\!\left(\operatorname{Tr}\tau^{k}\right)
+ \;=\;
+ \begin{cases}
+   4, & k = 1,\\[2pt]
+   2k, & k \ge 2,
+ \end{cases}
+\qquad
+\deg_F\!\left(\prod_i \operatorname{Tr}\tau^{k_i}\right)
+ \;=\; \sum_i \deg_F\!\left(\operatorname{Tr}\tau^{k_i}\right).
+\label{eq:leadingdegree}
+\end{equation}
+The exceptional case $k = 1$ is the content of theorem~\ref{thm:gten}: the naive
+count would give $\deg_F\operatorname{Tr}\tau = 2$, and it is the vanishing of
+the free trace that pushes it to $4$. Every entry of \eqref{eq:leadingdegree}
+was checked independently at every prime, with no exceptions.
+
+A target is \emph{generated} when the flow produces it formally, and
+\emph{activated} at degree $d$ when \eqref{eq:leadingdegree} permits it to
+contribute there. Writing $V_d$ for the span reached at degree $d$, the closure
+is the least fixed point of
+\begin{equation}
+V \;\longmapsto\;
+ V + \mathrm{span}\bigl\{\,g \;:\; g \text{ generated from } V,\;
+ \deg_F g \le d \,\bigr\},
+\label{eq:closureoperator}
+\end{equation}
+started from the degree-four seed and iterated until a sweep raises no rank.
+Termination occurred after $\czSweeps$ sweeps, and over $\Q$ the reachable
+dimensions by degree are $1$, $2$, $7$ and $\dimDtenQ$ at degrees four, six,
+eight and ten.
 
 Two structural facts make the question below well posed. The map induced by
 \eqref{eq:flow} on each graded piece is linear, and $\Dten$ is by construction
@@ -780,17 +943,20 @@ reaches at degree ten then requires three spaces to be kept apart.
 The raw target span has dimension $\dimAten$ --- the same as $\dim \Ften$. If one
 identifies it with $\Dten$, the quotient comes out zero and the conclusion is
 that the flow reaches everything. That identification is false, and this project
-made it before catching it. The distinction is drawn in
-figure~\ref{fig:rawvsact}, and the raw span is retained in the test suite as a
-negative fixture so the error cannot recur silently.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.88\textwidth]{figures/fig09_raw_vs_activated.pdf}
-\caption{Why the raw target span is not the reachable subspace. Conflating them
-returns quotient dimension zero; keeping them apart returns $\dimQtenQ$.}
-\label{fig:rawvsact}
-\end{figure}
+made it before catching it. In symbols, writing $\mathcal{T}$ for the set of targets the flow generates and
+$\mathcal{A}$ for the activation rule of section~\ref{sec:gten},
+\begin{equation}
+\mathrm{span}\,\mathcal{T} \;=\; \Ften
+\qquad\text{but}\qquad
+\Dten \;=\; \mathrm{span}\!\left(\bigcup_{k\ge 0}\mathcal{A}^{k}(\mathcal{T}_0)\right)
+ \;\subsetneq\; \Ften,
+\label{eq:rawvsactivated}
+\end{equation}
+where $\mathcal{T}_0$ is the seed. The left equality is why the conflation is
+tempting --- the raw span really does exhaust $\Ften$ --- and the strict
+inclusion on the right is the entire content of theorem~\ref{thm:reach}. The raw
+span is retained in the test suite as a negative fixture so the error cannot
+recur silently.
 
 \subsection{The exact rational computation}
 The closure is a fixed-point computation, and running it modulo $p$ would leave
@@ -818,7 +984,7 @@ row recoverable at all.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{figures/fig12_rational_heights.pdf}
+\includegraphics[width=0.72\textwidth]{figures/fig05_rational_heights.pdf}
 \caption{Size of the largest numerator and denominator appearing in a basis
 vector of the flow-reachable space, by degree, in bits. The dashed line is the
 representable range of a single prime near $2^{15}$. Degree ten is the first
@@ -860,16 +1026,21 @@ representatives are indexed by the free columns not occupied by a pivot.
 
 \subsection{Reading the result}
 There are $\dimQtenQ$ independent degree-ten invariant directions that the stress
-flow does not reach. Figure~\ref{fig:incidence} places $\Dten$ and $\Qten$ inside
-$\Ften$ alongside the published and product subspaces of
-section~\ref{sec:published}.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.84\textwidth]{figures/fig08_incidence.pdf}
-\caption{Degree-ten incidence. All dimensions shown are exact over $\Q$.}
-\label{fig:incidence}
-\end{figure}
+flow does not reach. The subspaces of $\Ften$ that this paper determines exactly stand in the
+relations
+\begin{equation}
+\Dten \subsetneq \Ften,
+\qquad
+\dim_\Q \Ften/\Dten = \dimQtenQ,
+\qquad
+\dim_\Q(\Bten \cap \Pten) = \dimBcapP,
+\qquad
+\dim_\Q(\Bten + \Pten) = \dimBplusP,
+\label{eq:incidence}
+\end{equation}
+with $\dim_\Q \Bten = \dimBten$ and $\dim_\Q \Pten = \dimPten$; the last two
+are established in section~\ref{sec:published}. Every dimension in
+\eqref{eq:incidence} is exact over $\Q$, not modulo a prime.
 
 \subsection{How many directions are needed, in any basis}
 \begin{proposition}[Cardinality minimality]
@@ -905,22 +1076,76 @@ trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
 \end{theorem}
 
 \begin{proof}
-The free stress tensor of a $p$-form is quadratic in $F$, so its trace is a
-degree-two scalar. The only quadratic Lorentz scalar available is the full
-contraction $\langle F,F\rangle = F_{\mu_1\dots\mu_5}F^{\mu_1\dots\mu_5}$: for
-the standard form
-$T_{\mu\nu} \sim F_{\mu\dots}F_\nu{}^{\dots}
- - c\,\eta_{\mu\nu}\langle F,F\rangle$
-the trace is $(1 - cd)\langle F,F\rangle$, a multiple of $\langle F,F\rangle$ for
-\emph{any} improvement coefficient $c$. The conclusion is therefore independent of
-the improvement term and of the overall normalisation.
+Write the free stress tensor of a $p$-form field strength in $d$ dimensions in
+its general improved form,
+\begin{equation}
+T_{\mu\nu}
+ \;=\; \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}\,
+        F_\nu{}^{\alpha_2\dots\alpha_p}
+ \;-\; c\,\eta_{\mu\nu}\,\langle F,F\rangle,
+\qquad
+\langle F,G\rangle \;=\; F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p},
+\label{eq:stresstensor}
+\end{equation}
+with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+the factorial and the second returns $-\,c\,d\,\langle F,F\rangle$, so
+\begin{equation}
+T^{\mu}{}_{\mu} \;=\; (1 - c\,d)\,\langle F,F\rangle .
+\label{eq:tracescalar}
+\end{equation}
+Whatever $c$ may be, the trace is a multiple of the single scalar
+$\langle F,F\rangle$; no other quadratic Lorentz invariant exists, since the only
+way to contract two copies of a $p$-form into a scalar is the full contraction.
+The conclusion below is therefore independent of the improvement term and of the
+overall normalisation.
 
-Now $F \wedge F$ is a top form built from two copies of an odd-degree form in
-even dimension, hence identically zero. Since $\langle F, \star F\rangle$ is
-proportional to $F \wedge F$, it vanishes. On either eigenspace of the star,
-$F = \pm \star F$, so
-$\langle F,F\rangle = \pm\langle F,\star F\rangle = 0$.
+It remains to show that this one scalar vanishes. Specialise to $p = 5$, $d = 10$,
+so that $F$ is a middle-degree form of \emph{odd} degree in an even-dimensional
+space, and consider the top form $F\wedge F$. Interchanging two factors of a
+$q$-form costs $(-1)^{q^2} = (-1)^{q}$, which for $q = 5$ is $-1$; hence
+\begin{equation}
+F\wedge F \;=\; -\,F\wedge F
+\qquad\Longrightarrow\qquad
+F\wedge F \;\equiv\; 0
+\label{eq:wedgevanishes}
+\end{equation}
+identically, for every five-form whatsoever. Since
+$\langle F,\star F\rangle\,\mathrm{vol} \propto F\wedge F$, the pairing
+$\langle F,\star F\rangle$ vanishes as well. On either eigenspace of the Hodge
+star we have $\star F = \pm F$, and therefore
+\begin{equation}
+\langle F,F\rangle
+ \;=\; \pm\,\langle F,\star F\rangle
+ \;=\; 0 .
+\label{eq:normvanishes}
+\end{equation}
+Substituting \eqref{eq:normvanishes} into \eqref{eq:tracescalar} gives
+$T^{\mu}{}_{\mu} = 0$ for every $c$.
 \end{proof}
+
+Two features of this argument are worth isolating, because both are places where
+a plausible-looking variant of the calculation gives a different answer.
+
+The vanishing in \eqref{eq:wedgevanishes} is a statement about form parity alone
+and holds for \emph{any} five-form, self-dual or not; self-duality enters only at
+\eqref{eq:normvanishes}, to convert $\langle F,\star F\rangle$ into
+$\langle F,F\rangle$. The two steps are independent, and a test suite that
+checked only self-dual samples would confirm the conclusion without ever
+exercising the mechanism behind it. Ours checks both eigenspaces --- the argument
+predicts vanishing on each --- and, as a control, checks that
+$\langle F,F\rangle \neq 0$ on an \emph{unprojected} five-form. Without that
+control the first three checks would be satisfied vacuously by a quantity that
+vanished for trivial reasons.
+
+The sign $\star^2 = +\starSquared$ used in \eqref{eq:normvanishes} is
+signature-dependent. In Euclidean signature $\star^2 = -1$ on middle-degree forms
+in ten dimensions, the eigenvalues are $\pm i$, and there is no real eigenspace
+decomposition to speak of. This is not a hypothetical: an earlier version of the
+control called a projector routine with an argument believed to select the
+anti-self-dual space when it in fact selected Euclidean signature, and the
+resulting non-vanishing was briefly read as signal. The value of $\star^2$ is now
+asserted by test wherever the decomposition is used rather than presumed.
 
 The argument is short, and its shortness is the point: it uses no property of the
 particular theory beyond self-duality and the parity of the form degree, so it
@@ -1072,17 +1297,11 @@ once and aggregated read-only, with the aggregation independent of order.
 
 \paragraph{Deterministic figures and byte-reproducible archives.} Figures are
 generated from artifacts with timestamps suppressed, so repeated runs produce
-byte-identical output. Figure~\ref{fig:repro} traces the whole route from the
-source commit to the compiled manuscript, and the tests run along it are
-summarised in table~\ref{tab:tests}.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.90\textwidth]{figures/fig10_repro_pipeline.pdf}
-\caption{The reproduction pipeline from source commit to compiled manuscript.
-The build fails if any gate fails.}
-\label{fig:repro}
-\end{figure}
+byte-identical output. The tests run along that route are summarised in table~\ref{tab:tests}, and the
+route itself is short enough to state in a sentence: from a clean clone, the
+suites run, the certificate scripts regenerate their artifacts, the figures and
+tables are rebuilt from those artifacts, the macros are extracted, the manuscript
+compiles, and every gate must pass or the build fails.
 
 Table~\ref{tab:certificates} lists every certificate the draft rests on, with
 the script that produced it, and table~\ref{tab:environment} records the
