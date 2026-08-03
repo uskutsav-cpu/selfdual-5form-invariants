@@ -11,7 +11,7 @@ Python & 3.13.13 \\
 NumPy & 2.5.1 \\
 pynauty & 2.8.8.1 \\
 opt\_einsum & 3.4.0 \\
-commit & \texttt{038c95b9a3e6} \\
+commit & \texttt{754d9c4bdb64} \\
 \hline
 \end{tabular}
 \caption{Reproduction environment. \texttt{opt\_einsum} is required, not optional: it supplies the contraction order and the intermediate-size and flop budgets the modular contractor enforces. Without it those budgets are not checked at all and the degree-eight evaluator is terminated by the kernel rather than raising. Computed values are unaffected.}

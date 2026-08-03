@@ -1,0 +1,98 @@
+{
+ "branch": "publication/jhep-mentor-draft",
+ "certificates": {
+  "A10": 14,
+  "B10": 12,
+  "B10_cap_P10": 1,
+  "B10_plus_P10": 13,
+  "D10": 11,
+  "P10": 2,
+  "Q10": 3,
+  "b10_exit": 0,
+  "b10_status": "exact",
+  "closure_sweeps": 3,
+  "d10_exit": 0,
+  "minor_11x11": "nonzero",
+  "rank_matrix": {
+   "cells": "15/15",
+   "exit": 0,
+   "rank": 81,
+   "self_test_rejections": 11,
+   "stable_pivot_columns": 81,
+   "stable_pivot_rows": 81,
+   "unstable_columns": 0,
+   "unstable_rows": 0
+  }
+ },
+ "commit": "754d9c4bdb64187327d6a7cb7a5a07c17a1576aa",
+ "defect_found": {
+  "id": "opt-einsum-required",
+  "resolution": "added to requirements.txt; fallback now raises; appendix L, environment table, quickstart and review guide corrected",
+  "summary": "opt_einsum was documented optional and absent from requirements.txt; the modular contractor's memory and flop budgets were only checked when it was present, so in the documented environment the guard was dead code and the bridge suite was SIGKILLed with no traceback",
+  "values_changed": false
+ },
+ "environment": {
+  "host": "macOS 25.5.0 arm64, 8 GiB RAM",
+  "numpy": "2.5.1",
+  "opt_einsum": "3.4.0",
+  "pynauty": "2.8.8.1",
+  "pytest": "9.1.1",
+  "python": "3.13.13",
+  "tex_engine": "tectonic (XeTeX), TeX Live 2026 bundle"
+ },
+ "manuscript": {
+  "compile_exit": 0,
+  "gates_failed": 0,
+  "gates_passed": 52,
+  "latex_errors": 0,
+  "overfull": 0,
+  "pages": 41,
+  "undefined_citations": 0,
+  "undefined_references": 0,
+  "underfull": 0
+ },
+ "note": "Clean-clone verification of the Ferko mentor-review draft. Every entry was executed in a fresh non-iCloud clone at the commit below; exit codes are as recorded.",
+ "package": {
+  "files": 11,
+  "rebuild_identical": true,
+  "sha256sums_verified": "9/9",
+  "zip_byte_identical_across_rebuilds": true
+ },
+ "reproducibility": {
+  "compiled_pdf_byte_reproducible": false,
+  "compiled_pdf_note": "tectonic writes a fresh trailer /ID and build-time metadata per run; three consecutive compiles of identical source gave three digests differing in ~7000 bytes; SOURCE_DATE_EPOCH does not suppress it",
+  "figures_byte_identical": true,
+  "packaging_step_deterministic": true,
+  "source_archive_byte_identical": true,
+  "tables_byte_identical_except": "tab12_environment.tex commit field (self-reference)"
+ },
+ "schema": 1,
+ "suites": {
+  "bridge": {
+   "exit_codes": [
+    0
+   ],
+   "failed": 0,
+   "invocation": "pytest tests from spinor_trace_bridge/",
+   "passed": 86,
+   "runtime_s": 576.0
+  },
+  "tensor": {
+   "exit_codes": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "failed": 0,
+   "invocation": "pytest tests, 4 sequential chunks covering all 26 files once",
+   "passed": 254,
+   "runtime_s": 1413.52,
+   "single_process_working_tree": {
+    "exit": 0,
+    "passed": 254,
+    "runtime_s": 1411.78
+   }
+  }
+ }
+}

@@ -97,6 +97,20 @@ because ``byte-reproducible'' is otherwise read as a stronger property than it
 is: what is reproducible is the pipeline given a pinned toolchain, not the bytes
 under an arbitrary one.
 
+The compiled PDF is the one artifact that is \emph{not} byte-reproducible, and
+we state this explicitly because the surrounding claims might otherwise be read
+as covering it. Tectonic writes a fresh trailer \texttt{/ID} and build-time
+metadata on every invocation: three consecutive compilations of identical source
+in a clean clone produced three distinct SHA-256 digests, differing in about
+$7{,}000$ bytes once the change propagates into the compressed streams, and
+setting \texttt{SOURCE\_DATE\_EPOCH} does not suppress it. What is byte-identical
+across clean rebuilds is everything upstream of the typesetter: all ten figures,
+the generated tables and macros, and the LaTeX source archive shipped with this
+draft. A reviewer checking the delivered package should therefore expect the
+source archive and figure hashes to match exactly and the PDF hash not to; the
+PDF hash recorded in the build manifest identifies one particular build rather
+than certifying a reproducible one.
+
 \paragraph{Hashes.}
 The build manifest accompanying this draft records the commit, the SHA-256 of
 every generated artifact, and the hash of the compiled PDF.

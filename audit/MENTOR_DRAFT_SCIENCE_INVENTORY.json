@@ -42,7 +42,7 @@
    "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4"
   }
  },
- "commit": "038c95b9a3e651dcb7a227ae0145c55221fc14ec",
+ "commit": "754d9c4bdb64187327d6a7cb7a5a07c17a1576aa",
  "generic_functional_rank": {
   "lower_bound_certified_here": 81,
   "upper_bound": "analytic, cited (arXiv:2509.14351), not proved here"
