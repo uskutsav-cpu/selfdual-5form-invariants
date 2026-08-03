@@ -1,89 +1,89 @@
 {
  "cell_files": [
   {
-   "name": "cell_p32693_s11.json",
-   "sha256": "41b8fdba0a1ff9b9246099c93e57b62bf531eaaecf8674e6b0ee726a12cfaa66"
+   "name": "cell_p32707_s11.json",
+   "sha256": "04dd51047adba4e174265e8f240b94a3a03b032be61e0d315d2bda7c8fc10a6f"
   },
   {
-   "name": "cell_p32693_s22.json",
-   "sha256": "ffbf8492aeb7e4bd98a966e61b982bf2617a34045a7bd0218042a5335d74bc96"
+   "name": "cell_p32707_s22.json",
+   "sha256": "1bdd7839de7ebb7b3106136ba84d75c3a8b2e82e96cb9fe6ddad143cbb1473e2"
   },
   {
-   "name": "cell_p32693_s33.json",
-   "sha256": "fa888abea2d57b9b26971e95f9106a85723595c301c8aac25a968448b4aec741"
+   "name": "cell_p32707_s33.json",
+   "sha256": "383d35d04436f53f5b3371c8b1407ec995aa429323da7b514005ab5d433e1e8e"
   },
   {
    "name": "cell_p32713_s11.json",
-   "sha256": "bb831ef8c882fa00eff8596128666d6113d5838ca10916db4d800456a3ee49dc"
+   "sha256": "de402617a6590ae05afdd057cb6954af90e561daeb06dfe7a1179c3560839c30"
   },
   {
    "name": "cell_p32713_s22.json",
-   "sha256": "b05cfb2e22c7529303021d2199a2ea4f3f4f8bc123ada5787cd867bde9dc2d6b"
+   "sha256": "31c7bb7834c811946d1512d9f4438d3fd3ac8f9aebd9fa89fc18631fc38bae2d"
   },
   {
    "name": "cell_p32713_s33.json",
-   "sha256": "549457c9f0014f18694e037cd86f328c554927103aff283df55267a84ae50681"
+   "sha256": "ecd9d50e79cd0f4953e95713e9f02f64a0aca2af39b7c70a52737a1a0d464ef1"
   },
   {
    "name": "cell_p32717_s11.json",
-   "sha256": "931309a51b112e25d833844bdf3b86a275c84d7785979a4f983d11ff6aa20208"
+   "sha256": "029a00585d60f9af137b92150cda664cf522a0dad91d0126d45fbbd967c0f0de"
   },
   {
    "name": "cell_p32717_s22.json",
-   "sha256": "2f6fedd7c48f3b3d8971de74509c17a59dffc73c292d87a7f1352374550df6d1"
+   "sha256": "a4572d144ce5f6ff5dc56b241e9843a236ee6b74adcc789d4147b698d4f9c551"
   },
   {
    "name": "cell_p32717_s33.json",
-   "sha256": "eb714ea57d24c7fe8f778fc726d2d46159afbd2a61a8bd06b6edb8e0fb6aef0d"
+   "sha256": "241459e57b407a58cb822c849121489ed66f7ccf0ecd684573dea3f569b87741"
   },
   {
    "name": "cell_p32719_s11.json",
-   "sha256": "a67a801b15a865d2c0eeacd018f3eb0b98f1042e9a01e75710766bb7d5297b2d"
+   "sha256": "000ca853ac843299c0b68f963b7a174d31f072f98748381278b8747771cedfca"
   },
   {
    "name": "cell_p32719_s22.json",
-   "sha256": "926236c55c767a8d07b3d187580b3eb3ebee7f447b1bb6b4249017c335672e80"
+   "sha256": "97950b18c19525d6930c8fd34e4624cc2f6eb3362415dba4ba2fe3403d799d7c"
   },
   {
    "name": "cell_p32719_s33.json",
-   "sha256": "f4ba174e5e3b6be53610d293454db160717479c706b071929faf67d6d15852ab"
+   "sha256": "f8a76857c6bbc4227648104c09339d372992f44ac5cc4cd5534f381b53f98dc1"
   },
   {
    "name": "cell_p32749_s11.json",
-   "sha256": "ccd04a02b738edbeaff5b429be9a673f490275d9cda02e64ac296613d0292e97"
+   "sha256": "0fc6baa4c0df2e34ee89744ca93bdfcb2eeea72857b12ced948d8779a73c6f47"
   },
   {
    "name": "cell_p32749_s22.json",
-   "sha256": "d59cceeefcad15b0dd6ed357428bdaf0e93375d7282b3ae3272238bbca6fd04b"
+   "sha256": "2e17fb8950495fc409880672990a1a8c270af422953303bf1bc55c09bc8932a5"
   },
   {
    "name": "cell_p32749_s33.json",
-   "sha256": "464dfac08d5403eb01ba60c13313168b07b94a2843aab3f319bd9044256cb7d9"
+   "sha256": "2552d94c8195a03afc890832eac58366fc7418b0c56c6345f87dde41b46655e1"
   }
  ],
  "files": [
   {
-   "bytes": 33824,
+   "bytes": 34595,
    "name": "full_rank_matrix.json",
-   "sha256": "1441b0df9956a0df7802df4bcea24ef85d9e6ec758f891be9b0dfdc0f563eaf1"
+   "sha256": "e6d192db598ee3d7e991e0466ab92e14a362ba6d3ecae1e4471f406530354c34"
   },
   {
-   "bytes": 1832,
+   "bytes": 1820,
    "name": "full_rank_matrix.csv",
-   "sha256": "67c9883820957d5827e6a8d0c13107c9fdc607d7cff4360a27c6831c7b5bc36b"
+   "sha256": "12f5c81ecb73627aa01b3894129e5410de98938ddacb2823fcbc49ff00068042"
   },
   {
    "bytes": 175,
    "name": "full_rank_matrix.sha256",
-   "sha256": "2e64e464861b7a2c19720e4f2c8625dc4b18a8eca567d50e3421b6dcb9b6c255"
+   "sha256": "8170bc46168c6656e8d15e4d879a7900081c586c878348312a8d4b5eddb4f787"
   }
  ],
- "generated_utc": "2026-08-02T03:47:51+00:00",
+ "generated_utc": "2026-08-03T00:23:03+00:00",
  "matrix_complete": true,
  "n_planned": 15,
  "n_present": 15,
  "regeneration_command": "python spinor_trace_bridge/scripts/assemble_rank81_matrix.py --emit-release --freeze audit/RANK_MATRIX_EXECUTION_FREEZE.json --provenance audit/RANK_MATRIX_CELL_PROVENANCE.json",
- "scientific_content_sha256": "5180e03d38e62ff1184ff4d525bcc17b1e7f9045ac3e9afb40214cb940699ab3",
+ "scientific_content_sha256": "5ed06febdcd16c8ddc0c4758da6f0cedf29c7ab72809615e655f9876c8e61174",
  "summary": {
   "all_cells_agree": true,
   "candidate_order_sha256": "09ac64de981ad54058124fe1cdd3275a397cd3e4be8b1d3d28f63a62b912a910",
@@ -100,7 +100,7 @@
   "flop_limit": 100000000000.0,
   "holdout_primes": [
    32713,
-   32693
+   32707
   ],
   "n_candidates_scheduled": 83,
   "seeds": [

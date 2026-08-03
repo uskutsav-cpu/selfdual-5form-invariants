@@ -6,7 +6,7 @@
   "seed": 22
  },
  "cell_complete": true,
- "content_sha256": "d59cceeefcad15b0dd6ed357428bdaf0e93375d7282b3ae3272238bbca6fd04b",
+ "content_sha256": "2e17fb8950495fc409880672990a1a8c270af422953303bf1bc55c09bc8932a5",
  "coordinate_dimension": 126,
  "environment": {
   "host": "Swethas-MacBook-Pro.local",
@@ -20,7 +20,7 @@
   "passed": 83
  },
  "flop_limit": 100000000000.0,
- "generated_utc": "2026-08-01T20:47:34+00:00",
+ "generated_utc": "2026-08-02T22:19:31+00:00",
  "inputs": {
   "rowcache": "rowcache_p32749_s22.json",
   "selection_list": "selected_graphs.json",
@@ -313,7 +313,7 @@
  },
  "method": "exact analytic Jacobian; no finite differences, no tolerance",
  "n_candidates_scheduled": 83,
- "peak_rss_mb": 508.9,
+ "peak_rss_mb": 243.4,
  "schedule_summary": {
   "by_family_and_status": {
    "port_graph/evaluated": 70,
@@ -1117,14 +1117,14 @@
   {
    "candidate_id": "c046_portgraph_d12",
    "degree": 12,
-   "derivative_evaluator": "jacobian.graph_jacobian_row (amputated, exact mod p) [dense-I fallback plan]",
-   "evaluator": "spinor_invariants.evaluate_graph_batch (exact mod p)",
+   "derivative_evaluator": "jacobian.graph_jacobian_row (amputated, exact mod p)",
+   "evaluator": "spinor_invariants.evaluate_graph_batch (exact mod p) [cached]",
    "exception": null,
    "family": "port_graph",
    "formula_hash": "30d47e63e928055b0d3ec9f3a2424923",
    "output_hash": "1ca74a9563eda50ae7866b23b8023393",
-   "peak_rss_mb": 508.9,
-   "runtime_seconds": 260.268,
+   "peak_rss_mb": 0.0,
+   "runtime_seconds": 0.0,
    "terminal_status": "evaluated",
    "value": 21088,
    "word": null,
@@ -1744,7 +1744,7 @@
    "zero_row_explanation": null
   }
  ],
- "wall_seconds": 268.7,
+ "wall_seconds": 15.2,
  "zero_row_explanations": {},
  "zero_rows": []
 }

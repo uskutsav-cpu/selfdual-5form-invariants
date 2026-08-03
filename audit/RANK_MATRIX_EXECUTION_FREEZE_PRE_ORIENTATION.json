@@ -1,0 +1,86 @@
+{
+ "execution_id": "rank81-matrix-5f46a2cbbe93-flop1e11",
+ "frozen_utc": "2026-08-01T21:01:20+00:00",
+ "jhep_branch": "publication/jhep-tensor-spinor",
+ "jhep_branch_commit": "5f46a2cbbe93a0143e63916ce0bdc1a94c8fd89b",
+ "matrix_driver_commit": "5f46a2cbbe93a0143e63916ce0bdc1a94c8fd89b",
+ "git_tree_object": "b2f7515a715f8187316c8afd4d954b3d29cbda24",
+ "remote_research_branch_commit_at_start": "035b772aa198ce00ea492be410bd39697fe7f969",
+ "source_critical_files": {
+  "spinor_trace_bridge/src/sdbridge/candidates.py": "f52b920dda8421d4fa70816cc86a3cc212ce6efc14a9d5662111fd8d679110cd",
+  "spinor_trace_bridge/src/sdbridge/jacobian.py": "201a656b95249837df65d77635ade4eed066c6959ebb8d8600dce761423e8050",
+  "spinor_trace_bridge/src/sdbridge/spinor_invariants.py": "bf6e76f3a81c8d037b911fbd579a357bc5242f8f4ba758e70f48be5e81f74430",
+  "spinor_trace_bridge/src/sdbridge/modular.py": "de3a18e91394519b03fbfcd2c806e4eb442ab981c765935c9c377436d57661d8",
+  "spinor_trace_bridge/src/sdbridge/conventions.py": "ec3f47d32d74d234bc1bb47bf70b8212b8b599fc9f3530096b361d78634b69f5",
+  "spinor_trace_bridge/scripts/run_rank81_cell.py": "013d4a51678f5007297be5b72c86691d782b1c961d4975d8a7e115c1283d970a"
+ },
+ "source_critical_missing": [],
+ "source_tree_hash": "82d60fa6482a65140a8e1179dd87c56cedb09f0d584d07fb3d977b257946fbda",
+ "dependency_lock": {
+  "path": "requirements-lock.txt",
+  "sha256": "095e3141babb343e9ce8ab05b4cd4e200d0b2aa3782904d22658198f27b42122",
+  "contents": [
+   "numpy==2.5.1",
+   "pynauty==2.8.8.1",
+   "pytest==9.1.1"
+  ]
+ },
+ "flop_budget": 100000000000.0,
+ "memory_limit": null,
+ "memory_limit_note": "No hard limit is imposed. The control is sequencing, not a cap: one cell per process, so peak RSS is one cell's, recorded per cell. Measured peaks so far are in the 200-600 MB range on an 8 GiB machine.",
+ "fitting_primes": [
+  32749,
+  32719,
+  32717
+ ],
+ "holdout_primes": [
+  32713,
+  32693
+ ],
+ "seeds": [
+  11,
+  22,
+  33
+ ],
+ "planned_cells": 15,
+ "output_directory": "results/rank81/cells",
+ "lock_file_pattern": "results/rank81/cells/cell_p{prime}_s{seed}.lock",
+ "cell_file_pattern": "results/rank81/cells/cell_p{prime}_s{seed}.json",
+ "active_pids_at_freeze": {
+  "matrix_driver": [
+   "60151"
+  ],
+  "cell_worker": [
+   "64867"
+  ]
+ },
+ "invalidation_rule": "Any change to a source_critical file invalidates every cell produced before it. The remedy is to stop the matrix, delete the affected cells explicitly, and restart them under a NEW execution_id. Pre-fix and post-fix cells are never mixed.",
+ "known_invalidation": {
+  "superseded_execution": "rank81-matrix-flop2e10",
+  "reason": "The first execution ran at a 2e10 contraction budget, where c046_portgraph_d12 exceeds the budget on its value contraction and on its dense-I fallback, yielding 82/83 with one evaluation error. The committed certificate this matrix extends was computed at 1e11. All cells from that execution were deleted, not reused.",
+  "cells_discarded": [
+   "cell_p32749_s11.json",
+   "cell_p32749_s22.json"
+  ]
+ },
+ "plan_determining_files": {
+  "spinor_trace_bridge/scripts/run_rank81_matrix.sh": "7ecc13156f69ca87ad6ff26017a5226cfa544d391f0d9c0d99ac076435e237a8"
+ },
+ "why_the_split": "A cell's contents depend on the value-determining files, its prime, its seed and the selection list. The shell driver only decides which cells are computed; it is invoked per cell with explicit --prime/--seed/--role and a cell reads nothing from it, so no edit to it can change a content hash. Amending the plan is not invalidating the cells.",
+ "plan_amendment": {
+  "amended_utc": "2026-08-02T03:47:37+00:00",
+  "file": "spinor_trace_bridge/scripts/run_rank81_matrix.sh",
+  "hash_at_freeze": "7ecc13156f69ca87ad6ff26017a5226cfa544d391f0d9c0d99ac076435e237a8",
+  "hash_now": "2fb438db8e0081a68d68af26008d08997d8f7a95356e9d66a95bd40d3e432f1f",
+  "changed": true,
+  "what_changed": "holdout prime 32707 replaced by 32693",
+  "why": "all three cells at 32707 failed because the spinor frame congruence selected an orientation-reversing branch there; see docs/EXCEPTIONAL_PRIME_32707_ORIENTATION.md",
+  "cells_invalidated": 0,
+  "justification": "The six value-determining files hash identically to the freeze. The runner only chooses which cells exist, so the twelve cells computed before the amendment and the three computed after are the output of one evaluator and belong to one execution."
+ },
+ "holdout_primes_at_freeze": [
+  32713,
+  32707
+ ],
+ "source_tree_hash_at_freeze_including_runner": "09abe782ecb5eb606b4d67ecdf4c07e8695129e67b062b09ebf4372fcd66f6c4"
+}

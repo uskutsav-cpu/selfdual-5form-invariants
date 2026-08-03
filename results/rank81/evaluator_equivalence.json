@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-02T04:12:01+00:00",
+ "generated_utc": "2026-08-02T22:20:04+00:00",
  "change": "bridge.py: detect the faithful Hodge channel instead of assuming the self-dual one",
  "why_equivalence_is_needed": "The change touches a value-determining file, so the freeze rule invalidates every earlier cell unless equivalence is established.",
  "why_it_should_hold": "The detection returns 'selfdual' whenever the self-dual image already has rank 126, which is the case at all five primes the matrix used. On that branch the code path is the one that ran before, unchanged.",
@@ -19,9 +19,9 @@
  },
  "cells": [
   {
-   "cell": "cell_p32693_s11.json",
-   "canonical_digest_before": "6e5628bf6a5cb35915512555115685da3231bde198aba0226a6b537442d928a0",
-   "canonical_digest_after": "6e5628bf6a5cb35915512555115685da3231bde198aba0226a6b537442d928a0",
+   "cell": "cell_p32749_s11.json",
+   "canonical_digest_before": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
+   "canonical_digest_after": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
    "canonical_digests_match": true,
    "n_candidate_value_differences": 0,
    "candidate_value_differences": [],
@@ -34,13 +34,31 @@
    "status": "EQUIVALENT"
   },
   {
-   "cell": "cell_p32749_s11.json",
-   "canonical_digest_before": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
-   "canonical_digest_after": "cef949b8a1856bdc77178d7e6f9dffebae18a81df322fb59967182d247ab4008",
+   "cell": "cell_p32749_s22.json",
+   "canonical_digest_before": "53fd7979f43a341f53f6f702ee83ededbaae9e2676d66b1e627d33d38c1368cd",
+   "canonical_digest_after": "53fd7979f43a341f53f6f702ee83ededbaae9e2676d66b1e627d33d38c1368cd",
    "canonical_digests_match": true,
    "n_candidate_value_differences": 0,
    "candidate_value_differences": [],
-   "raw_fields_that_differ": [],
+   "raw_fields_that_differ": [
+    "derivative_evaluator",
+    "evaluator"
+   ],
+   "rank_before": 81,
+   "rank_after": 81,
+   "status": "EQUIVALENT"
+  },
+  {
+   "cell": "cell_p32749_s33.json",
+   "canonical_digest_before": "21796c8017d7ce05dd61d1c310978bb6e78f16fb43e226de69e99388e5f84736",
+   "canonical_digest_after": "21796c8017d7ce05dd61d1c310978bb6e78f16fb43e226de69e99388e5f84736",
+   "canonical_digests_match": true,
+   "n_candidate_value_differences": 0,
+   "candidate_value_differences": [],
+   "raw_fields_that_differ": [
+    "derivative_evaluator",
+    "evaluator"
+   ],
    "rank_before": 81,
    "rank_after": 81,
    "status": "EQUIVALENT"
