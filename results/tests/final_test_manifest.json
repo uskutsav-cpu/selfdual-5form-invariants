@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-02T16:38:50+00:00",
+ "generated_utc": "2026-08-03T00:59:35+00:00",
  "counted_by": "scripts/pytest_report.py (19 regression tests)",
  "suites": [
   {
@@ -7,22 +7,10 @@
    "log": "results/tests/final_tensor.log",
    "command": "python -m pytest tests/ -q",
    "root": ".",
-   "returncode": null,
-   "status": "INCOMPLETE",
-   "problems": [
-    "no exit= line in the log; the suite has not finished, so its counts are a lower bound"
-   ],
-   "passed_so_far": 24
-  },
-  {
-   "suite": "bridge",
-   "log": "results/tests/final_bridge.log",
-   "command": "cd spinor_trace_bridge && python -m pytest -q",
-   "root": "spinor_trace_bridge",
    "returncode": 0,
    "count_source": "progress",
    "collected": null,
-   "passed": 135,
+   "passed": 290,
    "failed": 0,
    "errors": 0,
    "skipped": 0,
@@ -34,11 +22,34 @@
    "interrupted": false,
    "contaminated": false,
    "problems": [],
-   "log_sha256": "f2a2851fd07d932c49660c7f57aef37289927105e202692b6b4a7a987b70a9ff",
+   "log_sha256": "10751af478996c3bac41b8ac6d00b56c579e53f4e208e4414b1b93f54df6a547",
+   "status": "PASS"
+  },
+  {
+   "suite": "bridge",
+   "log": "results/tests/final_bridge.log",
+   "command": "cd spinor_trace_bridge && python -m pytest -q",
+   "root": "spinor_trace_bridge",
+   "returncode": 0,
+   "count_source": "progress",
+   "collected": null,
+   "passed": 176,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "deselected": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "warnings": 0,
+   "runtime_seconds": null,
+   "interrupted": false,
+   "contaminated": false,
+   "problems": [],
+   "log_sha256": "d9f688a1ed0ce8344caae9733ed4748ac4f087175adca06e9b85f2fd1e5417a4",
    "status": "PASS"
   }
  ],
- "total_passed": 135,
+ "total_passed": 466,
  "total_failed_or_error": 0,
- "all_suites_clean": false
+ "all_suites_clean": true
 }

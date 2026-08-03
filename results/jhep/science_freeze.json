@@ -1,0 +1,35 @@
+{
+ "generated_utc": "2026-08-03T01:00:00+00:00",
+ "science_generation_commit": "43ace26b3f3e315931b34b3f3339c36aed52a21f",
+ "matrix_generation_commit": "1b5a6ba9d175b65aa1ad8e020c0e922c8b288aab",
+ "matrix_execution_id": "rank81-canonical-orientation-1b5a6ba9d175-flop1e11",
+ "matrix_source_tree_hash": "2e4ff404e15600315b9936015e3fab349ccdd7a4a83d68accd94f4e95a610358",
+ "matrix_artifact_hash": "5ed06febdcd16c8ddc0c4758da6f0cedf29c7ab72809615e655f9876c8e61174",
+ "branch": "publication/jhep-tensor-spinor",
+ "science_entry_gate": "PASS",
+ "cells": "15/15",
+ "distinct_ranks": [
+  81
+ ],
+ "tests": {
+  "tensor": {
+   "status": "PASS",
+   "passed": 290
+  },
+  "bridge": {
+   "status": "PASS",
+   "passed": 176
+  }
+ },
+ "exact_D10": 11,
+ "exact_Q10": 3,
+ "evaluator_equivalence": true,
+ "remote_head_at_freeze": "b4345075baa82c74d4463120d276b357389915be",
+ "blockers": [],
+ "freeze_valid": true,
+ "not_included": [
+  "public push -- held; the branch carries a manuscript naming a third party as corresponding author on verbal report only",
+  "submission tag -- the goal forbids it while approvals are open",
+  "arXiv or JHEP submission -- never automatic"
+ ]
+}

@@ -266,16 +266,66 @@
    "nonzero": true,
    "minor_sha256": "69f64645e2aebb4bf77c4ca1bd2701c6d3290b9b1fa47bba600c92dceb85d0d4",
    "full_jacobian_rank_here": 81,
-   "wall_seconds": 5.2
+   "wall_seconds": 14.7
+  },
+  "32719": {
+   "det_mod_p_lu": 31196,
+   "det_mod_p_bareiss": 31196,
+   "routines_agree": true,
+   "nonzero": true,
+   "minor_sha256": "2147fbca93f1be96db34b053d2a2ed16d70ad4775335d1d79371f4de3b652360",
+   "full_jacobian_rank_here": 81,
+   "wall_seconds": 16.0
+  },
+  "32717": {
+   "det_mod_p_lu": 9699,
+   "det_mod_p_bareiss": 9699,
+   "routines_agree": true,
+   "nonzero": true,
+   "minor_sha256": "f00b21344e7c9ea7a5af3042aa4e27f64aceb70899900b50c4113a6728a2c09e",
+   "full_jacobian_rank_here": 81,
+   "wall_seconds": 11.2
+  },
+  "32713": {
+   "det_mod_p_lu": 12844,
+   "det_mod_p_bareiss": 12844,
+   "routines_agree": true,
+   "nonzero": true,
+   "minor_sha256": "45c3acbad4f63c0f1a37a26f62e8aa4f0b4836827277b24d30e2da5c63629def",
+   "full_jacobian_rank_here": 81,
+   "wall_seconds": 10.1
+  },
+  "32707": {
+   "det_mod_p_lu": 29206,
+   "det_mod_p_bareiss": 29206,
+   "routines_agree": true,
+   "nonzero": true,
+   "minor_sha256": "46097a4423a7c6057505b46d92a667054cc868472c756cbe8e742d23573a44d8",
+   "full_jacobian_rank_here": 81,
+   "wall_seconds": 15.2
+  },
+  "32693": {
+   "det_mod_p_lu": 9965,
+   "det_mod_p_bareiss": 9965,
+   "routines_agree": true,
+   "nonzero": true,
+   "minor_sha256": "8b55f966e398d192d0c74db7e62f52d1c04018d1fb5149c6850f211110ecb4f3",
+   "full_jacobian_rank_here": 81,
+   "wall_seconds": 10.3
   }
  },
  "summary": {
   "primes_with_nonzero_minor": [
-   "32749"
+   "32749",
+   "32719",
+   "32717",
+   "32713",
+   "32707",
+   "32693"
   ],
-  "n_primes_verified": 1,
+  "n_primes_verified": 6,
   "integer_minor_nonzero": true,
   "characteristic_zero_lower_bound": 81,
-  "statement": "An explicit 81x81 minor of the integral Jacobian has nonzero determinant modulo 1 distinct primes, hence is nonzero over Z, hence rank_Q >= 81."
+  "statement": "An explicit 81x81 minor of the integral Jacobian has nonzero determinant modulo 6 distinct primes, hence is nonzero over Z, hence rank_Q >= 81."
  }
 }
