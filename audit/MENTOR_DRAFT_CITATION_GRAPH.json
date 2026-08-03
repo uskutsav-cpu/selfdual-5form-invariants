@@ -4,19 +4,34 @@
   "Bandos:2020hgy": [
    "main:Introduction"
   ],
+  "Bandos:2021rqy": [
+   "main:Introduction"
+  ],
   "Bareiss:1968": [
    "app_h_closure:Lower-bound certificate.",
    "app_k_algorithms:Elimination and determinants.",
    "main:Determinants."
   ],
+  "Bekaert:1998yp": [
+   "main:Introduction"
+  ],
   "Brizio:2026ttbar": [
    "main:Introduction",
    "main:Physical interpretation"
+  ],
+  "Cavaglia:2016oda": [
+   "main:Introduction"
   ],
   "Cederwall:2025invariants": [
    "main:Consequences.",
    "main:Introduction",
    "main:The published basis and the product sector"
+  ],
+  "Conti:2018tca": [
+   "main:Introduction"
+  ],
+  "DallAgata:1998ahf": [
+   "main:Type IIB, as motivation only."
   ],
   "Elamaran:2025mlinv": [
    "main:Prior computational method.",
@@ -28,6 +43,9 @@
    "main:Reachability of the stress flow at degree ten"
   ],
   "Green:1997as": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Green:1997tv": [
    "main:Type IIB, as motivation only."
   ],
   "Harris:2020": [
@@ -74,13 +92,25 @@
   "Paulos:2008tn": [
    "main:Type IIB, as motivation only."
   ],
+  "Perry:1996mk": [
+   "main:Introduction"
+  ],
   "Schwartz:1980": [
    "app_k_algorithms:Rational reconstruction.",
    "main:What a modular rank does and does not establish."
   ],
+  "Schwarz:1983qr": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Schwarz:1993vs": [
+   "main:Introduction"
+  ],
   "Sen:2019qit": [
    "main:Introduction",
    "main:Type IIB, as motivation only."
+  ],
+  "Smirnov:2016lqw": [
+   "main:Introduction"
   ],
   "Smith:2018": [
    "app_k_algorithms:Tensor contractions.",
@@ -96,13 +126,16 @@
    "app_k_algorithms:Rational reconstruction.",
    "main:What a modular rank does and does not establish."
   ],
+  "Zamolodchikov:2004ce": [
+   "main:Introduction"
+  ],
   "Zippel:1979": [
    "app_k_algorithms:Rational reconstruction.",
    "main:What a modular rank does and does not establish."
   ]
  },
- "n_cited": 24,
- "n_entries": 24,
+ "n_cited": 35,
+ "n_entries": 35,
  "schema": 1,
  "uncited": []
 }

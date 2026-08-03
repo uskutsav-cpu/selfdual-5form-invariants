@@ -12,6 +12,11 @@ M.~Henneaux and C.~Teitelboim, \emph{Dynamics of chiral (self-dual)
   {$p$}-forms}, \href{https://doi.org/10.1016/0370-2693(88)90712-5}{\emph{Phys.
   Lett. B} {\bfseries 206} (1988) 650}.
 
+\bibitem{Schwarz:1993vs}
+J.H.~Schwarz and A.~Sen, \emph{Duality symmetric actions}, {\emph{Nucl. Phys.
+  B} {\bfseries 411} (1994) 35}
+  [\href{https://arxiv.org/abs/hep-th/9304154}{{\ttfamily hep-th/9304154}}].
+
 \bibitem{Pasti:1995tn}
 P.~Pasti, D.P.~Sorokin and M.~Tonin, \emph{Note on manifest {L}orentz and
   general coordinate invariance in duality symmetric models},
@@ -38,12 +43,27 @@ K.~Mkrtchyan, \emph{On covariant actions for chiral {$p$}-forms},
   (2019) 076} [\href{https://arxiv.org/abs/1908.01789}{{\ttfamily
   1908.01789}}].
 
+\bibitem{Perry:1996mk}
+M.~Perry and J.H.~Schwarz, \emph{Interacting chiral gauge fields in six
+  dimensions and {B}orn--{I}nfeld theory}, {\emph{Nucl. Phys. B} {\bfseries
+  489} (1997) 47} [\href{https://arxiv.org/abs/hep-th/9611065}{{\ttfamily
+  hep-th/9611065}}].
+
+\bibitem{Bekaert:1998yp}
+X.~Bekaert and M.~Henneaux, \emph{Comments on chiral $p$-forms}, {\emph{Int. J.
+  Theor. Phys.} {\bfseries 38} (1999) 1161}
+  [\href{https://arxiv.org/abs/hep-th/9806062}{{\ttfamily hep-th/9806062}}].
+
 \bibitem{Bandos:2020hgy}
 I.~Bandos, K.~Lechner, D.~Sorokin and P.K.~Townsend, \emph{A non-linear
   duality-invariant conformal extension of {M}axwell's equations},
   \href{https://doi.org/10.1103/PhysRevD.102.121703}{\emph{Phys. Rev. D}
   {\bfseries 102} (2020) 121703}
   [\href{https://arxiv.org/abs/2007.09092}{{\ttfamily 2007.09092}}].
+
+\bibitem{Bandos:2021rqy}
+I.~Bandos, K.~Lechner, D.~Sorokin and P.K.~Townsend, \emph{{ModMax} meets
+  {S}usy},  \href{https://arxiv.org/abs/2106.07547}{{\ttfamily 2106.07547}}.
 
 \bibitem{Townsend:2019ftg}
 P.K.~Townsend, \emph{Self-interacting chiral {$p$}-forms in higher dimensions},
@@ -63,6 +83,26 @@ C.~Ferko, S.M.~Kuzenko, K.~Lechner, D.P.~Sorokin and
 M.~Brizio, L.~Kade, A.~Sfondrini and D.~Sorokin, \emph{More on {$T\bar T$}-like
   deformations in higher dimensions},
   \href{https://arxiv.org/abs/2602.24058}{{\ttfamily 2602.24058}}.
+
+\bibitem{Zamolodchikov:2004ce}
+A.B.~Zamolodchikov, \emph{Expectation value of composite field $t\bar t$ in
+  two-dimensional quantum field theory},
+  \href{https://arxiv.org/abs/hep-th/0401146}{{\ttfamily hep-th/0401146}}.
+
+\bibitem{Smirnov:2016lqw}
+F.A.~Smirnov and A.B.~Zamolodchikov, \emph{On space of integrable quantum field
+  theories}, {\emph{Nucl. Phys. B} {\bfseries 915} (2017) 363}
+  [\href{https://arxiv.org/abs/1608.05499}{{\ttfamily 1608.05499}}].
+
+\bibitem{Cavaglia:2016oda}
+A.~Cavagli\`a, S.~Negro, I.M.~Sz\'ecs\'enyi and R.~Tateo, \emph{$t\bar
+  t$-deformed 2{D} quantum field theories}, {\emph{JHEP} {\bfseries 10} (2016)
+  112} [\href{https://arxiv.org/abs/1608.05534}{{\ttfamily 1608.05534}}].
+
+\bibitem{Conti:2018tca}
+R.~Conti, S.~Negro and R.~Tateo, \emph{The $t\bar t$ perturbation and its
+  geometric interpretation}, {\emph{JHEP} {\bfseries 02} (2019) 085}
+  [\href{https://arxiv.org/abs/1809.09593}{{\ttfamily 1809.09593}}].
 
 \bibitem{Cederwall:2025invariants}
 M.~Cederwall, J.~Hutomo, S.M.~Kuzenko, K.~Lechner and D.P.~Sorokin, \emph{Some
@@ -125,6 +165,16 @@ E.H.~Bareiss, \emph{Sylvester's identity and multistep integer-preserving
   \href{https://doi.org/10.1090/S0025-5718-1968-0226829-0}{\emph{Math. Comp.}
   {\bfseries 22} (1968) 565}.
 
+\bibitem{Schwarz:1983qr}
+J.H.~Schwarz, \emph{Covariant field equations of chiral $n=2$ $d=10$
+  supergravity}, {\emph{Nucl. Phys. B} {\bfseries 226} (1983) 269}.
+
+\bibitem{DallAgata:1998ahf}
+G.~Dall'Agata, K.~Lechner and M.~Tonin, \emph{$d=10$, $n=$ {IIB} supergravity:
+  {L}orentz-invariant actions and duality}, {\emph{JHEP} {\bfseries 07} (1998)
+  017} [\href{https://arxiv.org/abs/hep-th/9806140}{{\ttfamily
+  hep-th/9806140}}].
+
 \bibitem{Paulos:2008tn}
 M.F.~Paulos, \emph{Higher derivative terms including the {R}amond-{R}amond
   five-form}, \href{https://doi.org/10.1088/1126-6708/2008/10/047}{\emph{JHEP}
@@ -143,5 +193,10 @@ J.T.~Liu, R.~Minasian, R.~Savelli and A.~Schachner, \emph{Type {IIB} at eight
   \href{https://doi.org/10.1007/JHEP08(2022)267}{\emph{JHEP} {\bfseries 08}
   (2022) 267} [\href{https://arxiv.org/abs/2205.11530}{{\ttfamily
   2205.11530}}].
+
+\bibitem{Green:1997tv}
+M.B.~Green and M.~Gutperle, \emph{Effects of {D}-instantons}, {\emph{Nucl.
+  Phys. B} {\bfseries 498} (1997) 195}
+  [\href{https://arxiv.org/abs/hep-th/9701093}{{\ttfamily hep-th/9701093}}].
 
 \end{thebibliography}\endgroup

@@ -143,7 +143,7 @@ def main() -> int:
     # --- figures and tables present --------------------------------------
     figs = sorted((JHEP / "figures").glob("*.pdf"))
     tabs = sorted((JHEP / "tables").glob("*.tex"))
-    gate("ten figures generated", len(figs) == 10, f"found {len(figs)}")
+    gate("twelve figures generated", len(figs) == 12, f"found {len(figs)}")
     gate("thirteen tables generated", len(tabs) == 13, f"found {len(tabs)}")
     for f in figs:
         gate(f"figure referenced: {f.name}", f.name in text)

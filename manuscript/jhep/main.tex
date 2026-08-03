@@ -119,10 +119,17 @@ from a manifestly Lorentz-invariant action in the naive way, a difficulty
 identified by Marcus and Schwarz~\cite{Marcus:1982yu} and since addressed by a
 sequence of increasingly satisfactory constructions --- the non-manifestly
 covariant Hamiltonian formulation of Henneaux and
-Teitelboim~\cite{Henneaux:1988gg}, the auxiliary-scalar formulation of Pasti,
+Teitelboim~\cite{Henneaux:1988gg}, the duality-symmetric actions of Schwarz and
+Sen~\cite{Schwarz:1993vs}, the auxiliary-scalar formulation of Pasti,
 Sorokin and Tonin~\cite{Pasti:1995tn,Pasti:1997gx}, the decoupled-auxiliary-field
 action of Sen~\cite{Sen:2019qit}, and the covariant polynomial actions of
-Mkrtchyan~\cite{Mkrtchyan:2019wnk}.
+Mkrtchyan~\cite{Mkrtchyan:2019wnk}. The constraints on \emph{interacting} chiral
+forms were sharpened early by Perry and Schwarz~\cite{Perry:1996mk}, whose
+six-dimensional Born--Infeld analysis supplies the condition a self-interacting
+chiral form must satisfy, and by Bekaert and Henneaux~\cite{Bekaert:1998yp}, who
+derive that condition from the Dirac--Schwinger requirement on the
+energy--momentum tensor and set out the topological subtleties in splitting a
+non-chiral form into two chiral halves.
 
 Once one asks not merely for \emph{a} self-dual theory but for the space of
 \emph{non-linear} self-interactions a chiral form can have, the question becomes
@@ -134,11 +141,23 @@ a prerequisite to classifying the theories. In four dimensions this is easy:
 there are two invariants, the story is classical, and even the non-linear
 duality-invariant theories that extend Maxwell's equations while preserving
 conformal invariance have been completely
-characterised~\cite{Bandos:2020hgy}. In six dimensions the
+characterised~\cite{Bandos:2020hgy}, and subsequently extended to a
+supersymmetric setting~\cite{Bandos:2021rqy}. In six dimensions the
 analysis of self-interacting chiral two-forms is by now well
 developed~\cite{Townsend:2019ftg,Ferko:2024chiral}, and the interplay with
 $T\bar T$-like stress-tensor flows is understood in some
 detail~\cite{Brizio:2026ttbar}.
+
+The stress-tensor flow that supplies the deformation studied here has its own
+lineage. The $T\bar T$ operator is well defined as a composite because its
+expectation value factorises~\cite{Zamolodchikov:2004ce}; the flow it generates
+was identified as a solvable direction in the space of two-dimensional theories
+by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
+Cavagli\`a, Negro, Sz\'ecs\'enyi and Tateo~\cite{Cavaglia:2016oda}, and it
+admits a geometric reading as a field-dependent change of
+coordinates~\cite{Conti:2018tca}. What we use at degree ten is the
+higher-dimensional analogue of the flow, not these two-dimensional results
+themselves; they are cited to fix what the construction is modelled on.
 
 Ten dimensions is harder, and the difficulty is not conceptual but
 combinatorial. The self-dual five-form lives in a $\dimSelfDualModule$-dimensional
@@ -655,6 +674,26 @@ characteristic-zero lower bound
 \end{equation}
 with no prime excluded and no appeal to genericity of the sample.
 
+A rank is a number, and on its own it says nothing about \emph{which} invariants
+realise it. Since the certificate names its own rows, that question can be
+answered directly: figure~\ref{fig:pivots} sorts the $\minorSize$ pivot rows by
+the degree of the candidate and by the family it was constructed in. Two
+features matter for what follows. The pivots are spread across every degree
+rather than concentrated at one, so the bound is not an artefact of the
+degree-twelve block alone; and the tensor words supply pivots of their own,
+which is the same conclusion the degree-eight ablation of
+section~\ref{sec:deg8} reaches by a different route.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig11_pivot_composition.pdf}
+\caption{The $\minorSize$ pivot rows of the certified minor, read from the
+certificate's own row list. Left, by the field degree of the candidate; right,
+by the family it belongs to. Neither split is uniform, and neither is
+concentrated in a single bucket.}
+\label{fig:pivots}
+\end{figure}
+
 \subsection{The prime/sample matrix}
 The computation was repeated across $\matrixPrimes$ primes and $\matrixSeeds$
 seeds, giving $\matrixCells$ cells, set out in table~\ref{tab:matrix} and
@@ -763,6 +802,31 @@ $\czLiftedRows$ were lifted by CRT across $\czFitPrimes$ fitting primes followed
 by rational reconstruction, and the lift was validated at the held-out prime
 $\czHoldoutPrime$, with no mismatches. The closure was then iterated in exact
 $\mathbb{Q}$ arithmetic and reached its fixed point after $\czSweeps$ sweeps.
+
+It is worth showing why this was necessary rather than merely careful, because
+the cost of exact arithmetic is real and a reader is entitled to ask whether one
+modular solve would have done. Figure~\ref{fig:heights} plots the size of the
+largest coefficient the closure actually produces at each degree, taken from its
+own exact output. Through degree eight the coordinates are small integers and
+nothing is at risk. At degree ten one basis vector of the reachable space
+carries a numerator of twenty-nine bits over a five-digit denominator --- an
+order of magnitude beyond what a single prime near $2^{15}$ can represent. Read
+modulo one such prime that coefficient is indistinguishable from a small
+residue, and the fixed point would have been reported at the wrong dimension
+with nothing in the output to indicate it. The lift is what makes the degree-ten
+row recoverable at all.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig12_rational_heights.pdf}
+\caption{Size of the largest numerator and denominator appearing in a basis
+vector of the flow-reachable space, by degree, in bits. The dashed line is the
+representable range of a single prime near $2^{15}$. Degree ten is the first
+place the exact coefficients leave that range, which is why that row is lifted
+by the Chinese remainder theorem and rational reconstruction rather than read
+off one modular solve.}
+\label{fig:heights}
+\end{figure}
 
 \begin{theorem}[Exact degree-ten reachability]
 \label{thm:reach}
@@ -1059,10 +1123,14 @@ result.
 \paragraph{Type IIB, as motivation only.}
 This paragraph is context for why the problem is worth attention; it establishes
 nothing and no later statement depends on it. The self-dual five-form is the
-Ramond--Ramond field strength of Type IIB
-supergravity, and higher-derivative corrections involving it have been studied
-directly~\cite{Paulos:2008tn}, within the broader eight-derivative
-programme~\cite{Green:1997as,Liu:2022bfg}. It is natural to ask whether the
+Ramond--Ramond field strength of Type IIB supergravity, whose covariant field
+equations were given by Schwarz~\cite{Schwarz:1983qr} and for which manifestly
+Lorentz-invariant actions were later constructed by Dall'Agata, Lechner and
+Tonin~\cite{DallAgata:1998ahf} using precisely the chiral-boson machinery
+referred to above. Higher-derivative corrections involving the five-form have
+been studied directly~\cite{Paulos:2008tn}, within the broader eight-derivative
+programme~\cite{Green:1997as,Liu:2022bfg}, and non-perturbatively through
+D-instanton contributions to the $R^4$ sector~\cite{Green:1997tv}. It is natural to ask whether the
 degree-ten invariants classified here constrain those corrections. We do not
 answer that question and we make no Type IIB claim. The obstacles are concrete:
 the corrections live in a supersymmetric theory with additional fields, the

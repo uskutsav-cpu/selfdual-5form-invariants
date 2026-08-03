@@ -73,7 +73,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q1. Is the orientation-fixed bridge consistent with the intended spinor conventions?
 
-- **Where:** §5.3, p. 6 [`sec:orientation`]; appendix B, p. 26 [`app:orientation`].
+- **Where:** §5.3, p. 7 [`sec:orientation`]; appendix B, p. 28 [`app:orientation`].
 - **Equation:** the frame congruence (B.1), and the bridge (5.1) on p. 5.
 - **Artifact:** `spinor_trace_bridge/tests/test_orientation.py`;
   `results/rank81/full_rank_matrix_publication_final.json` (the 15-cell matrix,
@@ -93,7 +93,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q2. Are the Lorentzian / split-real-form statements correct?
 
-- **Where:** §5 [`sec:bridge`], which begins on p. 5 and runs to p. 6; appendix A, p. 25 [`app:conventions`].
+- **Where:** §5 [`sec:bridge`], which begins on p. 5 and runs to p. 6; appendix A, p. 26 [`app:conventions`].
 - **Equation:** the common complexification argument preceding (5.1).
 - **Artifact:** `spinor_trace_bridge/tests/test_bridge.py`, in particular
   `test_five_form_frame_round_trip` and
@@ -107,7 +107,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q3. Is the definition of the activated flow space `D10` physically correct?
 
-- **Where:** §9.1, p. 13 [`sec:reach`]; appendix H, p. 32 [`app:closure`].
+- **Where:** §9.1, p. 14 [`sec:reach`]; appendix H, p. 33 [`app:closure`].
 - **Equation:** the flow (9.1), p. 13.
 - **Artifact:** `results/stress_flow/D10_characteristic_zero.json` and
   `results/stress_flow/closure_and_minimality.json`; reproduce with
@@ -122,7 +122,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q4. Is the G-10 stress-tensor trace derivation correct under the intended formulation?
 
-- **Where:** §10, p. 16 [`sec:gten`]; appendix I, p. 33 [`app:gten`].
+- **Where:** §10, p. 17 [`sec:gten`]; appendix I, p. 34 [`app:gten`].
 - **Equations:** the stress tensor (I.1) and the trace (I.2), both p. 33.
 - **Artifact:** `results/stress_flow/G10_publication_certificate.json` and
   `results/stress_flow/G10_counterfactual.json` (the `Q10 = 0` counterfactual);
@@ -154,7 +154,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q6. How should credit for the known rank-81 expectation versus the exact certificate be stated?
 
-- **Where:** §8, p. 11 [`sec:rank`]; appendix G, p. 31 [`app:rank81`].
+- **Where:** §8, p. 12 [`sec:rank`]; appendix G, p. 32 [`app:rank81`].
 - **Equation:** the 81×81 minor and its two determinant checks in appendix G.
 - **Artifact:** `results/rank81/minor81_certificate.json` (the explicit 81x81 minor and its
   two determinant checks) and `results/rank81/full_rank_matrix_publication_final.csv`.
@@ -168,7 +168,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q7. Is the `B10 ∩ P10` correction presented fairly?
 
-- **Where:** §11, p. 17 [`sec:published`].
+- **Where:** §11, p. 19 [`sec:published`].
 - **Equation:** the overlap identity (11.1), p. 17.
 - **Artifact:** `results/degree10/B10_P10_intersection_exact.json` and
   `results/degree10/B10_P10_intersection_generator.json`; reproduce with
@@ -182,7 +182,7 @@ It is listed fourth only because Q1–Q3 must be true for Q4 to be meaningful.
 
 ### Q8. Is the title and novelty language appropriate?
 
-- **Where:** title page; §1, p. 1 [`sec:intro`]; §14, p. 22 [`sec:limitations`].
+- **Where:** title page; §1, p. 1 [`sec:intro`]; §14, p. 23 [`sec:limitations`].
 - **Current title:** *Exact degree-ten invariants of a self-dual five-form in
   ten dimensions.*
 - **If wrong:** "exact" is doing real work in that title and we should not use
