@@ -14,7 +14,7 @@ artifact. Certificate hashes are in
 
 ### C-01 · `dim_Q A10 = 14`
 - **Wording:** "the full degree-ten invariant space has dimension 14"
-- **Location:** abstract; §9 theorem 9.2; table 7
+- **Location:** abstract; §9 theorem 5 [`thm:reach`]; table 5 [`tab:degree10`]
 - **Type:** exact finite-field certificate, carried to `Q` by the spanning-set argument
 - **Artifact:** `results/stress_flow/Q10_characteristic_zero.json`
 - **Script:** `scripts/d10_characteristic_zero.py`
@@ -25,7 +25,7 @@ artifact. Certificate hashes are in
 
 ### C-02 · `dim_Q D10 = 11`
 - **Wording:** "the subspace reachable by the stress flow has dimension 11"
-- **Location:** abstract; §9 theorem 9.2; appendix H
+- **Location:** abstract; §9 theorem 5 [`thm:reach`]; appendix H
 - **Type:** exact rational certificate
 - **Artifact:** `results/stress_flow/D10_characteristic_zero.json`
 - **Script:** `scripts/d10_characteristic_zero.py`
@@ -36,7 +36,7 @@ artifact. Certificate hashes are in
 
 ### C-03 · `dim_Q Q10 = 3`
 - **Wording:** "three independent degree-ten directions the flow does not reach"
-- **Location:** abstract; §9 theorem 9.2
+- **Location:** abstract; §9 theorem 5 [`thm:reach`]
 - **Type:** exact rational certificate
 - **Artifact:** `results/stress_flow/Q10_characteristic_zero.json`
 - **Status:** settled. **Depends on C-02 and C-06.**
@@ -45,7 +45,7 @@ artifact. Certificate hashes are in
 
 ### C-04 · `dim_Q(B10 ∩ P10) = 1`, with explicit generator
 - **Wording:** "the published span meets the product sector in exactly one dimension"
-- **Location:** abstract; §11 theorem 11.1; equation (11.2)
+- **Location:** abstract; §11 theorem 10 [`thm:bp`]; equation (11.1) [`eq:bpidentity`]
 - **Type:** exact rational certificate
 - **Artifact:** `results/degree10/B10_P10_intersection_exact.json`,
   `..._generator.json`
@@ -68,7 +68,7 @@ artifact. Certificate hashes are in
 
 ### C-06 · Free stress-tensor trace vanishes at quadratic order (G-10)
 - **Wording:** "`Tr(τ)` first contributes at field degree four"
-- **Location:** §10 theorem 10.1; appendix I
+- **Location:** §10 theorem 7 [`thm:gten`]; appendix I
 - **Type:** analytic theorem, with computational control
 - **Artifact:** `results/stress_flow/G10_publication_certificate.json`,
   `G10_counterfactual.json`
@@ -79,25 +79,25 @@ artifact. Certificate hashes are in
   the source's intended formulation is review item G-10.**
 
 ### C-07 · Bridge rank 126 with exact left inverse
-- **Location:** §5 proposition 5.1; appendix C
+- **Location:** §5 proposition 1 [`prop:bridge`]; appendix C
 - **Type:** exact finite-field certificate
 - **Script:** `spinor_trace_bridge/tests/`
 - **Status:** settled
 
 ### C-08 · Tensor and spinor spans agree at `d = 4, 6, 8, 10`
-- **Location:** §7; table 2; figure 4
+- **Location:** §7; table 2 [`tab:degranks`]; figure 4 [`fig:degranks`]
 - **Type:** exact finite-field, multi-prime, with held-out validation
 - **Status:** settled for the families constructed
 
 ### C-09 · Tensor words indispensable at degree eight
 - **Wording:** "within the tested candidate-family decomposition" — **the
   qualifier is mandatory and is enforced by a gate**
-- **Location:** §7.2; figure 5
+- **Location:** §7.2; figure 5 [`fig:ablation`]
 - **Type:** ablation
 - **Status:** settled as qualified; **not** a uniqueness theorem
 
 ### C-10 · Cardinality minimality
-- **Location:** §9.4 proposition 9.4
+- **Location:** §9.4 proposition 6 [`prop:cardinality`]
 - **Type:** analytic theorem
 - **Status:** proved. **Explicitly not novel** — elementary linear algebra.
 

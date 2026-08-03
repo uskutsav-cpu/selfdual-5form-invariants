@@ -462,10 +462,13 @@ have been a tautology.
 Invariants are evaluated at sample points with coordinates in $\Fp$ for primes
 near $2^{15}$, with reduction after every contraction step so intermediate values
 cannot overflow. Ranks are obtained by exact Gaussian elimination over $\Fp$.
-Contraction order is chosen by a greedy planner; \texttt{opt\_einsum}~\cite{Smith:2018}
-is supported as an optional accelerator but was not installed in the environment
-that produced the certified results, so the built-in ordering was used. Array
-handling throughout is NumPy~\cite{Harris:2020}.
+Contraction order is chosen by a greedy planner supplied by
+\texttt{opt\_einsum}~\cite{Smith:2018}, which is a requirement rather than an
+optional accelerator: it also supplies the intermediate-size and
+floating-point-operation estimates that the contractor enforces as a hard
+budget, so without it that budget is not checked at all
+(appendix~\ref{app:reproduction}). Array handling throughout is
+NumPy~\cite{Harris:2020}.
 
 \paragraph{What a modular rank does and does not establish.}
 A rank computed mod $p$ is a lower bound on the rank over $\Q$, and equals it
@@ -534,6 +537,9 @@ of the tensor family, the rank of the spinor family, and the rank of their union
 Equality of the first and third means the spinor family adds nothing the tensor
 family did not already have, and vice versa.
 
+The three ranks are listed degree by degree in table~\ref{tab:degranks} and
+plotted in figure~\ref{fig:degranks}.
+
 \input{tables/tab02_degree_ranks.tex}
 
 \begin{figure}[htbp]
@@ -564,7 +570,9 @@ at all $\dEightPrimesEqual$ of the $\dEightPrimes$ primes tested.
 The full spinor family includes the tensor words of section~\ref{sec:spinor}.
 Removing them drops the spinor-side rank from $\dEightSpinorRank$ to
 $\dEightRankWithoutWords$, so one invariant direction is lost. The tensor words
-are therefore not redundant.
+are therefore not redundant. Figure~\ref{fig:ablation} shows the ablation, and
+the candidate families it is run over are inventoried in
+table~\ref{tab:candidates}.
 
 \input{tables/tab05_candidates.tex}
 
@@ -596,6 +604,17 @@ At degree ten both formulations give rank $\traceRankDegTen$, with equal spans
 and held-out validation passing. This is the atlas dimension $\dim \Ften$ that
 the rest of the paper uses.
 
+We should be precise about what identifies this atlas dimension with the full
+invariant space. The equality $\dim \Ften = \traceRankDegTen$ is exact for the
+span of the candidates we enumerate; reading it as the dimension of \emph{all}
+degree-ten Lorentz invariants additionally requires that the enumeration miss
+nothing. Two independent constructions --- contraction graphs and chiral
+bispinors --- were carried out separately and agree here and at degrees four,
+six and eight, which is meaningful corroboration precisely because a shared
+omission would have to occur twice in two different languages. It is not a
+proof of exhaustiveness, and we do not present it as one; the point is recorded
+again in section~\ref{sec:limitations}.
+
 % ================================================================ 8
 \section{Generic functional rank}
 \label{sec:rank}
@@ -613,6 +632,8 @@ every row.
 The exact modular rank is $\exactJacRank$. Cumulative ranks by degree are
 $\cumRankDegFour$, $\cumRankDegSix$, $\cumRankDegEight$, $\cumRankDegTen$ and
 $\cumRankDegTwelve$ at degrees four, six, eight, ten and twelve respectively.
+Figure~\ref{fig:pipeline} sets out the whole certification route, from the
+candidate family to the fixed explicit minor.
 
 \begin{figure}[htbp]
 \centering
@@ -636,8 +657,9 @@ with no prime excluded and no appeal to genericity of the sample.
 
 \subsection{The prime/sample matrix}
 The computation was repeated across $\matrixPrimes$ primes and $\matrixSeeds$
-seeds, giving $\matrixCells$ cells. Every cell returns rank $\matrixRank$, and
-every cell returns the \emph{same} $\matrixStableRows$ pivot rows and
+seeds, giving $\matrixCells$ cells, set out in table~\ref{tab:matrix} and
+figure~\ref{fig:matrix}. Every cell returns rank $\matrixRank$, and every cell
+returns the \emph{same} $\matrixStableRows$ pivot rows and
 $\matrixStableCols$ pivot columns, with $\matrixUnstableRows$ unstable.
 
 We are deliberately restrained about what this establishes. Thirteen of the
@@ -759,7 +781,8 @@ computation it replaced. Running the closure over $\Q$ removes the modular
 admission test that made the earlier figure a lower bound. At the fixed point no
 further generated direction raises the rank over $\Q$, so the reached span
 \emph{is} $\Dten$ and its rank is an equality, not a bound. No separate
-upper-bound argument is required.
+upper-bound argument is required. Table~\ref{tab:degree10} lists the
+degree-ten invariants and the block each occupies.
 
 \input{tables/tab07_degree10.tex}
 
@@ -922,7 +945,9 @@ of the degree-four and degree-six invariants fixed in
 appendix~\ref{app:blocks}. Under a rescaling $I^{(k)} \to c_k I^{(k)}$ the
 coefficients transform by the inverse factors; what is normalisation-independent
 is the statement that the intersection is one-dimensional and that its generator
-is supported on the four published structures listed.
+is supported on the four published structures listed. The published basis is
+given in table~\ref{tab:b10} and the product sector in
+table~\ref{tab:products}.
 
 \input{tables/tab09_b10.tex}
 \input{tables/tab04_spans.tex}
@@ -983,7 +1008,9 @@ once and aggregated read-only, with the aggregation independent of order.
 
 \paragraph{Deterministic figures and byte-reproducible archives.} Figures are
 generated from artifacts with timestamps suppressed, so repeated runs produce
-byte-identical output.
+byte-identical output. Figure~\ref{fig:repro} traces the whole route from the
+source commit to the compiled manuscript, and the tests run along it are
+summarised in table~\ref{tab:tests}.
 
 \begin{figure}[htbp]
 \centering
@@ -992,6 +1019,10 @@ byte-identical output.
 The build fails if any gate fails.}
 \label{fig:repro}
 \end{figure}
+
+Table~\ref{tab:certificates} lists every certificate the draft rests on, with
+the script that produced it, and table~\ref{tab:environment} records the
+environment the certified runs were made in.
 
 \input{tables/tab10_certificates.tex}
 \input{tables/tab12_environment.tex}
@@ -1065,6 +1096,19 @@ new basis and has not been attempted.
 \item \textbf{No canonicality.} We exhibit bases; we do not claim any of them is
 canonical or unique, and no such claim should be read into the word ``basis''.
 
+\item \textbf{Enumeration exhaustiveness is corroborated, not proved.} Every
+dimension in this paper is exact for the span of the candidate family we
+enumerate. Identifying that span with the space of \emph{all} degree-ten
+Lorentz invariants requires the enumeration to be exhaustive, and we do not
+prove that it is. What we have is two independently implemented constructions,
+contraction graphs and chiral bispinors, whose spans agree at degrees four, six,
+eight and ten; a missing invariant would have to have been missed twice, in two
+different languages. That is corroboration and it is not a theorem. A proof
+would need a Hilbert-series or character-theoretic count of the degree-ten
+invariants of the $\dimSelfDualModule$-dimensional module, which we have not
+carried out and which is the single most valuable check anyone could add to
+this work.
+
 \item \textbf{Degree twelve.} Degree twelve supplies partial certified input to
 the generic rank calculation and is excluded from this paper's tensor--spinor
 equivalence and degree-ten classification claims. We do not claim a complete
@@ -1127,6 +1171,9 @@ affects speed and not arithmetic, but we did not run the full certification both
 ways, so this is an expectation rather than a verified claim.
 
 \end{enumerate}
+
+Table~\ref{tab:claimstrength} classifies every claim in the paper by the
+strength of the evidence behind it, from theorem to expectation.
 
 \input{tables/tab13_claim_strength.tex}
 

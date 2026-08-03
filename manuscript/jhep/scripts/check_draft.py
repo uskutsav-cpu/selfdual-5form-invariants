@@ -150,8 +150,56 @@ def main() -> int:
     for t in tabs:
         gate(f"table included: {t.name}", t.name in text)
 
+    # Inclusion is not the same as being pointed at. A float that is \included
+    # but never \ref'd is one the reader is never sent to: it sits wherever the
+    # placement algorithm drops it, often pages from the prose it belongs to.
+    # Five figures and eight tables were in exactly that state before this gate
+    # existed, so it checks the cross-reference, not just the \input.
+    label_re = re.compile(r"\\label\{((?:fig|tab):[^}]+)\}")
+    ref_re = re.compile(r"\\(?:auto|c)?ref\{([^}]+)\}")
+    float_labels = set(label_re.findall(text))
+    for t in tabs:                      # table labels live in tables/*.tex
+        float_labels |= set(label_re.findall(t.read_text()))
+    referenced = set(ref_re.findall(text))
+    for lab in sorted(float_labels):
+        gate(f"float cross-referenced in prose: {lab}", lab in referenced)
+
     apps = sorted((JHEP / "appendices").glob("*.tex"))
     gate("twelve appendices present", len(apps) == 12, f"found {len(apps)}")
+
+    # --- claim ledger points where it says it points ----------------------
+    # The ledger is how a reviewer navigates from a claim to the place it is
+    # made, so a wrong number there costs them real time. The numbers drifted
+    # once already: theorems are numbered continuously, not by section, so
+    # "theorem 9.2" never existed and "table 7" pointed at the wrong table.
+    # Each ledger location now carries the LaTeX label in brackets, and this
+    # gate resolves that label against main.aux rather than trusting the prose.
+    # The same check covers the mentor review guide, whose page numbers moved
+    # under an edit that added two lines of prose. Numbers a reviewer navigates
+    # by are only useful if something recomputes them.
+    aux_path = JHEP / "main.aux"
+    targets = [("claim ledger", JHEP / "claim_ledger.md", 9),
+               ("review guide", ROOT / "review" / "MENTOR_REVIEW_GUIDE.md", 12)]
+    if aux_path.exists():
+        aux_txt = aux_path.read_text()
+        number_of = dict(re.findall(r"\\newlabel\{([^}]+)\}\{\{([^}]*)\}\{[0-9]+\}", aux_txt))
+        page_of = dict(re.findall(r"\\newlabel\{([^}]+)\}\{\{[^}]*\}\{([0-9]+)\}", aux_txt))
+        for name, path, minimum in targets:
+            if not path.exists():
+                gate(f"{name} present for cross-check", False)
+                continue
+            txt = path.read_text()
+            pairs = re.findall(r"(?:p\.\s*)?(\d+(?:\.\d+)?)\)?\s*\[`([^`]+)`\]", txt)
+            gate(f"{name} has anchored locations", len(pairs) >= minimum,
+                 f"found {len(pairs)}")
+            for number, label in pairs:
+                # An anchor written "p. 26 [`app:orientation`]" states a page;
+                # "theorem 5 [`thm:reach`]" states the float/theorem number.
+                ok = number in (number_of.get(label), page_of.get(label))
+                gate(f"{name} location resolves: {label} -> {number}", ok,
+                     f"aux: number={number_of.get(label)!r} page={page_of.get(label)!r}")
+    else:
+        gate("main.aux available for cross-check", False)
 
     # --- report -----------------------------------------------------------
     print(f"{len(passes)} gates passed, {len(failures)} failed")
