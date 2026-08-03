@@ -1,0 +1,8 @@
+selected 81 rows x 81 columns at p=32749 (rank 81) in 16s
+[p=32749] det=20755 agree=True nonzero=True rank=81 (14.7s)
+[p=32719] det=31196 agree=True nonzero=True rank=81 (16.0s)
+[p=32717] det=9699 agree=True nonzero=True rank=81 (11.2s)
+[p=32713] det=12844 agree=True nonzero=True rank=81 (10.1s)
+[p=32707] det=29206 agree=True nonzero=True rank=81 (15.2s)
+[p=32693] det=9965 agree=True nonzero=True rank=81 (10.3s)
+done -> results/rank81/minor81_canonical_orientation.json {"primes_with_nonzero_minor": ["32749", "32719", "32717", "32713", "32707", "32693"], "n_primes_verified": 6, "integer_minor_nonzero": true, "characteristic_zero_lower_bound": 81, "statement": "An explicit 81x81 minor of the integral Jacobian has nonzero determinant modulo 6 distinct primes, hence is nonzero over Z, hence rank_Q >= 81."}

@@ -28,7 +28,11 @@ MATRIX_PRIMES = (32749, 32719, 32717, 32713, 32693)
 REVERSED_PRIME = 32707
 
 
-@pytest.mark.parametrize("p", MATRIX_PRIMES)
+MATRIX_PRIMES = (32749, 32719, 32717, 32713, 32707)   # 32707 restored
+EXTRA_PRIME = 32693
+
+
+@pytest.mark.parametrize("p", MATRIX_PRIMES + (EXTRA_PRIME,))
 def test_matrix_primes_are_orientation_preserving(p):
     """Every prime the certificate matrix used carries the self-dual channel.
 
@@ -40,11 +44,16 @@ def test_matrix_primes_are_orientation_preserving(p):
     assert b.orientation_reversed is False
 
 
-def test_32707_is_orientation_reversed():
-    """The prime that exposed the assumption, kept as a fixture."""
+def test_32707_is_no_longer_reversed():
+    """Written when it was reversed; the orientation fix made it ordinary.
+
+    32707 exposed the unpinned branch by failing. With the frame pinned it is
+    on the self-dual channel like every other prime, which is the whole point
+    of the fix.
+    """
     b = BridgeMap(REVERSED_PRIME)
-    assert b.duality_channel == "antiselfdual"
-    assert b.orientation_reversed is True
+    assert b.duality_channel == "selfdual"
+    assert b.orientation_reversed is False
 
 
 @pytest.mark.parametrize("p", MATRIX_PRIMES + (REVERSED_PRIME,))
@@ -66,34 +75,48 @@ def test_left_inverse_exists_on_the_normal_channel(p):
     assert M.shape[0] == C.N_SELFDUAL_COMPONENTS
 
 
-def test_reversed_channel_is_opt_in_not_automatic():
-    """Usable, but only when asked for.
+def test_reversed_channel_is_still_opt_in_if_one_is_forced():
+    """The guard survives the fix, it just no longer fires by accident.
 
-    A bridge that quietly switched channel would let two cells be evaluated
-    against different conventions and a matrix compare incomparable things.
-    So the default still raises, loudly, and naming the channel is a
-    deliberate act.
+    Ordinary construction cannot land on a reversed frame now. Force one and
+    the default must still refuse, because the protection being bought is
+    against two cells silently using different conventions -- which remains
+    possible if someone overrides the frame.
     """
-    b = BridgeMap(REVERSED_PRIME)
-    with pytest.raises(RuntimeError, match="orientation-reversing"):
+    from sdbridge import signature as sig
+    import numpy as np
+    p = REVERSED_PRIME
+    plain = np.asarray(sig._raw_L(p, False)) % p
+    pinned = np.asarray(BridgeMap(p).frame.L) % p
+    wrong = sig._raw_L(p, np.array_equal(pinned, plain))
+    frame = sig.TransitionFrame(p=p, _L_override=wrong)
+
+    b = BridgeMap(p, _frame_override=frame)
+    assert b.orientation_reversed is True
+    with pytest.raises(RuntimeError):
         _ = b.left_inverse
-    ok = BridgeMap(REVERSED_PRIME, allow_reversed_channel=True)
-    sel, M = ok.left_inverse
+    ok = BridgeMap(p, _frame_override=frame, allow_reversed_channel=True)
+    sel, _ = ok.left_inverse
     assert len(sel) == C.N_SELFDUAL_COMPONENTS
-    assert ok.duality_channel == "antiselfdual"
 
 
 def test_the_channel_is_detected_not_assumed():
-    """A guard against the fix being quietly reverted.
+    """`faithful_basis` must follow `duality_channel`, not be hard-coded.
 
-    `faithful_basis` must follow `duality_channel`. If someone hard-codes the
-    self-dual basis again, 32707 breaks and this catches it before the holdout
-    cells do.
+    Every prime is self-dual now, so the ordinary case cannot distinguish a
+    detector from a constant. Forcing a reversed frame can.
     """
+    from sdbridge import signature as sig
+    import numpy as np
     good = BridgeMap(MATRIX_PRIMES[0])
-    bad = BridgeMap(REVERSED_PRIME)
     assert good.faithful_basis is good.selfdual_basis
-    assert bad.faithful_basis is bad.antiselfdual_basis
+
+    p = REVERSED_PRIME
+    plain = np.asarray(sig._raw_L(p, False)) % p
+    pinned = np.asarray(BridgeMap(p).frame.L) % p
+    wrong = sig._raw_L(p, np.array_equal(pinned, plain))
+    forced = BridgeMap(p, _frame_override=sig.TransitionFrame(p=p, _L_override=wrong))
+    assert forced.faithful_basis is forced.antiselfdual_basis
 
 
 def test_no_prime_class_claim_is_encoded():

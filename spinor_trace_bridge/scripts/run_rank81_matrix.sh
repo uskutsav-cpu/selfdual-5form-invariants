@@ -19,12 +19,19 @@ PY="${2:-python3}"
 HERE="$(cd "$(dirname "$0")/../.." && pwd)"
 DRIVER="$HERE/spinor_trace_bridge/scripts/run_rank81_cell.py"
 
-# Every prime here must be NON-congruent to 3 mod 8. For p = 3 (mod 8) the
-# bridge's duality channel inverts and the cell cannot complete -- see
-# docs/EXCEPTIONAL_PRIMES_DUALITY_CHANNEL.md. 32707 was the original third
-# holdout and is 3 mod 8; it is replaced by 32693 (5 mod 8).
-# tests/test_duality_channel_primes.py parses this block and fails if a prime
-# in the bad class is ever added back.
+# 32707 is a holdout prime. It was excluded for a while on the theory that
+# primes congruent to 3 mod 8 are exceptional, which was wrong: once the frame
+# orientation is pinned by signature.orientation_normalised_L, 32633 -- which
+# is 1 mod 8 -- needs the same square-root branch as 32707. The branch a prime
+# needs is not a function of its residue class, and every class works. See
+# docs/CANONICAL_ORIENTATION_FIXED_BRIDGE.md.
+#
+# 32693 stood in for 32707 during that period. It is kept as an EXTRA
+# validation prime, never as a replacement; the aggregator rejects a matrix
+# that carries it while missing 32707.
+#
+# tests/test_duality_channel_primes.py fails if 32707 is dropped again or if a
+# residue rule reappears here.
 FITTING="32749 32719 32717"
 HOLDOUT="32713 32707"
 EXTRA="32693"

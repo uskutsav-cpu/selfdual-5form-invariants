@@ -1,0 +1,49 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {paragraph}{How many independent invariants are there, and can we certify it?}{1}{section*.2}%
+\contentsline {paragraph}{Is the tensor presentation or the spinor presentation the right one?}{2}{section*.3}%
+\contentsline {paragraph}{What does the stress-tensor flow fail to reach?}{2}{section*.4}%
+\contentsline {paragraph}{On exactness.}{2}{section*.5}%
+\contentsline {section}{\numberline {2}Setup and conventions}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}The atlas of candidate invariants}{3}{subsection.2.1}%
+\contentsline {section}{\numberline {3}The tensor--spinor bridge}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Statement}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}What is certified}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Why it is used}{4}{subsection.3.3}%
+\contentsline {section}{\numberline {4}An exact rank certificate}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}The computation}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}What each cell reports}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Pivot stability}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}An exceptional class of primes}{5}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}The minor}{6}{subsection.4.5}%
+\contentsline {section}{\numberline {5}The free stress tensor is traceless}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Independent verification}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Formulation independence}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}The degree-ten stress flow}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Three spaces that must not be conflated}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The exact result}{9}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}The obstruction is load-bearing}{9}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Independent confirmation from the rational flow system}{10}{subsection.6.4}%
+\contentsline {section}{\numberline {7}What is not established}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}$\mathrm {Tr}(M^6)$ has no certified rational lift}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Spaces certified only over the tested fields}{11}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Degree twelve}{11}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Claims we do not make}{11}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Discussion}{12}{section.8}%
+\contentsline {section}{Author contributions}{12}{section*.6}%
+\contentsline {section}{\numberline {A}The frame orientation, and how it was found}{13}{appendix.A}%
+\contentsline {paragraph}{How it surfaced.}{13}{section*.8}%
+\contentsline {paragraph}{A wrong diagnosis, and why it was wrong.}{13}{section*.9}%
+\contentsline {paragraph}{The fix.}{13}{section*.10}%
+\contentsline {paragraph}{Consequences.}{13}{section*.11}%
+\contentsline {section}{\numberline {B}Computational methodology}{14}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}One writer per artifact}{14}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Exact arithmetic throughout}{14}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}No stopping rules from published values}{15}{subsection.B.3}%
+\contentsline {section}{\numberline {C}Certificate index}{15}{appendix.C}%
+\contentsline {section}{\numberline {D}Conventions, and how they compare to the literature}{15}{appendix.D}%
+\contentsline {section}{\numberline {E}Reproduction}{16}{appendix.E}%
+\contentsline {paragraph}{What a reproduction has to produce.}{16}{section*.12}%
+\contentsline {paragraph}{Fitting and holdout.}{16}{section*.13}%
+\contentsline {paragraph}{Choice of primes.}{16}{section*.14}%
+\contentsline {paragraph}{Determinism.}{16}{section*.15}%
+\contentsline {paragraph}{Independence of the degree-ten result.}{16}{section*.16}%

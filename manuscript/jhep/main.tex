@@ -19,6 +19,12 @@
 \documentclass[a4paper,11pt]{article}
 \pdfoutput=1
 
+%% Engine portability. jheppub loads hyperref, and under a XeTeX engine
+%% hyperref's driver autodetection can pick hpdftex.def, which then fails on
+%% \Hy@pdfmajorversion. Naming the driver explicitly when running under XeTeX
+%% is a no-op under pdflatex, which is what the build script uses.
+\usepackage{iftex}
+\ifXeTeX\PassOptionsToPackage{xetex}{hyperref}\fi
 \usepackage{jheppub}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -32,8 +38,8 @@
 \usepackage{eso-pic}
 \AddToShipoutPictureFG{%
   \AtPageUpperLeft{\raisebox{-2.2\baselineskip}{\hspace{2.2cm}%
-  \textcolor{red!70!black}{\small\sffamily DRAFT FOR INTERNAL REVIEW ---
-  NOT FOR SUBMISSION}}}}
+  \textcolor{red!70!black}{\small\sffamily DRAFT FOR MENTOR REVIEW --- NOT
+  FOR SUBMISSION --- AUTHORSHIP AND AFFILIATIONS NOT YET FINALISED}}}}
 %% --------------------------------------------------------------------------
 
 \theoremstyle{plain}
@@ -62,17 +68,22 @@
 a tensor--spinor correspondence, an exact rank certificate,
 and an obstruction in the degree-ten stress flow}
 
+%% AUTHORSHIP IS NOT FINALISED.
+%%
+%% Only the author who wrote this work is listed. No other person appears in
+%% the author metadata, because no other person has given written consent, and
+%% consent reported in conversation is not consent on file. Anyone whose
+%% contribution may warrant authorship is recorded in review/ instead, where a
+%% listing commits nobody.
+%%
+%% Do not add a name here without a written reply from that person.
 \author[a]{Utsav Sunil Kumar}
-\author[b]{and Christian Ferko}
 \affiliation[a]{Heritage High School, Frisco, TX 75035, USA}
-\affiliation[b]{The NSF AI Institute for Artificial Intelligence and
-Fundamental Interactions, Massachusetts Institute of Technology,
-Cambridge, MA 02139, USA}
-%% AFFILIATION UNVERIFIED -- see REVIEW_STATUS.md. This affiliation was
-%% supplied in conversation and has NOT been checked against a current source.
-%% Verify against a recent paper or institutional page before submission.
 \emailAdd{utsav.sunilkumar@example.edu}
-\emailAdd{ferko@example.edu}
+\note{\textbf{Author list pending mentor review.} This draft is circulated
+for review only. Authorship, author order, affiliations and the corresponding
+author are not settled, and nobody other than the listed author has agreed in
+writing to be associated with it.}
 
 \abstract{We study the ring of Lorentz invariants built from a self-dual
 five-form $\Lam$ in ten dimensions, working in two presentations at once: the
@@ -116,7 +127,11 @@ the family of chiral $p$-forms in $D = 2p+2$ that includes the chiral two-form
 of the M5-brane. Recent work has produced both a systematic account of the
 invariants one can build from such a form \cite{Cederwall:2025invariants} and a
 family of nonlinear chiral four-form theories in $D=10$ together with the
-stress-tensor flows that connect them \cite{Hutomo:2025chiral}.
+stress-tensor flows that connect them \cite{Hutomo:2025chiral}. The
+four-dimensional member of this story is far better understood --- the
+duality-invariant conformal extension of Maxwell's equations
+\cite{Bandos:2020hgy} is an explicit closed-form theory --- and part of what
+makes $D=10$ hard is that no comparable closed form is available.
 
 This paper addresses three questions that sit between those two developments.
 
@@ -833,7 +848,8 @@ predates this work; it is used here, not introduced. U.S.K.\ posed the
 degree-ten closure question, carried out the exact-arithmetic execution of that
 workflow for the five-form problem, produced the rank certificate, proved the
 tracelessness lemma of section \ref{sec:trace}, and computed the degree-ten
-seed closure over $\Q$. C.F.\ acts as corresponding author and is responsible
+seed closure over $\Q$. The corresponding author is not yet designated; that
+is one of the decisions this draft is circulated to settle. U.S.K.\ is responsible
 for the submission and for correspondence with referees.
 
 The count of $81$ functionally independent invariants, and the degree-ten
@@ -855,6 +871,71 @@ results.
 \appendix
 
 %% ==========================================================================
+\section{The frame orientation, and how it was found}
+\label{sec:orientation}
+
+The bridge of section~\ref{sec:bridge} depends on a change of frame $L$
+satisfying $L^{\mathsf T}\eta_{\text{null}}L=\eta_{\text{Lor}}$. That
+congruence is solved modulo $p$, and the solve takes a modular square root.
+A square root modulo $p$ has two values, $r$ and $p-r$; both give a valid
+congruence, and they differ by a reversal of the frame's orientation.
+
+Orientation is not cosmetic here. Reversing it reverses the sign of the volume
+form, hence of the Hodge star, hence exchanges the star's $+1$ and $-1$
+eigenspaces --- which is to say it exchanges which of the self-dual and
+anti-self-dual five-forms the gamma map annihilates. Left unpinned, the bridge
+realises the self-dual projector at some primes and the anti-self-dual
+projector at others, with nothing to announce the difference until a later step
+reports an image of dimension zero.
+
+\paragraph{How it surfaced.} It surfaced through a holdout prime, which is what
+holdout primes are for. Nine fitting cells and three holdout cells at
+$p=32713$ completed normally; all three cells at $p=32707$ failed identically,
+with the left-inverse construction reporting an image of dimension $0$ instead
+of $126$. The bridge validation suite could not have caught this: it exercises
+two primes, both of which happen to receive the orientation-preserving branch.
+
+\paragraph{A wrong diagnosis, and why it was wrong.} The first explanation was
+arithmetic: $32707$ is $3 \bmod 8$, the other tested primes were not, and a
+second failing prime $32771$ is also $3 \bmod 8$. On two examples the pattern
+looked like a congruence condition, and $32707$ was replaced by $32693$ as a
+holdout while the matter was open.
+
+That diagnosis is false. Once the orientation is pinned, $p=32633$ --- which is
+$1 \bmod 8$ --- requires exactly the same branch as $32707$ and $32771$. A
+prime outside the suspected class needs the identical correction, so the branch
+requirement was never a function of the residue class. It was a coincidence of
+the only two examples available when the rule was written.
+
+\paragraph{The fix.} The construction now selects the branch under which the
+self-dual space survives, in a fixed order, and this is a property of the
+construction rather than a per-prime exception. Every residue class then works.
+Table~\ref{tab:orientation} records eleven primes across all four usable
+classes modulo $8$; all eleven land on the self-dual channel, and the three
+that need the reversed branch are $32633$, $32707$ and $32771$ --- classes
+$1$, $3$ and $3$.
+
+\input{table_orientation}
+
+\paragraph{Consequences.} Three, and the third is the reason this section
+exists rather than a footnote.
+
+First, $32707$ is restored to the holdout set and produces ordinary cells at
+rank $81$. Nothing about it is exceptional. Second, $32693$ is retained as an
+\emph{additional} validation prime rather than a substitute, and the assembly
+step refuses a matrix that carries the substitute while missing the original,
+since such a matrix has the right number of cells and passes every per-cell
+check.
+
+Third, every certificate in this paper was regenerated after the fix. The
+recomputation was not expected to change any value, and it did not: at each
+prime where the plain branch already survived, the pinned frame is
+bit-identical to the unpinned one, and cells recomputed under the corrected
+code agree with their predecessors in every candidate value, output hash,
+Jacobian block and Euler check. The earlier numbers were right. They were
+regenerated because a certificate should carry one evaluator's provenance
+rather than two, which is a different requirement from being correct.
+
 \section{Computational methodology}
 \label{app:method}
 

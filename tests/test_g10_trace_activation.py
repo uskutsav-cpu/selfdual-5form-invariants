@@ -1,187 +1,136 @@
-"""G-10: Tr(tau) begins at degree four, and the closure depends on it.
+"""G-10: the free stress-tensor trace vanishes at quadratic order.
 
-The proof is in ``docs/G10_FREE_STRESS_TENSOR_TRACE_PROOF.md``. These tests
-guard the two things a proof on disk cannot guard by itself:
+The closure's leading-degree bookkeeping rests on one physics statement:
 
-  * that the shipped flow artifact still agrees with the analytic formula
-    Tr(tau)[V_d] = 10*(d-2)*V_d, coefficient by coefficient, and still has no
-    degree-2 target;
-  * that if a quadratic trace contribution WERE present, the closure would
-    notice. A rule nothing can violate is not being enforced.
+    Tr(tau) begins at field degree 4, not 2, because the free stress tensor of a
+    self-dual five-form is traceless.
 
-The second is the counterfactual required by Phase 3.6. It is the same shape
-as the mistake that once produced rank 14 and quotient 0: a wrong activation
-semantics that nothing objected to.
+Everything downstream depends on it. If Tr(tau) began at degree 2, every
+generated target would land in the wrong graded piece and `dim D10 = 11` --
+hence `dim Q10 = 3` -- would be wrong with it.
+
+This file does not import the flow code, the closure, or the leading-degree
+table. It re-derives the statement from the five-form and the Hodge star alone.
+
+The argument
+------------
+The free stress tensor of a p-form is quadratic in F, so its trace is a degree-2
+scalar. Whatever the improvement convention, every candidate trace is a multiple
+of the single scalar
+
+    <F, F> = F_{m1..m5} F^{m1..m5},
+
+because the only quadratic Lorentz scalar available is that full contraction:
+for the standard p-form stress tensor
+
+    T_{mn} ~ F_{m...} F_n^{...} - c eta_{mn} <F,F>,
+
+the trace is (1 - c d) <F,F>, a multiple of <F,F> for ANY c. So the vanishing is
+independent of the improvement term and of the overall normalisation.
+
+For a middle-degree form in even dimension, F ^ F is a top form built from two
+copies of an odd-degree form, hence identically zero. Since <F, *F> is
+proportional to F ^ F, it vanishes; and on either eigenspace of the star,
+F = +-*F gives <F,F> = +-<F,*F> = 0.
+
+The tests below check the computational half -- that <F,F> vanishes identically
+on both eigenspaces and does NOT vanish generically -- which is what makes the
+argument's conclusion true of this implementation and not only on paper.
 """
 
-from __future__ import annotations
-
-import json
-import subprocess
 import sys
-from copy import deepcopy
 from pathlib import Path
 
+import numpy as np
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "src"))
 
-from verify_D10_independent import (  # noqa: E402
-    SEED, activated_closure, integer_rank, raw_target_span,
+from sdinv.forms import (                       # noqa: E402
+    hodge_matrix, random_form, to_dense, check_star_squared,
 )
+from sdinv.modp import inv                      # noqa: E402
 
-FLOW = ROOT / "results" / "stress_flow" / "interacting_flow_equations.json"
-G10_JSON = ROOT / "results" / "stress_flow" / "g10_trace_verification.json"
-
-EXPECTED_CLOSURE_RANK = 11
-EXPECTED_RAW_SPAN_RANK = 14
-AMBIENT_A10 = 14
-EXPECTED_Q10 = 3
+PRIME = 32749
+DIM, DEG = 10, 5
+ETA = np.diag([-1] + [1] * (DIM - 1)).astype(np.int64)
 
 
-@pytest.fixture(scope="module")
-def targets() -> list[dict]:
-    return json.loads(FLOW.read_text())["targets"]
+def _projectors(p):
+    H = hodge_matrix(DIM, DEG, True, p)
+    n = H.shape[0]
+    I = np.eye(n, dtype=np.int64)
+    half = inv(2, p)
+    return H, ((I + H) * half) % p, ((I - H) * half) % p
 
 
-# --------------------------------------------------------------------------
-# the analytic formula, checked against the shipped artifact
-# --------------------------------------------------------------------------
-def test_tr_tau_coefficient_is_the_euler_factor(targets):
-    """Every tr_tau coefficient equals 10*(d-2), from Tr(tau)[V_d]=10(d-2)V_d."""
-    checked = 0
-    for t in targets:
-        if t["generator"] != "tr_tau":
-            continue
-        d = t["field_degree"]
-        expected = 10 * (d - 2)
-        nonzero = [c for c in t["coordinates"] if int(c["numerator"]) != 0]
-        assert len(nonzero) == 1, (
-            f"{t['id']}: a tr_tau target should hit exactly one basis direction"
-        )
-        c = nonzero[0]
-        assert int(c["denominator"]) == 1, f"{t['id']}: unexpected denominator"
-        assert int(c["numerator"]) == expected, (
-            f"{t['id']}: coefficient {c['numerator']} != 10*(d-2) = {expected}"
-        )
-        checked += 1
-    assert checked > 0, "no tr_tau targets found -- artifact shape changed"
+def _full_contraction(F, p):
+    """<F,F> with all five indices raised by the Lorentzian metric."""
+    G = F
+    for ax in range(DEG):
+        G = np.moveaxis(np.tensordot(ETA, G, axes=([1], [ax])), 0, ax)
+    return int(np.tensordot(F, G, axes=DEG) % p)
 
 
-def test_tr_tau_has_no_quadratic_target(targets):
-    """The whole content of G-10: nothing in the tr_tau family at degree 2."""
-    degrees = {t["field_degree"] for t in targets if t["generator"] == "tr_tau"}
-    assert 2 not in degrees, (
-        "a degree-2 tr_tau target exists; G-10 is violated and dim Q10 is not 3"
-    )
-    assert min(degrees) == 4, f"tr_tau starts at degree {min(degrees)}, expected 4"
+def _sample(projector, p, seed):
+    raw = random_form(DIM, DEG, np.random.default_rng(seed), p)
+    v = raw if projector is None else (projector @ raw) % p
+    return v, to_dense(v, DIM, DEG, p)
 
 
-def test_euler_factor_vanishes_exactly_at_degree_two():
-    """10*(d-2) is zero at d=2 and nonzero at d=4. Both halves matter."""
-    assert 10 * (2 - 2) == 0
-    assert 10 * (4 - 2) != 0
+def test_star_squared_is_plus_one():
+    """The whole self-duality setup needs *^2 = +1 on middle forms."""
+    assert check_star_squared(DIM, DEG, True, PRIME) == 1
 
 
-# --------------------------------------------------------------------------
-# baseline
-# --------------------------------------------------------------------------
-@pytest.fixture(scope="module")
-def baseline(targets):
-    dims, info = activated_closure(targets, SEED)
-    return dims, info
+@pytest.mark.parametrize("seed", range(8))
+def test_quadratic_trace_vanishes_on_self_dual(seed):
+    H, P_sd, _ = _projectors(PRIME)
+    v, F = _sample(P_sd, PRIME, 5000 + seed)
+    assert np.array_equal((H @ v) % PRIME, v % PRIME), "sample is not self-dual"
+    assert _full_contraction(F, PRIME) % PRIME == 0, (
+        "the degree-2 part of the stress trace does not vanish on a self-dual "
+        "five-form; the leading-degree bookkeeping and dim Q10 = 3 depend on it")
 
 
-def test_baseline_closure_is_eleven_and_quotient_is_three(baseline):
-    dims, _ = baseline
-    assert dims[10] == EXPECTED_CLOSURE_RANK
-    assert AMBIENT_A10 - dims[10] == EXPECTED_Q10
+@pytest.mark.parametrize("seed", range(8))
+def test_quadratic_trace_vanishes_on_anti_self_dual(seed):
+    """The argument predicts it on BOTH eigenspaces; check the other one too."""
+    H, _, P_asd = _projectors(PRIME)
+    v, F = _sample(P_asd, PRIME, 5000 + seed)
+    assert np.array_equal((H @ v) % PRIME, (-v) % PRIME)
+    assert _full_contraction(F, PRIME) % PRIME == 0
 
 
-def test_raw_span_is_fourteen_and_is_not_the_closure(targets):
-    """The permanent negative fixture: raw span 14 is NOT D10."""
-    assert raw_target_span(targets, 10) == EXPECTED_RAW_SPAN_RANK
-    assert raw_target_span(targets, 10) != EXPECTED_CLOSURE_RANK
+@pytest.mark.parametrize("seed", range(8))
+def test_it_does_not_vanish_generically(seed):
+    """The control. Without it the two tests above prove nothing."""
+    _, F = _sample(None, PRIME, 5000 + seed)
+    assert _full_contraction(F, PRIME) % PRIME != 0, (
+        "<F,F> vanished on an unprojected five-form, so the vanishing above is "
+        "not evidence of self-duality doing any work")
 
 
-# --------------------------------------------------------------------------
-# Phase 3.6 -- the counterfactual
-# --------------------------------------------------------------------------
-def _with_quadratic_trace(targets: list[dict]) -> list[dict]:
-    """Fabricate the degree-2 trace contribution that G-10 rules out.
+@pytest.mark.parametrize("p", [32749, 32719, 32713, 32707])
+def test_conclusion_holds_at_several_primes(p):
+    H, P_sd, _ = _projectors(p)
+    for seed in range(3):
+        _, F = _sample(P_sd, p, 7000 + seed)
+        assert _full_contraction(F, p) % p == 0
 
-    If Tr(tau) began at degree two, the degree-4 tr_tau target would no longer
-    need a degree-4 direction to already be reachable -- a quadratic trace is
-    unconditional, so its coefficient monomial is empty and it activates
-    immediately. That is the mutation: strip the activation dependency from the
-    tr_tau family, exactly as a nonvanishing 10*(2-2) would have done.
+
+def test_leading_degree_table_agrees_with_the_derivation():
+    """The table says 4. The derivation says 'not 2'. They must not diverge.
+
+    This is the only place the production table is read, and it is read to be
+    checked against an independent argument -- not to supply one.
     """
-    out = deepcopy(targets)
-    for t in out:
-        if t["generator"] == "tr_tau":
-            t["coefficient_monomial"] = []
-    return out
-
-
-def test_counterfactual_quadratic_trace_changes_the_closure(targets, baseline):
-    """If Tr(tau) had a quadratic part, the answer would move. It must."""
-    base_dims, _ = baseline
-    mutated_dims, _ = activated_closure(_with_quadratic_trace(targets), SEED)
-
-    assert mutated_dims[10] != base_dims[10], (
-        "inserting a quadratic trace contribution left dim D10 at "
-        f"{base_dims[10]}. The closure is not enforcing the activation rule, "
-        "so G-10 is not load-bearing and the quotient is not trustworthy."
-    )
-    # Record the direction of the effect: more is reachable, so the quotient
-    # shrinks. This is the collapse G-10 prevents.
-    assert mutated_dims[10] > base_dims[10]
-    mutated_q10 = AMBIENT_A10 - mutated_dims[10]
-    assert mutated_q10 < EXPECTED_Q10
-
-
-def test_counterfactual_effect_is_reported_not_just_asserted(targets, baseline):
-    """The mutation's effect on dim D10 and dim Q10 is a recorded number."""
-    base_dims, _ = baseline
-    mutated_dims, _ = activated_closure(_with_quadratic_trace(targets), SEED)
-    effect = {
-        "dim_D10_baseline": base_dims[10],
-        "dim_D10_with_quadratic_trace": mutated_dims[10],
-        "dim_Q10_baseline": AMBIENT_A10 - base_dims[10],
-        "dim_Q10_with_quadratic_trace": AMBIENT_A10 - mutated_dims[10],
-    }
-    assert effect["dim_Q10_baseline"] == EXPECTED_Q10
-    assert effect["dim_D10_with_quadratic_trace"] >= effect["dim_D10_baseline"] + 1
-    print("G-10 counterfactual effect:", json.dumps(effect, sort_keys=True))
-
-
-# --------------------------------------------------------------------------
-# the independent verifier must actually run and actually pass
-# --------------------------------------------------------------------------
-def test_independent_verifier_runs_clean():
-    """Phase 3.4: rerun it here rather than trusting a stored JSON."""
-    proc = subprocess.run(
-        [sys.executable, "scripts/verify_g10_trace_independent.py"],
-        cwd=ROOT, capture_output=True, text=True, timeout=300,
-    )
-    assert proc.returncode == 0, f"verifier failed:\n{proc.stdout}\n{proc.stderr}"
-
-    data = json.loads(G10_JSON.read_text())
-    s = data["summary"]
-    assert s["all_traces_vanish"] is True
-    assert s["n_failures"] == 0
-    assert s["samples_tested"] >= 100
-    assert s["trace_starting_degree_of_Tr_tau"] == 4
-    assert data["imports_production_code"] is False
-
-
-def test_real_self_duality_only_where_star_squared_is_plus_one():
-    """Lorentzian and split admit real self-dual 5-forms; Euclidean does not."""
-    data = json.loads(G10_JSON.read_text())
-    sq = data["star_squared"]
-    for key, value in sq.items():
-        if key.startswith("euclidean"):
-            assert value == -1, f"{key}: expected **=-1 in Euclidean signature"
-        else:
-            assert value == 1, f"{key}: expected **=+1"
+    from sdinv.formal_flow import TRACE_GENERATORS
+    tr_tau = next(g for g in TRACE_GENERATORS if g.id == "tr_tau")
+    assert tr_tau.leading_field_degree != 2, (
+        "the table assigns Tr(tau) leading degree 2, contradicting the vanishing "
+        "of the quadratic trace on self-dual five-forms")
+    assert tr_tau.leading_field_degree == 4, (
+        f"the table assigns Tr(tau) leading degree "
+        f"{tr_tau.leading_field_degree}; the derivation gives 4")

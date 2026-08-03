@@ -1,6 +1,6 @@
 # The exact rational proof of dim_Q D10 = 11 and dim_Q Q10 = 3
 
-Generated 2026-08-01T22:21:23+00:00.
+Generated 2026-08-02T23:10:11+00:00.
 
 ## Statement
 
@@ -97,30 +97,6 @@ Drop-one tests:
 | I10_6 | 13 | False |
 | I10_7 | 13 | False |
 | I10_12 | 13 | False |
-
-## Seed independence
-
-The construction takes a seed, and the published record calls D10 a "seed
-closure". At degree 10 that qualifier turns out not to bite.
-
-Ten flow targets carry an empty coefficient monomial and so activate
-unconditionally; two of them at degree 10. Those bootstrap the degree-10 sector
-without help from any seed, and the cascade reaches the same place regardless:
-
-| seed | d=4 | d=6 | d=8 | d=10 | d=12 |
-|---|---|---|---|---|---|
-| the recorded seed | 1 | 2 | 7 | **11** | 21 |
-| no seed at all | 1 | 1 | 3 | **11** | 9 |
-
-Not merely the same rank: the same span, checked by showing the union has rank
-11 rather than more, and the same free columns.
-
-Degrees [6, 8, 12] do respond to the seed, so this is a fact about
-degree 10 and not a sign that the activation rule is doing nothing.
-
-**Consequence.** `dim_Q D10 = 11` is not an artifact of the seed, and the
-degree-10 statement does not need the seed-closure qualifier. The scope note
-below still applies to the generator-extension question, which is separate.
 
 ## Scope
 

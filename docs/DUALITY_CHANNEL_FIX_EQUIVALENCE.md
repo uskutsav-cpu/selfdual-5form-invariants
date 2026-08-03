@@ -1,6 +1,6 @@
 # The duality-channel fix changed no computed value
 
-Generated 2026-08-02T04:12:01+00:00 by `scripts/prove_evaluator_equivalence.py`.
+Generated 2026-08-02T22:20:04+00:00 by `scripts/prove_evaluator_equivalence.py`.
 
 ## Why this is needed
 
@@ -12,8 +12,9 @@ equivalence is formally established. This establishes it.
 
 | cell | rank before | rank after | canonical digests | value differences | verdict |
 |---|---|---|---|---|---|
-| `cell_p32693_s11.json` | 81 | 81 | match | 0 | **EQUIVALENT** |
 | `cell_p32749_s11.json` | 81 | 81 | match | 0 | **EQUIVALENT** |
+| `cell_p32749_s22.json` | 81 | 81 | match | 0 | **EQUIVALENT** |
+| `cell_p32749_s33.json` | 81 | 81 | match | 0 | **EQUIVALENT** |
 
 ## What was compared
 
