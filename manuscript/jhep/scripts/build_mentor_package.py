@@ -160,6 +160,16 @@ def main() -> int:
     shutil.copy2(JHEP / "main.pdf", OUT / "paper.pdf")
     print(f"  wrote {(OUT / 'paper.pdf').relative_to(ROOT)}")
 
+    # The same manuscript set in the two-column APS form. Both are shipped
+    # because the choice of journal is not ours to make, and a reviewer reading
+    # for physics content may prefer the format they referee in.
+    prd = ROOT / "manuscript" / "prd" / "main.pdf"
+    if not prd.exists():
+        raise SystemExit("PRD build missing: run manuscript/prd/build_prd.py "
+                         "and compile it before packaging")
+    shutil.copy2(prd, OUT / "paper_prd.pdf")
+    print(f"  wrote {(OUT / 'paper_prd.pdf').relative_to(ROOT)}")
+
     md_to_pdf(JHEP / "claim_ledger.md", OUT / "claim_ledger.pdf",
               "Claim ledger --- mentor-review draft")
     md_to_pdf(ROOT / "review" / "MENTOR_REVIEW_GUIDE.md",

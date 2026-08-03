@@ -1,0 +1,125 @@
+\section{Reproduction}
+\label{app:reproduction}
+
+\paragraph{Environment.}
+See table~\ref{tab:environment}. The dependencies are NumPy~\cite{Harris:2020},
+\texttt{pynauty} (bindings to \texttt{nauty}~\cite{McKay:2013}),
+\texttt{pytest} and \texttt{opt\_einsum}~\cite{Smith:2018}.
+
+\texttt{opt\_einsum} is \emph{required}, and an earlier version of this appendix
+described it as optional. It supplies both the contraction order and the
+intermediate-size and floating-point-operation estimates that the modular
+contractor enforces as an explicit budget. Without it the code took a naive
+left-to-right pairwise order with those checks skipped altogether, so the two
+budgets silently ceased to be budgets. Measured on an 8\,GiB host, the
+degree-eight evaluator then moves from $0.4$\,s at $0.27$\,GB peak resident set
+to an unbounded allocation terminated by the kernel; the failure surfaces as
+\texttt{SIGKILL} with no traceback, which is precisely what such a guard exists
+to prevent. The fallback now raises rather than running unguarded. Computed
+values are unaffected: the bridge suite passes identically once it is installed.
+This was found by a clean-clone reproduction, not known in advance.
+
+\paragraph{Python version.}
+Python 3.10 or newer is required: the source uses PEP 604 union annotations, and
+on Python 3.9 both test suites fail at collection before any test runs. The
+certified results were produced under Python 3.13. This requirement was
+discovered by a clean-clone reproduction rather than known in advance, and it is
+recorded because on a stock macOS the default \texttt{python3} is 3.9.
+
+\paragraph{Obtaining the source.}
+\begingroup\scriptsize
+\begin{verbatim}
+git clone \
+  https://github.com/uskutsav-cpu/selfdual-5form-invariants
+cd selfdual-5form-invariants
+git switch publication/jhep-mentor-draft
+python3.13 -m venv .venv
+.venv/bin/python3 -m pip install -r requirements.txt
+\end{verbatim}
+\endgroup
+
+\paragraph{Running the test suites.}
+\begingroup\scriptsize
+\begin{verbatim}
+.venv/bin/python3 -m pytest tests -q
+.venv/bin/python3 -m pytest spinor_trace_bridge/tests -q
+\end{verbatim}
+\endgroup
+Expected: $\nTraceTests$ and $\nBridgeTests$ tests respectively, no failures.
+
+\paragraph{Regenerating the certificates.}
+\begingroup\scriptsize
+\begin{verbatim}
+.venv/bin/python3 scripts/d10_characteristic_zero.py
+.venv/bin/python3 scripts/b10_p10_characteristic_zero.py
+.venv/bin/python3 scripts/aggregate_rank_matrix.py --self-test
+\end{verbatim}
+\endgroup
+The first two are the exact rational computations of
+appendices~\ref{app:closure} and~\ref{app:b10}. The third re-aggregates the rank
+matrix; it is read-only with respect to the cells and is order-independent, so it
+may be run at any time without disturbing them.
+
+\paragraph{Rebuilding the manuscript.}
+\begingroup\scriptsize
+\begin{verbatim}
+.venv/bin/python3 manuscript/scripts/make_numbers.py
+.venv/bin/python3 manuscript/jhep/scripts/make_figures.py
+.venv/bin/python3 manuscript/jhep/scripts/make_tables.py
+cd manuscript/jhep && tectonic -X compile main.tex
+\end{verbatim}
+\endgroup
+The macro, figure and table steps must precede the compile; the manuscript reads
+their output and does not contain any scientific value of its own.
+
+\paragraph{Expected outputs.}
+The headline values are
+$\dim_\Q\Ften = \dimAtenQ$,
+$\dim_\Q\Dten = \dimDtenQ$,
+$\dim_\Q\Qten = \dimQtenQ$,
+$\dim_\Q(\Bten\cap\Pten) = \dimBcapP$,
+generic functional rank lower bound $\charZeroLowerBound$,
+bridge rank $\bridgeForwardRank$, and $\matrixCells$ rank-matrix cells all of
+rank $\matrixRank$.
+
+\paragraph{Runtimes and memory.}
+The exact rational closure is the most expensive step, dominated by the rational
+arithmetic in the final sweeps. Peak resident memory recorded across the
+rank-matrix cells was under $720$\,MB. The rank matrix as a whole is the longest
+job; individual cells are independent and may be run in parallel, but they must
+not share a row cache --- two processes writing one cache is a defect this
+project has actually experienced.
+
+\paragraph{Determinism, and the limit of it.}
+Figures are byte-identical across repeated runs \emph{within a fixed
+environment}: matplotlib's PDF creation timestamp is suppressed explicitly,
+without which otherwise identical figures differ and archive reproducibility
+fails. Archives normalise member metadata and use a fixed epoch for the same
+reason.
+
+Byte-identity does \emph{not} survive a change of matplotlib version. A
+clean-clone run that resolved matplotlib 3.9.4 produced figures visually
+identical to, and byte-different from, those built with 3.11.1. The plotting
+library is therefore pinned exactly, in the documentation requirements file,
+rather than floored. We record this
+because ``byte-reproducible'' is otherwise read as a stronger property than it
+is: what is reproducible is the pipeline given a pinned toolchain, not the bytes
+under an arbitrary one.
+
+The compiled PDF is the one artifact that is \emph{not} byte-reproducible, and
+we state this explicitly because the surrounding claims might otherwise be read
+as covering it. Tectonic writes a fresh trailer \texttt{/ID} and build-time
+metadata on every invocation: three consecutive compilations of identical source
+in a clean clone produced three distinct SHA-256 digests, differing in about
+$7{,}000$ bytes once the change propagates into the compressed streams, and
+setting \texttt{SOURCE\_DATE\_EPOCH} does not suppress it. What is byte-identical
+across clean rebuilds is everything upstream of the typesetter: every figure,
+the generated tables and macros, and the LaTeX source archive shipped with this
+draft. A reviewer checking the delivered package should therefore expect the
+source archive and figure hashes to match exactly and the PDF hash not to; the
+PDF hash recorded in the build manifest identifies one particular build rather
+than certifying a reproducible one.
+
+\paragraph{Hashes.}
+The build manifest accompanying this draft records the commit, the SHA-256 of
+every generated artifact, and the hash of the compiled PDF.

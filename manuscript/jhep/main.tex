@@ -245,13 +245,15 @@ space of five-forms splits,
 \end{equation}
 A self-dual five-form is an element of $\Lambda^5_+$, cut out by the projector
 \begin{equation}
+\begin{gathered}
 P_\pm \;=\; \tfrac12\bigl(\mathbf{1} \pm \star\bigr),
 \qquad
 P_\pm^{2} = P_\pm,
-\qquad
+\\[2pt]
 P_+ + P_- = \mathbf{1},
 \qquad
 \operatorname{tr} P_\pm = \dimSelfDualModule .
+\end{gathered}
 \label{eq:sdprojector}
 \end{equation}
 Throughout, $F$ denotes an element of $\Lambda^5_+$ and the whole discussion is
@@ -263,7 +265,7 @@ dimension rather than a general fact. For a $p$-form in $d$ dimensions with
 $d = 2p$ and metric signature $(t,s)$,
 \begin{equation}
 \star^{2} \;=\; (-1)^{p(d-p)+t} \;=\; (-1)^{p^{2}+t}
-\qquad\text{on middle-degree forms,}
+\quad\text{(middle degree),}
 \label{eq:starsquared}
 \end{equation}
 which for $p = 5$, $d = 10$ gives $\star^2 = -(-1)^{t}$: real eigenvalues
@@ -389,10 +391,11 @@ appendix~\ref{app:conventions}.
 The bridge sends a self-dual five-form to a symmetric chiral bispinor by
 contracting with the five-index gamma:
 \begin{equation}
-\Phi: \Lambda^5_+ \longrightarrow \mathrm{Sym}^2 S_+,
-\qquad
+\begin{gathered}
+\Phi: \Lambda^5_+ \longrightarrow \mathrm{Sym}^2 S_+, \\[2pt]
 \Phi(F)_{ab} = \frac{1}{5!}\,F_{\mu_1\dots\mu_5}\,
               (C\Gamma^{\mu_1\dots\mu_5})_{ab}.
+\end{gathered}
 \label{eq:bridge}
 \end{equation}
 That $C\Gamma^{(5)}$ is symmetric in $ab$, so that the image lies in the
@@ -417,6 +420,7 @@ $\mu$. Hence
  \;=\; \dimSymSpinor - \gammaTraceRank
  \;=\; \dimGammaTraceless
  \;=\; \dim\Lambda^5_+ ,
+\vphantom{\bigl|}
 \label{eq:dimcount}
 \end{equation}
 and the two spaces have equal dimension. Equality of dimensions is of course not
@@ -1029,13 +1033,15 @@ There are $\dimQtenQ$ independent degree-ten invariant directions that the stres
 flow does not reach. The subspaces of $\Ften$ that this paper determines exactly stand in the
 relations
 \begin{equation}
+\begin{gathered}
 \Dten \subsetneq \Ften,
 \qquad
 \dim_\Q \Ften/\Dten = \dimQtenQ,
-\qquad
+\\[2pt]
 \dim_\Q(\Bten \cap \Pten) = \dimBcapP,
 \qquad
 \dim_\Q(\Bten + \Pten) = \dimBplusP,
+\end{gathered}
 \label{eq:incidence}
 \end{equation}
 with $\dim_\Q \Bten = \dimBten$ and $\dim_\Q \Pten = \dimPten$; the last two
@@ -1079,12 +1085,14 @@ trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
 Write the free stress tensor of a $p$-form field strength in $d$ dimensions in
 its general improved form,
 \begin{equation}
+\begin{gathered}
 T_{\mu\nu}
  \;=\; \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}\,
         F_\nu{}^{\alpha_2\dots\alpha_p}
  \;-\; c\,\eta_{\mu\nu}\,\langle F,F\rangle,
-\qquad
+\\[2pt]
 \langle F,G\rangle \;=\; F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p},
+\end{gathered}
 \label{eq:stresstensor}
 \end{equation}
 with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
@@ -1218,8 +1226,10 @@ The one-dimensional intersection can be written out. With $I^{(k)}$ denoting the
 published structures in the numbering of \cite{Cederwall:2025invariants} and
 $I^{(4)}_1 I^{(6)}_1$ the product of the degree-four and degree-six invariants,
 \begin{equation}
--55\,I^{(1)} - 252\,I^{(2)} + 4200\,I^{(5)} + 5040\,I^{(6)}
- \;=\; -1040\,I^{(4)}_1 I^{(6)}_1 .
+\begin{split}
+-55\,I^{(1)} - 252\,I^{(2)}& + 4200\,I^{(5)} + 5040\,I^{(6)} \\
+ &=\; -1040\,I^{(4)}_1 I^{(6)}_1 .
+\end{split}
 \label{eq:bpidentity}
 \end{equation}
 This identity was verified at the fresh prime $\bpFreshPrime$ on

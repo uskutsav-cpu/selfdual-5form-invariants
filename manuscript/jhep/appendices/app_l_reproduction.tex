@@ -3,7 +3,7 @@
 
 \paragraph{Environment.}
 See table~\ref{tab:environment}. The dependencies are NumPy~\cite{Harris:2020},
-\texttt{pynauty} (bindings to \texttt{nauty}~\cite{McKay:2013}) and
+\texttt{pynauty} (bindings to \texttt{nauty}~\cite{McKay:2013}),
 \texttt{pytest} and \texttt{opt\_einsum}~\cite{Smith:2018}.
 
 \texttt{opt\_einsum} is \emph{required}, and an earlier version of this appendix
@@ -28,7 +28,8 @@ recorded because on a stock macOS the default \texttt{python3} is 3.9.
 
 \paragraph{Obtaining the source.}
 \begin{verbatim}
-git clone https://github.com/uskutsav-cpu/selfdual-5form-invariants
+git clone \
+  https://github.com/uskutsav-cpu/selfdual-5form-invariants
 cd selfdual-5form-invariants
 git switch publication/jhep-mentor-draft
 python3.13 -m venv .venv
@@ -104,7 +105,7 @@ metadata on every invocation: three consecutive compilations of identical source
 in a clean clone produced three distinct SHA-256 digests, differing in about
 $7{,}000$ bytes once the change propagates into the compressed streams, and
 setting \texttt{SOURCE\_DATE\_EPOCH} does not suppress it. What is byte-identical
-across clean rebuilds is everything upstream of the typesetter: all ten figures,
+across clean rebuilds is everything upstream of the typesetter: every figure,
 the generated tables and macros, and the LaTeX source archive shipped with this
 draft. A reviewer checking the delivered package should therefore expect the
 source archive and figure hashes to match exactly and the PDF hash not to; the

@@ -1,0 +1,83 @@
+\section{Conventions}
+\label{app:conventions}
+
+Everything in this paper depends on a consistent set of conventions, and several
+of the results are sensitive to sign choices in a way that is easy to
+underestimate. They are collected here in full.
+
+\paragraph{Metric and signature.}
+Spacetime is $\mathbb{R}^{1,9}$ with
+$\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,\dots,+1)$, indices
+$\mu = 0,1,\dots,9$. Indices are raised and lowered with $\eta$. The split
+signature $(5,5)$ appears only as the natural home of the oscillator frame in
+appendix~\ref{app:orientation}; it is a different real form of the same complex
+algebra, not a change of frame within the Lorentzian one.
+
+\paragraph{Orientation and epsilon.}
+The orientation is fixed by $\epsilon_{01\dots 9} = +1$, hence
+$\epsilon^{01\dots 9} = -1$ in Lorentzian signature. The volume form is
+$\mathrm{vol} = \tfrac{1}{10!}\,\epsilon_{\mu_1\dots\mu_{10}}\,
+ dx^{\mu_1}\wedge\dots\wedge dx^{\mu_{10}}$.
+
+\paragraph{Hodge star and self-duality.}
+On five-forms,
+\begin{equation}
+(\star F)_{\mu_1\dots\mu_5}
+ = \frac{1}{5!}\,\epsilon_{\mu_1\dots\mu_5}{}^{\nu_1\dots\nu_5}
+   F_{\nu_1\dots\nu_5},
+\end{equation}
+and with the above conventions $\star^2 = +\starSquared$ on middle-degree forms
+in ten Lorentzian dimensions. This sign is what makes the eigenspaces real; it is
+verified computationally rather than assumed, and a test asserts it directly.
+
+The sign is signature-dependent: in Euclidean signature $\star^2 = -1$ on
+middle-degree forms in ten dimensions, the eigenvalues are $\pm i$, and there is
+no real eigenspace decomposition at all. We state this here, where the convention
+is fixed, rather than only in passing, because this project once mistook a
+Euclidean projector for an anti-self-dual one and read the resulting
+non-vanishing as a signal (appendix~\ref{app:gten}). Any routine taking a
+signature flag must therefore be called deliberately, and the value of
+$\star^2$ is checked rather than presumed wherever the decomposition is used.
+A five-form is self-dual when $\star F = +F$ and anti-self-dual when
+$\star F = -F$; both eigenspaces have dimension $\dimSelfDualModule$.
+
+\paragraph{Inner product.}
+$\langle F, G\rangle = F_{\mu_1\dots\mu_5}G^{\mu_1\dots\mu_5}$, with all five
+indices raised by $\eta$. This is the pairing used throughout
+appendix~\ref{app:gten}.
+
+\paragraph{Clifford algebra.}
+$\{\Gamma_\mu, \Gamma_\nu\} = 2\eta_{\mu\nu}\mathbf{1}$, with
+$32\times 32$ gamma matrices. Antisymmetrised products are written
+$\Gamma^{\mu_1\dots\mu_k} = \Gamma^{[\mu_1}\cdots\Gamma^{\mu_k]}$ with unit
+weight, so that $\Gamma^{\mu_1\dots\mu_k}$ agrees with
+$\Gamma^{\mu_1}\cdots\Gamma^{\mu_k}$ when all indices are distinct.
+
+\paragraph{Chirality.}
+$\Gamma_{11} = \Gamma^0\Gamma^1\cdots\Gamma^9$ satisfies $\Gamma_{11}^2 = +1$,
+and the chiral projectors are $P_\pm = \tfrac12(1\pm\Gamma_{11})$. The chiral
+module $S_+$ has dimension $\spinorDim$.
+
+\paragraph{Charge conjugation.}
+$C$ satisfies $C\Gamma^\mu C^{-1} = -(\Gamma^\mu)^{T}$ in the convention used
+here. The relevant consequence is the symmetry of $C\Gamma^{(5)}$ on the chiral
+subspace, which is what allows the bridge \eqref{eq:bridge} to land in
+$\mathrm{Sym}^2 S_+$. This symmetry is checked directly in the implementation.
+
+\paragraph{Five-gamma duality.}
+On the chiral subspace $\Gamma^{(5)}$ is not independent of its dual: the
+self-dual part of $\Gamma^{(5)}$ acts non-trivially and the anti-self-dual part
+annihilates $S_+$. This is the representation-theoretic reason the bridge sees
+only one eigenspace, and it is the fact that the orientation branch of
+appendix~\ref{app:orientation} can silently invert.
+
+\paragraph{Normalisation.}
+The $1/5!$ in \eqref{eq:bridge} is a choice. Every dimension, rank and
+intersection reported in this paper is invariant under rescaling the bridge, so
+nothing depends on it. It is fixed only so that the round-trip identity
+$\Phi^-\Phi = \mathrm{id}$ holds on the nose rather than up to a constant.
+
+\paragraph{Field degree.}
+``Degree'' always means degree in $F$, never degree as a differential form. An
+invariant of field degree $d$ is a polynomial of degree $d$ in the
+$\dimSelfDualModule$ components of $F$. Only even field degrees occur.

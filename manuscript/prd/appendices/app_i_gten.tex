@@ -1,0 +1,94 @@
+\section{The free stress-tensor trace}
+\label{app:gten}
+
+This appendix gives the calculation behind theorem~\ref{thm:gten} in full, and
+records how it is verified.
+
+\paragraph{The stress tensor.}
+For a $p$-form with field strength $F$ of rank $p$ in $d$ dimensions, the free
+stress tensor takes the form
+\begin{equation}
+T_{\mu\nu}
+ = \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}
+   F_\nu{}^{\alpha_2\dots\alpha_p}
+ - c\,\eta_{\mu\nu}\,\langle F,F\rangle,
+\label{eq:stress}
+\end{equation}
+where $c$ is an improvement coefficient. Different conventions in the literature
+fix $c$ differently; the point of what follows is that the conclusion does not
+depend on it.
+
+\paragraph{The trace.}
+Taking the trace of \eqref{eq:stress} with $\eta^{\mu\nu}$, the first term gives
+$\langle F,F\rangle$ up to normalisation and the second gives
+$-cd\,\langle F,F\rangle$, so
+\begin{equation}
+T^\mu{}_\mu = (1 - cd)\,\langle F,F\rangle .
+\label{eq:trace}
+\end{equation}
+Whatever $c$ is, the trace is a multiple of the single scalar
+$\langle F,F\rangle$. There is no other quadratic Lorentz scalar available: the
+only way to contract two copies of a five-form into a scalar is the full
+contraction.
+
+\paragraph{The vanishing.}
+Here $p = 5$ and $d = 10$, so $F$ is a middle-degree form of \emph{odd} degree in
+an even-dimensional space. Consider the top form $F \wedge F$. Interchanging the
+two factors of a $q$-form costs a sign $(-1)^{q^2} = (-1)^q$, which for $q = 5$
+is $-1$; hence $F\wedge F = -F\wedge F$ and $F \wedge F \equiv 0$ identically,
+for every five-form whatsoever.
+
+Now $\langle F, \star F\rangle\,\mathrm{vol} \propto F \wedge F$, so
+$\langle F, \star F\rangle = 0$. On either eigenspace of the star,
+$\star F = \pm F$, giving
+\begin{equation}
+\langle F, F \rangle
+ = \pm\,\langle F, \star F\rangle
+ = 0 .
+\end{equation}
+By \eqref{eq:trace} the free stress tensor is traceless, for any improvement
+coefficient. Consequently $\operatorname{Tr}(\tau)$ contributes nothing at field
+degree two and first contributes at degree four.
+
+\paragraph{Scope of the argument.}
+The derivation uses only self-duality (or anti-self-duality) and the parity of
+the form degree. It does not use the detailed form of the free dynamics, the
+choice of improvement term, or the overall normalisation. That robustness is why
+we regard the input as settled, and why the remaining question for review is
+narrow: whether the intended free theory and stress convention are the ones fixed
+in appendix~\ref{app:conventions}.
+
+\paragraph{Computational verification.}
+A dedicated test module re-derives the statement from the five-form and the
+Hodge star alone, importing none of the flow machinery. It checks:
+\begin{enumerate}\itemsep2pt
+\item $\star^2 = +\starSquared$, without which the eigenspace decomposition is
+      not the one assumed;
+\item $\langle F,F\rangle = 0$ on self-dual samples, at eight seeds;
+\item $\langle F,F\rangle = 0$ on \emph{anti}-self-dual samples, which the
+      argument predicts equally and which would fail if the vanishing were an
+      artefact of the projector rather than of the wedge identity;
+\item the control: $\langle F,F\rangle \neq 0$ on an unprojected five-form. This
+      is the test that gives the other three their content, since a quantity that
+      vanished identically would satisfy them all vacuously;
+\item the conclusion at four primes;
+\item agreement with the production leading-degree table, read once and only to
+      be checked against the independent derivation.
+\end{enumerate}
+
+\paragraph{A correction worth recording.}
+An earlier version of the control called the projector routine with an argument
+believed to select the anti-self-dual space, when in fact that argument selects
+Lorentzian versus Euclidean signature. The apparent non-vanishing it reported was
+a Euclidean projector, where $\star^2 = -1$ and the eigenspace decomposition is
+different. Corrected, both eigenspaces vanish exactly as the argument predicts.
+The episode is the reason item (1) above is checked explicitly rather than
+assumed.
+
+\paragraph{The counterfactual.}
+Forcing $\operatorname{Tr}(\tau)$ to begin at degree two activates
+$24$ additional targets and raises the degree-ten reachable dimension from
+$\dimDtenQ$ to $\dimAten$, giving $\Qten = \gTenCounterfactualQten$ instead of
+$\gTenDerivedQten$. This is retained as a regression fixture: it reproduces
+precisely the incorrect result this project obtained at an earlier stage, so the
+test fails loudly if the assumption is ever silently reverted.

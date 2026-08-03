@@ -35,6 +35,7 @@ FIXED_DATE = (2025, 1, 1, 0, 0, 0)
 # mentor_draft name -> delivery name
 RENAMES = {
     "paper.pdf": "Ferko_mentor_review_draft.pdf",
+    "paper_prd.pdf": "Ferko_mentor_review_draft_PRD.pdf",
     "paper_source.tar.gz": "Ferko_mentor_review_source.tar.gz",
     "mentor_review_guide.pdf": "Ferko_review_guide.pdf",
     "claim_ledger.pdf": "Ferko_claim_ledger.pdf",
@@ -159,7 +160,8 @@ Draft for mentor review. Not submitted anywhere.
 
 | file | what it is |
 |---|---|
-| `Ferko_mentor_review_draft.pdf` | the paper |
+| `Ferko_mentor_review_draft.pdf` | the paper, single column |
+| `Ferko_mentor_review_draft_PRD.pdf` | the same paper, two-column APS/PRD form |
 | `Ferko_review_guide.pdf` | **start here** — ten questions, in priority order |
 | `Ferko_claim_ledger.pdf` | every claim mapped to the certificate behind it |
 | `Ferko_figure_book.pdf` | all figures, full page, for reading away from the paper |
