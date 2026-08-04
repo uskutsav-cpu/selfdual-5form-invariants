@@ -6,7 +6,7 @@ Draft for mentor review. Not submitted anywhere.
 
 - Repository: `github.com/uskutsav-cpu/selfdual-5form-invariants`
 - Branch: `publication/jhep-mentor-draft`
-- Draft commit: `eb7c6bb0e512e28094231b4f222ed08346df5da2`
+- Draft commit: `892552675d7b7366125ec0ce1bf344b45fdbd9f9`
 - Certificates behind the draft: 27,
   hashed in `Ferko_certificate_manifest.json`
 
@@ -16,6 +16,7 @@ Draft for mentor review. Not submitted anywhere.
 |---|---|
 | `Ferko_mentor_review_draft.pdf` | the paper, single column |
 | `Ferko_mentor_review_draft_PRD.pdf` | the same paper, two-column APS/PRD form |
+| `Ferko_mentor_review_LETTER_PRD.pdf` | six-page Letter version, PRD two-column, US letterpaper |
 | `Ferko_review_guide.pdf` | **start here** — ten questions, in priority order |
 | `Ferko_claim_ledger.pdf` | every claim mapped to the certificate behind it |
 | `Ferko_figure_book.pdf` | all figures, full page, for reading away from the paper |

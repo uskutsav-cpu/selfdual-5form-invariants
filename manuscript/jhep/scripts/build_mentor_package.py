@@ -170,6 +170,16 @@ def main() -> int:
     shutil.copy2(prd, OUT / "paper_prd.pdf")
     print(f"  wrote {(OUT / 'paper_prd.pdf').relative_to(ROOT)}")
 
+    # The six-page Letter. A condensation is an editorial act rather than a
+    # transformation, so this one is written by hand -- but it reads the same
+    # generated macros, so it cannot disagree with the full paper about a number.
+    letter = ROOT / "manuscript" / "prd_letter" / "main.pdf"
+    if not letter.exists():
+        raise SystemExit("PRD Letter build missing: compile "
+                         "manuscript/prd_letter/main.tex before packaging")
+    shutil.copy2(letter, OUT / "paper_prd_letter.pdf")
+    print(f"  wrote {(OUT / 'paper_prd_letter.pdf').relative_to(ROOT)}")
+
     md_to_pdf(JHEP / "claim_ledger.md", OUT / "claim_ledger.pdf",
               "Claim ledger --- mentor-review draft")
     md_to_pdf(ROOT / "review" / "MENTOR_REVIEW_GUIDE.md",

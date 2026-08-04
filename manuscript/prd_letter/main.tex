@@ -1,0 +1,596 @@
+% ===========================================================================
+% DRAFT FOR MENTOR REVIEW -- NOT FOR SUBMISSION
+%
+% Physical Review D, Letter format, REVTeX 4.2, two-column, US letterpaper.
+%
+% This is a self-contained short version of the full manuscript in
+% manuscript/jhep. It is written rather than generated: a condensation is an
+% editorial act, not a transformation, and pretending otherwise would produce
+% a long paper with holes in it. Every scientific value is still read from
+% generated/numbers.tex, so the Letter and the full paper cannot disagree
+% about a number.
+%
+% Authorship, affiliations, corresponding author, ORCIDs, licence, DOI and
+% arXiv identifier are deliberately unresolved.
+% ===========================================================================
+
+\documentclass[
+  aps,prd,
+  reprint,
+  letterpaper,
+  amsmath,amssymb,
+  nofootinbib,
+  superscriptaddress
+]{revtex4-2}
+
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\input{generated/numbers.tex}
+
+\newcommand{\Ften}{A_{10}}
+\newcommand{\Dten}{D_{10}}
+\newcommand{\Qten}{Q_{10}}
+\newcommand{\Bten}{B_{10}}
+\newcommand{\Pten}{P_{10}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\pending}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+\begin{document}
+
+\title{Exact degree-ten invariants of a self-dual five-form in ten dimensions}
+
+\author{\pending{Author list pending mentor review}}
+\affiliation{\pending{Affiliations pending mentor review}}
+
+\date{\today}
+
+\begin{abstract}
+The Lorentz-invariant scalar functions of a self-dual five-form in ten
+dimensions control the non-linear self-interactions the field can have. We
+determine the degree-ten sector of this structure exactly over $\Q$, rather than
+modulo a prime. The full invariant space has dimension $\dimAtenQ$; the subspace
+activated by the stress-tensor flow has dimension $\dimDtenQ$; the quotient
+therefore has dimension $\dimQtenQ$, so three independent degree-ten directions
+lie outside the reach of the flow. The separation rests on a short theorem: the
+free stress tensor of a self-dual five-form is traceless for every improvement
+coefficient, because $F\wedge F$ vanishes identically for a form of odd degree,
+so $\operatorname{Tr}\tau$ begins at field degree four rather than two. Forcing
+the naive degree-two start collapses the quotient to zero. We certify a
+tensor--spinor bridge of rank $\bridgeForwardRank$ with an exact left inverse,
+certify generic functional rank at least $\charZeroLowerBound$ by an explicit
+$\minorSize\times\minorSize$ integer minor, and give the one-dimensional overlap
+between the published degree-ten span and the product sector as an exact integer
+identity. All computations are exact; none uses floating point.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\fcolorbox{red}{yellow!12}{%
+\begin{minipage}{0.94\columnwidth}
+\centering\vspace{3pt}
+{\bfseries\footnotesize DRAFT FOR MENTOR REVIEW --- NOT FOR SUBMISSION}\\[2pt]
+{\bfseries\footnotesize AUTHORSHIP AND AFFILIATIONS NOT YET FINALIZED}\\[3pt]
+\scriptsize
+Author list, order, corresponding author, affiliations and ORCIDs are
+unresolved. No licence, DOI or submission exists. Items in
+\textcolor{red}{\textbf{red}} are pending human decisions.
+\vspace{3pt}
+\end{minipage}}
+\end{center}
+\vspace{4pt}
+
+\emph{Introduction.}---A chiral $p$-form has a field strength constrained to
+equal its own Hodge dual. The constraint is forced on us in string theory and
+sits badly with the usual machinery: a self-dual field strength admits no
+manifestly Lorentz-invariant action of the naive kind, a difficulty identified
+by Marcus and Schwarz~\cite{Marcus:1982yu} and addressed since by a sequence of
+constructions~\cite{Henneaux:1988gg,Schwarz:1993vs,Pasti:1995tn,Pasti:1997gx,%
+Sen:2019qit,Mkrtchyan:2019wnk}. The obstruction is visible in one line, and we
+recover it below as \eqref{eq:normvanishes}: the candidate kinetic term
+$\langle F,F\rangle$ vanishes identically on the constrained surface.
+
+Asking not for \emph{a} chiral theory but for the space of non-linear
+self-inter\-actions one can have turns the problem into a question about scalar
+invariants. In four dimensions the answer is classical and the duality-invariant
+extensions of Maxwell theory are completely
+characterised~\cite{Bandos:2020hgy,Bandos:2021rqy}; in six dimensions the
+self-interacting chiral two-form and its $T\bar T$-like stress-tensor flow are
+well developed~\cite{Townsend:2019ftg,Ferko:2024chiral,Brizio:2026ttbar}. Ten
+dimensions is harder for combinatorial rather than conceptual reasons: the
+self-dual five-form lives in a $\dimSelfDualModule$-dimensional module and the
+contraction patterns available at degree ten are too numerous for reliable hand
+enumeration. Explicit degree-ten structures and the relevant flow appear
+in~\cite{Cederwall:2025invariants,Hutomo:2025chiral}. What has been missing is
+the exact dimension of the degree-ten invariant space, the exact dimension of
+the part the flow reaches, and the relation between them. We supply all three.
+
+The five-form is not an arbitrary choice of example. It is the Ramond--Ramond
+field strength of Type IIB supergravity, whose covariant field equations are due
+to Schwarz~\cite{Schwarz:1983qr} and for which manifestly Lorentz-invariant
+actions were later built with precisely the chiral-boson machinery cited
+above~\cite{DallAgata:1998ahf}; higher-derivative corrections involving it have
+been studied directly~\cite{Paulos:2008tn}, within the eight-derivative
+programme~\cite{Green:1997as,Liu:2022bfg}, and non-perturbatively through
+D-instantons~\cite{Green:1997tv}. We make no Type IIB claim here, and say so
+again below; the point is only that the invariant structure of this particular
+module is not an idle question.
+
+Two features of the method are worth stating at the outset, because they are
+what the results rest on. First, everything is computed in exact arithmetic:
+integer or rational, or modular over $\Fp$ with the passage to characteristic
+zero made explicit each time. No quantity in this paper is a floating-point
+number and no rank is obtained by thresholding a singular value. Second, the
+enumeration is carried out twice, in two languages that share no evaluation
+code, so that agreement between them is informative rather than tautological.
+The general enumerate--evaluate--relate workflow is prior
+work~\cite{Elamaran:2025mlinv}; what we contribute is its exact ten-dimensional
+realisation, the certified bridge, and the characteristic-zero certificates.
+
+\emph{Setup.}---Work on $\mathbb{R}^{1,9}$ with
+$\eta=\mathrm{diag}(-1,+1,\dots,+1)$ and $\epsilon_{01\dots9}=+1$. On five-forms
+the Hodge star acts by
+$(\star F)_{\mu_1\dots\mu_5}=\frac{1}{5!}\epsilon_{\mu_1\dots\mu_5}{}^{\nu_1\dots\nu_5}F_{\nu_1\dots\nu_5}$.
+For a $p$-form in $d=2p$ dimensions with $t$ timelike directions,
+\begin{equation}
+\star^{2}=(-1)^{p(d-p)+t}=(-1)^{p^{2}+t},
+\label{eq:starsq}
+\end{equation}
+so at $p=5$, $d=10$ one has $\star^2=-(-1)^t$: eigenvalues $\pm1$ in Lorentzian
+signature and $\pm i$, with no real eigenspace decomposition, in Euclidean.
+Self-duality of a five-form is thus a Lorentzian phenomenon. The projectors
+$P_\pm=\frac12(\mathbf{1}\pm\star)$ satisfy $P_\pm^2=P_\pm$ and
+$\operatorname{tr}P_\pm=\dimSelfDualModule$, and $\Lambda^5$ splits as
+$\Lambda^5_+\oplus\Lambda^5_-$ with
+$\dim\Lambda^5_\pm=\dimSelfDualModule$ inside
+$\dim\Lambda^5=\dimFiveFormComponents$. Write $F\in\Lambda^5_+$. ``Degree''
+always means degree in $F$; only even degrees occur, and $A_d$ denotes the
+invariants of degree $d$.
+
+The invariants themselves are built by full contraction. A degree-$d$ candidate
+is specified by a contraction graph: $d$ copies of $F$ carrying $5d$ indices,
+paired off by $\eta$ and, where the pattern demands it, by one $\epsilon$. Each
+graph evaluates to a polynomial with \emph{integer} coefficients in the
+$\dimSelfDualModule$ coordinates, fixed before any prime is chosen, since $\eta$
+and $\epsilon$ have integer entries; the prime enters only when that fixed
+polynomial is evaluated. This is what makes the spanning-set argument available:
+a space spanned by exactly $k$ explicit elements has $\dim_\Q\le k$ for free, so
+a modular rank of $k$ pins the rational dimension with no prime excluded. It
+applies to $\Ften$ and to the product sector, and it is precisely what is
+\emph{not} available for $\Dten$, whose elements the closure produces rather
+than receives --- which is why that space is treated by exact lifting instead.
+
+The Lorentz group acts on $\Lambda^5_+$ with
+$\dim\mathfrak{so}(1,9)=\dimLorentzAlgebra$. A generic point has a stabiliser,
+and the number of functionally independent invariants at a generic point is
+$\dimSelfDualModule$ minus the generic orbit dimension. That analytic count is
+$\genericFunctionalDim$ and is not ours~\cite{Hutomo:2025chiral}; what we
+contribute is an exact computational lower bound matching it.
+
+\emph{The tensor--spinor bridge.}---Two independent constructions are used
+throughout, one from contraction graphs and one from chiral bispinors, and their
+agreement is the paper's main internal control. They are related by
+\begin{equation}
+\Phi(F)_{ab}=\frac{1}{5!}\,F_{\mu_1\dots\mu_5}(C\Gamma^{\mu_1\dots\mu_5})_{ab},
+\label{eq:bridge}
+\end{equation}
+with $a,b=1,\dots,\spinorDim$. The target is not all of $\mathrm{Sym}^2S_+$:
+with $\dim S_+=\spinorDim$ we have $\dim\mathrm{Sym}^2S_+=\dimSymSpinor$, the
+gamma trace $(\gamma\text{-}\mathrm{tr}\,\psi)_\mu=\eta_{\mu\nu}(\Gamma^\nu)^{ab}\psi_{ab}$
+has rank $\gammaTraceRank$, and
+\begin{equation}
+\dim\ker(\gamma\text{-}\mathrm{tr})=\dimSymSpinor-\gammaTraceRank
+=\dimGammaTraceless=\dim\Lambda^5_+ .
+\label{eq:dimcount}
+\end{equation}
+
+\begin{proposition}[certified]
+\label{prop:bridge}
+Over $\Fp$ at each prime used, $\mathrm{im}\,\Phi=\ker(\gamma\text{-}\mathrm{tr})$,
+$\mathrm{rank}\,\Phi=\bridgeForwardRank$, $\ker\Phi\cap\Lambda^5_+=0$, and
+$\Phi|_{\Lambda^5_-}\equiv0$. There is an exact left inverse with
+$\Phi^-\Phi=\mathrm{id}$, while $\Phi\Phi^-$ is the projector onto
+$\ker(\gamma\text{-}\mathrm{tr})$ and not the identity. Equivariance holds with
+the intertwining character solved for, not assumed, and found to be unity.
+\end{proposition}
+
+Two points are easy to get wrong. $\Phi$ has full column rank but is not onto,
+so it admits a left inverse and no two-sided one; both identities are verified
+as matrix statements, since one that holds on sampled vectors can still fail on
+a subspace. And the vanishing on $\Lambda^5_-$ is exact, not approximate: on
+$S_+$ the anti-self-dual part of $\Gamma^{(5)}$ annihilates the module. That
+blindness makes an orientation error silent. The null frame over $\Fp$ solves
+$L^{T}\eta L=\eta_{\mathrm{null}}$, which fixes $L$ only up to square-root
+branches; two solutions differing in $\det L$ induce $\star\mapsto\pm\star$ and
+hence rank $\bridgeForwardRank$ versus rank $0$, with no error raised either
+way. We pin the branch by construction and verify $\star F=+F$ on the image --- a
+property of the output rather than of the criterion that selected it. The defect
+was found because three cells of the rank matrix failed at a single prime, and
+was diagnosed as a branch rather than an exceptional prime by flipping it
+deliberately at both a failing and a working prime. No published number changed.
+
+One further point deserves care, because an earlier version of this project
+recorded its opposite. The spinor computation is natural in a null frame adapted
+to split signature $(5,5)$, while the physical problem is Lorentzian. These are
+\emph{not} related by a real orthogonal transformation --- a real congruence
+preserves signature, so no $\Lambda\in O(1,9;\mathbb{R})$ carries $\eta_{(1,9)}$
+to $\eta_{(5,5)}$. They are different real forms of one complex algebra,
+\begin{equation}
+\mathfrak{so}(1,9)_{\mathbb{C}}\cong\mathfrak{so}(10,\mathbb{C})
+\cong\mathfrak{so}(5,5)_{\mathbb{C}},
+\label{eq:realforms}
+\end{equation}
+and every dimension, rank and intersection quoted here is the dimension of a
+$\mathbb{C}$-linear object and so is constant along \eqref{eq:realforms}. What
+\eqref{eq:realforms} does \emph{not} transport is which eigenspace of $\star$
+survives: $\star$ is built from $\eta$, and by \eqref{eq:starsq} the reality of
+its eigenspaces is exactly a signature-dependent statement.
+
+\emph{The trace theorem.}---Everything at degree ten turns on the field degree
+at which $\operatorname{Tr}\tau$ begins.
+
+\begin{theorem}
+\label{thm:gten}
+For a self-dual five-form in ten dimensions the free stress tensor is traceless,
+for every improvement coefficient. Hence $\operatorname{Tr}\tau$ first
+contributes at field degree four.
+\end{theorem}
+
+\begin{proof}
+Take the general improved form
+\begin{equation}
+T_{\mu\nu}=\frac{1}{(p-1)!}F_{\mu\alpha_2\dots\alpha_p}F_\nu{}^{\alpha_2\dots\alpha_p}
+-c\,\eta_{\mu\nu}\langle F,F\rangle,
+\label{eq:stress}
+\end{equation}
+with $\langle F,G\rangle=F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p}$ and $c$ free.
+Contracting with $\eta^{\mu\nu}$,
+\begin{equation}
+T^\mu{}_\mu=(1-cd)\,\langle F,F\rangle,
+\label{eq:trace}
+\end{equation}
+a multiple of the single scalar $\langle F,F\rangle$ whatever $c$ is: no other
+quadratic Lorentz invariant exists, the full contraction being the only way to
+pair two $p$-forms into a scalar. Now specialise to $p=5$, $d=10$, so $F$ has
+\emph{odd} form degree. Exchanging two factors of a $q$-form costs
+$(-1)^{q^2}=(-1)^q$, which is $-1$ at $q=5$, so
+\begin{equation}
+F\wedge F=-F\wedge F\ \Longrightarrow\ F\wedge F\equiv 0
+\label{eq:wedge}
+\end{equation}
+for \emph{every} five-form. Since
+$\langle F,\star F\rangle\,\mathrm{vol}\propto F\wedge F$, the pairing
+$\langle F,\star F\rangle$ vanishes, and on either eigenspace $\star F=\pm F$
+gives
+\begin{equation}
+\langle F,F\rangle=\pm\langle F,\star F\rangle=0 .
+\label{eq:normvanishes}
+\end{equation}
+Substituting into \eqref{eq:trace} gives $T^\mu{}_\mu=0$ for all $c$.
+\end{proof}
+
+The two steps are independent, and that matters for how the statement is tested.
+Equation~\eqref{eq:wedge} is about form parity and holds for any five-form;
+self-duality enters only at \eqref{eq:normvanishes}. A suite checking self-dual
+samples alone would confirm the conclusion without exercising the mechanism, so
+we check both eigenspaces --- the argument predicts vanishing on each --- and add
+a control confirming $\langle F,F\rangle\neq0$ on an \emph{unprojected}
+five-form, without which the other checks pass vacuously. The sign in
+\eqref{eq:starsq} is likewise asserted by test wherever the decomposition is
+used: a Euclidean projector, where $\star^2=-1$, was once mistaken for an
+anti-self-dual one here and its non-vanishing briefly read as signal.
+
+\emph{Activation and the exact closure.}---The flow generates new invariants by
+repeatedly applying scalars built from traces of powers of $\tau$. Through
+degree ten the generators are $\operatorname{Tr}\tau^{k}$ for $k\le5$ together
+with the products
+$(\operatorname{Tr}\tau)^2$, $\operatorname{Tr}\tau\operatorname{Tr}\tau^{2}$,
+$\operatorname{Tr}\tau\operatorname{Tr}\tau^{3}$,
+$(\operatorname{Tr}\tau^{2})^{2}$ and
+$\operatorname{Tr}\tau^{2}\operatorname{Tr}\tau^{3}$; the list was obtained by
+instrumenting the closure, so that a generator consumed but undocumented would
+appear. Writing $\deg_F$ for leading field degree,
+\begin{equation}
+\deg_F\operatorname{Tr}\tau^{k}=
+\begin{cases}4,&k=1,\\ 2k,&k\ge2,\end{cases}
+\label{eq:leading}
+\end{equation}
+with degrees adding on products. The exceptional case is
+Theorem~\ref{thm:gten}: the naive count gives $2$, and the vanishing of the free
+trace pushes it to $4$.
+
+A target is \emph{generated} when the flow produces it formally and
+\emph{activated} at degree $d$ when \eqref{eq:leading} lets it contribute there.
+Concretely, the reachable space at degree $d$ is the least fixed point of
+\begin{equation}
+V\longmapsto V+\mathrm{span}\bigl\{g:\ g\ \text{generated from}\ V,\
+\deg_F g\le d\bigr\},
+\label{eq:closureop}
+\end{equation}
+started from the degree-four seed and iterated until a sweep raises no rank.
+Over $\Q$ the reachable dimensions by degree are $1$, $2$, $7$ and $\dimDtenQ$
+at degrees four, six, eight and ten.
+
+The distinction between generated and activated is the whole result. Writing
+$\mathcal{T}$ for the generated targets and $\mathcal{A}$ for activation,
+\begin{equation}
+\mathrm{span}\,\mathcal{T}=\Ften
+\quad\text{but}\quad
+\Dten=\mathrm{span}\!\bigcup_{k\ge0}\mathcal{A}^{k}(\mathcal{T}_0)\subsetneq\Ften .
+\label{eq:rawvsact}
+\end{equation}
+The left equality is why conflating them is tempting; doing so returns quotient
+dimension zero, which is the answer this project held before catching the error.
+
+Running the closure modulo $p$ would expose the fixed point to exceptional
+primes precisely where no spanning-set argument is available, so it is run over
+$\Q$. Of its target rows $\czIntegerRows$ were already integral; the remaining
+$\czLiftedRows$ were lifted by the Chinese remainder theorem across
+$\czFitPrimes$ primes with rational reconstruction~\cite{Wang:1982} and
+validated at the held-out prime $\czHoldoutPrime$, with no mismatches. This is
+not fastidiousness. Figure~\ref{fig:heights} plots the size of the largest
+coefficient the closure actually produces at each degree. Through degree eight
+the coordinates are small integers and nothing is at risk. At degree ten one
+basis vector of $\Dten$ carries a numerator of twenty-nine bits over a
+five-digit denominator --- an order of magnitude past what a single prime near
+$2^{15}$ can represent. Read modulo one such prime that coefficient is
+indistinguishable from a small residue, and the fixed point would have been
+reported at the wrong dimension with nothing in the output to indicate it.
+Iteration terminated after $\czSweeps$ sweeps.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig05_rational_heights.pdf}
+\caption{Largest numerator and denominator in a basis vector of $\Dten$, by
+field degree, in bits. The dashed line is the range of a single prime near
+$2^{15}$. Degree ten is the first place the exact coefficients leave it, which
+is why that row is lifted rather than read off one modular solve.}
+\label{fig:heights}
+\end{figure}
+
+\begin{theorem}
+\label{thm:main}
+Over the rationals,
+\begin{equation}
+\dim_\Q\Ften=\dimAtenQ,\quad
+\dim_\Q\Dten=\dimDtenQ,\quad
+\dim_\Q\Qten=\dimQtenQ .
+\end{equation}
+\end{theorem}
+
+The lower bound is certified by an explicit
+$\czMinorSize\times\czMinorSize$ integer minor with non-vanishing determinant,
+computed by Bareiss elimination~\cite{Bareiss:1968} and confirmed by an
+independent exact rational routine. No separate upper bound is needed: over $\Q$
+the modular admission test that made the predecessor a bound disappears, and at
+the fixed point no further generated direction raises the rank, so the reached
+span \emph{is} $\Dten$ and $\dim_\Q\Dten=\dimDtenQ$ is an equality. Three exact
+annihilating covectors give the quotient map directly. Forcing
+$\operatorname{Tr}\tau$ to begin at degree two instead activates $24$ further
+targets, raises the reachable dimension to $\dimAten$, and returns
+$\Qten=0$; that counterfactual is retained as a regression fixture.
+
+How many directions must be added to close the gap is a basis-dependent question
+only in appearance.
+
+\begin{proposition}
+\label{prop:card}
+If $S\subset\Ften$ satisfies $\Dten+\mathrm{span}(S)=\Ften$, then
+$|S|\ge\dim\Qten=\dimQtenQ$.
+\end{proposition}
+
+\begin{proof}
+Apply the quotient map $\pi:\Ften\to\Qten$. From
+$\Dten+\mathrm{span}(S)=\Ften$ we get $\mathrm{span}(\pi(S))=\Qten$, and a span
+of $|S|$ vectors has dimension at most $|S|$.
+\end{proof}
+
+This is elementary and we claim no novelty for it; we state it because it
+converts a basis-dependent assertion into a basis-free one. No closing set of
+any kind, in any basis, has fewer than $\dimQtenQ$ elements. Removal minimality
+of the particular closing set we exhibit --- that no element can be dropped ---
+is checked only in a fixed graph basis and under the permutation subgroup, and
+we do not claim it under arbitrary $GL$.
+
+\emph{Degree-resolved agreement.}---The two formulations are compared on
+$\nCommonSamples$ common samples at prime $\comparisonPrime$. Ranks agree at
+degrees four, six, eight and ten [Fig.~\ref{fig:spectrum}(c)], which is
+meaningful corroboration precisely because a shared omission would have to occur
+twice in two different languages. At degree eight the full spinor family
+attains $\dEightSpinorRank$; deleting its tensor words drops it to
+$\dEightRankWithoutWords$, so within this decomposition the tensor words are
+indispensable. We state that in the qualified form the evidence supports: it is
+a statement about the families constructed here, not a uniqueness theorem.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig01_degree_spectrum.pdf}
+\caption{(a) invariant dimension by field degree; (b) cumulative Jacobian rank,
+with the per-degree increment annotated, saturating at $\exactJacRank$;
+(c) tensor, spinor and union ranks, equal at every degree shown.}
+\label{fig:spectrum}
+\end{figure}
+
+\emph{Generic functional rank.}---Let $I_1,\dots,I_N$ be the candidates,
+$N=\exactJacScheduled$, in the $n=\dimSelfDualModule$ coordinates $F^A$. The
+generic functional rank is the rank at a generic point of
+$J^{\,A}_{i}=\partial I_i/\partial F^{A}$, an
+$\exactJacRows\times\exactJacCols$ matrix. Rows are differentiated analytically,
+by amputating one $F$ from the contraction pattern, so there is no step size;
+each is checked against Euler's relation
+$\sum_A F^{A}\partial_A I_i=d_i I_i$, which ties a differentiated row to an
+undifferentiated evaluation and so detects exactly the errors differentiation
+introduces. All $\exactJacEvaluated$ of $\exactJacScheduled$ candidates were
+evaluated, with $\exactJacErrors$ errors and $\exactJacZeroRows$ zero rows.
+
+The exact modular rank is $\exactJacRank$, and an explicit
+$\minorSize\times\minorSize$ minor has non-zero determinant. A non-vanishing
+minor over $\Fp$ lifts to one over $\Q$, since the determinant is an integer
+non-zero mod $p$; hence
+\begin{equation}
+\text{generic functional rank}\ \ge\ \charZeroLowerBound
+\end{equation}
+with no prime excluded. Repeating across $\matrixPrimes$ primes and
+$\matrixSeeds$ seeds gives $\matrixCells$ cells, every one at rank
+$\matrixRank$ with the same $\matrixStableRows$ pivot rows and
+$\matrixStableCols$ pivot columns and $\matrixUnstableRows$ unstable. Two
+matrices can share a rank and disagree about which rows realise it, so the
+stability of the pivot \emph{sets} is the stronger statement and is the one we
+record. We are nonetheless deliberately restrained: cells from one run agreeing
+with each other is close to guaranteed whether or not the run is correct, so the
+matrix corroborates and the minor is what carries the bound.
+
+The rank is also not concentrated at one degree. Sorting the $\minorSize$ pivot
+rows of the certified minor by the degree of the candidate that supplies them
+gives $1$, $2$, $6$, $12$ and $60$ at degrees four through twelve, and sorting
+them by construction gives $68$ port graphs against $9$ tensor words and $4$
+spinor candidates. The tensor words carry pivots of their own, which is the same
+conclusion the degree-eight ablation reaches by a different route.
+
+\begin{table}[t]
+\caption{Degree-resolved data. Ranks are exact modulo
+$\comparisonPrime$; dimensions of $\Ften$ and $\Dten$ are exact over $\Q$.}
+\label{tab:degrees}
+\begin{ruledtabular}
+\begin{tabular}{ccccc}
+$d$ & tensor & spinor & union & $\dim_\Q\Dten$ at $d$ \\
+\colrule
+$4$  & $\traceRankDegFour$  & $\spinorRankDegFour$  & $\traceRankDegFour$  & $1$ \\
+$6$  & $\traceRankDegSix$   & $\spinorRankDegSix$   & $\traceRankDegSix$   & $2$ \\
+$8$  & $\dEightTraceRank$   & $\dEightSpinorRank$   & $\dEightUnionRank$   & $7$ \\
+$10$ & $\traceRankDegTen$   & $\spinorRankDegTen$   & $\traceRankDegTen$   & $\dimDtenQ$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table} The matching \emph{upper} bound is analytic and is not
+ours~\cite{Hutomo:2025chiral}; we claim the lower bound and the certificate. We
+do not claim that all $\exactJacScheduled$ candidates are algebraically
+independent.
+
+\emph{The published span and the product sector.}---Let $\Bten$ be the span of
+the published degree-ten structures and $\Pten$ the product sector. Over $\Q$,
+$\dim\Bten=\dimBten$, $\dim\Pten=\dimPten$, $\dim(\Bten+\Pten)=\dimBplusP$ and
+\begin{equation}
+\dim_\Q(\Bten\cap\Pten)=\dimBcapP,
+\end{equation}
+generated by the exact integer identity
+\begin{equation}
+\begin{split}
+-55\,I^{(1)}-252\,I^{(2)}&+4200\,I^{(5)}+5040\,I^{(6)}\\
+&=-1040\,I^{(4)}_1I^{(6)}_1 ,
+\end{split}
+\end{equation}
+verified at the fresh prime $\bpFreshPrime$ on $\bpFreshSamples$ samples that
+took no part in the reconstruction. The coefficients are
+normalisation-dependent, unlike every dimension quoted above; what is
+normalisation-independent is that the intersection is one-dimensional and
+supported on the four published structures listed. We read this as a structural
+observation about the basis rather than a defect in it.
+
+\emph{What the quotient means, and what it does not.}---It is worth separating
+the arithmetic from its reading. That $\dim_\Q\Qten=\dimQtenQ$ is certified; what
+that number licenses one to say is a separate question, and we are deliberately
+sparing. The flow of~\cite{Hutomo:2025chiral} deforms a chiral theory along a
+direction built from its own stress tensor, in the manner
+of~\cite{Zamolodchikov:2004ce,Smirnov:2016lqw,Cavaglia:2016oda,Conti:2018tca} in
+two dimensions. A non-zero quotient says that at degree ten the deformations
+this flow generates do not exhaust the invariants a chiral five-form admits:
+there are three independent directions in which the theory can be deformed,
+consistently with Lorentz invariance and self-duality, that the flow does not
+produce from its seed. Whether those directions correspond to sensible
+interacting theories is not settled here. Perry and Schwarz~\cite{Perry:1996mk}
+and Bekaert and Henneaux~\cite{Bekaert:1998yp} showed that self-interactions of
+a chiral form are constrained beyond Lorentz invariance --- the latter deriving
+the condition from the Dirac--Schwinger requirement on the energy--momentum
+commutator --- and we impose no such condition. The three directions are
+invariant-theoretic, and calling them physical would be a further claim
+requiring further work.
+
+\emph{Scope.}---Every dimension here is exact for the span of the enumerated
+family. Reading $\dim\Ften=\dimAtenQ$ as the dimension of \emph{all} degree-ten
+Lorentz invariants further requires the enumeration to miss nothing, which we do
+not prove; the two independent constructions agreeing at four degrees is
+corroboration, not a theorem, and a Hilbert-series or character count would
+settle it. We do not prove full degree-twelve tensor--spinor equivalence, give a
+complete invariant-ring presentation, claim canonicality of any basis, or claim
+minimality under arbitrary $GL$ change of basis. No Type IIB prediction, no
+statement about causal propagation or hyperbolicity, and no supersymmetry claim
+is made or implied.
+
+\emph{Reproducibility.}---All computations are exact and none uses floating
+point. $\nTraceTests$ tensor-side and $\nBridgeTests$ bridge-side tests pass
+from a clean clone, and the certificates, figures and tables regenerate from
+committed scripts; no scientific value is typed into the manuscript source, each
+being read from a generated macro so that the text and the artifacts cannot
+drift apart. Cells of the rank matrix are written once and aggregated read-only,
+with the aggregation independent of order, and a set of gates runs against the
+compiled source to check specific wording and consistency requirements --- that
+no unscoped completeness claim appears, that a quantity certified as a bound is
+never described as an equality. Each gate was negative-tested by deliberately
+violating the condition it detects, since a gate that cannot fail is not a gate.
+
+Two defects were found only by clean-clone reproduction, and we record them
+rather than quietly fixing them. One was an undocumented Python floor. The other
+is more instructive: the modular contractor enforces an intermediate-size and a
+floating-point-operation budget, and both checks sat behind an optional import
+that the reproduction documents described as not installed for the certified
+runs. In that configuration neither budget was ever evaluated, and the guard
+against runaway contractions was inactive in exactly the environment a
+reproducer was told to use. The dependency is now required and the fallback
+raises rather than running unguarded; no computed value changed.
+
+We also state a limit on reproducibility rather than leaving it to be inferred.
+Figures, generated tables and the source archive are byte-identical across clean
+rebuilds within a pinned toolchain. The compiled PDF is not: the typesetter
+writes fresh build metadata on every invocation, and three consecutive
+compilations of identical source produce three distinct digests. The hash
+recorded for a PDF identifies one build; it does not certify a reproducible one.
+
+\emph{Conclusions.}---The degree-ten Lorentz-invariant structure of a self-dual
+five-form in ten dimensions is now known exactly over $\Q$. The full invariant
+space has dimension $\dimAtenQ$, the stress-flow-activated subspace has
+dimension $\dimDtenQ$, and the quotient has dimension $\dimQtenQ$. The published
+degree-ten span meets the product sector in exactly one dimension, written out
+as an explicit integer identity. Generic functional rank is at least
+$\charZeroLowerBound$, certified by an explicit minor rather than by an
+elimination whose correctness one would have to take on trust.
+
+The separation of $\Dten$ from $\Ften$ rests entirely on
+Theorem~\ref{thm:gten}, and the theorem is short: the free stress tensor of a
+self-dual five-form is traceless because $F\wedge F$ vanishes identically for a
+form of odd degree, so $\operatorname{Tr}\tau$ begins at field degree four. That
+shortness is a virtue here. The argument uses no property of the particular free
+dynamics, no choice of improvement term and no normalisation, so it survives
+reformulation of the theory. What it does assume is that the object appearing in
+the flow is a stress tensor of the shape \eqref{eq:stress}. Whether that holds
+in the formulation the source intends is a question about conventions rather
+than about our computation, and we have flagged it rather than assumed the
+favourable reading, because the counterfactual is not a small correction: it
+takes the quotient from $\dimQtenQ$ to zero and changes what the paper says.
+
+Three directions follow. A Hilbert-series or character-theoretic count of the
+degree-ten invariants of the $\dimSelfDualModule$-dimensional module would
+settle the exhaustiveness question that our two independent enumerations only
+corroborate, and is the single most valuable check anyone could add. Extending
+the equivalence to degree twelve requires the bridge argument at a degree where
+the candidate count grows sharply and where we currently have only partial
+certified input. And the physical status of the three unreached directions ---
+whether they support consistent interacting chiral theories, or are obstructed
+by the Dirac--Schwinger condition that constrains chiral self-interactions
+generally --- is open, and is the question we would most like answered.
+
+\begin{acknowledgments}
+\pending{Pending author decision.}
+\end{acknowledgments}
+
+\bibliographystyle{apsrev4-2}
+\bibliography{references}
+
+\end{document}
