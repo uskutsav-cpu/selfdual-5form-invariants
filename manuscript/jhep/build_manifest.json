@@ -1,20 +1,20 @@
 {
  "appendices": 12,
- "approx_source_words": 16541,
+ "approx_source_words": 17198,
  "artifacts": {
-  "SHA256SUMS": "6d68b459b49045dcb197aaf376a8171af141098feef30c03ff8447903b46c591",
+  "SHA256SUMS": "4e546d0559f831d5541a2c77ce83e4513951c74cdead932b8e8c6cdc6a6733c5",
   "certificate_manifest.json": "cc8dd55ea2354fbe32e8e2ccbfce0ef75e3b1b953ef87051cf424efef03caa94",
-  "claim_ledger.pdf": "b9dd6c0e07b3017d3e83880a64c0a165973c9eeb542adb534413b202e12b2482",
-  "figure_book.pdf": "8f76ce0e200040d41d67b72be4a43344ef6b5cf6eeeaf41f3f5e478f0524af0d",
-  "mentor_review_guide.pdf": "df1aa1053a74a2964dd2982fb7c9c0c4d254de26da4782f65e3d8477c4af6c91",
-  "paper.pdf": "caffde5c7939a406bdd0a05677d47b5ac33fb64a07297067dd34ad3e859f8887",
-  "paper_prd.pdf": "3f7d4f5cecff4e8f8b4f032ce4d8ccde0b251068f276d244d40e082f67ad8b45",
-  "paper_prd_letter.pdf": "569318c62ed6b7d3a421f0520ae14844792690f69b014761b793b49b05324547",
-  "paper_source.tar.gz": "97f1fe03193c135de3c2579f89ab5c88e7447c3445d9a0a0a9f81f8c7955866e",
-  "reproduction_quickstart.pdf": "b1c25524a1118f3c2189a7714913aac1db5ebff3f9901e635b910d4b31781013"
+  "claim_ledger.pdf": "dad3587f0bdf7a5b0eb56bc4c62d9adc21a14bcc6565178cf77f056608f5cf61",
+  "figure_book.pdf": "5a7b998810657237c416a5b0aed1cd0803b5e81a3167652e10bfd19a0899bf70",
+  "mentor_review_guide.pdf": "9c2a4d07f7f77e9c5c06ca69aae250509715c09e535e95fd70f60ddccddad9e7",
+  "paper.pdf": "0e1c9c3a7099f6e1e014762ea7a04dd1e89dc6849ea71f1820d944776303788b",
+  "paper_prd.pdf": "8ce85150c0b603befeb30032fe5e6734317a7517cac9f84b8e46c6ba6b509b6b",
+  "paper_prd_letter.pdf": "977f0cd2df0aaba706e257f372f6a302b8f224ea2dd1d121a5d17b8ae5f51f14",
+  "paper_source.tar.gz": "041a7d23b7f2f2b512bc30b0c1ee993f297f20c6a50e4cbca7c50ee8206c5a67",
+  "reproduction_quickstart.pdf": "53f56eabf303ea20b45f046dad07c32396d9866b3c485b18f8340211f0353a37"
  },
  "branch": "publication/jhep-mentor-draft",
- "commit": "892552675d7b7366125ec0ce1bf344b45fdbd9f9",
+ "commit": "79c3ef7d1d000a9704fd385a086c63f8f5d254ce",
  "figures": 5,
  "latex": {
   "errors": 0,
@@ -23,8 +23,8 @@
   "undefined_references": 0,
   "underfull": 0
  },
- "pages": 45,
- "references": 35,
+ "pages": 48,
+ "references": 66,
  "schema": 1,
  "tables": 13,
  "uncited_references": [],

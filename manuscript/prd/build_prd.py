@@ -78,6 +78,22 @@ PREAMBLE = r"""% ===============================================================
 % stretch lets it find an acceptable break instead of a badness-10000 line.
 \emergencystretch=1.2em
 
+% Every float here is full width (figure*/table*), and REVTeX's default float
+% parameters will only place a couple per page. With enough of them queued the
+% page builder runs out of legal placements and LaTeX aborts with
+% "Output loop---100 consecutive dead cycles" -- which is a float-placement
+% deadlock, not a content error. Loosening the fractions gives it room.
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{8}
+\setcounter{dbltopnumber}{4}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\dbltopfraction}{0.92}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.70}
+\renewcommand{\dblfloatpagefraction}{0.70}
+
 \usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{array}
@@ -172,12 +188,36 @@ def convert_shared(text: str) -> str:
         "\\resizebox{\\ifdim\\width>\\linewidth \\linewidth\\else\\width\\fi}{!}{%\n"
         "\\begin{tabular}")
     text = text.replace(r"\end{tabular}", "\\end{tabular}}")
+    # A p-column measured against \textwidth does not adapt to the float it
+    # sits in: inside a single-column table it is far too wide, and the
+    # conditional \resizebox cannot rescue it because the natural width is
+    # already set. \linewidth is the right unit -- full width inside table*,
+    # column width inside table -- so the same spec works in both.
+    text = text.replace(r"\textwidth}", r"\linewidth}")
     # The tables declare their own float, so the single- to two-column
     # promotion has to happen here and not only in main.tex. Missing this left
     # every generated table as a single-column float and produced one 223pt
     # overrun that looked, from the log, like a runaway equation.
-    text = re.sub(r"\\begin\{table\}(\[[^\]]*\])?", r"\\begin{table*}[tbp]", text)
-    text = text.replace(r"\end{table}", r"\end{table*}")
+    # Promote to a full-width float ONLY when the table is actually wide. The
+    # first version promoted every table, which put eighteen double-column
+    # floats into a twenty-six page document; the page builder then ran out of
+    # legal placements and LaTeX aborted with "Output loop---100 consecutive
+    # dead cycles". A narrow table belongs in a column.
+    ncols = 0
+    m = re.search(r"\\begin\{tabular\}\{([^}]*)\}", text)
+    if m:
+        ncols = sum(1 for c in m.group(1) if c in "lcrp")
+    # A p-column sized against \textwidth is wide however few columns there
+    # are: tab13 has a single p{0.55\textwidth} cell and overran by 223pt while
+    # the column count said "narrow".
+    wide_spec = "textwidth" in (m.group(1) if m else "")
+    if ncols >= 5 or wide_spec:
+        text = re.sub(r"\\begin\{table\}(\[[^\]]*\])?",
+                      r"\\begin{table*}[!tbp]", text)
+        text = text.replace(r"\end{table}", r"\end{table*}")
+    else:
+        text = re.sub(r"\\begin\{table\}(\[[^\]]*\])?",
+                      r"\\begin{table}[!tbp]", text)
 
     # Appendix displays are reference material and several are genuinely wider
     # than a column. Promoting *all* of them was tried and is wrong: widetext
@@ -224,7 +264,7 @@ def convert(src: str) -> str:
     # A 0.95-textwidth figure is wider than a PRD column. Promoting to the
     # starred form and rescaling is the honest fix; shrinking the figures to
     # column width would make the axis labels unreadable.
-    body = body.replace(r"\begin{figure}[htbp]", r"\begin{figure*}[tbp]")
+    body = body.replace(r"\begin{figure}[htbp]", r"\begin{figure*}[!tbp]")
     body = body.replace(r"\end{figure}", r"\end{figure*}")
     body = re.sub(r"\\includegraphics\[width=[0-9.]+\\textwidth\]",
                   r"\\includegraphics[width=0.86\\textwidth]", body)

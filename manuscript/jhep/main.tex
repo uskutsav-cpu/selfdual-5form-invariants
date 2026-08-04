@@ -129,7 +129,26 @@ six-dimensional Born--Infeld analysis supplies the condition a self-interacting
 chiral form must satisfy, and by Bekaert and Henneaux~\cite{Bekaert:1998yp}, who
 derive that condition from the Dirac--Schwinger requirement on the
 energy--momentum tensor and set out the topological subtleties in splitting a
-non-chiral form into two chiral halves.
+non-chiral form into two chiral halves. More recent constructions have widened
+the available formalisms considerably: a manifestly covariant action for Type
+IIB supergravity built from a decoupled auxiliary four-form~\cite{Sen:2015nph},
+the ``democratic'' Lagrangians of Avetisyan, Evnin and
+Mkrtchyan~\cite{Avetisyan:2021heg} and their extension to nonlinear chiral
+$p$-forms~\cite{Avetisyan:2022zza}, and a comparative account of the three
+routes now available --- Pasti--Sorokin--Tonin, Sen's, and the clone-field
+formalism~\cite{Evnin:2022kqf}. The conformal limits of $p$-form gauge theories
+have been classified in parallel~\cite{Bandos:2020jsw}.
+
+The invariant-theoretic question sits inside an older one about duality. That
+electric--magnetic rotations are a symmetry of the equations but not manifestly
+of the action goes back to Deser and Teitelboim~\cite{Deser:1976iy}, and the
+condition a Lagrangian must satisfy for duality invariance to survive
+interactions is the Gaillard--Zumino
+constraint~\cite{Gaillard:1981rj,Gibbons:1995cv}, of which Born--Infeld
+theory~\cite{Born:1934gh} is the canonical solution. What we compute below is
+one degree of the invariant structure that any such construction in ten
+dimensions must be built from, without imposing duality or any dynamical
+condition on it.
 
 Once one asks not merely for \emph{a} self-dual theory but for the space of
 \emph{non-linear} self-interactions a chiral form can have, the question becomes
@@ -155,9 +174,25 @@ was identified as a solvable direction in the space of two-dimensional theories
 by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
 Cavagli\`a, Negro, Sz\'ecs\'enyi and Tateo~\cite{Cavaglia:2016oda}, and it
 admits a geometric reading as a field-dependent change of
-coordinates~\cite{Conti:2018tca}. What we use at degree ten is the
-higher-dimensional analogue of the flow, not these two-dimensional results
-themselves; they are cited to fix what the construction is modelled on.
+coordinates~\cite{Conti:2018tca}, with the deformed Lagrangian available in
+closed form when the seed satisfies an algebraic
+condition~\cite{Bonelli:2018kik} and with the symmetry algebra of the deformed
+theory now understood in some detail~\cite{Guica:2020eab}. In four dimensions
+the relation runs both ways: any deformation of a self-dual theory built from
+the duality-invariant stress tensor preserves duality, and conversely any
+duality-invariant family is related by a generalised stress-tensor
+flow~\cite{Ferko:2023wyi}. What we use at degree ten is the higher-dimensional
+analogue of the flow, not these two-dimensional results themselves; they are
+cited to fix what the construction is modelled on.
+
+The five-form is also not the only chiral form whose interactions are under
+active study. The chiral two-form on the M-theory five-brane
+worldvolume~\cite{Witten:1996hc} presents the same non-Lagrangian obstruction
+one dimension down, and explicit wave and string solutions of an interacting
+conformal chiral two-form theory in six dimensions have recently been
+constructed~\cite{Deger:2024jyq}. The general representation-theoretic setting
+for form fields of arbitrary Young symmetry, including the duality operations
+that relate them, is developed in~\cite{Bekaert:2002dt}.
 
 Ten dimensions is harder, and the difficulty is not conceptual but
 combinatorial. The self-dual five-form lives in a $\dimSelfDualModule$-dimensional
@@ -619,8 +654,27 @@ $\Dten$, and through it $\Qten$, since the closure produces its elements rather
 than being handed them --- we lift to $\Q$ explicitly, by the
 Chinese remainder theorem and rational reconstruction in the sense of Wang, Guy
 and Davenport~\cite{Wang:1982}, and validate the lift at a prime held out of the
-fit. Sampling arguments elsewhere in the pipeline are of Schwartz--Zippel
-type~\cite{Zippel:1979,Schwartz:1980}.
+fit. The reconstruction problem and its termination conditions are standard
+material~\cite{vzGathen:2013,Cohen:1993}; we use the plain bounded form rather
+than the maximal-quotient variant~\cite{Monagan:2004}, since the bound is known
+here and the extra generality would buy nothing. Sampling arguments elsewhere in
+the pipeline are of Schwartz--Zippel type~\cite{Zippel:1979,Schwartz:1980}.
+
+\paragraph{Where this sits in invariant theory.}
+The object we compute is a graded piece of the ring of invariants of a
+reductive group acting on a linear representation, and the general theory of
+such rings is classical~\cite{Weyl:1946,Popov:1994}. We use almost none of it,
+and it is worth being explicit about why. The algorithmic tools that would
+normally apply --- Gr\"obner-basis computation of generators and relations,
+Hilbert-series arguments, Derksen's algorithm~\cite{Derksen:2002,Sturmfels:2008}
+--- operate on the ring as a whole and become impractical at the module
+dimension $\dimSelfDualModule$ and degree ten we work at. What we do instead is
+to fix a degree, enumerate a spanning family in two independent ways, and
+compute exact ranks. This buys certainty at one degree at the cost of saying
+nothing about the ring's presentation, and it is precisely why we make no
+invariant-ring claim in section~\ref{sec:limitations}. It is also why a
+Hilbert-series cross-check, which would come from the classical side, is the
+outstanding external check we would most like to have.
 
 \paragraph{Analytic derivatives.}
 The Jacobian of section~\ref{sec:rank} is computed by analytic differentiation of
@@ -1353,13 +1407,14 @@ result.
 This paragraph is context for why the problem is worth attention; it establishes
 nothing and no later statement depends on it. The self-dual five-form is the
 Ramond--Ramond field strength of Type IIB supergravity, whose covariant field
-equations were given by Schwarz~\cite{Schwarz:1983qr} and for which manifestly
-Lorentz-invariant actions were later constructed by Dall'Agata, Lechner and
+equations were given by Schwarz~\cite{Schwarz:1983qr} and, in superspace, by
+Howe and West~\cite{Howe:1983sra}, and for which manifestly Lorentz-invariant
+actions were later constructed by Dall'Agata, Lechner and
 Tonin~\cite{DallAgata:1998ahf} using precisely the chiral-boson machinery
 referred to above. Higher-derivative corrections involving the five-form have
 been studied directly~\cite{Paulos:2008tn}, within the broader eight-derivative
 programme~\cite{Green:1997as,Liu:2022bfg}, and non-perturbatively through
-D-instanton contributions to the $R^4$ sector~\cite{Green:1997tv}. It is natural to ask whether the
+D-instanton contributions to the $R^4$ sector~\cite{Green:1997tv,Green:1997di}. It is natural to ask whether the
 degree-ten invariants classified here constrain those corrections. We do not
 answer that question and we make no Type IIB claim. The obstacles are concrete:
 the corrections live in a supersymmetric theory with additional fields, the
@@ -1367,6 +1422,17 @@ relevant invariants are not obviously the Lorentz invariants of a free five-form
 in isolation, and the action formulation carries the well-known
 difficulties~\cite{Marcus:1982yu,Sen:2019qit}. We record Type IIB as context and
 as motivation, and nothing in this paper should be read as a prediction about it.
+
+\paragraph{Causality, which we do not address.}
+A further condition sits between an invariant and a theory built from it.
+Many nonlinear theories are causal in weak fields and acausal in strong ones,
+and for self-dual theories in four dimensions weak-field causality has been
+shown to imply the strong-field property, singling out a unique causal
+representative in each family~\cite{Russo:2024kto}. Nothing of the kind is
+imposed here. The $\dimQtenQ$ directions of $\Qten$ are invariant-theoretic
+objects; whether any of them supports a causal interacting theory is a separate
+question that our computation does not touch, and it is one of the reasons we
+decline to read $\Qten$ as a count of theories.
 
 \paragraph{What is explicitly not claimed.}
 No Type IIB effective-action prediction. No statement about causal propagation or

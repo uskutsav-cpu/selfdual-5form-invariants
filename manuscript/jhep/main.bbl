@@ -54,6 +54,50 @@ X.~Bekaert and M.~Henneaux, \emph{Comments on chiral $p$-forms}, {\emph{Int. J.
   Theor. Phys.} {\bfseries 38} (1999) 1161}
   [\href{https://arxiv.org/abs/hep-th/9806062}{{\ttfamily hep-th/9806062}}].
 
+\bibitem{Sen:2015nph}
+A.~Sen, \emph{Covariant action for type {IIB} supergravity}, {\emph{JHEP}
+  {\bfseries 07} (2016) 017}
+  [\href{https://arxiv.org/abs/1511.08220}{{\ttfamily 1511.08220}}].
+
+\bibitem{Avetisyan:2021heg}
+Z.~Avetisyan, O.~Evnin and K.~Mkrtchyan, \emph{Democratic {L}agrangians for
+  nonlinear electrodynamics}, {\emph{Phys. Rev. Lett.} {\bfseries 127} (2021)
+  271601} [\href{https://arxiv.org/abs/2108.01103}{{\ttfamily 2108.01103}}].
+
+\bibitem{Avetisyan:2022zza}
+Z.~Avetisyan, O.~Evnin and K.~Mkrtchyan, \emph{Nonlinear (chiral) $p$-form
+  electrodynamics}, {\emph{JHEP} {\bfseries 08} (2022) 112}
+  [\href{https://arxiv.org/abs/2205.02522}{{\ttfamily 2205.02522}}].
+
+\bibitem{Evnin:2022kqf}
+O.~Evnin and K.~Mkrtchyan, \emph{Three approaches to chiral form interactions},
+  {\emph{Differ. Geom. Appl.} {\bfseries 89} (2023) 102016}
+  [\href{https://arxiv.org/abs/2207.01767}{{\ttfamily 2207.01767}}].
+
+\bibitem{Bandos:2020jsw}
+I.~Bandos, K.~Lechner, D.~Sorokin and P.K.~Townsend, \emph{On $p$-form gauge
+  theories and their conformal limits}, {\emph{JHEP} {\bfseries 03} (2021) 022}
+  [\href{https://arxiv.org/abs/2012.09286}{{\ttfamily 2012.09286}}].
+
+\bibitem{Deser:1976iy}
+S.~Deser and C.~Teitelboim, \emph{Duality transformations of {A}belian and
+  non-{A}belian gauge fields}, {\emph{Phys. Rev. D} {\bfseries 13} (1976)
+  1592}.
+
+\bibitem{Gaillard:1981rj}
+M.K.~Gaillard and B.~Zumino, \emph{Duality rotations for interacting fields},
+  {\emph{Nucl. Phys. B} {\bfseries 193} (1981) 221}.
+
+\bibitem{Gibbons:1995cv}
+G.W.~Gibbons and D.A.~Rasheed, \emph{Electric--magnetic duality rotations in
+  non-linear electrodynamics}, {\emph{Nucl. Phys. B} {\bfseries 454} (1995)
+  185} [\href{https://arxiv.org/abs/hep-th/9506035}{{\ttfamily
+  hep-th/9506035}}].
+
+\bibitem{Born:1934gh}
+M.~Born and L.~Infeld, \emph{Foundations of the new field theory}, {\emph{Proc.
+  R. Soc. Lond. A} {\bfseries 144} (1934) 425}.
+
 \bibitem{Bandos:2020hgy}
 I.~Bandos, K.~Lechner, D.~Sorokin and P.K.~Townsend, \emph{A non-linear
   duality-invariant conformal extension of {M}axwell's equations},
@@ -104,6 +148,40 @@ R.~Conti, S.~Negro and R.~Tateo, \emph{The $t\bar t$ perturbation and its
   geometric interpretation}, {\emph{JHEP} {\bfseries 02} (2019) 085}
   [\href{https://arxiv.org/abs/1809.09593}{{\ttfamily 1809.09593}}].
 
+\bibitem{Bonelli:2018kik}
+G.~Bonelli, N.~Doroud and M.~Zhu, \emph{$t\bar t$-deformations in closed form},
+  {\emph{JHEP} {\bfseries 06} (2018) 149}
+  [\href{https://arxiv.org/abs/1804.10967}{{\ttfamily 1804.10967}}].
+
+\bibitem{Guica:2020eab}
+M.~Guica and R.~Monten, \emph{Infinite pseudo-conformal symmetries of classical
+  $t\bar t$, $j\bar t$ and $jt_a$-deformed {CFTs}}, {\emph{SciPost Phys.}
+  {\bfseries 11} (2021) 078}
+  [\href{https://arxiv.org/abs/2011.05445}{{\ttfamily 2011.05445}}].
+
+\bibitem{Ferko:2023wyi}
+C.~Ferko, S.M.~Kuzenko, L.~Smith and G.~Tartaglino-Mazzucchelli,
+  \emph{Duality-invariant non-linear electrodynamics and stress tensor flows},
+  {\emph{Phys. Rev. D} {\bfseries 108} (2023) 106021}
+  [\href{https://arxiv.org/abs/2309.04253}{{\ttfamily 2309.04253}}].
+
+\bibitem{Witten:1996hc}
+E.~Witten, \emph{Five-brane effective action in {M}-theory}, {\emph{J. Geom.
+  Phys.} {\bfseries 22} (1997) 103}
+  [\href{https://arxiv.org/abs/hep-th/9610234}{{\ttfamily hep-th/9610234}}].
+
+\bibitem{Deger:2024jyq}
+N.S.~Deger, A.J.~Murcia and D.P.~Sorokin, \emph{Waves and strings in an
+  interacting conformal chiral 2-form theory in six dimensions}, {\emph{Phys.
+  Rev. D} {\bfseries 110} (2024) 046020}
+  [\href{https://arxiv.org/abs/2405.20375}{{\ttfamily 2405.20375}}].
+
+\bibitem{Bekaert:2002dt}
+X.~Bekaert and N.~Boulanger, \emph{Tensor gauge fields in arbitrary
+  representations of $gl(d,\mathbb{R})$: duality and {P}oincar\'e lemma},
+  {\emph{Commun. Math. Phys.} {\bfseries 245} (2004) 27}
+  [\href{https://arxiv.org/abs/hep-th/0208058}{{\ttfamily hep-th/0208058}}].
+
 \bibitem{Cederwall:2025invariants}
 M.~Cederwall, J.~Hutomo, S.M.~Kuzenko, K.~Lechner and D.P.~Sorokin, \emph{Some
   remarks on invariants},
@@ -148,6 +226,19 @@ P.S.~Wang, M.J.T.~Guy and J.H.~Davenport, \emph{P-adic reconstruction of
   \href{https://doi.org/10.1145/1089292.1089293}{\emph{SIGSAM Bull.} {\bfseries
   16} (1982) 2}.
 
+\bibitem{vzGathen:2013}
+J.~von~zur Gathen and J.~Gerhard, \emph{Modern Computer Algebra}, Cambridge
+  University Press, 3~ed. (2013).
+
+\bibitem{Cohen:1993}
+H.~Cohen, \emph{A Course in Computational Algebraic Number Theory}, vol.~138 of
+  \emph{Graduate Texts in Mathematics}, Springer (1993).
+
+\bibitem{Monagan:2004}
+M.~Monagan, \emph{Maximal quotient rational reconstruction: an almost optimal
+  algorithm for rational reconstruction},  in \emph{Proc. ISSAC '04},
+  pp.~243--249, ACM Press, 2004.
+
 \bibitem{Zippel:1979}
 R.~Zippel, \emph{Probabilistic algorithms for sparse polynomials},  in
   \emph{Symbolic and Algebraic Computation (EUROSAM '79)}, vol.~72 of
@@ -159,6 +250,23 @@ J.T.~Schwartz, \emph{Fast probabilistic algorithms for verification of
   polynomial identities}, \href{https://doi.org/10.1145/322217.322225}{\emph{J.
   ACM} {\bfseries 27} (1980) 701}.
 
+\bibitem{Weyl:1946}
+H.~Weyl, \emph{The Classical Groups: Their Invariants and Representations},
+  Princeton University Press (1946).
+
+\bibitem{Popov:1994}
+V.L.~Popov and E.B.~Vinberg, \emph{Invariant theory},  in \emph{Algebraic
+  Geometry {IV}}, vol.~55 of \emph{Encyclopaedia of Mathematical Sciences},
+  pp.~123--278, Springer (1994).
+
+\bibitem{Derksen:2002}
+H.~Derksen and G.~Kemper, \emph{Computational Invariant Theory}, vol.~130 of
+  \emph{Encyclopaedia of Mathematical Sciences}, Springer (2002).
+
+\bibitem{Sturmfels:2008}
+B.~Sturmfels, \emph{Algorithms in Invariant Theory}, Texts and Monographs in
+  Symbolic Computation, Springer, 2~ed. (2008).
+
 \bibitem{Bareiss:1968}
 E.H.~Bareiss, \emph{Sylvester's identity and multistep integer-preserving
   {G}aussian elimination},
@@ -168,6 +276,10 @@ E.H.~Bareiss, \emph{Sylvester's identity and multistep integer-preserving
 \bibitem{Schwarz:1983qr}
 J.H.~Schwarz, \emph{Covariant field equations of chiral $n=2$ $d=10$
   supergravity}, {\emph{Nucl. Phys. B} {\bfseries 226} (1983) 269}.
+
+\bibitem{Howe:1983sra}
+P.S.~Howe and P.C.~West, \emph{The complete $n=2$, $d=10$ supergravity},
+  {\emph{Nucl. Phys. B} {\bfseries 238} (1984) 181}.
 
 \bibitem{DallAgata:1998ahf}
 G.~Dall'Agata, K.~Lechner and M.~Tonin, \emph{$d=10$, $n=$ {IIB} supergravity:
@@ -198,5 +310,38 @@ J.T.~Liu, R.~Minasian, R.~Savelli and A.~Schachner, \emph{Type {IIB} at eight
 M.B.~Green and M.~Gutperle, \emph{Effects of {D}-instantons}, {\emph{Nucl.
   Phys. B} {\bfseries 498} (1997) 195}
   [\href{https://arxiv.org/abs/hep-th/9701093}{{\ttfamily hep-th/9701093}}].
+
+\bibitem{Green:1997di}
+M.B.~Green and P.~Vanhove, \emph{{D}-instantons, strings and {M}-theory},
+  {\emph{Phys. Lett. B} {\bfseries 408} (1997) 122}
+  [\href{https://arxiv.org/abs/hep-th/9704145}{{\ttfamily hep-th/9704145}}].
+
+\bibitem{Russo:2024kto}
+J.G.~Russo and P.K.~Townsend, \emph{Causal self-dual electrodynamics},
+  \href{https://arxiv.org/abs/2401.06707}{{\ttfamily 2401.06707}}.
+
+\bibitem{VanProeyen:1999ni}
+A.~Van~Proeyen, \emph{Tools for supersymmetry},
+  \href{https://arxiv.org/abs/hep-th/9910030}{{\ttfamily hep-th/9910030}}.
+
+\bibitem{Freedman:2012zz}
+D.Z.~Freedman and A.~Van~Proeyen, \emph{Supergravity}, Cambridge University
+  Press (2012).
+
+\bibitem{Polchinski:1998rr}
+J.~Polchinski, \emph{String Theory. Volume {II}: Superstring Theory and
+  Beyond}, Cambridge University Press (1998).
+
+\bibitem{GreenSchwarzWitten:1987}
+M.B.~Green, J.H.~Schwarz and E.~Witten, \emph{Superstring Theory}, Cambridge
+  University Press (1987).
+
+\bibitem{Lawson:1989}
+H.B.~Lawson and M.-L.~Michelsohn, \emph{Spin Geometry}, vol.~38 of
+  \emph{Princeton Mathematical Series}, Princeton University Press (1989).
+
+\bibitem{Hunter:2007}
+J.D.~Hunter, \emph{Matplotlib: a 2{D} graphics environment}, {\emph{Comput.
+  Sci. Eng.} {\bfseries 9} (2007) 90}.
 
 \end{thebibliography}\endgroup

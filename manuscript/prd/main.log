@@ -247,10 +247,10 @@ LaTeX Info: Redefining \bm on input line 218.
 \c@theorem=\count279
  (generated/numbers.tex)
 Class revtex4-2 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 56.
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 56.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 56.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 56.
+lass! (Proceeding with fingers crossed.) on input line 72.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 72.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 72.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 72.
  (l3backend-xetex.def
 File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 \c__kernel_sys_dvipdfmx_version_int=\count280
@@ -265,131 +265,157 @@ File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 5
-6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 7
+2.
  (ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 \openout3 = `mainNotes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 83.
 
  (umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
 
  (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1]
-Underfull \hbox (badness 2005) in paragraph at lines 219--223
+Underfull \hbox (badness 2005) in paragraph at lines 270--274
  []\TU/lmr/m/n/10 An explicit tensor–spinor bridge for the ten-
  []
 
 [2] (tables/tab01_notation.tex) [3]
-Underfull \hbox (badness 1189) in paragraph at lines 434--439
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 442.
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 485--490
 \TU/lmr/m/n/10 a dimension count fixes the image exactly. With
  []
 
+
+Overfull \vbox (9.0812pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (9.0812pt too high) has occurred while \output is active []
+
+
 [4]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 514
+LaTeX Font Info:    Trying to load font information for U+euf on input line 565
 .
  (ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-Underfull \hbox (badness 1057) in paragraph at lines 566--571
+Underfull \hbox (badness 1057) in paragraph at lines 617--622
 \TU/lmr/m/n/10 and [] determines $\OML/cmm/m/it/10 L$ \TU/lmr/m/n/10 only up to
  the square-root
  []
 
-
-Underfull \hbox (badness 1231) in paragraph at lines 605--609
+[5]
+Underfull \hbox (badness 1231) in paragraph at lines 656--660
  \TU/lmr/m/it/10 a. Two independent evaluators.[] \TU/lmr/m/n/10 The tensor and
 
  []
 
-[5]
-Underfull \hbox (badness 7649) in paragraph at lines 651--657
- \TU/lmr/m/it/10 d. Analytic derivatives.[] \TU/lmr/m/n/10 The Jacobian of sec-
+
+Underfull \hbox (badness 8056) in paragraph at lines 721--727
+ \TU/lmr/m/it/10 e. Analytic derivatives.[] \TU/lmr/m/n/10 The Jacobian of sec-
 
  []
 
-(tables/tab02_degree_ranks.tex)
+[6] (tables/tab02_degree_ranks.tex)
 File: figures/fig01_degree_spectrum.pdf Graphic file (type pdf)
 <use figures/fig01_degree_spectrum.pdf>
- [6] (tables/tab05_candidates.tex)
+ (tables/tab05_candidates.tex)
 File: figures/fig02_degree8_ablation.pdf Graphic file (type pdf)
 <use figures/fig02_degree8_ablation.pdf>
  [7] [8]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 888.
+
 File: figures/fig04_pivot_composition.pdf Graphic file (type pdf)
 <use figures/fig04_pivot_composition.pdf>
-
 (tables/tab06_matrix.tex)
 File: figures/fig03_rank_matrix.pdf Graphic file (type pdf)
 <use figures/fig03_rank_matrix.pdf>
  [9] [10]
 File: figures/fig05_rational_heights.pdf Graphic file (type pdf)
 <use figures/fig05_rational_heights.pdf>
- (tables/tab07_degree10.tex)
-(tables/tab08_quotient.tex) [11]
-Underfull \hbox (badness 2103) in paragraph at lines 1155--1160
+ (tables/tab07_degree10.tex) [11]
+(tables/tab08_quotient.tex) [12]
+Underfull \hbox (badness 2103) in paragraph at lines 1225--1230
 \TU/lmr/m/n/10 identically, for every five-form whatsoever. Since
  []
 
-[12] (tables/tab11_tests.tex) [13] (tables/tab09_b10.tex)
-(tables/tab04_spans.tex) (tables/tab03_products.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1328--1332
+(tables/tab11_tests.tex) [13]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 1318.
+
+(tables/tab09_b10.tex) (tables/tab04_spans.tex) (tables/tab03_products.tex)
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 1398--1402
  \TU/lmr/m/it/10 c. Generated macros.[] \TU/lmr/m/n/10 Every scientific num-
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 1328--1332
+Underfull \hbox (badness 2269) in paragraph at lines 1398--1402
 \TU/lmr/m/n/10 ber in this document is a macro expanded from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1343--1350
+Underfull \hbox (badness 10000) in paragraph at lines 1413--1420
  \TU/lmr/m/it/10 f. Deterministic figures and byte-reproducible
  []
 
 
-Underfull \hbox (badness 3792) in paragraph at lines 1343--1350
+Underfull \hbox (badness 3792) in paragraph at lines 1413--1420
 \TU/lmr/m/n/10 timestamps suppressed, so repeated runs produce
  []
 
-(tables/tab10_certificates.tex) (tables/tab12_environment.tex) [14]
-Underfull \hbox (badness 1783) in paragraph at lines 1417--1420
+(tables/tab10_certificates.tex) (tables/tab12_environment.tex)
+Underfull \hbox (badness 1783) in paragraph at lines 1499--1502
  \TU/lmr/m/n/10 flow reaches from the generators it is given.
  []
 
-
-Underfull \hbox (badness 4686) in paragraph at lines 1431--1443
+[15]
+Underfull \hbox (badness 4686) in paragraph at lines 1513--1525
  []\TU/lmr/bx/n/10 Enumeration exhaustiveness is corrobo-
  []
 
-[15] [16] (tables/tab13_claim_strength.tex) [17]
-Underfull \hbox (badness 1803) in paragraph at lines 1586--1588
+[16] (tables/tab13_claim_strength.tex) [17]
+Underfull \hbox (badness 1803) in paragraph at lines 1668--1670
  []\TU/lmr/m/n/10 The mentor-review correspondence and review
  []
 
 (appendices/app_a_conventions.tex
-Underfull \hbox (badness 3039) in paragraph at lines 62--66
+Underfull \hbox (badness 1668) in paragraph at lines 50--57
+ \TU/lmr/m/it/10 e. Clifford algebra.[] \TU/lmr/m/n/10 Conventions here follow 
+the
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 70--74
  \TU/lmr/m/it/10 g. Charge conjugation.[] $\OML/cmm/m/it/10 C$ \TU/lmr/m/n/10 s
 atisfies $\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 ^^@[]\OML/cmm/m/it/10 C[] \OT1/cmr/
 m/n/10 =
@@ -431,31 +457,48 @@ Underfull \hbox (badness 3724) in paragraph at lines 62--64
 st
  []
 
-[22]) (appendices/app_j_b10.tex) (appendices/app_k_algorithms.tex
+) (appendices/app_j_b10.tex [22]) (appendices/app_k_algorithms.tex
 Underfull \hbox (badness 5446) in paragraph at lines 5--10
  \TU/lmr/m/it/10 a. Graph canonicalisation.[] \TU/lmr/m/n/10 Contraction patter
 ns
  []
 
-[23]) (appendices/app_l_reproduction.tex [24]
-Underfull \hbox (badness 10000) in paragraph at lines 76--84
+[23]) (appendices/app_l_reproduction.tex
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
  \TU/lmr/m/it/10 g. Expected outputs.[] \TU/lmr/m/n/10 The headline values are
  []
 
-) (main.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 245--252
- []\TU/lmr/m/n/9 J. Hutomo, K. Lechner, and D. P. Sorokin
+[24]) (main.bbl
+Underfull \hbox (badness 4441) in paragraph at lines 332--336
+ \TU/lmr/m/n/9 Mazzucchelli, Phys. Rev. D \TU/lmr/bx/n/9 108\TU/lmr/m/n/9 , 106
+021 (2023),
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 256--263
+Underfull \hbox (badness 10000) in paragraph at lines 383--390
+ []\TU/lmr/m/n/9 J. Hutomo, K. Lechner, and D. P. Sorokin
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 394--401
  []\TU/lmr/m/n/9 A. Elamaran, C. Ferko, and S. Scarlett
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 314--319
+Underfull \hbox (badness 1418) in paragraph at lines 473--478
  \TU/lmr/m/it/9 ROSAM ’79)\TU/lmr/m/n/9 , Lecture Notes in Computer Science,
  []
 
+
+Underfull \hbox (badness 1442) in paragraph at lines 512--516
+ []\TU/lmr/m/n/9 B. Sturmfels, \TU/lmr/m/it/9 Algorithms in Invariant Theory\TU
+/lmr/m/n/9 , 2nd
+ []
+
+
+Underfull \hbox (badness 2205) in paragraph at lines 607--612
+ []\TU/lmr/m/n/9 A. Van Proeyen,  (1999), lectures, spring school,
+ []
+
 ) [26] (main.aux) )
-Output written on main.xdv (26 pages, 1066648 bytes).
+Output written on main.xdv (26 pages, 1141992 bytes).

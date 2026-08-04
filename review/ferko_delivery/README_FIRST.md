@@ -6,7 +6,7 @@ Draft for mentor review. Not submitted anywhere.
 
 - Repository: `github.com/uskutsav-cpu/selfdual-5form-invariants`
 - Branch: `publication/jhep-mentor-draft`
-- Draft commit: `892552675d7b7366125ec0ce1bf344b45fdbd9f9`
+- Draft commit: `79c3ef7d1d000a9704fd385a086c63f8f5d254ce`
 - Certificates behind the draft: 27,
   hashed in `Ferko_certificate_manifest.json`
 

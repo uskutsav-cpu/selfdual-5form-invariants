@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{35}%
+\begin{thebibliography}{66}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -131,6 +131,86 @@
   J. Theor. Phys.}\ }\textbf {\bibinfo {volume} {38}},\ \bibinfo {pages} {1161}
   (\bibinfo {year} {1999})},\ \Eprint {https://arxiv.org/abs/hep-th/9806062}
   {arXiv:hep-th/9806062} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sen}(2016)}]{Sen:2015nph}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Sen}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {JHEP}\
+  }\textbf {\bibinfo {volume} {07}},\ \bibinfo {pages} {017}},\ \Eprint
+  {https://arxiv.org/abs/1511.08220} {arXiv:1511.08220} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Avetisyan}\ \emph {et~al.}(2021)\citenamefont
+  {Avetisyan}, \citenamefont {Evnin},\ and\ \citenamefont
+  {Mkrtchyan}}]{Avetisyan:2021heg}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Z.}~\bibnamefont
+  {Avetisyan}}, \bibinfo {author} {\bibfnamefont {O.}~\bibnamefont {Evnin}},\
+  and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Mkrtchyan}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\
+  }\textbf {\bibinfo {volume} {127}},\ \bibinfo {pages} {271601} (\bibinfo
+  {year} {2021})},\ \Eprint {https://arxiv.org/abs/2108.01103}
+  {arXiv:2108.01103} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Avetisyan}\ \emph {et~al.}(2022)\citenamefont
+  {Avetisyan}, \citenamefont {Evnin},\ and\ \citenamefont
+  {Mkrtchyan}}]{Avetisyan:2022zza}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Z.}~\bibnamefont
+  {Avetisyan}}, \bibinfo {author} {\bibfnamefont {O.}~\bibnamefont {Evnin}},\
+  and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Mkrtchyan}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {JHEP}\ }\textbf
+  {\bibinfo {volume} {08}},\ \bibinfo {pages} {112}},\ \Eprint
+  {https://arxiv.org/abs/2205.02522} {arXiv:2205.02522} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Evnin}\ and\ \citenamefont
+  {Mkrtchyan}(2023)}]{Evnin:2022kqf}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {O.}~\bibnamefont
+  {Evnin}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Mkrtchyan}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Differ. Geom. Appl.}\ }\textbf {\bibinfo {volume} {89}},\ \bibinfo {pages}
+  {102016} (\bibinfo {year} {2023})},\ \Eprint
+  {https://arxiv.org/abs/2207.01767} {arXiv:2207.01767} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bandos}\ \emph
+  {et~al.}(2021{\natexlab{a}})\citenamefont {Bandos}, \citenamefont {Lechner},
+  \citenamefont {Sorokin},\ and\ \citenamefont {Townsend}}]{Bandos:2020jsw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Bandos}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Lechner}},
+  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sorokin}},\ and\ \bibinfo
+  {author} {\bibfnamefont {P.~K.}\ \bibnamefont {Townsend}},\ }\href@noop {}
+  {\bibfield  {journal} {\bibinfo  {journal} {JHEP}\ }\textbf {\bibinfo
+  {volume} {03}},\ \bibinfo {pages} {022}},\ \Eprint
+  {https://arxiv.org/abs/2012.09286} {arXiv:2012.09286} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Deser}\ and\ \citenamefont
+  {Teitelboim}(1976)}]{Deser:1976iy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Deser}}\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Teitelboim}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev. D}\ }\textbf {\bibinfo {volume} {13}},\ \bibinfo {pages} {1592}
+  (\bibinfo {year} {1976})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gaillard}\ and\ \citenamefont
+  {Zumino}(1981)}]{Gaillard:1981rj}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~K.}\ \bibnamefont
+  {Gaillard}}\ and\ \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Zumino}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl.
+  Phys. B}\ }\textbf {\bibinfo {volume} {193}},\ \bibinfo {pages} {221}
+  (\bibinfo {year} {1981})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gibbons}\ and\ \citenamefont
+  {Rasheed}(1995)}]{Gibbons:1995cv}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~W.}\ \bibnamefont
+  {Gibbons}}\ and\ \bibinfo {author} {\bibfnamefont {D.~A.}\ \bibnamefont
+  {Rasheed}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl.
+  Phys. B}\ }\textbf {\bibinfo {volume} {454}},\ \bibinfo {pages} {185}
+  (\bibinfo {year} {1995})},\ \Eprint {https://arxiv.org/abs/hep-th/9506035}
+  {arXiv:hep-th/9506035} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Born}\ and\ \citenamefont
+  {Infeld}(1934)}]{Born:1934gh}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Born}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Infeld}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Proc. R. Soc.
+  Lond. A}\ }\textbf {\bibinfo {volume} {144}},\ \bibinfo {pages} {425}
+  (\bibinfo {year} {1934})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bandos}\ \emph {et~al.}(2020)\citenamefont {Bandos},
   \citenamefont {Lechner}, \citenamefont {Sorokin},\ and\ \citenamefont
   {Townsend}}]{Bandos:2020hgy}%
@@ -143,17 +223,17 @@
    {journal} {Phys. Rev. D}\ }\textbf {\bibinfo {volume} {102}},\ \bibinfo
   {pages} {121703} (\bibinfo {year} {2020})},\ \Eprint
   {https://arxiv.org/abs/2007.09092} {arXiv:2007.09092} \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bandos}\ \emph {et~al.}(2021)\citenamefont {Bandos},
-  \citenamefont {Lechner}, \citenamefont {Sorokin},\ and\ \citenamefont
-  {Townsend}}]{Bandos:2021rqy}%
+\bibitem [{\citenamefont {Bandos}\ \emph
+  {et~al.}(2021{\natexlab{b}})\citenamefont {Bandos}, \citenamefont {Lechner},
+  \citenamefont {Sorokin},\ and\ \citenamefont {Townsend}}]{Bandos:2021rqy}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
   {Bandos}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Lechner}},
   \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Sorokin}},\ and\ \bibinfo
   {author} {\bibfnamefont {P.~K.}\ \bibnamefont {Townsend}},\ }\href@noop {} {\
-   (\bibinfo {year} {2021})},\ \bibinfo {note} {no journal reference is
-  recorded on the arXiv listing.},\ \Eprint {https://arxiv.org/abs/2106.07547}
-  {arXiv:2106.07547} \BibitemShut {NoStop}%
+   (\bibinfo {year} {2021}{\natexlab{b}})},\ \bibinfo {note} {no journal
+  reference is recorded on the arXiv listing.},\ \Eprint
+  {https://arxiv.org/abs/2106.07547} {arXiv:2106.07547} \BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Townsend}(2019)}]{Townsend:2019ftg}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~K.}\ \bibnamefont
@@ -222,6 +302,64 @@
   {\bibfield  {journal} {\bibinfo  {journal} {JHEP}\ }\textbf {\bibinfo
   {volume} {02}},\ \bibinfo {pages} {085}},\ \Eprint
   {https://arxiv.org/abs/1809.09593} {arXiv:1809.09593} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bonelli}\ \emph {et~al.}(2018)\citenamefont
+  {Bonelli}, \citenamefont {Doroud},\ and\ \citenamefont
+  {Zhu}}]{Bonelli:2018kik}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Bonelli}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Doroud}},\
+  and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Zhu}},\ }\href@noop
+  {} {\bibfield  {journal} {\bibinfo  {journal} {JHEP}\ }\textbf {\bibinfo
+  {volume} {06}},\ \bibinfo {pages} {149}},\ \Eprint
+  {https://arxiv.org/abs/1804.10967} {arXiv:1804.10967} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Guica}\ and\ \citenamefont
+  {Monten}(2021)}]{Guica:2020eab}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Guica}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Monten}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {SciPost Phys.}\
+  }\textbf {\bibinfo {volume} {11}},\ \bibinfo {pages} {078} (\bibinfo {year}
+  {2021})},\ \Eprint {https://arxiv.org/abs/2011.05445} {arXiv:2011.05445}
+  \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ferko}\ \emph {et~al.}(2023)\citenamefont {Ferko},
+  \citenamefont {Kuzenko}, \citenamefont {Smith},\ and\ \citenamefont
+  {Tartaglino-Mazzucchelli}}]{Ferko:2023wyi}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Ferko}}, \bibinfo {author} {\bibfnamefont {S.~M.}\ \bibnamefont {Kuzenko}},
+  \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Smith}},\ and\ \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Tartaglino-Mazzucchelli}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. D}\
+  }\textbf {\bibinfo {volume} {108}},\ \bibinfo {pages} {106021} (\bibinfo
+  {year} {2023})},\ \Eprint {https://arxiv.org/abs/2309.04253}
+  {arXiv:2309.04253} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Witten}(1997)}]{Witten:1996hc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Witten}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Geom. Phys.}\ }\textbf {\bibinfo {volume} {22}},\ \bibinfo {pages} {103}
+  (\bibinfo {year} {1997})},\ \Eprint {https://arxiv.org/abs/hep-th/9610234}
+  {arXiv:hep-th/9610234} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Deger}\ \emph {et~al.}(2024)\citenamefont {Deger},
+  \citenamefont {Murcia},\ and\ \citenamefont {Sorokin}}]{Deger:2024jyq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~S.}\ \bibnamefont
+  {Deger}}, \bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont {Murcia}},\
+  and\ \bibinfo {author} {\bibfnamefont {D.~P.}\ \bibnamefont {Sorokin}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. D}\
+  }\textbf {\bibinfo {volume} {110}},\ \bibinfo {pages} {046020} (\bibinfo
+  {year} {2024})},\ \Eprint {https://arxiv.org/abs/2405.20375}
+  {arXiv:2405.20375} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bekaert}\ and\ \citenamefont
+  {Boulanger}(2004)}]{Bekaert:2002dt}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.}~\bibnamefont
+  {Bekaert}}\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Boulanger}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Commun. Math. Phys.}\ }\textbf {\bibinfo {volume} {245}},\ \bibinfo {pages}
+  {27} (\bibinfo {year} {2004})},\ \Eprint
+  {https://arxiv.org/abs/hep-th/0208058} {arXiv:hep-th/0208058} \BibitemShut
+  {NoStop}%
 \bibitem [{\citenamefont {Cederwall}\ \emph {et~al.}(2026)\citenamefont
   {Cederwall}, \citenamefont {Hutomo}, \citenamefont {Kuzenko}, \citenamefont
   {Lechner},\ and\ \citenamefont {Sorokin}}]{Cederwall:2025invariants}%
@@ -308,6 +446,27 @@
   }\href {https://doi.org/10.1145/1089292.1089293} {\bibfield  {journal}
   {\bibinfo  {journal} {SIGSAM Bull.}\ }\textbf {\bibinfo {volume} {16}},\
   \bibinfo {pages} {2} (\bibinfo {year} {1982})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {von~zur Gathen}\ and\ \citenamefont
+  {Gerhard}(2013)}]{vzGathen:2013}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {von~zur Gathen}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Gerhard}},\ }\href@noop {} {\emph {\bibinfo {title} {Modern Computer
+  Algebra}}},\ \bibinfo {edition} {3rd}\ ed.\ (\bibinfo  {publisher} {Cambridge
+  University Press},\ \bibinfo {year} {2013})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cohen}(1993)}]{Cohen:1993}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Cohen}},\ }\href@noop {} {\emph {\bibinfo {title} {A Course in Computational
+  Algebraic Number Theory}}},\ \bibinfo {series} {Graduate Texts in
+  Mathematics}, Vol.\ \bibinfo {volume} {138}\ (\bibinfo  {publisher}
+  {Springer},\ \bibinfo {year} {1993})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Monagan}(2004)}]{Monagan:2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Monagan}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {Proc. ISSAC
+  '04}}}\ (\bibinfo  {publisher} {ACM Press},\ \bibinfo {year} {2004})\ pp.\
+  \bibinfo {pages} {243--249}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Zippel}(1979)}]{Zippel:1979}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
@@ -322,6 +481,38 @@
   {Schwartz}},\ }\href {https://doi.org/10.1145/322217.322225} {\bibfield
   {journal} {\bibinfo  {journal} {J. ACM}\ }\textbf {\bibinfo {volume} {27}},\
   \bibinfo {pages} {701} (\bibinfo {year} {1980})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Weyl}(1946)}]{Weyl:1946}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Weyl}},\ }\href@noop {} {\emph {\bibinfo {title} {The Classical Groups:
+  Their Invariants and Representations}}}\ (\bibinfo  {publisher} {Princeton
+  University Press},\ \bibinfo {year} {1946})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Popov}\ and\ \citenamefont
+  {Vinberg}(1994)}]{Popov:1994}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~L.}\ \bibnamefont
+  {Popov}}\ and\ \bibinfo {author} {\bibfnamefont {E.~B.}\ \bibnamefont
+  {Vinberg}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {Algebraic
+  Geometry {IV}}}},\ \bibinfo {series} {Encyclopaedia of Mathematical
+  Sciences}, Vol.~\bibinfo {volume} {55}\ (\bibinfo  {publisher} {Springer},\
+  \bibinfo {year} {1994})\ pp.\ \bibinfo {pages} {123--278}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Derksen}\ and\ \citenamefont
+  {Kemper}(2002)}]{Derksen:2002}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Derksen}}\ and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Kemper}},\ }\href@noop {} {\emph {\bibinfo {title} {Computational Invariant
+  Theory}}},\ \bibinfo {series} {Encyclopaedia of Mathematical Sciences}, Vol.\
+  \bibinfo {volume} {130}\ (\bibinfo  {publisher} {Springer},\ \bibinfo {year}
+  {2002})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sturmfels}(2008)}]{Sturmfels:2008}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Sturmfels}},\ }\href@noop {} {\emph {\bibinfo {title} {Algorithms in
+  Invariant Theory}}},\ \bibinfo {edition} {2nd}\ ed.,\ Texts and Monographs in
+  Symbolic Computation\ (\bibinfo  {publisher} {Springer},\ \bibinfo {year}
+  {2008})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bareiss}(1968)}]{Bareiss:1968}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~H.}\ \bibnamefont
@@ -335,6 +526,14 @@
   {Schwarz}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl.
   Phys. B}\ }\textbf {\bibinfo {volume} {226}},\ \bibinfo {pages} {269}
   (\bibinfo {year} {1983})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Howe}\ and\ \citenamefont
+  {West}(1984)}]{Howe:1983sra}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~S.}\ \bibnamefont
+  {Howe}}\ and\ \bibinfo {author} {\bibfnamefont {P.~C.}\ \bibnamefont
+  {West}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl.
+  Phys. B}\ }\textbf {\bibinfo {volume} {238}},\ \bibinfo {pages} {181}
+  (\bibinfo {year} {1984})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Dall'Agata}\ \emph {et~al.}(1998)\citenamefont
   {Dall'Agata}, \citenamefont {Lechner},\ and\ \citenamefont
   {Tonin}}]{DallAgata:1998ahf}%
@@ -385,4 +584,67 @@
   {Nucl. Phys. B}\ }\textbf {\bibinfo {volume} {498}},\ \bibinfo {pages} {195}
   (\bibinfo {year} {1997})},\ \Eprint {https://arxiv.org/abs/hep-th/9701093}
   {arXiv:hep-th/9701093} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Green}\ and\ \citenamefont
+  {Vanhove}(1997)}]{Green:1997di}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~B.}\ \bibnamefont
+  {Green}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Vanhove}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Lett. B}\ }\textbf {\bibinfo {volume} {408}},\ \bibinfo {pages} {122}
+  (\bibinfo {year} {1997})},\ \Eprint {https://arxiv.org/abs/hep-th/9704145}
+  {arXiv:hep-th/9704145} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Russo}\ and\ \citenamefont
+  {Townsend}(2024)}]{Russo:2024kto}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~G.}\ \bibnamefont
+  {Russo}}\ and\ \bibinfo {author} {\bibfnamefont {P.~K.}\ \bibnamefont
+  {Townsend}},\ }\href@noop {} {\  (\bibinfo {year} {2024})},\ \bibinfo {note}
+  {no journal reference is recorded on the arXiv listing.},\ \Eprint
+  {https://arxiv.org/abs/2401.06707} {arXiv:2401.06707} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Van~Proeyen}(1999)}]{VanProeyen:1999ni}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Van~Proeyen}},\ }\href@noop {} {\  (\bibinfo {year} {1999})},\ \bibinfo
+  {note} {lectures, spring school, C\u{a}lim\u{a}ne\c{s}ti, 1998.},\ \Eprint
+  {https://arxiv.org/abs/hep-th/9910030} {arXiv:hep-th/9910030} \BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Freedman}\ and\ \citenamefont
+  {Van~Proeyen}(2012)}]{Freedman:2012zz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~Z.}\ \bibnamefont
+  {Freedman}}\ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Van~Proeyen}},\ }\href@noop {} {\emph {\bibinfo {title} {Supergravity}}}\
+  (\bibinfo  {publisher} {Cambridge University Press},\ \bibinfo {year}
+  {2012})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Polchinski}(1998)}]{Polchinski:1998rr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Polchinski}},\ }\href@noop {} {\emph {\bibinfo {title} {String Theory.
+  Volume {II}: Superstring Theory and Beyond}}}\ (\bibinfo  {publisher}
+  {Cambridge University Press},\ \bibinfo {year} {1998})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Green}\ \emph {et~al.}(1987)\citenamefont {Green},
+  \citenamefont {Schwarz},\ and\ \citenamefont
+  {Witten}}]{GreenSchwarzWitten:1987}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~B.}\ \bibnamefont
+  {Green}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Schwarz}},\
+  and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Witten}},\
+  }\href@noop {} {\emph {\bibinfo {title} {Superstring Theory}}}\ (\bibinfo
+  {publisher} {Cambridge University Press},\ \bibinfo {year} {1987})\ \bibinfo
+  {note} {cambridge Monographs on Mathematical Physics.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Lawson}\ and\ \citenamefont
+  {Michelsohn}(1989)}]{Lawson:1989}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~B.}\ \bibnamefont
+  {Lawson}}\ and\ \bibinfo {author} {\bibfnamefont {M.-L.}\ \bibnamefont
+  {Michelsohn}},\ }\href@noop {} {\emph {\bibinfo {title} {Spin Geometry}}},\
+  \bibinfo {series} {Princeton Mathematical Series}, Vol.~\bibinfo {volume}
+  {38}\ (\bibinfo  {publisher} {Princeton University Press},\ \bibinfo {year}
+  {1989})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hunter}(2007)}]{Hunter:2007}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~D.}\ \bibnamefont
+  {Hunter}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Comput. Sci. Eng.}\ }\textbf {\bibinfo {volume} {9}},\ \bibinfo {pages} {90}
+  (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
 \end{thebibliography}%

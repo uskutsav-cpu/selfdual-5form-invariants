@@ -278,12 +278,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
  (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 172
+LaTeX Font Info:    Trying to load font information for U+euf on input line 190
 .
  (ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-Underfull \hbox (badness 1418) in paragraph at lines 178--181
+Underfull \hbox (badness 1418) in paragraph at lines 196--199
 []\TU/lmr/m/it/10 The tensor–spinor bridge.\TU/lmr/m/n/10 —Two independent con-
 
  []
@@ -291,27 +291,35 @@ Underfull \hbox (badness 1418) in paragraph at lines 178--181
 [2]
 File: figures/fig05_rational_heights.pdf Graphic file (type pdf)
 <use figures/fig05_rational_heights.pdf>
+ [3]
 File: figures/fig01_degree_spectrum.pdf Graphic file (type pdf)
 <use figures/fig01_degree_spectrum.pdf>
- [3]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 433.
-
-[4]
-Underfull \hbox (badness 1147) in paragraph at lines 578--588
+ [4]
+Underfull \hbox (badness 1147) in paragraph at lines 596--606
 \TU/lmr/m/n/10 dimensional module would settle the exhaustiveness
  []
 
-(main.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 191--196
+(main.bbl [5]
+Underfull \hbox (badness 4441) in paragraph at lines 359--365
+ \TU/lmr/m/n/9 Mazzucchelli, Phys. Rev. D \TU/lmr/bx/n/9 108\TU/lmr/m/n/9 , 106
+021 (2023),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 383--388
  []\TU/lmr/m/n/9 J. Hutomo, K. Lechner, and D. P. Sorokin
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 258--265
+
+Underfull \hbox (badness 1442) in paragraph at lines 416--420
+ []\TU/lmr/m/n/9 B. Sturmfels, \TU/lmr/m/it/9 Algorithms in Invariant Theory\TU
+/lmr/m/n/9 , 2nd
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 482--489
  []\TU/lmr/m/n/9 A. Elamaran, C. Ferko, and S. Scarlett
  []
 
 ) [6] (main.aux) )
-Output written on main.xdv (6 pages, 264876 bytes).
+Output written on main.xdv (6 pages, 294592 bytes).
