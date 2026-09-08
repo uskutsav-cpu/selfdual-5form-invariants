@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "certificate_sha256": "01f9ab8d8f966827f820541a6e0bfec8e8bf64f710ec5b9f3be6dc825c61ed12",
+  "wrapper_sha256": "54b50e869113543eb4b9d2424263511ae94be3b7ac026621bbf33b202849e747",
+  "commands": {
+    "math_verify_exact_source_certificate": {
+      "exit_code": 0,
+      "seconds": 0.8507983329473063,
+      "logs": {
+        "stdout.log": {
+          "sha256": "7c0613f1ffb5e33fe148ca64f108b68267da525229ceb335c07b06a696c4fc6f",
+          "bytes": 2019
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    "math_portable_all_saved_evidence": {
+      "exit_code": 0,
+      "seconds": 6.010386500041932,
+      "logs": {
+        "stdout.log": {
+          "sha256": "a1f607ad29444daa6ae2250dd9d13dc9dc201163358956f36b34d16a5b4db3ac",
+          "bytes": 853
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    "math_portable_source_only": {
+      "exit_code": 0,
+      "seconds": 0.7877670000307262,
+      "logs": {
+        "stdout.log": {
+          "sha256": "0618135c5d92a8842c2af3a73da9c4de41edfe5b040b81f7db38545d5422b297",
+          "bytes": 721
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    "math_negative_source_integer": {
+      "exit_code": 1,
+      "seconds": 0.5500165830599144,
+      "logs": {
+        "stdout.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr.log": {
+          "sha256": "18f1590352b2cb52717b68156334a7e80bb61de12e07e200e2a9a10ebad26027",
+          "bytes": 516
+        }
+      }
+    },
+    "math_negative_canonical_map": {
+      "exit_code": 1,
+      "seconds": 0.3156264170538634,
+      "logs": {
+        "stdout.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr.log": {
+          "sha256": "3a05015f68e555284d0871273f38df7f77eea240242ecdb223d99af0a756e7ed",
+          "bytes": 1034
+        }
+      }
+    }
+  },
+  "negative_test_assertions": {
+    "changed_integer_rejected": true,
+    "changed_canonical_coefficient_rejected": true,
+    "authoritative_originals_unchanged": true,
+    "negative_tests_use_isolated_copies": true
+  },
+  "scope": "Low-cost saved-evidence algebra, consistency, and hashes; no tensor recomputation or independent Hilbert-series derivation."
+}

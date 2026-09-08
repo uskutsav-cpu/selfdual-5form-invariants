@@ -1,0 +1,47 @@
+{
+ "schema": 1,
+ "generated_by": "scripts/b10_p10_characteristic_zero.py",
+ "exact_domain": "Q, via CRT + rational reconstruction then Fraction arithmetic",
+ "fitting_primes": [
+  32693,
+  32713,
+  32717,
+  32719,
+  32749,
+  32771,
+  32779
+ ],
+ "holdout_prime": 32783,
+ "n_published": 12,
+ "n_lifted": 12,
+ "failed": [],
+ "holdout_mismatches": [],
+ "dim_B10_over_Q": 12,
+ "dim_P10_over_Q": 2,
+ "dim_B10_plus_P10_over_Q": 13,
+ "dim_B10_cap_P10_over_Q": 1,
+ "lifted_subset_rank": 12,
+ "lifted_subset_plus_P10_rank": 13,
+ "lifted_subset_intersection": 1,
+ "why_subset_values_are_not_dimensions": "the unlifted rows can only enlarge the span, so the subset's rank is a lower bound on dim B10 and its intersection with P10 is not comparable to dim(B10 cap P10) in either direction",
+ "settled": true,
+ "permitted_wording": "dim_Q(B10 cap P10) = 1, with an explicit integer generator verified at a fresh prime",
+ "generator": {
+  "schema": 1,
+  "generated_by": "scripts/b10_p10_characteristic_zero.py + generator step",
+  "identity": "an integer combination of published candidates equals an integer multiple of a pure product",
+  "published_combination_integer": {
+   "P10_01": -55,
+   "P10_02": -252,
+   "P10_05": 4200,
+   "P10_06": 5040
+  },
+  "atlas_combination_integer": {
+   "I4_1*I6_1": -1040
+  },
+  "supported_only_on_products": true,
+  "verified_at_fresh_prime": 32869,
+  "fresh_samples": 6,
+  "identity_holds": true
+ }
+}

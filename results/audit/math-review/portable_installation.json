@@ -1,0 +1,8 @@
+{
+  "scripts/verify_independent_audit.py": "54b50e869113543eb4b9d2424263511ae94be3b7ac026621bbf33b202849e747",
+  "results/audit/math-review/verify_source_crt.py": "3a6604ad0aa982cf48560a2638422c5fabc74b69c9eb04678a682ca50bd9188e",
+  "results/audit/math-review/source_bound_review.py": "e239aa4ff9e3efbf5b50f9f9e27f67575c52240c8caaba7d9106a54954a0dc1e",
+  "results/audit/math-review/source_bound_review.json": "030aeae09d25c10601abc3e5c4439b100d6146f1906403be7d4c8c8d1c325e76",
+  "results/audit/math-review/SOURCE_CRT_METHOD_REVIEW.md": "38fccf3c4582161c10bcce3b548edd414e345a82ad38aef2e9d664fe95474bdf",
+  "results/audit/math-review/source_crt_independent_verification.json": "7c0613f1ffb5e33fe148ca64f108b68267da525229ceb335c07b06a696c4fc6f"
+}

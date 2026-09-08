@@ -1,0 +1,32 @@
+{
+ "architecture": "arm64",
+ "artifact_sha256_first32": {
+  "Q10_ambiguity_relationship.json": "427ab5d0a927f5351c300be47d4e8b42",
+  "Q10_basis_comparison.json": "3ec56cf5e77a85b8b9e15ba12ffd09eb",
+  "Q10_levelA_levelB_map.json": "9cb1f7497e685997493f5bf47dc352c8",
+  "Q10_pure_N4125_basis.json": "33dbec137d84f65a15baf198c389ba80",
+  "Q10_pure_N4125_basis_maps.json": "196e68d735d2d9686ec5f52257c4b20e",
+  "degree10_positive_control.json": "0d3da7cc133e572930b353eced0414ab",
+  "degree10_reverse_corrected.json": "a1aeb80164de643e73dee44288a96de8",
+  "degree10_reverse_exceptions.json": "73e0ae6bfd48e2c00a93d5a40bfcfb2d",
+  "intrinsic_Q10_levelB_basis.json": "130c6843c77c92f303dc85b3c909c26c",
+  "published_degree10_map.json": "08f97a91f1793fabdcb7223dd7a07f25"
+ },
+ "clean_clone_path": "/private/tmp/claude-501/-Users-swethasunilkumar/1d180173-bd62-4ea9-92dc-3dfac2bbcfc9/scratchpad/freshclone2 (outside iCloud)",
+ "commands": [
+  "scripts/reproduce_Q10_levelB.sh QUICK",
+  "python -m pytest"
+ ],
+ "commit": "7d6fb4d176a962394157a88403802764e2dbcbe4",
+ "dependencies": {
+  "numpy": "2.5.1",
+  "pytest": "9.1.1"
+ },
+ "local_suite": "198 passed",
+ "note": "The clean clone reads only its own tree; SDINV_CKPT_ROOT is set inside the clone so no checkpoint is shared with the working copy.",
+ "os": "Darwin 25.5.0",
+ "python": "3.13.13",
+ "quick_peak_rss_mb": 353.6,
+ "quick_runtime_seconds": 353.7,
+ "schema": 1
+}

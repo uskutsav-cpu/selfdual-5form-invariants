@@ -18,7 +18,7 @@ SOURCE = "https://arxiv.org/html/2509.14350v2#S4.SS1.SSS3"
 BASIS = [{"id": f"T8_{i}", "equation": eq} for i, eq in
          enumerate(["4.12", "4.12", "4.13", "4.14", "4.15", "4.16"], 1)]
 ALTERNATIVE_BASIS = [{"id": f"H8_{i}", "equation": eq} for i, eq in
-                     enumerate(["4.18", "4.20", "4.21", "4.22", "4.23", "4.12 (second)"], 1)]
+                     enumerate(["4.18", "4.19 (definition); 4.20 (reduction)", "4.21", "4.22", "4.23", "4.12 (second)"], 1)]
 SELECTED_BASIS = BASIS[:5] + [ALTERNATIVE_BASIS[0]]
 
 

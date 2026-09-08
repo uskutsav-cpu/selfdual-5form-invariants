@@ -1,0 +1,147 @@
+{
+  "prime": 50021,
+  "seed": 16999642918068834541,
+  "records": [
+    {
+      "id": "I4_1",
+      "degree": 4,
+      "values_at_t_0_through_degree": [
+        16446,
+        42307,
+        3417,
+        25090,
+        15145
+      ],
+      "exact_derivative_weights": [
+        20840,
+        4,
+        50018,
+        16675,
+        12505
+      ],
+      "interpolated_derivative": 8487,
+      "dual_derivative": 8487
+    },
+    {
+      "id": "I6_2",
+      "degree": 6,
+      "values_at_t_0_through_degree": [
+        9868,
+        10359,
+        22693,
+        13888,
+        11461,
+        31380,
+        1643
+      ],
+      "exact_derivative_weights": [
+        22507,
+        6,
+        25003,
+        33354,
+        37512,
+        40018,
+        41684
+      ],
+      "interpolated_derivative": 38972,
+      "dual_derivative": 38972
+    },
+    {
+      "id": "I8_1",
+      "degree": 8,
+      "values_at_t_0_through_degree": [
+        5260,
+        46642,
+        12889,
+        2405,
+        32318,
+        33639,
+        13078,
+        15516,
+        4716
+      ],
+      "exact_derivative_weights": [
+        46624,
+        8,
+        50007,
+        33366,
+        24993,
+        40028,
+        16669,
+        7147,
+        31263
+      ],
+      "interpolated_derivative": 41089,
+      "dual_derivative": 41089
+    },
+    {
+      "id": "I10_1",
+      "degree": 10,
+      "values_at_t_0_through_degree": [
+        37997,
+        8353,
+        26558,
+        11255,
+        16695,
+        11707,
+        48479,
+        24047,
+        49957,
+        46645,
+        22673
+      ],
+      "exact_derivative_weights": [
+        46068,
+        10,
+        24988,
+        40,
+        24958,
+        30063,
+        49986,
+        7163,
+        6247,
+        5559,
+        5002
+      ],
+      "interpolated_derivative": 29880,
+      "dual_derivative": 29880
+    },
+    {
+      "id": "I12_1",
+      "degree": 12,
+      "values_at_t_0_through_degree": [
+        34507,
+        40982,
+        36033,
+        25986,
+        10580,
+        43873,
+        48656,
+        27992,
+        43614,
+        36135,
+        25047,
+        19335,
+        6839
+      ],
+      "exact_derivative_weights": [
+        30531,
+        12,
+        49988,
+        16747,
+        37392,
+        30171,
+        49867,
+        7259,
+        18696,
+        22256,
+        30006,
+        36380,
+        20842
+      ],
+      "interpolated_derivative": 28638,
+      "dual_derivative": 28638
+    }
+  ],
+  "status": "PASS"
+}

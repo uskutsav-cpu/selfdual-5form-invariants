@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "cells": [
+    {
+      "prime": 50021,
+      "seed": 16999642918068834541,
+      "values": 81,
+      "directional_derivatives": 81
+    },
+    {
+      "prime": 32749,
+      "seed": 9932584768098142723,
+      "values": 81,
+      "directional_derivatives": 81
+    }
+  ]
+}

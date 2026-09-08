@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "../environment/bin/python",
+    "scripts/map_literature_basis.py",
+    "--degree",
+    "10",
+    "--legacy",
+    "--out",
+    "results/order10_change_of_basis.json"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788833166.0862908,
+  "status": "completed",
+  "pid": 15519,
+  "exit_code": 2,
+  "seconds": 0.5371236250502989,
+  "finished_unix": 1788833166.626389,
+  "logs": {
+    "stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr.log": {
+      "sha256": "f3828a1dc5abbf2a0eb1d2f1d0016ad0070d478bb4cd27e04dbfc9c0e1d6b208",
+      "bytes": 221
+    }
+  }
+}

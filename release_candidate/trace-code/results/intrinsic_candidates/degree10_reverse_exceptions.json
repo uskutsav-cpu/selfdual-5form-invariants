@@ -1,0 +1,14 @@
+{
+ "accounting": {
+  "evaluated": 259,
+  "evaluation_error": 0,
+  "interrupted": 0,
+  "planned": 259,
+  "structurally_rejected": 0
+ },
+ "exceptions": [],
+ "note": "Corrected run. The ORIGINAL pilot silently skipped 9 of 588 candidates with a bare `continue`; every scheduled candidate now carries a terminal status and the identity reconciles exactly.",
+ "outside_atlas_span": [],
+ "reconciles": true,
+ "schema": 1
+}

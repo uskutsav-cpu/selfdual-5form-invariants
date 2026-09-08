@@ -1,0 +1,12 @@
+Requirement already satisfied: numpy>=1.24 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from -r requirements.txt (line 1)) (2.5.1)
+Requirement already satisfied: pynauty>=2.8.8 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from -r requirements.txt (line 2)) (2.8.8.1)
+Requirement already satisfied: pytest>=7.0 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from -r requirements.txt (line 3)) (9.1.1)
+Collecting opt_einsum>=3.3 (from -r requirements.txt (line 9))
+  Downloading opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+Requirement already satisfied: iniconfig>=1.0.1 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from pytest>=7.0->-r requirements.txt (line 3)) (2.3.0)
+Requirement already satisfied: packaging>=22 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from pytest>=7.0->-r requirements.txt (line 3)) (26.3)
+Requirement already satisfied: pluggy<2,>=1.5 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from pytest>=7.0->-r requirements.txt (line 3)) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/lib/python3.13/site-packages (from pytest>=7.0->-r requirements.txt (line 3)) (2.21.0)
+Downloading opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+Installing collected packages: opt_einsum
+Successfully installed opt_einsum-3.4.0

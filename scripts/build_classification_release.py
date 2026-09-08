@@ -33,9 +33,10 @@ def build():
     files += [ROOT / "scripts" / f"{name}.py" for name in (
         "run_6d", "run_10d", "run_degree", "degree10_pipeline", "degree12_pipeline",
         "graph_to_latex", "search_rank81", "verify_rank81", "map_literature_basis",
-        "validate_rank81_lorentz", "build_classification_release")]
+        "validate_rank81_lorentz", "verify_independent_audit", "build_classification_release")]
     files += [ROOT / p for p in (
-        "tests/test_roadmap.py", "requirements.txt", "requirements-lock.txt", "pytest.ini",
+        "INDEPENDENT_AUDIT.md", "tests/test_roadmap.py", "tests/test_literature_cli.py",
+        "tests/test_published_degree10_source_reading.py", "requirements.txt", "requirements-lock.txt", "pytest.ini",
         "docs/CLASSIFICATION_ROADMAP.md", "docs/degree10.md", "docs/degree12.md",
         "docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md",
         "results/10d_order8.json", "results/10d_order10.json", "results/10d_order12.json",
@@ -44,6 +45,9 @@ def build():
         "results/order8_change_of_basis.json", "results/order10_change_of_basis.json",
         "results/classification_validation.json", "paper/manuscript.tex", "paper/manuscript.pdf",
         "paper/tables/certificate_cells.tex", "paper/tables/rank81_formulas.tex")]
+    files += [p for p in (ROOT / "results/audit").rglob("*")
+              if p.is_file() and p.suffix in {".py", ".json", ".md"}
+              and "__pycache__" not in p.parts]
     files = sorted(set(files))
     entries = [{"path": str(p.relative_to(ROOT)), "bytes": p.stat().st_size,
                 "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
@@ -55,15 +59,23 @@ def build():
 
 Create a Python environment, install requirements.txt, then run:
 
-    python -m pytest tests/test_roadmap.py -o addopts='' -q
+    python -m pytest tests -o addopts='' -q
     python scripts/verify_rank81.py
     python scripts/verify_rank81.py --recompute
+    python scripts/verify_independent_audit.py
+    python scripts/map_literature_basis.py --degree 8
+    python scripts/map_literature_basis.py --degree 10
     python scripts/validate_rank81_lorentz.py
 
 The first verification command checks saved matrices; --recompute repeats
 every graph evaluation. All 81 functions and all 126 coordinates are explicit.
 See docs/CLASSIFICATION_ROADMAP.md for proof boundaries and literature maps.
 manifest.json records SHA-256 hashes of every payload file.
+The independent checker verifies saved minors, exact CRT evaluations and
+rational maps without recomputing the tensor contractions. Source polynomial
+identities rely on the explicitly cited Hilbert upper bounds. The frozen
+literature transcription failed and was repaired; its historical matrices
+remain under results/audit/frozen-literature/.
 
 This portable delivery suite is distinct from the full historical tensor
 suite in the repository. No external spinor archive is required.

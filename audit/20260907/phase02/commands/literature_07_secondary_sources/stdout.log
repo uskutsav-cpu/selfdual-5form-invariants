@@ -1,0 +1,731 @@
+
+FILE manuscript/jhep/main.tex 1130 1200
+1130: degree at which $\operatorname{Tr}(\tau)$ first contributes. If it began at degree
+1131: two rather than four, every generated target would land in the wrong graded piece
+1132: and theorem~\ref{thm:reach} would fall with it. This section derives the input.
+1133: 
+1134: \begin{theorem}[Vanishing of the quadratic trace]
+1135: \label{thm:gten}
+1136: For a self-dual five-form in ten dimensions, the free stress tensor has vanishing
+1137: trace. In an even-degree interaction expansion, the trace can first
+1138: contribute at degree four; nonvanishing at that degree is a separate input.
+1139: \end{theorem}
+1140: 
+1141: \begin{proof}
+1142: Write the free stress tensor of a $p$-form field strength in $d$ dimensions in
+1143: its general improved form,
+1144: \begin{equation}
+1145: \begin{gathered}
+1146: T_{\mu\nu}
+1147:  \;=\; \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}\,
+1148:         F_\nu{}^{\alpha_2\dots\alpha_p}
+1149:  \;-\; c\,\eta_{\mu\nu}\,\langle F,F\rangle,
+1150: \\[2pt]
+1151: \langle F,G\rangle \;=\; F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p},
+1152: \end{gathered}
+1153: \label{eq:stresstensor}
+1154: \end{equation}
+1155: with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+1156: the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+1157: the factorial and the second returns $-\,c\,d\,\langle F,F\rangle$, so
+1158: \begin{equation}
+1159: T^{\mu}{}_{\mu} \;=\; (1 - c\,d)\,\langle F,F\rangle .
+1160: \label{eq:tracescalar}
+1161: \end{equation}
+1162: Whatever $c$ may be, the trace is a multiple of the single scalar
+1163: $\langle F,F\rangle$; no other quadratic Lorentz invariant exists, since the only
+1164: way to contract two copies of a $p$-form into a scalar is the full contraction.
+1165: The conclusion below is therefore independent of the improvement term and of the
+1166: overall normalisation.
+1167: 
+1168: It remains to show that this one scalar vanishes. Specialise to $p = 5$, $d = 10$,
+1169: so that $F$ is a middle-degree form of \emph{odd} degree in an even-dimensional
+1170: space, and consider the top form $F\wedge F$. Interchanging two factors of a
+1171: $q$-form costs $(-1)^{q^2} = (-1)^{q}$, which for $q = 5$ is $-1$; hence
+1172: \begin{equation}
+1173: F\wedge F \;=\; -\,F\wedge F
+1174: \qquad\Longrightarrow\qquad
+1175: F\wedge F \;\equiv\; 0
+1176: \label{eq:wedgevanishes}
+1177: \end{equation}
+1178: identically, for every five-form whatsoever. Since
+1179: $\langle F,\star F\rangle\,\mathrm{vol} \propto F\wedge F$, the pairing
+1180: $\langle F,\star F\rangle$ vanishes as well. On either eigenspace of the Hodge
+1181: star we have $\star F = \pm F$, and therefore
+1182: \begin{equation}
+1183: \langle F,F\rangle
+1184:  \;=\; \pm\,\langle F,\star F\rangle
+1185:  \;=\; 0 .
+1186: \label{eq:normvanishes}
+1187: \end{equation}
+1188: Substituting \eqref{eq:normvanishes} into \eqref{eq:tracescalar} gives
+1189: $T^{\mu}{}_{\mu} = 0$ for every $c$.
+1190: \end{proof}
+1191: 
+1192: Two features of this argument are worth isolating, because both are places where
+1193: a plausible-looking variant of the calculation gives a different answer.
+1194: 
+1195: The vanishing in \eqref{eq:wedgevanishes} is a statement about form parity alone
+1196: and holds for \emph{any} five-form, self-dual or not; self-duality enters only at
+1197: \eqref{eq:normvanishes}, to convert $\langle F,\star F\rangle$ into
+1198: $\langle F,F\rangle$. The two steps are independent, and a test suite that
+1199: checked only self-dual samples would confirm the conclusion without ever
+1200: exercising the mechanism behind it. Ours checks both eigenspaces --- the argument
+
+FILE manuscript/prd/build_prd.py 1 280
+1: #!/usr/bin/env python3
+2: """Generate the PRD (REVTeX 4.2) manuscript from the JHEP source.
+3: 
+4: There is one copy of the prose, the mathematics and the appendices, and it lives
+5: in manuscript/jhep/. This script rewrites that source into the two-column APS
+6: form rather than forking it, because two hand-maintained copies of a 45-page
+7: argument diverge silently and the whole point of the surrounding machinery is
+8: that nothing important is maintained twice.
+9: 
+10: What actually differs between the two journals is small and mechanical:
+11: 
+12:   * the class and preamble (revtex4-2 with aps,prd,reprint);
+13:   * the abstract, which REVTeX takes as an environment rather than a macro;
+14:   * float widths, since a 0.95-textwidth figure does not fit a PRD column --
+15:     every float is promoted to the full-width starred form and re-scaled;
+16:   * the bibliography style;
+17:   * theorem environments, which REVTeX does not provide.
+18: 
+19: Everything else -- every section, equation, theorem, table and appendix -- is
+20: carried across verbatim.
+21: 
+22:     python3 manuscript/prd/build_prd.py
+23: """
+24: 
+25: from __future__ import annotations
+26: 
+27: import re
+28: import shutil
+29: import sys
+30: from pathlib import Path
+31: 
+32: ROOT = Path(__file__).resolve().parents[2]
+33: JHEP = ROOT / "manuscript" / "jhep"
+34: PRD = ROOT / "manuscript" / "prd"
+35: 
+36: # Displays that cannot be narrowed without losing their point, and so are set
+37: # across both columns. Keep this list short: an equation that fits belongs in a
+38: # column, and the reflex to widen everything produces a two-column paper that
+39: # reads like a one-column paper with gaps in it.
+40: WIDE = [
+41:     "eq:bridgerank",       # three certified identities, aligned in two columns
+42:     "eq:leadingdegree",    # a cases block beside a summation rule
+43:     "eq:closureoperator",  # set-builder with a degree condition
+44:     "eq:rawvsactivated",   # an equality and a strict inclusion, side by side
+45:     "eq:equivariance",     # carries the character and its value
+46:     "eq:jacobian",         # matrix with both index ranges spelled out
+47:     "eq:generators",       # ten trace monomials in a two-row block
+48: ]
+49: 
+50: # eq:sdprojector, eq:bridge and eq:bpidentity were on this list until they were
+51: # rewritten across two lines in the shared source. Narrowing the display is
+52: # always better than widening the page: it costs nothing in the single-column
+53: # version and removes a column break from the two-column one.
+54: 
+55: PREAMBLE = r"""% ===========================================================================
+56: % DRAFT FOR MENTOR REVIEW -- NOT FOR SUBMISSION
+57: %
+58: % GENERATED FILE. Do not edit: this file is produced from manuscript/jhep by
+59: % manuscript/prd/build_prd.py. Edit the source there and rebuild.
+60: %
+61: % Physical Review D format, REVTeX 4.2, two-column reprint.
+62: % Authorship, affiliations, corresponding author, ORCIDs, licence, DOI and
+63: % arXiv identifier are deliberately unresolved. They are human decisions and
+64: % nothing in this file may be read as having made them.
+65: % ===========================================================================
+66: 
+67: \documentclass[
+68:   aps,prd,
+69:   reprint,
+70:   amsmath,amssymb,
+71:   nofootinbib,
+72:   longbibliography
+73: ]{revtex4-2}
+74: 
+75: % A PRD column is about 3.4 inches. Long unbreakable technical tokens --
+76: % \texttt{} paths, index-laden symbols -- leave TeX stretching interword space
+77: % past its tolerance, which it reports as an underfull box. A little emergency
+78: % stretch lets it find an acceptable break instead of a badness-10000 line.
+79: \emergencystretch=1.2em
+80: 
+81: % Every float here is full width (figure*/table*), and REVTeX's default float
+82: % parameters will only place a couple per page. With enough of them queued the
+83: % page builder runs out of legal placements and LaTeX aborts with
+84: % "Output loop---100 consecutive dead cycles" -- which is a float-placement
+85: % deadlock, not a content error. Loosening the fractions gives it room.
+86: \setcounter{topnumber}{4}
+87: \setcounter{bottomnumber}{3}
+88: \setcounter{totalnumber}{8}
+89: \setcounter{dbltopnumber}{4}
+90: \renewcommand{\topfraction}{0.92}
+91: \renewcommand{\bottomfraction}{0.85}
+92: \renewcommand{\dbltopfraction}{0.92}
+93: \renewcommand{\textfraction}{0.06}
+94: \renewcommand{\floatpagefraction}{0.70}
+95: \renewcommand{\dblfloatpagefraction}{0.70}
+96: 
+97: \usepackage{amsthm}
+98: \usepackage{booktabs}
+99: \usepackage{array}
+100: \usepackage{xcolor}
+101: \usepackage{graphicx}
+102: \usepackage{bm}
+103: 
+104: % REVTeX provides no theorem environments of its own.
+105: \theoremstyle{plain}
+106: \newtheorem{theorem}{Theorem}
+107: \newtheorem{proposition}[theorem]{Proposition}
+108: \newtheorem{lemma}[theorem]{Lemma}
+109: \theoremstyle{definition}
+110: \newtheorem{definition}[theorem]{Definition}
+111: \theoremstyle{remark}
+112: \newtheorem{remark}[theorem]{Remark}
+113: 
+114: \input{generated/numbers.tex}
+115: 
+116: \newcommand{\Ften}{A_{10}}
+117: \newcommand{\Dten}{D_{10}}
+118: \newcommand{\Qten}{Q_{10}}
+119: \newcommand{\Bten}{B_{10}}
+120: \newcommand{\Pten}{P_{10}}
+121: \newcommand{\Gten}{G_{10}}
+122: \newcommand{\Fp}{\mathbb{F}_p}
+123: \newcommand{\Q}{\mathbb{Q}}
+124: \newcommand{\pending}[1]{\textcolor{red}{\textbf{[#1]}}}
+125: 
+126: \begin{document}
+127: 
+128: \title{Exact degree-ten invariants of a self-dual five-form\\
+129:        in ten dimensions}
+130: 
+131: \author{\pending{Author list pending mentor review}}
+132: \affiliation{\pending{Affiliations pending mentor review}}
+133: 
+134: \date{\today}
+135: """
+136: 
+137: BANNER = r"""
+138: \maketitle
+139: 
+140: % widetext breaks the two-column flow to set a display across the page, and the
+141: % page builder must then balance the remaining columns. With a rigid bottom it
+142: % cannot, and the horizontal overruns reappear as "Overfull \vbox ... while
+143: % \output is active" -- the same complaint on the other axis. Letting pages end
+144: % short resolves it. This has to come after \maketitle: revtex4-2 issues
+145: % \flushbottom itself, so setting it in the preamble is silently undone.
+146: \raggedbottom
+147: 
+148: % ---------------------------------------------------------------- banner
+149: \begin{center}
+150: \fcolorbox{red}{yellow!12}{%
+151: \begin{minipage}{0.94\columnwidth}
+152: \centering\vspace{3pt}
+153: {\bfseries\footnotesize DRAFT FOR MENTOR REVIEW --- NOT FOR SUBMISSION}\\[2pt]
+154: {\bfseries\footnotesize AUTHORSHIP AND AFFILIATIONS NOT YET FINALIZED}\\[3pt]
+155: \scriptsize
+156: The author list, author order, corresponding author, affiliations and ORCIDs
+157: are unresolved. No licence has been selected, no DOI has been minted, and
+158: nothing here has been submitted to arXiv or to a journal. Items marked in
+159: \textcolor{red}{\textbf{red}} throughout are pending human decisions.
+160: \vspace{3pt}
+161: \end{minipage}}
+162: \end{center}
+163: \vspace{4pt}
+164: """
+165: 
+166: 
+167: def convert_shared(text: str) -> str:
+168:     """Two-column adjustments applied to appendices and generated tables alike.
+169: 
+170:     Verbatim is the awkward case: a shell command cannot be hyphenated or
+171:     reflowed, so a clone URL that fits a 6-inch measure simply will not fit a
+172:     3.4-inch column. Setting it smaller is the only honest option short of
+173:     editing the command, and the command has to stay copy-pasteable.
+174:     """
+175:     text = text.replace(r"\begin{verbatim}",
+176:                         "\\begingroup\\scriptsize\n\\begin{verbatim}")
+177:     text = text.replace(r"\end{verbatim}",
+178:                         "\\end{verbatim}\n\\endgroup")
+179:     # Generated tables are sized for a single-column page. Reducing the type
+180:     # size fixes most of them; the widest still overrun. An unconditional
+181:     # \resizebox is the wrong tool -- it scales every table to exactly the text
+182:     # width, which blows a three-row table up into a billboard. The conditional
+183:     # form below shrinks a table only when it is genuinely too wide and leaves
+184:     # the rest at their natural size.
+185:     text = text.replace(
+186:         r"\begin{tabular}",
+187:         "\\footnotesize\n"
+188:         "\\resizebox{\\ifdim\\width>\\linewidth \\linewidth\\else\\width\\fi}{!}{%\n"
+189:         "\\begin{tabular}")
+190:     text = text.replace(r"\end{tabular}", "\\end{tabular}}")
+191:     # A p-column measured against \textwidth does not adapt to the float it
+192:     # sits in: inside a single-column table it is far too wide, and the
+193:     # conditional \resizebox cannot rescue it because the natural width is
+194:     # already set. \linewidth is the right unit -- full width inside table*,
+195:     # column width inside table -- so the same spec works in both.
+196:     text = text.replace(r"\textwidth}", r"\linewidth}")
+197:     # The tables declare their own float, so the single- to two-column
+198:     # promotion has to happen here and not only in main.tex. Missing this left
+199:     # every generated table as a single-column float and produced one 223pt
+200:     # overrun that looked, from the log, like a runaway equation.
+201:     # Promote to a full-width float ONLY when the table is actually wide. The
+202:     # first version promoted every table, which put eighteen double-column
+203:     # floats into a twenty-six page document; the page builder then ran out of
+204:     # legal placements and LaTeX aborted with "Output loop---100 consecutive
+205:     # dead cycles". A narrow table belongs in a column.
+206:     ncols = 0
+207:     m = re.search(r"\\begin\{tabular\}\{([^}]*)\}", text)
+208:     if m:
+209:         ncols = sum(1 for c in m.group(1) if c in "lcrp")
+210:     # A p-column sized against \textwidth is wide however few columns there
+211:     # are: tab13 has a single p{0.55\textwidth} cell and overran by 223pt while
+212:     # the column count said "narrow".
+213:     wide_spec = "textwidth" in (m.group(1) if m else "")
+214:     if ncols >= 5 or wide_spec:
+215:         text = re.sub(r"\\begin\{table\}(\[[^\]]*\])?",
+216:                       r"\\begin{table*}[!tbp]", text)
+217:         text = text.replace(r"\end{table}", r"\end{table*}")
+218:     else:
+219:         text = re.sub(r"\\begin\{table\}(\[[^\]]*\])?",
+220:                       r"\\begin{table}[!tbp]", text)
+221: 
+222:     # Appendix displays are reference material and several are genuinely wider
+223:     # than a column. Promoting *all* of them was tried and is wrong: widetext
+224:     # interrupts column balancing, and a page of short widened displays
+225:     # overflows vertically instead of horizontally -- the same defect moved to
+226:     # the other axis. Only displays with a long source line are promoted, which
+227:     # is a crude proxy for typeset width but errs on the side of leaving things
+228:     # in the column where they belong.
+229:     def widen_if_wide(m: re.Match) -> str:
+230:         block = m.group(1)
+231:         longest = max((len(ln) for ln in block.splitlines()), default=0)
+232:         # Source line length alone is a poor proxy and produced a false
+233:         # negative: a list of ten trace monomials, one short line each, sets as
+234:         # a single very wide row. Horizontal separators are the better signal,
+235:         # since each one is an item continuing on the same typeset line.
+236:         separators = block.count(r"\;") + block.count(r"\quad") \
+237:                    + block.count(r"\qquad") + block.count("&")
+238:         if longest <= 78 and separators < 4:
+239:             return block
+240:         return "\\begin{widetext}\n" + block + "\n\\end{widetext}"
+241: 
+242:     text = re.sub(r"(\\begin\{equation\}.*?\\end\{equation\})",
+243:                   widen_if_wide, text, flags=re.S)
+244:     return text
+245: 
+246: 
+247: def convert(src: str) -> str:
+248:     # --- abstract: macro form -> environment form -------------------------
+249:     m = re.search(r"\\abstract\{%?\n(.*?)\n\}\n\n\\begin\{document\}",
+250:                   src, re.S)
+251:     if not m:
+252:         raise SystemExit("could not locate the JHEP \\abstract{...} block")
+253:     abstract = m.group(1).rstrip().rstrip("%").rstrip()
+254: 
+255:     # --- body: everything from the banner to \end{document} ---------------
+256:     start = src.index(r"% ---------------------------------------------------------------- banner")
+257:     body = src[start:]
+258:     # Drop the JHEP banner block; the REVTeX one is inserted separately.
+259:     body = re.sub(
+260:         r"% -+ banner\n\\begin\{center\}.*?\\end\{center\}\n\\vspace\{6pt\}\n",
+261:         "", body, count=1, flags=re.S)
+262: 
+263:     # --- floats: PRD is two-column, so every float goes full width --------
+264:     # A 0.95-textwidth figure is wider than a PRD column. Promoting to the
+265:     # starred form and rescaling is the honest fix; shrinking the figures to
+266:     # column width would make the axis labels unreadable.
+267:     body = body.replace(r"\begin{figure}[htbp]", r"\begin{figure*}[!tbp]")
+268:     body = body.replace(r"\end{figure}", r"\end{figure*}")
+269:     body = re.sub(r"\\includegraphics\[width=[0-9.]+\\textwidth\]",
+270:                   r"\\includegraphics[width=0.86\\textwidth]", body)
+271: 
+272:     # Tables are generated with \begin{table}; the wide ones need table*.
+273:     body = body.replace(r"\begin{table}[", r"\begin{table*}[")
+274:     body = body.replace(r"\end{table}", r"\end{table*}")
+275: 
+276:     # --- wide displays ----------------------------------------------------
+277:     # A few equations are genuinely wider than a PRD column and cannot be
+278:     # broken without obscuring what they say -- a multi-case grading rule, an
+279:     # aligned block of certified identities. REVTeX's widetext is the intended
+280:     # mechanism: the display spans both columns and the text flows around it.
+
+FILE manuscript/jhep/appendices/app_i_gten.tex 1 83
+1: \section{The free stress-tensor trace}
+2: \label{app:gten}
+3: 
+4: This appendix gives the calculation behind theorem~\ref{thm:gten} in full, and
+5: records how it is verified.
+6: 
+7: \paragraph{The stress tensor.}
+8: For a $p$-form with field strength $F$ of rank $p$ in $d$ dimensions, the free
+9: stress tensor takes the form
+10: \begin{equation}
+11: T_{\mu\nu}
+12:  = \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}
+13:    F_\nu{}^{\alpha_2\dots\alpha_p}
+14:  - c\,\eta_{\mu\nu}\,\langle F,F\rangle,
+15: \label{eq:stress}
+16: \end{equation}
+17: where $c$ is an improvement coefficient. Different conventions in the literature
+18: fix $c$ differently; the point of what follows is that the conclusion does not
+19: depend on it.
+20: 
+21: \paragraph{The trace.}
+22: Taking the trace of \eqref{eq:stress} with $\eta^{\mu\nu}$, the first term gives
+23: $\langle F,F\rangle$ up to normalisation and the second gives
+24: $-cd\,\langle F,F\rangle$, so
+25: \begin{equation}
+26: T^\mu{}_\mu = (1 - cd)\,\langle F,F\rangle .
+27: \label{eq:trace}
+28: \end{equation}
+29: Whatever $c$ is, the trace is a multiple of the single scalar
+30: $\langle F,F\rangle$. There is no other quadratic Lorentz scalar available: the
+31: only way to contract two copies of a five-form into a scalar is the full
+32: contraction.
+33: 
+34: \paragraph{The vanishing.}
+35: Here $p = 5$ and $d = 10$, so $F$ is a middle-degree form of \emph{odd} degree in
+36: an even-dimensional space. Consider the top form $F \wedge F$. Interchanging the
+37: two factors of a $q$-form costs a sign $(-1)^{q^2} = (-1)^q$, which for $q = 5$
+38: is $-1$; hence $F\wedge F = -F\wedge F$ and $F \wedge F \equiv 0$ identically,
+39: for every five-form whatsoever.
+40: 
+41: Now $\langle F, \star F\rangle\,\mathrm{vol} \propto F \wedge F$, so
+42: $\langle F, \star F\rangle = 0$. On either eigenspace of the star,
+43: $\star F = \pm F$, giving
+44: \begin{equation}
+45: \langle F, F \rangle
+46:  = \pm\,\langle F, \star F\rangle
+47:  = 0 .
+48: \end{equation}
+49: By \eqref{eq:trace} the free stress tensor is traceless, for any improvement
+50: coefficient. Consequently $\operatorname{Tr}(\tau)$ contributes nothing at field
+51: degree two and first contributes at degree four.
+52: 
+53: \paragraph{Scope of the argument.}
+54: The derivation uses only self-duality (or anti-self-duality) and the parity of
+55: the form degree. It does not use the detailed form of the free dynamics, the
+56: choice of improvement term, or the overall normalisation. That robustness is why
+57: we regard the input as settled, and why the remaining question for review is
+58: narrow: whether the intended free theory and stress convention are the ones fixed
+59: in appendix~\ref{app:conventions}.
+60: 
+61: \paragraph{Computational verification.}
+62: A dedicated test module re-derives the statement from the five-form and the
+63: Hodge star alone, importing none of the flow machinery. It checks:
+64: \begin{enumerate}\itemsep2pt
+65: \item $\star^2 = +\starSquared$, without which the eigenspace decomposition is
+66:       not the one assumed;
+67: \item $\langle F,F\rangle = 0$ on self-dual samples, at eight seeds;
+68: \item $\langle F,F\rangle = 0$ on \emph{anti}-self-dual samples, which the
+69:       argument predicts equally and which would fail if the vanishing were an
+70:       artefact of the projector rather than of the wedge identity;
+71: \item the control: $\langle F,F\rangle \neq 0$ on an unprojected five-form. This
+72:       is the test that gives the other three their content, since a quantity that
+73:       vanished identically would satisfy them all vacuously;
+74: \item the conclusion at four primes;
+75: \item agreement with the production leading-degree table, read once and only to
+76:       be checked against the independent derivation.
+77: \end{enumerate}
+78: 
+79: \paragraph{A correction worth recording.}
+80: An earlier version of the control called the projector routine with an argument
+81: believed to select the anti-self-dual space, when in fact that argument selects
+82: Lorentzian versus Euclidean signature. The apparent non-vanishing it reported was
+83: a Euclidean projector, where $\star^2 = -1$ and the eigenspace decomposition is
+
+FILE scripts/emit_closure_certificate.py 1 230
+1: #!/usr/bin/env python3
+2: """Emit the machine-readable closure / minimality certificate.
+3: 
+4: Consolidates the reachability (closure) and minimality results into one
+5: artifact with provenance, so they can be cited without re-running anything.
+6: """
+7: 
+8: import json
+9: import sys
+10: from pathlib import Path
+11: 
+12: sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+13: sys.path.insert(0, str(Path(__file__).resolve().parent))
+14: 
+15: from stress_flow_closure import closure  # noqa: E402
+16: 
+17: ROOT = Path(__file__).resolve().parents[1]
+18: CERT = ROOT / "results" / "stress_flow" / "certificates"
+19: OUT = ROOT / "results" / "stress_flow" / "closure_and_minimality.json"
+20: PRIMES = (32749, 32719, 32717, 32693)
+21: DEGREES = (4, 6, 8, 10, 12)
+22: FULL = {4: 1, 6: 2, 8: 7, 10: 14, 12: 72}
+23: STATIC = {4: 1, 6: 1, 8: 2, 10: 2, 12: 4}
+24: REQUIRED8 = ("I8_3", "I8_4", "I8_5", "I8_6")
+25: INERT8 = ("I8_1", "I8_2", "I4_1^2")
+26: 
+27: 
+28: def certificates():
+29:     out = []
+30:     for prime in PRIMES:
+31:         path = CERT / f"interacting_degree12_{prime}.json"
+32:         if path.exists():
+33:             with path.open() as stream:
+34:                 out.append((prime, json.load(stream)))
+35:     return out
+36: 
+37: 
+38: def agree(seed, certs):
+39:     """Closure dims, asserting every prime agrees."""
+40:     seen = None
+41:     for prime, cert in certs:
+42:         dims, _ = closure(cert, seed, prime)
+43:         if seen is None:
+44:             seen = dims
+45:         elif dims != seen:
+46:             raise AssertionError(f"prime {prime} disagrees: {dims} != {seen}")
+47:     return {str(k): v for k, v in seen.items()}
+48: 
+49: 
+50: def main():
+51:     certs = certificates()
+52:     if len(certs) < 3:
+53:         raise SystemExit("need at least three interacting certificates")
+54: 
+55:     seeds = {
+56:         "free": {4: ["I4_1"]},
+57:         "free_plus_K6": {4: ["I4_1"], 6: ["I6_2"]},
+58:         "free_plus_J6": {4: ["I4_1"], 6: ["I6_1"]},
+59:         "free_plus_K6_and_degree8_complement": {
+60:             4: ["I4_1"], 6: ["I6_2"], 8: list(REQUIRED8)},
+61:         "free_plus_degree8_complement_only": {
+62:             4: ["I4_1"], 8: list(REQUIRED8)},
+63:     }
+64:     closures = {name: agree(seed, certs) for name, seed in seeds.items()}
+65: 
+66:     # minimality: drop one required degree-8 direction at a time
+67:     removal = {}
+68:     for omitted in REQUIRED8:
+69:         kept = [d for d in REQUIRED8 if d != omitted]
+70:         removal[f"without_{omitted}"] = agree(
+71:             {4: ["I4_1"], 6: ["I6_2"], 8: kept}, certs)
+72:     removal["without_K6"] = closures[
+73:         "free_plus_degree8_complement_only"]
+74: 
+75:     inert = {}
+76:     base = closures["free_plus_K6"]
+77:     for name in INERT8:
+78:         inert[name] = agree(
+79:             {4: ["I4_1"], 6: ["I6_2"], 8: [name]}, certs) == base
+80: 
+81:     payload = {
+82:         "schema": 1,
+83:         "claim": (
+84:             "Reachable (closure) dimensions of the pure stress flow by seed, "
+85:             "and minimality of the generalized-flow completion through "
+86:             "degree 8, exact over finite fields and identical on every prime."
+87:         ),
+88:         "caveat": (
+89:             "Closure is reachability under seeding and INCLUDES Tr(tau) "
+90:             "propagation. It is not the same as the new-forcing span in "
+91:             "interacting_flow_equations.json, which excludes Tr(tau). The "
+92:             "two answer different questions and must not be interchanged."
+93:         ),
+94:         "primes": [p for p, _ in certs],
+95:         "samples_per_prime": 4,
+96:         "degrees": list(DEGREES),
+97:         "full_dimension": {str(k): v for k, v in FULL.items()},
+98:         "static_stress_span": {str(k): v for k, v in STATIC.items()},
+99:         "closures": closures,
+100:         "minimality_by_removal": removal,
+101:         "inert_directions_change_nothing": inert,
+102:         "minimal_completion_through_degree8": ["K6", *REQUIRED8],
+103:         "still_open": {"10": 3, "12": 4},
+104:         "reproduction": (
+105:             ".venv/bin/python scripts/emit_closure_certificate.py"
+106:         ),
+107:     }
+108: 
+109:     OUT.parent.mkdir(parents=True, exist_ok=True)
+110:     with OUT.open("w") as stream:
+111:         json.dump(payload, stream, indent=1, sort_keys=True)
+112:         stream.write("\n")
+113:     print(f"wrote {OUT.relative_to(ROOT)}")
+114: 
+115: 
+116: if __name__ == "__main__":
+117:     main()
+
+FILE scripts/emit_claim_certificate_matrix.py 1 170
+1: #!/usr/bin/env python3
+2: """Map every generated manuscript number to the artifact that produced it.
+3: 
+4: Each entry records the macro, its current value, the artifact it is read from,
+5: the command that regenerates it, and the strength of the underlying evidence.
+6: 
+7: Strength is the point. The manuscript mixes five kinds of statement and a reader
+8: cannot tell them apart from the typeset number alone:
+9: 
+10:     analytic          a theorem or a literature result, no computation
+11:     exact-char0       exact over Q, with a certificate
+12:     exact-modular     exact over F_p; a bound in characteristic zero unless the
+13:                       spanning-set argument applies
+14:     multi-prime       agreement across primes; probabilistic, not a proof
+15:     numerical         floating point, with a tolerance
+16:     limitation        a stated scope restriction rather than a result
+17: 
+18:     python scripts/emit_claim_certificate_matrix.py
+19: """
+20: 
+21: from __future__ import annotations
+22: 
+23: import json
+24: import re
+25: from pathlib import Path
+26: 
+27: ROOT = Path(__file__).resolve().parents[1]
+28: GEN = ROOT / "manuscript" / "generated" / "numbers.tex"
+29: OUT_MD = ROOT / "audit" / "FINAL_CLAIM_CERTIFICATE_MATRIX.md"
+30: OUT_JSON = ROOT / "audit" / "FINAL_CLAIM_CERTIFICATE_MATRIX.json"
+31: 
+32: #: macro prefix/name -> (artifact, regeneration command, strength, note)
+33: SOURCES = [
+34:     (r"^(dimAten|dimBten|dimGten|dimPten|dimDten|dimQten|capBG|capPB|capPG|"
+35:      r"capDB|sumPB|nIncidencePrimes)$",
+36:      "results/intrinsic_candidates/degree10_space_incidence.json",
+37:      "python scripts/emit_degree10_space_incidence.py --write",
+38:      "exact-modular",
+39:      "A10/B10/G10/P10 are additionally pinned over Q by the spanning-set "
+40:      "argument; D10 is settled separately, see dimDtenQ"),
+41:     (r"^(dimBcapP|dimBplusP|publishedPrimitiveContent)$",
+42:      "results/intrinsic_candidates/degree10_published_product_intersection.json",
+43:      "python scripts/emit_degree10_space_incidence.py --write",
+44:      "exact-modular",
+45:      "characteristic-zero status in docs/B10_P10_INTERSECTION_STATUS.md"),
+46:     (r"^(dimDtenQ|dimQtenQ|dimAtenQ|czSettled|czMinorSize|czFitPrimes|"
+47:      r"czHoldoutPrime|czIntegerRows|czLiftedRows|czSweeps|czQtenRelation)$",
+48:      "results/stress_flow/D10_characteristic_zero.json",
+49:      "python scripts/d10_characteristic_zero.py",
+50:      "exact-char0",
+51:      "CRT lift validated at a held-out prime; explicit non-vanishing minor"),
+52:     (r"^(bridgePrimes|nBridgePrimes|starSquared|dimSelfdual|dimAntiSelfdual|"
+53:      r"bridgeForwardRank|dimGammaTraceless|gammaTraceRank)$",
+54:      "spinor_trace_bridge/results/bridge_validation.json",
+55:      "cd spinor_trace_bridge && python -m pytest",
+56:      "exact-modular",
+57:      "kernel and image by two-way span equality, not dimension counting"),
+58:     (r"^(comparisonPrime|nCommonSamples|nSample|traceRankDeg|spinorRankDeg|"
+59:      r"spansEqualDeg|holdoutDeg)",
+60:      "verification/spinor_trace_comparison.json",
+61:      "python spinor_trace_bridge/scripts/run_comparison.py",
+62:      "exact-modular",
+63:      "spans compared by two-way containment on a hashed common registry"),
+64:     (r"^bp(Settled|CapQ|SumQ|FitPrimes|HoldoutPrime|FreshPrime|FreshSamples|CapRelation)$",
+65:      "results/degree10/B10_P10_intersection_exact.json",
+66:      "python scripts/b10_p10_characteristic_zero.py",
+67:      "exact-char0",
+68:      "CRT lift of the published coordinates validated at a held-out prime; the "
+69:      "generator is verified at a further prime and samples used nowhere else"),
+70:     (r"^matrix(Cells|Primes|Seeds|Rank|Agree|StableRows|StableCols|UnstableRows)$",
+71:      "results/rank81/full_rank_matrix_publication_final.json",
+72:      "python scripts/aggregate_rank_matrix.py",
+73:      "exact-modular",
+74:      "15 cells, 5 primes x 3 seeds, identical rank and identical pivot "
+75:      "structure; corroboration, not the basis of the rank claim"),
+76:     (r"^gTen(LoadBearing|CounterfactualQten|DerivedQten)$",
+77:      "results/stress_flow/G10_publication_certificate.json",
+78:      "python -m pytest tests/test_G10_trace_activation.py",
+79:      "analytic",
+80:      "the vanishing of the quadratic stress trace is derived, not computed; "
+81:      "the counterfactual is a computation showing it is load-bearing"),
+82:     (r"^dEight",
+83:      "verification/degree8_span_equality.json",
+84:      "python spinor_trace_bridge/scripts/run_degree8_span.py",
+85:      "exact-modular",
+86:      "four primes, holdout-validated change of basis, family ablation"),
+87:     (r"^(nExactJacPrimes|exactJac|charZeroLowerBound|cumRankDeg)",
+88:      "results/rank81/certificate.json",
+89:      "python spinor_trace_bridge/scripts/run_rank81_certificate.py --archive PATH",
+90:      "exact-char0",
+91:      "lower bound only; integral basis makes the modular rank unconditional"),
+92:     (r"^(minorSize|minorPrimes|nMinorPrimes|minorDetNonzero)$",
+93:      "results/rank81/minor81_certificate.json",
+94:      "python spinor_trace_bridge/scripts/run_minor81_certificate.py --archive PATH",
+95:      "exact-char0",
+96:      "a single prime suffices: an integer determinant vanishing mod p would "
+97:      "vanish mod every p"),
+98:     (r"^(archiveJacobianRank|archiveJacobianRunsAgree|nArchive)",
+99:      "verification/spinor_archive_jacobian_exact.json",
+100:      "python spinor_trace_bridge/scripts/run_archive_jacobian_exact.py",
+101:      "exact-modular",
+102:      "superseded by the full-selection certificate; retained as history"),
+103:     (r"^(nFloat|floatNondegenerateRanks)",
+104:      "verification/SPINOR_JACOBIAN_RUNS.json",
+105:      "python spinor_trace_bridge/scripts/analyse_archived_jacobians.py",
+106:      "numerical",
+107:      "float64 with an explicit noise floor; evidence about METHOD, not rank"),
+108:     (r"^(nTraceTests|nBridgeTests)$",
+109:      "pytest --collect-only",
+110:      "python manuscript/scripts/make_numbers.py",
+111:      "limitation",
+112:      "reproducibility metadata, not a scientific claim"),
+113:     (r"^(dimFiveFormComponents|dimSelfDualModule|dimLorentzAlgebra|"
+114:      r"genericFunctionalDim|dimSymSpinor|spinorDim|dimQtenMinusOne)$",
+115:      "literature / elementary",
+116:      "not computed here",
+117:      "analytic",
+118:      "126 - 45 = 81 is the cited generic-orbit argument; NOT ours"),
+119: ]
+120: 
+121: 
+122: def classify(name: str):
+123:     for pattern, artifact, cmd, strength, note in SOURCES:
+124:         if re.search(pattern, name):
+125:             return artifact, cmd, strength, note
+126:     return None, None, "UNCLASSIFIED", "no source mapping"
+127: 
+128: 
+129: def main() -> int:
+130:     if not GEN.exists():
+131:         print("generated/numbers.tex missing; run make_numbers.py")
+132:         return 1
+133:     macros = re.findall(r"\\newcommand\{\\(\w+)\}\{([^}]*)\}", GEN.read_text())
+134: 
+135:     rows, unclassified = [], []
+136:     for name, value in macros:
+137:         artifact, cmd, strength, note = classify(name)
+138:         if strength == "UNCLASSIFIED":
+139:             unclassified.append(name)
+140:         rows.append({"macro": name, "value": value, "artifact": artifact,
+141:                      "regenerate": cmd, "strength": strength, "note": note})
+142: 
+143:     from collections import Counter
+144:     counts = Counter(r["strength"] for r in rows)
+145: 
+146:     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+147:     OUT_JSON.write_text(json.dumps({
+148:         "schema": 1,
+149:         "generated_by": "scripts/emit_claim_certificate_matrix.py",
+150:         "n_macros": len(rows),
+151:         "by_strength": dict(counts),
+152:         "unclassified": unclassified,
+153:         "entries": rows,
+154:     }, indent=1) + "\n")
+155: 
+156:     L = ["# Final claim-to-certificate matrix", "",
+157:          "Generated by `scripts/emit_claim_certificate_matrix.py`. Do not edit.",
+158:          "",
+159:          "Every scientific number in the manuscript is a generated macro. This "
+160:          "table maps each to its artifact and, more importantly, to the "
+161:          "**strength** of the evidence, which the typeset number does not show.",
+162:          "", "## Evidence strengths", "",
+163:          "| strength | meaning |", "|---|---|",
+164:          "| `analytic` | theorem or literature result; no computation here |",
+165:          "| `exact-char0` | exact over `Q`, with a certificate |",
+166:          "| `exact-modular` | exact over `F_p`; a characteristic-zero bound unless a spanning-set argument applies |",
+167:          "| `multi-prime` | agreement across primes; probabilistic |",
+168:          "| `numerical` | floating point with a tolerance |",
+169:          "| `limitation` | scope metadata, not a result |",
+170:          "", "## Counts", "", "| strength | macros |", "|---|---:|"]

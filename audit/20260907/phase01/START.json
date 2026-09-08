@@ -1,0 +1,9 @@
+{
+  "frozen_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "started_unix": 1788826845.558121,
+  "bootstrap_python": "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+  "bootstrap_version": "3.13.5 (v3.13.5:6cb20a219a8, Jun 11 2025, 12:23:45) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "checkout_reuse": false,
+  "audit_scope": "Falsification audit; no new scientific claims; stop on any mismatch."
+}

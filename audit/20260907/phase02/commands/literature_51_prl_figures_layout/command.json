@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python",
+    "-c",
+    "import sys;sys.path.insert(0,\"/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/plotting-runtime\");import importlib.util;from pathlib import Path;s=importlib.util.spec_from_file_location(\"prl_figures\",\"manuscript/prl/make_prl_figures.py\");m=importlib.util.module_from_spec(s);s.loader.exec_module(m);m.OUT=Path(\"/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prl/repaired-figures\");m.OUT.mkdir(exist_ok=True);m.main()"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788832501.43426,
+  "status": "completed",
+  "pid": 13901,
+  "exit_code": 0,
+  "seconds": 74.8167878750246,
+  "finished_unix": 1788832576.25193,
+  "logs": {
+    "stdout.log": {
+      "sha256": "8f5c46a48b90694e663329062ba69ad544e684fa6a6cb5cc8b66bb8af88ffefa",
+      "bytes": 56
+    },
+    "stderr.log": {
+      "sha256": "2f41574f84c2ada6e519d9f759b7d8edf9d4238edf8ea2b1cd974358886a5736",
+      "bytes": 495
+    }
+  }
+}

@@ -58,37 +58,37 @@ def fig_spaces() -> None:
     d = inc["per_prime"][prime]["dims"]
     q = d["A10"] - d["D10"]
 
-    fig, ax = plt.subplots(figsize=(COL, 2.05))
+    fig, ax = plt.subplots(figsize=(COL, 2.45))
     ax.set_xlim(0, 10); ax.set_ylim(0, 6.2); ax.axis("off")
 
     # outer: the whole degree-ten space
     ax.add_patch(Rectangle((0.2, 0.35), 9.6, 5.5, fill=False, lw=1.3))
     ax.text(0.45, 5.42, rf"$\mathcal{{A}}_{{10}}$: all degree-10 invariants, dim {d['A10']}",
-            fontsize=8, weight="bold")
+            fontsize=7, weight="bold")
 
     # reachable sector
     ax.add_patch(Rectangle((0.6, 0.75), 6.6, 4.2, fc="0.87", ec="k", lw=0.9))
-    ax.text(0.85, 4.45, rf"$\mathcal{{D}}_{{10}}$ reachable by the stress flow, dim {d['D10']}",
-            fontsize=7.5)
+    ax.text(0.85, 4.45, rf"$\mathcal{{D}}_{{10}}$: stress-flow reachable" + "\n" + f"dim {d['D10']}",
+            fontsize=7, va="top")
 
     # products, inside the reachable sector
     ax.add_patch(Rectangle((1.0, 1.15), 3.0, 1.5, fc="0.72", ec="k", lw=0.9,
-                           hatch="///"))
+                           hatch="/"))
     ax.text(1.2, 2.15, rf"$\mathcal{{P}}_{{10}}$ products", fontsize=7)
     ax.text(1.2, 1.6, rf"dim {d['P10']}", fontsize=7)
     ax.text(1.0, 0.95, r"$\mathcal{P}_{10}\subset\mathcal{D}_{10}$: every product is reachable",
-            fontsize=6.5, style="italic")
+            fontsize=5.6, style="italic")
 
     # the quotient
     ax.add_patch(Rectangle((7.6, 0.75), 2.0, 4.2, fc="w", ec="k", lw=1.2,
-                           hatch="xxx"))
+                           hatch="/"))
     ax.text(8.6, 3.5, rf"$\mathcal{{Q}}_{{10}}$", fontsize=9, ha="center")
     ax.text(8.6, 2.85, rf"dim {q}", fontsize=8, ha="center", weight="bold")
     ax.text(8.6, 2.1, "not\nreachable", fontsize=6.5, ha="center")
 
-    ax.add_patch(FancyArrowPatch((7.2, 5.3), (7.9, 5.3), arrowstyle="->",
+    ax.add_patch(FancyArrowPatch((7.2, 5.05), (7.7, 5.05), arrowstyle="->",
                                  mutation_scale=7, lw=0.8))
-    ax.text(7.45, 5.5, "quotient", fontsize=6, ha="center")
+    ax.text(8.4, 5.1, "quotient", fontsize=5.5, ha="center")
 
     fig.savefig(OUT / "prl_spaces.pdf")
     plt.close(fig)
@@ -113,7 +113,7 @@ def fig_crossvalidation() -> None:
         pk = max(cmp_["primes"], key=lambda k: len(cmp_["primes"][k].get("degrees", {})))
         deg10 = cmp_["primes"][pk]["degrees"].get("10")
 
-    fig, ax = plt.subplots(figsize=(COL, 2.0))
+    fig, ax = plt.subplots(figsize=(COL, 2.55))
     ax.set_xlim(0, 10); ax.set_ylim(0, 5.6); ax.axis("off")
 
     boxes = [
@@ -123,24 +123,26 @@ def fig_crossvalidation() -> None:
     ]
     for x, label, dim in boxes:
         ax.add_patch(Rectangle((x, 3.0), 2.8, 1.9, fc="0.93", ec="k", lw=0.9))
-        ax.text(x + 1.4, 4.35, label, fontsize=7, ha="center")
+        ax.text(x + 1.4, 4.35, label, fontsize=6, ha="center", va="center")
         ax.text(x + 1.4, 3.35, dim, fontsize=7.5, ha="center", weight="bold")
 
     for x0, x1 in ((3.0, 3.55), (6.4, 6.95)):
         ax.add_patch(FancyArrowPatch((x0, 3.95), (x1, 3.95), arrowstyle="<->",
                                      mutation_scale=7, lw=0.9))
-    ax.text(3.28, 4.15, "exact", fontsize=6, ha="center")
-    ax.text(6.68, 4.15, "equivariant", fontsize=6, ha="center")
+    ax.text(3.28, 5.2, "exact", fontsize=5.5, ha="center")
+    ax.text(6.68, 5.2, "equivariant", fontsize=5.5, ha="center")
 
-    ax.add_patch(Rectangle((0.2, 1.35), 9.6, 1.25, fc="w", ec="k", lw=1.0,
-                           hatch="xxx"))
+    ax.add_patch(Rectangle((0.2, 1.05), 9.6, 1.55, fc="w", ec="k", lw=1.0,
+                           hatch="/"))
     ax.text(5.0, 2.15, rf"same quotient $\mathcal{{Q}}_{{10}}$, dim {q}, in all three",
-            fontsize=7.5, ha="center")
+            fontsize=6.5, ha="center", bbox=dict(facecolor="white", edgecolor="none", pad=1))
     note = "spans compared by two-way containment on a common sample registry"
     if deg10 and deg10.get("spans_equal_all_samples"):
         note += f"; degree-10 ranks {deg10['trace_evaluation_rank']} = " \
                 f"{deg10['spinor_evaluation_rank']}, holdout validated"
-    ax.text(5.0, 1.62, note, fontsize=6, ha="center", style="italic")
+    note = note.replace("containment on a", "containment\non a").replace("; degree-10 ranks", ";\ndegree-10 ranks")
+    ax.text(5.0, 1.55, note, fontsize=5.1, ha="center", va="center", style="italic",
+            bbox=dict(facecolor="white", edgecolor="none", pad=1))
 
     ax.text(5.0, 0.75, "exact arithmetic over $\\mathbb{F}_p$; no tolerance anywhere",
             fontsize=6.5, ha="center")

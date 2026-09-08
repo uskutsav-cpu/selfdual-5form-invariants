@@ -1,0 +1,4 @@
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/exact_evaluation_certificate.py", line 69
+    ds=b['denominators'] if source else [1]*(7 if degree==8 else14)
+                                             ^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression

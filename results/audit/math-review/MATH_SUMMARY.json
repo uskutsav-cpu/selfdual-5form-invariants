@@ -1,0 +1,107 @@
+{
+  "status": "PASS: independent mathematical checks in assigned scope",
+  "independent_trial_division_prime_checks": {
+    "32719": true,
+    "32749": true,
+    "50021": true
+  },
+  "frozen_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "stored_minor_residues": [
+    {
+      "prime": 32749,
+      "seed": 20260907,
+      "determinant_mod_p": 20345
+    },
+    {
+      "prime": 32749,
+      "seed": 20260908,
+      "determinant_mod_p": 30761
+    },
+    {
+      "prime": 32719,
+      "seed": 20260907,
+      "determinant_mod_p": 1653
+    },
+    {
+      "prime": 32719,
+      "seed": 20260908,
+      "determinant_mod_p": 2167
+    }
+  ],
+  "fresh_independent_minor_residues": [
+    {
+      "prime": 50021,
+      "seed": 16999642918068834541,
+      "determinant_mod_p": 35642
+    },
+    {
+      "prime": 32749,
+      "seed": 9932584768098142723,
+      "determinant_mod_p": 22345
+    }
+  ],
+  "fresh_dual_cells": [
+    {
+      "prime": 50021,
+      "seed": 16999642918068834541,
+      "graph_values": 81,
+      "directional_derivatives": 81
+    },
+    {
+      "prime": 32749,
+      "seed": 9932584768098142723,
+      "graph_values": 81,
+      "directional_derivatives": 81
+    }
+  ],
+  "independent_reverse_primary_graph_rows": 166,
+  "full_production_graph_row_comparisons": 162,
+  "full_production_jacobian_entry_comparisons": 20412,
+  "extra_degree12_forward_dual_comparisons": 4,
+  "polynomial_certificates": [
+    {
+      "prime": 50021,
+      "points": 2,
+      "rank": 72,
+      "shape": [
+        72,
+        252
+      ],
+      "minor_determinant_mod_prime": 43334,
+      "point_seeds": [
+        16999642918068834541,
+        288608476638820389658980143954101742752
+      ]
+    },
+    {
+      "prime": 32749,
+      "points": 2,
+      "rank": 72,
+      "shape": [
+        72,
+        252
+      ],
+      "minor_determinant_mod_prime": 12699,
+      "point_seeds": [
+        9932584768098142723,
+        334597984840887674588212264716327215093
+      ]
+    }
+  ],
+  "automorphism_graphs": 81,
+  "exhaustive_automorphisms": 136,
+  "negative_automorphisms": 0,
+  "numeric_graph_relabelings": 81,
+  "numeric_negative_relabeling_signs": 76,
+  "numeric_odd_slot_permutations": 81,
+  "structural_adjacent_vertex_swaps": 823,
+  "exact_interpolation_derivatives": [
+    "I4_1",
+    "I6_2",
+    "I8_1",
+    "I10_1",
+    "I12_1"
+  ],
+  "independence_limit": "Independent programs, Hodge/slots, planner, forward dual derivatives, reverse tape and sparse pullback; shared NumPy/BLAS primitives and shared custom forward kernel between independent forward/reverse methods.",
+  "scope_limit": "Graph-only mathematical checks. Does not repair or certify the frozen disputed literature transcription, full invariant ring, global orbit separation or novelty."
+}

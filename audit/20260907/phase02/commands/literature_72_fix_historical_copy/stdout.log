@@ -1,0 +1,6 @@
+{
+  "path": "scripts/build_release_candidate.py",
+  "before_sha256": "a1cd61887f6c1906dcef6551dae603a369f8ad556266a4330397d3c6e5ccae0a",
+  "after_sha256": "8bcddf74ef076ceaea58c03d0334abdd5ae99cb5665c61ef268a840dde9d389f",
+  "scope": "Exclude exact results/audit subtree only; preserve INCLUDE and scanner functions."
+}

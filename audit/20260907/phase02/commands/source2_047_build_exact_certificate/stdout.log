@@ -1,0 +1,39 @@
+{
+  "ranks": {
+    "atlas8": 7,
+    "atlas10": 14,
+    "source8_selected": 7,
+    "source8_primary": 6,
+    "source8_hatted": 5,
+    "source8_primary_with_product": 6,
+    "source8_hatted_with_product": 6,
+    "source10": 12,
+    "source10_primitive_quotient": 11,
+    "product_intersection": 1
+  },
+  "modulus": 40274678413255193510345405666987,
+  "crosschecks": 83,
+  "intersection_witnesses": [
+    {
+      "source_combination": [
+        "-11/1008",
+        "-1/20",
+        "0",
+        "0",
+        "5/6",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "product_coefficients": [
+        "-13/63",
+        "0"
+      ]
+    }
+  ],
+  "max_numerator_bound": 352866326400000000000000000000
+}

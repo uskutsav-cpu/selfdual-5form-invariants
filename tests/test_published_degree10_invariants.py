@@ -1,13 +1,8 @@
-"""Implemented equation-(4.24) candidates and their Q10 projections.
+"""Literal-source evaluators plus explicitly archived pre-audit projection evidence.
 
-Source: "Some remarks on invariants", J. Phys. A 59 (2026) 065203, eq (4.24),
-journal PDF page 17. Transcribed from a rendered page image because the
-red/black bracket distinction -- which fixes the order of the nested
-(anti)symmetrisations -- is invisible in extracted text.
-
-Only P10_01 and P10_02 are implemented. The other ten carry nested bracket
-structures that need a dedicated symmetrisation engine and are deliberately
-not guessed.
+Source bracket extent is resolved from original arXiv v2 TeX and colored PDF.
+Tests reading MAP below are historical artifact checks, not evidence for the
+corrected-source registry. Fresh corrected-source map validation is separate.
 """
 
 import json
@@ -34,7 +29,7 @@ def _transform_covariant_tensor(tensor, transformation, mod):
 
 
 from sdinv.published_degree10_invariants import (  # noqa: E402
-    NOT_IMPLEMENTED, PUBLISHED_DEGREE10, evaluate_implemented)
+    NOT_IMPLEMENTED, PUBLISHED_DEGREE10, LEGACY_PUBLISHED_DEGREE10, evaluate_implemented)
 
 ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / "results" / "intrinsic_candidates" / "published_degree10_map.json"
@@ -65,29 +60,17 @@ def test_implemented_and_unimplemented_partition_all_twelve():
         assert name in BRACKET_STAGES, f"{name} has no recorded bracket stage"
 
 
-def test_red_bracket_candidates_either_stage_or_abstain():
-    """P10_04 and P10_09 carry red brackets; they must not be faked.
-
-    Originally this asserted both were unimplemented. P10_04 is now implemented
-    through a genuine RED-stage `BracketProgram`, so the requirement is
-    restated at the level that actually matters: a red-bracket candidate is
-    either absent, or it applies a RED-stage operation and declares which
-    reading of the ambiguous bracket extent it used.
-    """
-    from sdinv.published_degree10_invariants import BRACKET_STAGES
-    for name in ("P10_04", "P10_09"):
+def test_red_bracket_candidates_have_verified_source_stages():
+    from sdinv.published_degree10_invariants import BRACKET_STAGES, AMBIGUITY_VARIANTS
+    assert AMBIGUITY_VARIANTS == {}
+    for name in ("P10_04", "P10_09", "P10_10", "P10_11", "P10_12"):
         assert "RED" in BRACKET_STAGES[name]
-        if name in NOT_IMPLEMENTED:
-            continue
-        spec = PUBLISHED_DEGREE10[name]
-        assert spec.get("ambiguity"), (
-            f"{name} has a red bracket of ambiguous extent and must record "
-            f"which reading it implements")
-        assert "RED" in spec["brackets"] or "red" in spec["brackets"], (
-            f"{name} claims a red bracket but does not apply a RED stage")
+        assert "RED" in PUBLISHED_DEGREE10[name]["brackets"]
+        assert PUBLISHED_DEGREE10[name]["source_verified"]
+        assert not PUBLISHED_DEGREE10[name].get("ambiguity")
 
 
-def test_p10_04_red_stage_is_not_vacuous_and_readings_are_distinguished():
+def test_p10_04_source_and_legacy_pair_readings_are_distinguished():
     """The RED symmetrisation must do something, and AMB-01 must be a real fork.
 
     If the two readings of the red bracket agreed, the ambiguity would be
@@ -106,8 +89,7 @@ def test_p10_04_red_stage_is_not_vacuous_and_readings_are_distinguished():
     # message below is what tells a future session so.
     if all4 == pairs:
         raise AssertionError(
-            "AMB-01 readings agree at this sample; the ambiguity may be "
-            "removable and PUBLISHED_DEGREE10_INDEX_AUDIT.md should be updated")
+            "The source and historical pair reading coincide at this sample")
 
 
 def test_homogeneity_degree_ten():
@@ -324,10 +306,13 @@ def test_p10_05_and_p10_08_index_mutation_is_detected():
         "a1a2]a3, so the transcription of that detail is untested")
 
 
-def test_trM5_matches_the_M_only_result():
+def test_archived_trM5_matches_the_M_only_result():
     """P10_01 = tr M^5 must land in the closure, as the M-only test found."""
     if not MAP.exists():
         return
+    # MAP is archived pre-audit evidence and is bound to the legacy registry.
+    assert all(spec["source_reading"] == "legacy-pre-audit"
+               for spec in LEGACY_PUBLISHED_DEGREE10.values())
     with MAP.open() as stream:
         payload = json.load(stream)
     for record in payload["per_prime"].values():
@@ -338,7 +323,7 @@ def test_trM5_matches_the_M_only_result():
             "independent code path")
 
 
-def test_published_projection_artifact_is_internally_sound():
+def test_archived_published_projection_artifact_is_internally_sound():
     """Structural invariants that must hold whatever the rank turns out to be.
 
     Kept separate from the rank itself so that a change in the rank reads as a
@@ -346,6 +331,9 @@ def test_published_projection_artifact_is_internally_sound():
     """
     if not MAP.exists():
         return
+    # MAP is archived pre-audit evidence and is bound to the legacy registry.
+    assert all(spec["source_reading"] == "legacy-pre-audit"
+               for spec in LEGACY_PUBLISHED_DEGREE10.values())
     with MAP.open() as stream:
         payload = json.load(stream)
     assert payload["consistent"] is True, (
@@ -361,7 +349,7 @@ def test_published_projection_artifact_is_internally_sound():
                 f"exactly how the non-scalar P10_07 was caught.")
 
 
-def test_published_q10_rank_is_full():
+def test_archived_published_q10_rank_is_full():
     """The twelve published candidates span Q10: rank 3 of 3.
 
     This expectation was 0 until all twelve were implemented. The five simplest
@@ -376,6 +364,9 @@ def test_published_q10_rank_is_full():
     """
     if not MAP.exists():
         return
+    # MAP is archived pre-audit evidence and is bound to the legacy registry.
+    assert all(spec["source_reading"] == "legacy-pre-audit"
+               for spec in LEGACY_PUBLISHED_DEGREE10.values())
     with MAP.open() as stream:
         payload = json.load(stream)
     rank = payload["Q10_rank_from_implemented_published"]
@@ -384,7 +375,7 @@ def test_published_q10_rank_is_full():
         f"regressed; if it is None, the primes disagree.")
 
 
-def test_only_the_four_hardest_candidates_reach_the_quotient():
+def test_archived_only_the_four_hardest_candidates_reach_the_quotient():
     """Pin which candidates carry the quotient, so a silent swap is caught.
 
     P10_01..P10_08 must project to zero and P10_09..P10_12 must not. If a
@@ -393,6 +384,9 @@ def test_only_the_four_hardest_candidates_reach_the_quotient():
     """
     if not MAP.exists():
         return
+    # MAP is archived pre-audit evidence and is bound to the legacy registry.
+    assert all(spec["source_reading"] == "legacy-pre-audit"
+               for spec in LEGACY_PUBLISHED_DEGREE10.values())
     with MAP.open() as stream:
         payload = json.load(stream)
     for prime, record in payload["per_prime"].items():

@@ -6,10 +6,15 @@ primes. See [the roadmap and proof scope](docs/CLASSIFICATION_ROADMAP.md),
 [the ordered basis](results/rank81_basis.json),
 [the complete witnesses](results/rank81_certificate.json), and
 [the manuscript with all formulas](paper/manuscript.pdf).
-The octic literature map includes product corrections; the degree-ten map
-records why the requested invertible 12×12 identification is unavailable for
-the implemented source readings. Run `python scripts/verify_rank81.py` for
-the saved-matrix check or add `--recompute` to re-evaluate every graph.
+The independent audit preserved a failure in the frozen literature
+transcription and repaired the J10–J12 antisymmetrizers. See
+[the audit report](INDEPENDENT_AUDIT.md) for the frozen failure, corrected
+source maps, exact evidence and remaining assumptions. Independent fresh
+checks verify every Jacobian entry at two further points, the degree-12
+polynomial rank 72, and generic orbit dimension 45. Run
+`python scripts/verify_rank81.py --recompute` to re-evaluate the four frozen
+graph witnesses, and `python scripts/verify_independent_audit.py` to check
+the saved independent certificates using integer and rational arithmetic.
 
 Extension of Elamaran–Ferko–Scarlett, *Machine Learning Invariants of Tensors*
 ([arXiv:2512.23750](https://arxiv.org/abs/2512.23750), Phys. Rev. D).
@@ -36,9 +41,11 @@ generators; the seventh degree-8 scalar is the product $I_4^2$. The literature
 gives a tensor basis for the octic generators. This repo supplies an explicit
 contraction-graph basis and independently checks its Jacobian rank.
 
-Physics payoff: the most general Lagrangian depending on $F_5$ but not its
-derivatives is an arbitrary function of those scalars, which controls
-ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
+On the regular local quotient, these scalars give local coordinates for
+Lorentz-invariant functions of $F_5$. This supports local descriptions of
+interactions without derivatives, including chiral 4-form theories. Global
+orbit separation and a presentation of the full polynomial invariant ring
+are not established here.
 
 ## Status
 
@@ -49,7 +56,7 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 | 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (49 exact graph classes) |
 | 10D, order 8 | **6** new independent invariants, running rank **9 / 81** (1,689 exact graph classes; complete under two primes) |
 | 10D, order 10 | **12** new connected primitive directions, running rank **21 / 81**; degree-10 value rank **14** after adding $I_4I_{6,1}$ and $I_4I_{6,2}$ (187,392 exact graph classes; two primes, three Jacobian samples per prime) |
-| 10D, order 12 | **62** connected primitive polynomial directions plus **10** lower products give degree-12 rank **72**; 60 add functional directions, giving the full cumulative rank **81 / 81**. The remaining `I12_61` and `I12_62` are polynomially independent but add no cumulative functional direction (three primes, four samples per prime). |
+| 10D, order 12 | **62** connected primitive polynomial directions plus **10** lower products give degree-12 rank **72**; 60 add functional directions, giving the full cumulative rank **81 / 81**. The remaining `I12_61` and `I12_62` are linearly independent homogeneous directions modulo lower products but add no cumulative functional direction (three primes, four samples per prime). |
 | Exact stress-flow map through degree 10 | **PASS** — free-stress dimensions **1,1,2,2** inside five-form value dimensions **1,2,7,14**; exact ModMax $I_8/I_{12}$ reproduction under three primes |
 
 Artifacts:
@@ -310,8 +317,10 @@ tests/test_stress_flow.py paper, Lorentz, map, and closure-pilot gates
 
 ## Next questions
 
-1. What is the explicit change of basis between these six graph contractions
-   and the six tensor expressions in arXiv:2509.14350v2?
+1. The octic map is resolved for the explicitly selected six source expressions
+   plus the quartic square; the full seven-dimensional map and product
+   correction are in `results/order8_change_of_basis.json`. Other source
+   selections must be specified and their span checked independently.
 2. What are compact tensor-word expressions for the 62 saved order-12 graph
    contractions?
 3. What are explicit differential relations for `I12_61` and `I12_62`

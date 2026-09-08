@@ -1,0 +1,9 @@
+# Fresh literal-source verification evidence
+
+The authoritative result is `exact-source-evaluation-certificate.json`; the adjacent `order8_change_of_basis_exact.json` and `order10_change_of_basis_exact.json` match the canonical maps under `results/`. All identities are conditional on the published Hilbert dimensions 7 and 14 and the analytic invariance argument stated in the certificate. The Hilbert upper bounds were not independently rederived in this audit.
+
+Run `python scripts/verify_independent_audit.py --source-only` from the repository root for the independently written portable certificate verifier. It checks all referenced source files and points, bounded integer CRT recovery, exact minors, rational residuals, maps, and ranks. The default command also checks the independent graph audit evidence.
+
+`binary-points/` contains 98 fresh residues at common integral points. `fresh-points/` contains 83 additional dense modular checks. `manual-transcription-preimplementation.md` is the source-first manual reading, reused with explicit authorization from the preserved phase01 failure audit. `SOURCE_REPAIR_VERIFICATION.md` explains the repair, calculations, failed attempts, proof boundaries, and command records.
+
+The raw calculation scripts preserve their original phase02 sibling checkout layout as execution evidence. Their hashes must not be changed to disguise a relocation. The portable verifier handles the packaged paths explicitly. `diagnostic-fiveprime-*.json` contains incomplete bounded rational reconstructions and is not authoritative. `source-code-provenance-current.json` is an earlier historical snapshot; `final-production-source-sha256.json` and `exact-certificate-sha256.json` identify the final production metadata and unchanged audit certificate inputs respectively.

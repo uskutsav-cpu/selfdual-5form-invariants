@@ -1,0 +1,58 @@
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-r", "62", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/page"]
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "1", "-l", "1", "-r", "125", "-singlefile", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/first-page"]
+{
+  "variant": "prd_letter",
+  "source": "manuscript/prd_letter/main.tex",
+  "source_sha256": "3de9c10af75fd1cb22cf599bd27245d2556bed124f5dfd95fd7fd314094344df",
+  "pdf": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf",
+  "pdf_sha256": "e15f49b06f148b0d8f9794e6f3813b99e4ee64fee6c8fe1ac2aa966e4a23df31",
+  "page_count": 6,
+  "text_checks": {
+    "audit_scope": true,
+    "source_mismatch": true,
+    "conditional_identity_scope": false,
+    "no_priority_claim": true,
+    "unresolved_reference_pages": [],
+    "replacement_character_pages": []
+  },
+  "build_command": "literature_35_recompile_prd_letter",
+  "compiler_exit_code": 0,
+  "compiler_warning_lines": [
+    "Warning--missing journal in Zamolodchikov:2004ce",
+    "Warning--missing number in Cavaglia:2016oda",
+    "Warning--missing number in Conti:2018tca",
+    "Warning--missing number in Bonelli:2018kik",
+    "Warning--missing number in Hutomo:2025chiral",
+    "Warning--missing number in DallAgata:1998ahf",
+    "Warning--missing number in Paulos:2008tn",
+    "Warning--missing number in Liu:2022bfg",
+    "warning: errors were issued by BibTeX, but were ignored; use --print and/or --keep-logs for details.",
+    "warning: main.tex:217: Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "warning: main.tex:400: Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "warning: main.tex:628: Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "warning: main.bbl:365: Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "warning: main.bbl:419: Underfull \\hbox (badness 1442) in paragraph at lines 415--419",
+    "Underfull \\hbox (badness 1442) in paragraph at lines 415--419",
+    "Package natbib Warning: Citation(s) may have changed.",
+    "warning: main.tex:217: Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "warning: main.tex:400: Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "warning: main.tex:628: Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "warning: main.bbl:365: Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "warning: main.bbl:419: Underfull \\hbox (badness 1442) in paragraph at lines 415--419",
+    "Underfull \\hbox (badness 1442) in paragraph at lines 415--419",
+    "warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details."
+  ],
+  "contacts": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/contact-01.png"
+  ],
+  "opening_page": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/first-page.png",
+  "visual_review": "pending model inspection of rendered images"
+}

@@ -45,7 +45,7 @@
 
 \begin{document}
 
-\title{Exact degree-ten invariants of a self-dual five-form in ten dimensions}
+\title{An archived degree-ten atlas of a self-dual five-form in ten dimensions}
 
 \author{\pending{Author list pending mentor review}}
 \affiliation{\pending{Affiliations pending mentor review}}
@@ -53,25 +53,43 @@
 \date{\today}
 
 \begin{abstract}
-The Lorentz-invariant scalar functions of a self-dual five-form in ten
-dimensions control the non-linear self-interactions the field can have. We
-determine the degree-ten sector of this structure exactly over $\Q$, rather than
-modulo a prime. The full invariant space has dimension $\dimAtenQ$; the subspace
-activated by the stress-tensor flow has dimension $\dimDtenQ$; the quotient
-therefore has dimension $\dimQtenQ$, so three independent degree-ten directions
-lie outside the reach of the flow. The separation rests on a short theorem: the
-free stress tensor of a self-dual five-form is traceless for every improvement
-coefficient, because $F\wedge F$ vanishes identically for a form of odd degree,
-so $\operatorname{Tr}\tau$ begins at field degree four rather than two. Forcing
-the naive degree-two start collapses the quotient to zero. We certify a
-tensor--spinor bridge of rank $\bridgeForwardRank$ with an exact left inverse,
-certify generic functional rank at least $\charZeroLowerBound$ by an explicit
-$\minorSize\times\minorSize$ integer minor, and give the one-dimensional overlap
-between the published degree-ten span and the product sector as an exact integer
-identity. All computations are exact; none uses floating point.
+We record the archived degree-ten invariant atlas for the self-dual
+five-form in ten dimensions, its reconstructed rational coordinate matrices,
+and an exact modular Jacobian witness for generic functional rank at least
+eighty-one. The matching generic upper bound is inherited from the literature.
+The archived atlas, stress-flow closure and quotient have reported dimensions
+fourteen, eleven and three. Their interpretation as polynomial-space results
+requires valid polynomial coordinate maps and flow activation rules; finite
+modular fits and holdouts alone do not prove these inputs. The archived
+literature map also uses source readings whose final three antisymmetrizers
+differ from the primary source, so its reported product intersection cannot
+be assigned to the published expressions. The graph Jacobian certificate uses
+separate contractions. The body retains the legacy numerical evidence with
+these qualifications; it does not claim a completed audit or priority.
 \end{abstract}
 
 \maketitle
+
+\paragraph{Audit scope and inherited results.}
+This draft retains numerical tables and identities from the archived computation;
+it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
+``published span'' computed from that archive refer only to the implemented
+source readings. A source audit found that the archived antisymmetrizers of
+$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
+about the span of the published expressions follows from that archived map.
+Repaired formulas require a separately identified registry and fresh map.
+Exact rational arithmetic proves statements about reconstructed coordinate
+matrices; their interpretation as polynomial maps, flow closure, or identities
+requires the corresponding polynomial identities and activation rules to be
+valid. Modular fits and finite holdouts are evidence for those inputs, not a
+proof of them. Accordingly, the numerical flow and intersection statements
+below are statements about the archived coordinate model, conditional as
+statements about invariant-polynomial spaces. Finite common-sample comparisons
+establish equality of evaluation spans, with polynomial span equality subject
+to the same qualification. The graph Jacobian nonzero-minor argument is
+separate: verified derivatives of integral graph polynomials give a
+characteristic-zero rank lower bound. No priority claim is made.
+
 
 \begin{center}
 \fcolorbox{red}{yellow!12}{%
@@ -258,8 +276,9 @@ at which $\operatorname{Tr}\tau$ begins.
 \begin{theorem}
 \label{thm:gten}
 For a self-dual five-form in ten dimensions the free stress tensor is traceless,
-for every improvement coefficient. Hence $\operatorname{Tr}\tau$ first
-contributes at field degree four.
+for every coefficient of the displayed metric-norm term. In an even-degree
+interaction expansion, $\operatorname{Tr}\tau$ can first contribute at field
+degree four; the argument does not establish a nonzero quartic term.
 \end{theorem}
 
 \begin{proof}
@@ -272,7 +291,7 @@ T_{\mu\nu}=\frac{1}{(p-1)!}F_{\mu\alpha_2\dots\alpha_p}F_\nu{}^{\alpha_2\dots\al
 with $\langle F,G\rangle=F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p}$ and $c$ free.
 Contracting with $\eta^{\mu\nu}$,
 \begin{equation}
-T^\mu{}_\mu=(1-cd)\,\langle F,F\rangle,
+T^\mu{}_\mu=\bigl(1/(p-1)!-cd\bigr)\,\langle F,F\rangle,
 \label{eq:trace}
 \end{equation}
 a multiple of the single scalar $\langle F,F\rangle$ whatever $c$ is: no other
@@ -359,9 +378,9 @@ coefficient the closure actually produces at each degree. Through degree eight
 the coordinates are small integers and nothing is at risk. At degree ten one
 basis vector of $\Dten$ carries a numerator of twenty-nine bits over a
 five-digit denominator --- an order of magnitude past what a single prime near
-$2^{15}$ can represent. Read modulo one such prime that coefficient is
-indistinguishable from a small residue, and the fixed point would have been
-reported at the wrong dimension with nothing in the output to indicate it.
+$2^{15}$ can represent. A residue modulo one such prime does not determine that rational coefficient
+uniquely. This does not imply that the modular rank is wrong: coefficient
+height and exceptional-prime rank loss are separate issues.
 Iteration terminated after $\czSweeps$ sweeps.
 
 \begin{figure}[t]
@@ -376,7 +395,8 @@ is why that row is lifted rather than read off one modular solve.}
 
 \begin{theorem}
 \label{thm:main}
-Over the rationals,
+Assuming valid polynomial coordinate maps, a complete target list, and the
+recorded activation rules, the archived rational coordinate model gives
 \begin{equation}
 \dim_\Q\Ften=\dimAtenQ,\quad
 \dim_\Q\Dten=\dimDtenQ,\quad
@@ -387,10 +407,12 @@ Over the rationals,
 The lower bound is certified by an explicit
 $\czMinorSize\times\czMinorSize$ integer minor with non-vanishing determinant,
 computed by Bareiss elimination~\cite{Bareiss:1968} and confirmed by an
-independent exact rational routine. No separate upper bound is needed: over $\Q$
-the modular admission test that made the predecessor a bound disappears, and at
-the fixed point no further generated direction raises the rank, so the reached
-span \emph{is} $\Dten$ and $\dim_\Q\Dten=\dimDtenQ$ is an equality. Three exact
+independent exact rational routine. The rational fixed point is an equality for the recorded coordinate model.
+Its interpretation as the polynomial reachable space requires that all
+reconstructed target maps are polynomial identities and that the target list
+and activation rules are complete for the stated flow. Held-out prime checks
+do not establish these hypotheses. The minor proves the rank of the recorded
+coordinate matrix; it does not supply the missing polynomial identities. Three exact
 annihilating covectors give the quotient map directly. Forcing
 $\operatorname{Tr}\tau$ to begin at degree two instead activates $24$ further
 targets, raises the reachable dimension to $\dimAten$, and returns

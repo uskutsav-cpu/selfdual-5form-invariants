@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python
+rootdir: /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout
+configfile: pytest.ini
+collecting ... collected 4 items
+
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[8-10-False] PASSED [ 25%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[10-8-False] PASSED [ 50%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[8-8-True] PASSED [ 75%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[10-10-True] PASSED [100%]
+
+============================== 4 passed in 1.16s ===============================

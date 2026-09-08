@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "../environment/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-cache-dir",
+    "-r",
+    "requirements-lock.txt",
+    "-r",
+    "requirements.txt"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/frozen-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788829712.2766788,
+  "status": "completed",
+  "pid": 6471,
+  "exit_code": 0,
+  "seconds": 47.721695209038444,
+  "finished_unix": 1788829759.9994721,
+  "logs": {
+    "stdout.log": {
+      "sha256": "db566555eace18fad7d664dc9b7d4f7985818c010bf2a1cc11b2519cb52897df",
+      "bytes": 3096
+    },
+    "stderr.log": {
+      "sha256": "7ca04818930d5158dc5f861b224d0fcb2d1d0493c85c5b0616093f4833c33a00",
+      "bytes": 230
+    }
+  }
+}

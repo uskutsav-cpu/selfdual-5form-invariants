@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;import json;fs=[\"scripts/map_literature_basis.py\",\"scripts/verify_independent_audit.py\",\"pyproject.toml\"];print(json.dumps({p:Path(p).read_text() for p in fs},indent=2))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788833123.596384,
+  "status": "completed",
+  "pid": 15394,
+  "exit_code": 1,
+  "seconds": 0.16187508299481124,
+  "finished_unix": 1788833123.758881,
+  "logs": {
+    "stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr.log": {
+      "sha256": "261a1d34e8ed280af4f45eefd6231a3ec772643ff8fab1a6a2204ac806f5e5db",
+      "bytes": 1295
+    }
+  }
+}

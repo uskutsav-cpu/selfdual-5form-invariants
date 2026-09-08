@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "generated_by": "Phase 11 of the terminal publishability goal",
+ "when": "2026-08-02T04:38:03Z",
+ "clone": "/tmp/jhep-pub (outside iCloud)",
+ "clone_commit": "69ee992",
+ "dependencies": "requirements-lock.txt plus opt_einsum, networkx, joblib, python-igraph, pynauty, matplotlib",
+ "results": {
+  "tensor_tests": 254,
+  "tensor_failures": 0,
+  "bridge_tests": 86,
+  "bridge_failures": 0,
+  "aggregator_self_test": "11 rejections fired; cells unmodified; deterministic and order-independent",
+  "G10_and_D10_certificate_tests": 34,
+  "manuscript_gates": 72,
+  "isolated_build": {
+   "errors": 0,
+   "undefined_citations": 0,
+   "undefined_references": 0,
+   "overfull_boxes": 0,
+   "pages": 25
+  },
+  "release_candidate": "199 files, secret and path scan clean",
+  "release_policy": "facts match the repository",
+  "archives_rebuild_reproducible": true,
+  "archives_match_working_tree": true
+ },
+ "requirements_met": {
+  "zero_failed_tests": true,
+  "zero_latex_errors": true,
+  "zero_undefined_citations": true,
+  "zero_undefined_references": true,
+  "zero_missing_figures": true,
+  "zero_stale_macros": true,
+  "zero_unreviewed_overfull_boxes": true,
+  "zero_private_paths": true,
+  "zero_secrets": true,
+  "zero_mentor_archive_files": true,
+  "zero_unlicensed_third_party_source": false,
+  "zero_unexplained_release_policy_violations": true
+ },
+ "caveats": {
+  "unlicensed_third_party_source": "jheppub.sty and JHEP.bst are third-party (SISSA Medialab) under LPPL 1.3+. They are licensed and redistributable, so the requirement is met in substance; the flag is false because the repository itself still has NO licence, which is a separate and unresolved matter.",
+  "clone_commit": "the suites ran at 69ee992. Commits after it change audit prose, review packages and submission metadata only -- no file under tests/, src/, spinor_trace_bridge/src/, results/ or verification/."
+ },
+ "archive_sha256": {
+  "arxiv_source.tar.gz": "59665541f7aac335a03de94c325ef36776808d49551a57d7472ea3900af85480",
+  "jhep_source.zip": "14343c8492b67990161f90f0844cf8780dd42a686da3f3c739726923d0fb6eee",
+  "compiled_manuscript.pdf": "20fb3a159bbacb28c8f054294d24dff2967798fea9667e71d1d5c4ed6e4de913"
+ }
+}

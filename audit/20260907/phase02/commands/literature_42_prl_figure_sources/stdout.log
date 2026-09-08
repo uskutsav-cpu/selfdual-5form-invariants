@@ -1,0 +1,27 @@
+manuscript/prd_letter/main.tex:131:well developed~\cite{Townsend:2019ftg,Ferko:2024chiral,Brizio:2026ttbar}. The
+manuscript/prd_letter/main.blg:61:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:64:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:67:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:70:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:73:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:76:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:79:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:82:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:85:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:88:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:91:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:94:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:97:---they aren't the same literal types for entry Brizio:2026ttbar
+manuscript/prd_letter/main.blg:99:Warning--missing journal in Brizio:2026ttbar
+manuscript/prd_letter/references.bib:176:@article{Brizio:2026ttbar,
+manuscript/prd_letter/main.aux:9:\citation{Townsend:2019ftg,Ferko:2024chiral,Brizio:2026ttbar}
+manuscript/prd_letter/main.aux:79:\bibcite{Brizio:2026ttbar}{{22}{2026}{{Brizio\ \emph  {et~al.}}}{{Brizio, Kade, Sfondrini,\ and\ Sorokin}}}
+manuscript/prd_letter/main.bbl:255:  {Sorokin}}]{Brizio:2026ttbar}%
+manuscript/prl/main.tex:219:\includegraphics[width=\columnwidth]{figures/prl_spaces.pdf}
+manuscript/prl/main.tex:228:\includegraphics[width=\columnwidth]{figures/prl_crossvalidation.pdf}
+manuscript/prl/make_prl_figures.py:55:        missing("prl_spaces", "incidence certificate absent")
+manuscript/prl/make_prl_figures.py:93:    fig.savefig(OUT / "prl_spaces.pdf")
+manuscript/prl/make_prl_figures.py:95:    print("  prl_spaces.pdf")
+manuscript/prl/make_prl_figures.py:103:        missing("prl_crossvalidation", "bridge or incidence certificate absent")
+manuscript/prl/make_prl_figures.py:147:    fig.savefig(OUT / "prl_crossvalidation.pdf")
+manuscript/prl/make_prl_figures.py:149:    print("  prl_crossvalidation.pdf")

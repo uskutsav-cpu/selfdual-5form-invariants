@@ -1,0 +1,33 @@
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-r", "62", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/page"]
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "1", "-l", "1", "-r", "125", "-singlefile", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/first-page"]
+{
+  "variant": "jhep",
+  "source": "manuscript/jhep/main.tex",
+  "source_sha256": "efb35caa05e97022adacb6adf51145020238f4607d87c9709442476926af42d1",
+  "pdf": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/main.pdf",
+  "pdf_sha256": "a8b1f396dacc6e046225b3910ea5271eb37536e2a8b72b43dd6d230b4bdd6adb",
+  "page_count": 49,
+  "text_checks": {
+    "audit_scope": true,
+    "source_mismatch": true,
+    "conditional_identity_scope": true,
+    "no_priority_claim": true,
+    "unresolved_reference_pages": [],
+    "replacement_character_pages": []
+  },
+  "compiler_exit_code": 0,
+  "compiler_warning_lines": [
+    "Package hyperref Warning: Option `pagecolor' is not available anymore.",
+    "Package JHEP Warning: E-mails are missing.",
+    "LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.",
+    "Package hyperref Warning: Option `pagecolor' is not available anymore.",
+    "Package JHEP Warning: E-mails are missing."
+  ],
+  "contacts": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/contact-01.png",
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/contact-02.png",
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/contact-03.png"
+  ],
+  "opening_page": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/jhep/qa/first-page.png",
+  "visual_review": "pending model inspection of rendered images"
+}

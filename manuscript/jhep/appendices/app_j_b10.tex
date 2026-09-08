@@ -1,6 +1,14 @@
 \section{Reconstruction of the published span}
 \label{app:b10}
 
+\paragraph{Archived source and proof scope.}
+Here $B_{10}$ means the archived implemented-source coordinate span. Its
+$J_{10}$--$J_{12}$ antisymmetrizers differ from the primary PDF and TeX source;
+the numerical results below cannot be transferred to corrected formulas.
+Reconstruction and finite holdouts validate sampled data, not polynomial
+identities over $\Q$. All intersection dimensions below are exact statements
+about reconstructed matrices, conditional as polynomial-span statements.
+
 \paragraph{The problem.}
 The published degree-ten structures are given as explicit expressions. To compare
 their span with the product subspace over $\Q$ --- rather than modulo a prime ---
@@ -16,10 +24,9 @@ lifted; none failed.
 \paragraph{Held-out validation.}
 The reconstructed rationals were reduced modulo the held-out prime
 $\bpHoldoutPrime$, which took no part in the fit, and compared against a direct
-evaluation there. There were no mismatches. This is the step that distinguishes a
-reconstruction from a guess: rational reconstruction always returns
-\emph{something}, and only a prime outside the fit can tell you whether it
-returned the right thing.
+evaluation there. There were no mismatches. This checks the proposed reconstruction at one additional prime. Bounded
+rational reconstruction can fail to find a candidate, and a successful finite
+holdout does not establish a polynomial identity in characteristic zero.
 
 \paragraph{Exact intersection.}
 With the lifts in hand,
@@ -59,7 +66,7 @@ identity fit.
 The published structures were presented as explicit expressions, not as a basis
 with specified relations, and there is no reason a set chosen for explicitness
 should avoid the product sector. That it meets it in exactly one dimension is a
-structural observation about the published choice, and the direction of the
+observation about the archived coordinate model, and the direction of the
 finding --- that $\Bten$ has one dimension \emph{fewer} of primitive content than
 a naive reading would suggest --- can only weaken a claim about the published
 span, never strengthen one. No result in this paper depends on the equality.

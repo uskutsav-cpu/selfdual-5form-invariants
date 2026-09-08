@@ -1,0 +1,775 @@
+
+FILE manuscript/main.tex 1 78
+1: \documentclass[11pt,a4paper]{article}
+2: \pdfoutput=1
+3: 
+4: \usepackage{jheppub}
+5: \usepackage{amsmath}
+6: \usepackage{amssymb}
+7: \usepackage{amsthm}
+8: \newtheorem{proposition}{Proposition}
+9: \usepackage{booktabs}
+10: \usepackage{graphicx}
+11: \usepackage{hyperref}
+12: \usepackage{microtype}
+13: \sloppy
+14: 
+15: % Loud marker for any number whose artifact was missing at build time.  A
+16: % missing input must be visible in the PDF, never a silently stale value.
+17: \newcommand{\ARTIFACTMISSING}[1]{\textbf{\color{red}[ARTIFACT MISSING: #1]}}
+18: \usepackage{xcolor}
+19: 
+20: \input{generated/numbers}
+21: 
+22: \newcommand{\HUMAN}[1]{\textbf{[#1 --- HUMAN ACTION REQUIRED]}}
+23: 
+24: \title{An exact degree-ten classification of local invariants of the
+25:        ten-dimensional self-dual five-form}
+26: 
+27: % Placeholders below are deliberately plain text: they must compile, and they
+28: % must be impossible to miss in the PDF.  See
+29: % submission_candidate/AUTHORSHIP_DECISION_REQUIRED.md.
+30: \author[a]{AUTHOR LIST -- HUMAN ACTION REQUIRED}
+31: \affiliation[a]{AFFILIATIONS -- HUMAN ACTION REQUIRED}
+32: \emailAdd{corresponding.author@placeholder.invalid}
+33: 
+34: \abstract{%
+35: The self-dual five-form field strength in ten dimensions carries a large ring of
+36: Lorentz invariants, of which only a handful have been written down explicitly.
+37: We determine the degree-ten graded piece of that ring exactly. Working over
+38: finite fields with certified linear algebra, we construct a fourteen-dimensional
+39: atlas of degree-ten invariants and resolve its internal structure completely:
+40: the two-dimensional subspace of products of lower-degree invariants, the
+41: twelve-dimensional span of the published candidate structures, the
+42: twelve-dimensional span of the graph generators, and the eleven-dimensional
+43: subspace reachable by the stress-tensor flow that motivates these theories. The
+44: resulting quotient is three-dimensional --- exactly so over the rationals, not
+45: only modulo a prime --- and we give explicit compact representatives for it. We show that two decompositions which both read twelve
+46: plus two are not the same decomposition: the published span contains one product
+47: direction, so its non-product content is eleven, and we write that direction's
+48: generator down. The two dimensions that a computation over finite fields could
+49: not settle are established exactly over the rationals. Independently, we implement a
+50: bridge between the tensor description and a spinor-variable description, fixing
+51: every convention explicitly and verifying the map is an isomorphism onto the
+52: gamma-traceless symmetric chiral square. The two descriptions are then evaluated
+53: at a common registry of five-forms and their invariant spans compared directly.
+54: We also replace the floating-point Jacobian rank computation used previously by
+55: an exact modular one over the complete candidate selection. Because the
+56: coordinate basis is integral, the resulting rank is an unconditional lower bound
+57: in characteristic zero rather than a tolerance-dependent estimate, and it is
+58: witnessed by an explicit non-vanishing minor; it meets the analytic count of
+59: eighty-one from below.%
+60: }
+61: 
+62: \keywords{Extended Supersymmetry, p-branes, Differential and Algebraic Geometry}
+63: 
+64: \begin{document}
+65: \maketitle
+66: 
+67: \begin{center}
+68: \fbox{\parbox{0.9\textwidth}{\small\textbf{Draft status.}
+69: This is a private submission candidate. The author list, affiliations,
+70: acknowledgments, funding, licence and data DOI are unresolved placeholders and
+71: are listed in \texttt{submission\_candidate/AUTHORSHIP\_DECISION\_REQUIRED.md}.
+72: The physics interpretation of section~\ref{sec:physics} and the novelty
+73: statements require coauthor confirmation. Not for distribution.}}
+74: \end{center}
+75: 
+76: %=============================================================================
+77: \section{Introduction}
+78: \label{sec:intro}
+
+FILE manuscript/main.tex 130 156
+130: \begin{enumerate}
+131: \item The degree-ten atlas $A_{10}$ has dimension $\dimAten$
+132:       (section~\ref{sec:atlas}).
+133: \item Its internal structure is determined completely
+134:       (section~\ref{sec:decomp}): the product subspace $P_{10}$ has dimension
+135:       $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+136:       generator span $G_{10}$ has dimension $\dimGten$, the stress-flow reachable
+137:       subspace $D_{10}$ has dimension $\dimDten$, and the quotient
+138:       $Q_{10} = A_{10}/D_{10}$ has dimension $\dimQten$. All pairwise
+139:       intersections and sums are certified.
+140: \item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
+141:       span is \emph{not} a complement of the products:
+142:       $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$, so the
+143:       non-product content of the published span is
+144:       $\publishedPrimitiveContent$, not $\dimBten$. We exhibit the generator of
+145:       that intersection explicitly.
+146: \item Both dimensions that a modular computation could not settle ---
+147:       $\dim D_{10}$ and $\dim(B_{10}\cap P_{10})$ --- are established exactly
+148:       over $\mathbb{Q}$ (sections~\ref{sec:czero} and~\ref{sec:decomp}).
+149: \item A convention-controlled bridge to the spinor description is implemented and
+150:       verified to be an isomorphism onto the gamma-traceless
+151:       $\dimGammaTraceless$ (section~\ref{sec:bridge}).
+152: \item The floating-point Jacobian used previously is replaced by an exact modular
+153:       one (section~\ref{sec:jacobian}), which converts numerical evidence into a
+154:       rigorous bound.
+155: \end{enumerate}
+156: 
+
+FILE manuscript/main.tex 200 216
+200:   degrees. It is bounded by~\eqref{eq:eightyone}.
+201: \item[Hilbert-series dimension.] The graded dimension predicted by a generating
+202:   function. A count of generators, not of functions.
+203: \item[Quotient dimension.] The dimension of $A_{10}/D_{10}$, a quotient by the
+204:   stress-flow reachable subspace --- unrelated to any product decomposition.
+205: \end{description}
+206: 
+207: These genuinely differ, and the cleanest demonstration is at the top of the
+208: range rather than in the middle. The candidate family whose Jacobian we compute
+209: in section~\ref{sec:cert81} has $\exactJacRows$ members and Jacobian rank
+210: $\exactJacRank$, so exactly two functional relations hold among functions that
+211: are pairwise distinct as polynomials. Both are degree-twelve phenomena: the
+212: cumulative Jacobian ranks are $\cumRankDegFour, \cumRankDegSix,
+213: \cumRankDegEight, \cumRankDegTen, \cumRankDegTwelve$ against per-degree candidate
+214: counts that each contribute in full up to degree ten.
+215: 
+216: A caution that cost us a wrong sentence in an earlier draft: one may not subtract
+
+FILE manuscript/main.tex 298 328
+298: Computed exactly at $\nIncidencePrimes$ primes:
+299: \begin{equation}
+300:   \dim(B_{10}\cap P_{10}) = \dimBcapP,
+301:   \qquad
+302:   \dim(B_{10} + P_{10}) = \dimBplusP \ne \dimAten .
+303: \end{equation}
+304: The published span therefore contains exactly one product direction and misses
+305: one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
+306: $\dimBten$, and the numerical agreement of the two twelves is a coincidence.
+307: 
+308: This is exact over the rationals, not only modulo a prime: the published
+309: coordinates were lifted to $\mathbb{Q}$ by Chinese remaindering across
+310: $\bpFitPrimes$ primes with rational reconstruction, validated at a held-out
+311: prime~$\bpHoldoutPrime$, giving
+312: $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$. The
+313: intersection is one-dimensional and we can write its generator down: with
+314: $I^{(k)}$ the published structures in the numbering of~\cite{Cederwall:2025invariants},
+315: \begin{equation}
+316:   \input{generated/identity}
+317:   \label{eq:bpidentity}
+318: \end{equation}
+319: so a specific integer combination of four of the twelve published structures is
+320: a multiple of a pure product. We verified~\eqref{eq:bpidentity} at a prime
+321: $\bpFreshPrime$ and on $\bpFreshSamples$ five-forms that took no part in its
+322: construction.
+323: 
+324: The decomposition that \emph{is} structural is
+325: \begin{equation}
+326:   P_{10}\cap G_{10} = 0,\quad P_{10}+G_{10} = \dimAten
+327:   \qquad\Longrightarrow\qquad
+328:   A_{10} = G_{10}\oplus P_{10}.
+
+FILE manuscript/main.tex 354 399
+354: are given in section~\ref{sec:pureN}.
+355: 
+356: \subsection{The quotient over the rationals, not only modulo $p$}
+357: \label{sec:czero}
+358: 
+359: Every dimension above is a rank computed over $\mathbb{F}_p$, and for most of
+360: them that costs nothing: a space spanned by exactly $k$ explicit invariants has
+361: $\dim_{\mathbb{Q}} \le k$ for free, so a modular rank of $k$ pins the
+362: dimension over $\mathbb{Q}$ with no prime excluded. This covers $A_{10}$,
+363: $P_{10}$, $G_{10}$ and $B_{10}$.
+364: 
+365: $D_{10}$ is the exception, and it is the one that matters. It is not given by a
+366: spanning set; it is assembled by a closure that admits a generated flow direction
+367: when that direction raises the rank \emph{modulo $p$}. A direction rejected mod
+368: $p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+369: $\dimDten$ bounded $\dim_{\mathbb{Q}} D_{10}$ only from below, and
+370: $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ was all that followed.
+371: 
+372: Running the same fixed point in exact rational arithmetic removes the modular
+373: admission test, and with it the gap. The obstacle is that the flow targets are
+374: not all integral: of the targets at degrees four through ten,
+375: $\czIntegerRows$ have identical integer coordinates at every prime and
+376: $\czLiftedRows$ are reductions of rationals. Those were lifted by CRT across
+377: $\czFitPrimes$ primes followed by rational reconstruction, and every
+378: reconstructed entry was then required to reduce correctly at a held-out
+379: prime~$\czHoldoutPrime$ that took no part in the lift. No lift failed and no
+380: held-out reduction disagreed.
+381: 
+382: The closure then reaches its fixed point in $\czSweeps$ sweeps under exact
+383: rational arithmetic, giving
+384: \begin{equation}
+385:   \dim_{\mathbb{Q}} D_{10} = \dimDtenQ ,
+386:   \qquad
+387:   \dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ .
+388:   \label{eq:czero}
+389: \end{equation}
+390: This is an equality and not a bound, because at a fixed point reached over
+391: $\mathbb{Q}$ no generated direction raises the rank over $\mathbb{Q}$: the
+392: reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+393: upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+394: checkable witness the certificate records an explicit
+395: $\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+396: determinant, computed by fraction-free elimination, is non-zero.
+397: 
+398: \paragraph{The one analytic input.} The closure assigns each generated target
+399: to a graded piece using the leading field degree of its generator, and that
+
+FILE manuscript/main.tex 600 648
+600: \end{figure}
+601: 
+602: Where the spans agree, the agreement is established by two-way containment and
+603: the change-of-basis matrix is fitted on the fitting samples only and then
+604: validated on the holdout samples. We do not report a degree as matched on the
+605: strength of a dimension coincidence.
+606: 
+607: \paragraph{Degrees four, six and ten agree; degree eight does not, and that is a
+608: result.} At degrees four, six and ten the two evaluation spans are equal, with
+609: the change-of-basis map validated on holdout samples that took no part in the
+610: fit. At degree ten in particular both sides reach $\traceRankDegTen$ and the
+611: spans coincide, which is the cross-validation this comparison was built to test.
+612: 
+613: At degree eight the spinor-side port-graph stream reaches
+614: $\spinorRankDegEight$ where the tensor side reaches $\traceRankDegEight$, and the
+615: containment is strict: every spinor-side invariant lies in the tensor-side span,
+616: but one tensor-side direction is not reached. This is not a defect of the bridge,
+617: which is verified to be an isomorphism, nor of the sampling, which had saturated.
+618: It is a property of the port-graph ansatz: single-graph contractions of the
+619: invariant tensor miss a degree-eight direction.
+620: 
+621: This is not an inference. Running the spinor enumeration with its
+622: stopping rule disabled, so that it terminates on candidate exhaustion rather than
+623: on an externally supplied target, reaches rank seven at degree eight --- but only
+624: when a separate family of structured tensor-word candidates is included alongside
+625: the port graphs. Our exact modular computation re-implements the port graphs and
+626: not that family, and lands on six. The two numbers are consistent, and together
+627: they locate the missing direction precisely: it is not reachable by any
+628: single-graph contraction.
+629: 
+630: This can be made sharper than ``the two numbers are consistent''. Re-running the
+631: degree-eight comparison with the \emph{full} spinor candidate family --- port
+632: graphs, products of lower degrees, the archive's structured candidates, and
+633: tensor words, between $\dEightSpinorRowsMin$ and $\dEightSpinorRowsMax$ rows
+634: depending on the prime --- gives
+635: \begin{equation}
+636:   \text{trace rank} = \text{spinor rank} = \text{union rank}
+637:   = \dEightUnionRank
+638: \end{equation}
+639: at all $\dEightPrimes$ primes tested, with two-way containment and a
+640: change-of-basis map validated on holdout samples. The union rank is the
+641: load-bearing number: two \emph{different} seven-dimensional subspaces would also
+642: give equal ranks, and a union of eight; the union being $\dEightUnionRank$ is
+643: what makes this span equality rather than dimension agreement.
+644: 
+645: Dropping each spinor family in turn and re-ranking then isolates the
+646: responsible one. Removing the port graphs, the products or the structured
+647: candidates leaves the rank at $\dEightUnionRank$; removing the
+648: \dEightIndispensable{} candidates drops it to $\dEightRankWithoutWords$. So the
+
+FILE manuscript/main.tex 833 844
+833: equality over the rationals, not a bound: section~\ref{sec:czero} establishes
+834: $\dim_{\mathbb{Q}} D_{10} = \dimDtenQ$ exactly.
+835: 
+836: This changes what a theorist can do in a specific way. Previously, a candidate
+837: degree-ten term could be compared against the published structures only, and if
+838: it failed to match, nothing followed --- the published list was not known to be
+839: complete or independent. Now any degree-ten invariant can be expanded in a
+840: certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+841: computed. That is the difference between recognising a term and locating it.
+842: 
+843: We deliberately do \emph{not} claim: a Type IIB coefficient, a supersymmetric
+844: completion, a causality statement, an amplitude, or an all-orders theorem. None
+
+FILE manuscript/main.tex 918 942
+918: \label{sec:conclusions}
+919: 
+920: The degree-ten graded piece of the invariant ring of the ten-dimensional
+921: self-dual five-form is now known exactly, together with its product, published,
+922: graph-generator and stress-flow-reachable subspaces and all their intersections.
+923: Every one of those dimensions is exact over $\mathbb{Q}$, not merely modulo a
+924: prime: the four spanned subspaces are pinned by counting their spanning sets, and
+925: the two that are not --- the reachable subspace and the intersection of the
+926: published span with the products --- were settled by exact rational computations
+927: after lifting the relevant coordinates by Chinese remaindering and validating at
+928: held-out primes. The quotient by the reachable subspace is
+929: $\dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ$ and has explicit
+930: representatives.
+931: 
+932: A tempting identification between two decompositions that both read
+933: $\dimBten+\dimPten$ turns out to be false, and the correct structural statement
+934: is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+935: meets the products in exactly one dimension over $\mathbb{Q}$, generated by the
+936: integer identity~\eqref{eq:bpidentity}.
+937: 
+938: Separately, the spinor-variable description has been connected to the tensor
+939: description by an explicit convention-controlled bridge, and the numerical
+940: Jacobian rank computation has been replaced by an exact modular one that yields a
+941: rigorous bound.
+942: 
+
+FILE manuscript/prd/main.tex 1 105
+1: % ===========================================================================
+2: % DRAFT FOR MENTOR REVIEW -- NOT FOR SUBMISSION
+3: %
+4: % GENERATED FILE. Do not edit: this file is produced from manuscript/jhep by
+5: % manuscript/prd/build_prd.py. Edit the source there and rebuild.
+6: %
+7: % Physical Review D format, REVTeX 4.2, two-column reprint.
+8: % Authorship, affiliations, corresponding author, ORCIDs, licence, DOI and
+9: % arXiv identifier are deliberately unresolved. They are human decisions and
+10: % nothing in this file may be read as having made them.
+11: % ===========================================================================
+12: 
+13: \documentclass[
+14:   aps,prd,
+15:   reprint,
+16:   amsmath,amssymb,
+17:   nofootinbib,
+18:   longbibliography
+19: ]{revtex4-2}
+20: 
+21: % A PRD column is about 3.4 inches. Long unbreakable technical tokens --
+22: % \texttt{} paths, index-laden symbols -- leave TeX stretching interword space
+23: % past its tolerance, which it reports as an underfull box. A little emergency
+24: % stretch lets it find an acceptable break instead of a badness-10000 line.
+25: \emergencystretch=1.2em
+26: 
+27: % Every float here is full width (figure*/table*), and REVTeX's default float
+28: % parameters will only place a couple per page. With enough of them queued the
+29: % page builder runs out of legal placements and LaTeX aborts with
+30: % "Output loop---100 consecutive dead cycles" -- which is a float-placement
+31: % deadlock, not a content error. Loosening the fractions gives it room.
+32: \setcounter{topnumber}{4}
+33: \setcounter{bottomnumber}{3}
+34: \setcounter{totalnumber}{8}
+35: \setcounter{dbltopnumber}{4}
+36: \renewcommand{\topfraction}{0.92}
+37: \renewcommand{\bottomfraction}{0.85}
+38: \renewcommand{\dbltopfraction}{0.92}
+39: \renewcommand{\textfraction}{0.06}
+40: \renewcommand{\floatpagefraction}{0.70}
+41: \renewcommand{\dblfloatpagefraction}{0.70}
+42: 
+43: \usepackage{amsthm}
+44: \usepackage{booktabs}
+45: \usepackage{array}
+46: \usepackage{xcolor}
+47: \usepackage{graphicx}
+48: \usepackage{bm}
+49: 
+50: % REVTeX provides no theorem environments of its own.
+51: \theoremstyle{plain}
+52: \newtheorem{theorem}{Theorem}
+53: \newtheorem{proposition}[theorem]{Proposition}
+54: \newtheorem{lemma}[theorem]{Lemma}
+55: \theoremstyle{definition}
+56: \newtheorem{definition}[theorem]{Definition}
+57: \theoremstyle{remark}
+58: \newtheorem{remark}[theorem]{Remark}
+59: 
+60: \input{generated/numbers.tex}
+61: 
+62: \newcommand{\Ften}{A_{10}}
+63: \newcommand{\Dten}{D_{10}}
+64: \newcommand{\Qten}{Q_{10}}
+65: \newcommand{\Bten}{B_{10}}
+66: \newcommand{\Pten}{P_{10}}
+67: \newcommand{\Gten}{G_{10}}
+68: \newcommand{\Fp}{\mathbb{F}_p}
+69: \newcommand{\Q}{\mathbb{Q}}
+70: \newcommand{\pending}[1]{\textcolor{red}{\textbf{[#1]}}}
+71: 
+72: \begin{document}
+73: 
+74: \title{Exact degree-ten invariants of a self-dual five-form\\
+75:        in ten dimensions}
+76: 
+77: \author{\pending{Author list pending mentor review}}
+78: \affiliation{\pending{Affiliations pending mentor review}}
+79: 
+80: \date{\today}
+81: 
+82: \begin{abstract}
+83: A self-dual five-form in ten dimensions carries a $\dimSelfDualModule$-dimensional
+84: space of field values, and the Lorentz-invariant scalar functions built from it
+85: organise the possible non-linear self-interactions of the field. We determine
+86: the degree-ten sector of this invariant structure exactly.
+87: 
+88: Working in two independent formulations --- a tensor formulation built from
+89: contraction graphs, and a spinor formulation built from chiral bispinors --- we
+90: construct an explicit map between them and certify that it is injective with
+91: image the gamma-traceless subspace, of rank $\bridgeForwardRank$, with an exact
+92: left inverse --- a left inverse, not a two-sided one, since the map is not onto
+93: the full symmetric square. The two formulations are then compared degree by
+94: degree on common samples, and their spans agree at degrees four, six, eight and
+95: ten.
+96: 
+97: Three results are established exactly over the rationals rather than modulo a
+98: prime. The full degree-ten invariant space has dimension $\dimAtenQ$. The
+99: subspace reachable by the stress-tensor flow has dimension $\dimDtenQ$, computed
+100: by running the closure to its fixed point in exact rational arithmetic after
+101: lifting its non-integral targets by rational reconstruction. The quotient of the
+102: first by the second therefore has dimension $\dimQtenQ$: there are three
+103: independent degree-ten invariant directions that this flow does not reach. We
+104: also show that the span of the previously published degree-ten structures meets
+105: the product sector in exactly one dimension, and we write that intersection out
+
+FILE manuscript/jhep/main.tex 1 104
+1: % ===========================================================================
+2: % DRAFT FOR MENTOR REVIEW -- NOT FOR SUBMISSION
+3: %
+4: % Authorship, affiliations, corresponding author, ORCIDs, licence, DOI and
+5: % arXiv identifier are deliberately unresolved. They are human decisions and
+6: % nothing in this file may be read as having made them.
+7: %
+8: % Every scientific number in the body comes from generated/numbers.tex, which
+9: % is produced from result artifacts by manuscript/scripts/make_numbers.py.
+10: % Tables come from tables/, figures from figures/, both generated by the
+11: % scripts in scripts/. Do not type a scientific value directly into this file.
+12: % ===========================================================================
+13: 
+14: % Tectonic runs XeTeX; jheppub.sty requests hyperref with pdfa=true, which
+15: % otherwise selects the pdfTeX driver and fails. This line fixes the driver
+16: % without modifying the official JHEP style file.
+17: \PassOptionsToPackage{xetex}{hyperref}
+18: 
+19: \documentclass[11pt,a4paper]{article}
+20: \usepackage{jheppub}
+21: \usepackage{amsmath}
+22: \usepackage{amssymb}
+23: \usepackage{amsthm}
+24: \usepackage{booktabs}
+25: \usepackage{array}
+26: \usepackage{xcolor}
+27: \usepackage{tikz}
+28: 
+29: \input{generated/numbers.tex}
+30: 
+31: \newtheorem{theorem}{Theorem}
+32: \newtheorem{proposition}[theorem]{Proposition}
+33: \newtheorem{lemma}[theorem]{Lemma}
+34: \theoremstyle{definition}
+35: \newtheorem{definition}[theorem]{Definition}
+36: \theoremstyle{remark}
+37: \newtheorem{remark}[theorem]{Remark}
+38: 
+39: \newcommand{\Ften}{A_{10}}
+40: \newcommand{\Dten}{D_{10}}
+41: \newcommand{\Qten}{Q_{10}}
+42: \newcommand{\Bten}{B_{10}}
+43: \newcommand{\Pten}{P_{10}}
+44: \newcommand{\Gten}{G_{10}}
+45: \newcommand{\Fp}{\mathbb{F}_p}
+46: \newcommand{\Q}{\mathbb{Q}}
+47: \newcommand{\pending}[1]{\textcolor{red}{\textbf{[#1]}}}
+48: 
+49: \title{Exact degree-ten invariants of a self-dual five-form\\ in ten dimensions}
+50: 
+51: \author{\pending{Author list pending mentor review}}
+52: 
+53: \abstract{%
+54: A self-dual five-form in ten dimensions carries a $\dimSelfDualModule$-dimensional
+55: space of field values, and the Lorentz-invariant scalar functions built from it
+56: organise the possible non-linear self-interactions of the field. We determine
+57: the degree-ten sector of this invariant structure exactly.
+58: 
+59: Working in two independent formulations --- a tensor formulation built from
+60: contraction graphs, and a spinor formulation built from chiral bispinors --- we
+61: construct an explicit map between them and certify that it is injective with
+62: image the gamma-traceless subspace, of rank $\bridgeForwardRank$, with an exact
+63: left inverse --- a left inverse, not a two-sided one, since the map is not onto
+64: the full symmetric square. The two formulations are then compared degree by
+65: degree on common samples, and their spans agree at degrees four, six, eight and
+66: ten.
+67: 
+68: Three results are established exactly over the rationals rather than modulo a
+69: prime. The full degree-ten invariant space has dimension $\dimAtenQ$. The
+70: subspace reachable by the stress-tensor flow has dimension $\dimDtenQ$, computed
+71: by running the closure to its fixed point in exact rational arithmetic after
+72: lifting its non-integral targets by rational reconstruction. The quotient of the
+73: first by the second therefore has dimension $\dimQtenQ$: there are three
+74: independent degree-ten invariant directions that this flow does not reach. We
+75: also show that the span of the previously published degree-ten structures meets
+76: the product sector in exactly one dimension, and we write that intersection out
+77: as an explicit integer identity.
+78: 
+79: For the generic functional rank of the full candidate family we certify the
+80: lower bound $\charZeroLowerBound$ by an exact modular Jacobian computation with
+81: an explicit $\minorSize\times\minorSize$ minor; the matching upper bound is
+82: analytic and is due to earlier work, which we cite rather than reprove.
+83: 
+84: All results are supported by machine-checked certificates, and the computations
+85: are reproducible from a public repository. We state explicitly which claims are
+86: theorems, which are exact certificates, which rest on agreement across several
+87: primes, and which remain open.%
+88: }
+89: 
+90: \begin{document}
+91: \maketitle
+92: 
+93: % ---------------------------------------------------------------- banner
+94: \begin{center}
+95: \fcolorbox{red}{yellow!12}{%
+96: \begin{minipage}{0.93\textwidth}
+97: \centering\vspace{3pt}
+98: {\bfseries DRAFT FOR MENTOR REVIEW --- NOT FOR SUBMISSION}\\[2pt]
+99: {\bfseries AUTHORSHIP AND AFFILIATIONS NOT YET FINALIZED}\\[3pt]
+100: \footnotesize
+101: The author list, author order, corresponding author, affiliations and ORCIDs
+102: are unresolved. No licence has been selected, no DOI has been minted, and
+103: nothing here has been submitted to arXiv or to a journal. Items marked in
+104: \textcolor{red}{\textbf{red}} throughout are pending human decisions.
+
+FILE manuscript/prl/main.tex 1 55
+1: \documentclass[aps,prl,reprint,superscriptaddress,nofootinbib]{revtex4-2}
+2: 
+3: \usepackage{amsmath}
+4: \usepackage{amssymb}
+5: \usepackage{graphicx}
+6: \usepackage{xcolor}
+7: \usepackage{hyperref}
+8: 
+9: \input{macros}
+10: \input{generated/numbers}
+11: 
+12: \begin{document}
+13: 
+14: \title{Three local interactions of the ten-dimensional self-dual five-form\\
+15:        that no stress-tensor flow generates}
+16: 
+17: \author{AUTHOR LIST --- HUMAN ACTION REQUIRED}
+18: \affiliation{AFFILIATIONS --- HUMAN ACTION REQUIRED}
+19: 
+20: \date{\today}
+21: 
+22: \begin{abstract}
+23: Non-linear theories of a chiral four-form gauge field in ten dimensions are
+24: usually constructed by deforming a seed theory along a flow built from
+25: stress-tensor invariants, as in lower dimensions where such flows generate
+26: everything available. Whether that construction reaches the whole space of local
+27: interactions in ten dimensions has not been decidable, because the space itself
+28: was not known at any fixed order. We determine it exactly at quartic-squared
+29: order: the space of local invariants of degree ten in the self-dual five-form is
+30: \dimAten-dimensional, the subspace reachable by the stress-tensor flow is
+31: \dimDten-dimensional, and the quotient is exactly \dimQten-dimensional. We give
+32: explicit representatives of the three unreachable directions, no proper subset of
+33: which spans the quotient. Products of lower-degree invariants are all reachable, so the missing
+34: directions are not built from anything simpler. The result is obtained in exact
+35: arithmetic and recovered independently in graph, block-tensor and spinor
+36: descriptions related by a certified equivariant map. Any deformation scheme
+37: intended to cover ten-dimensional chiral four-form dynamics at this order must
+38: therefore enlarge its generator set by at least three independent structures.
+39: \end{abstract}
+40: 
+41: \maketitle
+42: 
+43: \begin{center}\fbox{\parbox{0.92\columnwidth}{\small\textbf{NOT YET
+44: SUBMISSION-READY.} The PRL claim gate does not currently pass: Impact and Broad
+45: interest are not met on present evidence, and Innovation is conditional on a
+46: literature sweep that has not been done. See \texttt{audit/PRL\_CLAIM\_GATE.md}.
+47: The science below is complete and certified; the venue judgement is not. Author
+48: list, affiliations and acknowledgments are unresolved placeholders.}}\end{center}
+49: 
+50: %=============================================================================
+51: \paragraph*{Introduction.}
+52: A chiral $p$-form gauge field carries a self-dual field strength, and in ten
+53: dimensions that is the self-dual five-form $F$ of type IIB supergravity. Writing
+54: a non-linear theory of such a field is delicate: the self-duality constraint is
+55: not a Lagrangian equation of motion, and the standard route to interacting
+
+FILE manuscript/prd_letter/main.tex 47 83
+47: 
+48: \title{Exact degree-ten invariants of a self-dual five-form in ten dimensions}
+49: 
+50: \author{\pending{Author list pending mentor review}}
+51: \affiliation{\pending{Affiliations pending mentor review}}
+52: 
+53: \date{\today}
+54: 
+55: \begin{abstract}
+56: The Lorentz-invariant scalar functions of a self-dual five-form in ten
+57: dimensions control the non-linear self-interactions the field can have. We
+58: determine the degree-ten sector of this structure exactly over $\Q$, rather than
+59: modulo a prime. The full invariant space has dimension $\dimAtenQ$; the subspace
+60: activated by the stress-tensor flow has dimension $\dimDtenQ$; the quotient
+61: therefore has dimension $\dimQtenQ$, so three independent degree-ten directions
+62: lie outside the reach of the flow. The separation rests on a short theorem: the
+63: free stress tensor of a self-dual five-form is traceless for every improvement
+64: coefficient, because $F\wedge F$ vanishes identically for a form of odd degree,
+65: so $\operatorname{Tr}\tau$ begins at field degree four rather than two. Forcing
+66: the naive degree-two start collapses the quotient to zero. We certify a
+67: tensor--spinor bridge of rank $\bridgeForwardRank$ with an exact left inverse,
+68: certify generic functional rank at least $\charZeroLowerBound$ by an explicit
+69: $\minorSize\times\minorSize$ integer minor, and give the one-dimensional overlap
+70: between the published degree-ten span and the product sector as an exact integer
+71: identity. All computations are exact; none uses floating point.
+72: \end{abstract}
+73: 
+74: \maketitle
+75: 
+76: \begin{center}
+77: \fcolorbox{red}{yellow!12}{%
+78: \begin{minipage}{0.94\columnwidth}
+79: \centering\vspace{3pt}
+80: {\bfseries\footnotesize DRAFT FOR MENTOR REVIEW --- NOT FOR SUBMISSION}\\[2pt]
+81: {\bfseries\footnotesize AUTHORSHIP AND AFFILIATIONS NOT YET FINALIZED}\\[3pt]
+82: \scriptsize
+83: Author list, order, corresponding author, affiliations and ORCIDs are
+
+FILE manuscript/prd/appendices/app_h_closure.tex 1 90
+1: \section{The exact degree-ten flow closure}
+2: \label{app:closure}
+3: 
+4: \paragraph{Targets and generators.}
+5: At degrees four through ten the closure consumes exactly the generators
+6: \begin{widetext}
+7: \begin{equation}
+8: \operatorname{Tr}\tau,\;
+9: \operatorname{Tr}\tau_2,\;
+10: \operatorname{Tr}\tau_3,\;
+11: \operatorname{Tr}\tau_4,\;
+12: \operatorname{Tr}\tau_5,\;
+13: (\operatorname{Tr}\tau)^2,\;
+14: \operatorname{Tr}\tau\operatorname{Tr}\tau_2,\;
+15: \operatorname{Tr}\tau\operatorname{Tr}\tau_3,\;
+16: (\operatorname{Tr}\tau_2)^2,\;
+17: \operatorname{Tr}\tau_2\operatorname{Tr}\tau_3 .
+18: \end{equation}
+19: \end{widetext}
+20: This list was determined by instrumenting the closure rather than by reading the
+21: construction, so that a generator consumed but not documented would show up.
+22: 
+23: \paragraph{Activation rules.}
+24: A target is \emph{generated} when the flow produces it formally, and
+25: \emph{activated} when the leading field degree of the generating expression is
+26: low enough for it to contribute at the degree under consideration. The leading
+27: degrees follow the rule: $\operatorname{Tr}(\tau)$ has leading field degree four
+28: --- not two, by theorem~\ref{thm:gten} --- while $\operatorname{Tr}(\tau^k)$ has
+29: $2k$ for $k \ge 2$, and products add. All generators were checked against this
+30: rule independently at every prime, with no exceptions.
+31: 
+32: \paragraph{Why the distinction is the whole result.}
+33: The span of \emph{generated} targets has dimension $\dimAten$, equal to
+34: $\dim\Ften$. The span of \emph{activated} targets, closed under iteration, has
+35: dimension $\dimDtenQ$. Identifying the two returns $\dim\Qten = 0$. The raw span
+36: is retained in the test suite as a negative fixture for exactly this reason.
+37: 
+38: \paragraph{Fixed-point algorithm.}
+39: Starting from the degree-four seed, repeatedly: generate targets from the current
+40: span, admit those whose leading degree permits activation, and re-rank. Terminate
+41: when a sweep raises no rank. Termination occurred after $\czSweeps$ sweeps.
+42: 
+43: \paragraph{The exact rational calculation.}
+44: Of the closure's target rows, $\czIntegerRows$ were already integral. The
+45: remaining $\czLiftedRows$ were reconstructed as follows: evaluate at
+46: $\czFitPrimes$ fitting primes, combine by the Chinese remainder theorem, and
+47: recover a rational by rational reconstruction~\cite{Wang:1982}. The reconstructed
+48: rows were then validated at the held-out prime $\czHoldoutPrime$, which took no
+49: part in the fit; there were no mismatches. The closure was then run entirely in
+50: exact $\mathbb{Q}$ arithmetic.
+51: 
+52: \paragraph{Dimensions by degree.}
+53: Over $\Q$ the reachable dimensions are $1$, $2$, $7$ and $\dimDtenQ$ at degrees
+54: four, six, eight and ten.
+55: 
+56: \paragraph{Lower-bound certificate.}
+57: An explicit $\czMinorSize \times \czMinorSize$ integer minor of the reachable
+58: span has non-zero determinant. The submatrix, the column set, the integer scale
+59: factor by which the rows were cleared of denominators, and the full integer
+60: determinant are recorded in the artifact. The determinant was computed by Bareiss
+61: elimination~\cite{Bareiss:1968} and confirmed by an independent exact rational
+62: routine.
+63: 
+64: \paragraph{Upper bound: why none is needed.}
+65: Running the closure over $\Q$ removes the modular admission test that made the
+66: earlier figure a lower bound. At the fixed point, no further generated direction
+67: raises the rank over $\Q$; therefore the reached span \emph{is} $\Dten$, and
+68: $\dim_\Q\Dten = \dimDtenQ$ is an equality. This is the substantive difference
+69: between the present computation and its modular predecessor.
+70: 
+71: \paragraph{Quotient maps.}
+72: Three exact annihilating covectors are exhibited, each vanishing on $\Dten$ and
+73: independent on $\Ften$. They give the quotient map to $\Qten$ directly, and the
+74: quotient representatives are indexed by the free columns
+75: (table~\ref{tab:quotient}).
+
+FILE manuscript/prd/appendices/app_j_b10.tex 1 70
+1: \section{Reconstruction of the published span}
+2: \label{app:b10}
+3: 
+4: \paragraph{The problem.}
+5: The published degree-ten structures are given as explicit expressions. To compare
+6: their span with the product subspace over $\Q$ --- rather than modulo a prime ---
+7: their coordinate vectors must be lifted to $\Q$.
+8: 
+9: \paragraph{CRT and rational reconstruction.}
+10: Each published structure was evaluated at $\bpFitPrimes$ fitting primes. The
+11: residues were combined by the Chinese remainder theorem into a residue modulo the
+12: product, and a rational with bounded numerator and denominator was recovered by
+13: rational reconstruction~\cite{Wang:1982}. All $\dimBten$ published structures
+14: lifted; none failed.
+15: 
+16: \paragraph{Held-out validation.}
+17: The reconstructed rationals were reduced modulo the held-out prime
+18: $\bpHoldoutPrime$, which took no part in the fit, and compared against a direct
+19: evaluation there. There were no mismatches. This is the step that distinguishes a
+20: reconstruction from a guess: rational reconstruction always returns
+21: \emph{something}, and only a prime outside the fit can tell you whether it
+22: returned the right thing.
+23: 
+24: \paragraph{Exact intersection.}
+25: With the lifts in hand,
+26: \begin{equation}
+27: \dim_\Q \Bten = \dimBten,\quad
+28: \dim_\Q \Pten = \dimPten,\quad
+29: \dim_\Q(\Bten + \Pten) = \dimBplusP,
+30: \end{equation}
+31: whence $\dim_\Q(\Bten \cap \Pten) = \dimBcapP$ by inclusion--exclusion.
+32: 
+33: \paragraph{The explicit generator.}
+34: The one-dimensional intersection is generated by
+35: \begin{equation}
+36: \begin{split}
+37: -55\,I^{(1)} - 252\,I^{(2)}& + 4200\,I^{(5)} + 5040\,I^{(6)} \\
+38:  &=\; -1040\,I^{(4)}_1 I^{(6)}_1,
+39: \end{split}
+40: \end{equation}
+41: an identity between integer combinations, verified at the fresh prime
+42: $\bpFreshPrime$ on $\bpFreshSamples$ independently drawn samples that took no
+43: part in either the fit or the holdout.
+44: 
+45: \paragraph{Normalisation, and a check that failed.}
+46: The verification initially failed at the fresh prime on all six samples. The
+47: cause was in the checking code: the two sides of the identity were each being
+48: reduced by their own greatest common divisor before comparison, which destroys
+49: precisely the relative scale the identity asserts. Recomputed on a single common
+50: scale, the identity holds on all six samples.
+51: 
+52: We record the failure rather than only the eventual success. A check that fails,
+53: is adjusted, and then passes is worthless unless the adjustment is stated, because
+54: the adjustment is where the error would hide. The adjustment here was to stop
+55: normalising the two sides independently; no coefficient was altered to make the
+56: identity fit.
+57: 
+58: \paragraph{Why the two decompositions differ.}
+59: The published structures were presented as explicit expressions, not as a basis
+60: with specified relations, and there is no reason a set chosen for explicitness
+61: should avoid the product sector. That it meets it in exactly one dimension is a
+62: structural observation about the published choice, and the direction of the
+63: finding --- that $\Bten$ has one dimension \emph{fewer} of primitive content than
+64: a naive reading would suggest --- can only weaken a claim about the published
+65: span, never strengthen one. No result in this paper depends on the equality.
+
+FILE manuscript/prd/appendices/app_g_rank81.tex 58 83
+58: \text{generic functional rank} \;\ge\; \charZeroLowerBound .
+59: \end{equation}
+60: No prime is excluded and no genericity assumption on the sample point is needed:
+61: a specific point exhibiting rank $\charZeroLowerBound$ bounds the generic rank
+62: from below.
+63: 
+64: \paragraph{The upper bound.}
+65: The matching upper bound $\genericFunctionalDim$ is analytic, following from the
+66: generic orbit dimension of the Lorentz action on
+67: $\Lambda^5_+$~\cite{Hutomo:2025chiral}. We cite it and do not reprove it. The
+68: combination of the two gives the exact value, and we are explicit about which
+69: half is ours.
+70: 
+71: \paragraph{Scope.}
+72: The certified statement is that \emph{the selected family has generic functional
+73: rank $\genericFunctionalDim$}. It is not the statement that all
+74: $\exactJacScheduled$ candidates are algebraically independent: functional
+75: independence at a generic point and algebraic independence are different
+76: properties, and only the former is established here.

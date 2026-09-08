@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;from fractions import Fraction as Q;import json;root=Path.cwd();c=json.loads((root/\"results/audit/source-review/exact-source-evaluation-certificate.json\").read_text());m=c[\"maps\"][\"degree10\"];w=[-Q(11,1008),-Q(1,20),Q(0),Q(0),Q(5,6),Q(1)]+[Q(0)]*6;v=[sum(w[i]*Q(m[\"matrix_12x14\"][i][j]) for i in range(12)) for j in range(14)];assert v==[Q(0)]*12+[-Q(13,63),Q(0)];print(\"paper relation PASS\",m[\"graph_and_product_basis\"],[str(x)for x in v]);missing=[];badtypes=[];seen={};source=root/\"results/audit/source-review\"; aliases={\"source-review\":source,\"repair-checkout\":root,\"math-review\":root/\"results/audit/math-review\"}; refs=[];[(refs.extend(json.loads((source/e[\"path\"]).read_text())[\"source_hashes\"].keys()))for e in c[\"point_evidence\"]];[(seen.setdefault(f,aliases[Path(f).parts[0]].joinpath(*Path(f).parts[1:])))for f in set(refs)];print(\"referenced source files\",json.dumps({f:str(p.relative_to(root)) for f,p in seen.items()},indent=2));print(\"missing\",json.dumps([str(p)for p in seen.values() if not p.is_file()]));print(\"potential filtered extensions\",json.dumps([str(p)for p in seen.values() if p.is_relative_to(root/\"results/audit\") and p.suffix not in [\".py\",\".json\",\".md\"]]))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788833271.529963,
+  "status": "completed",
+  "pid": 15640,
+  "exit_code": 0,
+  "seconds": 0.1652328750351444,
+  "finished_unix": 1788833271.6957061,
+  "logs": {
+    "stdout.log": {
+      "sha256": "4531b9e994f681a25e70385f524f58e1074e51911f33f72314db67ae28e4348e",
+      "bytes": 797
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

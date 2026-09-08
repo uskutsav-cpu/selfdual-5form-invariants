@@ -1,0 +1,8 @@
+matrix8 reconstruction failures: []
+matrix8_all_displayed reconstruction failures: []
+matrix10 reconstruction failures: [[11, 1, 'no bounded rational reconstruction'], [11, 3, 'no bounded rational reconstruction'], [11, 4, 'no bounded rational reconstruction'], [11, 5, 'no bounded rational reconstruction'], [11, 11, 'no bounded rational reconstruction'], [12, 2, 'no bounded rational reconstruction'], [12, 3, 'no bounded rational reconstruction'], [12, 5, 'no bounded rational reconstruction'], [12, 13, 'no bounded rational reconstruction'], [12, 14, 'no bounded rational reconstruction']]
+32749 {'source8_selected_rank': 7, 'source8_primary_rank': 6, 'source8_hatted_rank': 5, 'source10_rank': 12, 'source10_primitive_quotient_rank': 11, 'product_intersection_rank': 1}
+32719 {'source8_selected_rank': 7, 'source8_primary_rank': 6, 'source8_hatted_rank': 5, 'source10_rank': 12, 'source10_primitive_quotient_rank': 11, 'product_intersection_rank': 1}
+32693 {'source8_selected_rank': 7, 'source8_primary_rank': 6, 'source8_hatted_rank': 5, 'source10_rank': 12, 'source10_primitive_quotient_rank': 11, 'product_intersection_rank': 1}
+32713 {'source8_selected_rank': 7, 'source8_primary_rank': 6, 'source8_hatted_rank': 5, 'source10_rank': 12, 'source10_primitive_quotient_rank': 11, 'product_intersection_rank': 1}
+32717 {'source8_selected_rank': 7, 'source8_primary_rank': 6, 'source8_hatted_rank': 5, 'source10_rank': 12, 'source10_primitive_quotient_rank': 11, 'product_intersection_rank': 1}

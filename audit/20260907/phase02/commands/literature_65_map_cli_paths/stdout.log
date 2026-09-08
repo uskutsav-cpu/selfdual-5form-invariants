@@ -1,0 +1,75 @@
+scripts/reverse_engineer_degree12_pilot.py:23:import argparse
+scripts/reverse_engineer_degree12_pilot.py:47:    ap = argparse.ArgumentParser()
+scripts/falsify_basis_permutation.py:26:import argparse
+scripts/falsify_basis_permutation.py:82:    ap = argparse.ArgumentParser()
+scripts/export_intrinsic_tensor_formulas.py:15:import argparse
+scripts/export_intrinsic_tensor_formulas.py:65:    ap = argparse.ArgumentParser()
+scripts/build_release_candidate.py:15:import argparse
+scripts/build_release_candidate.py:112:    ap = argparse.ArgumentParser()
+scripts/run_10d.py:12:import sys, os, time, json, argparse, hashlib
+scripts/run_10d.py:120:    ap = argparse.ArgumentParser()
+scripts/map_literature_basis.py:8:import argparse
+scripts/map_literature_basis.py:166:    parser = argparse.ArgumentParser(description=__doc__)
+scripts/generate_graph_catalog.py:7:import argparse
+scripts/generate_graph_catalog.py:59:    parser = argparse.ArgumentParser()
+scripts/b10_p10_characteristic_zero.py:27:import argparse
+scripts/b10_p10_characteristic_zero.py:99:    ap = argparse.ArgumentParser()
+scripts/interacting_flow_degree12.py:4:import argparse
+scripts/interacting_flow_degree12.py:653:    parser = argparse.ArgumentParser()
+scripts/degree10_pipeline.py:11:import argparse
+scripts/degree10_pipeline.py:1298:    parser = argparse.ArgumentParser()
+scripts/sextic_intrinsic.py:4:import argparse
+scripts/sextic_intrinsic.py:178:    parser = argparse.ArgumentParser()
+scripts/build_classification_release.py:4:import argparse
+scripts/solve_intrinsic_quotients.py:21:import argparse
+scripts/solve_intrinsic_quotients.py:101:    ap = argparse.ArgumentParser()
+scripts/verify_independent_audit.py:7:import argparse
+scripts/verify_independent_audit.py:25:    parser=argparse.ArgumentParser(description=__doc__)
+scripts/verify_independent_audit.py:26:    parser.add_argument("--source-only",action="store_true",help="verify exact source certificate and canonical maps only")
+scripts/verify_independent_audit.py:32:    math=audit/"math-review";root=audit/"root-review";source=audit/"source-review"
+scripts/verify_independent_audit.py:33:    certificate=load(source/"exact-source-evaluation-certificate.json")
+scripts/verify_independent_audit.py:110:    command=[sys.executable,str(math/"verify_source_crt.py"),"--math-dir",str(math),"--source-dir",str(source),
+scripts/search_rank81.py:9:import argparse
+scripts/search_rank81.py:78:    parser = argparse.ArgumentParser(description=__doc__)
+scripts/falsify_ordering_artifact.py:20:import argparse
+scripts/falsify_ordering_artifact.py:63:    ap = argparse.ArgumentParser()
+scripts/check_release_policy.py:16:import argparse
+scripts/check_release_policy.py:50:    ap = argparse.ArgumentParser()
+scripts/reproduce_all.py:24:import argparse
+scripts/reproduce_all.py:209:    ap = argparse.ArgumentParser()
+scripts/assemble_interacting_stress_adapted.py:4:import argparse
+scripts/assemble_interacting_stress_adapted.py:389:    parser = argparse.ArgumentParser()
+scripts/emit_jhep_live_state.py:21:import argparse
+scripts/emit_jhep_live_state.py:332:    ap = argparse.ArgumentParser()
+scripts/graph_to_latex.py:4:import argparse
+scripts/graph_to_latex.py:46:    parser = argparse.ArgumentParser(description=__doc__)
+scripts/reverse_engineer_degree10_benchmark.py:12:import argparse
+scripts/reverse_engineer_degree10_benchmark.py:73:    ap = argparse.ArgumentParser()
+scripts/aggregate_rank_matrix.py:27:import argparse
+scripts/aggregate_rank_matrix.py:235:    ap = argparse.ArgumentParser()
+scripts/find_missing_flow_directions.py:13:import argparse
+scripts/find_missing_flow_directions.py:60:    ap = argparse.ArgumentParser()
+scripts/verify_rank81.py:4:import argparse
+scripts/verify_rank81.py:32:    parser = argparse.ArgumentParser(description=__doc__)
+scripts/stress_flow_pipeline.py:8:import argparse
+scripts/stress_flow_pipeline.py:530:    parser = argparse.ArgumentParser()
+scripts/degree12_pipeline.py:18:import argparse
+scripts/degree12_pipeline.py:1618:    parser = argparse.ArgumentParser()
+scripts/project_published_degree12.py:3:import argparse, json, sys, time
+scripts/project_published_degree12.py:25:    ap = argparse.ArgumentParser()
+scripts/verify_archive.py:13:import argparse
+scripts/verify_archive.py:28:    ap = argparse.ArgumentParser()
+scripts/run_degree.py:10:import argparse
+scripts/run_degree.py:167:    parser = argparse.ArgumentParser(description=__doc__)
+scripts/assemble_static_stress_adapted.py:4:import argparse
+scripts/assemble_static_stress_adapted.py:295:    parser = argparse.ArgumentParser()
+scripts/build_submission_package.py:13:import argparse
+scripts/build_submission_package.py:124:    ap = argparse.ArgumentParser()
+scripts/test_M_only_quotients.py:35:import argparse
+scripts/test_M_only_quotients.py:163:    ap = argparse.ArgumentParser()
+scripts/static_stress_degree12.py:4:import argparse
+scripts/static_stress_degree12.py:530:    parser = argparse.ArgumentParser()
+scripts/emit_degree10_space_incidence.py:26:import argparse
+scripts/emit_degree10_space_incidence.py:182:    ap = argparse.ArgumentParser()
+scripts/d10_characteristic_zero.py:34:import argparse
+scripts/d10_characteristic_zero.py:228:    argparse.ArgumentParser().parse_args()

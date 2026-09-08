@@ -1,0 +1,15 @@
+{
+  "files": {
+    "source-review/manual-transcription-preimplementation.md": "39695b36bc78a70e80c38a7981b40976dd08bc31fb98fccccbe7157a9ff9620c",
+    "source-review/source_scalar_oracle.py": "952a1a0f8b21fea931e1dcefbbb56f3813d87b44c0a708fa0a1c085f34396dea",
+    "source-review/evaluate_fresh_points.py": "7a0d4e9abb52c9802b2d57a7e129f2bf8ec52a6903653d5f381c92b9c94114f7",
+    "source-review/evaluate_binary_points.py": "ed16373c8aace039f799d6bff2504c46b768b7cf8a4164853b8c579a005f6d5e",
+    "source-review/exact_evaluation_certificate.py": "2b83cc44deddbd4eb2d5a7889ac84feb8de88a975a56a417899b8b5043589002",
+    "source-review/fit_fresh_maps.py": "d869324be3607772160e64558177bfde18f0ba1d682661b5c2fba3a6644c366e",
+    "repair-checkout/src/sdinv/published_degree10_invariants.py": "d53149672b6fe689e5f43d73362ba03121982daaac0653e1522a9ab9d64f0983",
+    "repair-checkout/src/sdinv/published_degree8_invariants.py": "ca6219343c68119dda81c903229d2722f3024f44db7002c9a1595687c944c923",
+    "repair-checkout/tests/test_published_degree10_source_reading.py": "1af8a6af767a23379fa41ca7acce4886bd9ebc1e5a5e76b7ca10243b731bc413",
+    "repair-checkout/tests/test_published_degree10_invariants.py": "d5e05f4fa67e6d97320c3ac3b7e84dea251fba326390b6589c80d1e828dffd79"
+  },
+  "qualification": "Source module and octic citation metadata were clarified after accepted dense evaluations without scalar logic changes. Dense point files preserve hashes of the exact files present at evaluation. Binary values use independent source_scalar_oracle, not production published evaluators; its file remained unchanged since corrected ten-shuffle pilot."
+}

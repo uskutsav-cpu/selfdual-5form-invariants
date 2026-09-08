@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+_______ ERROR collecting tests/test_published_degree10_source_reading.py _______
+ImportError while importing test module '/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/tests/test_published_degree10_source_reading.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_published_degree10_source_reading.py:12: in <module>
+    from sdinv import published_degree10_invariants as published
+E   ModuleNotFoundError: No module named 'sdinv'
+=========================== short test summary info ============================
+ERROR tests/test_published_degree10_source_reading.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.85s

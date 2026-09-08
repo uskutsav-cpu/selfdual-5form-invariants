@@ -1,0 +1,20 @@
+[
+  {
+    "file": "manuscript/prd/main.tex",
+    "reason": "Remove duplicated audit paragraph inserted by matching a commented maketitle; restore the original comment.",
+    "before_sha256": "7457c8bd8d64ea34a818704dd6b182407940eb0a5dbfad490c4061c14d93c3ba",
+    "after_sha256": "da27d9f9e9564904c88d4a115eed7188f3debcc502e05c8455650b507b435c75"
+  },
+  {
+    "file": "manuscript/prl/main.tex",
+    "reason": "Apply REVTeX floatfix option recommended by the compiler for a stuck float.",
+    "before_sha256": "84cf2991e0053c1dc3be148de47c9ee26a3f8691cce4d99c88c9f705589e1b10",
+    "after_sha256": "8ddb29076dc129e22f8f08229e7f8911b5f1d0a4fcba1b71a4c10b8e4938a8d7"
+  },
+  {
+    "file": "manuscript/prd_letter/references.bib",
+    "reason": "Fill verified publication metadata from the current primary-source literature ledger; remove stale no-journal note and eliminate BibTeX missing-field errors.",
+    "before_sha256": "8b06109fa41e16d897f4ecf2debdc30ca14e76f438fcaa3b1a51a94a6b5c7fb7",
+    "after_sha256": "7b336419d33fd04d4a6f4bc47653e061ea9cfdb76e57de7d501ee279836ea958"
+  }
+]

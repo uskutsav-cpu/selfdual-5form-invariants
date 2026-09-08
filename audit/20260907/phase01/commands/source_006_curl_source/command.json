@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "curl",
+    "-fL",
+    "--max-time",
+    "45",
+    "https://arxiv.org/src/2509.14350v2",
+    "-o",
+    "source-review/arxiv-v2-source.tar"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788827155.3494642,
+  "status": "completed",
+  "pid": 4065,
+  "exit_code": 0,
+  "seconds": 0.21321466600056738,
+  "finished_unix": 1788827155.563352,
+  "logs": {
+    "stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr.log": {
+      "sha256": "3b48aa02c1f7bb98b86f5a8c17b221610188274c0ebf38150ae03a0e19006af4",
+      "bytes": 396
+    }
+  }
+}

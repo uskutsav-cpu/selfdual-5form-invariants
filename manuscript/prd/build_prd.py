@@ -125,7 +125,7 @@ PREAMBLE = r"""% ===============================================================
 
 \begin{document}
 
-\title{Exact degree-ten invariants of a self-dual five-form\\
+\title{An archived degree-ten atlas of a self-dual five-form\\
        in ten dimensions}
 
 \author{\pending{Author list pending mentor review}}
@@ -254,6 +254,10 @@ def convert(src: str) -> str:
 
     # --- body: everything from the banner to \end{document} ---------------
     start = src.index(r"% ---------------------------------------------------------------- banner")
+    # Preserve the scientific audit scope immediately after the JHEP title.
+    audit_scope = src.find(r"\paragraph{Audit scope and inherited results.}")
+    if 0 <= audit_scope < start:
+        start = audit_scope
     body = src[start:]
     # Drop the JHEP banner block; the REVTeX one is inserted separately.
     body = re.sub(

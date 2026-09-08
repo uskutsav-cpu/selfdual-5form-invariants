@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import json,hashlib, pathlib; paths=[\"results/10d_order8.json\",\"results/10d_order10.json\",\"results/10d_order12.json\",\"results/rank81_basis.json\",\"results/rank81_certificate.json\",\"results/rank81_lorentz.json\",\"results/order8_change_of_basis.json\",\"results/order10_change_of_basis.json\"]; print(json.dumps([{ \"path\":p,\"sha256\":hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest(),\"keys\":list((d:=json.loads(pathlib.Path(p).read_text()))),\"summary\":{k:(len(v) if isinstance(v,list) and (k in [\"generators\",\"invariants\"] or len(v)>10) else v) for k,v in d.items() if k not in [\"prime_witnesses\",\"directions\",\"jacobian\",\"adjacency_matrix\",\"matrix_12x14\",\"graph_to_literature\",\"literature_to_graph\",\"sources\",\"source_files\"] and not isinstance(v,dict) and k not in [\"witnesses\"]},\"witness_summary\":[{k:v for k,v in w.items() if k in [\"prime\",\"seed\",\"rank\",\"determinant_mod_p\",\"cumulative_rank_by_degree\"]} for w in d.get(\"witnesses\",[])]} for p in paths],indent=2))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788827244.519907,
+  "status": "completed",
+  "pid": 4284,
+  "exit_code": 0,
+  "seconds": 0.0915685830404982,
+  "finished_unix": 1788827244.611846,
+  "logs": {
+    "stdout.log": {
+      "sha256": "48007b1aef9faa602d5cb7f98b9f694da848cb99bfe32d3a7c7e9e61d632cafa",
+      "bytes": 14452
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

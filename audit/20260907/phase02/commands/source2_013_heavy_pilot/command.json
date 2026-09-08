@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python",
+    "evaluate_fresh_points.py",
+    "--prime",
+    "32749",
+    "--seeds",
+    "202609071701",
+    "--compare"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788830429.63377,
+  "status": "completed",
+  "pid": 9426,
+  "exit_code": 1,
+  "seconds": 10.677010165993124,
+  "finished_unix": 1788830440.311646,
+  "logs": {
+    "stdout.log": {
+      "sha256": "cadc826bcb92eff98160e7a47d94fb3fb902e4eda4f823d85a9c3cc66fdf7b93",
+      "bytes": 25
+    },
+    "stderr.log": {
+      "sha256": "c4e28f11b5d8e09ed726daa0540bfa9197361eb90e84e67203486f786e7b9edc",
+      "bytes": 880
+    }
+  }
+}

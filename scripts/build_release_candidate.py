@@ -34,7 +34,7 @@ SECRET_PATTERNS = [
 HOME_PATH = re.compile(r"/Users/[A-Za-z0-9._-]+/")
 
 INCLUDE = [
-    ("trace-code", ["src", "tests", "pytest.ini", "requirements.txt",
+    ("trace-code", ["src", "scripts", "results", "verification", "tests", "pytest.ini", "requirements.txt",
                     "requirements-lock.txt", "README.md"]),
     ("bridge-code", ["spinor_trace_bridge"]),
     # results/rank81 holds the exact Jacobian certificate and the explicit
@@ -47,6 +47,20 @@ INCLUDE = [
 
 TEXT_SUFFIXES = {".py", ".md", ".txt", ".json", ".tex", ".cfg", ".ini",
                  ".toml", ".yaml", ".yml", ".sh", ".csv", ".bib", ".sty", ".bst"}
+
+
+
+def release_copy_ignore(directory: str, names: list[str]) -> set[str]:
+    """Exclude local build debris and the separate independent-audit bundle."""
+    ignored = set(shutil.ignore_patterns(
+        "__pycache__", "*.pyc", ".pytest_cache", "reproduction-logs"
+    )(directory, names))
+    # Keep results required by the historical tensor tests. The independent
+    # audit has its own release and preserves original machine-specific paths.
+    # Exclude only this exact subtree, not unrelated directories named audit.
+    if Path(directory).resolve() == (ROOT / "results").resolve():
+        ignored.add("audit")
+    return ignored
 
 
 def scan(path: Path) -> list[str]:
@@ -131,12 +145,7 @@ def main() -> int:
             dst.parent.mkdir(parents=True, exist_ok=True)
             if src.is_dir():
                 shutil.copytree(src, dst, dirs_exist_ok=True,
-                                ignore=shutil.ignore_patterns(
-                                    "__pycache__", "*.pyc", ".pytest_cache",
-                                    # Raw step logs from a local reproduction
-                                    # run. They are machine-specific, they are
-                                    # gitignored, and they carry absolute paths.
-                                    "reproduction-logs"))
+                                ignore=release_copy_ignore)
             else:
                 shutil.copy2(src, dst)
 

@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json; p=Path(\"../checkout\"); files=[\"src/sdinv/forms.py\",\"src/sdinv/contract.py\",\"paper/manuscript.tex\",\"results/rank81_basis.json\"]; print(\"FILES\\n\"+\"\\n\".join(str(x) for x in (p/\"paper\").iterdir())); [(print(\"FILE\",f), print((p/f).read_text()[:65000])) for f in files if (p/f).exists()]"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788827036.960371,
+  "status": "completed",
+  "pid": 2763,
+  "exit_code": 0,
+  "seconds": 0.11701170797459781,
+  "finished_unix": 1788827037.077914,
+  "logs": {
+    "stdout.log": {
+      "sha256": "5c5216b0806323ba4cc5e731faded0d22157e3548df2031dd14eda6a9d21b398",
+      "bytes": 101240
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

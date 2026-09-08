@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\nimport json,hashlib\np=Path(\"../root-review/orbit_tangent_certificate.json\")\nd=json.loads(p.read_text())\nprint(\"SHA256\",hashlib.sha256(p.read_bytes()).hexdigest())\ndef summary(x):\n if isinstance(x,dict): return {k:summary(v) for k,v in x.items()}\n if isinstance(x,list) and len(x)>6: return {\"length\":len(x),\"first\":summary(x[0])}\n return x\nprint(json.dumps(summary(d),indent=2))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788830915.774882,
+  "status": "completed",
+  "pid": 10224,
+  "exit_code": 0,
+  "seconds": 0.18308362492825836,
+  "finished_unix": 1788830915.958601,
+  "logs": {
+    "stdout.log": {
+      "sha256": "96a35ef593542077136c42951b7a50490d0c032ad43ac01c94b2814b3fc1f924",
+      "bytes": 265811
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "arxiv-v2.html": {
+    "url": "https://arxiv.org/html/2509.14350v2",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  "arxiv-v2.pdf": {
+    "url": "https://arxiv.org/pdf/2509.14350v2",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  "arxiv-v2-source.tar": {
+    "url": "https://arxiv.org/src/2509.14350v2",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  }
+}

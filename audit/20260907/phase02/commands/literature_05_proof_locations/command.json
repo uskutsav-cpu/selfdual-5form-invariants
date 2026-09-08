@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "rg",
+    "-n",
+    "-A",
+    "15",
+    "-B",
+    "3",
+    "begin\\{(theorem|proposition|lemma|proof)\\}|fixed point|span equality|no separate upper",
+    "manuscript/jhep/main.tex",
+    "manuscript/prd_letter/main.tex",
+    "manuscript/main.tex",
+    "manuscript/prd/build_prd.py"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788829933.40956,
+  "status": "completed",
+  "pid": 8411,
+  "exit_code": 0,
+  "seconds": 0.04543387494049966,
+  "finished_unix": 1788829933.455351,
+  "logs": {
+    "stdout.log": {
+      "sha256": "47034cd2e9e5a8b32dc6fd8dec7c125fb872ef5faafb1c9d91e91c8b62fc00f6",
+      "bytes": 35645
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

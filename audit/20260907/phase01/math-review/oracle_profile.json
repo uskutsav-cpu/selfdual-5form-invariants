@@ -1,0 +1,4109 @@
+{
+  "plans": [
+    {
+      "id": "I4_1",
+      "path": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 60030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I6_1",
+      "path": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 93030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I6_2",
+      "path": [
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 6600300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I8_1",
+      "path": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 12006300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I8_2",
+      "path": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 18000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I8_3",
+      "path": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 72000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I8_4",
+      "path": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 612000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I8_5",
+      "path": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 663030300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I8_6",
+      "path": [
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1260030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_1",
+      "path": [
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 753030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_2",
+      "path": [
+        [
+          4,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 100000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 183300300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 2400000
+    },
+    {
+      "id": "I10_3",
+      "path": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1320030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_4",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1266000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_5",
+      "path": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1320030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_6",
+      "path": [
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 2130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_7",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1266000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_8",
+      "path": [
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 726000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_9",
+      "path": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1320030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_10",
+      "path": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 780030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_11",
+      "path": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1806000300,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I10_12",
+      "path": [
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_1",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_2",
+      "path": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5430030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_3",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8400030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_4",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_5",
+      "path": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5430030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_6",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8400030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_7",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_8",
+      "path": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_9",
+      "path": [
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_10",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_11",
+      "path": [
+        [
+          1,
+          9
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_12",
+      "path": [
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_13",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_14",
+      "path": [
+        [
+          1,
+          9
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_15",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_16",
+      "path": [
+        [
+          1,
+          11
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_17",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_18",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_19",
+      "path": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_20",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_21",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_22",
+      "path": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_23",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_24",
+      "path": [
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_25",
+      "path": [
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 8400300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_26",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_27",
+      "path": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_28",
+      "path": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_29",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_30",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_31",
+      "path": [
+        [
+          5,
+          10
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_32",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 5160030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_33",
+      "path": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_34",
+      "path": [
+        [
+          7,
+          11
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_35",
+      "path": [
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7563030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_36",
+      "path": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_37",
+      "path": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_38",
+      "path": [
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7563030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_39",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_40",
+      "path": [
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_41",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7563030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_42",
+      "path": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_43",
+      "path": [
+        [
+          1,
+          11
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_44",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7563030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_45",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_46",
+      "path": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_47",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_48",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_49",
+      "path": [
+        [
+          5,
+          10
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_50",
+      "path": [
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_51",
+      "path": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_52",
+      "path": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_53",
+      "path": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_54",
+      "path": [
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_55",
+      "path": [
+        [
+          5,
+          10
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_56",
+      "path": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 7860030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_57",
+      "path": [
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 8130030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_58",
+      "path": [
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 11100300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 24000000
+    },
+    {
+      "id": "I12_59",
+      "path": [
+        [
+          3,
+          9
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 10000000,
+      "largest_dot_terms": 100000,
+      "forward_dual_multiply_terms": 16500300000,
+      "float64_exact_bound_at_largest_prime": 107243150400000,
+      "three_output_arrays_bytes": 240000000
+    },
+    {
+      "id": "I12_60",
+      "path": [
+        [
+          4,
+          6
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "largest_output_elements": 1000000,
+      "largest_dot_terms": 10000,
+      "forward_dual_multiply_terms": 1650030000,
+      "float64_exact_bound_at_largest_prime": 10724315040000,
+      "three_output_arrays_bytes": 24000000
+    }
+  ],
+  "total_forward_dual_multiply_terms_per_cell": 503449599000,
+  "max_three_output_arrays_bytes": 240000000,
+  "max_float64_bound": 107243150400000
+}

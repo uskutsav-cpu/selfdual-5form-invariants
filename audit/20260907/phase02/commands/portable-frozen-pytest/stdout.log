@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python
+rootdir: /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-frozen
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 21 items
+
+tests/test_roadmap.py::test_graph_interchange_preserves_order_and_old_formats[10] PASSED [  4%]
+tests/test_roadmap.py::test_graph_interchange_preserves_order_and_old_formats[12] PASSED [  9%]
+tests/test_roadmap.py::test_graph_interchange_preserves_order_and_old_formats[14] PASSED [ 14%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record0] PASSED [ 19%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record1] PASSED [ 23%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record2] PASSED [ 28%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record3] PASSED [ 33%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record4] PASSED [ 38%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record5] PASSED [ 42%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[record6] PASSED [ 47%]
+tests/test_roadmap.py::test_graph_interchange_rejects_ambiguous_or_lossy_data[n12[011^1]] PASSED [ 52%]
+tests/test_roadmap.py::test_product_and_functional_ranks_are_different PASSED [ 57%]
+tests/test_roadmap.py::test_degree12_product_inventory_is_ten_monomials PASSED [ 61%]
+tests/test_roadmap.py::test_integral_coordinates_are_selfdual_and_have_no_denominators PASSED [ 66%]
+tests/test_roadmap.py::test_determinant_handles_row_swaps_and_singular_matrices PASSED [ 71%]
+tests/test_roadmap.py::test_integral_jacobian_matches_finite_difference_directional_polynomial PASSED [ 76%]
+tests/test_roadmap.py::test_latex_has_one_upper_and_one_lower_occurrence_per_edge PASSED [ 80%]
+tests/test_roadmap.py::test_saved_certificate_and_tamper_rejection PASSED [ 85%]
+tests/test_roadmap.py::test_published_degree10_map_does_not_invent_an_invertible_matrix PASSED [ 90%]
+tests/test_roadmap.py::test_degree_runner_resume_and_bounded_workers_reproduce PASSED [ 95%]
+tests/test_roadmap.py::test_octic_map_checks_products_and_current_tensor_evaluator PASSED [100%]
+
+============================= 21 passed in 19.15s ==============================

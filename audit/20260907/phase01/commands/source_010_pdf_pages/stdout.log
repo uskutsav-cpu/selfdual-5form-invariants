@@ -1,0 +1,49 @@
+PDF_PAGE 2  . . . . . . . . . . . . . . . . . . . . . . . 28
+        4.2.2   6th order invariants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+        4.2.3   8th order invariants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+
+
+
+
+                                                2
+
+PDF_PAGE 22 mmetrized such that
+                                                      1
+                                     T(µ1 ...µp ) =      (Tµ1 µ2 ...µp + Tµ2 µ1 ...µp + . . .).
+                                                      p!
+
+
+
+
+                                                                22
+
+PDF_PAGE 23  independent
+if we set ∂ν Fµ1 ...µ5 = 0. This is a priori not guaranteed because of the composite nature of
+  10
+       Other terms are constructed by taking products of components of the Weyl tensor with themselves or with
+F5 .
+
+
+
+
+                                                                23
+
+PDF_PAGE 25                         N(1050)                 N[ν1         1 1 2 2 3
+                                                                                                                           N(1050) ν2 λ2 [ν3 λ1 ]λ3 ] ,
+
+
+                                                                        25
+
+PDF_PAGE 30 .53b)
+                                           da1 ,a2 a3         b1 ,b2 b3       c1 c2
+                                       Ω                Θd                F           Ic1 a1 ,a2 b1 Ic2 a3 ,b2 b3 .         (4.53c)
+
+                                                                          30
+
+PDF_PAGE 36 t + 3u + 2v         +w      .
+                                ∂s      ∂r     ∂s    ∂t       ∂u     ∂v
+The following polynomials of the components of these fields at order 2, 4, 6, 10 and 15 generate
+the ring of the invariants S g :
+
+                                                                36
+

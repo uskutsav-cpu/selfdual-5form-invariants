@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; p=Path(\"checkout\"); print(Path(\"run_command.py\").read_text()); print(\"CHECKOUT FILES\\n\"+\"\\n\".join(str(x.relative_to(p)) for x in p.iterdir())); print(\"CERTIFICATE\\n\"+(p/\"results/rank81_certificate.json\").read_text()[:12000])"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788826972.503673,
+  "status": "completed",
+  "pid": 290,
+  "exit_code": 0,
+  "seconds": 0.08819204207975417,
+  "finished_unix": 1788826972.592609,
+  "logs": {
+    "stdout.log": {
+      "sha256": "2cf7f774565d2ff8300522dc18a96a9940454a01587dbed9775891ac5afc6d61",
+      "bytes": 14534
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

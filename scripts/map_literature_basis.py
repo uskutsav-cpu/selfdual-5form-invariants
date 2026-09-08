@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Exact finite-field basis comparisons with explicit product directions.
+"""Verify certified source maps, or explicitly reproduce historical fits.
 
-Rational reconstruction plus finite holdouts is reported as evidence for
-polynomial identities, not a symbolic proof of those identities.
+The default reads the corrected source certificate. ``--legacy`` retains the
+old fitting experiment with an output path distinct from the canonical maps.
 """
 
 import argparse
@@ -10,6 +10,7 @@ from fractions import Fraction
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -165,9 +166,25 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--degree", type=int, choices=[8, 10], required=True)
     parser.add_argument("--out")
+    parser.add_argument("--legacy", action="store_true",
+                        help="run historical modular fitting, never write a canonical map")
     parser.add_argument("--cache-dir", type=Path, default=ROOT / "work/literature-maps")
     args = parser.parse_args()
-    out = args.out or ROOT / f"results/order{args.degree}_change_of_basis.json"
+    canonical = ROOT / f"results/order{args.degree}_change_of_basis.json"
+    protected = {(ROOT / f"results/order{degree}_change_of_basis.json").resolve()
+                 for degree in (8, 10)}
+    if args.out and Path(args.out).resolve() in protected:
+        if args.legacy or Path(args.out).resolve() != canonical.resolve():
+            parser.error("output cannot overwrite a canonical map with legacy or different-degree data")
+    if not args.legacy:
+        subprocess.run([sys.executable, str(ROOT / "scripts/verify_independent_audit.py"),
+                        "--source-only"], check=True)
+        result = json.loads(canonical.read_text())
+        if args.out and Path(args.out).resolve() != canonical.resolve():
+            atomic_write_json(args.out, result)
+        print(f"PASS: certified degree-{args.degree} source map: {canonical}")
+        return
+    out = Path(args.out) if args.out else ROOT / f"work/legacy-order{args.degree}-change-of-basis.json"
     if args.degree == 8:
         order8(out, args.cache_dir)
     else:

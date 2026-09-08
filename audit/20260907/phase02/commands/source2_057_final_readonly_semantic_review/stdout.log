@@ -1,0 +1,48 @@
+{
+  "checks": {
+    "canonical_maps_equal_certificate": true,
+    "canonical_certificate_paths_resolve": true,
+    "embedded_audit_source_hashes_match": true,
+    "all_point_and_dense_hashes_resolve": true,
+    "final_manifest_hashes_match": true,
+    "binary_source_evaluator_hashes_match": true,
+    "authoritative_doc_relative_links_resolve": true,
+    "current_registry_source_verified": true,
+    "current_10_12_red_metadata": true,
+    "no_current_ambiguity_variants": true,
+    "legacy_registry_distinct_and_unverified": true
+  },
+  "passed": true,
+  "doc_links": [
+    {
+      "target": "../results/audit/source-review/manual-transcription-preimplementation.md",
+      "exists": true
+    },
+    {
+      "target": "../results/audit/frozen-literature/PUBLISHED_DEGREE10_INDEX_AUDIT.md",
+      "exists": true
+    },
+    {
+      "target": "../results/audit/source-review/exact-source-evaluation-certificate.json",
+      "exists": true
+    },
+    {
+      "target": "../results/order8_change_of_basis.json",
+      "exists": true
+    },
+    {
+      "target": "../results/order10_change_of_basis.json",
+      "exists": true
+    }
+  ],
+  "binary_evaluator_hashes": {
+    "source-review/source_scalar_oracle.py": true,
+    "source-review/evaluate_fresh_points.py": true,
+    "source-review/evaluate_binary_points.py": true
+  },
+  "qualifications": [
+    "Historical dense-point hashes can differ from current production metadata: source report explicitly records post-evaluation docstring/citation edits, with unchanged scalar logic.",
+    "Archived raw calculation scripts retain the original phase02 sibling layout; they are preserved execution evidence. The independent portable verifier uses explicit relocated paths.",
+    "LEGACY_PUBLISHED_DEGREE10 copies the corrected bracket description strings before rebinding the old outer evaluators; source_reading and source_verified distinguish the legacy registry, but its bracket description field remains misleading for10\u201312."
+  ]
+}

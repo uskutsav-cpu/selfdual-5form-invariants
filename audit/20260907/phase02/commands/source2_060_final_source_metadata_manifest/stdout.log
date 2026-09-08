@@ -1,0 +1,12 @@
+{
+  "scope": "Final production metadata and tests after the nonsemantic legacy bracket-description correction. Independent certificate evaluator/source hashes remain exactly as embedded in the unchanged certificate.",
+  "sha256": {
+    "src/sdinv/published_degree10_invariants.py": "4ac2ceda00a241a23ca0ace42329766bee1f74603f3e0b2a708b56ed25c38aef",
+    "tests/test_published_degree10_source_reading.py": "a26a7340163bfb4461a97e7df2b63d36bc5e87f6c69ced13952ecd97636c892a",
+    "tests/test_published_degree10_invariants.py": "d5e05f4fa67e6d97320c3ac3b7e84dea251fba326390b6589c80d1e828dffd79",
+    "docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md": "e1b21b9d2f2f5d79049745c987afa97e878b53a00daeae24b312129374e21d16",
+    "results/order8_change_of_basis.json": "1a98b3c2c5073662ee9a93adcfb3184d2e03611072afb4b184e9dce472917372",
+    "results/order10_change_of_basis.json": "9a672693ee237a98406595a1b7540ceaa686853148b8a0d142b06f544964424d"
+  },
+  "exact_certificate_sha256": "01f9ab8d8f966827f820541a6e0bfec8e8bf64f710ec5b9f3be6dc825c61ed12"
+}

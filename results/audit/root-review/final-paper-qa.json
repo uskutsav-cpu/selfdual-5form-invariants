@@ -1,0 +1,31 @@
+{
+  "pdf_sha256": "148914ab81bf42d0e0679e79195e701b6ba54276ad2887ce4b59f7f1d1bf5e89",
+  "pages": 20,
+  "missing_reference_markers": 0,
+  "compiler_log": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\n(manuscript.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24> (article.cls\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\n(size11.clo)) (geometry.sty (keyval.sty) (ifvtex.sty (iftex.sty))) (amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty\n(amsfonts.sty)) (longtable.sty) (booktabs.sty) (hyperref.sty (ltxcmds.sty)\n(pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)\n(pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)\n(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def) (url.sty) (bitset.sty\n(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (stringenc.sty)\n(rerunfilecheck.sty (atveryend-ltx.sty) (uniquecounter.sty)))\n(l3backend-xetex.def)\nNo file manuscript.aux.\n(ts1cmr.fd)\n*geometry* driver: auto-detecting\n*geometry* detected driver: xetex\n(color.sty (color.cfg) (xetex.def)) (nameref.sty (refcount.sty)\n(gettitlestring.sty))\n\nPackage hyperref Warning: Rerun to get /PageLabels entry.\n\n(umsa.fd) (umsb.fd)\n\nLaTeX Warning: Citation `cederwall' on page 1 undefined on input line 30.\n\n\nLaTeX Warning: Citation `hutomo' on page 1 undefined on input line 30.\n\n\nLaTeX Warning: Citation `elamaran' on page 1 undefined on input line 37.\n\n[1] (tables/certificate_cells.tex) [2]\n\nLaTeX Warning: Citation `cederwall' on page 3 undefined on input line 125.\n\n\nLaTeX Warning: Citation `cederwall' on page 3 undefined on input line 139.\n\n\nLaTeX Warning: Citation `cederwall' on page 3 undefined on input line 147.\n\n[3] [4] (tables/rank81_formulas.tex [5] [6] [7] [8] [9] [10] [11] [12] [13]\n[14] [15] [16] [17] [18] [19]) [20] (manuscript.aux)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `manuscript.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\nOutput written on manuscript.xdv (20 pages, 255996 bytes).\nTranscript written on manuscript.log.\nnote: Rerunning TeX because \"manuscript.out\" changed ...\n(manuscript.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24> (article.cls\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\n(size11.clo)) (geometry.sty (keyval.sty) (ifvtex.sty (iftex.sty))) (amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty\n(amsfonts.sty)) (longtable.sty) (booktabs.sty) (hyperref.sty (ltxcmds.sty)\n(pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)\n(pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)\n(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def) (url.sty) (bitset.sty\n(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (stringenc.sty)\n(rerunfilecheck.sty (atveryend-ltx.sty) (uniquecounter.sty)))\n(l3backend-xetex.def) (manuscript.aux) (ts1cmr.fd)\n*geometry* driver: auto-detecting\n*geometry* detected driver: xetex\n(color.sty (color.cfg) (xetex.def)) (nameref.sty (refcount.sty)\n(gettitlestring.sty)) (manuscript.out) (manuscript.out) (umsa.fd) (umsb.fd)\n[1] (tables/certificate_cells.tex) [2] [3] [4] (tables/rank81_formulas.tex\n[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]) [20]\n(manuscript.aux) )\nOutput written on manuscript.xdv (20 pages, 257892 bytes).\nTranscript written on manuscript.log.\nnote: Running xdvipdfmx ...\n[1][2][3][4][5][6][7][8][9][10][11][12][13][14][15][16][17][18][19][20]93368 bytes written\nnote: Writing `/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/root-review/paper-final/manuscript.pdf` (91.1796875 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+  "rendered_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "visual_review": "PASS: all20pages at90dpi in contact sheet; new source-proof and reproduction pages3and4 individually inspected, no clipping or overlap.",
+  "final_pass_overfull_boxes": 0,
+  "final_pass_undefined_references": 0
+}

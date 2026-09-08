@@ -1,0 +1,64 @@
+{
+  "attempts": [
+    {
+      "command": [
+        "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+        "-X",
+        "compile",
+        "--outdir",
+        "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/main",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--untrusted",
+        "main.tex"
+      ],
+      "compiler": "tectonic",
+      "exitCode": 1,
+      "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\n(main.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24> (article.cls\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\n(size11.clo)) (jheppub.sty (amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty\n(amsfonts.sty))note: downloading epsfig.sty\n (epsfig.stynote: downloading graphicx.sty\n (graphicx.sty (keyval.sty)note: downloading graphics.sty\n (graphics.stynote: downloading trig.sty\n (trig.sty)\nnote: downloading graphics.cfg\n (graphics.cfg) (xetex.def))))note: downloading natbib.sty\n (natbib.sty) (hyperref.sty (ltxcmds.sty)\n(iftex.sty) (pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)\n (pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)\n(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def)\n\nPackage hyperref Warning: Option `pagecolor' is not available anymore.\n\n(url.sty) (bitset.sty (bigintcalc.sty)) (atbegshi-ltx.sty))note: downloading hpdftex.def\n (hpdftex.def\n(atveryend-ltx.sty)\nerror: hpdftex.def:207: Undefined control sequence\n! Undefined control sequence.\nl.207 ...f@majorversion{\\number\\Hy@pdfmajorversion\n                                                  }%\nNo pages of output.\nTranscript written on main.log.\nerror: something bad happened inside XeTeX, but no output was logged\nerror: the XeTeX engine had an unrecoverable error\ncaused by: halted on potentially-recoverable error as specified\n",
+      "pdfExists": false,
+      "pdfPath": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/main/main.pdf"
+    }
+  ],
+  "command": null,
+  "compiler": null,
+  "exitCode": 1,
+  "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\n(main.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24> (article.cls\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\n(size11.clo)) (jheppub.sty (amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty\n(amsfonts.sty))note: downloading epsfig.sty\n (epsfig.stynote: downloading graphicx.sty\n (graphicx.sty (keyval.sty)note: downloading graphics.sty\n (graphics.stynote: downloading trig.sty\n (trig.sty)\nnote: downloading graphics.cfg\n (graphics.cfg) (xetex.def))))note: downloading natbib.sty\n (natbib.sty) (hyperref.sty (ltxcmds.sty)\n(iftex.sty) (pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)\n (pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)\n(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def)\n\nPackage hyperref Warning: Option `pagecolor' is not available anymore.\n\n(url.sty) (bitset.sty (bigintcalc.sty)) (atbegshi-ltx.sty))note: downloading hpdftex.def\n (hpdftex.def\n(atveryend-ltx.sty)\nerror: hpdftex.def:207: Undefined control sequence\n! Undefined control sequence.\nl.207 ...f@majorversion{\\number\\Hy@pdfmajorversion\n                                                  }%\nNo pages of output.\nTranscript written on main.log.\nerror: something bad happened inside XeTeX, but no output was logged\nerror: the XeTeX engine had an unrecoverable error\ncaused by: halted on potentially-recoverable error as specified\n",
+  "pdfExists": false,
+  "pdfPath": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/main/main.pdf",
+  "rootFile": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/main.tex",
+  "tectonic": {
+    "checked": [
+      {
+        "path": "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+        "source": "bundled"
+      }
+    ],
+    "path": "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+    "reason": "Tectonic executable is available.",
+    "source": "bundled",
+    "status": "available",
+    "version": "Tectonic 0.17.0"
+  },
+  "tectonicSuitability": {
+    "reasons": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/main.tex: bibliography tooling"
+    ],
+    "scannedFiles": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/main.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/reproduction.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/jacobian.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/algorithms.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/certificates.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/formulas.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/appendices/conventions.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/tables/comparison.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/tables/incidence.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/generated/identity.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/tables/dimensions.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/generated/numbers.tex"
+    ],
+    "suitable": false
+  },
+  "texliveDetection": null
+}

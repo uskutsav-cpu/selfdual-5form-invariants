@@ -17,8 +17,9 @@ The coordinate directions are integral `e_I + *e_I`, with `I` containing
 the time index 0. The coordinates are exactly the 126 components `F_0abcd`.
 No inverse projector denominator is needed. Every graph polynomial is
 integral in these coordinates, so a single nonzero modular minor proves
-generic characteristic-zero algebraic independence. The known quotient
-dimension 81 supplies the matching upper bound. This establishes generic
+generic characteristic-zero algebraic independence. An independent integral
+orbit-action certificate exhibits rank 45, supplying the matching upper bound
+126−45=81. This establishes generic
 local coordinates, not global separation of orbits.
 
 | Milestone | Delivered result |
@@ -45,24 +46,32 @@ explicit: the first five expressions from equations (4.12)–(4.15), plus
 the first hatted expression (4.18), in
 [Some remarks on invariants](https://arxiv.org/html/2509.14350v2#S4.SS1.SSS3).
 This combines expressions from the paper's two displayed lists. No unnamed
-trace subtraction or normalization change is used. Fits use five primes;
-fresh samples and a sixth prime check the reconstructed map.
+trace subtraction or normalization change is used. The independent audit
+recomputed the source tensors and retained the full product correction.
 
-**The twelve degree-ten published candidates are not the graph primitive
-complement under the repository's recorded source readings.** Reconstructing
-the existing atlas coordinates gives dimensions 12 for their span, 2 for
-the product span, and 13 for the union. The intersection has dimension one;
-their primitive quotient image has dimension eleven. Therefore the requested
-invertible 12×12 map cannot be supplied for those readings. The delivered
-`results/order10_change_of_basis.json` gives the actual 12×14 rational map,
-prime witnesses, and source-reading qualifications. It regenerates the map
-from existing evidence and checks an unused reconstruction prime; it does
-not claim to have rerun all expensive published tensors at new points.
+**The frozen degree-ten transcription failed independent source review.**
+The original arXiv v2 TeX and colored PDF require a red pair antisymmetrizer
+on J10 and red triple antisymmetrizers on each of the final three factors of
+J11 and J12. The repaired evaluator applies these operations before raising
+indices. Historical readings and matrices remain explicitly archived; their
+results are not transferred to the corrected formulas.
 
-Both rational maps are supported by exact modular fits and holdouts. Finite
-evaluations alone do not constitute a symbolic proof of a polynomial
-identity over the rationals. This limitation is separate from the rigorous
-nonzero-minor argument for the explicit graph basis.
+The canonical degree-eight and degree-ten maps use fresh source evaluations.
+Their certificate reconstructs bounded integer values from seven primes at
+common integral points, then solves over the rationals. Its polynomial-map
+conclusion uses the cited Hilbert-space dimensions 7 and 14 and analytic
+tensor invariance. These external upper bounds are stated assumptions; finite
+holdouts alone would not prove a polynomial identity. See
+`results/audit/source-review/exact-source-evaluation-certificate.json` and
+`INDEPENDENT_AUDIT.md` for the actual ranks, product intersection and checks.
+
+The graph proof is independent of the literature-map calculation. Two fresh
+points give nonzero 81×81 minors 35642 modulo 50021 and 22345 modulo 32749.
+An independent implementation checks all 20,412 full-Jacobian entries at
+these points. The degree-twelve certificate separately proves rank 72 for
+ten lower products and 62 connected graph polynomials, using stacked-gradient
+minors 43334 modulo 50021 and 12699 modulo 32749. It does not assert their
+algebraic independence or a presentation of the full invariant ring.
 
 ## Reproduce
 
@@ -74,6 +83,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/graph_to_latex.py
 .venv/bin/python scripts/search_rank81.py
 .venv/bin/python scripts/verify_rank81.py
+.venv/bin/python scripts/verify_independent_audit.py
 .venv/bin/python scripts/validate_rank81_lorentz.py
 .venv/bin/python scripts/map_literature_basis.py --degree 8
 .venv/bin/python scripts/map_literature_basis.py --degree 10
@@ -83,6 +93,11 @@ python3 -m venv .venv
 point, Euler homogeneity, and each determinant. Add `--recompute` to repeat
 all 324 graph/Jacobian evaluations; the reported mode distinguishes these
 operations. The generation run itself evaluated all 324 rows afresh.
+`verify_independent_audit.py` uses independent integer/Fraction arithmetic to
+check saved audit certificates; it does not recompute tensor contractions.
+`map_literature_basis.py` verifies the corrected exact source certificate by
+default. Its explicit `--legacy` mode reproduces historical fits into a
+different output and cannot overwrite either canonical source map.
 Lorentz validation evaluates every fixed graph after both a spatial rotation
 and a genuine boost, along with the six selected literature tensors.
 

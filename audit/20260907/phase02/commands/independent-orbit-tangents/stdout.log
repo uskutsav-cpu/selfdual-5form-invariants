@@ -1,0 +1,12 @@
+{
+  "prime": 50021,
+  "seed": 16999642918068834541,
+  "orbit_rank": 45,
+  "minor_determinant_mod_p": 5222
+}
+{
+  "prime": 32749,
+  "seed": 9932584768098142723,
+  "orbit_rank": 45,
+  "minor_determinant_mod_p": 10852
+}

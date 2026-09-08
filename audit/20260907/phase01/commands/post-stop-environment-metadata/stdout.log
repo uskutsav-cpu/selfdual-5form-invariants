@@ -1,0 +1,14 @@
+{
+  "python": "3.13.5 (v3.13.5:6cb20a219a8, Jun 11 2025, 12:23:45) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "executable": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/bin/python",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "implementation": "CPython",
+  "packages": {
+    "numpy": "2.5.1",
+    "opt_einsum": "3.4.0",
+    "pynauty": "2.8.8.1",
+    "pytest": "9.1.1",
+    "pip": "25.1.1"
+  }
+}

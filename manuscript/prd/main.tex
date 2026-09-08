@@ -71,7 +71,7 @@
 
 \begin{document}
 
-\title{Exact degree-ten invariants of a self-dual five-form\\
+\title{An archived degree-ten atlas of a self-dual five-form\\
        in ten dimensions}
 
 \author{\pending{Author list pending mentor review}}
@@ -80,43 +80,43 @@
 \date{\today}
 
 \begin{abstract}
-A self-dual five-form in ten dimensions carries a $\dimSelfDualModule$-dimensional
-space of field values, and the Lorentz-invariant scalar functions built from it
-organise the possible non-linear self-interactions of the field. We determine
-the degree-ten sector of this invariant structure exactly.
-
-Working in two independent formulations --- a tensor formulation built from
-contraction graphs, and a spinor formulation built from chiral bispinors --- we
-construct an explicit map between them and certify that it is injective with
-image the gamma-traceless subspace, of rank $\bridgeForwardRank$, with an exact
-left inverse --- a left inverse, not a two-sided one, since the map is not onto
-the full symmetric square. The two formulations are then compared degree by
-degree on common samples, and their spans agree at degrees four, six, eight and
-ten.
-
-Three results are established exactly over the rationals rather than modulo a
-prime. The full degree-ten invariant space has dimension $\dimAtenQ$. The
-subspace reachable by the stress-tensor flow has dimension $\dimDtenQ$, computed
-by running the closure to its fixed point in exact rational arithmetic after
-lifting its non-integral targets by rational reconstruction. The quotient of the
-first by the second therefore has dimension $\dimQtenQ$: there are three
-independent degree-ten invariant directions that this flow does not reach. We
-also show that the span of the previously published degree-ten structures meets
-the product sector in exactly one dimension, and we write that intersection out
-as an explicit integer identity.
-
-For the generic functional rank of the full candidate family we certify the
-lower bound $\charZeroLowerBound$ by an exact modular Jacobian computation with
-an explicit $\minorSize\times\minorSize$ minor; the matching upper bound is
-analytic and is due to earlier work, which we cite rather than reprove.
-
-All results are supported by machine-checked certificates, and the computations
-are reproducible from a public repository. We state explicitly which claims are
-theorems, which are exact certificates, which rest on agreement across several
-primes, and which remain open.
+We record the archived degree-ten invariant atlas for the self-dual
+five-form in ten dimensions, its reconstructed rational coordinate matrices,
+and an exact modular Jacobian witness for generic functional rank at least
+eighty-one. The matching generic upper bound is inherited from the literature.
+The archived atlas, stress-flow closure and quotient have reported dimensions
+fourteen, eleven and three. Their interpretation as polynomial-space results
+requires valid polynomial coordinate maps and flow activation rules; finite
+modular fits and holdouts alone do not prove these inputs. The archived
+literature map also uses source readings whose final three antisymmetrizers
+differ from the primary source, so its reported product intersection cannot
+be assigned to the published expressions. The graph Jacobian certificate uses
+separate contractions. The body retains the legacy numerical evidence with
+these qualifications; it does not claim a completed audit or priority.
 \end{abstract}
 
 \maketitle
+
+\paragraph{Audit scope and inherited results.}
+This draft retains numerical tables and identities from the archived computation;
+it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
+``published span'' computed from that archive refer only to the implemented
+source readings. A source audit found that the archived antisymmetrizers of
+$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
+about the span of the published expressions follows from that archived map.
+Repaired formulas require a separately identified registry and fresh map.
+Exact rational arithmetic proves statements about reconstructed coordinate
+matrices; their interpretation as polynomial maps, flow closure, or identities
+requires the corresponding polynomial identities and activation rules to be
+valid. Modular fits and finite holdouts are evidence for those inputs, not a
+proof of them. Accordingly, the numerical flow and intersection statements
+below are statements about the archived coordinate model, conditional as
+statements about invariant-polynomial spaces. Finite common-sample comparisons
+establish equality of evaluation spans, with polynomial span equality subject
+to the same qualification. The graph Jacobian nonzero-minor argument is
+separate: verified derivatives of integral graph polynomials give a
+characteristic-zero rank lower bound. No priority claim is made.
+
 
 % widetext breaks the two-column flow to set a display across the page, and the
 % page builder must then balance the remaining columns. With a rigid bottom it
@@ -1085,10 +1085,9 @@ largest coefficient the closure actually produces at each degree, taken from its
 own exact output. Through degree eight the coordinates are small integers and
 nothing is at risk. At degree ten one basis vector of the reachable space
 carries a numerator of twenty-nine bits over a five-digit denominator --- an
-order of magnitude beyond what a single prime near $2^{15}$ can represent. Read
-modulo one such prime that coefficient is indistinguishable from a small
-residue, and the fixed point would have been reported at the wrong dimension
-with nothing in the output to indicate it. The lift is what makes the degree-ten
+order of magnitude beyond what a single prime near $2^{15}$ can represent. A residue modulo one such prime does not uniquely determine that rational
+coefficient. This does not imply that the modular matrix rank is wrong; large
+coefficient height and a rank drop modulo a prime are different issues. The lift is what makes the degree-ten
 row recoverable at all.
 
 \begin{figure*}[!tbp]
@@ -1103,9 +1102,11 @@ off one modular solve.}
 \label{fig:heights}
 \end{figure*}
 
-\begin{theorem}[Exact degree-ten reachability]
+\begin{theorem}[Conditional interpretation of the archived closure]
 \label{thm:reach}
-Over the rationals,
+Assume the archived coordinate maps are polynomial identities and the
+recorded target list and activation rules describe the stated flow completely.
+Then its exact rational fixed point gives
 \begin{equation}
 \dim_\Q \Ften = \dimAtenQ,
 \qquad
@@ -1115,12 +1116,12 @@ Over the rationals,
 \end{equation}
 \end{theorem}
 
-The last equality deserves a word, because it is stronger than the modular
-computation it replaced. Running the closure over $\Q$ removes the modular
-admission test that made the earlier figure a lower bound. At the fixed point no
-further generated direction raises the rank over $\Q$, so the reached span
-\emph{is} $\Dten$ and its rank is an equality, not a bound. No separate
-upper-bound argument is required. Table~\ref{tab:degree10} lists the
+The rational fixed point is an equality for the recorded coordinate model.
+Its interpretation as the polynomial reachable space requires that all
+reconstructed target maps are polynomial identities and that the target list
+and activation rules are complete for the stated flow. Held-out prime checks
+do not establish these hypotheses. The minor proves the rank of the recorded
+coordinate matrix; it does not supply the missing polynomial identities. Table~\ref{tab:degree10} lists the
 degree-ten invariants and the block each occupies.
 
 \input{tables/tab07_degree10.tex}
@@ -1183,7 +1184,8 @@ and theorem~\ref{thm:reach} would fall with it. This section derives the input.
 \begin{theorem}[Vanishing of the quadratic trace]
 \label{thm:gten}
 For a self-dual five-form in ten dimensions, the free stress tensor has vanishing
-trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
+trace. In an even-degree interaction expansion, the trace can first
+contribute at degree four; nonvanishing at that degree is a separate input.
 \end{theorem}
 
 \begin{proof}
@@ -1201,10 +1203,10 @@ T_{\mu\nu}
 \label{eq:stresstensor}
 \end{equation}
 with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
-the first term returns $\langle F,F\rangle$ up to the normalisation carried by
-the factorial and the second returns $-\,c\,d\,\langle F,F\rangle$, so
+the first term returns $\langle F,F\rangle/(p-1)!$ with the displayed
+definition of the pairing, and the second returns $-\,c\,d\,\langle F,F\rangle$, so
 \begin{equation}
-T^{\mu}{}_{\mu} \;=\; (1 - c\,d)\,\langle F,F\rangle .
+T^{\mu}{}_{\mu} \;=\; \bigl(1/(p-1)! - c\,d\bigr)\,\langle F,F\rangle .
 \label{eq:tracescalar}
 \end{equation}
 Whatever $c$ may be, the trace is a multiple of the single scalar
@@ -1323,6 +1325,8 @@ $\bpHoldoutPrime$ with no mismatches, and computed the intersection exactly.
 
 \begin{theorem}
 \label{thm:bp}
+For the archived reconstructed coordinate matrices (not the corrected
+published expressions),
 $\dim_\Q(\Bten \cap \Pten) \;\bpCapRelation\; \dimBcapP$, and
 $\dim_\Q(\Bten + \Pten) = \dimBplusP$.
 \end{theorem}
@@ -1359,7 +1363,7 @@ table~\ref{tab:products}.
 \paragraph{Consequences.}
 The published span contains exactly one product direction, so its non-product
 content is $\publishedPrimitiveContent$-dimensional. In particular $\Bten$ is not
-a complement to the products. This is a structural fact about the published
+a complement to the products. This is a fact about the archived reconstructed coordinate
 choice of structures, not a criticism of it: nothing in
 \cite{Cederwall:2025invariants} claims otherwise, and the structures there are
 presented as explicit expressions rather than as a basis with specified relations.
@@ -1443,10 +1447,8 @@ dimensions appears to have a different answer. There the chiral two-form theorie
 and their $T\bar T$-like flows are reported to exhibit a
 universality~\cite{Ferko:2024chiral,Brizio:2026ttbar}. We take that
 characterisation from those works; we have not verified their results and the
-comparison is theirs, not ours. Read that way, the ten-dimensional degree-ten
-sector may be the first place in this programme where the flow provably fails to
-be exhaustive --- but establishing that it is the first would require a survey we
-have not done. Whether the missed directions correspond to genuinely inaccessible
+comparison is theirs, not ours. We make no priority claim for the
+ten-dimensional degree-ten comparison. Whether the missed directions correspond to inaccessible
 deformations, or merely to deformations this particular flow does not generate,
 is not settled by anything here.
 

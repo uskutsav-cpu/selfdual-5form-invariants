@@ -1,0 +1,862 @@
+diff --git a/manuscript/jhep/main.tex b/manuscript/jhep/main.tex
+index b573cf9..791311a 100644
+--- a/manuscript/jhep/main.tex
++++ b/manuscript/jhep/main.tex
+@@ -46,50 +46,50 @@
+ \newcommand{\Q}{\mathbb{Q}}
+ \newcommand{\pending}[1]{\textcolor{red}{\textbf{[#1]}}}
+ 
+-\title{Exact degree-ten invariants of a self-dual five-form\\ in ten dimensions}
++\title{An archived degree-ten atlas of a self-dual five-form\\ in ten dimensions}
+ 
+ \author{\pending{Author list pending mentor review}}
+ 
+ \abstract{%
+-A self-dual five-form in ten dimensions carries a $\dimSelfDualModule$-dimensional
+-space of field values, and the Lorentz-invariant scalar functions built from it
+-organise the possible non-linear self-interactions of the field. We determine
+-the degree-ten sector of this invariant structure exactly.
+-
+-Working in two independent formulations --- a tensor formulation built from
+-contraction graphs, and a spinor formulation built from chiral bispinors --- we
+-construct an explicit map between them and certify that it is injective with
+-image the gamma-traceless subspace, of rank $\bridgeForwardRank$, with an exact
+-left inverse --- a left inverse, not a two-sided one, since the map is not onto
+-the full symmetric square. The two formulations are then compared degree by
+-degree on common samples, and their spans agree at degrees four, six, eight and
+-ten.
+-
+-Three results are established exactly over the rationals rather than modulo a
+-prime. The full degree-ten invariant space has dimension $\dimAtenQ$. The
+-subspace reachable by the stress-tensor flow has dimension $\dimDtenQ$, computed
+-by running the closure to its fixed point in exact rational arithmetic after
+-lifting its non-integral targets by rational reconstruction. The quotient of the
+-first by the second therefore has dimension $\dimQtenQ$: there are three
+-independent degree-ten invariant directions that this flow does not reach. We
+-also show that the span of the previously published degree-ten structures meets
+-the product sector in exactly one dimension, and we write that intersection out
+-as an explicit integer identity.
+-
+-For the generic functional rank of the full candidate family we certify the
+-lower bound $\charZeroLowerBound$ by an exact modular Jacobian computation with
+-an explicit $\minorSize\times\minorSize$ minor; the matching upper bound is
+-analytic and is due to earlier work, which we cite rather than reprove.
+-
+-All results are supported by machine-checked certificates, and the computations
+-are reproducible from a public repository. We state explicitly which claims are
+-theorems, which are exact certificates, which rest on agreement across several
+-primes, and which remain open.%
++We record the archived degree-ten invariant atlas for the self-dual
++five-form in ten dimensions, its reconstructed rational coordinate matrices,
++and an exact modular Jacobian witness for generic functional rank at least
++eighty-one. The matching generic upper bound is inherited from the literature.
++The archived atlas, stress-flow closure and quotient have reported dimensions
++fourteen, eleven and three. Their interpretation as polynomial-space results
++requires valid polynomial coordinate maps and flow activation rules; finite
++modular fits and holdouts alone do not prove these inputs. The archived
++literature map also uses source readings whose final three antisymmetrizers
++differ from the primary source, so its reported product intersection cannot
++be assigned to the published expressions. The graph Jacobian certificate uses
++separate contractions. The body retains the legacy numerical evidence with
++these qualifications; it does not claim a completed audit or priority.
+ }
+ 
+ \begin{document}
+ \maketitle
+ 
++\paragraph{Audit scope and inherited results.}
++This draft retains numerical tables and identities from the archived computation;
++it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
++``published span'' computed from that archive refer only to the implemented
++source readings. A source audit found that the archived antisymmetrizers of
++$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
++about the span of the published expressions follows from that archived map.
++Repaired formulas require a separately identified registry and fresh map.
++Exact rational arithmetic proves statements about reconstructed coordinate
++matrices; their interpretation as polynomial maps, flow closure, or identities
++requires the corresponding polynomial identities and activation rules to be
++valid. Modular fits and finite holdouts are evidence for those inputs, not a
++proof of them. Accordingly, the numerical flow and intersection statements
++below are statements about the archived coordinate model, conditional as
++statements about invariant-polynomial spaces. Finite common-sample comparisons
++establish equality of evaluation spans, with polynomial span equality subject
++to the same qualification. The graph Jacobian nonzero-minor argument is
++separate: verified derivatives of integral graph polynomials give a
++characteristic-zero rank lower bound. No priority claim is made.
++
++
+ % ---------------------------------------------------------------- banner
+ \begin{center}
+ \fcolorbox{red}{yellow!12}{%
+@@ -1034,10 +1034,9 @@ largest coefficient the closure actually produces at each degree, taken from its
+ own exact output. Through degree eight the coordinates are small integers and
+ nothing is at risk. At degree ten one basis vector of the reachable space
+ carries a numerator of twenty-nine bits over a five-digit denominator --- an
+-order of magnitude beyond what a single prime near $2^{15}$ can represent. Read
+-modulo one such prime that coefficient is indistinguishable from a small
+-residue, and the fixed point would have been reported at the wrong dimension
+-with nothing in the output to indicate it. The lift is what makes the degree-ten
++order of magnitude beyond what a single prime near $2^{15}$ can represent. A residue modulo one such prime does not uniquely determine that rational
++coefficient. This does not imply that the modular matrix rank is wrong; large
++coefficient height and a rank drop modulo a prime are different issues. The lift is what makes the degree-ten
+ row recoverable at all.
+ 
+ \begin{figure}[htbp]
+@@ -1052,9 +1051,11 @@ off one modular solve.}
+ \label{fig:heights}
+ \end{figure}
+ 
+-\begin{theorem}[Exact degree-ten reachability]
++\begin{theorem}[Conditional interpretation of the archived closure]
+ \label{thm:reach}
+-Over the rationals,
++Assume the archived coordinate maps are polynomial identities and the
++recorded target list and activation rules describe the stated flow completely.
++Then its exact rational fixed point gives
+ \begin{equation}
+ \dim_\Q \Ften = \dimAtenQ,
+ \qquad
+@@ -1064,12 +1065,12 @@ Over the rationals,
+ \end{equation}
+ \end{theorem}
+ 
+-The last equality deserves a word, because it is stronger than the modular
+-computation it replaced. Running the closure over $\Q$ removes the modular
+-admission test that made the earlier figure a lower bound. At the fixed point no
+-further generated direction raises the rank over $\Q$, so the reached span
+-\emph{is} $\Dten$ and its rank is an equality, not a bound. No separate
+-upper-bound argument is required. Table~\ref{tab:degree10} lists the
++The rational fixed point is an equality for the recorded coordinate model.
++Its interpretation as the polynomial reachable space requires that all
++reconstructed target maps are polynomial identities and that the target list
++and activation rules are complete for the stated flow. Held-out prime checks
++do not establish these hypotheses. The minor proves the rank of the recorded
++coordinate matrix; it does not supply the missing polynomial identities. Table~\ref{tab:degree10} lists the
+ degree-ten invariants and the block each occupies.
+ 
+ \input{tables/tab07_degree10.tex}
+@@ -1132,7 +1133,8 @@ and theorem~\ref{thm:reach} would fall with it. This section derives the input.
+ \begin{theorem}[Vanishing of the quadratic trace]
+ \label{thm:gten}
+ For a self-dual five-form in ten dimensions, the free stress tensor has vanishing
+-trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
++trace. In an even-degree interaction expansion, the trace can first
++contribute at degree four; nonvanishing at that degree is a separate input.
+ \end{theorem}
+ 
+ \begin{proof}
+@@ -1150,10 +1152,10 @@ T_{\mu\nu}
+ \label{eq:stresstensor}
+ \end{equation}
+ with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+-the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+-the factorial and the second returns $-\,c\,d\,\langle F,F\rangle$, so
++the first term returns $\langle F,F\rangle/(p-1)!$ with the displayed
++definition of the pairing, and the second returns $-\,c\,d\,\langle F,F\rangle$, so
+ \begin{equation}
+-T^{\mu}{}_{\mu} \;=\; (1 - c\,d)\,\langle F,F\rangle .
++T^{\mu}{}_{\mu} \;=\; \bigl(1/(p-1)! - c\,d\bigr)\,\langle F,F\rangle .
+ \label{eq:tracescalar}
+ \end{equation}
+ Whatever $c$ may be, the trace is a multiple of the single scalar
+@@ -1272,6 +1274,8 @@ $\bpHoldoutPrime$ with no mismatches, and computed the intersection exactly.
+ 
+ \begin{theorem}
+ \label{thm:bp}
++For the archived reconstructed coordinate matrices (not the corrected
++published expressions),
+ $\dim_\Q(\Bten \cap \Pten) \;\bpCapRelation\; \dimBcapP$, and
+ $\dim_\Q(\Bten + \Pten) = \dimBplusP$.
+ \end{theorem}
+@@ -1308,7 +1312,7 @@ table~\ref{tab:products}.
+ \paragraph{Consequences.}
+ The published span contains exactly one product direction, so its non-product
+ content is $\publishedPrimitiveContent$-dimensional. In particular $\Bten$ is not
+-a complement to the products. This is a structural fact about the published
++a complement to the products. This is a fact about the archived reconstructed coordinate
+ choice of structures, not a criticism of it: nothing in
+ \cite{Cederwall:2025invariants} claims otherwise, and the structures there are
+ presented as explicit expressions rather than as a basis with specified relations.
+diff --git a/manuscript/main.tex b/manuscript/main.tex
+index 8bd5736..3fd6461 100644
+--- a/manuscript/main.tex
++++ b/manuscript/main.tex
+@@ -21,7 +21,7 @@
+ 
+ \newcommand{\HUMAN}[1]{\textbf{[#1 --- HUMAN ACTION REQUIRED]}}
+ 
+-\title{An exact degree-ten classification of local invariants of the
++\title{An archived degree-ten atlas of local invariants of the
+        ten-dimensional self-dual five-form}
+ 
+ % Placeholders below are deliberately plain text: they must compile, and they
+@@ -32,31 +32,19 @@
+ \emailAdd{corresponding.author@placeholder.invalid}
+ 
+ \abstract{%
+-The self-dual five-form field strength in ten dimensions carries a large ring of
+-Lorentz invariants, of which only a handful have been written down explicitly.
+-We determine the degree-ten graded piece of that ring exactly. Working over
+-finite fields with certified linear algebra, we construct a fourteen-dimensional
+-atlas of degree-ten invariants and resolve its internal structure completely:
+-the two-dimensional subspace of products of lower-degree invariants, the
+-twelve-dimensional span of the published candidate structures, the
+-twelve-dimensional span of the graph generators, and the eleven-dimensional
+-subspace reachable by the stress-tensor flow that motivates these theories. The
+-resulting quotient is three-dimensional --- exactly so over the rationals, not
+-only modulo a prime --- and we give explicit compact representatives for it. We show that two decompositions which both read twelve
+-plus two are not the same decomposition: the published span contains one product
+-direction, so its non-product content is eleven, and we write that direction's
+-generator down. The two dimensions that a computation over finite fields could
+-not settle are established exactly over the rationals. Independently, we implement a
+-bridge between the tensor description and a spinor-variable description, fixing
+-every convention explicitly and verifying the map is an isomorphism onto the
+-gamma-traceless symmetric chiral square. The two descriptions are then evaluated
+-at a common registry of five-forms and their invariant spans compared directly.
+-We also replace the floating-point Jacobian rank computation used previously by
+-an exact modular one over the complete candidate selection. Because the
+-coordinate basis is integral, the resulting rank is an unconditional lower bound
+-in characteristic zero rather than a tolerance-dependent estimate, and it is
+-witnessed by an explicit non-vanishing minor; it meets the analytic count of
+-eighty-one from below.%
++We record the archived degree-ten invariant atlas for the self-dual
++five-form in ten dimensions, its reconstructed rational coordinate matrices,
++and an exact modular Jacobian witness for generic functional rank at least
++eighty-one. The matching generic upper bound is inherited from the literature.
++The archived atlas, stress-flow closure and quotient have reported dimensions
++fourteen, eleven and three. Their interpretation as polynomial-space results
++requires valid polynomial coordinate maps and flow activation rules; finite
++modular fits and holdouts alone do not prove these inputs. The archived
++literature map also uses source readings whose final three antisymmetrizers
++differ from the primary source, so its reported product intersection cannot
++be assigned to the published expressions. The graph Jacobian certificate uses
++separate contractions. The body retains the legacy numerical evidence with
++these qualifications; it does not claim a completed audit or priority.
+ }
+ 
+ \keywords{Extended Supersymmetry, p-branes, Differential and Algebraic Geometry}
+@@ -64,6 +52,27 @@ eighty-one from below.%
+ \begin{document}
+ \maketitle
+ 
++\paragraph{Audit scope and inherited results.}
++This draft retains numerical tables and identities from the archived computation;
++it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
++``published span'' computed from that archive refer only to the implemented
++source readings. A source audit found that the archived antisymmetrizers of
++$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
++about the span of the published expressions follows from that archived map.
++Repaired formulas require a separately identified registry and fresh map.
++Exact rational arithmetic proves statements about reconstructed coordinate
++matrices; their interpretation as polynomial maps, flow closure, or identities
++requires the corresponding polynomial identities and activation rules to be
++valid. Modular fits and finite holdouts are evidence for those inputs, not a
++proof of them. Accordingly, the numerical flow and intersection statements
++below are statements about the archived coordinate model, conditional as
++statements about invariant-polynomial spaces. Finite common-sample comparisons
++establish equality of evaluation spans, with polynomial span equality subject
++to the same qualification. The graph Jacobian nonzero-minor argument is
++separate: verified derivatives of integral graph polynomials give a
++characteristic-zero rank lower bound. No priority claim is made.
++
++
+ \begin{center}
+ \fbox{\parbox{0.9\textwidth}{\small\textbf{Draft status.}
+ This is a private submission candidate. The author list, affiliations,
+@@ -130,13 +139,13 @@ values.
+ \begin{enumerate}
+ \item The degree-ten atlas $A_{10}$ has dimension $\dimAten$
+       (section~\ref{sec:atlas}).
+-\item Its internal structure is determined completely
++\item Its archived coordinate structure is determined
+       (section~\ref{sec:decomp}): the product subspace $P_{10}$ has dimension
+       $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+       generator span $G_{10}$ has dimension $\dimGten$, the stress-flow reachable
+       subspace $D_{10}$ has dimension $\dimDten$, and the quotient
+       $Q_{10} = A_{10}/D_{10}$ has dimension $\dimQten$. All pairwise
+-      intersections and sums are certified.
++      intersections and sums refer to the archived coordinate model.
+ \item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
+       span is \emph{not} a complement of the products:
+       $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$, so the
+@@ -145,7 +154,9 @@ values.
+       that intersection explicitly.
+ \item Both dimensions that a modular computation could not settle ---
+       $\dim D_{10}$ and $\dim(B_{10}\cap P_{10})$ --- are established exactly
+-      over $\mathbb{Q}$ (sections~\ref{sec:czero} and~\ref{sec:decomp}).
++      over $\mathbb{Q}$ for the reconstructed coordinate matrices
++      (sections~\ref{sec:czero} and~\ref{sec:decomp}); their polynomial
++      interpretation has the audit hypotheses stated above.
+ \item A convention-controlled bridge to the spinor description is implemented and
+       verified to be an isomorphism onto the gamma-traceless
+       $\dimGammaTraceless$ (section~\ref{sec:bridge}).
+@@ -199,7 +210,7 @@ without exception.
+   counts \emph{functionally} independent invariants and is cumulative over all
+   degrees. It is bounded by~\eqref{eq:eightyone}.
+ \item[Hilbert-series dimension.] The graded dimension predicted by a generating
+-  function. A count of generators, not of functions.
++  function. A count of homogeneous invariant polynomials, including products; it is not by itself a count of minimal generators.
+ \item[Quotient dimension.] The dimension of $A_{10}/D_{10}$, a quotient by the
+   stress-flow reachable subspace --- unrelated to any product decomposition.
+ \end{description}
+@@ -207,8 +218,9 @@ without exception.
+ These genuinely differ, and the cleanest demonstration is at the top of the
+ range rather than in the middle. The candidate family whose Jacobian we compute
+ in section~\ref{sec:cert81} has $\exactJacRows$ members and Jacobian rank
+-$\exactJacRank$, so exactly two functional relations hold among functions that
+-are pairwise distinct as polynomials. Both are degree-twelve phenomena: the
++$\exactJacRank$, so there are two excess candidate directions at the generic differential level;
++no two explicit polynomial relations are identified by that rank statement.
++The excess appears at degree twelve: the
+ cumulative Jacobian ranks are $\cumRankDegFour, \cumRankDegSix,
+ \cumRankDegEight, \cumRankDegTen, \cumRankDegTwelve$ against per-degree candidate
+ counts that each contribute in full up to degree ten.
+@@ -305,8 +317,8 @@ The published span therefore contains exactly one product direction and misses
+ one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
+ $\dimBten$, and the numerical agreement of the two twelves is a coincidence.
+ 
+-This is exact over the rationals, not only modulo a prime: the published
+-coordinates were lifted to $\mathbb{Q}$ by Chinese remaindering across
++The following is exact for the reconstructed rational coordinate matrices,
++not a proved identity of the published polynomials: the archived coordinates were lifted to $\mathbb{Q}$ by Chinese remaindering across
+ $\bpFitPrimes$ primes with rational reconstruction, validated at a held-out
+ prime~$\bpHoldoutPrime$, giving
+ $\dim_{\mathbb{Q}}(B_{10}\cap P_{10}) \bpCapRelation \bpCapQ$. The
+@@ -316,8 +328,8 @@ $I^{(k)}$ the published structures in the numbering of~\cite{Cederwall:2025invar
+   \input{generated/identity}
+   \label{eq:bpidentity}
+ \end{equation}
+-so a specific integer combination of four of the twelve published structures is
+-a multiple of a pure product. We verified~\eqref{eq:bpidentity} at a prime
++so the reconstructed matrix proposes an integer polynomial identity for four
++of the archived implemented structures and a pure product. We verified~\eqref{eq:bpidentity} at a prime
+ $\bpFreshPrime$ and on $\bpFreshSamples$ five-forms that took no part in its
+ construction.
+ 
+@@ -370,7 +382,8 @@ $\dimDten$ bounded $\dim_{\mathbb{Q}} D_{10}$ only from below, and
+ $\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ was all that followed.
+ 
+ Running the same fixed point in exact rational arithmetic removes the modular
+-admission test, and with it the gap. The obstacle is that the flow targets are
++admission test for the reconstructed coordinate model. It does not prove that
++the reconstructed coordinates represent the intended polynomials. The obstacle is that the flow targets are
+ not all integral: of the targets at degrees four through ten,
+ $\czIntegerRows$ have identical integer coordinates at every prime and
+ $\czLiftedRows$ are reductions of rationals. Those were lifted by CRT across
+@@ -387,10 +400,12 @@ rational arithmetic, giving
+   \dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ .
+   \label{eq:czero}
+ \end{equation}
+-This is an equality and not a bound, because at a fixed point reached over
+-$\mathbb{Q}$ no generated direction raises the rank over $\mathbb{Q}$: the
+-reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+-upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
++The rational fixed point is an equality for the recorded coordinate model.
++Its interpretation as the polynomial reachable space requires that all
++reconstructed target maps are polynomial identities and that the target list
++and activation rules are complete for the stated flow. Held-out prime checks
++do not establish these hypotheses. The minor proves the rank of the recorded
++coordinate matrix; it does not supply the missing polynomial identities. As an independently
+ checkable witness the certificate records an explicit
+ $\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+ determinant, computed by fraction-free elimination, is non-zero.
+@@ -599,9 +614,10 @@ the correspondence, and is discussed in the text.}
+ \label{fig:comparison}
+ \end{figure}
+ 
+-Where the spans agree, the agreement is established by two-way containment and
+-the change-of-basis matrix is fitted on the fitting samples only and then
+-validated on the holdout samples. We do not report a degree as matched on the
++Where the evaluation spans agree, finite-sample two-way containment is
++established and the change-of-basis matrix is fitted on the fitting samples
++only and then validated on holdouts. Polynomial span equality requires an
++additional identity argument beyond those samples. We do not report a degree as matched on the
+ strength of a dimension coincidence.
+ 
+ \paragraph{Degrees four, six and ten agree; degree eight does not, and that is a
+@@ -618,14 +634,15 @@ which is verified to be an isomorphism, nor of the sampling, which had saturated
+ It is a property of the port-graph ansatz: single-graph contractions of the
+ invariant tensor miss a degree-eight direction.
+ 
+-This is not an inference. Running the spinor enumeration with its
++Within the enumerated candidate family, running the spinor enumeration with its
+ stopping rule disabled, so that it terminates on candidate exhaustion rather than
+ on an externally supplied target, reaches rank seven at degree eight --- but only
+ when a separate family of structured tensor-word candidates is included alongside
+ the port graphs. Our exact modular computation re-implements the port graphs and
+ not that family, and lands on six. The two numbers are consistent, and together
+-they locate the missing direction precisely: it is not reachable by any
+-single-graph contraction.
++they locate a direction missing from the enumerated port-graph family.
++Extending that conclusion to every possible contraction requires proof that
++the enumeration and ansatz exhaust the stated class.
+ 
+ This can be made sharper than ``the two numbers are consistent''. Re-running the
+ degree-eight comparison with the \emph{full} spinor candidate family --- port
+@@ -640,16 +657,16 @@ at all $\dEightPrimes$ primes tested, with two-way containment and a
+ change-of-basis map validated on holdout samples. The union rank is the
+ load-bearing number: two \emph{different} seven-dimensional subspaces would also
+ give equal ranks, and a union of eight; the union being $\dEightUnionRank$ is
+-what makes this span equality rather than dimension agreement.
++what establishes equality of the sampled evaluation spans. It does not by
++itself prove the fitted identities as polynomials.
+ 
+ Dropping each spinor family in turn and re-ranking then isolates the
+ responsible one. Removing the port graphs, the products or the structured
+ candidates leaves the rank at $\dEightUnionRank$; removing the
+ \dEightIndispensable{} candidates drops it to $\dEightRankWithoutWords$. So the
+-direction that a port-graph-only family misses is not reachable by any
+-single-graph contraction of the invariant tensor, and the structured family does
+-not supply it either. That is a positive statement about where the invariant
+-lives, not merely an observation that two counts differ.
++direction missed by the enumerated port-graph-only family is not supplied
++by the enumerated structured family on those samples either. Exhaustiveness
++of the candidate classes is a separate requirement for a universal statement.
+ 
+ The consequence for reading table~\ref{tab:comparison} is that a ``no'' in the
+ degree-eight row is a statement about the candidate family, not about the
+@@ -833,12 +850,11 @@ cannot generate, and we exhibit representatives of all of them. This is an
+ equality over the rationals, not a bound: section~\ref{sec:czero} establishes
+ $\dim_{\mathbb{Q}} D_{10} = \dimDtenQ$ exactly.
+ 
+-This changes what a theorist can do in a specific way. Previously, a candidate
+-degree-ten term could be compared against the published structures only, and if
+-it failed to match, nothing followed --- the published list was not known to be
+-complete or independent. Now any degree-ten invariant can be expanded in a
+-certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+-computed. That is the difference between recognising a term and locating it.
++The atlas provides explicit candidate coordinates for comparing degree-ten
++terms. Identifying a fitted coordinate vector with a polynomial identity and
++interpreting its class in $Q_{10}$ requires the coordinate and closure
++hypotheses stated above. The source-transcription failure prevents using the
++archived literature map as a classification of the published expressions.
+ 
+ We deliberately do \emph{not} claim: a Type IIB coefficient, a supersymmetric
+ completion, a causality statement, an amplitude, or an all-orders theorem. None
+@@ -917,11 +933,10 @@ of these follows from the algebra computed here.
+ \section{Conclusions and outlook}
+ \label{sec:conclusions}
+ 
+-The degree-ten graded piece of the invariant ring of the ten-dimensional
+-self-dual five-form is now known exactly, together with its product, published,
+-graph-generator and stress-flow-reachable subspaces and all their intersections.
+-Every one of those dimensions is exact over $\mathbb{Q}$, not merely modulo a
+-prime: the four spanned subspaces are pinned by counting their spanning sets, and
++The archived degree-ten coordinate atlas records product, implemented-source,
++graph-generator and stress-flow subspaces. Its reconstructed matrix dimensions
++are exact over $\mathbb{Q}$, while identification with the corresponding
++polynomial spaces remains conditional: the four spanned subspaces are pinned by counting their spanning sets, and
+ the two that are not --- the reachable subspace and the intersection of the
+ published span with the products --- were settled by exact rational computations
+ after lifting the relevant coordinates by Chinese remaindering and validating at
+@@ -931,9 +946,10 @@ representatives.
+ 
+ A tempting identification between two decompositions that both read
+ $\dimBten+\dimPten$ turns out to be false, and the correct structural statement
+-is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+-meets the products in exactly one dimension over $\mathbb{Q}$, generated by the
+-integer identity~\eqref{eq:bpidentity}.
++is $A_{10} = G_{10}\oplus P_{10}$ for the atlas. In the archived coordinate
++model the implemented-source span meets the products in one dimension over
++$\mathbb{Q}$. Equation~\eqref{eq:bpidentity} is a sample-validated proposed
++polynomial identity; the result is not assigned to corrected source formulas.
+ 
+ Separately, the spinor-variable description has been connected to the tensor
+ description by an explicit convention-controlled bridge, and the numerical
+diff --git a/manuscript/prd_letter/main.tex b/manuscript/prd_letter/main.tex
+index 59f5697..aa1ba33 100644
+--- a/manuscript/prd_letter/main.tex
++++ b/manuscript/prd_letter/main.tex
+@@ -45,7 +45,7 @@
+ 
+ \begin{document}
+ 
+-\title{Exact degree-ten invariants of a self-dual five-form in ten dimensions}
++\title{An archived degree-ten atlas of a self-dual five-form in ten dimensions}
+ 
+ \author{\pending{Author list pending mentor review}}
+ \affiliation{\pending{Affiliations pending mentor review}}
+@@ -53,26 +53,44 @@
+ \date{\today}
+ 
+ \begin{abstract}
+-The Lorentz-invariant scalar functions of a self-dual five-form in ten
+-dimensions control the non-linear self-interactions the field can have. We
+-determine the degree-ten sector of this structure exactly over $\Q$, rather than
+-modulo a prime. The full invariant space has dimension $\dimAtenQ$; the subspace
+-activated by the stress-tensor flow has dimension $\dimDtenQ$; the quotient
+-therefore has dimension $\dimQtenQ$, so three independent degree-ten directions
+-lie outside the reach of the flow. The separation rests on a short theorem: the
+-free stress tensor of a self-dual five-form is traceless for every improvement
+-coefficient, because $F\wedge F$ vanishes identically for a form of odd degree,
+-so $\operatorname{Tr}\tau$ begins at field degree four rather than two. Forcing
+-the naive degree-two start collapses the quotient to zero. We certify a
+-tensor--spinor bridge of rank $\bridgeForwardRank$ with an exact left inverse,
+-certify generic functional rank at least $\charZeroLowerBound$ by an explicit
+-$\minorSize\times\minorSize$ integer minor, and give the one-dimensional overlap
+-between the published degree-ten span and the product sector as an exact integer
+-identity. All computations are exact; none uses floating point.
++We record the archived degree-ten invariant atlas for the self-dual
++five-form in ten dimensions, its reconstructed rational coordinate matrices,
++and an exact modular Jacobian witness for generic functional rank at least
++eighty-one. The matching generic upper bound is inherited from the literature.
++The archived atlas, stress-flow closure and quotient have reported dimensions
++fourteen, eleven and three. Their interpretation as polynomial-space results
++requires valid polynomial coordinate maps and flow activation rules; finite
++modular fits and holdouts alone do not prove these inputs. The archived
++literature map also uses source readings whose final three antisymmetrizers
++differ from the primary source, so its reported product intersection cannot
++be assigned to the published expressions. The graph Jacobian certificate uses
++separate contractions. The body retains the legacy numerical evidence with
++these qualifications; it does not claim a completed audit or priority.
+ \end{abstract}
+ 
+ \maketitle
+ 
++\paragraph{Audit scope and inherited results.}
++This draft retains numerical tables and identities from the archived computation;
++it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
++``published span'' computed from that archive refer only to the implemented
++source readings. A source audit found that the archived antisymmetrizers of
++$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
++about the span of the published expressions follows from that archived map.
++Repaired formulas require a separately identified registry and fresh map.
++Exact rational arithmetic proves statements about reconstructed coordinate
++matrices; their interpretation as polynomial maps, flow closure, or identities
++requires the corresponding polynomial identities and activation rules to be
++valid. Modular fits and finite holdouts are evidence for those inputs, not a
++proof of them. Accordingly, the numerical flow and intersection statements
++below are statements about the archived coordinate model, conditional as
++statements about invariant-polynomial spaces. Finite common-sample comparisons
++establish equality of evaluation spans, with polynomial span equality subject
++to the same qualification. The graph Jacobian nonzero-minor argument is
++separate: verified derivatives of integral graph polynomials give a
++characteristic-zero rank lower bound. No priority claim is made.
++
++
+ \begin{center}
+ \fcolorbox{red}{yellow!12}{%
+ \begin{minipage}{0.94\columnwidth}
+@@ -258,8 +276,9 @@ at which $\operatorname{Tr}\tau$ begins.
+ \begin{theorem}
+ \label{thm:gten}
+ For a self-dual five-form in ten dimensions the free stress tensor is traceless,
+-for every improvement coefficient. Hence $\operatorname{Tr}\tau$ first
+-contributes at field degree four.
++for every coefficient of the displayed metric-norm term. In an even-degree
++interaction expansion, $\operatorname{Tr}\tau$ can first contribute at field
++degree four; the argument does not establish a nonzero quartic term.
+ \end{theorem}
+ 
+ \begin{proof}
+@@ -272,7 +291,7 @@ T_{\mu\nu}=\frac{1}{(p-1)!}F_{\mu\alpha_2\dots\alpha_p}F_\nu{}^{\alpha_2\dots\al
+ with $\langle F,G\rangle=F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p}$ and $c$ free.
+ Contracting with $\eta^{\mu\nu}$,
+ \begin{equation}
+-T^\mu{}_\mu=(1-cd)\,\langle F,F\rangle,
++T^\mu{}_\mu=\bigl(1/(p-1)!-cd\bigr)\,\langle F,F\rangle,
+ \label{eq:trace}
+ \end{equation}
+ a multiple of the single scalar $\langle F,F\rangle$ whatever $c$ is: no other
+@@ -359,9 +378,9 @@ coefficient the closure actually produces at each degree. Through degree eight
+ the coordinates are small integers and nothing is at risk. At degree ten one
+ basis vector of $\Dten$ carries a numerator of twenty-nine bits over a
+ five-digit denominator --- an order of magnitude past what a single prime near
+-$2^{15}$ can represent. Read modulo one such prime that coefficient is
+-indistinguishable from a small residue, and the fixed point would have been
+-reported at the wrong dimension with nothing in the output to indicate it.
++$2^{15}$ can represent. A residue modulo one such prime does not determine that rational coefficient
++uniquely. This does not imply that the modular rank is wrong: coefficient
++height and exceptional-prime rank loss are separate issues.
+ Iteration terminated after $\czSweeps$ sweeps.
+ 
+ \begin{figure}[t]
+@@ -376,7 +395,8 @@ is why that row is lifted rather than read off one modular solve.}
+ 
+ \begin{theorem}
+ \label{thm:main}
+-Over the rationals,
++Assuming valid polynomial coordinate maps, a complete target list, and the
++recorded activation rules, the archived rational coordinate model gives
+ \begin{equation}
+ \dim_\Q\Ften=\dimAtenQ,\quad
+ \dim_\Q\Dten=\dimDtenQ,\quad
+@@ -387,10 +407,12 @@ Over the rationals,
+ The lower bound is certified by an explicit
+ $\czMinorSize\times\czMinorSize$ integer minor with non-vanishing determinant,
+ computed by Bareiss elimination~\cite{Bareiss:1968} and confirmed by an
+-independent exact rational routine. No separate upper bound is needed: over $\Q$
+-the modular admission test that made the predecessor a bound disappears, and at
+-the fixed point no further generated direction raises the rank, so the reached
+-span \emph{is} $\Dten$ and $\dim_\Q\Dten=\dimDtenQ$ is an equality. Three exact
++independent exact rational routine. The rational fixed point is an equality for the recorded coordinate model.
++Its interpretation as the polynomial reachable space requires that all
++reconstructed target maps are polynomial identities and that the target list
++and activation rules are complete for the stated flow. Held-out prime checks
++do not establish these hypotheses. The minor proves the rank of the recorded
++coordinate matrix; it does not supply the missing polynomial identities. Three exact
+ annihilating covectors give the quotient map directly. Forcing
+ $\operatorname{Tr}\tau$ to begin at degree two instead activates $24$ further
+ targets, raises the reachable dimension to $\dimAten$, and returns
+diff --git a/manuscript/prl/main.tex b/manuscript/prl/main.tex
+index 02b9160..e1c4ce2 100644
+--- a/manuscript/prl/main.tex
++++ b/manuscript/prl/main.tex
+@@ -11,8 +11,7 @@
+ 
+ \begin{document}
+ 
+-\title{Three local interactions of the ten-dimensional self-dual five-form\\
+-       that no stress-tensor flow generates}
++\title{An archived stress-flow quotient for the self-dual five-form}
+ 
+ \author{AUTHOR LIST --- HUMAN ACTION REQUIRED}
+ \affiliation{AFFILIATIONS --- HUMAN ACTION REQUIRED}
+@@ -20,31 +19,49 @@
+ \date{\today}
+ 
+ \begin{abstract}
+-Non-linear theories of a chiral four-form gauge field in ten dimensions are
+-usually constructed by deforming a seed theory along a flow built from
+-stress-tensor invariants, as in lower dimensions where such flows generate
+-everything available. Whether that construction reaches the whole space of local
+-interactions in ten dimensions has not been decidable, because the space itself
+-was not known at any fixed order. We determine it exactly at quartic-squared
+-order: the space of local invariants of degree ten in the self-dual five-form is
+-\dimAten-dimensional, the subspace reachable by the stress-tensor flow is
+-\dimDten-dimensional, and the quotient is exactly \dimQten-dimensional. We give
+-explicit representatives of the three unreachable directions, no proper subset of
+-which spans the quotient. Products of lower-degree invariants are all reachable, so the missing
+-directions are not built from anything simpler. The result is obtained in exact
+-arithmetic and recovered independently in graph, block-tensor and spinor
+-descriptions related by a certified equivariant map. Any deformation scheme
+-intended to cover ten-dimensional chiral four-form dynamics at this order must
+-therefore enlarge its generator set by at least three independent structures.
++We record the archived degree-ten invariant atlas for the self-dual
++five-form in ten dimensions, its reconstructed rational coordinate matrices,
++and an exact modular Jacobian witness for generic functional rank at least
++eighty-one. The matching generic upper bound is inherited from the literature.
++The archived atlas, stress-flow closure and quotient have reported dimensions
++fourteen, eleven and three. Their interpretation as polynomial-space results
++requires valid polynomial coordinate maps and flow activation rules; finite
++modular fits and holdouts alone do not prove these inputs. The archived
++literature map also uses source readings whose final three antisymmetrizers
++differ from the primary source, so its reported product intersection cannot
++be assigned to the published expressions. The graph Jacobian certificate uses
++separate contractions. The body retains the legacy numerical evidence with
++these qualifications; it does not claim a completed audit or priority.
+ \end{abstract}
+ 
+ \maketitle
+ 
++\paragraph{Audit scope and inherited results.}
++This draft retains numerical tables and identities from the archived computation;
++it is not an overall audit-pass statement. In this draft, $B_{10}$ and any
++``published span'' computed from that archive refer only to the implemented
++source readings. A source audit found that the archived antisymmetrizers of
++$J_{10}$--$J_{12}$ differ from the primary PDF and TeX source. No conclusion
++about the span of the published expressions follows from that archived map.
++Repaired formulas require a separately identified registry and fresh map.
++Exact rational arithmetic proves statements about reconstructed coordinate
++matrices; their interpretation as polynomial maps, flow closure, or identities
++requires the corresponding polynomial identities and activation rules to be
++valid. Modular fits and finite holdouts are evidence for those inputs, not a
++proof of them. Accordingly, the numerical flow and intersection statements
++below are statements about the archived coordinate model, conditional as
++statements about invariant-polynomial spaces. Finite common-sample comparisons
++establish equality of evaluation spans, with polynomial span equality subject
++to the same qualification. The graph Jacobian nonzero-minor argument is
++separate: verified derivatives of integral graph polynomials give a
++characteristic-zero rank lower bound. No priority claim is made.
++
++
+ \begin{center}\fbox{\parbox{0.92\columnwidth}{\small\textbf{NOT YET
+ SUBMISSION-READY.} The PRL claim gate does not currently pass: Impact and Broad
+ interest are not met on present evidence, and Innovation is conditional on a
+ literature sweep that has not been done. See \texttt{audit/PRL\_CLAIM\_GATE.md}.
+-The science below is complete and certified; the venue judgement is not. Author
++The scientific claims below have the audit qualifications stated above. Author
+ list, affiliations and acknowledgments are unresolved placeholders.}}\end{center}
+ 
+ %=============================================================================
+diff --git a/paper/manuscript.tex b/paper/manuscript.tex
+index 7b75b0e..7d08c10 100644
+--- a/paper/manuscript.tex
++++ b/paper/manuscript.tex
+@@ -2,7 +2,7 @@
+ \usepackage[margin=1in]{geometry}
+ \usepackage{amsmath,amssymb,longtable,booktabs}
+ \usepackage[colorlinks=true,allcolors=blue]{hyperref}
+-\title{An explicit graph basis and exact Jacobian certificates\\
++\title{Explicit graph invariants and exact Jacobian certificates\\
+ for a self-dual five-form in ten dimensions}
+ \author{\texttt{uskutsav-cpu}}
+ \date{September 7, 2026}
+@@ -15,9 +15,10 @@ quartic, two sextic, six octic, twelve degree-ten, and sixty degree-twelve
+ polynomials. Their Jacobian has a nonzero $81\times81$ minor at four exact
+ finite-field specializations, using the same ordered functions in every
+ case. An integral coordinate convention makes each nonzero minor a
+-characteristic-zero independence witness. The construction completes the
+-functional-independence problem, with the known generic quotient dimension
+-as upper bound. It does not determine all polynomial generators or syzygies.
++characteristic-zero independence witness when its entries are verified as
++derivatives of the specified contractions. Together with the generic quotient
++dimension from the literature, this gives a maximal generically independent
++family. It does not determine all polynomial generators or syzygies.
+ \end{abstract}
+ 
+ \section{Scope and conventions}
+@@ -30,6 +31,11 @@ certificate supplies the matching lower bound using explicit graph
+ contractions. The contraction catalogs and previously discovered bases are
+ inherited from the repository's research branches; the certificate reported
+ here re-evaluates those functions at new points.
++Graph enumeration and tensor-network contraction followed by numerical linear
++algebra are established methods for tensor invariants: see
++Elamaran, Ferko and Scarlett \cite{elamaran}, whose six-dimensional three-form
++study leaves the ten-dimensional chiral five-form application for future work.
++We make no claim of priority for this method or for an 81-invariant family.
+ 
+ A graph has one vertex per copy of $F$, no loops, and valence five.
+ An edge of multiplicity $m$ contracts $m$ index pairs with inverse metrics.
+@@ -37,7 +43,9 @@ Vertices and edges are ordered; slot order is fixed by lexicographic edge
+ order. Graph isomorphism alone does not fix the sign of an odd-form
+ contraction, so the formula identifier hashes the ordered edge record.
+ Disconnected contractions are products. The quadratic contraction vanishes
+-on this self-dual space.
++on this self-dual space: $F\wedge\star F=F\wedge F=0$, since $F$ has odd
++degree, so its metric norm vanishes. Complete contraction with the invariant
++metric proves Lorentz invariance of each graph polynomial.
+ 
+ For each increasing five-tuple $I$ containing 0, define
+ $A_I=F_I$ and let $e_I$ denote its compact alternating component vector.
+@@ -54,9 +62,9 @@ The nine low-degree functions are those in
+ \path{results/10d_order8.json}; the next twelve come from
+ \path{results/10d_order10.json}. The first sixty selected functional
+ directions in \path{results/10d_order12.json} complete the list.
+-The remaining two degree-twelve primitive polynomial directions belong to
+-the larger homogeneous inventory and are not included in the 81-function
+-Jacobian. A dependent Jacobian row does not identify a polynomial syzygy.
++The inherited inventory labels two further degree-twelve directions as
++primitive polynomial directions; they are not included in the 81-function
++Jacobian. That label requires the separate homogeneous-space evidence below. A dependent Jacobian row does not identify a polynomial syzygy.
+ 
+ \begin{center}
+ \begin{tabular}{rrr}
+@@ -81,42 +89,60 @@ The determinant is recomputed by Python-integer elimination independently
+ of the streaming rank sieve. Euler's identity
+ $\sum_I A_I J_{aI}=\deg(G_a)G_a$ is checked for every row.
+ 
+-If a saved determinant is nonzero modulo $p$, the corresponding integer
+-determinant polynomial is not identically zero. Its nonvanishing defines a
+-nonempty Zariski-open set in characteristic zero on which these 81
+-polynomials are algebraically independent. Invariance and the known generic
+-quotient dimension supply the matching upper bound. These are generic local
+-coordinates; neither global orbit separation nor polynomial generation of
+-the entire ring follows.
++Suppose the recorded entries have been verified as the Jacobian of the
++specified integral graph polynomials at the recorded point. A nonzero minor
++modulo $p$ then proves that the corresponding integer determinant polynomial
++is not identically zero. In characteristic zero the Jacobian criterion gives
++algebraic independence of these 81 polynomials, and their differentials are
++independent on the nonempty Zariski-open locus where that minor is nonzero.
++Invariance and the cited generic quotient dimension supply the matching upper
++bound. On a regular local quotient this gives local coordinates. It proves
++neither global orbit separation, generation of the invariant field by rational
++functions in this list, nor polynomial generation of the entire ring.
+ 
+ \section{Polynomial spaces and literature comparison}
+-The homogeneous-space dimensions through degree twelve are
+-$1,2,7,14,72$. Products must be included in value-space comparisons.
++The homogeneous-space dimensions reported in equation (4.2) of
++\cite{cederwall} through degree twelve are $1,2,7,14,72$.
++These representation-theoretic counts are an external input here. Products must be included in value-space comparisons.
+ At degree twelve the ten product monomials are $I_4^3$, the three symmetric
+ products of sextics, and the six products $I_4 I_{8,j}$. The inherited
+ degree-twelve computation reaches rank 72 using these products and 62 graph
+-directions. Polynomial-space evidence uses gradients concatenated at several
+-points; the functional Jacobian uses one point. These are separate sieves.
++directions. A rank-72 concatenated evaluation proves independence of that
++homogeneous list only after the evaluated polynomial rows are verified; the
++matching Hilbert coefficient supplies completeness. This inherited computation
++is separate from the 81-function certificate. Polynomial-space evidence uses
++gradients concatenated at several points; the functional Jacobian uses one
++point. These are separate sieves. The prose of section 4.1.4 of
++\cite{cederwall} says 64 new degree-twelve directions, inconsistent with its
++equation (4.2), which has exponent 62. The inventory here uses the latter;
++we do not treat the inconsistent prose as an additional verified count.
+ Factor exponents in a Hilbert product are not automatically generator counts
+ at higher degrees when generators and relations may coexist.
+ 
+ The octic comparison uses a selection of six displayed literature
+ contractions: the first five expressions from equations (4.12)--(4.15) of
+-\cite{cederwall}, together with the hatted expression (4.18). The exact
+-machine-readable map includes the quartic-square product explicitly.
++\cite{cederwall}, together with the hatted expression (4.18). The
++machine-readable matrix has exact reconstructed rational entries and includes
++the quartic-square product explicitly. Its interpretation as a polynomial
++change of basis is supported by modular fits and fresh value holdouts;
++these finite checks are not a proof of every proposed polynomial identity.
+ The $6\times6$ block compares primitive classes modulo products; any product
+ correction is retained in the full $7\times7$ matrix.
+ 
+-At degree ten the repository's implemented readings of the twelve published
+-candidates span a twelve-dimensional space whose intersection with the
+-two-dimensional product space has dimension one in the reconstructed
+-coordinate matrix. Thus a claimed invertible $12\times12$ identification
+-with the graph primitive complement would be incorrect for those readings.
+-The delivered map has twelve rows and fourteen atlas columns and records
+-the source-reading qualifications. Rational reconstruction and fresh modular
+-holdouts are strong checks on these maps, but finite samples alone do not
+-prove a characteristic-zero polynomial identity. These qualifications do not
+-affect the graph-only nonzero-minor proof.
++The archived degree-ten map concerns the repository's implemented readings,
++whose reconstructed $12\times14$ coordinate matrix has rank twelve and
++intersection dimension one with the two-dimensional product subspace.
++A source audit found that the antisymmetrizers in the archived implementations
++of candidates $J_{10}$--$J_{12}$ differ from the primary PDF and TeX source.
++Consequently these matrix ranks cannot be attributed to the twelve published
++expressions. Any repaired source map must be identified by its own formula
++registry and fresh evaluation artifacts; the archived atlas is not silently
++reinterpreted as that map. The archived degree-ten regeneration reads stored
++per-prime coordinates and checks rational reconstruction against a held-out
++stored prime; it performs no fresh tensor evaluations. Even fresh finite
++holdouts would not by themselves prove characteristic-zero polynomial
++identities. This source-transcription failure concerns the literature map;
++the graph-only nonzero-minor argument has separate inputs.
+ 
+ \section{Reproduction and validation}
+ Use the declared dependencies and run the regression suite before evaluating
+@@ -132,8 +158,9 @@ python scripts/map_literature_basis.py --degree 8
+ python scripts/map_literature_basis.py --degree 10
+ \end{verbatim}
+ The default verifier checks the saved matrix and metadata; the explicit
+-\texttt{--recompute} mode repeats the graph evaluations. These modes are
+-reported separately. The search stage checkpoints each raw row and its
++\texttt{--recompute} mode repeats the graph evaluations with the production
++evaluator. This recomputation does not by itself constitute an independent
++implementation of the derivative. These modes are reported separately. The search stage checkpoints each raw row and its
+ pivot, checks run identity on resume, and bounds worker submissions.
+ Degree-specific discovery remains available through the existing nauty
+ pipelines. \texttt{run\_degree.py} accepts additional edge-list JSONL streams
+@@ -143,7 +170,9 @@ Regression tests cover the 6D reproduction, self-duality,
+ the zero quadratic contraction, exact integer arithmetic, reverse
+ Jacobians against an independent oracle, graph parsing beyond ten vertices,
+ and genuine Lorentz boosts. The final graph selection is checked under both
+-a spatial rotation and a boost; neither uses floating-point tolerances.
++a spatial rotation and a boost at the recorded finite-field point; neither uses
++floating-point tolerances. These are implementation checks at specified inputs,
++while invariance itself follows from the complete-contraction definition.
+ 
+ \begin{thebibliography}{9}
+ \bibitem{cederwall} M. Cederwall, J. Hutomo, S. M. Kuzenko, K. Lechner,
+@@ -152,6 +181,10 @@ and D. P. Sorokin, \emph{Some remarks on invariants},
+ \bibitem{hutomo} J. Hutomo, K. Lechner, and D. P. Sorokin,
+ \emph{On non-linear chiral 4-form theories in D=10},
+ \href{https://arxiv.org/abs/2509.14351}{arXiv:2509.14351}.
++\bibitem{elamaran} A. Elamaran, C. Ferko and S. Scarlett,
++\emph{Machine Learning Invariants of Tensors}, Phys. Rev. D 114 (2026) 026016,
++\href{https://doi.org/10.1103/ny3m-drnj}{doi:10.1103/ny3m-drnj},
++\href{https://arxiv.org/abs/2512.23750}{arXiv:2512.23750}.
+ \end{thebibliography}
+ 
+ \clearpage\appendix

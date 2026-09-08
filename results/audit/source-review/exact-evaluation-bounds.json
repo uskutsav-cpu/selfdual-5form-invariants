@@ -1,0 +1,173 @@
+{
+  "primes": [
+    32749,
+    32719,
+    32693,
+    32713,
+    32717,
+    32771,
+    32779
+  ],
+  "primality": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "modulus": 40274678413255193510345405666987,
+  "bounds": {
+    "coordinate_absolute_bound": 1,
+    "block_absolute_bounds": {
+      "M": 3024,
+      "N": 42,
+      "Q": 42,
+      "T": 42,
+      "B": 42,
+      "P": 1224
+    },
+    "block_derivation": {
+      "M": "4!*C(9,4)=3024 nonzero ordered contraction summands, each absolute value<=1",
+      "N": "7*6=42 ordered pairs disjoint from a fixed nonzero triple; each summand absolute value<=1",
+      "Q_T_B": "normalized antisymmetric averages of N, Q, Q respectively cannot increase maximum absolute component",
+      "P": "42+5*42+(9/28)*3024=1224; both trace projectors are normalized"
+    },
+    "block_denominators": {
+      "M": 1,
+      "N": 1,
+      "Q": 10,
+      "T": 30,
+      "B": 20,
+      "P": 336
+    },
+    "denominator_derivation": {
+      "Q": "N already antisymmetric abc and de, so first-five antisym is ten signed (3,2) shuffles divided by10",
+      "T": "Q antisymmetric in last-block first two slots; normalized last-three antisym is three signed terms divided by3, denominator30",
+      "B": "normalized last-pair antisym divides Q by2, denominator20",
+      "P": "N-5T-(9/28)*Alt3Alt3(g*g*M); 5T denominator6, trace term denominator28*36/9=112; lcm(6,112)=336"
+    },
+    "degree8": {
+      "denominators": [
+        1,
+        336,
+        100,
+        240000,
+        400,
+        3360,
+        810000,
+        810000,
+        810000,
+        810000,
+        810000,
+        336
+      ],
+      "scalar_absolute_bounds": [
+        836232702197760000,
+        33847514136576000000,
+        1613103206400000000,
+        3111696000000000000,
+        1613103206400000000,
+        47010436300800000000,
+        3111696000000000000,
+        3111696000000000000,
+        3111696000000000000,
+        3111696000000000000,
+        3111696000000000000,
+        33847514136576000000
+      ],
+      "integer_numerator_absolute_bounds": [
+        836232702197760000,
+        11372764749889536000000,
+        161310320640000000000,
+        746807040000000000000000,
+        645241282560000000000,
+        157955065970688000000000,
+        2520473760000000000000000,
+        2520473760000000000000000,
+        2520473760000000000000000,
+        2520473760000000000000000,
+        2520473760000000000000000,
+        11372764749889536000000
+      ],
+      "external_dummy_index_counts": [
+        4,
+        6,
+        8,
+        12,
+        8,
+        8,
+        12,
+        12,
+        12,
+        12,
+        12,
+        6
+      ],
+      "graph_absolute_bound": 100000000000000000000,
+      "denominator_lcm": 45360000
+    },
+    "degree10": {
+      "denominators": [
+        1,
+        336,
+        100,
+        2400,
+        400,
+        3360,
+        1000,
+        2000,
+        60000,
+        200000,
+        2700000,
+        2700000
+      ],
+      "scalar_absolute_bounds": [
+        25287676914460262400000,
+        1023548827490058240000000,
+        48780240961536000000000,
+        48780240961536000000000,
+        48780240961536000000000,
+        1421595593736192000000000,
+        67750334668800000000000,
+        67750334668800000000000,
+        94097687040000000000000,
+        130691232000000000000000,
+        130691232000000000000000,
+        130691232000000000000000
+      ],
+      "integer_numerator_absolute_bounds": [
+        25287676914460262400000,
+        343912406036659568640000000,
+        4878024096153600000000000,
+        117072578307686400000000000,
+        19512096384614400000000000,
+        4776561194953605120000000000,
+        67750334668800000000000000,
+        135500669337600000000000000,
+        5645861222400000000000000000,
+        26138246400000000000000000000,
+        352866326400000000000000000000,
+        352866326400000000000000000000
+      ],
+      "external_dummy_index_counts": [
+        5,
+        7,
+        9,
+        9,
+        9,
+        9,
+        11,
+        11,
+        13,
+        15,
+        15,
+        15
+      ],
+      "graph_absolute_bound": 10000000000000000000000000,
+      "denominator_lcm": 37800000
+    },
+    "graph_bound_derivation": "A degree-d complete contraction has5*d/2 metric edges, each with10 choices; diagonal metric coefficients and binary F components have absolute value<=1. Products obey the same total edge bound."
+  }
+}

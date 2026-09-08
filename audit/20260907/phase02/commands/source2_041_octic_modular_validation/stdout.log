@@ -1,0 +1,1 @@
+83 densepoint octic checks passed; frozenmap comparison: {'literature_to_graph_equal': True, 'graph_to_literature_equal': True, 'product_correction_equal': True} product correction: ['0', '-3/14', '7/72', '-1/28', '-593/31104', '-61543/2612736']

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/fit_fresh_maps.py", line 157, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/fit_fresh_maps.py", line 156, in main
+    if args.reconstruct:reconstruct(records,args.holdout_primes)
+                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/fit_fresh_maps.py", line 110, in reconstruct
+    matrices={key:[[rational_reconstruct([rec[key][i][j] for rec in records],ps) for j in range(len(records[0][key][i]))] for i in range(len(records[0][key]))]
+                    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/fit_fresh_maps.py", line 61, in rational_reconstruct
+    raise ValueError('no bounded rational reconstruction')
+ValueError: no bounded rational reconstruction

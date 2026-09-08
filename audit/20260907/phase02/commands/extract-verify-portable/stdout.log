@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "archive_sha256": "2cda40a409868530bccdb80f2303a3e67ec0be914d80e1b12c1b9c9d1aa69292",
+  "verified_manifest_entries": 59,
+  "unlisted_files": [
+    "README.md",
+    "manifest.json"
+  ],
+  "manifest_coverage_limit": "README.md and manifest.json are not payload-hashed by the frozen manifest; archive hash covers both."
+}

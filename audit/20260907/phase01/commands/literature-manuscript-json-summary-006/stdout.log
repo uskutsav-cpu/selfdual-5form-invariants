@@ -1,0 +1,537 @@
+[
+  {
+    "path": "results/10d_order8.json",
+    "sha256": "e780f0972fb8bfcfbed0dcda89361fe9810763549bc6f2ac9bf0833585e7f16c",
+    "keys": [
+      "schema",
+      "claim",
+      "literature",
+      "catalog",
+      "catalog_sha256",
+      "generators",
+      "degree8_basis",
+      "runs"
+    ],
+    "summary": {
+      "schema": 1,
+      "claim": "Complete through order 8: 1 quartic, 2 sextic, and 6 new octic generators; cumulative functional rank 9.",
+      "catalog": "results/10d_graph_catalog.json",
+      "catalog_sha256": "a9ecaf225b2dac4c67d62abf848ae8b427f1d16242ca7672240797127321788c",
+      "generators": 9,
+      "degree8_basis": [
+        {
+          "id": "I8_1",
+          "kind": "connected_generator",
+          "graph": "n8[04^4,05^1,14^1,16^4,25^4,27^1,36^1,37^4]"
+        },
+        {
+          "id": "I8_2",
+          "kind": "connected_generator",
+          "graph": "n8[03^4,06^1,14^4,16^1,25^4,26^1,37^1,47^1,57^1,67^2]"
+        },
+        {
+          "id": "I8_3",
+          "kind": "connected_generator",
+          "graph": "n8[03^4,04^1,14^1,15^1,16^2,17^1,25^4,26^1,37^1,46^1,47^2,67^1]"
+        },
+        {
+          "id": "I8_4",
+          "kind": "connected_generator",
+          "graph": "n8[03^2,06^2,07^1,14^4,16^1,25^4,26^1,36^1,37^2,47^1,57^1]"
+        },
+        {
+          "id": "I8_5",
+          "kind": "connected_generator",
+          "graph": "n8[03^2,04^1,06^2,14^2,15^1,17^2,25^4,26^1,36^2,37^1,47^2]"
+        },
+        {
+          "id": "I8_6",
+          "kind": "connected_generator",
+          "graph": "n8[03^2,06^2,07^1,14^2,15^1,16^2,24^1,25^2,27^2,36^1,37^2,45^2]"
+        },
+        {
+          "id": "I4_1^2",
+          "kind": "composite",
+          "expression": "I4_1^2"
+        }
+      ]
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/10d_order10.json",
+    "sha256": "92b02433d82e641cce0d2dbb5f1bec9878c191ccbda7e906f27ef1f555b0fee5",
+    "keys": [
+      "catalog",
+      "claim",
+      "degree10_basis",
+      "discovery",
+      "generators",
+      "literature_targets",
+      "peak_rss_bytes",
+      "proof_scope",
+      "schema",
+      "validation",
+      "validation_seconds"
+    ],
+    "summary": {
+      "claim": "Complete degree-10 trace basis: 12 connected primitive directions plus the two lower products I4_1*I6_1 and I4_1*I6_2. Exact value-space rank 14 and cumulative generic Jacobian rank 21 through degree 10.",
+      "degree10_basis": 14,
+      "generators": 12,
+      "peak_rss_bytes": 592052224,
+      "schema": 1,
+      "validation_seconds": 53.786203
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/10d_order12.json",
+    "sha256": "9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113",
+    "keys": [
+      "catalog",
+      "claim",
+      "degree12_basis",
+      "discovery",
+      "generators",
+      "literature",
+      "peak_rss_bytes",
+      "primitive_candidates_through_degree12",
+      "products",
+      "proof_scope",
+      "schema",
+      "validation",
+      "validation_engine_sha256",
+      "validation_metrics",
+      "validation_seconds"
+    ],
+    "summary": {
+      "claim": "Complete degree-12 scalar basis relative to the known Hilbert-series upper bound: 10 lower products and 62 connected primitive polynomial directions give exact rank 72. Through degree 12, 83 primitive candidates have cumulative generic Jacobian rank 81; the two explicitly listed degree-12 candidates add no new functional direction.",
+      "degree12_basis": 72,
+      "generators": 62,
+      "peak_rss_bytes": 1179844608,
+      "primitive_candidates_through_degree12": 83,
+      "products": [
+        {
+          "expression": "I4_1^3",
+          "id": "I4_1^3"
+        },
+        {
+          "expression": "I6_1^2",
+          "id": "I6_1^2"
+        },
+        {
+          "expression": "I6_1*I6_2",
+          "id": "I6_1*I6_2"
+        },
+        {
+          "expression": "I6_2^2",
+          "id": "I6_2^2"
+        },
+        {
+          "expression": "I4_1*I8_1",
+          "id": "I4_1*I8_1"
+        },
+        {
+          "expression": "I4_1*I8_2",
+          "id": "I4_1*I8_2"
+        },
+        {
+          "expression": "I4_1*I8_3",
+          "id": "I4_1*I8_3"
+        },
+        {
+          "expression": "I4_1*I8_4",
+          "id": "I4_1*I8_4"
+        },
+        {
+          "expression": "I4_1*I8_5",
+          "id": "I4_1*I8_5"
+        },
+        {
+          "expression": "I4_1*I8_6",
+          "id": "I4_1*I8_6"
+        }
+      ],
+      "schema": 1,
+      "validation_engine_sha256": "0753fda58c373530fde2d3e985fcf8f9812881fb845ce131d5980d8e342fe560",
+      "validation_seconds": 679.240707
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/rank81_basis.json",
+    "sha256": "59848eb1e3024f33da8b8235796b0ea99429f21c88243070437172b50a6473fb",
+    "keys": [
+      "formula_convention",
+      "invariants",
+      "metric",
+      "schema",
+      "scope",
+      "sources"
+    ],
+    "summary": {
+      "formula_convention": "Lexicographic edges and slots; incoming indices raised, outgoing indices lowered; one metric per edge.",
+      "invariants": 81,
+      "metric": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "schema": 1,
+      "scope": "81 generically algebraically independent invariants; local generic coordinates, not global orbit separation or the full invariant ring."
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/rank81_certificate.json",
+    "sha256": "c329edc407c0624633abeda7e9de097fc92ed0b17224d2f19d1aba43d54d656d",
+    "keys": [
+      "basis_sha256",
+      "complete",
+      "coordinate_component_indices",
+      "coordinate_convention",
+      "integral_directions_sha256",
+      "planned_cells",
+      "proof",
+      "schema",
+      "upper_bound_source",
+      "witnesses"
+    ],
+    "summary": {
+      "basis_sha256": "ef6d64e6e71a0468c4b2e1ba878cb8a25fcdde1d6788d3a6bca5da6bf7fb20d6",
+      "complete": true,
+      "coordinate_component_indices": 126,
+      "coordinate_convention": "A_I = F_I for sorted 5-tuples I containing 0; F = sum_I A_I (e_I + *e_I).",
+      "integral_directions_sha256": "e1a48f2071670fce31d7694eeddf091caffec94dec1056aba52468c39f930bb8",
+      "planned_cells": [
+        [
+          32749,
+          20260907
+        ],
+        [
+          32749,
+          20260908
+        ],
+        [
+          32719,
+          20260907
+        ],
+        [
+          32719,
+          20260908
+        ]
+      ],
+      "proof": "Each graph is an integer polynomial in A. A nonzero 81x81 Jacobian minor modulo a prime proves generic characteristic-zero rank at least 81. The known quotient dimension supplies the upper bound; this is not a full invariant-ring presentation or a global coordinate chart.",
+      "schema": 1,
+      "upper_bound_source": "https://arxiv.org/abs/2509.14350v2"
+    },
+    "witness_summary": [
+      {
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "determinant_mod_p": 20345,
+        "prime": 32749,
+        "rank": 81,
+        "seed": 20260907
+      },
+      {
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "determinant_mod_p": 30761,
+        "prime": 32749,
+        "rank": 81,
+        "seed": 20260908
+      },
+      {
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "determinant_mod_p": 1653,
+        "prime": 32719,
+        "rank": 81,
+        "seed": 20260907
+      },
+      {
+        "cumulative_rank_by_degree": {
+          "10": 21,
+          "12": 81,
+          "4": 1,
+          "6": 3,
+          "8": 9
+        },
+        "determinant_mod_p": 2167,
+        "prime": 32719,
+        "rank": 81,
+        "seed": 20260908
+      }
+    ]
+  },
+  {
+    "path": "results/rank81_lorentz.json",
+    "sha256": "973a982ab0100a967050251386c84d8b7f466cfb13606752d3ea3183496494f0",
+    "keys": [
+      "basis_sha256",
+      "checks",
+      "passed",
+      "prime",
+      "schema",
+      "seed"
+    ],
+    "summary": {
+      "basis_sha256": "ef6d64e6e71a0468c4b2e1ba878cb8a25fcdde1d6788d3a6bca5da6bf7fb20d6",
+      "passed": true,
+      "prime": 32749,
+      "schema": 1,
+      "seed": 20260907
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/order8_change_of_basis.json",
+    "sha256": "30140fa0bef549b6f6c221e3fcc5f971416930ca3802084ca3d40933f782beec",
+    "keys": [
+      "basis_selection",
+      "degree",
+      "exact_6x6_without_products",
+      "fitting_primes",
+      "graph_basis",
+      "graph_to_literature",
+      "holdout_prime",
+      "literature_basis",
+      "literature_source",
+      "literature_to_graph",
+      "matrix_convention",
+      "prime_witnesses",
+      "primitive_quotient_matrix_6x6",
+      "product",
+      "product_correction",
+      "proof_scope",
+      "schema",
+      "verification_seeds",
+      "verified"
+    ],
+    "summary": {
+      "basis_selection": "T8_1 through T8_5 from (4.12)--(4.15), and H8_1 from (4.18); this selection spans all seven degree-8 directions after adjoining the quartic square.",
+      "degree": 8,
+      "exact_6x6_without_products": false,
+      "fitting_primes": [
+        32749,
+        32719,
+        32693,
+        32713,
+        32717
+      ],
+      "graph_basis": [
+        {
+          "catalog_index": 1,
+          "graph": "n8[04^4,05^1,14^1,16^4,25^4,27^1,36^1,37^4]",
+          "id": "I8_1",
+          "order": 8
+        },
+        {
+          "catalog_index": 73,
+          "graph": "n8[03^4,06^1,14^4,16^1,25^4,26^1,37^1,47^1,57^1,67^2]",
+          "id": "I8_2",
+          "order": 8
+        },
+        {
+          "catalog_index": 444,
+          "graph": "n8[03^4,04^1,14^1,15^1,16^2,17^1,25^4,26^1,37^1,46^1,47^2,67^1]",
+          "id": "I8_3",
+          "order": 8
+        },
+        {
+          "catalog_index": 84,
+          "graph": "n8[03^2,06^2,07^1,14^4,16^1,25^4,26^1,36^1,37^2,47^1,57^1]",
+          "id": "I8_4",
+          "order": 8
+        },
+        {
+          "catalog_index": 324,
+          "graph": "n8[03^2,04^1,06^2,14^2,15^1,17^2,25^4,26^1,36^2,37^1,47^2]",
+          "id": "I8_5",
+          "order": 8
+        },
+        {
+          "catalog_index": 971,
+          "graph": "n8[03^2,06^2,07^1,14^2,15^1,16^2,24^1,25^2,27^2,36^1,37^2,45^2]",
+          "id": "I8_6",
+          "order": 8
+        }
+      ],
+      "holdout_prime": 32771,
+      "literature_basis": [
+        {
+          "equation": "4.12",
+          "id": "T8_1"
+        },
+        {
+          "equation": "4.12",
+          "id": "T8_2"
+        },
+        {
+          "equation": "4.13",
+          "id": "T8_3"
+        },
+        {
+          "equation": "4.14",
+          "id": "T8_4"
+        },
+        {
+          "equation": "4.15",
+          "id": "T8_5"
+        },
+        {
+          "equation": "4.18",
+          "id": "H8_1"
+        }
+      ],
+      "literature_source": "https://arxiv.org/html/2509.14350v2#S4.SS1.SSS3",
+      "matrix_convention": "[G1,...,G6,P]^T = graph_to_literature * [T1,...,T6,P]^T",
+      "primitive_quotient_matrix_6x6": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "3/28",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1/144",
+          "0",
+          "-25/6",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1/56",
+          "1/6",
+          "0",
+          "0",
+          "-25/3",
+          "0"
+        ],
+        [
+          "2965/62208",
+          "0",
+          "125/108",
+          "-625/9",
+          "125/36",
+          "-56250"
+        ],
+        [
+          "276611/5225472",
+          "1/72",
+          "-575/1296",
+          "-3125/108",
+          "-1175/432",
+          "-114375/2"
+        ]
+      ],
+      "product": "I4_1^2 (repository normalization)",
+      "product_correction": [
+        "0",
+        "-3/14",
+        "7/72",
+        "-1/28",
+        "-593/31104",
+        "-61543/2612736"
+      ],
+      "proof_scope": "Exact modular solves, unique bounded rational reconstruction and fresh value holdouts; polynomial identity validity over Q is not proved by finite samples alone.",
+      "schema": 1,
+      "verification_seeds": [
+        2026090801,
+        2026090802,
+        2026090803
+      ],
+      "verified": true
+    },
+    "witness_summary": []
+  },
+  {
+    "path": "results/order10_change_of_basis.json",
+    "sha256": "429dbf74b37f84baf3b14c8e64bb718d74a0d88b25221848e7f547dc1fd3cb89",
+    "keys": [
+      "degree",
+      "fitting_primes",
+      "graph_and_product_basis",
+      "holdout_prime",
+      "intersection_rank",
+      "literature_basis",
+      "matrix_12x14",
+      "matrix_convention",
+      "prime_witnesses",
+      "primitive_quotient_rank",
+      "product_span_rank",
+      "proof_scope",
+      "published_span_rank",
+      "schema",
+      "source_artifact",
+      "source_readings",
+      "source_sha256",
+      "status",
+      "union_rank",
+      "verified_reconstruction"
+    ],
+    "summary": {
+      "degree": 10,
+      "fitting_primes": [
+        32693,
+        32713,
+        32717,
+        32719,
+        32749,
+        32771,
+        32779
+      ],
+      "graph_and_product_basis": 14,
+      "holdout_prime": 32783,
+      "intersection_rank": 1,
+      "literature_basis": 12,
+      "matrix_convention": "T_i = sum_j matrix[i][j] * atlas_j",
+      "primitive_quotient_rank": 11,
+      "product_span_rank": 2,
+      "proof_scope": "Rational matrix ranks are exact. Inherited polynomial maps were fitted and checked on finite samples; this regeneration checks arithmetic and a held-out prime, not new tensor evaluations.",
+      "published_span_rank": 12,
+      "schema": 1,
+      "source_artifact": "results/degree10/B10_coordinates_per_prime.json",
+      "source_readings": "See src/sdinv/published_degree10_invariants.py and docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md; AMB-01/AMB-02 readings remain explicit.",
+      "source_sha256": "c9121cc23cdc6843b0e1da439c581001d2430734cdd06054af16cdb3d79f88cf",
+      "status": "requested invertible 12x12 map does not exist for the implemented source readings",
+      "union_rank": 13,
+      "verified_reconstruction": true
+    },
+    "witness_summary": []
+  }
+]

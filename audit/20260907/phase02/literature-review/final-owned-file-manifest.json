@@ -1,0 +1,126 @@
+{
+  "frozen_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "files": [
+    {
+      "path": "paper/manuscript.tex",
+      "frozen_sha256": "81ad0b050c40b81ae1ed54bd4072366a5cd9047215318c990819957f8ee6248e",
+      "repaired_sha256": "f4de65685f60e3155cb5cc41fb839013635b7fdaed94ff25849ef035080bcafe",
+      "changed": true
+    },
+    {
+      "path": "manuscript/main.tex",
+      "frozen_sha256": "6d9cb7fea540191ac18cce5e9eb251a80415cf953bf1dfddc0caddf98b903a61",
+      "repaired_sha256": "42af663063799884049ca518fd4db2a107fd946d0100d22b7bbc043c2f125a76",
+      "changed": true
+    },
+    {
+      "path": "submission_candidate/main.tex",
+      "frozen_sha256": "6d9cb7fea540191ac18cce5e9eb251a80415cf953bf1dfddc0caddf98b903a61",
+      "repaired_sha256": "42af663063799884049ca518fd4db2a107fd946d0100d22b7bbc043c2f125a76",
+      "changed": true
+    },
+    {
+      "path": "manuscript/jhep/main.tex",
+      "frozen_sha256": "f33f7710c56c9e25f9a25acf99cfd89273ca49edc4ba6348264c17407a09eedb",
+      "repaired_sha256": "efb35caa05e97022adacb6adf51145020238f4607d87c9709442476926af42d1",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/main.tex",
+      "frozen_sha256": "01a1b66786810c29d4a06a2444d754574d9831a970fd87cc743b6593f2b2e2e6",
+      "repaired_sha256": "da27d9f9e9564904c88d4a115eed7188f3debcc502e05c8455650b507b435c75",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd_letter/main.tex",
+      "frozen_sha256": "4bc9cddff82980b52c42bb04f52947babd0c599c6652f013aaca65c9055b1914",
+      "repaired_sha256": "3de9c10af75fd1cb22cf599bd27245d2556bed124f5dfd95fd7fd314094344df",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prl/main.tex",
+      "frozen_sha256": "c2feffd842180a35794d08655b376ff92372987579da47f7b1b134b53fe314c7",
+      "repaired_sha256": "8ddb29076dc129e22f8f08229e7f8911b5f1d0a4fcba1b71a4c10b8e4938a8d7",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/build_prd.py",
+      "frozen_sha256": "b93d5f0047a1302a5187d7e6b5a3c75a5ef9e6c9e73462bbf915e84d33aa60ae",
+      "repaired_sha256": "733d916166bd3ee31573e49e6768f05dd242bb18ff8213e9b192102da2010c92",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd_letter/references.bib",
+      "frozen_sha256": "8b06109fa41e16d897f4ecf2debdc30ca14e76f438fcaa3b1a51a94a6b5c7fb7",
+      "repaired_sha256": "52c72d0f6f5be9368b5d02823513b8a9732f9e171cca6c25d8eb84867e1ccaf4",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prl/make_prl_figures.py",
+      "frozen_sha256": "959434967163028e012e82f88baabe83c130f472b5b1445ad0d757c7b8eda38e",
+      "repaired_sha256": "7c1e292738198f0c9889eb0c3cc27d8521c40158643d7848fb255d07929cf518",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prl/figures/prl_spaces.pdf",
+      "frozen_sha256": "7b425168c3299a552f01a312a0aa67435d42bd4431efba61727d614d335b2a2f",
+      "repaired_sha256": "ce893263a6d907cf872fed801527db864091a6ebd101531a0d60493872fb8f65",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prl/figures/prl_crossvalidation.pdf",
+      "frozen_sha256": "1b1bce855ec2ab71ddf1cc613a2bb8bac0a5f0e739b15bc403abfc7deedf6a9f",
+      "repaired_sha256": "ca32341f6011491836e1d93b6a8a940b9a0060498b626d8e3f35114eddf751ee",
+      "changed": true
+    },
+    {
+      "path": "manuscript/jhep/appendices/app_h_closure.tex",
+      "frozen_sha256": "99886832b95abb30af2fe1b63e5616bd1f1ad7269d12ab664181e517f259f5c8",
+      "repaired_sha256": "73ddce164ad0b6d37150baf402364adf0cedb41a043a853d4a87347e08323817",
+      "changed": true
+    },
+    {
+      "path": "manuscript/jhep/appendices/app_i_gten.tex",
+      "frozen_sha256": "d8b7bcba3a2ec647f028de6e293793c7c1167113992b372f23953a95a3ee6984",
+      "repaired_sha256": "5e7742b70b157de1163eae85f359144b4d6df337ba81b08e2e2fce178b58e77d",
+      "changed": true
+    },
+    {
+      "path": "manuscript/jhep/appendices/app_g_rank81.tex",
+      "frozen_sha256": "4e4593942e884a43ca8b68f69a1cf836d19d44dbbb4e3291c99b2ab70caaa25d",
+      "repaired_sha256": "0ac3bf77cc0332284324da0e981af4bb46e21b9a6f8152c2fade64ad5b6bc1b8",
+      "changed": true
+    },
+    {
+      "path": "manuscript/jhep/appendices/app_j_b10.tex",
+      "frozen_sha256": "1613132281c287d9fb2563ae8b691096845be878b877e294561e83f8a62cb7e5",
+      "repaired_sha256": "c2c985eb0f8bcc406a443670c3cc5f8ef64e08279fd2b5ca8e75cf2577afdce9",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/appendices/app_h_closure.tex",
+      "frozen_sha256": "b21db8139d084264b38cb65af129cbb5e27ea13fd8659aa318a63c26ffa35d6d",
+      "repaired_sha256": "0decf86f22788e4b6f4e36b0b8bf84d0ecf065957d595d346558eb63aad6788f",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/appendices/app_i_gten.tex",
+      "frozen_sha256": "d8b7bcba3a2ec647f028de6e293793c7c1167113992b372f23953a95a3ee6984",
+      "repaired_sha256": "5e7742b70b157de1163eae85f359144b4d6df337ba81b08e2e2fce178b58e77d",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/appendices/app_g_rank81.tex",
+      "frozen_sha256": "c1b8b116b73309322b7b57303e88de10b6ad01112ddd3ba6a19aa04f068c227a",
+      "repaired_sha256": "c86603984a6011c44b131617ffa6021fecebc6a688999d69176ca121059f450f",
+      "changed": true
+    },
+    {
+      "path": "manuscript/prd/appendices/app_j_b10.tex",
+      "frozen_sha256": "1613132281c287d9fb2563ae8b691096845be878b877e294561e83f8a62cb7e5",
+      "repaired_sha256": "c2c985eb0f8bcc406a443670c3cc5f8ef64e08279fd2b5ca8e75cf2577afdce9",
+      "changed": true
+    }
+  ],
+  "diff_sha256": "6eae37abb832022e672f578f52c8d45b498b9e3ad623ecdc4e42098af1f7a1f4"
+}

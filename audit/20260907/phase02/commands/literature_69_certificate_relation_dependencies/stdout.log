@@ -1,0 +1,11 @@
+paper relation PASS ['I10_1', 'I10_2', 'I10_3', 'I10_4', 'I10_5', 'I10_6', 'I10_7', 'I10_8', 'I10_9', 'I10_10', 'I10_11', 'I10_12', 'I4_1*I6_1', 'I4_1*I6_2'] ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '-13/63', '0']
+referenced source files {
+  "repair-checkout/src/sdinv/graphs.py": "src/sdinv/graphs.py",
+  "repair-checkout/src/sdinv/contract.py": "src/sdinv/contract.py",
+  "source-review/evaluate_binary_points.py": "results/audit/source-review/evaluate_binary_points.py",
+  "repair-checkout/src/sdinv/modp.py": "src/sdinv/modp.py",
+  "source-review/evaluate_fresh_points.py": "results/audit/source-review/evaluate_fresh_points.py",
+  "source-review/source_scalar_oracle.py": "results/audit/source-review/source_scalar_oracle.py"
+}
+missing []
+potential filtered extensions []
