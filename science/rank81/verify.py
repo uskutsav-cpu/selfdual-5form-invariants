@@ -335,15 +335,30 @@ def validate_input(data):
     assert data['schema']==1
     assert data['convention']=={'metric':[-1]+[1]*9,'coordinate_tuples':[list(t) for t in TUPLES if 0 in t],'hodge':'output-first epsilon; epsilon_0123456789=+1; F=sum A_I(e_I+star e_I)'}
     assert len(data['graphs'])==len({g['id'] for g in data['graphs']})==81
+    expected_degrees=[4,6,6]+[8]*6+[10]*12+[12]*60
+    assert [g['degree'] for g in data['graphs']]==expected_degrees
+    seen_graphs=set()
     for item in data['graphs']:
         n=item['degree'];edges=item['graph']['edges']
         assert n==item['graph']['n'] and n>=4
         assert edges==sorted(edges) and len({(i,j) for i,j,m in edges})==len(edges)
         valences=[0]*n
+        adjacency=[set() for _ in range(n)]
         for i,j,m in edges:
-            assert all(type(x)is int for x in (i,j,m)) and 0<=i<j<n and 0<m<=5
+            assert all(type(x)is int for x in (i,j,m)) and 0<=i<j<n and 0<m<=4
             valences[i]+=m;valences[j]+=m
+            adjacency[i].add(j);adjacency[j].add(i)
         assert valences==[5]*n
+        graph_key=(n,tuple(tuple(edge) for edge in edges))
+        assert graph_key not in seen_graphs
+        seen_graphs.add(graph_key)
+        seen={0};stack=[0]
+        while stack:
+            v=stack.pop()
+            for w in adjacency[v]:
+                if w not in seen:
+                    seen.add(w);stack.append(w)
+        assert len(seen)==n
     assert data['points']
     for point in data['points']:
         p=point['prime'];assert type(p)is int and 2<p<65536
