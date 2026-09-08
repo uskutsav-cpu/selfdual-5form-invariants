@@ -10,6 +10,15 @@ results/*.json
 !results/stress_flow_exact_low_degree.json
 !results/10d_order12.json
 !results/degree12_benchmarks.json
+!results/rank81_basis.json
+!results/rank81_certificate.json
+!results/rank81_lorentz.json
+!results/order8_change_of_basis.json
+!results/order10_change_of_basis.json
+!results/classification_validation.json
+paper/*.aux
+paper/*.log
+paper/*.out
 .pytest_cache/
 work/
 tmp/

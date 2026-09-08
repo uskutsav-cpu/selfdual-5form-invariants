@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,longtable,booktabs}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\title{An explicit graph basis and exact Jacobian certificates\\
+for a self-dual five-form in ten dimensions}
+\author{\texttt{uskutsav-cpu}}
+\date{September 7, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a reproducible certificate for 81 explicit contractions of a real
+self-dual five-form in signature $(1,9)$. The fixed selection consists of one
+quartic, two sextic, six octic, twelve degree-ten, and sixty degree-twelve
+polynomials. Their Jacobian has a nonzero $81\times81$ minor at four exact
+finite-field specializations, using the same ordered functions in every
+case. An integral coordinate convention makes each nonzero minor a
+characteristic-zero independence witness. The construction completes the
+functional-independence problem, with the known generic quotient dimension
+as upper bound. It does not determine all polynomial generators or syzygies.
+\end{abstract}
+
+\section{Scope and conventions}
+Let $F$ be an alternating five-form, with metric
+$\eta=\operatorname{diag}(-1,1,\ldots,1)$ and Hodge convention
+$\star F=F$. The self-dual subspace has dimension 126.
+The literature supplies the generic quotient dimension 81 and the
+low-degree Hilbert coefficients \cite{cederwall,hutomo}. The present
+certificate supplies the matching lower bound using explicit graph
+contractions. The contraction catalogs and previously discovered bases are
+inherited from the repository's research branches; the certificate reported
+here re-evaluates those functions at new points.
+
+A graph has one vertex per copy of $F$, no loops, and valence five.
+An edge of multiplicity $m$ contracts $m$ index pairs with inverse metrics.
+Vertices and edges are ordered; slot order is fixed by lexicographic edge
+order. Graph isomorphism alone does not fix the sign of an odd-form
+contraction, so the formula identifier hashes the ordered edge record.
+Disconnected contractions are products. The quadratic contraction vanishes
+on this self-dual space.
+
+For each increasing five-tuple $I$ containing 0, define
+$A_I=F_I$ and let $e_I$ denote its compact alternating component vector.
+The integral parametrization is
+\[
+ F(A)=\sum_{I\ni0} A_I(e_I+\star e_I).
+\]
+The 126 columns contain only $0,1,-1$; their components indexed by $I\ni0$
+form an identity matrix. Every graph polynomial therefore has integer
+coefficients in $A$, with no projector denominators.
+
+\section{Fixed selection and exact witness}
+The nine low-degree functions are those in
+\path{results/10d_order8.json}; the next twelve come from
+\path{results/10d_order10.json}. The first sixty selected functional
+directions in \path{results/10d_order12.json} complete the list.
+The remaining two degree-twelve primitive polynomial directions belong to
+the larger homogeneous inventory and are not included in the 81-function
+Jacobian. A dependent Jacobian row does not identify a polynomial syzygy.
+
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+Field degree & New functional directions & Cumulative rank\\
+\midrule
+4 & 1 & 1\\
+6 & 2 & 3\\
+8 & 6 & 9\\
+10 & 12 & 21\\
+12 & 60 & 81\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Write $J_{aI}=\partial G_a/\partial A_I$. Each certificate cell records
+the prime, all 126 coordinates, all 252 self-dual compact components,
+the same ordered 81 graph identifiers, all entries of the $81\times126$
+Jacobian, 81 pivot columns, and the determinant of that minor.
+\input{tables/certificate_cells.tex}
+The determinant is recomputed by Python-integer elimination independently
+of the streaming rank sieve. Euler's identity
+$\sum_I A_I J_{aI}=\deg(G_a)G_a$ is checked for every row.
+
+If a saved determinant is nonzero modulo $p$, the corresponding integer
+determinant polynomial is not identically zero. Its nonvanishing defines a
+nonempty Zariski-open set in characteristic zero on which these 81
+polynomials are algebraically independent. Invariance and the known generic
+quotient dimension supply the matching upper bound. These are generic local
+coordinates; neither global orbit separation nor polynomial generation of
+the entire ring follows.
+
+\section{Polynomial spaces and literature comparison}
+The homogeneous-space dimensions through degree twelve are
+$1,2,7,14,72$. Products must be included in value-space comparisons.
+At degree twelve the ten product monomials are $I_4^3$, the three symmetric
+products of sextics, and the six products $I_4 I_{8,j}$. The inherited
+degree-twelve computation reaches rank 72 using these products and 62 graph
+directions. Polynomial-space evidence uses gradients concatenated at several
+points; the functional Jacobian uses one point. These are separate sieves.
+Factor exponents in a Hilbert product are not automatically generator counts
+at higher degrees when generators and relations may coexist.
+
+The octic comparison uses a selection of six displayed literature
+contractions: the first five expressions from equations (4.12)--(4.15) of
+\cite{cederwall}, together with the hatted expression (4.18). The exact
+machine-readable map includes the quartic-square product explicitly.
+The $6\times6$ block compares primitive classes modulo products; any product
+correction is retained in the full $7\times7$ matrix.
+
+At degree ten the repository's implemented readings of the twelve published
+candidates span a twelve-dimensional space whose intersection with the
+two-dimensional product space has dimension one in the reconstructed
+coordinate matrix. Thus a claimed invertible $12\times12$ identification
+with the graph primitive complement would be incorrect for those readings.
+The delivered map has twelve rows and fourteen atlas columns and records
+the source-reading qualifications. Rational reconstruction and fresh modular
+holdouts are strong checks on these maps, but finite samples alone do not
+prove a characteristic-zero polynomial identity. These qualifications do not
+affect the graph-only nonzero-minor proof.
+
+\section{Reproduction and validation}
+Use the declared dependencies and run the regression suite before evaluating
+certificates. The original low-degree commit is preserved by
+\texttt{v0.1-low-degree-complete}. The release commands are:
+\begin{verbatim}
+python scripts/graph_to_latex.py
+python scripts/search_rank81.py
+python scripts/verify_rank81.py
+python scripts/verify_rank81.py --recompute
+python scripts/validate_rank81_lorentz.py
+python scripts/map_literature_basis.py --degree 8
+python scripts/map_literature_basis.py --degree 10
+\end{verbatim}
+The default verifier checks the saved matrix and metadata; the explicit
+\texttt{--recompute} mode repeats the graph evaluations. These modes are
+reported separately. The search stage checkpoints each raw row and its
+pivot, checks run identity on resume, and bounds worker submissions.
+Degree-specific discovery remains available through the existing nauty
+pipelines. \texttt{run\_degree.py} accepts additional edge-list JSONL streams
+and separates polynomial completeness from functional rank.
+
+Regression tests cover the 6D reproduction, self-duality,
+the zero quadratic contraction, exact integer arithmetic, reverse
+Jacobians against an independent oracle, graph parsing beyond ten vertices,
+and genuine Lorentz boosts. The final graph selection is checked under both
+a spatial rotation and a boost; neither uses floating-point tolerances.
+
+\begin{thebibliography}{9}
+\bibitem{cederwall} M. Cederwall, J. Hutomo, S. M. Kuzenko, K. Lechner,
+and D. P. Sorokin, \emph{Some remarks on invariants},
+\href{https://arxiv.org/abs/2509.14350v2}{arXiv:2509.14350v2}.
+\bibitem{hutomo} J. Hutomo, K. Lechner, and D. P. Sorokin,
+\emph{On non-linear chiral 4-form theories in D=10},
+\href{https://arxiv.org/abs/2509.14351}{arXiv:2509.14351}.
+\end{thebibliography}
+
+\clearpage\appendix
+\section{Ordered Einstein-index formulas}
+Each repeated index labels exactly one graph edge; its upper and lower
+occurrences supply one inverse metric. The machine-readable companion
+\texttt{results/rank81\_basis.json} gives the edge lists, adjacency matrices,
+formula hashes, and contraction costs.
+\small
+\input{tables/rank81_formulas.tex}
+\end{document}

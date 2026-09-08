@@ -1,0 +1,143 @@
+{
+  "baseline_commit": "e84339d",
+  "checks": [
+    {
+      "log_sha256": "225ac53b4ad7aa20d83f25e050025ad3b3d4a04334bcbbf038ccba0d0374ce53",
+      "name": "inherited_tensor_suite",
+      "passed": true,
+      "seconds": 911.79,
+      "skipped": 0,
+      "test_count": 254
+    },
+    {
+      "log_sha256": "01a87dbbac6fd0032e23d2dd3e5e08f7a3abe03779bb8d35535d8264afc5bfaa",
+      "name": "delivery_suite",
+      "passed": true,
+      "seconds": 11.09,
+      "skipped": 0,
+      "test_count": 21
+    },
+    {
+      "log_sha256": "e55ef3b242c2c3920e0f2d67d82469fb5242f2c4865c6b514dd19b64b27f6e2f",
+      "name": "frozen_low_degree_suite",
+      "passed": true,
+      "seconds": 59.77,
+      "skipped": 0,
+      "test_count": 13
+    },
+    {
+      "log_sha256": "37d03fc10115f6b38ee4fe89f11d902a47c5f97efc98d2972e1b0697b558c8b4",
+      "name": "6d_reproduction",
+      "passed": true,
+      "pattern": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "primes": [
+        32749,
+        32719
+      ],
+      "rank": 5
+    },
+    {
+      "graph_evaluations_in_generation": 324,
+      "name": "fixed_graph_minor_certificates",
+      "passed": true,
+      "witnesses": [
+        {
+          "determinant_mod_p": 20345,
+          "graph_rows_recomputed": false,
+          "prime": 32749,
+          "rank": 81,
+          "seed": 20260907
+        },
+        {
+          "determinant_mod_p": 30761,
+          "graph_rows_recomputed": false,
+          "prime": 32749,
+          "rank": 81,
+          "seed": 20260908
+        },
+        {
+          "determinant_mod_p": 1653,
+          "graph_rows_recomputed": false,
+          "prime": 32719,
+          "rank": 81,
+          "seed": 20260907
+        },
+        {
+          "determinant_mod_p": 2167,
+          "graph_rows_recomputed": false,
+          "prime": 32719,
+          "rank": 81,
+          "seed": 20260908
+        }
+      ]
+    },
+    {
+      "boost_matches": 81,
+      "name": "all_81_graphs_lorentz",
+      "passed": true,
+      "rotation_matches": 81
+    },
+    {
+      "artifact_sha256": "e506667ba15ddc290f68cf58aa4d2cbbd7adb026c76679b3ff3b148b63ada2f5",
+      "name": "order8_literature_map",
+      "passed": true,
+      "source": "fresh five-prime fits and sixth-prime holdouts"
+    },
+    {
+      "artifact_sha256": "ad81cfa7a5e43ffcc1a2695adebe099da567e97f7de0a25a3d478e36a386d35b",
+      "name": "order10_literature_map",
+      "passed": true,
+      "source": "reconstruction of inherited prime evidence; no new full tensor evaluations"
+    },
+    {
+      "functional_rank": 21,
+      "name": "general_degree_runner_order10",
+      "passed": true,
+      "polynomial_rank": 14,
+      "primes": [
+        32749,
+        32719
+      ]
+    },
+    {
+      "final_pass_overfull_boxes": 0,
+      "final_pass_undefined_references": 0,
+      "name": "manuscript_build",
+      "pages": 19,
+      "passed": true,
+      "pdf_sha256": "35c5627f56f7cafb1897ff7de474500ce10a455d0a546596ce3cd5ab0356f1cd",
+      "visually_inspected_pages": [
+        1,
+        2,
+        4,
+        19
+      ]
+    },
+    {
+      "log_sha256": "bd6aee9009ad0a64234a5d5ee709d21ccb9b65371f73a57e86c72c06ec82ec10",
+      "name": "portable_archive_suite",
+      "note": "Extracted portable package, every payload hash checked; all 21 delivery tests passed. The validation report was subsequently extended with this result; science payload unchanged.",
+      "passed": true,
+      "seconds": 7.73,
+      "test_count": 21
+    }
+  ],
+  "date": "2026-09-07",
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5"
+  },
+  "inherited_work_base": "4cc5157",
+  "new_commit_identity": {
+    "email": "uskutsav@gmail.com",
+    "name": "uskutsav-cpu"
+  },
+  "passed": true,
+  "schema": 1,
+  "scope": "Full inherited tensor suite and new delivery suite run separately; frozen original baseline tested from an archive. No external spinor archive is needed by the new graph-only certificate."
+}

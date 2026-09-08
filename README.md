@@ -1,5 +1,16 @@
 # Lorentz invariants of a self-dual 5-form in 10D
 
+**September 2026 graph-certificate release:** the same explicit 81 graphs now
+have fresh nonzero 81×81 Jacobian minors at two points under each of two
+primes. See [the roadmap and proof scope](docs/CLASSIFICATION_ROADMAP.md),
+[the ordered basis](results/rank81_basis.json),
+[the complete witnesses](results/rank81_certificate.json), and
+[the manuscript with all formulas](paper/manuscript.pdf).
+The octic literature map includes product corrections; the degree-ten map
+records why the requested invertible 12×12 identification is unavailable for
+the implemented source readings. Run `python scripts/verify_rank81.py` for
+the saved-matrix check or add `--recompute` to re-evaluate every graph.
+
 Extension of Elamaran–Ferko–Scarlett, *Machine Learning Invariants of Tensors*
 ([arXiv:2512.23750](https://arxiv.org/abs/2512.23750), Phys. Rev. D).
 
