@@ -1,5 +1,11 @@
 # Lorentz invariants of a self-dual 5-form in 10D
 
+**Science completion:** an independent D5 character calculation now derives the
+Hilbert dimensions through degree 22, closes degree-12 completeness, and removes
+the literature-count premise from the corrected source maps. See
+[the completion ledger](SCIENCE_STATUS.md) and the minimal
+[standalone rank/orbit verifier](science/rank81/README.md).
+
 **September 2026 graph-certificate release:** the same explicit 81 graphs now
 have fresh nonzero 81×81 Jacobian minors at two points under each of two
 primes. See [the roadmap and proof scope](docs/CLASSIFICATION_ROADMAP.md),
