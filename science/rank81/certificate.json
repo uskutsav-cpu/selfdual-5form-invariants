@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "input_sha256": "58877cfe3ca1974a9e7617b4fc3de071a825cd56050a4c97c85f3b0558600f67",
-  "implementation_sha256": "175b47690ea87f53a89147aef59e4ee93577dced65ac40e0fd6556095b3982fd",
+  "implementation_sha256": "d8fe9c2d9d432ef62b6bf81d815cb589ba215f5b8d33182b6c7ee9809a273861",
   "mode": "full fresh values, Jacobians, Bareiss minors and orbit action from minimal inputs",
   "points": [
     {
@@ -16486,7 +16486,7 @@
       "orbit_integer_minor_determinant": "-16302545291491965320415325146029371980216161287101494535576776025957225548307012441025352068964602728080968813317652277801628449809400728484552129681528442538246028326755291133915476765009618892628635686042071873704576",
       "orbit_determinant_mod_p": 10547,
       "orbit_rank": 45,
-      "seconds": 55.87753433396574,
+      "seconds": 89.99172854099743,
       "arithmetic_checks": {
         "dot_products": 2248,
         "largest_dot_bound": 250200040000000,

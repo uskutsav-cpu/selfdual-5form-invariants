@@ -34,11 +34,11 @@
   "notes/DEGREEWISE_AND_SOURCE_CLOSURE.md": "ea397b4bed8ae57ad30fbefda24c61d046ffec41c37fccbadeb1520f7f2fb357",
   "notes/PHYSICS_AND_QUOTIENT.md": "777395a2d865b120269b8508f56eb67bfae892b2b52734c84ce1bcaec3575848",
   "rank81/README.md": "155dd25a73bd44cfaad99b82c405822496005c3607ef9eaeb943de86cf7ade4d",
-  "rank81/certificate.json": "ed0559057c24901b43a5e20459ffcd3efc5fc436bcda914a9b55203f3ef662b4",
+  "rank81/certificate.json": "f4bea3bf8a1fe6fe73300029c7d9a3b3306b044d06c624658d47385f0341cdf0",
   "rank81/implementation_provenance.json": "da799f46165e6613cadb71fc5378343b0260b33dba419b8c83e6f60ea189c70b",
   "rank81/input.json": "58877cfe3ca1974a9e7617b4fc3de071a825cd56050a4c97c85f3b0558600f67",
   "rank81/requirements.txt": "27ef3785c3854a824cafb34140b76aa927e3a3bd7400e9e5b6967ec0d670dcfe",
-  "rank81/verify.py": "175b47690ea87f53a89147aef59e4ee93577dced65ac40e0fd6556095b3982fd",
+  "rank81/verify.py": "d8fe9c2d9d432ef62b6bf81d815cb589ba215f5b8d33182b6c7ee9809a273861",
   "test_inputs.py": "128fe720c092405b3091dd839f7e6d02e76dcd81c6b2ab793912172fb76dbc20",
   "verify_science.py": "857128138cade0018bacc5d4071c6768e7c371e2d26380d654dbe8a9ea59310c"
 }
