@@ -1,0 +1,69 @@
+\section{The exact bridge and its inverse}
+\label{app:bridge-exact}
+
+\paragraph{Forward map.}
+With conventions as in appendix~\ref{app:conventions},
+\begin{equation}
+\Phi(F)_{ab} = \frac{1}{5!}\,F_{\mu_1\dots\mu_5}\,
+              (C\Gamma^{\mu_1\dots\mu_5})_{ab},
+\qquad a,b = 1,\dots,\spinorDim .
+\end{equation}
+In the implementation $F$ is carried as a vector of $\dimSelfDualModule$
+independent components in a fixed ordering of index five-tuples, and $\Phi$ is a
+$\dimSymSpinor \times \dimSelfDualModule$ integer matrix reduced mod $p$.
+
+\paragraph{Gamma trace.}
+The gamma trace $(\gamma\text{-}\mathrm{tr}\,\psi)_\mu
+ = (\Gamma^\nu)^{ab}\psi_{ab}\,\eta_{\mu\nu}$-type contraction has rank
+$\gammaTraceRank$ on $\mathrm{Sym}^2 S_+$. Hence
+\begin{equation}
+\dim \ker(\gamma\text{-}\mathrm{tr})
+ = \dimSymSpinor - \gammaTraceRank
+ = \dimGammaTraceless
+ = \dim \Lambda^5_+ .
+\end{equation}
+The certified statement is that $\mathrm{im}\,\Phi \subseteq
+\ker(\gamma\text{-}\mathrm{tr})$ and that the inclusion is an equality by rank.
+
+\paragraph{Rank and kernel.}
+$\mathrm{rank}\,\Phi = \bridgeForwardRank$ on $\Lambda^5_+$, and
+$\ker \Phi \cap \Lambda^5_+ = 0$. Both are computed by exact elimination over
+$\Fp$ at each prime used. On $\Lambda^5_-$ the map vanishes identically, which is
+the statement that appendix~\ref{app:orientation} shows can silently invert.
+
+\paragraph{Left inverse and round trip.}
+Because $\Phi$ has full column rank, a left inverse $\Phi^-$ exists over $\Fp$
+and is constructed explicitly by exact elimination. The certified identity is
+\begin{equation}
+\Phi^- \Phi = \mathrm{id}_{\dimSelfDualModule},
+\end{equation}
+checked as a matrix identity, not merely on sampled vectors. Note that
+$\Phi\Phi^-$ is \emph{not} the identity on $\mathrm{Sym}^2 S_+$; it is the
+projector onto the gamma-traceless subspace, which is the correct expectation and
+is checked as such.
+
+\paragraph{Equivariance.}
+For $\Lambda$ in the Lorentz group acting on the tensor side and $S(\Lambda)$ the
+corresponding spinor representative, the certified statement is
+\begin{equation}
+\Phi(\Lambda \cdot F) = \chi(\Lambda)\,
+ S(\Lambda)\,\Phi(F)\,S(\Lambda)^{T}
+\end{equation}
+where the character $\chi$ is solved for rather than assumed. In practice
+$\chi \equiv 1$ in the normalisation of appendix~\ref{app:conventions}; solving
+for it rather than assuming it is what turns the equivariance check into a test
+that can fail.
+
+\paragraph{Normalisation independence.}
+Rescaling $\Phi \to \lambda\Phi$ rescales $\Phi^- \to \lambda^{-1}\Phi^-$ and
+leaves every rank, dimension and intersection in this paper unchanged. The
+normalisation is therefore fixed for tidiness only.
+
+\paragraph{Test inventory.}
+The bridge suite contains $\nBridgeTests$ tests covering: the Clifford relations;
+$\star^2 = +\starSquared$; the symmetry of $C\Gamma^{(5)}$; the gamma-trace rank;
+the forward rank; the vanishing on the opposite eigenspace; the left inverse; the
+round trip; the projector property of $\Phi\Phi^-$; equivariance with the
+character solved for; and the orientation tests of
+appendix~\ref{app:orientation}, including the deliberate branch flip that must
+break.

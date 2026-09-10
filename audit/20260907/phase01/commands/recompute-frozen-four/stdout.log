@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "mode": "graph_recomputation",
+  "witnesses": [
+    {
+      "prime": 32749,
+      "seed": 20260907,
+      "rank": 81,
+      "determinant_mod_p": 20345,
+      "graph_rows_recomputed": true
+    },
+    {
+      "prime": 32749,
+      "seed": 20260908,
+      "rank": 81,
+      "determinant_mod_p": 30761,
+      "graph_rows_recomputed": true
+    },
+    {
+      "prime": 32719,
+      "seed": 20260907,
+      "rank": 81,
+      "determinant_mod_p": 1653,
+      "graph_rows_recomputed": true
+    },
+    {
+      "prime": 32719,
+      "seed": 20260908,
+      "rank": 81,
+      "determinant_mod_p": 2167,
+      "graph_rows_recomputed": true
+    }
+  ]
+}

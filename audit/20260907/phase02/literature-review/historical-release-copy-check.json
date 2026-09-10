@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checks": {
+    "required_historical_source_roots_retained": true,
+    "third_party_archive_not_in_include_list": true,
+    "required_inputs_copy_successfully": true,
+    "local_audit_subtree_and_source_pdf_excluded": true,
+    "unrelated_audit_name_retained": true,
+    "existing_cache_log_exclusions_preserved": true,
+    "clean_included_fixture_passes_scan": true,
+    "home_path_scanner_still_rejects": true,
+    "secret_scanner_still_rejects": true
+  },
+  "main_executed": false,
+  "release_candidate_tree_written": false,
+  "builder_sha256": "8bcddf74ef076ceaea58c03d0334abdd5ae99cb5665c61ef268a840dde9d389f"
+}

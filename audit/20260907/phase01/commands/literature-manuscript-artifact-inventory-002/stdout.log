@@ -1,0 +1,413 @@
+     1	\documentclass[11pt]{article}
+     2	\usepackage[margin=1in]{geometry}
+     3	\usepackage{amsmath,amssymb,longtable,booktabs}
+     4	\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+     5	\title{An explicit graph basis and exact Jacobian certificates\\
+     6	for a self-dual five-form in ten dimensions}
+     7	\author{\texttt{uskutsav-cpu}}
+     8	\date{September 7, 2026}
+     9	\begin{document}
+    10	\maketitle
+    11	\begin{abstract}
+    12	We give a reproducible certificate for 81 explicit contractions of a real
+    13	self-dual five-form in signature $(1,9)$. The fixed selection consists of one
+    14	quartic, two sextic, six octic, twelve degree-ten, and sixty degree-twelve
+    15	polynomials. Their Jacobian has a nonzero $81\times81$ minor at four exact
+    16	finite-field specializations, using the same ordered functions in every
+    17	case. An integral coordinate convention makes each nonzero minor a
+    18	characteristic-zero independence witness. The construction completes the
+    19	functional-independence problem, with the known generic quotient dimension
+    20	as upper bound. It does not determine all polynomial generators or syzygies.
+    21	\end{abstract}
+    22	
+    23	\section{Scope and conventions}
+    24	Let $F$ be an alternating five-form, with metric
+    25	$\eta=\operatorname{diag}(-1,1,\ldots,1)$ and Hodge convention
+    26	$\star F=F$. The self-dual subspace has dimension 126.
+    27	The literature supplies the generic quotient dimension 81 and the
+    28	low-degree Hilbert coefficients \cite{cederwall,hutomo}. The present
+    29	certificate supplies the matching lower bound using explicit graph
+    30	contractions. The contraction catalogs and previously discovered bases are
+    31	inherited from the repository's research branches; the certificate reported
+    32	here re-evaluates those functions at new points.
+    33	
+    34	A graph has one vertex per copy of $F$, no loops, and valence five.
+    35	An edge of multiplicity $m$ contracts $m$ index pairs with inverse metrics.
+    36	Vertices and edges are ordered; slot order is fixed by lexicographic edge
+    37	order. Graph isomorphism alone does not fix the sign of an odd-form
+    38	contraction, so the formula identifier hashes the ordered edge record.
+    39	Disconnected contractions are products. The quadratic contraction vanishes
+    40	on this self-dual space.
+    41	
+    42	For each increasing five-tuple $I$ containing 0, define
+    43	$A_I=F_I$ and let $e_I$ denote its compact alternating component vector.
+    44	The integral parametrization is
+    45	\[
+    46	 F(A)=\sum_{I\ni0} A_I(e_I+\star e_I).
+    47	\]
+    48	The 126 columns contain only $0,1,-1$; their components indexed by $I\ni0$
+    49	form an identity matrix. Every graph polynomial therefore has integer
+    50	coefficients in $A$, with no projector denominators.
+    51	
+    52	\section{Fixed selection and exact witness}
+    53	The nine low-degree functions are those in
+    54	\path{results/10d_order8.json}; the next twelve come from
+    55	\path{results/10d_order10.json}. The first sixty selected functional
+    56	directions in \path{results/10d_order12.json} complete the list.
+    57	The remaining two degree-twelve primitive polynomial directions belong to
+    58	the larger homogeneous inventory and are not included in the 81-function
+    59	Jacobian. A dependent Jacobian row does not identify a polynomial syzygy.
+    60	
+    61	\begin{center}
+    62	\begin{tabular}{rrr}
+    63	\toprule
+    64	Field degree & New functional directions & Cumulative rank\\
+    65	\midrule
+    66	4 & 1 & 1\\
+    67	6 & 2 & 3\\
+    68	8 & 6 & 9\\
+    69	10 & 12 & 21\\
+    70	12 & 60 & 81\\
+    71	\bottomrule
+    72	\end{tabular}
+    73	\end{center}
+    74	
+    75	Write $J_{aI}=\partial G_a/\partial A_I$. Each certificate cell records
+    76	the prime, all 126 coordinates, all 252 self-dual compact components,
+    77	the same ordered 81 graph identifiers, all entries of the $81\times126$
+    78	Jacobian, 81 pivot columns, and the determinant of that minor.
+    79	\input{tables/certificate_cells.tex}
+    80	The determinant is recomputed by Python-integer elimination independently
+    81	of the streaming rank sieve. Euler's identity
+    82	$\sum_I A_I J_{aI}=\deg(G_a)G_a$ is checked for every row.
+    83	
+    84	If a saved determinant is nonzero modulo $p$, the corresponding integer
+    85	determinant polynomial is not identically zero. Its nonvanishing defines a
+    86	nonempty Zariski-open set in characteristic zero on which these 81
+    87	polynomials are algebraically independent. Invariance and the known generic
+    88	quotient dimension supply the matching upper bound. These are generic local
+    89	coordinates; neither global orbit separation nor polynomial generation of
+    90	the entire ring follows.
+    91	
+    92	\section{Polynomial spaces and literature comparison}
+    93	The homogeneous-space dimensions through degree twelve are
+    94	$1,2,7,14,72$. Products must be included in value-space comparisons.
+    95	At degree twelve the ten product monomials are $I_4^3$, the three symmetric
+    96	products of sextics, and the six products $I_4 I_{8,j}$. The inherited
+    97	degree-twelve computation reaches rank 72 using these products and 62 graph
+    98	directions. Polynomial-space evidence uses gradients concatenated at several
+    99	points; the functional Jacobian uses one point. These are separate sieves.
+   100	Factor exponents in a Hilbert product are not automatically generator counts
+   101	at higher degrees when generators and relations may coexist.
+   102	
+   103	The octic comparison uses a selection of six displayed literature
+   104	contractions: the first five expressions from equations (4.12)--(4.15) of
+   105	\cite{cederwall}, together with the hatted expression (4.18). The exact
+   106	machine-readable map includes the quartic-square product explicitly.
+   107	The $6\times6$ block compares primitive classes modulo products; any product
+   108	correction is retained in the full $7\times7$ matrix.
+   109	
+   110	At degree ten the repository's implemented readings of the twelve published
+   111	candidates span a twelve-dimensional space whose intersection with the
+   112	two-dimensional product space has dimension one in the reconstructed
+   113	coordinate matrix. Thus a claimed invertible $12\times12$ identification
+   114	with the graph primitive complement would be incorrect for those readings.
+   115	The delivered map has twelve rows and fourteen atlas columns and records
+   116	the source-reading qualifications. Rational reconstruction and fresh modular
+   117	holdouts are strong checks on these maps, but finite samples alone do not
+   118	prove a characteristic-zero polynomial identity. These qualifications do not
+   119	affect the graph-only nonzero-minor proof.
+   120	
+   121	\section{Reproduction and validation}
+   122	Use the declared dependencies and run the regression suite before evaluating
+   123	certificates. The original low-degree commit is preserved by
+   124	\texttt{v0.1-low-degree-complete}. The release commands are:
+   125	\begin{verbatim}
+   126	python scripts/graph_to_latex.py
+   127	python scripts/search_rank81.py
+   128	python scripts/verify_rank81.py
+   129	python scripts/verify_rank81.py --recompute
+   130	python scripts/validate_rank81_lorentz.py
+   131	python scripts/map_literature_basis.py --degree 8
+   132	python scripts/map_literature_basis.py --degree 10
+   133	\end{verbatim}
+   134	The default verifier checks the saved matrix and metadata; the explicit
+   135	\texttt{--recompute} mode repeats the graph evaluations. These modes are
+   136	reported separately. The search stage checkpoints each raw row and its
+   137	pivot, checks run identity on resume, and bounds worker submissions.
+   138	Degree-specific discovery remains available through the existing nauty
+   139	pipelines. \texttt{run\_degree.py} accepts additional edge-list JSONL streams
+   140	and separates polynomial completeness from functional rank.
+   141	
+   142	Regression tests cover the 6D reproduction, self-duality,
+   143	the zero quadratic contraction, exact integer arithmetic, reverse
+   144	Jacobians against an independent oracle, graph parsing beyond ten vertices,
+   145	and genuine Lorentz boosts. The final graph selection is checked under both
+   146	a spatial rotation and a boost; neither uses floating-point tolerances.
+   147	
+   148	\begin{thebibliography}{9}
+   149	\bibitem{cederwall} M. Cederwall, J. Hutomo, S. M. Kuzenko, K. Lechner,
+   150	and D. P. Sorokin, \emph{Some remarks on invariants},
+   151	\href{https://arxiv.org/abs/2509.14350v2}{arXiv:2509.14350v2}.
+   152	\bibitem{hutomo} J. Hutomo, K. Lechner, and D. P. Sorokin,
+   153	\emph{On non-linear chiral 4-form theories in D=10},
+   154	\href{https://arxiv.org/abs/2509.14351}{arXiv:2509.14351}.
+   155	\end{thebibliography}
+   156	
+   157	\clearpage\appendix
+   158	\section{Ordered Einstein-index formulas}
+   159	Each repeated index labels exactly one graph edge; its upper and lower
+   160	occurrences supply one inverse metric. The machine-readable companion
+   161	\texttt{results/rank81\_basis.json} gives the edge lists, adjacency matrices,
+   162	formula hashes, and contraction costs.
+   163	\small
+   164	\input{tables/rank81_formulas.tex}
+   165	\end{document}
+\begin{center}\begin{tabular}{rrrr}
+\toprule Prime & Seed & Rank & $\det J_*\bmod p$\\\midrule
+32749 & 20260907 & 81 & 20345\\
+32749 & 20260908 & 81 & 30761\\
+32719 & 20260907 & 81 & 1653\\
+32719 & 20260908 & 81 & 2167\\
+\bottomrule\end{tabular}\end{center}
+pytest.ini
+src/sdinv/invariant_registry.py
+src/sdinv/published_degree8_invariants.py
+src/sdinv/published_degree12_invariants.py
+src/sdinv/published_degree10_invariants.py
+scripts/map_literature_basis.py
+scripts/validate_rank81_lorentz.py
+scripts/test_M_only_quotients.py
+scripts/search_rank81.py
+scripts/verify_rank81.py
+results/10d_order8.json
+spinor_trace_bridge/src/sdbridge/spinor_invariants.py
+third_party/README.md
+results/10d_order10.json
+submission_candidate/tables/environment.tex
+submission_candidate/tables/incidence.tex
+submission_candidate/tables/jacobian_runs.tex
+submission_candidate/tables/dimensions.tex
+submission_candidate/tables/comparison.tex
+spinor_trace_bridge/scripts/run_rank81_certificate.py
+submission_candidate/generated/identity.tex
+submission_candidate/generated/numbers.tex
+submission_candidate/figures/invariant_space_diagram.pdf
+submission_candidate/appendices/certificates.tex
+submission_candidate/appendices/jacobian.tex
+submission_candidate/appendices/algorithms.tex
+submission_candidate/appendices/conventions.tex
+submission_candidate/appendices/formulas.tex
+submission_candidate/appendices/reproduction.tex
+submission_candidate/main.tex
+figures/invariant_space_diagram.pdf
+manuscript/appendices/certificates.tex
+manuscript/appendices/jacobian.tex
+manuscript/appendices/algorithms.tex
+manuscript/appendices/conventions.tex
+manuscript/appendices/formulas.tex
+manuscript/appendices/reproduction.tex
+results/rank81_lorentz.json
+release/README.md
+manuscript/tables/environment.tex
+manuscript/tables/incidence.tex
+manuscript/tables/jacobian_runs.tex
+manuscript/tables/dimensions.tex
+manuscript/tables/comparison.tex
+manuscript/prd/tables/tab09_b10.tex
+manuscript/prd/tables/tab02_degree_ranks.tex
+manuscript/prd/tables/tab10_certificates.tex
+manuscript/prd/tables/tab07_degree10.tex
+manuscript/prd/tables/tab08_quotient.tex
+manuscript/prd/tables/tab12_environment.tex
+manuscript/prd/tables/tab11_tests.tex
+manuscript/prd/tables/tab03_products.tex
+manuscript/prd/tables/tab04_spans.tex
+manuscript/prd/tables/tab06_matrix.tex
+manuscript/prd/tables/tab13_claim_strength.tex
+manuscript/prd/tables/tab05_candidates.tex
+manuscript/prd/tables/tab01_notation.tex
+spinor_trace_bridge/tests/test_bridge.py
+spinor_trace_bridge/tests/test_adversarial.py
+spinor_trace_bridge/tests/test_orientation.py
+spinor_trace_bridge/pytest.ini
+release/jhep/README.md
+manuscript/prd/generated/identity.tex
+manuscript/prd/generated/numbers.tex
+manuscript/generated/identity.tex
+manuscript/generated/numbers.tex
+paper/manuscript.tex
+cluster/README.md
+paper/tables/rank81_formulas.tex
+paper/tables/certificate_cells.tex
+manuscript/main.tex
+manuscript/prd/main.tex
+manuscript/prl/supplemental.tex
+manuscript/prl/end_matter.tex
+manuscript/prl/main.tex
+manuscript/prl/macros.tex
+review/ferko_delivery/README_FIRST.md
+review/MENTOR_REVIEW_PACKAGE.tex
+review/MENTOR_REVIEW_PACKAGE_FINAL.tex
+release/classification/rank81-graph-classification.zip
+release/classification/README.md
+results/order8_change_of_basis.json
+results/rank81_basis.json
+manuscript/prd/appendices/app_h_closure.tex
+manuscript/prd/appendices/app_i_gten.tex
+manuscript/prd/appendices/app_e_bases.tex
+manuscript/prd/appendices/app_k_algorithms.tex
+manuscript/prd/appendices/app_a_conventions.tex
+manuscript/prd/appendices/app_b_orientation.tex
+manuscript/prd/appendices/app_f_maps.tex
+manuscript/prd/appendices/app_j_b10.tex
+manuscript/prd/appendices/app_g_rank81.tex
+manuscript/prd/appendices/app_d_blocks.tex
+manuscript/prd/appendices/app_l_reproduction.tex
+manuscript/prd/appendices/app_c_bridge.tex
+manuscript/prl/generated/numbers.tex
+manuscript/jhep/tables/tab09_b10.tex
+manuscript/jhep/tables/tab02_degree_ranks.tex
+manuscript/jhep/tables/tab10_certificates.tex
+manuscript/jhep/tables/tab07_degree10.tex
+manuscript/jhep/tables/tab08_quotient.tex
+manuscript/jhep/tables/tab12_environment.tex
+manuscript/jhep/tables/tab11_tests.tex
+manuscript/jhep/tables/tab03_products.tex
+manuscript/jhep/tables/tab04_spans.tex
+manuscript/jhep/tables/tab06_matrix.tex
+manuscript/jhep/tables/tab13_claim_strength.tex
+manuscript/jhep/tables/tab05_candidates.tex
+manuscript/jhep/tables/tab01_notation.tex
+manuscript/jhep/generated/identity.tex
+manuscript/jhep/generated/numbers.tex
+tests/test_formal_flow.py
+tests/test_generalized_flow_deficits.py
+tests/test_modular_overflow_guards.py
+tests/test_reverse_block_decomposition.py
+tests/test_stress_flow.py
+tests/test_q10_wording_freeze.py
+tests/test_sextic.py
+tests/test_d10_characteristic_zero.py
+tests/test_published_degree10_invariants.py
+tests/test_G10_trace_activation.py
+tests/test_quotient_cardinality_bound.py
+tests/test_k6_flow_role.py
+tests/test_index_symmetry_ops.py
+tests/test_static_stress_degree12.py
+tests/test_minimal_generalized_flow.py
+tests/test_interacting_flow_equations.py
+tests/test_degree12.py
+tests/test_core.py
+tests/test_M_only_quotients.py
+tests/test_projection_checkpoint_resume.py
+tests/test_projection_checkpoint_semantics.py
+tests/test_repository_conventions.py
+tests/test_stress_flow_closure.py
+tests/test_roadmap.py
+tests/test_graph_to_tensor.py
+tests/test_published_degree12_invariants.py
+tests/test_leading_degree_rule.py
+manuscript/prd_letter/main.tex
+manuscript/jhep/appendices/app_h_closure.tex
+manuscript/jhep/appendices/app_i_gten.tex
+manuscript/jhep/appendices/app_e_bases.tex
+manuscript/jhep/appendices/app_k_algorithms.tex
+manuscript/jhep/appendices/app_a_conventions.tex
+manuscript/jhep/appendices/app_b_orientation.tex
+manuscript/jhep/appendices/app_f_maps.tex
+manuscript/jhep/appendices/app_j_b10.tex
+manuscript/jhep/appendices/app_g_rank81.tex
+manuscript/jhep/appendices/app_d_blocks.tex
+manuscript/jhep/appendices/app_l_reproduction.tex
+manuscript/jhep/appendices/app_c_bridge.tex
+manuscript/jhep/main.tex
+release_candidate/trace-code/pytest.ini
+results/rank81/minor81_certificate.json
+results/rank81/full_rank_matrix_publication_final.json
+results/rank81/full_rank_matrix_publication_final.sha256
+results/rank81/certificate.json
+release_candidate/reproduction/scripts/test_M_only_quotients.py
+release_candidate/trace-code/README.md
+manuscript/prd_letter/generated/identity.tex
+manuscript/prd_letter/generated/numbers.tex
+README.md
+results/10d_order12.json
+results/rank81/full_rank_matrix_publication_final.csv
+results/rank81_certificate.json
+results/order10_change_of_basis.json
+release_candidate/trace-code/src/sdinv/invariant_registry.py
+release_candidate/trace-code/src/sdinv/published_degree12_invariants.py
+release_candidate/trace-code/src/sdinv/published_degree10_invariants.py
+release_candidate/certificates/results/intrinsic_candidates/M_only_quotient_test_deg10.json
+release_candidate/trace-code/tests/test_formal_flow.py
+release_candidate/trace-code/tests/test_generalized_flow_deficits.py
+release_candidate/trace-code/tests/test_modular_overflow_guards.py
+release_candidate/trace-code/tests/test_reverse_block_decomposition.py
+release_candidate/trace-code/tests/test_stress_flow.py
+release_candidate/trace-code/tests/test_q10_wording_freeze.py
+release_candidate/trace-code/tests/test_sextic.py
+release_candidate/trace-code/tests/test_d10_characteristic_zero.py
+release_candidate/trace-code/tests/test_published_degree10_invariants.py
+release_candidate/trace-code/tests/test_G10_trace_activation.py
+release_candidate/trace-code/tests/test_quotient_cardinality_bound.py
+release_candidate/trace-code/tests/test_k6_flow_role.py
+release_candidate/trace-code/tests/test_index_symmetry_ops.py
+release_candidate/trace-code/tests/test_static_stress_degree12.py
+release_candidate/trace-code/tests/test_minimal_generalized_flow.py
+release_candidate/trace-code/tests/test_interacting_flow_equations.py
+release_candidate/trace-code/tests/test_degree12.py
+release_candidate/trace-code/tests/test_core.py
+release_candidate/trace-code/tests/test_M_only_quotients.py
+release_candidate/trace-code/tests/test_projection_checkpoint_resume.py
+release_candidate/trace-code/tests/test_projection_checkpoint_semantics.py
+release_candidate/trace-code/tests/test_repository_conventions.py
+release_candidate/trace-code/tests/test_stress_flow_closure.py
+release_candidate/trace-code/tests/test_graph_to_tensor.py
+release_candidate/trace-code/tests/test_published_degree12_invariants.py
+release_candidate/trace-code/tests/test_leading_degree_rule.py
+results/rank81/cells/cell_p32693_s22.json
+results/rank81/cells/cell_p32749_s11.json
+results/rank81/cells/cell_p32719_s33.json
+results/rank81/cells/cell_p32717_s11.json
+results/rank81/cells/cell_p32713_s33.json
+results/rank81/cells/cell_p32719_s22.json
+results/rank81/cells/cell_p32713_s22.json
+results/rank81/cells/cell_p32693_s33.json
+results/rank81/cells/cell_p32717_s22.json
+results/rank81/cells/cell_p32749_s22.json
+results/rank81/cells/cell_p32693_s11.json
+results/rank81/cells/cell_p32749_s33.json
+results/rank81/cells/cell_p32717_s33.json
+results/rank81/cells/cell_p32713_s11.json
+results/rank81/cells/cell_p32719_s11.json
+results/intrinsic_candidates/M_only_quotient_test_deg10.json
+release_candidate/certificates/results/rank81/minor81_certificate.json
+release_candidate/certificates/results/rank81/full_rank_matrix_publication_final.json
+release_candidate/certificates/results/rank81/full_rank_matrix_publication_final.sha256
+release_candidate/certificates/results/rank81/certificate.json
+release_candidate/certificates/results/rank81/rowcache_p32749_s11.json
+release_candidate/certificates/results/rank81/rowcache_p32719_s11.json
+release_candidate/certificates/results/rank81/rowcache_p32749_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32693_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32749_s11.json
+release_candidate/certificates/results/rank81/cells/cell_p32719_s33.json
+release_candidate/certificates/results/rank81/cells/cell_p32717_s11.json
+release_candidate/certificates/results/rank81/cells/cell_p32713_s33.json
+release_candidate/certificates/results/rank81/cells/cell_p32719_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32713_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32693_s33.json
+release_candidate/certificates/results/rank81/cells/cell_p32717_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32749_s22.json
+release_candidate/certificates/results/rank81/cells/cell_p32693_s11.json
+release_candidate/certificates/results/rank81/cells/cell_p32749_s33.json
+release_candidate/certificates/results/rank81/cells/cell_p32717_s33.json
+release_candidate/certificates/results/rank81/cells/cell_p32713_s11.json
+release_candidate/certificates/results/rank81/cells/cell_p32719_s11.json
+release_candidate/certificates/results/rank81/full_rank_matrix_publication_final.csv
+release_candidate/bridge-code/spinor_trace_bridge/pytest.ini
+release_candidate/bridge-code/spinor_trace_bridge/tests/test_bridge.py
+release_candidate/bridge-code/spinor_trace_bridge/tests/test_adversarial.py
+release_candidate/bridge-code/spinor_trace_bridge/tests/test_orientation.py
+release_candidate/bridge-code/spinor_trace_bridge/scripts/run_rank81_certificate.py
+release_candidate/bridge-code/spinor_trace_bridge/src/sdbridge/spinor_invariants.py

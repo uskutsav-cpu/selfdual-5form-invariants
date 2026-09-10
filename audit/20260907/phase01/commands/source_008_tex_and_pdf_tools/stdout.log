@@ -1,0 +1,126 @@
+8th order invariants }
+At the 8th order in $F$, according to the LiE program (see \eqref{pf}), there are six linearly independent invariants, the seventh one being the square of the 4th order invariant \eqref{M2}.
+\noindent
+\\
+{\bf One can choose a basis of these invariants as follows.}
+Two invariants can be constructed as products of four tensors $M$s or three $M$s and one $N$, namely
+\be\label{trM4}
+I^{^{(1)}}_8=\tr M^4\,, \qquad I^{^{(2)}}_8=M_{\mu_1}{}^{\nu_1}M_{\mu_2}{}^{\nu_2}M_{\mu_3}{}^{\nu_3}N^{^{(4125)}}_{\nu_1 \nu_2 \nu_3}{}^{\mu_1 \mu_2 \mu_3}\,.
+\ee
+Other three invariants can be constructed with two $M$s and two $N$s.
+One of these is constructed by taking the inner product of the {\bf 210} irrep $M^{\mu\nu}N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4\mu]\nu}$ (the only independent {\bf 210} irrep in the symmetric product of $F^4$) with itself
+\be\label{MMNN1}
+I^{^{(3)}}_8=M^{\mu\nu}N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4\mu]\nu}N_{_{(1050)}}^{[\alpha_1\alpha_2\alpha_3\alpha_4\rho]\lambda}M_{\rho\lambda}\,.
+\ee
+In \eqref{MMNN1} the indices $\mu,\nu,\rho,\lambda$ are automatically totally symmetrized due to the symmetry properties of the product of two self-dual $N_{(1050)}$ (see eq. \eqref{NNsim}). So this invariant can also be seen as the product of the {\bf 660} irrep in $N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4{\color{red}(}\mu]\nu}N_{_{(1050)}}^{[\alpha_1\alpha_2\alpha_3\alpha_4}{}_{\rho]\lambda\color{red})}$ with $M^{\mu\nu}M^{\rho\lambda}$ (upon subtracting all traces).\footnote{The indices within the round brackets are symmetrized such that  $$T_{(\mu_1\ldots\mu_p)}=\frac 1{p!}(T_{\mu_1\mu_2\ldots\mu_p}+T_{\mu_2\mu_1\ldots\mu_p}+\ldots).$$} Note that the symmetric product of $F^4$ contains two {\bf 660} irreps, one of which can be chosen as the traceless part of $(MM)_{(\mu\nu\lambda\rho)}$, and another one is contained in $(N_{_{(1050)}})^2$. So the fourth invariant can be chosen as
+\be\label{MMNN2}
+I^{^{(4)}}_8=N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4{\color{red}(}\mu]\nu}N_{_{(1050)}}^{[\alpha_1\alpha_2\alpha_3\alpha_4}{}_{\rho]\lambda\color{red})}N_{_{(1050)}}^{[\beta_1\beta_2\beta_3\beta_4\mu]\nu}N^{^{(1050)}}_{[\beta_1\beta_2\beta_3\beta_4}{}^{\rho]\lambda}\,,
+\ee
+where the indices $\mu,\nu,\rho,\lambda$ are totally symmetrized, i.e. this invariant is constructed by taking the inner product of the two copies of the {\bf 660} irrep in $(N_{_{(1050)}})^2$ (upon subtracting all traces).
+
+The product of $M_{\mu\nu}M_{\rho\lambda}$ splits into two tensors, the totally symmetric one $M_{(\mu\nu}M_{\rho\lambda)}$ which takes values in the 660 irrep of $SO(1,9)$ (it has appeared in \eqref{MMNN1}) and the tensor $M_{[\mu}{}^{[\nu}M_{\rho]}{}^{\lambda]}$ which takes values in the {\bf 770} irrep (upon subtracting traces). The contraction of the latter with two $N^{^{(1050)}}$ produces the following invariant
+\be\label{MNNN1*}
+I_{8}^{^{(5)}}=M_{[\nu_1}{}^{[\mu_1}M_{\nu_2]}{}^{\mu_2]}N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4\mu_1]\mu_2}N_{_{(1050)}}^{[\rho_1\rho_2\rho_3,\rho_4\nu_1]\nu_2}.
+\ee
+Finally, the contraction of $MM$ with the single {\bf 770} irrep in the product of $N^{^{(1050)}}$ and $N^{^{(4125)}}$ produces the sixth invariant
+\be\label{MMNN3}
+I_{8}^{^{(6)}}=M_{\nu_1}{}^{\mu_1}M_{\nu_2}{}^{\mu_2}N^{^{(1050)}}_{[\mu_1\mu_2\rho_1,\rho_2\rho_3]\rho_4}N_{_{(4125)}}^{\rho_1\rho_2\rho_3,\rho_4\nu_1\nu_2}\,.
+\ee
+Note that the symmetric product of $F^4$ contains three {\bf 770} irreps. They can be associated with
+$$M_{[\mu_1}{}^{[\nu_1}M_{\mu_2]}^{\nu_2]}, \qquad  N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4{\color{red}[}\mu_1]\mu_2{\color{red}]}}N_{_{(1050)}}^{[\rho_1\rho_2\rho_3,\rho_4{\color{red}[}\nu_1]\nu_2{\color{red}]}}$$
+and
+$$N^{^{(1050)}}_{[\mu_1\mu_2\rho_1,\rho_2\rho_3]\rho_4}N_{_{(4125)}}^{\rho_1\rho_2\rho_3,\rho_4\nu_1\nu_2}+N_{_{(1050)}}^{[\nu_1\nu_2\rho_1,\rho_2\rho_3]\rho_4}N^{^{(4125)}}_{\rho_1\rho_2\rho_3,\rho_4\mu_1\mu_2}.$$
+\\
+\noindent
+{\bf An alternative choice of the basis of the 8th order invariants.}
+\medskip
+\\
+Instead of the basis of six $I_8$ given above, one can choose it using the results of \cite{Paulos:2008tn,Melo:2020amq} on higher-order string corrections to the effective action of type IIB supergravity produced by $10D$ curvature tensor and the five-form. It was shown there that supersymmetry singles out five independent 8th order terms in the action involving exclusively the $F_5$ form and its derivative $\partial_{\nu} F_{\mu_1\ldots\mu_5}$. \footnote{Other terms are constructed by taking products of components of the Weyl tensor with  themselves or with $F_5$\,.} In the assumption that the self-dual $F_5$ is the external derivative of a four form $(F_5=dA_4)$ and satisfies a free equation of motion ($\partial_{\mu_1} F^{\mu_1\ldots\mu_5}=0$), the tensor $\partial_{\nu} F_{\mu_1\ldots\mu_5}$ forms an irreducible $\bf 1050$ module of $SO(1,9)$. The five independent invariants individualized in \cite{Paulos:2008tn,Melo:2020amq} (see  the last five lines in the tables of those papers) form a basis of the invariants in the symmetric product of four {\bf 1050} irreps of the form
+\be\label{cT}
+\mathcal T^{^{(1050)}}_{[\mu_1\ldots\mu_5]\nu}=\partial_{\nu} F_{\mu_1\ldots\mu_5}+N^{^{(1050)}}_{[\mu_1\mu_2\mu_3,\mu_4\mu_5]\nu}\,.
+\ee
+The LiE program tells us that there are exactly five independent invariants in $(\mathcal T^4)_{sym}$. However, in this paper we are interested exclusively in $F_5$ invariants that do not contain derivatives of $F_5$. So we need to check that the five invariants found in \cite{Paulos:2008tn,Melo:2020amq}  remain independent if we set $\partial_{\nu} F_{\mu_1\ldots\mu_5}=0$. This is {\it a priori} not guaranteed because of the composite nature of $N^{(1050)}=FF$, but it turns out that this is indeed the case. These invariants have the following structure (in which we skip the superscript $(1050)$ from $N^{(1050)}$)
+\bea\label{F8IIB1}
+\hat I^{^{(1)}}_{8}&=&-\Big(N_{[\mu_1\mu_2\mu_3{\color{red}[}\mu_4\rho_1]\rho_2{\color{red}]}}N^{[\mu_1\mu_2\mu_3{\color{red}[}\mu_4\nu_1]\nu_2{\color{red}]}}\Big)
+\Big(N_{[\nu_1}{}^{\rho_1\lambda_1{\color{red}[}\lambda_2\lambda_3]\lambda_4{\color{red}]}}N^{[\rho_2}{}_{\lambda_1\lambda_2{\color{red}[}\nu_2\lambda_3]\lambda_4{\color{red}]}}\Big)\nonumber\\
+&=&\frac 1{3^4}\Big(\frac 56 N_{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\rho_1]\rho_2{\color{red}]}}N^{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\nu_1]\nu_2{\color{red}]}}N^{[\lambda_1\lambda_2\lambda_3\lambda_4\rho_1]\rho_2}N_{[\lambda_1\lambda_2\lambda_3\lambda_4\nu_1]\nu_2}\nonumber\\
+&&+\frac{1}{7200}\tr M^4- \frac{70}{1200^2}(\tr M^2)^2\Big)\,,
+\eea
+\bea\label{F8IIB2}
+\hat I^{^{(2)}}_8 &=&\Big(N_{[\mu_1\mu_2\mu_3{\color{red}[}\mu_4\rho_1]\rho_2{\color{red}]}}N^{[\mu_1\mu_2\mu_3{\color{red}[}\mu_4\nu_1]\nu_2{\color{red}]}}\Big)
+\Big(N^{[\rho_1}{}_{\lambda_1\lambda_2{\color{red}[}\nu_1\lambda_3]\lambda_4{\color{red}]}}N^{[\rho_2\lambda_1\lambda_3{\color{red}[}\lambda_2\lambda_4]}{}_{\nu_2{\color{red}]}}\Big)\\
+&=&\frac 1{3^4} \Big(N_{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\rho_1]\rho_2{\color{red}]}}N^{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\nu_1]\nu_2{\color{red}]}}N^{[\lambda_1\lambda_2\lambda_3\lambda_4\rho_1]\rho_2}N_{[\lambda_1\lambda_2\lambda_3\lambda_4\nu_1]\nu_2}\nonumber\\
+&&+ \frac{1}{240^2}\tr M^4- \frac{1}{10 \cdot 240^2}(\tr M^2)^2 \Big),
+\eea
+where the indices in the red brackets are antisymmetrized after the antisymmetrization of the indices in black brackets.
+These two invariants are composed of $\tr M^4$, $(\tr M^2)^2$ and the scalar product of the $\bf 770$ irrep $(N_{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\rho_1]\rho_2{\color{red}]}}N^{[\mu_1\mu_2\mu_3\mu_4{\color{red}[}\nu_1]\nu_2{\color{red}]}})$ with itself,  as one finds using identities of Appendix \ref{id5f}.
+\bea
+\hat I^{^{(3)}}_8 =
+\Big(N_{[\mu_1 \mu_2 \mu_3 {\color{red}[}\rho_1 \rho_2] \rho_3 {\color{red}]}} N^{[\mu_1 \mu_2 \mu_3 {\color{red}[}\nu_1 \nu_2] \nu_3 {\color{red}]}}\Big)
+\Big(N^{[\rho_1 \rho_2 \lambda_1 {\color{red}[}\lambda_2 \lambda_3]}{}_{ \nu_1{\color{red}]}}  N^{[\rho_3}{}_{\nu_2 \lambda_2 {\color{red}[}\lambda_1 \lambda_3] \nu_3 {\color{red}]}}\Big)\,,
+\eea
+\bea
+{\hat I}^{(4)}_8=\Big(N_{[\mu_1 \mu_2 \mu_3 {\color{red}[}\rho_1 \rho_2] \rho_3 {\color{red}]}} N^{[\mu_1 \mu_2 \mu_3 {\color{red}[}\nu_1 \nu_2] \nu_3 {\color{red}]}}\Big)\Big(N_{[\nu_1}{}^{\rho_1\lambda_1 {\color{red}[}\rho_2 \lambda_2] \lambda_3 {\color{red}]}} N^{[\rho_3}{}_{\nu_2\lambda_2 {\color{red}[}\nu_3 \lambda_1] \lambda_3 {\color{red}]}}\Big)
+\eea
+and
+\bea\label{F8IIB3}
+\hat I^{^{(5)}}_8 &=&\Big(N_{[\nu_1}{}^{\rho_1\mu_1{\color{red}[}\mu_2\mu_3]\mu_4{\color{red}]}}N^{[\rho_2}{}_{\mu_1\mu_2{\color{red}[}\nu_2\mu_3]\mu_4{\color{red}]}}\Big)\Big(N_{[\rho_2}{}^{\nu_1\lambda_1{\color{red}[}\lambda_2\lambda_3]\lambda_4{\color{red}]}}N^{[\nu_2}{}_{\lambda_1\lambda_2{\color{red}[}\rho_1\lambda_3]\lambda_4{\color{red}]}}\Big)\nonumber\\
+&=& -\frac{5}{6} \hat I^{^{(1)}}_8 + \frac{25}{4\cdot 9^3}I^{^{(4)}}_8 + x \tr M^4 + y (\tr M^2)^2~\,,
+\eea
+where $I^{^{(4)}}_8$ is given in \eqref{MMNN2}, and $x$ and $y$ are coefficients whose explicit values we did not compute, since they are not important.
+
+To these five invariants we can add e.g. $\hat I^{^{(6)}}_8=I^{^{(2)}}_8$ in \eqref{trM4} to complete the basis.
+It is not an easy computational problem to establish the full relation between the two bases $I^i_8$ and ${\hat I}^i_8$ $(i=1,\ldots, 6)$, which we leave a part.
+
+\subsubsection{10th and higher order invariants}
+
+At the 10th order there are 12 linearly independent invariants and at order 12 there are 64.
+As we have already mentioned, together with the lower-order invariants their number is 83 which is by two units higher than the dimension of the ring. Therefore, there should be at least 2 non-linear relations between these 83 invariants.  The problem of individualizing the linearly independent invariants at order 10 and higher and to find  functional relations between them (similar to those considered in Appendices \ref{A15Appendix} and \ref{A16Appendix} for $sl(2)$ invariants of the modules of dimension 6 and 7) becomes highly involved (if at all doable) without using a computer program, a challenge which we leave to experts. Below we only give 12 possible candidates for a basis of the 10th-order invariants constructed by choosing and contracting different irreps in the decompositions of symmetric products of $M^{^{(54)}}$, $N^{^{(1050)}}$ and $N^{^{(4125)}}$:
+\bea\label{I101}
+I^{^{(1)}}_{10}&=&\tr M^5\,,\nonumber\\
+\\
+\label{I102}
+I^{^{(2)}}_{10}&=&(MM)_{\mu_1}{}^{\nu_1}M_{\mu_2}{}^{\nu_2}M_{\mu_3}{}^{\nu_3}N^{^{(4125)}}_{\nu_1 \nu_2 \nu_3}{}^{\mu_1 \mu_2 \mu_3}\,,\nonumber\\
+\nonumber\\
+\label{I103}
+I^{^{(3)}}_{10}&=&M_{\mu_1}{}^{\nu_1}M_{\mu_2}{}^{\nu_2}M_{\mu_3}{}^{\nu_3}\Big(N_{^{(1050)}}^{[\mu_1 \mu_2 \mu_3,\alpha_1\alpha_2]\alpha_3}N^{^{(1050)}}_{[\nu_1\nu_2\nu_3,\alpha_1\alpha_2]\alpha_3}\Big)\,,\nonumber\\
+\nonumber\\
+\label{I104}
+I^{^{(4)}}_{10}&=&(MM)^{\mu\nu}M^{\rho\lambda}\Big(N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4{\color{red}(}\mu]\nu}N_{_{(1050)}}^{[\alpha_1\alpha_2\alpha_3\alpha_4}{}_{\rho]\lambda\color{red})}\Big),\nonumber\\
+\nonumber\\
+\label{I105}
+I_{10}^{^{(5)}}&=&(MM)_{[\nu_1}{}^{[\mu_1}M_{\nu_2]}{}^{\mu_2]}N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4\mu_1]\mu_2}N_{_{(1050)}}^{[\rho_1\rho_2\rho_3,\rho_4\nu_1]\nu_2},
+\nonumber
+\eea
+\bea
+\label{I106}
+I_{10}^{^{(6)}}&=&(MM)_{\nu_1}{}^{\mu_1}M_{\nu_2}{}^{\mu_2}N^{^{(1050)}}_{[\mu_1\mu_2\rho_1,\rho_2\rho_3]\rho_4}N_{_{(4125)}}^{\rho_1\rho_2\rho_3,\rho_4\nu_1\nu_2}\,,\nonumber\\
+\nonumber\\
+\label{I107}
+I_{10}^{^{(7)}}&=& N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4\rho_5]\mu}(MM)^{\mu}{}_{\kappa}\Big(N_{_{(1050)}}^{[\rho_1 \rho_2 \rho_3,}{}_{\alpha_1 \alpha_2 ]\alpha_3}{}N_{_{(1050)}}^{[\rho_4\rho_5\kappa,\alpha_1 \alpha_3 ]\alpha_2}\Big),\nonumber
+\eea
+\bea
+\label{I108}
+I_{10}^{^{(8)}}&=& N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4\nu]\mu}M^{[\nu}{}_{\rho_5} M^{\mu]}{}_{\kappa}\Big(N_{_{(1050)}}^{[\rho_1 \rho_2 \rho_3,}{}_{\alpha_1 \alpha_2 ]\alpha_3}{}N_{_{(1050)}}^{[\rho_4\rho_5\kappa,\alpha_1 \alpha_3 ]\alpha_2}\Big),\nonumber\\
+\nonumber\\
+\label{I109}
+I_{10}^{^{(9)}}&=& N^{^{(1050)}}_{[\alpha_1\alpha_2\alpha_3\alpha_4\kappa]{\color{red}(}\nu}M^\kappa{}_\mu N_{_{(1050)}}^{[\alpha_1\alpha_2\alpha_3\alpha_4}{}_{\rho]\lambda\color{red})}N_{_{(1050)}}^{[\beta_1\beta_2\beta_3\beta_4\mu]\nu}N^{^{(1050)}}_{[\beta_1\beta_2\beta_3\beta_4}{}^{\rho]\lambda}\,,
+\nonumber
+\eea
+\bea
+\label{I1010}
+I_{10}^{^{(10)}}&=&\Big (N^{^{(1050)}}_{[\rho_1\rho_2\rho_3,\rho_4{\color{red}[}\mu_1]\mu_2{\color{red}]}}N_{_{(1050)}}^{[\rho_1 \rho_2 \rho_3,}{}_{\alpha_1 \alpha_2 ]\alpha_3}{}N_{_{(1050)}}^{[\rho_4\nu_1\nu_2,\alpha_1 \alpha_3 ]\alpha_2}\Big)
+\Big(N^{^{(1050)}}_{[\beta_1\beta_2\beta_3,\beta_4\nu_1]\nu_2}N_{_{(1050)}}^{[\beta_1\beta_2\beta_3,\beta_4\mu_1]\mu_2}\Big)\,,\nonumber\\
+\nonumber\\
+\label{I1011}
+I_{10}^{^{(11)}}&=&\Big(N^{^{(1050)}}_{[\rho_1 \rho_2 \rho_3,}{}^{\alpha_1 \alpha_2 ]\alpha_3}{}N^{^{(1050)}}_{[\mu_1\mu_2\mu_3,\alpha_1 \alpha_2 ]\alpha_3}\Big)
+\Big(N_{_{(1050)}}^{[\mu_1 \mu_2 \mu_3 {\color{red}[}\nu_1 \nu_2] \nu_3 {\color{red}]}}
+N_{_{(1050)}}^{[\rho_1 \rho_2 \lambda_1 {\color{red}[}\lambda_2 \lambda_3]}{}_{ \nu_1{\color{red}]}}  N_{_{(1050)}}^{[\rho_3}{}_{\nu_2 \lambda_2 {\color{red}[}\lambda_1 \lambda_3] \nu_3 {\color{red}]}}\Big)\,,\nonumber\\
+\nonumber\\
+\label{I1012}
+I_{10}^{^{(12)}}&=&\Big(N^{^{(1050)}}_{[\rho_1 \rho_2 \rho_3,}{}^{\alpha_1 \alpha_2 ]\alpha_3}{}N^{^{(1050)}}_{[\mu_1\mu_2\mu_3,\alpha_1 \alpha_2 ]\alpha_3}\Big)\Big(N_{_{(1050)}}^{[\mu_1 \mu_2 \mu_3 {\color{red}[}\nu_1 \nu_2] \nu_3 {\color{red}]}}N^{^{(1050)}}_{[\nu_1}{}^{\rho_1\lambda_1 {\color{red}[}\rho_2 \lambda_2] \lambda_3 {\color{red}]}} N_{_{(1050)}}^{[\rho_3}{}_{\nu_2\lambda_2 {\color{red}[}\nu_3 \lambda_1] \lambda_3 {\color{red}]}}\Big)\,,\nonumber
+\eea
+where the symmetrization and/or anti-symmetrization of the indices within the red brackets is made upon the anti-symmetrization within the black brackets.
+
+
+TOOLS /opt/homebrew/bin/pdftoppm /opt/homebrew/bin/pdftotext

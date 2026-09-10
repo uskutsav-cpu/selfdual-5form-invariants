@@ -1,0 +1,463 @@
+{
+  "status": "exact evaluation certificate, conditional on published Hilbert dimensions 7 and 14, and analytic invariance of source contractions",
+  "proof_scope": "Given dim invariant_degree8<=7 and dim invariant_degree10<=14 over Q, and that the transcribed contractions are invariant polynomials on the stated self-dual representation, exact rank7/rank14 graph evaluation matrices establish graph bases. Evaluation is injective on each invariant space (and an isomorphism onto its image), so the exact solved matrices give polynomial identities. Hilbert upper bounds and source invariance are premises, not inferred from finite sampling.",
+  "ranks": {
+    "atlas8": 7,
+    "atlas10": 14,
+    "source8_selected": 7,
+    "source8_primary": 6,
+    "source8_hatted": 5,
+    "source8_primary_with_product": 6,
+    "source8_hatted_with_product": 6,
+    "source10": 12,
+    "source10_primitive_quotient": 11,
+    "product_intersection": 1
+  },
+  "dense_modular_crosschecks": [
+    {
+      "path": "fresh-points/p32693-s202609071701.json",
+      "sha256": "6602a122d755fdd0fdfb6717b29c481a45f1a2e04d1e135268d16f9db8ba2ae4",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071702.json",
+      "sha256": "2d1e2e5f1cbed3e1e9d5d75cc50dd479a7d00d9fe7a14e7797c559ea06a2ab15",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071703.json",
+      "sha256": "a76e5c5fceb2bd50fa8ebc6ec588e11c602de99801bc9ad33c05a34b025e3d39",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071704.json",
+      "sha256": "1ee7dfb47827e6a5d059765ac656325d06606de49f3916dc1bf6b3e3de4a37a7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071705.json",
+      "sha256": "198eb0105c10339a49e75a4a9dfff212724dd0b8bf63104568208ff65232cb0b",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071706.json",
+      "sha256": "ad5c516addff8af364f13723a0ef2c72d0e17f2c526a86fc0dd6db8878cf7270",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071707.json",
+      "sha256": "e5b7d3c4eeacbf2f92a099bccbee4523c7ac9626d0403eba6216b2ab549dcd75",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071708.json",
+      "sha256": "ac544f63cf2454a7845b24610c4e2477f342f92eb385bcc38997e412ce9b70a7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071709.json",
+      "sha256": "148c6c63912323816b86727e609047c8f61f7621fd02bb2fc0160e8273fe1537",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071710.json",
+      "sha256": "b1e2abf56c58c88d05b0f8d1c970c95a6b1b0e8fe4c4a9c8f9e4f880cf764fd0",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071711.json",
+      "sha256": "5372b6d507bc1162711899d18290ac9d6a20d9a3823ae5dbb58de56b1a64c7dd",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071712.json",
+      "sha256": "e80cba8a464ade44362524cd4d0166b710ff1999c1d61397913d5a5b77faacaf",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071713.json",
+      "sha256": "f9bd82f576c64ec1b508e0b9a7ff89fb80d536f97cfab54c795abab16dfe72ba",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071714.json",
+      "sha256": "646e7817bffa96e8e482c288cefc6931f2e37661581961d7816d03aea69576ac",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071715.json",
+      "sha256": "93c2894b41f2598bc0c828e7d3cb652da09ac52f0f1b385aa3a9b1a61c982c8c",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32693-s202609071716.json",
+      "sha256": "88726920ea55a8c5da99c9793eef0d61e7bc5eba6707bbee19004950e3c8bd19",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071701.json",
+      "sha256": "242cbb705f1e7e5899663f3882fe52d2de50150294dd928d7b7f36b2772f383f",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071702.json",
+      "sha256": "c1650038e1d9b612f82d8151ce3e772b587477ccde1541aea526495c9df1b4e7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071703.json",
+      "sha256": "db5f575409e399e485ad38c42558fd1cb65784ba829ff8a614fc9af44845d88e",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071704.json",
+      "sha256": "55f0e2ea5339b4e7644ed88135accae1b2c3871489cc783bc0602f57cce7c0bb",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071705.json",
+      "sha256": "4bbff0b7b62ee5ab8abaa608a603e3480c61ced98db7f346ddd684d133b4a486",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071706.json",
+      "sha256": "23edeaac00f2ace874f7de8c016b74b719c84129e433e8770242de2863ed33c5",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071707.json",
+      "sha256": "db2404213544bc1057b62968ae32c817c1080e49112da40f1abed9909b33eca7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071708.json",
+      "sha256": "d04001fedb22f747557bba71396cf5da995aea5da00b58cb3173a712b21a1aac",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071709.json",
+      "sha256": "9e6f868a9b66057a39b510cb787ff050cc6b8a9972b91130a535e4f5ac2a9521",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071710.json",
+      "sha256": "b56bc1f4a88dce54e1bdaa822cacf534b4e22d2915e9019bc11e0532d30604d7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071711.json",
+      "sha256": "c14033bc6feba7929dc403ef30eab12f6cff59e04f807521ce934c44db85d363",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071712.json",
+      "sha256": "9267f19088d76ef1c379e25d64eb569de50793cf274db531f9bac45e12829ee7",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071713.json",
+      "sha256": "6feaa786ca0e56774e29c0793af51fad8c587d7d85a7567f03c766c76ad0b309",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071714.json",
+      "sha256": "33eb65b4b4a43de529c74aac2829bc4cb6f620d679a8733329a9888988e5a00e",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071715.json",
+      "sha256": "17e9ce84300033c9e27b7173d310803911998e7c0e5fb08acee19440dcf28e41",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32713-s202609071716.json",
+      "sha256": "aa2cdcc726606a668962f54b957aeb419aee43245180f676279201d1d8add8cf",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071701.json",
+      "sha256": "9d49b34306277d872b89a141fbde0c167b0177f600f0b8dc1f49f74a43b10d4d",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071702.json",
+      "sha256": "5786df3d5d604e78e7ba73328d9b87efff666057472604c4553a3b1c026f23fa",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071703.json",
+      "sha256": "f2f342820f3784658356fd3c90a971ab412c5850b2e718c372a6dd5a8537d7f0",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071704.json",
+      "sha256": "322a6d935e23e9ee48706fc3d6e8b7e16bd22f6e972bff3ab68ce124e47325a2",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071705.json",
+      "sha256": "b68f7af190817a1d2f39982bf6a2775a19b407e29dce41a399856abde9da96fd",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071706.json",
+      "sha256": "43eceaaae13c6df7897be903a3970936a3ce112e383ce82fd05daa9623b52027",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071707.json",
+      "sha256": "cd6f2114b4d4326138d6f420dad3896776eff58fb46599efbffa6735f3ba3e37",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071708.json",
+      "sha256": "70dc2590710695d34808d1d30181fa2b55a9b491b92c942a1a3846a91b1fa5b2",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071709.json",
+      "sha256": "1f254a27ec56eaffbbbf6929cf9e1073222c5caee56874d3fe3a3681b369e6ea",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071710.json",
+      "sha256": "3cc8ebdec588c607cf567a25e2ede2dc9c83391961e24331fd82db8e84f9a749",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071711.json",
+      "sha256": "c8c712d82f068104d37232d4eb2af677ab237d2301c19007f1a793ff21114553",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071712.json",
+      "sha256": "9da495d7cc5a9a620f9f5eb1e0b389c2f3f9da5d403662f0d5e6cb03bffcf94c",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071713.json",
+      "sha256": "7b61ae3596c68fe63ecd0707324de9a550ee5ce4db684dfd811e0c34806d5d27",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071714.json",
+      "sha256": "09f31880b4d1901c5b8dbaa3749451d972b04f47057285f24f156e0be79b0e16",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071715.json",
+      "sha256": "11e0c5f5fc60532722ad212bb85e1626e3d225234a4b4f3a083a126904a913a2",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32717-s202609071716.json",
+      "sha256": "cf68cf32ba1e8cad6a6675b69b175f3762a51d595e2eddc98f1326bdf29bc448",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071701.json",
+      "sha256": "775f940507bf4aca0e3dc30c0d738a7db68d55a3270befabac01520a7c363ccf",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071702.json",
+      "sha256": "a27b4ac7c234f8a4c3c59870600aa7c9c85afa86d1dd0d099f2fc0c18340f13b",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071703.json",
+      "sha256": "0654c1fdae7a640145e9931fa74869037ba895f82b0cdcdc98d3dcddc6ef05be",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071704.json",
+      "sha256": "d41af14060472f081bec3f890e61e0c3f7badf311f33fe667dff41d21b4513a2",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071705.json",
+      "sha256": "4d7ffba48dac4364f0464adb914a8d5a66f502233d3ff6646aadf9c215b7d078",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071706.json",
+      "sha256": "5bf1594489f8afd276348526b914dcfaef7f40cb3674262c7cfe8915991bb8ff",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071707.json",
+      "sha256": "b34566dd47e7428c9cbb24f03757bc258382a535181a3c37f802ced1397d75cc",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071708.json",
+      "sha256": "fc145d4eb8a59bd44292c7b03825617191eacfe33b7c623cd903595996a12830",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071709.json",
+      "sha256": "3babdeff45d770986aacd82b9d66c0ee6d7e865be8b7f190c91ad7ef97597b0d",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071710.json",
+      "sha256": "79a785f20b73920b79569d81915f101c99af4f5d766a94d4d0bd530f6ef39720",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071711.json",
+      "sha256": "f18b963bb5c06b55a3890d5fd97ad2830c00121f10fa912efc773f01075475a9",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071712.json",
+      "sha256": "0771c692589861a187e4d3f291fcffd2368e791ec55b7ad32612f511d3ec093c",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071713.json",
+      "sha256": "eb51267f23ec33f4a29605f675c8405709e32f3def2983bc5fcb5bd42e01dcd6",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071714.json",
+      "sha256": "7293a87646948ff7ca9ba99a4025b78fa48c7c293dabaead3cfe655d65075094",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071715.json",
+      "sha256": "11b61a83b6b7b7ff4b81977d90b0a1cfd70a18c45bccf19ae41f1477b13c6fbd",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32719-s202609071716.json",
+      "sha256": "7bc6f0c9e0e26d0b9bc2c212c0f7737a37ce20f0f17d9b5ff90058aba1ffa043",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071701.json",
+      "sha256": "5bd05d533433f681ac0b436f1e6a6703460e39330d2062b8e5eaabcb31c7e9ae",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071702.json",
+      "sha256": "d9d75374e51b6b652cf2d46d4a8e4f253a0b53e683f99feaa939b510728fd83d",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071703.json",
+      "sha256": "c932078b8fd52a502ee76b5b17703c279696531336c16ed3e471b64ba1bf8543",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071704.json",
+      "sha256": "af5ccdf4f8ca3614515e13d672bb8e33c70315979c230c723068f0eb686da3cb",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071705.json",
+      "sha256": "fb65ddbae2cdd482f7b033815d3a9703a0f9cf714bbaede54e18af1d559ee8de",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071706.json",
+      "sha256": "ca757ff63e90164d086b42a9392edc66933d585b487dd41d03ee0c3a08ddd1af",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071707.json",
+      "sha256": "e235301ebfb5640868f320d6ef0127a3a467a24d425d4fb182c756d111c60c2d",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071708.json",
+      "sha256": "60a64a6a7791f1bc5494cd9f553e434c3edd0108d537be75c5332c474c1689da",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071709.json",
+      "sha256": "6ebf68f5a5f5f6fefa8ba6c19a87547e831d1f298e3d2dd5d349cf306e9bd3db",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071710.json",
+      "sha256": "ecbb75c6c2bb81ef9685e17bbc246ca58d7a6e68583a4dd664cbbaa01f226b10",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071711.json",
+      "sha256": "8d121a073c29a0e97dfada1fc5b8911401f48380dce6f5f5b1e1b4e8998e95b6",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071712.json",
+      "sha256": "975604c0bad6f6aefc467886fc0db2985ed7e2769d087cf4cf84850770440f1d",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071713.json",
+      "sha256": "2a24fad8f0047afbe0bf2e23c39185cd29c965fcc71102e7f5975597393fa909",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071714.json",
+      "sha256": "7247a5d3650c8fad8df326dc83118c40d956c3acb4a1273517c3320f0be65a17",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071715.json",
+      "sha256": "e2c4dd84be82c99195a9967dd0c1b45bc8976ae51750033a6c56bbb1d1456c3e",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32749-s202609071716.json",
+      "sha256": "aa7efcf0899d55b541ebf2fe6a28e4628bbb7a8c1df3d32d3f84b5707810a7d0",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32771-s202609079001.json",
+      "sha256": "99996cc2f49d8b328ac6c953ed14a85d7f3429903db145330246aff83a8ed489",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32771-s202609079002.json",
+      "sha256": "2bb6837b15ac156768557c624a07a8bed45d4b909b1b575263c6559c3fc45385",
+      "passed": true
+    },
+    {
+      "path": "fresh-points/p32771-s202609079003.json",
+      "sha256": "37b2dc815c8caf39e9d0583004e606a9ad2894e9e449448434fbcd331f2c1e3c",
+      "passed": true
+    }
+  ]
+}
+{
+  "proof_scope": "Given dim invariant_degree8<=7 and dim invariant_degree10<=14 over Q, and that the transcribed contractions are invariant polynomials on the stated self-dual representation, exact rank7/rank14 graph evaluation matrices establish graph bases. Evaluation is injective on each invariant space (and an isomorphism onto its image), so the exact solved matrices give polynomial identities. Hilbert upper bounds and source invariance are premises, not inferred from finite sampling.",
+  "published_span_rank": 12,
+  "product_span_rank": 2,
+  "union_rank": 13,
+  "intersection_rank": 1,
+  "primitive_quotient_rank": 11,
+  "product_intersection_witnesses": [
+    {
+      "source_combination": [
+        "-11/1008",
+        "-1/20",
+        "0",
+        "0",
+        "5/6",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "product_coefficients": [
+        "-13/63",
+        "0"
+      ]
+    }
+  ]
+}

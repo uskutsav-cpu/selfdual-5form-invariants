@@ -1,0 +1,108 @@
+{
+ "artifact_hashes": {
+  "results/10d_order12.json": "9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113",
+  "results/degree12_benchmarks.json": "8e24c05655d7be304b21835eb9fe2013df31a922427e72f8a2b1996ab0ba2a42",
+  "results/stress_flow/change_of_basis/sextic_intrinsic.json": "081466f1b58690b81d896120ea8e751008c9aa12c97432fb5b203dbd8d91d3d5",
+  "results/stress_flow/closure_and_minimality.json": "6786d8452fa2e52824508f014ec830cd8d644616dc61a377b210939db8a630a2",
+  "results/stress_flow/dimension_table.json": "877677300afbd732c44c2f5cd09a64c73b5d2aaabc914b14b27f85b4e06e1efc",
+  "results/stress_flow/interacting_flow_equations.json": "53402d37036a216d0ea77224e15b2243082071ec26d15f3aad1931171d809b16"
+ },
+ "baseline_commit": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+ "branch": "research/maximal-chiral-four-form-program",
+ "environment": {
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "cores": 8,
+  "machine": "arm64",
+  "nauty_via_pynauty": "2.8.8.1",
+  "numpy": "2.5.1",
+  "numpy_blas": "accelerate",
+  "os": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "Pygments": "2.20.0",
+   "iniconfig": "2.3.0",
+   "numpy": "2.5.1",
+   "packaging": "26.2",
+   "pluggy": "1.6.0",
+   "pynauty": "2.8.8.1",
+   "pytest": "9.1.1"
+  },
+  "physical_memory_bytes": 8589934592,
+  "processor": "Apple M1",
+  "python": "3.13.13",
+  "python_impl": "CPython"
+ },
+ "gate": "PASSED",
+ "holdout_cross_check": {
+  "new_forcing_identical": true,
+  "targets_identical": "192/192"
+ },
+ "holdout_validations": [
+  {
+   "fit": [
+    32749,
+    32719,
+    32693,
+    32771,
+    32717
+   ],
+   "holdout": 32713,
+   "passed": true
+  },
+  {
+   "fit": [
+    32749,
+    32719,
+    32693,
+    32771,
+    32713
+   ],
+   "holdout": 32717,
+   "passed": true
+  }
+ ],
+ "phase": 0,
+ "proof_obligations": {
+  "discharged": [
+   "PO-01",
+   "PO-06"
+  ],
+  "open": [
+   "PO-03",
+   "PO-04",
+   "PO-05",
+   "PO-07",
+   "PO-08",
+   "PO-09",
+   "PO-10"
+  ],
+  "partial": [
+   "PO-02"
+  ]
+ },
+ "protected_branches": {
+  "degree10/checkpointed-trace-pipeline": "30fd0f63a9806bd2479aaeb402162ddfaad391e6",
+  "degree12/mac-exact-optimized": "de696cabc4c4c3f6ee755b2824fe67e92f7c305b",
+  "main": "e84339dd3c8b1264765b89dd496323d61af140fc",
+  "stress-flow/exact-low-degree-map": "04175461fdd55142b17e2e1c4e2fedf2455453ac"
+ },
+ "reproduction": {
+  "closure_artifact_regenerated_identical": true,
+  "degree12_fingerprint": {
+   "expected": "26b61c440b64b1beefe5d19f8eba4fcb9f299502a58796e82900ed2080605c25",
+   "match": true,
+   "observed": "26b61c440b64b1beefe5d19f8eba4fcb9f299502a58796e82900ed2080605c25"
+  },
+  "six_d_gate": {
+   "command": ".venv/bin/python scripts/run_6d.py",
+   "expected": "RESULT: PASS",
+   "observed": "RESULT: PASS"
+  },
+  "tests": {
+   "command": ".venv/bin/python -m pytest tests/ -q",
+   "expected": "96 passed",
+   "observed": "96 passed",
+   "seconds": 170.64
+  }
+ },
+ "schema": 1
+}

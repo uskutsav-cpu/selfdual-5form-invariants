@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "git",
+    "clone",
+    "--no-checkout",
+    "https://github.com/uskutsav-cpu/selfdual-5form-invariants.git",
+    "repair-checkout"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788829648.550239,
+  "status": "completed",
+  "pid": 6324,
+  "exit_code": 0,
+  "seconds": 2.415545166004449,
+  "finished_unix": 1788829650.9661272,
+  "logs": {
+    "stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr.log": {
+      "sha256": "ff9cea869fc680d05e3a55868684539127b682453a0a283815dd4fcd4e3e320c",
+      "bytes": 34
+    }
+  }
+}

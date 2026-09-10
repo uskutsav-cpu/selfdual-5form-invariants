@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "python3",
+    "-"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788833047.3214238,
+  "status": "completed",
+  "pid": 15156,
+  "exit_code": 0,
+  "seconds": 0.5773131670430303,
+  "finished_unix": 1788833047.8998568,
+  "logs": {
+    "stdout.log": {
+      "sha256": "facf5972d69d3c18f433c19502a3a3f2173ab675f269a619c76b0f099dbed302",
+      "bytes": 2018
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

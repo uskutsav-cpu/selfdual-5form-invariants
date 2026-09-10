@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\nimport json,hashlib\np=Path(\"../math-review/degree12_polynomial_gradient_certificate.json\");d=json.loads(p.read_text())\nprint(\"SHA256\",hashlib.sha256(p.read_bytes()).hexdigest())\ndef summary(x):\n if isinstance(x,dict): return {k:summary(v) for k,v in x.items()}\n if isinstance(x,list): return {\"length\":len(x),\"first\":summary(x[0])} if len(x)>6 else [summary(v) for v in x]\n return x\nprint(json.dumps(summary(d),indent=2))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788831413.224534,
+  "status": "completed",
+  "pid": 11112,
+  "exit_code": 0,
+  "seconds": 0.13706937490496784,
+  "finished_unix": 1788831413.362051,
+  "logs": {
+    "stdout.log": {
+      "sha256": "bdfac6ff3b4866cea47a2e879a0a410ca0c1d2dc40baf9fce4736df7f0bd6b12",
+      "bytes": 3971
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

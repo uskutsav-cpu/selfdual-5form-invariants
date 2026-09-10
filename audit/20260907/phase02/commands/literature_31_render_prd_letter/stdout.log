@@ -1,0 +1,47 @@
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-r", "62", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/page"]
+RENDER_ARGV ["/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "1", "-l", "1", "-r", "125", "-singlefile", "-png", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf", "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/first-page"]
+{
+  "variant": "prd_letter",
+  "source": "manuscript/prd_letter/main.tex",
+  "source_sha256": "3de9c10af75fd1cb22cf599bd27245d2556bed124f5dfd95fd7fd314094344df",
+  "pdf": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/main.pdf",
+  "pdf_sha256": "a0854134bfff900db4501f7c494c8beb6634265c4cd99f4cda3cb289baf23a76",
+  "page_count": 6,
+  "text_checks": {
+    "audit_scope": true,
+    "source_mismatch": true,
+    "conditional_identity_scope": false,
+    "no_priority_claim": true,
+    "unresolved_reference_pages": [],
+    "replacement_character_pages": []
+  },
+  "compiler_exit_code": 0,
+  "compiler_warning_lines": [
+    "Warning--missing journal in Hutomo:2025chiral",
+    "Warning--missing number in DallAgata:1998ahf",
+    "Warning--missing number in Paulos:2008tn",
+    "Warning--missing number in Liu:2022bfg",
+    "Warning--missing journal in Elamaran:2025mlinv",
+    "warning: errors were issued by BibTeX, but were ignored; use --print and/or --keep-logs for details.",
+    "warning: main.tex:217: Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "Underfull \\hbox (badness 1418) in paragraph at lines 214--217",
+    "warning: main.tex:400: Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "Underfull \\hbox (badness 1199) in paragraph at lines 398--400",
+    "warning: main.tex:628: Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "Underfull \\hbox (badness 1147) in paragraph at lines 618--628",
+    "warning: main.bbl:365: Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "Underfull \\hbox (badness 4441) in paragraph at lines 359--365",
+    "warning: main.bbl:388: Underfull \\hbox (badness 10000) in paragraph at lines 383--388",
+    "Underfull \\hbox (badness 10000) in paragraph at lines 383--388",
+    "warning: main.bbl:420: Underfull \\hbox (badness 1442) in paragraph at lines 416--420",
+    "Underfull \\hbox (badness 1442) in paragraph at lines 416--420",
+    "warning: main.bbl:489: Underfull \\hbox (badness 10000) in paragraph at lines 482--489",
+    "Underfull \\hbox (badness 10000) in paragraph at lines 482--489",
+    "warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details."
+  ],
+  "contacts": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/contact-01.png"
+  ],
+  "opening_page": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prd_letter/qa/first-page.png",
+  "visual_review": "pending model inspection of rendered images"
+}

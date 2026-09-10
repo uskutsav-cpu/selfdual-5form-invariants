@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;import re;print(Path(\"manuscript/prl/make_prl_figures.py\").read_text());s=Path(\"manuscript/prd_letter/references.bib\").read_text();print(\"\\n\".join(x for x in re.findall(r\"@[^@]+\",s) if \"journal\" not in x and x.startswith(\"@article\")))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788832262.600995,
+  "status": "completed",
+  "pid": 13442,
+  "exit_code": 0,
+  "seconds": 0.13652325002476573,
+  "finished_unix": 1788832262.73865,
+  "logs": {
+    "stdout.log": {
+      "sha256": "af4ad595b325ec5573eb871fcc027e1da1632844d1fd5d307b0e58eddb0e2e31",
+      "bytes": 6797
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

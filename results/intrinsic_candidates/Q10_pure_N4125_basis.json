@@ -1,0 +1,91 @@
+{
+ "all_checks_pass": true,
+ "blocks_per_element": {
+  "M": 0,
+  "N1050": 0,
+  "N4125": 5
+ },
+ "bracket_operations": {
+  "black": 0,
+  "red": 0
+ },
+ "claim": "A three-element compact basis for Q10 was independently recovered in the pure N^(4125)^5 sector and shown to span the same quotient space as the graph-derived and published-formula bases.",
+ "einsums": [
+  "abcdef,abcdgh,efijkl,ghimno,jklmno->",
+  "abcdef,abcdgh,efijkl,gijmno,hklmno->",
+  "abcdef,abcdgh,egijkl,fhimno,jklmno->"
+ ],
+ "expanded_permutation_terms": 1,
+ "formulas": {
+  "R1": "N4125[0]{_mu _nu _rho _sigma _tau _alpha} * N4125[1]{^mu ^nu ^rho ^sigma _beta _gamma} * N4125[2]{^tau ^alpha _delta _epsilon _zeta _eta} * N4125[3]{^beta ^gamma ^delta _theta _iota _kappa} * N4125[4]{^epsilon ^zeta ^eta ^theta ^iota ^kappa}",
+  "R2": "N4125[0]{_mu _nu _rho _sigma _tau _alpha} * N4125[1]{^mu ^nu ^rho ^sigma _beta _gamma} * N4125[2]{^tau ^alpha _delta _epsilon _zeta _eta} * N4125[3]{^beta ^delta ^epsilon _theta _iota _kappa} * N4125[4]{^gamma ^zeta ^eta ^theta ^iota ^kappa}",
+  "R3": "N4125[0]{_mu _nu _rho _sigma _tau _alpha} * N4125[1]{^mu ^nu ^rho ^sigma _beta _gamma} * N4125[2]{^tau ^beta _delta _epsilon _zeta _eta} * N4125[3]{^alpha ^gamma ^delta _theta _iota _kappa} * N4125[4]{^epsilon ^zeta ^eta ^theta ^iota ^kappa}"
+ },
+ "not_claimed": [
+  "universally canonical",
+  "simplest structures reaching Q10",
+  "a resolution of the published bracket ambiguity",
+  "a characteristic-zero identity"
+ ],
+ "per_prime": {
+  "32717": {
+   "determinant": 29506,
+   "fresh_sample_rank": 3,
+   "quotient_vectors": [
+    [
+     2575,
+     23575,
+     14540
+    ],
+    [
+     27240,
+     7380,
+     26658
+    ],
+    [
+     14033,
+     8112,
+     7270
+    ]
+   ],
+   "rank": 3,
+   "removal_minimality_rank_after_removal": {
+    "R1": 2,
+    "R2": 2,
+    "R3": 2
+   }
+  },
+  "32749": {
+   "determinant": 8930,
+   "fresh_sample_rank": 3,
+   "quotient_vectors": [
+    [
+     16093,
+     21692,
+     18193
+    ],
+    [
+     31483,
+     19632,
+     27897
+    ],
+    [
+     28082,
+     30819,
+     25471
+    ]
+   ],
+   "rank": 3,
+   "removal_minimality_rank_after_removal": {
+    "R1": 2,
+    "R2": 2,
+    "R3": 2
+   }
+  }
+ },
+ "round_trip_verified": true,
+ "schema": 1,
+ "sector": "N4125+N4125+N4125+N4125+N4125",
+ "sector_canonical_candidates": 15,
+ "sector_fully_enumerated": true
+}

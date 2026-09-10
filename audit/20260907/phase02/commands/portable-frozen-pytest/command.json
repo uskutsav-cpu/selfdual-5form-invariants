@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "../environment/bin/python",
+    "-m",
+    "pytest",
+    "-vv",
+    "-o",
+    "addopts=",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-frozen",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788830022.651459,
+  "status": "completed",
+  "pid": 8530,
+  "exit_code": 0,
+  "seconds": 19.943182957940735,
+  "finished_unix": 1788830042.595794,
+  "logs": {
+    "stdout.log": {
+      "sha256": "5e8b2e339d067cb3b3a0df54bdbb7e1a82a82af1175374ffbf5a0b48a4545965",
+      "bytes": 2575
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

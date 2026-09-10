@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "repository_imports": false,
+  "metric": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "signature_negative_positive": [
+    1,
+    9
+  ],
+  "star_squared_exponent": 26,
+  "star_squared": 1,
+  "ambient_dimension": 252,
+  "selfdual_dimension": 126,
+  "integral_directions_sha256": "e1a48f2071670fce31d7694eeddf091caffec94dec1056aba52468c39f930bb8",
+  "five_slot_permutation_parities": {
+    "even": 60,
+    "odd": 60
+  },
+  "witnesses": [
+    {
+      "prime": 32749,
+      "seed": 20260907,
+      "selfdual_components_equal": true,
+      "quadratic_norm": 0,
+      "euler_rows": 81
+    },
+    {
+      "prime": 32749,
+      "seed": 20260908,
+      "selfdual_components_equal": true,
+      "quadratic_norm": 0,
+      "euler_rows": 81
+    },
+    {
+      "prime": 32719,
+      "seed": 20260907,
+      "selfdual_components_equal": true,
+      "quadratic_norm": 0,
+      "euler_rows": 81
+    },
+    {
+      "prime": 32719,
+      "seed": 20260908,
+      "selfdual_components_equal": true,
+      "quadratic_norm": 0,
+      "euler_rows": 81
+    }
+  ]
+}
+PASS: all 81 ordered formulas, connected loopless 5-valent graphs and edge variances verified

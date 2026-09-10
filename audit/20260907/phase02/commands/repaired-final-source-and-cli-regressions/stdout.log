@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python
+rootdir: /Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout
+configfile: pytest.ini
+collecting ... collected 9 items
+
+tests/test_published_degree10_source_reading.py::test_source_red_program_matches_independent_direct_contraction[10] PASSED [ 11%]
+tests/test_published_degree10_source_reading.py::test_source_red_program_matches_independent_direct_contraction[11] PASSED [ 22%]
+tests/test_published_degree10_source_reading.py::test_source_red_program_matches_independent_direct_contraction[12] PASSED [ 33%]
+tests/test_published_degree10_source_reading.py::test_source_registry_promotes_resolved_red_readings PASSED [ 44%]
+tests/test_published_degree10_source_reading.py::test_legacy_registry_describes_its_actual_outer_brackets PASSED [ 55%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[8-10-False] PASSED [ 66%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[10-8-False] PASSED [ 77%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[8-8-True] PASSED [ 88%]
+tests/test_literature_cli.py::test_incompatible_output_cannot_overwrite_canonical_map[10-10-True] PASSED [100%]
+
+============================== 9 passed in 1.35s ===============================

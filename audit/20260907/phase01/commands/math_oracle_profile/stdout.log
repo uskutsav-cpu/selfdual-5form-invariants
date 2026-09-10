@@ -1,0 +1,5 @@
+{
+  "total_forward_dual_multiply_terms_per_cell": 503449599000,
+  "max_three_output_arrays_bytes": 240000000,
+  "max_float64_bound": 107243150400000
+}

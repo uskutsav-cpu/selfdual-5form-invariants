@@ -1,0 +1,67 @@
+[
+  {
+    "path": "manuscript/main.tex",
+    "before_sha256": "044847c8325c12ac588de3c94baa55472ceceeb14ab89ad69bafc106495869e8",
+    "after_sha256": "d7e121e7e46af521ba79ee6c10aa63d8e251b50ae9f2e35892db191106c865a7"
+  },
+  {
+    "path": "submission_candidate/main.tex",
+    "before_sha256": "044847c8325c12ac588de3c94baa55472ceceeb14ab89ad69bafc106495869e8",
+    "after_sha256": "d7e121e7e46af521ba79ee6c10aa63d8e251b50ae9f2e35892db191106c865a7"
+  },
+  {
+    "path": "manuscript/jhep/main.tex",
+    "before_sha256": "cae76a190d04b3833048bffc590b7383705a78a35e0bf27064826cb616845971",
+    "after_sha256": "f9512d76f8665526d93a3a9d012c4fb1e3f37bfbf7473fafbf98f3e3f76aef28"
+  },
+  {
+    "path": "manuscript/prd/main.tex",
+    "before_sha256": "714eeeb54fa74399d0865158bd472bc659cd83f3aa71b287849a26c11513a73f",
+    "after_sha256": "2aa4996e088fa937856854719bd8c5eec74b836c57c59756660151e6413934ea"
+  },
+  {
+    "path": "manuscript/prd_letter/main.tex",
+    "before_sha256": "a073e920629fe0965b562c3e54d8021551a338368543f3f6e38637d1bc760b78",
+    "after_sha256": "3de9c10af75fd1cb22cf599bd27245d2556bed124f5dfd95fd7fd314094344df"
+  },
+  {
+    "path": "manuscript/jhep/appendices/app_h_closure.tex",
+    "before_sha256": "99886832b95abb30af2fe1b63e5616bd1f1ad7269d12ab664181e517f259f5c8",
+    "after_sha256": "73ddce164ad0b6d37150baf402364adf0cedb41a043a853d4a87347e08323817"
+  },
+  {
+    "path": "manuscript/jhep/appendices/app_i_gten.tex",
+    "before_sha256": "d8b7bcba3a2ec647f028de6e293793c7c1167113992b372f23953a95a3ee6984",
+    "after_sha256": "5e7742b70b157de1163eae85f359144b4d6df337ba81b08e2e2fce178b58e77d"
+  },
+  {
+    "path": "manuscript/jhep/appendices/app_g_rank81.tex",
+    "before_sha256": "4e4593942e884a43ca8b68f69a1cf836d19d44dbbb4e3291c99b2ab70caaa25d",
+    "after_sha256": "0ac3bf77cc0332284324da0e981af4bb46e21b9a6f8152c2fade64ad5b6bc1b8"
+  },
+  {
+    "path": "manuscript/jhep/appendices/app_j_b10.tex",
+    "before_sha256": "1613132281c287d9fb2563ae8b691096845be878b877e294561e83f8a62cb7e5",
+    "after_sha256": "c2c985eb0f8bcc406a443670c3cc5f8ef64e08279fd2b5ca8e75cf2577afdce9"
+  },
+  {
+    "path": "manuscript/prd/appendices/app_h_closure.tex",
+    "before_sha256": "b21db8139d084264b38cb65af129cbb5e27ea13fd8659aa318a63c26ffa35d6d",
+    "after_sha256": "0decf86f22788e4b6f4e36b0b8bf84d0ecf065957d595d346558eb63aad6788f"
+  },
+  {
+    "path": "manuscript/prd/appendices/app_i_gten.tex",
+    "before_sha256": "d8b7bcba3a2ec647f028de6e293793c7c1167113992b372f23953a95a3ee6984",
+    "after_sha256": "5e7742b70b157de1163eae85f359144b4d6df337ba81b08e2e2fce178b58e77d"
+  },
+  {
+    "path": "manuscript/prd/appendices/app_g_rank81.tex",
+    "before_sha256": "c1b8b116b73309322b7b57303e88de10b6ad01112ddd3ba6a19aa04f068c227a",
+    "after_sha256": "c86603984a6011c44b131617ffa6021fecebc6a688999d69176ca121059f450f"
+  },
+  {
+    "path": "manuscript/prd/appendices/app_j_b10.tex",
+    "before_sha256": "1613132281c287d9fb2563ae8b691096845be878b877e294561e83f8a62cb7e5",
+    "after_sha256": "c2c985eb0f8bcc406a443670c3cc5f8ef64e08279fd2b5ca8e75cf2577afdce9"
+  }
+]

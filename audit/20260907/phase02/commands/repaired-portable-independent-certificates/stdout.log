@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "source_only": false,
+  "checked": {
+    "canonical_source_maps": true,
+    "stored_graph_minors": 4,
+    "fresh_independent_graph_minors": 2,
+    "orbit_minors": 2,
+    "degree12_polynomial_minors": 2,
+    "source_certificate": {
+      "point_files_verified": 98,
+      "reconstructed_integer_entries": 630,
+      "ranks": {
+        "atlas8": 7,
+        "atlas10": 14,
+        "source8_selected": 7,
+        "source8_primary": 6,
+        "source8_hatted": 5,
+        "source8_primary_with_product": 6,
+        "source8_hatted_with_product": 6,
+        "source10": 12,
+        "source10_primitive_quotient": 11,
+        "product_intersection": 1
+      }
+    }
+  },
+  "scope": "Saved evidence algebra and hashes; no tensor recomputation. Polynomial identities retain stated invariant-space upper-bound and invariance premises."
+}

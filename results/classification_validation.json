@@ -1,0 +1,308 @@
+{
+  "schema": 2,
+  "frozen_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "frozen_audit_passed": false,
+  "passed": true,
+  "scope": "Verified repaired graph/source scientific payload and restored historical tests; optional private-archive integration skipped. Post-build portable verification is a sidecar, not part of this prebuild ledger.",
+  "checks": [
+    {
+      "name": "repaired-root-pytest",
+      "passed": true,
+      "seconds": 1456.178720499971,
+      "argv": [
+        "../environment/bin/python",
+        "-m",
+        "pytest",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "c313176e0d6e99587f734d7c7553db0182f62f1ab82a459b4224aad0071eb2a8",
+          "bytes": 28522
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-archived-trace-pytest-final",
+      "passed": true,
+      "seconds": 1446.9738412080333,
+      "argv": [
+        "../../../environment/bin/python",
+        "-m",
+        "pytest",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "96c4250d470af1266bc08abd510719661cf63e61e48f14da4dc18ee32ba0c039",
+          "bytes": 25969
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "archived-bridge-pytest",
+      "passed": true,
+      "seconds": 579.9909088329878,
+      "argv": [
+        "../../../../environment/bin/python",
+        "-m",
+        "pytest",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "f5ababd240511dcafb454dd8a21ae2a854ff5da02d8c4537ee797b381d2b5d6f",
+          "bytes": 8200
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "portable-frozen-pytest",
+      "passed": true,
+      "seconds": 19.943182957940735,
+      "argv": [
+        "../environment/bin/python",
+        "-m",
+        "pytest",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "5e8b2e339d067cb3b3a0df54bdbb7e1a82a82af1175374ffbf5a0b48a4545965",
+          "bytes": 2575
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "portable-frozen-recompute",
+      "passed": true,
+      "seconds": 589.1501296669012,
+      "argv": [
+        "../environment/bin/python",
+        "-u",
+        "scripts/verify_rank81.py",
+        "--recompute"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "1d32792aa7fd338cebef286544f984c64a280cf0f87633cfa67b4de01be34d42",
+          "bytes": 661
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "fresh-rank-and-lorentz",
+      "passed": true,
+      "seconds": 488.4238240829436,
+      "argv": [
+        "../environment/bin/python",
+        "-u",
+        "fresh_graph_checks.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "af04bca6d8ce8bb1f3c56e5b23973ab1ef8e9cc7225d2ee6733ab3b32bc830e6",
+          "bytes": 1567
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "math_verify_exact_source_certificate",
+      "passed": true,
+      "seconds": 0.8507983329473063,
+      "argv": [
+        "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python",
+        "verify_source_crt.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "7c0613f1ffb5e33fe148ca64f108b68267da525229ceb335c07b06a696c4fc6f",
+          "bytes": 2019
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "math_portable_all_saved_evidence",
+      "passed": true,
+      "seconds": 6.010386500041932,
+      "argv": [
+        "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python",
+        "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/scripts/verify_independent_audit.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "a1f607ad29444daa6ae2250dd9d13dc9dc201163358956f36b34d16a5b4db3ac",
+          "bytes": 853
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-six-dimensional-two-prime",
+      "passed": true,
+      "seconds": 107.43173254199792,
+      "argv": [
+        "../environment/bin/python",
+        "scripts/run_6d.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "37d03fc10115f6b38ee4fe89f11d902a47c5f97efc98d2972e1b0697b558c8b4",
+          "bytes": 662
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-final-source-and-cli-regressions",
+      "passed": true,
+      "seconds": 1.8505088329548016,
+      "argv": [
+        "../environment/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_published_degree10_source_reading.py",
+        "tests/test_literature_cli.py",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "fef834e55458b58edc2d43927045ccd62a3c3b30825ceeddf955e73e6fa409fc",
+          "bytes": 1585
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-historical-package-scan",
+      "passed": true,
+      "seconds": 0.38859133305959404,
+      "argv": [
+        "environment/bin/python",
+        "root-review/refresh_historical_packaging.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "f1eb198b23820439f0ba156d32d29fa7cf4d8b0ec7b3587e8e8f20180dd527a3",
+          "bytes": 455
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "compile-paper-final",
+      "passed": true,
+      "seconds": 4.4529142919927835,
+      "argv": [
+        "../../environment/bin/python",
+        "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/scripts/compile_latex.py",
+        "manuscript.tex",
+        "--output-directory",
+        "../../root-review/paper-final",
+        "--json"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "fd694f11286c3803cd7de98634e933ebb3cf94bd2612ff2964bfa2396024368b",
+          "bytes": 12179
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "render-paper-final",
+      "passed": true,
+      "seconds": 20.578108874964528,
+      "argv": [
+        "/Users/swethasunilkumar/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "root-review/render_final_paper.py"
+      ],
+      "logs": {
+        "stdout.log": {
+          "sha256": "1fcb790ea0cf9e1818ce91ee4dbe955133eb9e75e0b6a484cec94ee3e1fc8efe",
+          "bytes": 343
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "external_assumptions": [
+    "Published Hilbert dimensions7,14,72 for source-map/completeness conclusions",
+    "Analytic tensor invariance and stated integral coordinate arguments"
+  ],
+  "optional_integration": {
+    "status": "SKIP",
+    "reason": "Excluded third-party spinor archive unavailable",
+    "same_test_in_each_bridge_copy": true
+  },
+  "new_commit_identity": {
+    "name": "uskutsav-cpu",
+    "email": "uskutsav@gmail.com"
+  }
+}

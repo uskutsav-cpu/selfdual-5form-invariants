@@ -1,0 +1,56 @@
+{
+  "attempts": [
+    {
+      "command": [
+        "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+        "-X",
+        "compile",
+        "--outdir",
+        "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prl",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--untrusted",
+        "main.tex"
+      ],
+      "compiler": "tectonic",
+      "exitCode": 1,
+      "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\n(main.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24>note: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\nnote: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\nnote: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\n\nerror: main.tex:2: ! LaTeX Error: File `revtex4-2.cls' not found.\n! ! LaTeX Error: File `revtex4-2.cls' not found..\n\\@missingfileerror ...or: File `#1.#2' not found.}\n                                                  \nl.2 \n    \nNo pages of output.\nTranscript written on main.log.\nerror: something bad happened inside XeTeX, but no output was logged\nerror: the XeTeX engine had an unrecoverable error\ncaused by: halted on potentially-recoverable error as specified\n",
+      "pdfExists": false,
+      "pdfPath": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prl/main.pdf"
+    }
+  ],
+  "command": null,
+  "compiler": null,
+  "exitCode": 1,
+  "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\n(main.tex\nLaTeX2e <2021-11-15> patch level 1\nL3 programming layer <2022-02-24>note: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\nnote: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\nnote: downloading revtex4-2.cls\nwarning: failure fetching \"revtex4-2.cls\" from network (1/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (2/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: failure fetching \"revtex4-2.cls\" from network (3/3)\ncaused by: error sending request for url (https://relay.fullyjustified.net/default_bundle_v33.tar)\ncaused by: client error (Connect)\ncaused by: dns error\ncaused by: failed to lookup address information: nodename nor servname provided, or not known\nwarning: open of input revtex4-2.cls failed\ncaused by: failed to download \"revtex4-2.cls\"; please check your network connection.\n\nerror: main.tex:2: ! LaTeX Error: File `revtex4-2.cls' not found.\n! ! LaTeX Error: File `revtex4-2.cls' not found..\n\\@missingfileerror ...or: File `#1.#2' not found.}\n                                                  \nl.2 \n    \nNo pages of output.\nTranscript written on main.log.\nerror: something bad happened inside XeTeX, but no output was logged\nerror: the XeTeX engine had an unrecoverable error\ncaused by: halted on potentially-recoverable error as specified\n",
+  "pdfExists": false,
+  "pdfPath": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/prl/main.pdf",
+  "rootFile": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/main.tex",
+  "tectonic": {
+    "checked": [
+      {
+        "path": "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+        "source": "bundled"
+      }
+    ],
+    "path": "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/bin/tectonic",
+    "reason": "Tectonic executable is available.",
+    "source": "bundled",
+    "status": "available",
+    "version": "Tectonic 0.17.0"
+  },
+  "tectonicSuitability": {
+    "reasons": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/main.tex: bibliography tooling"
+    ],
+    "scannedFiles": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/main.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/end_matter.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/generated/numbers.tex",
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/manuscript/prl/macros.tex"
+    ],
+    "suitable": false
+  },
+  "texliveDetection": null
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "archive_sha256": "fb62d38723cba5b9825ee5a55d493ec18dd140c5172944160c38f2f17ef8947d",
+  "manifest_entries": 333,
+  "all_payloads_match_repaired_repository": true,
+  "graph_recomputation_evidence": "portable-frozen-recompute recomputed all four frozen cells with these identical graph modules and witnesses; corrected source modules are verified separately.",
+  "unlisted_metadata": [
+    "README.md",
+    "manifest.json"
+  ],
+  "metadata_coverage": "Both are covered by the full ZIP SHA256."
+}

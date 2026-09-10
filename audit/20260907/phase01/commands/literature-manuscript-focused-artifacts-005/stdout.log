@@ -1,0 +1,544 @@
+     1	"""Regression and adversarial checks on the classification deliverables."""
+     2	
+     3	import copy
+     4	import json
+     5	from pathlib import Path
+     6	import sys
+     7	
+     8	import numpy as np
+     9	import pytest
+    10	
+    11	ROOT = Path(__file__).resolve().parents[1]
+    12	sys.path.insert(0, str(ROOT / "src"))
+    13	sys.path.insert(0, str(ROOT / "scripts"))
+    14	
+    15	from sdinv.certificate import (context, determinant_mod, digest, evaluate_item,
+    16	                               integral_directions, verify_witness)
+    17	from sdinv.forms import hodge_matrix
+    18	from sdinv.graphs import graph_from_label, graph_label, graph_to_record
+    19	from sdinv.latex import graph_to_latex
+    20	from sdinv.modp import RankSieve
+    21	from sdinv.primitive import PolynomialSieve, product_monomials
+    22	from sdinv.serialize import dumps, loads, to_record
+    23	
+    24	
+    25	def _regular_graph(n):
+    26	    matrix = np.zeros((n, n), dtype=np.int64)
+    27	    for i in range(n):
+    28	        for d in (-2, -1, 1, 2, n // 2):
+    29	            matrix[i, (i + d) % n] = 1
+    30	    return matrix
+    31	
+    32	
+    33	@pytest.mark.parametrize("n", [10, 12, 14])
+    34	def test_graph_interchange_preserves_order_and_old_formats(n):
+    35	    graph = _regular_graph(n)
+    36	    for encoding in (dumps(graph), graph_label(graph), graph_to_record(graph)):
+    37	        assert np.array_equal(loads(encoding), graph)
+    38	    assert loads(dumps(graph))[0, n - 1] == 1
+    39	
+    40	
+    41	@pytest.mark.parametrize("record", [
+    42	    {"n": 12, "edges": [[0, 11, 1], [0, 11, 2]]},
+    43	    {"n": 12, "edges": [[0, 12, 1]]},
+    44	    {"n": 12, "edges": [[0, 0, 1]]},
+    45	    {"n": 12, "edges": [[0, 11, 1.5]]},
+    46	    {"n": 12, "edges": [[0, 11, True]]},
+    47	    {"n": -1, "edges": []},
+    48	    {"order": 4, "upper_triangle": [0, 1, 1, 1, 1, -1]},
+    49	    "n12[011^1]",
+    50	])
+    51	def test_graph_interchange_rejects_ambiguous_or_lossy_data(record):
+    52	    with pytest.raises(ValueError):
+    53	        loads(record)
+    54	
+    55	
+    56	def test_product_and_functional_ranks_are_different():
+    57	    # x^2 and y^2 are independent homogeneous polynomials on two variables.
+    58	    # Their gradients add no functional directions after x and y.
+    59	    polynomial = PolynomialSieve(2, 3, 32749)
+    60	    assert polynomial.add("x^2", [1, 4, 9])
+    61	    assert polynomial.add("y^2", [4, 9, 25])
+    62	    functional = RankSieve(2, 32749)
+    63	    assert functional.add([1, 0]) and functional.add([0, 1])
+    64	    assert not functional.add([2, 0]) and not functional.add([0, 4])
+    65	    assert polynomial.rank == functional.rank == 2
+    66	
+    67	
+    68	def test_degree12_product_inventory_is_ten_monomials():
+    69	    generators = {"I4_1": 4, "I6_1": 6, "I6_2": 6}
+    70	    generators.update({f"I8_{k}": 8 for k in range(1, 7)})
+    71	    generators.update({f"I10_{k}": 10 for k in range(1, 13)})
+    72	    products = product_monomials(generators, 12)
+    73	    assert len(products) == len(set(products)) == 10
+    74	    assert ("I4_1",) * 3 in products
+    75	    assert ("I6_1", "I6_2") in products
+    76	
+    77	
+    78	def test_integral_coordinates_are_selfdual_and_have_no_denominators():
+    79	    directions, indices = integral_directions()
+    80	    assert set(np.unique(directions)) == {-1, 0, 1}
+    81	    for prime in (32749, 32719):
+    82	        assert np.array_equal(hodge_matrix(10, 5, True, prime) @ directions % prime, directions % prime)
+    83	        _, basis, compact = context(prime, list(range(126)))
+    84	        assert compact[indices].tolist() == list(range(126))
+    85	        assert basis.ncols == 126
+    86	
+    87	
+    88	def test_determinant_handles_row_swaps_and_singular_matrices():
+    89	    assert determinant_mod([[0, 2], [3, 4]], 32749) == 32743
+    90	    assert determinant_mod([[2, 4], [3, 6]], 32749) == 0
+    91	    with pytest.raises(ValueError, match="prime"):
+    92	        determinant_mod([[1]], 32745)
+    93	
+    94	
+    95	def test_integral_jacobian_matches_finite_difference_directional_polynomial():
+    96	    # Quartic directional derivative recovered independently by exact
+    97	    # interpolation from five values (not a floating difference quotient).
+    98	    from sdinv.contract import planned_value
+    99	    from sdinv.exactmap import solve_full_column_rank
+   100	    item = json.loads((ROOT / "results/10d_order8.json").read_text())["generators"][0]
+   101	    graph = graph_from_label(item["graph"])
+   102	    record = {"id": item["id"], "degree": 4, "graph": to_record(graph)}
+   103	    prime = 32749
+   104	    a = np.random.default_rng(178).integers(0, prime, 126)
+   105	    direction = np.random.default_rng(179).integers(0, prime, 126)
+   106	    evaluated = evaluate_item(record, prime, a)
+   107	    values = []
+   108	    for t in range(5):
+   109	        form, _, _ = context(prime, (a + t * direction) % prime)
+   110	        values.append(planned_value(graph, form, 10, 5, True, prime))
+   111	    vandermonde = [[pow(t, k, prime) for k in range(5)] for t in range(5)]
+   112	    coefficients = solve_full_column_rank(vandermonde, values, prime)
+   113	    assert int(np.array(evaluated["jacobian_row"]) @ direction % prime) == coefficients[1]
+   114	
+   115	
+   116	def test_latex_has_one_upper_and_one_lower_occurrence_per_edge():
+   117	    graph = _regular_graph(12)
+   118	    formula = graph_to_latex(graph)
+   119	    for i, j, mult in to_record(graph)["edges"]:
+   120	        for k in range(1, mult + 1):
+   121	            assert formula.count(rf"\mu_{{{i},{j},{k}}}") == 2
+   122	    assert formula.count("F") == 12
+   123	
+   124	
+   125	def test_saved_certificate_and_tamper_rejection():
+   126	    from verify_rank81 import verify
+   127	    basis_path, certificate_path = ROOT / "results/rank81_basis.json", ROOT / "results/rank81_certificate.json"
+   128	    if not certificate_path.exists():
+   129	        pytest.skip("run scripts/search_rank81.py to produce release certificate")
+   130	    manifest, certificate = json.loads(basis_path.read_text()), json.loads(certificate_path.read_text())
+   131	    if not certificate.get("complete"):
+   132	        pytest.skip("certificate generation is still in progress")
+   133	    assert len(verify(manifest, certificate)) >= 4
+   134	    witness = certificate["witnesses"][0]
+   135	    for key, replacement in [("determinant_mod_p", 0), ("pivot_columns", [0] * 81),
+   136	                              ("invariant_ids", list(reversed(witness["invariant_ids"]))),
+   137	                              ("rank", 80)]:
+   138	        corrupted = copy.deepcopy(witness)
+   139	        corrupted[key] = replacement
+   140	        with pytest.raises(ValueError):
+   141	            verify_witness(manifest, corrupted)
+   142	    altered = copy.deepcopy(manifest)
+   143	    altered["invariants"][0]["graph"]["edges"][0][2] += 1
+   144	    with pytest.raises(ValueError):
+   145	        verify_witness(altered, witness)
+   146	
+   147	
+   148	def test_published_degree10_map_does_not_invent_an_invertible_matrix():
+   149	    path = ROOT / "results/order10_change_of_basis.json"
+   150	    if not path.exists():
+   151	        pytest.skip("run scripts/map_literature_basis.py --degree 10")
+   152	    result = json.loads(path.read_text())
+   153	    assert result["published_span_rank"] == 12
+   154	    assert result["union_rank"] == 13
+   155	    assert result["primitive_quotient_rank"] == 11
+   156	    assert len(result["matrix_12x14"]) == 12
+   157	    assert all(len(row) == 14 for row in result["matrix_12x14"])
+   158	
+   159	
+   160	def test_degree_runner_resume_and_bounded_workers_reproduce(tmp_path):
+   161	    from run_degree import run
+   162	    checkpoint = tmp_path / "degree4.json"
+   163	    first = run(4, 32749, [178, 179], checkpoint=checkpoint)
+   164	    resumed = run(4, 32749, [178, 179], checkpoint=checkpoint)
+   165	    parallel = run(4, 32749, [178, 179], workers=2)
+   166	    assert first == resumed == parallel
+   167	    assert first["polynomial_complete"] and first["functional_rank"] == 1
+   168	    with pytest.raises(ValueError, match="identity"):
+   169	        run(4, 32749, [180, 181], checkpoint=checkpoint)
+   170	
+   171	
+   172	def test_octic_map_checks_products_and_current_tensor_evaluator():
+   173	    from fractions import Fraction
+   174	    from map_literature_basis import reduce_matrix, inverse
+   175	    from sdinv.published_degree8_invariants import evaluate_selected_basis
+   176	    path = ROOT / "results/order8_change_of_basis.json"
+   177	    if not path.exists():
+   178	        pytest.skip("generate the octic literature map")
+   179	    result = json.loads(path.read_text())
+   180	    matrix = [[Fraction(x) for x in row] for row in result["graph_to_literature"]]
+   181	    assert inverse(matrix) == [[Fraction(x) for x in row] for row in result["literature_to_graph"]]
+   182	    assert len(result["primitive_quotient_matrix_6x6"]) == 6
+   183	    assert not result["exact_6x6_without_products"]
+   184	    prime = result["holdout_prime"]
+   185	    for sample in result["prime_witnesses"][str(prime)]["samples"]:
+   186	        assert np.array_equal(reduce_matrix(matrix, prime) @ np.array(sample["tensors"]) % prime, sample["graphs"])
+   187	    sample = result["prime_witnesses"][str(prime)]["samples"][0]
+   188	    form, _, _ = context(prime, sample["coordinates"])
+   189	    assert evaluate_selected_basis(form, prime) == sample["tensors"][:6]
+     1	"""The six displayed tensor expressions (4.12)--(4.16) of arXiv:2509.14350v2.
+     2	
+     3	Normalized symmetrization is applied after the five-index antisymmetrization
+     4	already present in N1050. We implement the displayed expressions literally;
+     5	no additional trace subtraction is silently inserted. Lower-degree products
+     6	must be included when comparing different primitive representatives.
+     7	"""
+     8	
+     9	import itertools
+    10	
+    11	import numpy as np
+    12	
+    13	from .modp import inv, mod_einsum
+    14	from .stress import (five_form_moment, matrix_trace_power, composite_n1050,
+    15	                     composite_n4125, _raise_axes, _antisymmetrize_axes)
+    16	
+    17	SOURCE = "https://arxiv.org/html/2509.14350v2#S4.SS1.SSS3"
+    18	BASIS = [{"id": f"T8_{i}", "equation": eq} for i, eq in
+    19	         enumerate(["4.12", "4.12", "4.13", "4.14", "4.15", "4.16"], 1)]
+    20	ALTERNATIVE_BASIS = [{"id": f"H8_{i}", "equation": eq} for i, eq in
+    21	                     enumerate(["4.18", "4.20", "4.21", "4.22", "4.23", "4.12 (second)"], 1)]
+    22	SELECTED_BASIS = BASIS[:5] + [ALTERNATIVE_BASIS[0]]
+    23	
+    24	
+    25	def _contract_four(tensor, subscripts, prime):
+    26	    """Explicit one-metric-per-edge contraction of four covariant tensors."""
+    27	    seen, operands = set(), []
+    28	    for term in subscripts.split(","):
+    29	        raised = [i for i, index in enumerate(term) if index in seen]
+    30	        seen.update(term)
+    31	        operands.append(_raise_axes(tensor, raised, prime))
+    32	    return int(mod_einsum(subscripts + "->", operands, prime))
+    33	
+    34	
+    35	def evaluate_selected_basis(form, prime):
+    36	    """A verified selection across the paper's two displayed lists.
+    37	
+    38	    T8_1,...,T8_5,H8_1 are used explicitly, rather than assuming either
+    39	    displayed list supplies a primitive complement under a literal reading.
+    40	    """
+    41	    first = evaluate_basis(form, prime)
+    42	    red = _antisymmetrize_axes(composite_n1050(form, prime), (3, 4, 5), prime)
+    43	    hatted1 = -_contract_four(red, "abcdrs,abcduv,urefgh,sefvgh", prime) % prime
+    44	    return first[:5] + [hatted1]
+    45	
+    46	
+    47	def evaluate_alternative_basis(form, prime):
+    48	    """Five hatted N1050 expressions plus the second invariant in (4.12)."""
+    49	    n = composite_n1050(form, prime)
+    50	    red = _antisymmetrize_axes(n, (3, 4, 5), prime)
+    51	    words = ["abcdrs,abcduv,urefgh,sefvgh", "abcdrs,abcduv,refugh,segfhv",
+    52	             "abcrst,abcuvw,rsefgu,tvfegw", "abcrst,abcuvw,uresfg,tvfweg",
+    53	             "urabcd,sabvcd,suefgh,vefrgh"]
+    54	    result = [_contract_four(red, word, prime) for word in words]
+    55	    result[0] = -result[0] % prime
+    56	    _, mixed = five_form_moment(form, prime)
+    57	    n4125 = composite_n4125(form, prime)
+    58	    result.append(int(mod_einsum("ad,be,cf,defabc->", [mixed, mixed, mixed,
+    59	                      _raise_axes(n4125, (3, 4, 5), prime)], prime)))
+    60	    return result
+    61	
+    62	
+    63	def evaluate_basis(form, prime):
+    64	    lower, mixed = five_form_moment(form, prime)
+    65	    upper = _raise_axes(lower, (0, 1), prime)
+    66	    n1050 = composite_n1050(form, prime)
+    67	    n4125 = composite_n4125(form, prime)
+    68	    q = mod_einsum("abcdmn,abcdrl->mnrl", [n1050, _raise_axes(n1050, (0, 1, 2, 3), prime)], prime)
+    69	    sym = np.zeros_like(q)
+    70	    for perm in itertools.permutations(range(4)):
+    71	        sym = (sym + q.transpose(perm)) % prime
+    72	    sym = sym * inv(24, prime) % prime
+    73	    q_mixed = _raise_axes(q, (2, 3), prime)
+    74	    return [
+    75	        matrix_trace_power(mixed, 4, prime),
+    76	        int(mod_einsum("ad,be,cf,defabc->", [mixed, mixed, mixed, _raise_axes(n4125, (3, 4, 5), prime)], prime)),
+    77	        int(mod_einsum("mn,mnrl,rl->", [upper, q, upper], prime)),
+    78	        int(mod_einsum("mnrl,mnrl->", [sym, _raise_axes(q, (0, 1, 2, 3), prime)], prime)),
+    79	        int((mod_einsum("am,bn,mnab->", [mixed, mixed, q_mixed], prime)
+    80	             - mod_einsum("bm,an,mnab->", [mixed, mixed, q_mixed], prime)) * inv(2, prime) % prime),
+    81	        int(mod_einsum("am,bn,mnpqrs,pqrsab->", [mixed, mixed, n1050, _raise_axes(n4125, range(6), prime)], prime)),
+    82	    ]
+     1	"""Readable formulas with exactly one raised endpoint per graph edge."""
+     2	
+     3	from .graphs import validate_graph
+     4	from .serialize import to_record
+     5	
+     6	
+     7	def graph_to_latex(matrix):
+     8	    validate_graph(matrix, valence=5, max_mult=4)
+     9	    lower, upper = [[] for _ in matrix], [[] for _ in matrix]
+    10	    for i, j, multiplicity in to_record(matrix)["edges"]:
+    11	        for k in range(1, multiplicity + 1):
+    12	            name = rf"\mu_{{{i},{j},{k}}}"
+    13	            lower[i].append(name)
+    14	            upper[j].append(name)
+    15	    # Lexicographic edge order places every incoming (raised) slot before
+    16	    # every outgoing (lowered) slot. This is the evaluator's exact slot order.
+    17	    return r"\,".join("F" + ("^{" + " ".join(upper[v]) + "}" if upper[v] else "")
+    18	                      + ("_{" + " ".join(lower[v]) + "}" if lower[v] else "")
+    19	                      for v in range(len(matrix)))
+    20	
+    21	
+    22	def factor_lines(matrix, factors_per_line=2):
+    23	    """A multiline aligned expression suitable for a paper appendix."""
+    24	    factors = graph_to_latex(matrix).split(r"\,")
+    25	    return " \\\\\n &\\quad ".join(r"\,".join(factors[k:k + factors_per_line])
+    26	                                for k in range(0, len(factors), factors_per_line))
+9:    10 lower products + 62 connected primitive polynomial directions = 72.
+12:ones. The remaining two are retained as polynomially independent degree-12
+45:    build_compact_derivative_basis,
+449:            if profile["max_output_rank"] > args.max_output_rank:
+450:                rejected["max_output_rank"] += 1
+452:            if profile["max_pair_union_rank"] > args.max_pair_union_rank:
+453:                rejected["max_pair_union_rank"] += 1
+506:        "max_output_rank": int(args.max_output_rank),
+507:        "max_pair_union_rank": int(args.max_pair_union_rank),
+524:            str(item["plan"]["max_output_rank"]) for item in eligible
+526:        "pair_union_rank_histogram": dict(sorted(Counter(
+527:            str(item["plan"]["max_pair_union_rank"]) for item in eligible
+568:    basis = build_compact_derivative_basis(
+570:    if basis.ncols != 126:
+572:            f"self-dual tangent dimension is {basis.ncols}, expected 126")
+573:    return projector, basis, [
+594:    """The ten degree-12 lower-product values and exact gradients."""
+634:def _evaluate_graphs(items, F_dense, basis, mod, max_memory_bytes):
+644:            basis,
+661:    samples,
+662:    basis,
+669:    for F_dense in samples:
+671:            lower, F_dense, basis, mod, max_memory_bytes)
+676:    cumulative = RankSieve(basis.ncols, mod)
+677:    rank_seconds = []
+682:        rank_seconds.append(time.perf_counter() - started)
+684:        degree10, samples[0], basis, mod, max_memory_bytes)
+690:        rank_seconds.append(time.perf_counter() - started)
+691:    if cumulative.rank != LOWER_FUNCTIONAL_RANK:
+692:        raise ValueError("lower cumulative rank is not 21")
+694:    product_samples = [
+698:    product_names = [item[0] for item in product_samples[0]]
+701:        for products in product_samples[1:]
+703:        raise ValueError("product order differs between samples")
+704:    polynomial = RankSieve(len(samples) * basis.ncols, mod)
+708:        stacked = np.concatenate([
+709:            products[index][2] for products in product_samples
+711:        if not polynomial.add(stacked):
+713:                f"degree-12 product is dependent across samples: {name}")
+715:    if polynomial.rank != DEGREE12_PRODUCTS:
+716:        raise ValueError("degree-12 product rank is not 10")
+718:        "polynomial": polynomial,
+722:        "rank_seconds": rank_seconds,
+741:def _discovery_identity(args, schedule, basis):
+754:        "coordinate_indices": basis.coordinate_indices,
+758:        "target_cumulative_rank": CUMULATIVE_FUNCTIONAL_RANK,
+806:def _checkpoint(path, identity, state, polynomial, cumulative, started):
+808:    durable["polynomial_sieve"] = polynomial.to_state()
+820:        raise ValueError("discovery needs at least two generic samples")
+824:    _, basis, samples = _contexts(args.prime, args.seeds)
+825:    identity = _discovery_identity(args, schedule, basis)
+830:        polynomial = RankSieve.from_state(state["polynomial_sieve"])
+835:            f"ranks {polynomial.rank}/72 and {cumulative.rank}/81",
+842:            samples,
+843:            basis,
+847:        polynomial = seeded["polynomial"]
+852:            "skipped_polynomial_dependent": 0,
+861:            "rank_seconds": seeded["rank_seconds"],
+866:            "polynomial_sieve": polynomial.to_state(),
+871:            "seeded exact ranks: 10 degree-12 products across samples; "
+900:                for F_dense in samples:
+905:                        basis,
+932:            staged_polynomial = RankSieve.from_state(polynomial.to_state())
+933:            rank_started = time.perf_counter()
+934:            polynomial_increment = staged_polynomial.add(
+935:                np.concatenate(rows))
+936:            rank_seconds = time.perf_counter() - rank_started
+938:            functional_increment = False
+945:                "rank_seconds",
+950:            if polynomial_increment:
+953:                rank_started = time.perf_counter()
+954:                functional_increment = staged_cumulative.add(rows[0])
+955:                rank_seconds += time.perf_counter() - rank_started
+958:                    cumulative.rank < CUMULATIVE_FUNCTIONAL_RANK
+959:                    and not functional_increment
+964:                    cumulative.rank == CUMULATIVE_FUNCTIONAL_RANK
+965:                    and functional_increment
+968:                        "cumulative rank exceeded known upper bound 81")
+972:                next_state["skipped_polynomial_dependent"] = (
+973:                    int(state["skipped_polynomial_dependent"]) + 1)
+978:            next_state["rank_seconds"].append(rank_seconds)
+993:                    "polynomial_rank": staged_polynomial.rank,
+994:                    "functional_increment": bool(functional_increment),
+995:                    "cumulative_rank": staged_cumulative.rank,
+1000:                if not functional_increment:
+1003:                state, polynomial, cumulative = (
+1005:                    staged_polynomial,
+1012:                    polynomial,
+1019:                    f"NEW {item['id']}: polynomial rank {polynomial.rank}/72, "
+1020:                    f"cumulative rank {cumulative.rank}/81, "
+at every degree tested.
+
+Because the gamma-traceless basis is computed over $\mathbb{Z}$ --- its entries
+are in $\{-1,0,+1\}$ and it is annihilated exactly --- the Jacobian is the
+reduction of a genuine integer matrix, and
+\begin{equation}
+  \mathrm{rank}_{\mathbb{F}_p}(J \bmod p) \;\le\; \mathrm{rank}_{\mathbb{Q}}(J)
+\end{equation}
+holds unconditionally. An exact modular rank is therefore a \emph{rigorous} lower
+bound in characteristic zero, not a probabilistic one.
+
+An intermediate version of this computation covered only the port-graph subset of
+the archive's candidate selection ($\nArchivePortGraphs$ of
+$\nArchiveCandidates$) and reached exact modular rank $\archiveJacobianRank$. The
+remaining $\nArchiveStructured$ structured tensor-word candidates have since been
+implemented in the same exact arithmetic, and the certificate below covers the
+complete selection.
+
+\subsection{The certificate}
+\label{sec:cert81}
+
+Every one of the $\exactJacScheduled$ scheduled candidates carries a terminal
+status: $\exactJacEvaluated$ are \texttt{evaluated}, with
+$\exactJacErrors$ evaluation errors and $\exactJacZeroRows$ zero rows. Euler's
+identity passes for every evaluated candidate (\exactJacEulerPass). The resulting
+Jacobian is $\exactJacRows \times \exactJacCols$ and has exact modular rank
+\begin{equation}
+  \mathrm{rank}_{\mathbb{F}_p} J \;=\; \exactJacRank ,
+  \label{eq:exactrank}
+\end{equation}
+reproduced independently at each of $\exactJacPoints$ certified sample
+\exactJacPointWord{} over the \exactJacPrimeWord{} $\exactJacPrimes$, with the
+per-degree cumulative ranks
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+degree & 4 & 6 & 8 & 10 & 12 \\
+\midrule
+cumulative rank & \cumRankDegFour & \cumRankDegSix & \cumRankDegEight
+                & \cumRankDegTen & \cumRankDegTwelve \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The rank statement is additionally witnessed by an explicit
+$\minorSize \times \minorSize$ minor whose determinant is nonzero
+(\minorDetNonzero) modulo $\minorPrimes$. Because the matrix is an
+integer reduction, a single prime with nonvanishing determinant already proves
+the integer minor is nonzero; the determinant is computed by two independent
+routines, which agree, and additional primes guard against an indexing error in
+selecting the minor rather than against a probabilistic failure. Hence
+\begin{equation}
+  \mathrm{rank}_{\mathbb{Q}} J \;\ge\; \charZeroLowerBound
+\end{equation}
+unconditionally --- no height bound, Hadamard estimate or rational reconstruction
+is involved.
+
+Two consequences deserve stating plainly. First, $\exactJacRows$ candidates of
+rank $\exactJacRank$ means the selected candidates carry functional
+\emph{dependencies}; they are not an independent set, and nothing here says they
+are. Second, this lower bound meets the analytic upper bound
+$\dimSelfDualModule - \dimLorentzAlgebra = \genericFunctionalDim$
+of~\eqref{eq:eightyone} exactly. The two halves together pin the generic
+functional dimension, but only the lower half is established here, and only at
+finitely many points.
+
+\paragraph{Corroboration across primes and seeds.} The certificate above is
+one point. A matrix of $\matrixCells$ cells --- $\matrixPrimes$ primes by
+$\matrixSeeds$ seeds --- gives rank $\matrixRank$ in every cell, each with the
+full $\exactJacScheduled$-candidate schedule, no evaluation errors, no zero rows
+and Euler homogeneity passing throughout. The stronger statement is the pivot
+structure: the same $\matrixStableRows$ pivot rows and the same
+$\matrixStableCols$ pivot columns in every cell, with
+$\matrixUnstableRows$ unstable. Equal ranks alone would permit each cell to
+reach $\matrixRank$ through a different set of candidates; identical pivots say
+the rank is carried by the same directions at every prime and seed tested.
+
+\paragraph{Permitted claim.} The generic functional dimension
+$\genericFunctionalDim$ follows analytically from the trivial generic stabiliser.
+The computations here provide an independent, exact, tolerance-free lower bound
+on the same quantity. They did not discover $\genericFunctionalDim$ and are not
+claimed to prove it by themselves.
+
+%=============================================================================
+\section{Physical interpretation}
+\label{sec:physics}
+
+\HUMAN{PHYSICS INTERPRETATION REQUIRES COAUTHOR CONFIRMATION}
+
+The motivation for this ring is the classification of local algebraic
+interactions of a chiral four-form gauge field in ten dimensions. A non-linear
+theory of such a field is specified by a Lagrangian, or by a flow equation, built
+from Lorentz invariants of $F$. In four and six dimensions the available
+invariants are so few that a general deformation can be written explicitly. In
+ten dimensions~\eqref{eq:eightyone} makes that impossible, and progress has
+proceeded through specific constructions --- in particular stress-tensor
+\subsection{The quotient $Q_{10}$}
+
+The stress-flow reachable subspace has $\dim D_{10} = \dimDten$, so
+\begin{equation}
+  \dim Q_{10} = \dim A_{10}/D_{10} = \dimQten .
+\end{equation}
+This is the concrete statement that the flow construction does not reach the
+whole degree-ten space: there are $\dimQten$ independent directions of local
+degree-ten structure that it cannot generate. Explicit compact representatives
+are given in section~\ref{sec:pureN}.
+
+\subsection{The quotient over the rationals, not only modulo $p$}
+\label{sec:czero}
+
+Every dimension above is a rank computed over $\mathbb{F}_p$, and for most of
+them that costs nothing: a space spanned by exactly $k$ explicit invariants has
+$\dim_{\mathbb{Q}} \le k$ for free, so a modular rank of $k$ pins the
+dimension over $\mathbb{Q}$ with no prime excluded. This covers $A_{10}$,
+$P_{10}$, $G_{10}$ and $B_{10}$.
+
+$D_{10}$ is the exception, and it is the one that matters. It is not given by a
+spanning set; it is assembled by a closure that admits a generated flow direction
+when that direction raises the rank \emph{modulo $p$}. A direction rejected mod
+$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+$\dimDten$ bounded $\dim_{\mathbb{Q}} D_{10}$ only from below, and
+$\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ was all that followed.
+
+Running the same fixed point in exact rational arithmetic removes the modular
+admission test, and with it the gap. The obstacle is that the flow targets are
+not all integral: of the targets at degrees four through ten,
+$\czIntegerRows$ have identical integer coordinates at every prime and
+$\czLiftedRows$ are reductions of rationals. Those were lifted by CRT across
+$\czFitPrimes$ primes followed by rational reconstruction, and every
+reconstructed entry was then required to reduce correctly at a held-out
+prime~$\czHoldoutPrime$ that took no part in the lift. No lift failed and no
+held-out reduction disagreed.
+
+The closure then reaches its fixed point in $\czSweeps$ sweeps under exact
+rational arithmetic, giving
+\begin{equation}
+  \dim_{\mathbb{Q}} D_{10} = \dimDtenQ ,
+  \qquad
+  \dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ .
+  \label{eq:czero}
+\end{equation}
+This is an equality and not a bound, because at a fixed point reached over
+$\mathbb{Q}$ no generated direction raises the rank over $\mathbb{Q}$: the
+reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+checkable witness the certificate records an explicit
+$\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+determinant, computed by fraction-free elimination, is non-zero.
+
+\paragraph{The one analytic input.} The closure assigns each generated target
+to a graded piece using the leading field degree of its generator, and that
+bookkeeping rests on a single physical statement: the free stress tensor of a
+self-dual five-form is traceless, so $\operatorname{Tr}\tau$ first contributes
+at degree four rather than two. The statement is not assumed here. For any
+improvement convention
+$T_{\mu\nu} \sim F_{\mu\ldots}F_\nu{}^{\ldots}
+ - c\,\eta_{\mu\nu}\langle F,F\rangle$

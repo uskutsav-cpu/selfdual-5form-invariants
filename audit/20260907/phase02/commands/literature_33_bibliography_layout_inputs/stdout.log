@@ -1,0 +1,66 @@
+@article{Hutomo:2025chiral,
+  author        = {Hutomo, Jessica and Lechner, Kurt and Sorokin, Dmitri P.},
+  title         = {On non-linear chiral 4-form theories in {D}=10},
+  year          = {2026},
+  eprint        = {2509.14351},
+  archivePrefix = {arXiv},
+  doi           = {10.48550/arXiv.2509.14351},
+  note          = {v2, revised 6 January 2026; no journal reference listed at
+                   the time of writing}
+}
+
+
+@article{Elamaran:2025mlinv,
+  author        = {Elamaran, Athithan and Ferko, Christian and Scarlett, Sterling},
+  title         = {Machine Learning Invariants of Tensors},
+  eprint        = {2512.23750},
+  archivePrefix = {arXiv},
+  primaryClass  = {hep-th},
+  doi           = {10.48550/arXiv.2512.23750},
+  year          = {2025},
+  note          = {enumerate--evaluate--relate workflow for tensor invariants,
+                   demonstrated on a three-form in six dimensions}
+}
+
+% ---------------------------------------------------------------------------
+% Chiral and self-dual p-form field theory
+% ---------------------------------------------------------------------------
+
+
+def convert(src: str) -> str:
+    # --- abstract: macro form -> environment form -------------------------
+    m = re.search(r"\\abstract\{%?\n(.*?)\n\}\n\n\\begin\{document\}",
+                  src, re.S)
+    if not m:
+        raise SystemExit("could not locate the JHEP \\abstract{...} block")
+    abstract = m.group(1).rstrip().rstrip("%").rstrip()
+
+    # --- body: everything from the banner to \end{document} ---------------
+    start = src.index(r"% ---------------------------------------------------------------- banner")
+    # Preserve the scientific audit scope immediately after the JHEP title.
+    audit_scope = src.find(r"\paragraph{Audit scope and inherited results.}")
+    if 0 <= audit_scope < start:
+        start = audit_scope
+    body = src[start:]
+    # Drop the JHEP banner block; the REVTeX one is inserted separately.
+    body = re.sub(
+        r"% -+ banner\n\\begin\{center\}.*?\\end\{center\}\n\\vspace\{6pt\}\n",
+        "", body, count=1, flags=re.S)
+
+    # --- floats: PRD is two-column, so every float goes full width --------
+    # A 0.95-textwidth figure is wider than a PRD column. Promoting to the
+    # starred form and rescaling is the honest fix; shrinking the figures to
+    # column width would make the axis labels unreadable.
+    body = body.replace(r"\begin{figure}[htbp]", r"\begin{figure*}[!tbp]")
+    body = body.replace(r"\end{figure}", r"\end{figure*}")
+    body = re.sub(r"\\includegraphics\[width=[0-9.]+\\textwidth\]",
+                  r"\\includegraphics[width=0.86\\textwidth]", body)
+
+    # Tables are generated with \begin{table}; the wide ones need table*.
+    body = body.replace(r"\begin{table}[", r"\begin{table*}[")
+    body = body.replace(r"\end{table}", r"\end{table*}")
+
+    # --- wide displays ----------------------------------------------------
+    # A few equations are genuinely wider than a PRD column and cannot be
+    # broken without obscuring what they say -- a multi-case grading rule, an
+    # aligned block of certified ide

@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json; files=[\"paper/manuscript.tex\",\"docs/CLASSIFICATION_ROADMAP.md\",\"README.md\",\"scripts/build_classification_release.py\"]; print(json.dumps({p:Path(p).read_text() if Path(p).exists() else \"MISSING\" for p in files},indent=2))"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788833093.852025,
+  "status": "completed",
+  "pid": 15227,
+  "exit_code": 0,
+  "seconds": 0.13703891693148762,
+  "finished_unix": 1788833093.989898,
+  "logs": {
+    "stdout.log": {
+      "sha256": "4aaed28b0cc13748963c547135ff196f84ab4417a537dc71bfcfb7bb62724dc8",
+      "bytes": 44783
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

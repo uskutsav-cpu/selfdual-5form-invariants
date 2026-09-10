@@ -1,0 +1,62 @@
+{
+  "source_matches": [
+    [
+      "\\label{I1010}",
+      1641
+    ],
+    [
+      "\\label{I1011}",
+      1645
+    ],
+    [
+      "\\label{I1012}",
+      1650
+    ],
+    [
+      "where the symmetrization and/or anti-symmetrization",
+      1653
+    ]
+  ],
+  "code_matches": [
+    [
+      "def _nested_pair",
+      395
+    ],
+    [
+      "def p10_10_five_n1050",
+      406
+    ],
+    [
+      "def p10_11_five_n1050",
+      429
+    ],
+    [
+      "def p10_12_five_n1050",
+      451
+    ],
+    [
+      "    \"P10_10\": {",
+      529
+    ],
+    [
+      "    \"P10_11\": {",
+      536
+    ],
+    [
+      "    \"P10_12\": {",
+      543
+    ],
+    [
+      "BRACKET_STAGES =",
+      578
+    ]
+  ],
+  "hashes": {
+    "source-review/original-InvariantsV2.tex": "a4e9f50e0047400e383820c9ba35c6cd2447faddcea627f890a5f9a6826957f2",
+    "source-review/arxiv-v2.pdf": "ec51d9e22c4d75651e2024d09b17562bc5c4d89c191c3ab11cf86697a9c7880e",
+    "source-review/arxiv-v2-source.tar": "f3f1f2fed99595545a972aa788bf70212a134f65b16882466939d22840dcb540",
+    "source-review/manual-transcription.md": "39695b36bc78a70e80c38a7981b40976dd08bc31fb98fccccbe7157a9ff9620c",
+    "checkout/src/sdinv/published_degree10_invariants.py": "f3a5ce94b4f9066e58e9aa893e33c95079bf6fc5b069644756847ec3dc5ad6ef"
+  },
+  "evidence_sha256": "c6416921df07c451275a3c27961e56bdafe5713909128cd6be32d923deaac2c7"
+}

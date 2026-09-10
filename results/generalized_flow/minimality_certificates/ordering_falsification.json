@@ -1,0 +1,134 @@
+{
+ "degrees": {
+  "10": {
+   "expected": [
+    "I10_12",
+    "I10_6",
+    "I10_7"
+   ],
+   "stable_under_reordering": true,
+   "trials": [
+    {
+     "base_closure_at_degree": 11,
+     "found_sorted": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "matches_expected": true,
+     "trial": 0
+    },
+    {
+     "base_closure_at_degree": 11,
+     "found_sorted": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "matches_expected": true,
+     "trial": 1
+    },
+    {
+     "base_closure_at_degree": 11,
+     "found_sorted": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "matches_expected": true,
+     "trial": 2
+    },
+    {
+     "base_closure_at_degree": 11,
+     "found_sorted": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "matches_expected": true,
+     "trial": 3
+    },
+    {
+     "base_closure_at_degree": 11,
+     "found_sorted": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "matches_expected": true,
+     "trial": 4
+    }
+   ]
+  },
+  "12": {
+   "expected": [
+    "I12_59",
+    "I12_60",
+    "I12_61",
+    "I12_62"
+   ],
+   "stable_under_reordering": true,
+   "trials": [
+    {
+     "base_closure_at_degree": 68,
+     "found_sorted": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "matches_expected": true,
+     "trial": 0
+    },
+    {
+     "base_closure_at_degree": 68,
+     "found_sorted": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "matches_expected": true,
+     "trial": 1
+    },
+    {
+     "base_closure_at_degree": 68,
+     "found_sorted": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "matches_expected": true,
+     "trial": 2
+    },
+    {
+     "base_closure_at_degree": 68,
+     "found_sorted": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "matches_expected": true,
+     "trial": 3
+    },
+    {
+     "base_closure_at_degree": 68,
+     "found_sorted": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "matches_expected": true,
+     "trial": 4
+    }
+   ]
+  }
+ },
+ "prime": 32749,
+ "schema": 1,
+ "trials": 5,
+ "verdict": "NOT an ordering artifact"
+}

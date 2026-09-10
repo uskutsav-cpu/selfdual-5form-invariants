@@ -1,0 +1,4352 @@
+FILES
+../checkout/paper/tables
+../checkout/paper/manuscript.tex
+../checkout/paper/manuscript.pdf
+FILE src/sdinv/forms.py
+"""Antisymmetric p-forms in d dimensions, over F_p.
+
+A form is stored two ways:
+  - "sparse": a vector of length C(d,p) indexed by SORTED index tuples.
+    This is the honest count of independent components (20 for a 3-form in
+    6D, 252 for a 5-form in 10D).
+  - "dense": a full (d,)*p numpy array, needed for einsum contraction.
+
+The Hodge dual is computed on the sparse representation via index
+complement -- O(C(d,p)) work. Never build the d^d epsilon tensor.
+"""
+
+import itertools
+import numpy as np
+
+from .modp import P, inv
+
+
+def basis_tuples(d, p):
+    """All sorted index tuples -- one per independent component."""
+    return list(itertools.combinations(range(d), p))
+
+
+def metric_signs(d, lorentzian=True):
+    """Diagonal metric. Lorentzian = diag(-1, +1, ..., +1)."""
+    s = np.ones(d, dtype=np.int64)
+    if lorentzian:
+        s[0] = -1
+    return s
+
+
+def perm_sign(perm):
+    """Sign of a permutation given as a sequence."""
+    perm = list(perm)
+    n = len(perm)
+    seen = [False] * n
+    sign = 1
+    for i in range(n):
+        if seen[i]:
+            continue
+        j, ln = i, 0
+        while not seen[j]:
+            seen[j] = True
+            j = perm[j]
+            ln += 1
+        if ln % 2 == 0:
+            sign = -sign
+    return sign
+
+
+def to_dense(vec, d, p_deg, mod=P):
+    """Expand sparse component vector to a dense antisymmetric array."""
+    T = np.zeros((d,) * p_deg, dtype=np.int64)
+    for k, idx in enumerate(basis_tuples(d, p_deg)):
+        v = int(vec[k]) % mod
+        if v == 0:
+            continue
+        for perm in itertools.permutations(range(p_deg)):
+            sgn = perm_sign(perm)
+            T[tuple(idx[perm[i]] for i in range(p_deg))] = (
+                v * sgn) % mod
+    return T
+
+
+def random_form(d, p_deg, rng, mod=P):
+    """Random sparse component vector."""
+    n = len(basis_tuples(d, p_deg))
+    return rng.integers(1, mod, size=n, dtype=np.int64)
+
+
+def hodge_matrix(d, p_deg, lorentzian=True, mod=P):
+    """Matrix of the Hodge star on sparse components.
+
+    (*F)_{I} = (1/(d-p)!) eps_{I J} F^{J}, which on sorted multi-indices is
+    just +/- the component on the complementary index set, times the metric
+    signs from raising J.
+    """
+    src = basis_tuples(d, p_deg)
+    dst = basis_tuples(d, d - p_deg)
+    dst_pos = {t: i for i, t in enumerate(dst)}
+    s = metric_signs(d, lorentzian)
+    M = np.zeros((len(dst), len(src)), dtype=np.int64)
+    for j, I in enumerate(src):
+        Ic = tuple(sorted(set(range(d)) - set(I)))
+        # sign of the permutation (Ic, I) relative to (0,1,...,d-1)
+        perm = list(Ic) + list(I)
+        sgn = perm_sign([perm.index(k) for k in range(d)])
+        raise_sign = int(np.prod(s[list(I)]))
+        M[dst_pos[Ic], j] = (sgn * raise_sign) % mod
+    return M
+
+
+def selfdual_projector(d, p_deg, lorentzian=True, mod=P):
+    """P = (1 + *) / 2, valid when *^2 = +1 (true for 5-forms in 10D
+    Lorentzian: (-1)^{p(d-p)} * (-1)^s = (-1)^25 * (-1)^1 = +1)."""
+    assert d == 2 * p_deg, "star maps p-forms to p-forms only when d = 2p"
+    H = hodge_matrix(d, p_deg, lorentzian, mod)
+    n = H.shape[0]
+    I = np.eye(n, dtype=np.int64)
+    half = inv(2, mod)
+    return ((I + H) * half) % mod
+
+
+def check_star_squared(d, p_deg, lorentzian=True, mod=P):
+    """Sanity check: returns the scalar c with *^2 = c * identity."""
+    H = hodge_matrix(d, p_deg, lorentzian, mod)
+    H2 = (H @ H) % mod
+    n = H.shape[0]
+    c = H2[0, 0]
+    assert np.array_equal(H2, (c * np.eye(n, dtype=np.int64)) % mod), \
+        "star^2 is not a multiple of the identity"
+    return int(c) if c < mod // 2 else int(c) - mod
+
+FILE src/sdinv/contract.py
+"""Evaluate a contraction graph, and build its Jacobian row.
+
+METRIC. sum_mu F^mu G_mu = sum_mu s_mu F[mu] G[mu], so each edge needs
+exactly ONE factor of the metric sign. Every edge is oriented and the sign
+is applied at the tail. Applying it at both ends gives s^2 = 1 and silently
+computes the Euclidean contraction -- a bug that will not announce itself.
+
+JACOBIAN. I is a degree-n contraction of n copies of F, so it is
+multilinear in the vertices and
+
+    dI/dA^k = sum_v [ same graph, F at vertex v replaced by P(e_k) ].
+
+The original implementation built each amputated tensor separately, costing
+n tensor-network contractions per graph. The production path below contracts
+the network once and reverse-differentiates that contraction tree. This gives
+all n amputated tensors while reusing the forward intermediates. The older
+amputated implementation remains as a small-case correctness oracle.
+
+For 10D order 8, that reuse is the difference between an exhaustive run being
+practical and taking many hours.
+"""
+
+import string
+import itertools
+from functools import lru_cache
+import numpy as np
+
+from .modp import P, RankSieve, mod_einsum
+from .forms import basis_tuples, metric_signs, perm_sign, to_dense
+
+LETTERS = string.ascii_letters
+
+
+def _apply_sign(T, axis, s, mod):
+    shape = [1] * T.ndim
+    shape[axis] = len(s)
+    return (T * s.reshape(shape)) % mod
+
+
+def _slot_plan(M, valence):
+    """Assign a letter to each edge-slot; record which axes are tails."""
+    n = M.shape[0]
+    slots = [[] for _ in range(n)]
+    tails = [[] for _ in range(n)]
+    li = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            for _ in range(int(M[i, j])):
+                L = LETTERS[li]
+                li += 1
+                tails[i].append(len(slots[i]))
+                slots[i].append(L)
+                slots[j].append(L)
+    for v in range(n):
+        assert len(slots[v]) == valence, "valence mismatch"
+    return slots, tails
+
+
+def _signed(T, axes, s, mod):
+    for ax in axes:
+        T = _apply_sign(T, ax, s, mod)
+    return T
+
+
+def evaluate(M, tensors, d, valence, lorentzian=True, mod=P):
+    slots, tails = _slot_plan(M, valence)
+    s = metric_signs(d, lorentzian) % mod
+    ops = [_signed(T, tails[v], s, mod) for v, T in enumerate(tensors)]
+    sub = ",".join("".join(sl) for sl in slots) + "->"
+    return int(mod_einsum(sub, ops, mod))
+
+
+def amputated(M, F_dense, v, d, valence, lorentzian=True, mod=P):
+    """Contract every vertex except v, leaving v's slots free."""
+    slots, tails = _slot_plan(M, valence)
+    s = metric_signs(d, lorentzian) % mod
+    ops, subs = [], []
+    for u in range(M.shape[0]):
+        if u == v:
+            continue
+        ops.append(_signed(F_dense, tails[u], s, mod))
+        subs.append("".join(slots[u]))
+    sub = ",".join(subs) + "->" + "".join(slots[v])
+    A = mod_einsum(sub, ops, mod)
+    return _signed(A, tails[v], s, mod)
+
+
+def jacobian_row_amputated(M, F_dense, basis_flat, d, valence,
+                           lorentzian=True, mod=P):
+    """Independent reference Jacobian using separately amputated vertices."""
+    n = M.shape[0]
+    gradient = np.zeros_like(F_dense, dtype=np.int64)
+    for v in range(n):
+        A = amputated(M, F_dense, v, d, valence, lorentzian, mod).ravel()
+        gradient = (gradient + A.reshape(F_dense.shape)) % mod
+    return _project_gradient(basis_flat, gradient, mod)
+
+
+@lru_cache(maxsize=256)
+def _optimal_contraction_tree_cached(terms, operand_shapes):
+    """Globally optimal binary tree for this small closed tensor network.
+
+    A local greedy choice can create a disastrous later intermediate. There
+    are at most twelve operands in the completed runs here. Boundary label sets
+    are bitsets and proper subset scores are computed in numeric mask order.
+    The score first minimises largest pairwise work, then total
+    forward/reverse work.
+    """
+    n = len(terms)
+    label_dims = {}
+    label_order = list(dict.fromkeys("".join(terms)))
+    label_bits = {label: 1 << k for k, label in enumerate(label_order)}
+    label_sets = []
+    for term, shape in zip(terms, operand_shapes):
+        labels = sum(label_bits[label] for label in term)
+        label_sets.append(labels)
+        for label, size in zip(term, shape):
+            old = label_dims.setdefault(label, size)
+            assert old == size, f"dimension mismatch for index {label}"
+
+    dimensions = [label_dims[label] for label in label_order]
+    uniform_dimension = (
+        dimensions[0]
+        if dimensions and len(set(dimensions)) == 1
+        else None
+    )
+    if uniform_dimension is not None:
+        powers = [
+            uniform_dimension ** k for k in range(len(dimensions) + 1)]
+        work_for = lambda bits: powers[bits.bit_count()]
+    else:
+        work_cache = {0: 1}
+
+        def work_for(bits):
+            cached = work_cache.get(bits)
+            if cached is not None:
+                return cached
+            work = 1
+            remaining = bits
+            while remaining:
+                bit = remaining & -remaining
+                work *= dimensions[bit.bit_length() - 1]
+                remaining ^= bit
+            work_cache[bits] = work
+            return work
+
+    boundary = [0 for _ in range(1 << n)]
+    for mask in range(1, 1 << n):
+        bit = mask & -mask
+        v = bit.bit_length() - 1
+        boundary[mask] = boundary[mask ^ bit] ^ label_sets[v]
+
+    # score[mask] = (largest pair work, total fwd+reverse work).
+    peak_score = [0 for _ in range(1 << n)]
+    total_score = [0 for _ in range(1 << n)]
+    split = [None for _ in range(1 << n)]
+    for mask in range(1, 1 << n):
+        if mask & (mask - 1) == 0:
+            continue
+        anchor = mask & -mask
+        part = (mask - 1) & mask
+        best_peak = best_total = None
+        best_split = None
+        while part:
+            if part & anchor:
+                other = mask ^ part
+                if other:
+                    pair_work = work_for(
+                        boundary[part] | boundary[other])
+                    candidate_peak = max(
+                        peak_score[part], peak_score[other], pair_work)
+                    candidate_total = (
+                        total_score[part] + total_score[other]
+                        + 3 * pair_work
+                    )
+                    if (
+                        best_peak is None
+                        or (candidate_peak, candidate_total)
+                        < (best_peak, best_total)
+                    ):
+                        best_peak = candidate_peak
+                        best_total = candidate_total
+                        best_split = (part, other)
+            part = (part - 1) & mask
+        peak_score[mask] = best_peak
+        total_score[mask] = best_total
+        split[mask] = best_split
+
+    full = (1 << n) - 1
+    return split, boundary, (peak_score[full], total_score[full])
+
+
+def _optimal_contraction_tree(terms, operand_shapes):
+    return _optimal_contraction_tree_cached(
+        tuple(terms), tuple(tuple(shape) for shape in operand_shapes))
+
+
+def contraction_plan_cost(M, d, valence):
+    """Return (largest_pair_work, total_forward_reverse_work) without running."""
+    slots, _ = _slot_plan(M, valence)
+    terms = ["".join(x) for x in slots]
+    _, _, score = _optimal_contraction_tree(
+        terms, [(d,) * valence for _ in terms])
+    return score
+
+
+def _contraction_plan_profile(terms, operand_shapes, itemsize=8):
+    """Return an allocation-oriented profile of the exact contraction tree.
+
+    ``largest_pair_work`` counts arithmetic terms and is intentionally
+    separate from allocation size. The byte estimate includes every retained
+    forward node, every reverse adjoint, and a conservative fourfold workspace
+    for the largest pair. It is a pre-allocation guard, not an RSS claim:
+    Python/NumPy allocator overhead and the input form live outside it.
+    """
+    split, boundary, score = _optimal_contraction_tree(terms, operand_shapes)
+    n = len(terms)
+    label_dims = {}
+    label_order = list(dict.fromkeys("".join(terms)))
+    for term, shape in zip(terms, operand_shapes):
+        for label, size in zip(term, shape):
+            old = label_dims.setdefault(label, int(size))
+            if old != int(size):
+                raise ValueError(f"dimension mismatch for index {label}")
+
+    def elements(labels):
+        count = 1
+        remaining = labels
+        while remaining:
+            bit = remaining & -remaining
+            count *= label_dims[label_order[bit.bit_length() - 1]]
+            remaining ^= bit
+        return count
+
+    node_elements = []
+    max_output_rank = 0
+    max_pair_union_rank = 0
+    max_pair_elements = 0
+
+    def visit(mask):
+        nonlocal max_output_rank, max_pair_union_rank, max_pair_elements
+        if mask.bit_count() == 1:
+            index = (mask & -mask).bit_length() - 1
+            size = int(np.prod(operand_shapes[index], dtype=object))
+            node_elements.append(size)
+            max_output_rank = max(
+                max_output_rank, len(operand_shapes[index]))
+            return
+        left, right = split[mask]
+        visit(left)
+        visit(right)
+        union = boundary[left] | boundary[right]
+        output = boundary[mask]
+        left_elements = elements(boundary[left])
+        right_elements = elements(boundary[right])
+        output_elements = elements(output)
+        node_elements.append(output_elements)
+        max_output_rank = max(max_output_rank, output.bit_count())
+        max_pair_union_rank = max(
+            max_pair_union_rank, union.bit_count())
+        max_pair_elements = max(
+            max_pair_elements,
+            left_elements + right_elements + output_elements,
+        )
+
+    visit((1 << n) - 1)
+    retained_elements = sum(node_elements)
+    retained_forward_reverse_bytes = (
+        2 * retained_elements * int(itemsize))
+    workspace_bytes = 4 * max_pair_elements * int(itemsize)
+    return {
+        "largest_pair_work": int(score[0]),
+        "total_forward_reverse_work": int(score[1]),
+        "max_output_rank": int(max_output_rank),
+        "max_output_elements": int(max(node_elements, default=1)),
+        "max_output_bytes": int(
+            max(node_elements, default=1) * int(itemsize)),
+        "max_pair_union_rank": int(max_pair_union_rank),
+        "retained_node_elements": int(retained_elements),
+        "retained_forward_reverse_bytes": int(
+            retained_forward_reverse_bytes),
+        "workspace_bytes": int(workspace_bytes),
+        "estimated_peak_bytes": int(
+            retained_forward_reverse_bytes + workspace_bytes),
+    }
+
+
+def contraction_plan_profile(M, d, valence, itemsize=8):
+    """Profile the globally optimal plan without allocating its tensors."""
+    slots, _ = _slot_plan(M, valence)
+    terms = ["".join(x) for x in slots]
+    return _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms], itemsize)
+
+
+def greedy_contraction_plan_cost(M, d, valence):
+    """Cheap deterministic upper bound used only to schedule candidates.
+
+    Production evaluation still uses the globally optimal dynamic program
+    above. This O(n^3) heuristic is inexpensive enough to enrich an entire
+    large catalog and puts narrow tensor networks first.
+    """
+    slots, _ = _slot_plan(M, valence)
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(
+            "".join(term) for term in slots)))
+    }
+    boundaries = [
+        sum(label_bits[label] for label in term)
+        for term in slots
+    ]
+    peak = total = 0
+    while len(boundaries) > 1:
+        best = None
+        for i in range(len(boundaries)):
+            for j in range(i + 1, len(boundaries)):
+                union = boundaries[i] | boundaries[j]
+                result = boundaries[i] ^ boundaries[j]
+                work = d ** union.bit_count()
+                output = d ** result.bit_count()
+                candidate = (work, output, i, j, result)
+                if best is None or candidate[:4] < best[:4]:
+                    best = candidate
+        work, _, i, j, result = best
+        peak = max(peak, work)
+        total += 3 * work
+        for k in sorted((i, j), reverse=True):
+            boundaries.pop(k)
+        boundaries.append(result)
+    return peak, total
+
+
+def _network_value_gradient(terms, operands, mod=P, plan_profile=None,
+                            max_memory_bytes=None):
+    """Reverse-differentiate a scalar pairwise tensor contraction.
+
+    Each index label must occur exactly twice across the input terms, as it
+    does for a fully contracted graph. Return the scalar value plus the
+    derivative with respect to each operand in its original axis order.
+    """
+    if plan_profile is None:
+        plan_profile = _contraction_plan_profile(
+            terms, [np.shape(op) for op in operands])
+    estimated = int(plan_profile["estimated_peak_bytes"])
+    if max_memory_bytes is not None and estimated > int(max_memory_bytes):
+        raise MemoryError(
+            "exact contraction plan rejected before tensor allocation: "
+            f"estimated {estimated} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+
+    nodes = [{"term": term, "value": np.asarray(op, dtype=np.int64) % mod,
+              "left": None, "right": None}
+             for term, op in zip(terms, operands)]
+    split, boundary, _ = _optimal_contraction_tree(
+        terms, [op.shape for op in operands])
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(terms)))
+    }
+
+    def forward(mask):
+        if mask.bit_count() == 1:
+            return (mask & -mask).bit_length() - 1
+        left_mask, right_mask = split[mask]
+        left, right = forward(left_mask), forward(right_mask)
+        lt, rt = nodes[left]["term"], nodes[right]["term"]
+        keep_labels = boundary[mask]
+        keep = "".join(c for c in dict.fromkeys(lt + rt)
+                       if keep_labels & label_bits[c])
+        result = mod_einsum(
+            f"{lt},{rt}->{keep}",
+            [nodes[left]["value"], nodes[right]["value"]],
+            mod,
+        )
+        parent = len(nodes)
+        nodes.append({"term": keep, "value": result,
+                      "left": left, "right": right})
+        return parent
+
+    root = forward((1 << len(operands)) - 1)
+    assert nodes[root]["term"] == "", "network is not fully contracted"
+    scalar = int(np.asarray(nodes[root]["value"]).item()) % mod
+    adjoints = {root: np.array(1, dtype=np.int64)}
+
+    for parent in range(root, len(operands) - 1, -1):
+        node = nodes[parent]
+        left, right = node["left"], node["right"]
+        pt = node["term"]
+        lt, rt = nodes[left]["term"], nodes[right]["term"]
+        adj = adjoints[parent]
+        adjoints[left] = mod_einsum(
+            f"{pt},{rt}->{lt}", [adj, nodes[right]["value"]], mod)
+        adjoints[right] = mod_einsum(
+            f"{pt},{lt}->{rt}", [adj, nodes[left]["value"]], mod)
+
+    return scalar, [adjoints[k] for k in range(len(operands))]
+
+
+def _network_value(terms, operands, mod=P, max_memory_bytes=None):
+    """Evaluate a closed network on the globally optimal binary tree."""
+    profile = _contraction_plan_profile(
+        terms, [np.shape(op) for op in operands])
+    # The full forward/reverse estimate is conservative for this forward-only
+    # path and therefore safe to reuse as its allocation guard.
+    if (
+        max_memory_bytes is not None
+        and profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact scalar contraction plan rejected before tensor allocation: "
+            f"estimated {profile['estimated_peak_bytes']} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+    split, boundary, _ = _optimal_contraction_tree(
+        terms, [np.shape(op) for op in operands])
+    label_bits = {
+        label: 1 << k
+        for k, label in enumerate(dict.fromkeys("".join(terms)))
+    }
+    leaves = [
+        np.asarray(op, dtype=np.int64) % mod for op in operands
+    ]
+
+    def forward(mask):
+        if mask.bit_count() == 1:
+            index = (mask & -mask).bit_length() - 1
+            return terms[index], leaves[index]
+        left_mask, right_mask = split[mask]
+        left_term, left_value = forward(left_mask)
+        right_term, right_value = forward(right_mask)
+        keep_labels = boundary[mask]
+        keep = "".join(
+            label for label in dict.fromkeys(left_term + right_term)
+            if keep_labels & label_bits[label]
+        )
+        result = mod_einsum(
+            f"{left_term},{right_term}->{keep}",
+            [left_value, right_value],
+            mod,
+        )
+        return keep, result
+
+    term, result = forward((1 << len(operands)) - 1)
+    if term:
+        raise ValueError("network is not fully contracted")
+    return int(np.asarray(result).item()) % mod
+
+
+def _network_gradient(terms, operands, mod=P):
+    """Compatibility wrapper returning only reverse-mode gradients."""
+    return _network_value_gradient(terms, operands, mod)[1]
+
+
+def value_and_jacobian_row(M, F_dense, basis_flat, d, valence,
+                           lorentzian=True, mod=P, backend="optimized",
+                           max_memory_bytes=None):
+    """Return an exact scalar value and Jacobian row from one graph.
+
+    ``optimized`` shares one contraction tree between the forward scalar and
+    reverse derivative. ``reference`` intentionally uses the independent
+    amputated implementation and is a small-case correctness oracle.
+    """
+    if backend == "reference":
+        return (
+            value(M, F_dense, d, valence, lorentzian, mod),
+            jacobian_row_amputated(
+                M, F_dense, basis_flat, d, valence, lorentzian, mod),
+        )
+    if backend != "optimized":
+        raise ValueError(f"unknown contraction backend: {backend!r}")
+
+    slots, tails = _slot_plan(M, valence)
+    s = metric_signs(d, lorentzian) % mod
+    terms = ["".join(x) for x in slots]
+    plan_profile = _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms])
+    if (
+        max_memory_bytes is not None
+        and plan_profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact contraction plan rejected before signed operands: "
+            f"estimated {plan_profile['estimated_peak_bytes']} bytes exceeds "
+            f"limit {int(max_memory_bytes)} bytes")
+    operands = [_signed(F_dense, tails[v], s, mod)
+                for v in range(M.shape[0])]
+    scalar, operand_gradients = _network_value_gradient(
+        terms,
+        operands,
+        mod,
+        plan_profile=plan_profile,
+        max_memory_bytes=max_memory_bytes,
+    )
+
+    gradient = np.zeros_like(F_dense, dtype=np.int64)
+    for v, grad in enumerate(operand_gradients):
+        # The forward operand is signed(F), so the chain rule applies the
+        # same diagonal metric signs once more to map dI/d(signed F) to dI/dF.
+        gradient = (gradient + _signed(grad, tails[v], s, mod)) % mod
+    return scalar, _project_gradient(basis_flat, gradient, mod)
+
+
+def jacobian_row(M, F_dense, basis_flat, d, valence,
+                 lorentzian=True, mod=P, backend="optimized"):
+    """Jacobian row from the selected exact contraction backend."""
+    return value_and_jacobian_row(
+        M,
+        F_dense,
+        basis_flat,
+        d,
+        valence,
+        lorentzian,
+        mod,
+        backend,
+    )[1]
+
+
+def value(M, F_dense, d, valence, lorentzian=True, mod=P):
+    return evaluate(M, [F_dense] * M.shape[0], d, valence, lorentzian, mod)
+
+
+def planned_value(M, F_dense, d, valence, lorentzian=True, mod=P,
+                  max_memory_bytes=None):
+    """Scalar value using the same globally optimal plan as the Jacobian."""
+    slots, tails = _slot_plan(M, valence)
+    s = metric_signs(d, lorentzian) % mod
+    terms = ["".join(x) for x in slots]
+    profile = _contraction_plan_profile(
+        terms, [(d,) * valence for _ in terms])
+    if (
+        max_memory_bytes is not None
+        and profile["estimated_peak_bytes"] > int(max_memory_bytes)
+    ):
+        raise MemoryError(
+            "exact scalar contraction plan rejected before signed operands: "
+            f"estimated {profile['estimated_peak_bytes']} bytes exceeds limit "
+            f"{int(max_memory_bytes)} bytes")
+    operands = [
+        _signed(F_dense, tails[v], s, mod) for v in range(M.shape[0])
+    ]
+    return _network_value(
+        terms, operands, mod, max_memory_bytes=max_memory_bytes)
+
+
+def build_basis_flat(d, p_deg, projector=None, mod=P):
+    """Flattened dense basis directions, stacked as rows."""
+    tuples = basis_tuples(d, p_deg)
+    N = len(tuples)
+    rows = []
+    for k in range(N):
+        vec = np.zeros(N, dtype=np.int64)
+        vec[k] = 1
+        if projector is not None:
+            vec = (projector @ vec) % mod
+        rows.append(to_dense(vec, d, p_deg, mod).ravel())
+    return np.array(rows, dtype=np.int64)
+
+
+class CompactDerivativeBasis:
+    """Project dense antisymmetric gradients without dense basis tensors.
+
+    A dense p-form repeats every sorted component p! times with matching
+    permutation signs. Pulling a dense gradient back to antisymmetric
+    components therefore reduces exactly to signed orbit sums followed by a
+    small compact matrix product.
+    For the 10D self-dual 5-form this replaces a 252 x 100,000 array with a
+    252 x 126 matrix.
+    """
+
+    def __init__(self, d, p_deg, directions, coordinate_indices, mod=P):
+        self.d = int(d)
+        self.p_deg = int(p_deg)
+        self.mod = int(mod)
+        self.tuples = basis_tuples(self.d, self.p_deg)
+        self.directions = np.asarray(directions, dtype=np.int64) % self.mod
+        self.coordinate_indices = [int(x) for x in coordinate_indices]
+        expected = (len(self.tuples), len(self.coordinate_indices))
+        if self.directions.shape != expected:
+            raise ValueError(
+                f"direction matrix has shape {self.directions.shape}, "
+                f"expected {expected}")
+        self.ncols = len(self.coordinate_indices)
+        permutations = list(itertools.permutations(range(self.p_deg)))
+        dense_indices = []
+        signs = []
+        for index in self.tuples:
+            for permutation in permutations:
+                dense_indices.append(tuple(index[k] for k in permutation))
+                signs.append(perm_sign(permutation))
+        self._flat_indices = np.ravel_multi_index(
+            np.asarray(dense_indices, dtype=np.int64).T,
+            (self.d,) * self.p_deg,
+        )
+        self._signs = np.asarray(signs, dtype=np.int64)
+
+    def project(self, gradient):
+        signed = gradient.ravel()[self._flat_indices] * self._signs
+        compact = signed.reshape(len(self.tuples), -1).sum(axis=1) % self.mod
+        return (self.directions.T @ compact) % self.mod
+
+
+def _project_gradient(basis, gradient, mod):
+    if isinstance(basis, CompactDerivativeBasis):
+        if basis.mod != mod:
+            raise ValueError("compact derivative basis uses a different prime")
+        return basis.project(gradient)
+    return (np.asarray(basis, dtype=np.int64) @ gradient.ravel()) % mod
+
+
+def build_compact_derivative_basis(d, p_deg, projector=None, mod=P,
+                                   independent=True):
+    """Build a compact derivative basis, optionally removing redundancies."""
+    component_count = len(basis_tuples(d, p_deg))
+    if projector is None:
+        directions = np.eye(component_count, dtype=np.int64)
+    else:
+        directions = np.asarray(projector, dtype=np.int64) % mod
+        if directions.shape != (component_count, component_count):
+            raise ValueError("projector has the wrong shape")
+
+    if independent:
+        sieve = RankSieve(component_count, mod)
+        indices = [
+            k for k in range(directions.shape[1])
+            if sieve.add(directions[:, k])
+        ]
+        directions = directions[:, indices]
+    else:
+        indices = list(range(directions.shape[1]))
+    return CompactDerivativeBasis(
+        d, p_deg, directions, indices, mod)
+
+FILE paper/manuscript.tex
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,longtable,booktabs}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\title{An explicit graph basis and exact Jacobian certificates\\
+for a self-dual five-form in ten dimensions}
+\author{\texttt{uskutsav-cpu}}
+\date{September 7, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a reproducible certificate for 81 explicit contractions of a real
+self-dual five-form in signature $(1,9)$. The fixed selection consists of one
+quartic, two sextic, six octic, twelve degree-ten, and sixty degree-twelve
+polynomials. Their Jacobian has a nonzero $81\times81$ minor at four exact
+finite-field specializations, using the same ordered functions in every
+case. An integral coordinate convention makes each nonzero minor a
+characteristic-zero independence witness. The construction completes the
+functional-independence problem, with the known generic quotient dimension
+as upper bound. It does not determine all polynomial generators or syzygies.
+\end{abstract}
+
+\section{Scope and conventions}
+Let $F$ be an alternating five-form, with metric
+$\eta=\operatorname{diag}(-1,1,\ldots,1)$ and Hodge convention
+$\star F=F$. The self-dual subspace has dimension 126.
+The literature supplies the generic quotient dimension 81 and the
+low-degree Hilbert coefficients \cite{cederwall,hutomo}. The present
+certificate supplies the matching lower bound using explicit graph
+contractions. The contraction catalogs and previously discovered bases are
+inherited from the repository's research branches; the certificate reported
+here re-evaluates those functions at new points.
+
+A graph has one vertex per copy of $F$, no loops, and valence five.
+An edge of multiplicity $m$ contracts $m$ index pairs with inverse metrics.
+Vertices and edges are ordered; slot order is fixed by lexicographic edge
+order. Graph isomorphism alone does not fix the sign of an odd-form
+contraction, so the formula identifier hashes the ordered edge record.
+Disconnected contractions are products. The quadratic contraction vanishes
+on this self-dual space.
+
+For each increasing five-tuple $I$ containing 0, define
+$A_I=F_I$ and let $e_I$ denote its compact alternating component vector.
+The integral parametrization is
+\[
+ F(A)=\sum_{I\ni0} A_I(e_I+\star e_I).
+\]
+The 126 columns contain only $0,1,-1$; their components indexed by $I\ni0$
+form an identity matrix. Every graph polynomial therefore has integer
+coefficients in $A$, with no projector denominators.
+
+\section{Fixed selection and exact witness}
+The nine low-degree functions are those in
+\path{results/10d_order8.json}; the next twelve come from
+\path{results/10d_order10.json}. The first sixty selected functional
+directions in \path{results/10d_order12.json} complete the list.
+The remaining two degree-twelve primitive polynomial directions belong to
+the larger homogeneous inventory and are not included in the 81-function
+Jacobian. A dependent Jacobian row does not identify a polynomial syzygy.
+
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+Field degree & New functional directions & Cumulative rank\\
+\midrule
+4 & 1 & 1\\
+6 & 2 & 3\\
+8 & 6 & 9\\
+10 & 12 & 21\\
+12 & 60 & 81\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Write $J_{aI}=\partial G_a/\partial A_I$. Each certificate cell records
+the prime, all 126 coordinates, all 252 self-dual compact components,
+the same ordered 81 graph identifiers, all entries of the $81\times126$
+Jacobian, 81 pivot columns, and the determinant of that minor.
+\input{tables/certificate_cells.tex}
+The determinant is recomputed by Python-integer elimination independently
+of the streaming rank sieve. Euler's identity
+$\sum_I A_I J_{aI}=\deg(G_a)G_a$ is checked for every row.
+
+If a saved determinant is nonzero modulo $p$, the corresponding integer
+determinant polynomial is not identically zero. Its nonvanishing defines a
+nonempty Zariski-open set in characteristic zero on which these 81
+polynomials are algebraically independent. Invariance and the known generic
+quotient dimension supply the matching upper bound. These are generic local
+coordinates; neither global orbit separation nor polynomial generation of
+the entire ring follows.
+
+\section{Polynomial spaces and literature comparison}
+The homogeneous-space dimensions through degree twelve are
+$1,2,7,14,72$. Products must be included in value-space comparisons.
+At degree twelve the ten product monomials are $I_4^3$, the three symmetric
+products of sextics, and the six products $I_4 I_{8,j}$. The inherited
+degree-twelve computation reaches rank 72 using these products and 62 graph
+directions. Polynomial-space evidence uses gradients concatenated at several
+points; the functional Jacobian uses one point. These are separate sieves.
+Factor exponents in a Hilbert product are not automatically generator counts
+at higher degrees when generators and relations may coexist.
+
+The octic comparison uses a selection of six displayed literature
+contractions: the first five expressions from equations (4.12)--(4.15) of
+\cite{cederwall}, together with the hatted expression (4.18). The exact
+machine-readable map includes the quartic-square product explicitly.
+The $6\times6$ block compares primitive classes modulo products; any product
+correction is retained in the full $7\times7$ matrix.
+
+At degree ten the repository's implemented readings of the twelve published
+candidates span a twelve-dimensional space whose intersection with the
+two-dimensional product space has dimension one in the reconstructed
+coordinate matrix. Thus a claimed invertible $12\times12$ identification
+with the graph primitive complement would be incorrect for those readings.
+The delivered map has twelve rows and fourteen atlas columns and records
+the source-reading qualifications. Rational reconstruction and fresh modular
+holdouts are strong checks on these maps, but finite samples alone do not
+prove a characteristic-zero polynomial identity. These qualifications do not
+affect the graph-only nonzero-minor proof.
+
+\section{Reproduction and validation}
+Use the declared dependencies and run the regression suite before evaluating
+certificates. The original low-degree commit is preserved by
+\texttt{v0.1-low-degree-complete}. The release commands are:
+\begin{verbatim}
+python scripts/graph_to_latex.py
+python scripts/search_rank81.py
+python scripts/verify_rank81.py
+python scripts/verify_rank81.py --recompute
+python scripts/validate_rank81_lorentz.py
+python scripts/map_literature_basis.py --degree 8
+python scripts/map_literature_basis.py --degree 10
+\end{verbatim}
+The default verifier checks the saved matrix and metadata; the explicit
+\texttt{--recompute} mode repeats the graph evaluations. These modes are
+reported separately. The search stage checkpoints each raw row and its
+pivot, checks run identity on resume, and bounds worker submissions.
+Degree-specific discovery remains available through the existing nauty
+pipelines. \texttt{run\_degree.py} accepts additional edge-list JSONL streams
+and separates polynomial completeness from functional rank.
+
+Regression tests cover the 6D reproduction, self-duality,
+the zero quadratic contraction, exact integer arithmetic, reverse
+Jacobians against an independent oracle, graph parsing beyond ten vertices,
+and genuine Lorentz boosts. The final graph selection is checked under both
+a spatial rotation and a boost; neither uses floating-point tolerances.
+
+\begin{thebibliography}{9}
+\bibitem{cederwall} M. Cederwall, J. Hutomo, S. M. Kuzenko, K. Lechner,
+and D. P. Sorokin, \emph{Some remarks on invariants},
+\href{https://arxiv.org/abs/2509.14350v2}{arXiv:2509.14350v2}.
+\bibitem{hutomo} J. Hutomo, K. Lechner, and D. P. Sorokin,
+\emph{On non-linear chiral 4-form theories in D=10},
+\href{https://arxiv.org/abs/2509.14351}{arXiv:2509.14351}.
+\end{thebibliography}
+
+\clearpage\appendix
+\section{Ordered Einstein-index formulas}
+Each repeated index labels exactly one graph edge; its upper and lower
+occurrences supply one inverse metric. The machine-readable companion
+\texttt{results/rank81\_basis.json} gives the edge lists, adjacency matrices,
+formula hashes, and contraction costs.
+\small
+\input{tables/rank81_formulas.tex}
+\end{document}
+
+FILE results/rank81_basis.json
+{
+  "formula_convention": "Lexicographic edges and slots; incoming indices raised, outgoing indices lowered; one metric per edge.",
+  "invariants": [
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 13440016,
+        "largest_pair_work": 10000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 7,
+        "retained_forward_reverse_bytes": 6720016,
+        "retained_node_elements": 420001,
+        "total_forward_reverse_work": 60030000,
+        "workspace_bytes": 6720000
+      },
+      "degree": 4,
+      "einstein_formula": "F_{\\mu_{0,2,1} \\mu_{0,2,2} \\mu_{0,2,3} \\mu_{0,3,1} \\mu_{0,3,2}}\\,F_{\\mu_{1,2,1} \\mu_{1,2,2} \\mu_{1,3,1} \\mu_{1,3,2} \\mu_{1,3,3}}\\,F^{\\mu_{0,2,1} \\mu_{0,2,2} \\mu_{0,2,3} \\mu_{1,2,1} \\mu_{1,2,2}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{1,3,1} \\mu_{1,3,2} \\mu_{1,3,3}}",
+      "formula_sha256": "f61b8b5390b51469ff8d9f42f44f409de2eed07ccf7628558ad8374f71daa060",
+      "graph": {
+        "edges": [
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            3,
+            3
+          ]
+        ],
+        "n": 4
+      },
+      "id": "I4_1",
+      "label": "n4[02^3,03^2,12^2,13^3]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          3,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 16960016,
+        "largest_pair_work": 10000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 7,
+        "retained_forward_reverse_bytes": 10240016,
+        "retained_node_elements": 640001,
+        "total_forward_reverse_work": 93030000,
+        "workspace_bytes": 6720000
+      },
+      "degree": 6,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{0,4,1} \\mu_{0,4,2}}\\,F_{\\mu_{1,3,1} \\mu_{1,3,2} \\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3}}\\,F_{\\mu_{2,4,1} \\mu_{2,4,2} \\mu_{2,4,3} \\mu_{2,5,1} \\mu_{2,5,2}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{1,3,1} \\mu_{1,3,2}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{2,4,1} \\mu_{2,4,2} \\mu_{2,4,3}}\\,F^{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{2,5,1} \\mu_{2,5,2}}",
+      "formula_sha256": "0adf6cfa1eabe563c703c39c4170a8c4409152fa37b3757ff2f08084d01a92e8",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            5,
+            3
+          ],
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            2,
+            5,
+            2
+          ]
+        ],
+        "n": 6
+      },
+      "id": "I6_1",
+      "label": "n6[03^3,04^2,13^2,15^3,24^3,25^2]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          2,
+          2,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 558400016,
+        "largest_pair_work": 1000000000,
+        "max_output_bytes": 80000000,
+        "max_output_elements": 10000000,
+        "max_output_rank": 7,
+        "max_pair_union_rank": 9,
+        "retained_forward_reverse_bytes": 203200016,
+        "retained_node_elements": 12700001,
+        "total_forward_reverse_work": 6600300000,
+        "workspace_bytes": 355200000
+      },
+      "degree": 6,
+      "einstein_formula": "F_{\\mu_{0,2,1} \\mu_{0,2,2} \\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,5,1}}\\,F_{\\mu_{1,3,1} \\mu_{1,3,2} \\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,5,1}}\\,F^{\\mu_{0,2,1} \\mu_{0,2,2}}_{\\mu_{2,4,1} \\mu_{2,4,2} \\mu_{2,5,1}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{1,3,1} \\mu_{1,3,2}}_{\\mu_{3,5,1}}\\,F^{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{2,4,1} \\mu_{2,4,2}}_{\\mu_{4,5,1}}\\,F^{\\mu_{0,5,1} \\mu_{1,5,1} \\mu_{2,5,1} \\mu_{3,5,1} \\mu_{4,5,1}}",
+      "formula_sha256": "ac3e9a39b7614edb53d6f2fd5f4726763bb99484a038202a89d97ea560907b41",
+      "graph": {
+        "edges": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            5,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            2,
+            4,
+            2
+          ],
+          [
+            2,
+            5,
+            1
+          ],
+          [
+            3,
+            5,
+            1
+          ],
+          [
+            4,
+            5,
+            1
+          ]
+        ],
+        "n": 6
+      },
+      "id": "I6_2",
+      "label": "n6[02^2,03^2,05^1,13^2,14^2,15^1,24^2,25^1,35^1,45^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          4
+        ],
+        [
+          4,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 19212816,
+        "largest_pair_work": 1000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 6,
+        "retained_forward_reverse_bytes": 12809616,
+        "retained_node_elements": 800601,
+        "total_forward_reverse_work": 12006300,
+        "workspace_bytes": 6403200
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3} \\mu_{0,4,4} \\mu_{0,5,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3} \\mu_{1,6,4}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4} \\mu_{2,7,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,7,3} \\mu_{3,7,4}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3} \\mu_{0,4,4} \\mu_{1,4,1}}\\,F^{\\mu_{0,5,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4}}\\,F^{\\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3} \\mu_{1,6,4} \\mu_{3,6,1}}\\,F^{\\mu_{2,7,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,7,3} \\mu_{3,7,4}}",
+      "formula_sha256": "59f2be14ec3ac619879ffd1d6b38c3f1f002bba84aa8433a42f97f5f7d31e8b8",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            0,
+            5,
+            1
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            1,
+            6,
+            4
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            3,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            4
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_1",
+      "label": "n8[04^4,05^1,14^1,16^4,25^4,27^1,36^1,37^4]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 22409616,
+        "largest_pair_work": 1000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 6,
+        "retained_forward_reverse_bytes": 16006416,
+        "retained_node_elements": 1000401,
+        "total_forward_reverse_work": 18000300,
+        "workspace_bytes": 6403200
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{0,3,4} \\mu_{0,6,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,4,3} \\mu_{1,4,4} \\mu_{1,6,1}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4} \\mu_{2,6,1}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{0,3,4}}_{\\mu_{3,7,1}}\\,F^{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,4,3} \\mu_{1,4,4}}_{\\mu_{4,7,1}}\\,F^{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4}}_{\\mu_{5,7,1}}\\,F^{\\mu_{0,6,1} \\mu_{1,6,1} \\mu_{2,6,1}}_{\\mu_{6,7,1} \\mu_{6,7,2}}\\,F^{\\mu_{3,7,1} \\mu_{4,7,1} \\mu_{5,7,1} \\mu_{6,7,1} \\mu_{6,7,2}}",
+      "formula_sha256": "0ee38233133cc32cbf6776d2886eea3fc5263249f9188121759f4e097cf4f93a",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            0,
+            6,
+            1
+          ],
+          [
+            1,
+            4,
+            4
+          ],
+          [
+            1,
+            6,
+            1
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            2,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            1
+          ],
+          [
+            4,
+            7,
+            1
+          ],
+          [
+            5,
+            7,
+            1
+          ],
+          [
+            6,
+            7,
+            2
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_2",
+      "label": "n8[03^4,06^1,14^4,16^1,25^4,26^1,37^1,47^1,57^1,67^2]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          4,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          2,
+          0,
+          1,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 22884816,
+        "largest_pair_work": 10000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 7,
+        "retained_forward_reverse_bytes": 16164816,
+        "retained_node_elements": 1010301,
+        "total_forward_reverse_work": 72000300,
+        "workspace_bytes": 6720000
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{0,3,4} \\mu_{0,4,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,5,1} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,7,1}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4} \\mu_{2,6,1}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,3,3} \\mu_{0,3,4}}_{\\mu_{3,7,1}}\\,F^{\\mu_{0,4,1} \\mu_{1,4,1}}_{\\mu_{4,6,1} \\mu_{4,7,1} \\mu_{4,7,2}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4}}\\,F^{\\mu_{1,6,1} \\mu_{1,6,2} \\mu_{2,6,1} \\mu_{4,6,1}}_{\\mu_{6,7,1}}\\,F^{\\mu_{1,7,1} \\mu_{3,7,1} \\mu_{4,7,1} \\mu_{4,7,2} \\mu_{6,7,1}}",
+      "formula_sha256": "ca5e1a1463a5e64c499877166911af3801396671df5c861590aaf6f1f28bf712",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            0,
+            4,
+            1
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            6,
+            2
+          ],
+          [
+            1,
+            7,
+            1
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            2,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            1
+          ],
+          [
+            4,
+            6,
+            1
+          ],
+          [
+            4,
+            7,
+            2
+          ],
+          [
+            6,
+            7,
+            1
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_3",
+      "label": "n8[03^4,04^1,14^1,15^1,16^2,17^1,25^4,26^1,37^1,46^1,47^2,67^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          2,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 70404816,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 32004816,
+        "retained_node_elements": 2000301,
+        "total_forward_reverse_work": 612000300,
+        "workspace_bytes": 38400000
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,6,1} \\mu_{0,6,2} \\mu_{0,7,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,4,3} \\mu_{1,4,4} \\mu_{1,6,1}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4} \\mu_{2,6,1}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2}}_{\\mu_{3,6,1} \\mu_{3,7,1} \\mu_{3,7,2}}\\,F^{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,4,3} \\mu_{1,4,4}}_{\\mu_{4,7,1}}\\,F^{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4}}_{\\mu_{5,7,1}}\\,F^{\\mu_{0,6,1} \\mu_{0,6,2} \\mu_{1,6,1} \\mu_{2,6,1} \\mu_{3,6,1}}\\,F^{\\mu_{0,7,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{4,7,1} \\mu_{5,7,1}}",
+      "formula_sha256": "772383f5b092a331079d1ecd056a1e6ec82d744bfd5c18e25e781b6eadd06536",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            1,
+            4,
+            4
+          ],
+          [
+            1,
+            6,
+            1
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            2,
+            6,
+            1
+          ],
+          [
+            3,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            4,
+            7,
+            1
+          ],
+          [
+            5,
+            7,
+            1
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_4",
+      "label": "n8[03^2,06^2,07^1,14^4,16^1,25^4,26^1,36^1,37^2,47^1,57^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          2,
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 83235216,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 44835216,
+        "retained_node_elements": 2802201,
+        "total_forward_reverse_work": 663030300,
+        "workspace_bytes": 38400000
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,4,1} \\mu_{0,6,1} \\mu_{0,6,2}}\\,F_{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,5,1} \\mu_{1,7,1} \\mu_{1,7,2}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4} \\mu_{2,6,1}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2}}_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,7,1}}\\,F^{\\mu_{0,4,1} \\mu_{1,4,1} \\mu_{1,4,2}}_{\\mu_{4,7,1} \\mu_{4,7,2}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,5,4}}\\,F^{\\mu_{0,6,1} \\mu_{0,6,2} \\mu_{2,6,1} \\mu_{3,6,1} \\mu_{3,6,2}}\\,F^{\\mu_{1,7,1} \\mu_{1,7,2} \\mu_{3,7,1} \\mu_{4,7,1} \\mu_{4,7,2}}",
+      "formula_sha256": "e1dd3ba9cedf47843f3dba381c419a433aa0d3ff2aff0c25e876ae65f93d9c9e",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            4,
+            1
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            7,
+            2
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            2,
+            6,
+            1
+          ],
+          [
+            3,
+            6,
+            2
+          ],
+          [
+            3,
+            7,
+            1
+          ],
+          [
+            4,
+            7,
+            2
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_5",
+      "label": "n8[03^2,04^1,06^2,14^2,15^1,17^2,25^4,26^1,36^2,37^1,47^2]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          1,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 86720016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 48320016,
+        "retained_node_elements": 3020001,
+        "total_forward_reverse_work": 1260030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 8,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,3,2} \\mu_{0,6,1} \\mu_{0,6,2} \\mu_{0,7,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,5,1} \\mu_{1,6,1} \\mu_{1,6,2}}\\,F_{\\mu_{2,4,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,7,1} \\mu_{2,7,2}}\\,F^{\\mu_{0,3,1} \\mu_{0,3,2}}_{\\mu_{3,6,1} \\mu_{3,7,1} \\mu_{3,7,2}}\\,F^{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{2,4,1}}_{\\mu_{4,5,1} \\mu_{4,5,2}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{4,5,1} \\mu_{4,5,2}}\\,F^{\\mu_{0,6,1} \\mu_{0,6,2} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{3,6,1}}\\,F^{\\mu_{0,7,1} \\mu_{2,7,1} \\mu_{2,7,2} \\mu_{3,7,1} \\mu_{3,7,2}}",
+      "formula_sha256": "9f747bbaae852ea77eb8a6d91ad994ffd3849a9e97cdd8f4595f6c4f8788ce25",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            6,
+            2
+          ],
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            3,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            4,
+            5,
+            2
+          ]
+        ],
+        "n": 8
+      },
+      "id": "I8_6",
+      "label": "n8[03^2,06^2,07^1,14^2,15^1,16^2,24^1,25^2,27^2,36^1,37^2,45^2]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 74400016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 36000016,
+        "retained_node_elements": 2250001,
+        "total_forward_reverse_work": 753030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3} \\mu_{0,7,1} \\mu_{0,9,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,8,1} \\mu_{1,8,2}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,7,1} \\mu_{2,7,2} \\mu_{2,9,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3} \\mu_{3,8,1} \\mu_{3,9,1}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3}}_{\\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2}}_{\\mu_{5,7,1} \\mu_{5,9,1}}\\,F^{\\mu_{1,6,1} \\mu_{1,6,2} \\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3}}\\,F^{\\mu_{0,7,1} \\mu_{2,7,1} \\mu_{2,7,2} \\mu_{5,7,1}}_{\\mu_{7,9,1}}\\,F^{\\mu_{1,8,1} \\mu_{1,8,2} \\mu_{3,8,1} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{0,9,1} \\mu_{2,9,1} \\mu_{3,9,1} \\mu_{5,9,1} \\mu_{7,9,1}}",
+      "formula_sha256": "25a66e3f1e1ffdaf717381547ff6153394c25da6046fb40615774652601ef26e",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            3
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            6,
+            2
+          ],
+          [
+            1,
+            8,
+            2
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            9,
+            1
+          ],
+          [
+            3,
+            6,
+            3
+          ],
+          [
+            3,
+            8,
+            1
+          ],
+          [
+            3,
+            9,
+            1
+          ],
+          [
+            4,
+            8,
+            2
+          ],
+          [
+            5,
+            7,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ],
+          [
+            7,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_1",
+      "label": "n10[04^3,07^1,09^1,15^1,16^2,18^2,25^2,27^2,29^1,36^3,38^1,39^1,48^2,57^1,59^1,79^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 26563216,
+        "largest_pair_work": 10000000,
+        "max_output_bytes": 800000,
+        "max_output_elements": 100000,
+        "max_output_rank": 5,
+        "max_pair_union_rank": 7,
+        "retained_forward_reverse_bytes": 19843216,
+        "retained_node_elements": 1240201,
+        "total_forward_reverse_work": 183300300,
+        "workspace_bytes": 6720000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,5,1} \\mu_{0,5,2} \\mu_{0,6,1} \\mu_{0,6,2} \\mu_{0,9,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{1,8,1} \\mu_{1,9,1}}\\,F_{\\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3} \\mu_{2,9,1} \\mu_{2,9,2}}\\,F_{\\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,8,1} \\mu_{3,8,2} \\mu_{3,9,1}}\\,F_{\\mu_{4,7,1} \\mu_{4,7,2} \\mu_{4,7,3} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{0,5,1} \\mu_{0,5,2} \\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3}}\\,F^{\\mu_{0,6,1} \\mu_{0,6,2} \\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3}}\\,F^{\\mu_{3,7,1} \\mu_{3,7,2} \\mu_{4,7,1} \\mu_{4,7,2} \\mu_{4,7,3}}\\,F^{\\mu_{1,8,1} \\mu_{3,8,1} \\mu_{3,8,2} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{0,9,1} \\mu_{1,9,1} \\mu_{2,9,1} \\mu_{2,9,2} \\mu_{3,9,1}}",
+      "formula_sha256": "7623069306117e93cd66365ea88ad1a268f1bfa8ba71819aad196b345d5fb07c",
+      "graph": {
+        "edges": [
+          [
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            5,
+            3
+          ],
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            1,
+            9,
+            1
+          ],
+          [
+            2,
+            6,
+            3
+          ],
+          [
+            2,
+            9,
+            2
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            3,
+            8,
+            2
+          ],
+          [
+            3,
+            9,
+            1
+          ],
+          [
+            4,
+            7,
+            3
+          ],
+          [
+            4,
+            8,
+            2
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_2",
+      "label": "n10[05^2,06^2,09^1,15^3,18^1,19^1,26^3,29^2,37^2,38^2,39^1,47^3,48^2]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          1,
+          1
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 91680016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 53280016,
+        "retained_node_elements": 3330001,
+        "total_forward_reverse_work": 1320030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3} \\mu_{0,7,1} \\mu_{0,7,2}}\\,F_{\\mu_{1,5,1} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3} \\mu_{1,9,1}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,8,1} \\mu_{2,8,2} \\mu_{2,9,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,8,1} \\mu_{3,9,1}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3}}_{\\mu_{4,8,1} \\mu_{4,9,1}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2}}_{\\mu_{5,7,1} \\mu_{5,8,1}}\\,F^{\\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3} \\mu_{3,6,1}}_{\\mu_{6,9,1}}\\,F^{\\mu_{0,7,1} \\mu_{0,7,2} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{5,7,1}}\\,F^{\\mu_{2,8,1} \\mu_{2,8,2} \\mu_{3,8,1} \\mu_{4,8,1} \\mu_{5,8,1}}\\,F^{\\mu_{1,9,1} \\mu_{2,9,1} \\mu_{3,9,1} \\mu_{4,9,1} \\mu_{6,9,1}}",
+      "formula_sha256": "b7b9494c229d850992c97def6c495c69224d9a33974836d00658b43286af6a79",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            3
+          ],
+          [
+            0,
+            7,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            6,
+            3
+          ],
+          [
+            1,
+            9,
+            1
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            2,
+            8,
+            2
+          ],
+          [
+            2,
+            9,
+            1
+          ],
+          [
+            3,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            3,
+            8,
+            1
+          ],
+          [
+            3,
+            9,
+            1
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            7,
+            1
+          ],
+          [
+            5,
+            8,
+            1
+          ],
+          [
+            6,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_3",
+      "label": "n10[04^3,07^2,15^1,16^3,19^1,25^2,28^2,29^1,36^1,37^2,38^1,39^1,48^1,49^1,57^1,58^1,69^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          2,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 91363216,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 52963216,
+        "retained_node_elements": 3310201,
+        "total_forward_reverse_work": 1266000300,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,6,1} \\mu_{0,7,1} \\mu_{0,7,2}}\\,F_{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{1,7,1} \\mu_{1,9,1}}\\,F_{\\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3} \\mu_{2,6,4} \\mu_{2,8,1}}\\,F_{\\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,8,1} \\mu_{3,9,1} \\mu_{3,9,2}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2}}_{\\mu_{4,8,1} \\mu_{4,8,2} \\mu_{4,9,1}}\\,F^{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3}}_{\\mu_{5,8,1} \\mu_{5,9,1}}\\,F^{\\mu_{0,6,1} \\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3} \\mu_{2,6,4}}\\,F^{\\mu_{0,7,1} \\mu_{0,7,2} \\mu_{1,7,1} \\mu_{3,7,1} \\mu_{3,7,2}}\\,F^{\\mu_{2,8,1} \\mu_{3,8,1} \\mu_{4,8,1} \\mu_{4,8,2} \\mu_{5,8,1}}\\,F^{\\mu_{1,9,1} \\mu_{3,9,1} \\mu_{3,9,2} \\mu_{4,9,1} \\mu_{5,9,1}}",
+      "formula_sha256": "4a48bb85f5bebf33f2be517df39bbf253e1cca082fc455ea3d4371210e84aa38",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            7,
+            2
+          ],
+          [
+            1,
+            5,
+            3
+          ],
+          [
+            1,
+            7,
+            1
+          ],
+          [
+            1,
+            9,
+            1
+          ],
+          [
+            2,
+            6,
+            4
+          ],
+          [
+            2,
+            8,
+            1
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            3,
+            8,
+            1
+          ],
+          [
+            3,
+            9,
+            2
+          ],
+          [
+            4,
+            8,
+            2
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            8,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_4",
+      "label": "n10[04^2,06^1,07^2,15^3,17^1,19^1,26^4,28^1,37^2,38^1,39^2,48^2,49^1,58^1,59^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          2,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 91680016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 53280016,
+        "retained_node_elements": 3330001,
+        "total_forward_reverse_work": 1320030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,6,1} \\mu_{0,7,1} \\mu_{0,9,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,7,1} \\mu_{1,8,1} \\mu_{1,9,1} \\mu_{1,9,2}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3} \\mu_{2,7,1} \\mu_{2,7,2}}\\,F_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3} \\mu_{3,8,1} \\mu_{3,8,2}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2}}_{\\mu_{4,6,1} \\mu_{4,8,1} \\mu_{4,9,1}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,5,3}}_{\\mu_{5,8,1}}\\,F^{\\mu_{0,6,1} \\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3} \\mu_{4,6,1}}\\,F^{\\mu_{0,7,1} \\mu_{1,7,1} \\mu_{2,7,1} \\mu_{2,7,2}}_{\\mu_{7,9,1}}\\,F^{\\mu_{1,8,1} \\mu_{3,8,1} \\mu_{3,8,2} \\mu_{4,8,1} \\mu_{5,8,1}}\\,F^{\\mu_{0,9,1} \\mu_{1,9,1} \\mu_{1,9,2} \\mu_{4,9,1} \\mu_{7,9,1}}",
+      "formula_sha256": "7aac59dbe50a2c59ef72443f8a0a200f4be487fa02fa03c697a036d8f728242e",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            7,
+            1
+          ],
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            1,
+            9,
+            2
+          ],
+          [
+            2,
+            5,
+            3
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            3,
+            6,
+            3
+          ],
+          [
+            3,
+            8,
+            2
+          ],
+          [
+            4,
+            6,
+            1
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            8,
+            1
+          ],
+          [
+            7,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_5",
+      "label": "n10[04^2,06^1,07^1,09^1,15^1,17^1,18^1,19^2,25^3,27^2,36^3,38^2,46^1,48^1,49^1,58^1,79^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          2,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 147840016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 83520016,
+        "retained_node_elements": 5220001,
+        "total_forward_reverse_work": 2130030000,
+        "workspace_bytes": 64320000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,6,1} \\mu_{0,8,1} \\mu_{0,9,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,6,1} \\mu_{1,8,1} \\mu_{1,9,1} \\mu_{1,9,2}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,7,1} \\mu_{2,7,2} \\mu_{2,8,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3} \\mu_{3,7,1} \\mu_{3,9,1}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2}}_{\\mu_{4,7,1} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{1,5,1} \\mu_{2,5,1} \\mu_{2,5,2}}_{\\mu_{5,7,1} \\mu_{5,9,1}}\\,F^{\\mu_{0,6,1} \\mu_{1,6,1} \\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3}}\\,F^{\\mu_{2,7,1} \\mu_{2,7,2} \\mu_{3,7,1} \\mu_{4,7,1} \\mu_{5,7,1}}\\,F^{\\mu_{0,8,1} \\mu_{1,8,1} \\mu_{2,8,1} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{0,9,1} \\mu_{1,9,1} \\mu_{1,9,2} \\mu_{3,9,1} \\mu_{5,9,1}}",
+      "formula_sha256": "da8866b0f2b8ed0efcbeaed0f975e6eb903cbf53aacc4e805115132489c534c1",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            8,
+            1
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            6,
+            1
+          ],
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            1,
+            9,
+            2
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            8,
+            1
+          ],
+          [
+            3,
+            6,
+            3
+          ],
+          [
+            3,
+            7,
+            1
+          ],
+          [
+            3,
+            9,
+            1
+          ],
+          [
+            4,
+            7,
+            1
+          ],
+          [
+            4,
+            8,
+            2
+          ],
+          [
+            5,
+            7,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_6",
+      "label": "n10[04^2,06^1,08^1,09^1,15^1,16^1,18^1,19^2,25^2,27^2,28^1,36^3,37^1,39^1,47^1,48^2,57^1,59^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 91363216,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 52963216,
+        "retained_node_elements": 3310201,
+        "total_forward_reverse_work": 1266000300,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,3,1} \\mu_{0,5,1} \\mu_{0,5,2} \\mu_{0,7,1} \\mu_{0,9,1}}\\,F_{\\mu_{1,4,1} \\mu_{1,4,2} \\mu_{1,6,1} \\mu_{1,8,1} \\mu_{1,8,2}}\\,F_{\\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3} \\mu_{2,6,4} \\mu_{2,7,1}}\\,F^{\\mu_{0,3,1}}_{\\mu_{3,5,1} \\mu_{3,5,2} \\mu_{3,8,1} \\mu_{3,9,1}}\\,F^{\\mu_{1,4,1} \\mu_{1,4,2}}_{\\mu_{4,7,1} \\mu_{4,8,1} \\mu_{4,9,1}}\\,F^{\\mu_{0,5,1} \\mu_{0,5,2} \\mu_{3,5,1} \\mu_{3,5,2}}_{\\mu_{5,9,1}}\\,F^{\\mu_{1,6,1} \\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,6,3} \\mu_{2,6,4}}\\,F^{\\mu_{0,7,1} \\mu_{2,7,1} \\mu_{4,7,1}}_{\\mu_{7,8,1} \\mu_{7,9,1}}\\,F^{\\mu_{1,8,1} \\mu_{1,8,2} \\mu_{3,8,1} \\mu_{4,8,1} \\mu_{7,8,1}}\\,F^{\\mu_{0,9,1} \\mu_{3,9,1} \\mu_{4,9,1} \\mu_{5,9,1} \\mu_{7,9,1}}",
+      "formula_sha256": "7a0d47ce1d5d385d8249fe823cdf5009550bf67e5882b41f47df156643c38220",
+      "graph": {
+        "edges": [
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            6,
+            1
+          ],
+          [
+            1,
+            8,
+            2
+          ],
+          [
+            2,
+            6,
+            4
+          ],
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            3,
+            5,
+            2
+          ],
+          [
+            3,
+            8,
+            1
+          ],
+          [
+            3,
+            9,
+            1
+          ],
+          [
+            4,
+            7,
+            1
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ],
+          [
+            7,
+            8,
+            1
+          ],
+          [
+            7,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_7",
+      "label": "n10[03^1,05^2,07^1,09^1,14^2,16^1,18^2,26^4,27^1,35^2,38^1,39^1,47^1,48^1,49^1,59^1,78^1,79^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 75523216,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 37123216,
+        "retained_node_elements": 2320201,
+        "total_forward_reverse_work": 726000300,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,7,1} \\mu_{0,9,1} \\mu_{0,9,2}}\\,F_{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{1,5,4} \\mu_{1,8,1}}\\,F_{\\mu_{2,6,1} \\mu_{2,6,2} \\mu_{2,7,1} \\mu_{2,8,1} \\mu_{2,8,2}}\\,F_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,7,3}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2}}_{\\mu_{4,8,1} \\mu_{4,8,2} \\mu_{4,9,1}}\\,F^{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{1,5,4}}_{\\mu_{5,9,1}}\\,F^{\\mu_{2,6,1} \\mu_{2,6,2} \\mu_{3,6,1} \\mu_{3,6,2}}_{\\mu_{6,9,1}}\\,F^{\\mu_{0,7,1} \\mu_{2,7,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,7,3}}\\,F^{\\mu_{1,8,1} \\mu_{2,8,1} \\mu_{2,8,2} \\mu_{4,8,1} \\mu_{4,8,2}}\\,F^{\\mu_{0,9,1} \\mu_{0,9,2} \\mu_{4,9,1} \\mu_{5,9,1} \\mu_{6,9,1}}",
+      "formula_sha256": "ac6964bddfce14440928ec1e23c40007c2ee44a2cee04078af354cc8a8286bd3",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            9,
+            2
+          ],
+          [
+            1,
+            5,
+            4
+          ],
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            2,
+            6,
+            2
+          ],
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            2,
+            8,
+            2
+          ],
+          [
+            3,
+            6,
+            2
+          ],
+          [
+            3,
+            7,
+            3
+          ],
+          [
+            4,
+            8,
+            2
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ],
+          [
+            6,
+            9,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_8",
+      "label": "n10[04^2,07^1,09^2,15^4,18^1,26^2,27^1,28^2,36^2,37^3,48^2,49^1,59^1,69^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          2,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          3,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          2,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 91680016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 53280016,
+        "retained_node_elements": 3330001,
+        "total_forward_reverse_work": 1320030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3} \\mu_{0,7,1} \\mu_{0,9,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3}}\\,F_{\\mu_{2,5,1} \\mu_{2,5,2} \\mu_{2,7,1} \\mu_{2,8,1} \\mu_{2,9,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,7,1} \\mu_{3,7,2} \\mu_{3,8,1} \\mu_{3,8,2}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,4,3}}_{\\mu_{4,8,1} \\mu_{4,9,1}}\\,F^{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{2,5,1} \\mu_{2,5,2}}_{\\mu_{5,9,1}}\\,F^{\\mu_{1,6,1} \\mu_{1,6,2} \\mu_{1,6,3} \\mu_{3,6,1}}_{\\mu_{6,9,1}}\\,F^{\\mu_{0,7,1} \\mu_{2,7,1} \\mu_{3,7,1} \\mu_{3,7,2}}_{\\mu_{7,8,1}}\\,F^{\\mu_{2,8,1} \\mu_{3,8,1} \\mu_{3,8,2} \\mu_{4,8,1} \\mu_{7,8,1}}\\,F^{\\mu_{0,9,1} \\mu_{2,9,1} \\mu_{4,9,1} \\mu_{5,9,1} \\mu_{6,9,1}}",
+      "formula_sha256": "f087a40f80bee13f092b22b11f62b95a8d46f5a15aae713c736710402a6e5ca7",
+      "graph": {
+        "edges": [
+          [
+            0,
+            4,
+            3
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            5,
+            2
+          ],
+          [
+            1,
+            6,
+            3
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            2,
+            8,
+            1
+          ],
+          [
+            2,
+            9,
+            1
+          ],
+          [
+            3,
+            6,
+            1
+          ],
+          [
+            3,
+            7,
+            2
+          ],
+          [
+            3,
+            8,
+            2
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            4,
+            9,
+            1
+          ],
+          [
+            5,
+            9,
+            1
+          ],
+          [
+            6,
+            9,
+            1
+          ],
+          [
+            7,
+            8,
+            1
+          ]
+        ],
+        "n": 10
+      },
+      "id": "I10_9",
+      "label": "n10[04^3,07^1,09^1,15^2,16^3,25^2,27^1,28^1,29^1,36^1,37^2,38^2,48^1,49^1,59^1,69^1,78^1]"
+    },
+    {
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "contraction_cost": {
+        "estimated_peak_bytes": 75840016,
+        "largest_pair_work": 100000000,
+        "max_output_bytes": 8000000,
+        "max_output_elements": 1000000,
+        "max_output_rank": 6,
+        "max_pair_union_rank": 8,
+        "retained_forward_reverse_bytes": 37440016,
+        "retained_node_elements": 2340001,
+        "total_forward_reverse_work": 780030000,
+        "workspace_bytes": 38400000
+      },
+      "degree": 10,
+      "einstein_formula": "F_{\\mu_{0,4,1} \\mu_{0,4,2} \\mu_{0,5,1} \\mu_{0,5,2} \\mu_{0,8,1}}\\,F_{\\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3} \\mu_{1,7,1} \\mu_{1,9,1}}\\,F_{\\mu_{2,6,1} \\mu_{2,7,1} \\mu_{2,8,1} \\mu_{2,8,2} \\mu_{2,9,1}}\\,F_{\\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3} \\mu_{3,8,1} \\mu_{3,9,1}}\\,F^{\\mu_{0,4,1} \\mu_{0,4,2}}_{\\mu_{4,7,1} \\mu_{4,7,2} \\mu_{4,9,1}}\\,F^{\\mu_{0,5,1} \\mu_{0,5,2} \\mu_{1,5,1} \\mu_{1,5,2} \\mu_{1,5,3}}\\,F^{\\mu_{2,6,1} \\mu_{3,6,1} \\mu_{3,6,2} \\mu_{3,6,3}}_{\\mu_{6,8,1}}\\,F^{\\mu_{1,7,1} \\mu_{2,7,1} \\mu_{4,7,1} \\mu_{4,7,2}}_{\\mu_{7,9,1}}\\,F^{\\mu_{0,8,1} \\mu_{2,8,1} \\mu_{2,8,2} \\mu_{3,8,1} \\mu_{6,8,1}}

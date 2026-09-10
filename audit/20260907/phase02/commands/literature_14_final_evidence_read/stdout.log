@@ -1,0 +1,160 @@
+
+FILE src/sdinv/forms.py
+1: """Antisymmetric p-forms in d dimensions, over F_p.
+2: 
+3: A form is stored two ways:
+4:   - "sparse": a vector of length C(d,p) indexed by SORTED index tuples.
+5:     This is the honest count of independent components (20 for a 3-form in
+6:     6D, 252 for a 5-form in 10D).
+7:   - "dense": a full (d,)*p numpy array, needed for einsum contraction.
+8: 
+9: The Hodge dual is computed on the sparse representation via index
+10: complement -- O(C(d,p)) work. Never build the d^d epsilon tensor.
+11: """
+12: 
+13: import itertools
+14: import numpy as np
+15: 
+16: from .modp import P, inv
+17: 
+18: 
+19: def basis_tuples(d, p):
+20:     """All sorted index tuples -- one per independent component."""
+21:     return list(itertools.combinations(range(d), p))
+22: 
+23: 
+24: def metric_signs(d, lorentzian=True):
+25:     """Diagonal metric. Lorentzian = diag(-1, +1, ..., +1)."""
+26:     s = np.ones(d, dtype=np.int64)
+27:     if lorentzian:
+28:         s[0] = -1
+29:     return s
+30: 
+31: 
+32: def perm_sign(perm):
+33:     """Sign of a permutation given as a sequence."""
+34:     perm = list(perm)
+35:     n = len(perm)
+36:     seen = [False] * n
+37:     sign = 1
+38:     for i in range(n):
+39:         if seen[i]:
+40:             continue
+41:         j, ln = i, 0
+42:         while not seen[j]:
+43:             seen[j] = True
+44:             j = perm[j]
+45:             ln += 1
+46:         if ln % 2 == 0:
+47:             sign = -sign
+48:     return sign
+49: 
+50: 
+51: def to_dense(vec, d, p_deg, mod=P):
+52:     """Expand sparse component vector to a dense antisymmetric array."""
+53:     T = np.zeros((d,) * p_deg, dtype=np.int64)
+54:     for k, idx in enumerate(basis_tuples(d, p_deg)):
+55:         v = int(vec[k]) % mod
+56:         if v == 0:
+57:             continue
+58:         for perm in itertools.permutations(range(p_deg)):
+59:             sgn = perm_sign(perm)
+60:             T[tuple(idx[perm[i]] for i in range(p_deg))] = (
+61:                 v * sgn) % mod
+62:     return T
+63: 
+64: 
+65: def random_form(d, p_deg, rng, mod=P):
+66:     """Random sparse component vector."""
+67:     n = len(basis_tuples(d, p_deg))
+68:     return rng.integers(1, mod, size=n, dtype=np.int64)
+69: 
+70: 
+71: def hodge_matrix(d, p_deg, lorentzian=True, mod=P):
+72:     """Matrix of the Hodge star on sparse components.
+73: 
+74:     (*F)_{I} = (1/(d-p)!) eps_{I J} F^{J}, which on sorted multi-indices is
+75:     just +/- the component on the complementary index set, times the metric
+76:     signs from raising J.
+77:     """
+78:     src = basis_tuples(d, p_deg)
+79:     dst = basis_tuples(d, d - p_deg)
+80:     dst_pos = {t: i for i, t in enumerate(dst)}
+81:     s = metric_signs(d, lorentzian)
+82:     M = np.zeros((len(dst), len(src)), dtype=np.int64)
+83:     for j, I in enumerate(src):
+84:         Ic = tuple(sorted(set(range(d)) - set(I)))
+85:         # sign of the permutation (Ic, I) relative to (0,1,...,d-1)
+86:         perm = list(Ic) + list(I)
+87:         sgn = perm_sign([perm.index(k) for k in range(d)])
+88:         raise_sign = int(np.prod(s[list(I)]))
+89:         M[dst_pos[Ic], j] = (sgn * raise_sign) % mod
+90:     return M
+91: 
+92: 
+93: def selfdual_projector(d, p_deg, lorentzian=True, mod=P):
+94:     """P = (1 + *) / 2, valid when *^2 = +1 (true for 5-forms in 10D
+95:     Lorentzian: (-1)^{p(d-p)} * (-1)^s = (-1)^25 * (-1)^1 = +1)."""
+96:     assert d == 2 * p_deg, "star maps p-forms to p-forms only when d = 2p"
+97:     H = hodge_matrix(d, p_deg, lorentzian, mod)
+98:     n = H.shape[0]
+99:     I = np.eye(n, dtype=np.int64)
+100:     half = inv(2, mod)
+101:     return ((I + H) * half) % mod
+102: 
+103: 
+104: def check_star_squared(d, p_deg, lorentzian=True, mod=P):
+105:     """Sanity check: returns the scalar c with *^2 = c * identity."""
+106:     H = hodge_matrix(d, p_deg, lorentzian, mod)
+107:     H2 = (H @ H) % mod
+108:     n = H.shape[0]
+109:     c = H2[0, 0]
+110:     assert np.array_equal(H2, (c * np.eye(n, dtype=np.int64)) % mod), \
+111:         "star^2 is not a multiple of the identity"
+112:     return int(c) if c < mod // 2 else int(c) - mod
+
+FILE src/sdinv/latex.py
+1: """Readable formulas with exactly one raised endpoint per graph edge."""
+2: 
+3: from .graphs import validate_graph
+4: from .serialize import to_record
+5: 
+6: 
+7: def graph_to_latex(matrix):
+8:     validate_graph(matrix, valence=5, max_mult=4)
+9:     lower, upper = [[] for _ in matrix], [[] for _ in matrix]
+10:     for i, j, multiplicity in to_record(matrix)["edges"]:
+11:         for k in range(1, multiplicity + 1):
+12:             name = rf"\mu_{{{i},{j},{k}}}"
+13:             lower[i].append(name)
+14:             upper[j].append(name)
+15:     # Lexicographic edge order places every incoming (raised) slot before
+16:     # every outgoing (lowered) slot. This is the evaluator's exact slot order.
+17:     return r"\,".join("F" + ("^{" + " ".join(upper[v]) + "}" if upper[v] else "")
+18:                       + ("_{" + " ".join(lower[v]) + "}" if lower[v] else "")
+19:                       for v in range(len(matrix)))
+20: 
+21: 
+22: def factor_lines(matrix, factors_per_line=2):
+23:     """A multiline aligned expression suitable for a paper appendix."""
+24:     factors = graph_to_latex(matrix).split(r"\,")
+25:     return " \\\\\n &\\quad ".join(r"\,".join(factors[k:k + factors_per_line])
+26:                                 for k in range(0, len(factors), factors_per_line))
+
+RESULT IDENTITIES
+results/10d_order8.json e780f0972fb8bfcfbed0dcda89361fe9810763549bc6f2ac9bf0833585e7f16c
+results/10d_order10.json 92b02433d82e641cce0d2dbb5f1bec9878c191ccbda7e906f27ef1f555b0fee5
+results/10d_order12.json 9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113
+results/rank81_basis.json 59848eb1e3024f33da8b8235796b0ea99429f21c88243070437172b50a6473fb
+results/rank81_certificate.json c329edc407c0624633abeda7e9de097fc92ed0b17224d2f19d1aba43d54d656d
+[(32749, 20260907, 81, 20345), (32749, 20260908, 81, 30761), (32719, 20260907, 81, 1653), (32719, 20260908, 81, 2167)]
+results/order8_change_of_basis.json 30140fa0bef549b6f6c221e3fcc5f971416930ca3802084ca3d40933f782beec
+results/order10_change_of_basis.json 429dbf74b37f84baf3b14c8e64bb718d74a0d88b25221848e7f547dc1fd3cb89
+
+CHARZERO FILES
+results/stress_flow/closure_and_minimality.json
+results/stress_flow/D10_characteristic_zero.json
+results/stress_flow/Q10_characteristic_zero.json
+results/degree10/B10_coordinates_per_prime.json
+results/degree10/B10_P10_intersection_generator.json
+results/degree10/B10_P10_intersection_exact.json

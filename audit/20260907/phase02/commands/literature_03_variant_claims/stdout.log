@@ -1,0 +1,568 @@
+manuscript/prl/main.tex:35:arithmetic and recovered independently in graph, block-tensor and spinor
+manuscript/prl/main.tex:36:descriptions related by a certified equivariant map. Any deformation scheme
+manuscript/prl/main.tex:38:therefore enlarge its generator set by at least three independent structures.
+manuscript/prl/main.tex:47:The science below is complete and certified; the venue judgement is not. Author
+manuscript/prl/main.tex:65:and there are $\genericFunctionalDim$ functionally independent
+manuscript/prl/main.tex:74:claimed to be complete, and with their linear relations undetermined. Without the
+manuscript/prl/main.tex:113:\dimQtenMinusOne\ independent classes, so no proper subset spans the quotient.
+manuscript/prl/main.tex:134:\emph{The count is representation-independent.} $\Qten$ is computed in three
+manuscript/prl/main.tex:138:bispinors --- related by a certified equivariant isomorphism, and all three give
+manuscript/prl/main.tex:174:$\exactJacRank$ over the complete selection of $\exactJacScheduled$ candidates,
+manuscript/prl/main.tex:233:generator set by at least three independent structures beyond the stress-tensor
+manuscript/prl/main.tex:250:dimensions. In lower dimensions it is a complete parametrisation. Here it is a
+manuscript/prd_letter/main.tex:61:therefore has dimension $\dimQtenQ$, so three independent degree-ten directions
+manuscript/prd_letter/main.tex:63:free stress tensor of a self-dual five-form is traceless for every improvement
+manuscript/prd_letter/main.tex:66:the naive degree-two start collapses the quotient to zero. We certify a
+manuscript/prd_letter/main.tex:68:certify generic functional rank at least $\charZeroLowerBound$ by an explicit
+manuscript/prd_letter/main.tex:70:between the published degree-ten span and the product sector as an exact integer
+manuscript/prd_letter/main.tex:110:extensions of Maxwell theory are completely
+manuscript/prd_letter/main.tex:154:realisation, the certified bridge, and the characteristic-zero certificates.
+manuscript/prd_letter/main.tex:191:and the number of functionally independent invariants at a generic point is
+manuscript/prd_letter/main.tex:196:\emph{The tensor--spinor bridge.}---Two independent constructions are used
+manuscript/prd_letter/main.tex:213:\begin{proposition}[certified]
+manuscript/prd_letter/main.tex:236:deliberately at both a failing and a working prime. No published number changed.
+manuscript/prd_letter/main.tex:261:for every improvement coefficient. Hence $\operatorname{Tr}\tau$ first
+manuscript/prd_letter/main.tex:265:\begin{proof}
+manuscript/prd_letter/main.tex:266:Take the general improved form
+manuscript/prd_letter/main.tex:296:\end{proof}
+manuscript/prd_letter/main.tex:298:The two steps are independent, and that matters for how the statement is tested.
+manuscript/prd_letter/main.tex:372:$2^{15}$. Degree ten is the first place the exact coefficients leave it, which
+manuscript/prd_letter/main.tex:387:The lower bound is certified by an explicit
+manuscript/prd_letter/main.tex:390:independent exact rational routine. No separate upper bound is needed: over $\Q$
+manuscript/prd_letter/main.tex:408:\begin{proof}
+manuscript/prd_letter/main.tex:412:\end{proof}
+manuscript/prd_letter/main.tex:414:This is elementary and we claim no novelty for it; we state it because it
+manuscript/prd_letter/main.tex:470:rows of the certified minor by the degree of the candidate that supplies them
+manuscript/prd_letter/main.tex:491:ours~\cite{Hutomo:2025chiral}; we claim the lower bound and the certificate. We
+manuscript/prd_letter/main.tex:493:independent.
+manuscript/prd_letter/main.tex:495:\emph{The published span and the product sector.}---Let $\Bten$ be the span of
+manuscript/prd_letter/main.tex:496:the published degree-ten structures and $\Pten$ the product sector. Over $\Q$,
+manuscript/prd_letter/main.tex:511:normalisation-independent is that the intersection is one-dimensional and
+manuscript/prd_letter/main.tex:512:supported on the four published structures listed. We read this as a structural
+manuscript/prd_letter/main.tex:516:the arithmetic from its reading. That $\dim_\Q\Qten=\dimQtenQ$ is certified; what
+manuscript/prd_letter/main.tex:523:there are three independent directions in which the theory can be deformed,
+manuscript/prd_letter/main.tex:537:not prove; the two independent constructions agreeing at four degrees is
+manuscript/prd_letter/main.tex:539:settle it. We do not prove full degree-twelve tensor--spinor equivalence, give a
+manuscript/prd_letter/main.tex:540:complete invariant-ring presentation, claim canonicality of any basis, or claim
+manuscript/prd_letter/main.tex:547:from a clean clone, and the certificates, figures and tables regenerate from
+manuscript/prd_letter/main.tex:551:with the aggregation independent of order, and a set of gates runs against the
+manuscript/prd_letter/main.tex:553:no unscoped completeness claim appears, that a quantity certified as a bound is
+manuscript/prd_letter/main.tex:561:that the reproduction documents described as not installed for the certified
+manuscript/prd_letter/main.tex:572:recorded for a PDF identifies one build; it does not certify a reproducible one.
+manuscript/prd_letter/main.tex:577:dimension $\dimDtenQ$, and the quotient has dimension $\dimQtenQ$. The published
+manuscript/prd_letter/main.tex:580:$\charZeroLowerBound$, certified by an explicit minor rather than by an
+manuscript/prd_letter/main.tex:588:dynamics, no choice of improvement term and no normalisation, so it survives
+manuscript/prd_letter/main.tex:598:settle the exhaustiveness question that our two independent enumerations only
+manuscript/prd_letter/main.tex:602:certified input. And the physical status of the three unreached directions ---
+manuscript/main.tex:38:finite fields with certified linear algebra, we construct a fourteen-dimensional
+manuscript/main.tex:39:atlas of degree-ten invariants and resolve its internal structure completely:
+manuscript/main.tex:41:twelve-dimensional span of the published candidate structures, the
+manuscript/main.tex:46:plus two are not the same decomposition: the published span contains one product
+manuscript/main.tex:49:not settle are established exactly over the rationals. Independently, we implement a
+manuscript/main.tex:55:an exact modular one over the complete candidate selection. Because the
+manuscript/main.tex:72:The physics interpretation of section~\ref{sec:physics} and the novelty
+manuscript/main.tex:81:dimensions has $\dimSelfDualModule$ independent components. The Lorentz group
+manuscript/main.tex:84:of functionally independent invariants is~\cite{Hutomo:2025chiral}
+manuscript/main.tex:110:certificates, and the characteristic-zero lifts of
+manuscript/main.tex:120:published structures span it? Second, the theories that motivate this problem
+manuscript/main.tex:133:\item Its internal structure is determined completely
+manuscript/main.tex:135:      $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+manuscript/main.tex:139:      intersections and sums are certified.
+manuscript/main.tex:140:\item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
+manuscript/main.tex:143:      non-product content of the published span is
+manuscript/main.tex:144:      $\publishedPrimitiveContent$, not $\dimBten$. We exhibit the generator of
+manuscript/main.tex:199:  counts \emph{functionally} independent invariants and is cumulative over all
+manuscript/main.tex:210:$\exactJacRank$, so exactly two functional relations hold among functions that
+manuscript/main.tex:253:the rank in characteristic zero, unconditionally, provided the matrix is the
+manuscript/main.tex:257:primes as strong evidence, and never as a proof, for any statement that requires
+manuscript/main.tex:289:  \dimAten &= \dimBten + 2  &&\text{published span } B_{10} + \text{complement},\\
+manuscript/main.tex:293:The first two both read $\dimBten + \dimPten$, which invites the identification
+manuscript/main.tex:294:``the published candidates span the non-product part''.
+manuscript/main.tex:304:The published span therefore contains exactly one product direction and misses
+manuscript/main.tex:305:one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
+manuscript/main.tex:308:This is exact over the rationals, not only modulo a prime: the published
+manuscript/main.tex:314:$I^{(k)}$ the published structures in the numbering of~\cite{Cederwall:2025invariants},
+manuscript/main.tex:319:so a specific integer combination of four of the twelve published structures is
+manuscript/main.tex:331:$Q_{10}$. The complete pairwise incidence data are in
+manuscript/main.tex:340:certificate. The graph generators and the products are complementary; the
+manuscript/main.tex:341:published span is a third subspace which is not complementary to the products.}
+manuscript/main.tex:352:whole degree-ten space: there are $\dimQten$ independent directions of local
+manuscript/main.tex:368:$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+manuscript/main.tex:393:upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+manuscript/main.tex:394:checkable witness the certificate records an explicit
+manuscript/main.tex:401:self-dual five-form is traceless, so $\operatorname{Tr}\tau$ first contributes
+manuscript/main.tex:403:improvement convention
+manuscript/main.tex:410:conclusion is therefore independent of the improvement term and of the
+manuscript/main.tex:418:the flow image generated by the targets recorded in the stress-flow certificates
+manuscript/main.tex:420:itself complete is a separate question and is unchanged.
+manuscript/main.tex:436:\begin{proof}
+manuscript/main.tex:440:\end{proof}
+manuscript/main.tex:466:We do \emph{not} call this basis canonical. It is a choice, certified to span
+manuscript/main.tex:468:or proved.
+manuscript/main.tex:471:\section{Formula-independent reverse recovery}
+manuscript/main.tex:476:published-formula evaluators at all. The search is organised into sectors; most
+manuscript/main.tex:478:with both the graph-derived and the published-candidate quotient spans.
+manuscript/main.tex:485:\section{Independent spinor-variable calculation}
+manuscript/main.tex:495:exactly the self-dual five-form. An independently written implementation
+manuscript/main.tex:661:products of lower-degree invariants. Those splits are computed independently, in
+manuscript/main.tex:679:being explicit about what it does not say: the published-candidate span $B_{10}$
+manuscript/main.tex:682:published structures --- which is precisely the distinction of
+manuscript/main.tex:745:implemented in the same exact arithmetic, and the certificate below covers the
+manuscript/main.tex:746:complete selection.
+manuscript/main.tex:748:\subsection{The certificate}
+manuscript/main.tex:760:reproduced independently at each of $\exactJacPoints$ certified sample
+manuscript/main.tex:777:integer reduction, a single prime with nonvanishing determinant already proves
+manuscript/main.tex:778:the integer minor is nonzero; the determinant is computed by two independent
+manuscript/main.tex:789:\emph{dependencies}; they are not an independent set, and nothing here says they
+manuscript/main.tex:796:\paragraph{Corroboration across primes and seeds.} The certificate above is
+manuscript/main.tex:809:The computations here provide an independent, exact, tolerance-free lower bound
+manuscript/main.tex:811:claimed to prove it by themselves.
+manuscript/main.tex:831:$\dimQten$ independent directions of degree-ten local structure that the flow
+manuscript/main.tex:837:degree-ten term could be compared against the published structures only, and if
+manuscript/main.tex:838:it failed to match, nothing followed --- the published list was not known to be
+manuscript/main.tex:839:complete or independent. Now any degree-ten invariant can be expanded in a
+manuscript/main.tex:840:certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+manuscript/main.tex:875:      \bpCapRelation \bpCapQ$ likewise. The published-candidate coordinates were
+manuscript/main.tex:883:\item \textbf{No canonicality claim.} The compact $Q_{10}$ basis is a certified
+manuscript/main.tex:885:\item \textbf{Implementation independence, not clean-room independence.} The two
+manuscript/main.tex:889:      published expression admits more than one index reading. We report the
+manuscript/main.tex:921:self-dual five-form is now known exactly, together with its product, published,
+manuscript/main.tex:926:published span with the products --- were settled by exact rational computations
+manuscript/main.tex:934:is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+manuscript/main.tex:963:\section{Basis and quotient certificates}
+manuscript/main.tex:964:\label{app:certificates}
+manuscript/main.tex:965:\input{appendices/certificates}
+submission_candidate/main.tex:38:finite fields with certified linear algebra, we construct a fourteen-dimensional
+submission_candidate/main.tex:39:atlas of degree-ten invariants and resolve its internal structure completely:
+submission_candidate/main.tex:41:twelve-dimensional span of the published candidate structures, the
+submission_candidate/main.tex:46:plus two are not the same decomposition: the published span contains one product
+submission_candidate/main.tex:49:not settle are established exactly over the rationals. Independently, we implement a
+submission_candidate/main.tex:55:an exact modular one over the complete candidate selection. Because the
+submission_candidate/main.tex:72:The physics interpretation of section~\ref{sec:physics} and the novelty
+submission_candidate/main.tex:81:dimensions has $\dimSelfDualModule$ independent components. The Lorentz group
+submission_candidate/main.tex:84:of functionally independent invariants is~\cite{Hutomo:2025chiral}
+submission_candidate/main.tex:110:certificates, and the characteristic-zero lifts of
+submission_candidate/main.tex:120:published structures span it? Second, the theories that motivate this problem
+submission_candidate/main.tex:133:\item Its internal structure is determined completely
+submission_candidate/main.tex:135:      $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+submission_candidate/main.tex:139:      intersections and sums are certified.
+submission_candidate/main.tex:140:\item The decomposition $A_{10} = G_{10}\oplus P_{10}$ holds, but the published
+submission_candidate/main.tex:143:      non-product content of the published span is
+submission_candidate/main.tex:144:      $\publishedPrimitiveContent$, not $\dimBten$. We exhibit the generator of
+submission_candidate/main.tex:199:  counts \emph{functionally} independent invariants and is cumulative over all
+submission_candidate/main.tex:210:$\exactJacRank$, so exactly two functional relations hold among functions that
+submission_candidate/main.tex:253:the rank in characteristic zero, unconditionally, provided the matrix is the
+submission_candidate/main.tex:257:primes as strong evidence, and never as a proof, for any statement that requires
+submission_candidate/main.tex:289:  \dimAten &= \dimBten + 2  &&\text{published span } B_{10} + \text{complement},\\
+submission_candidate/main.tex:293:The first two both read $\dimBten + \dimPten$, which invites the identification
+submission_candidate/main.tex:294:``the published candidates span the non-product part''.
+submission_candidate/main.tex:304:The published span therefore contains exactly one product direction and misses
+submission_candidate/main.tex:305:one atlas direction. Its non-product content is $\publishedPrimitiveContent$, not
+submission_candidate/main.tex:308:This is exact over the rationals, not only modulo a prime: the published
+submission_candidate/main.tex:314:$I^{(k)}$ the published structures in the numbering of~\cite{Cederwall:2025invariants},
+submission_candidate/main.tex:319:so a specific integer combination of four of the twelve published structures is
+submission_candidate/main.tex:331:$Q_{10}$. The complete pairwise incidence data are in
+submission_candidate/main.tex:340:certificate. The graph generators and the products are complementary; the
+submission_candidate/main.tex:341:published span is a third subspace which is not complementary to the products.}
+submission_candidate/main.tex:352:whole degree-ten space: there are $\dimQten$ independent directions of local
+submission_candidate/main.tex:368:$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+submission_candidate/main.tex:393:upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+submission_candidate/main.tex:394:checkable witness the certificate records an explicit
+submission_candidate/main.tex:401:self-dual five-form is traceless, so $\operatorname{Tr}\tau$ first contributes
+submission_candidate/main.tex:403:improvement convention
+submission_candidate/main.tex:410:conclusion is therefore independent of the improvement term and of the
+submission_candidate/main.tex:418:the flow image generated by the targets recorded in the stress-flow certificates
+submission_candidate/main.tex:420:itself complete is a separate question and is unchanged.
+submission_candidate/main.tex:436:\begin{proof}
+submission_candidate/main.tex:440:\end{proof}
+submission_candidate/main.tex:466:We do \emph{not} call this basis canonical. It is a choice, certified to span
+submission_candidate/main.tex:468:or proved.
+submission_candidate/main.tex:471:\section{Formula-independent reverse recovery}
+submission_candidate/main.tex:476:published-formula evaluators at all. The search is organised into sectors; most
+submission_candidate/main.tex:478:with both the graph-derived and the published-candidate quotient spans.
+submission_candidate/main.tex:485:\section{Independent spinor-variable calculation}
+submission_candidate/main.tex:495:exactly the self-dual five-form. An independently written implementation
+submission_candidate/main.tex:661:products of lower-degree invariants. Those splits are computed independently, in
+submission_candidate/main.tex:679:being explicit about what it does not say: the published-candidate span $B_{10}$
+submission_candidate/main.tex:682:published structures --- which is precisely the distinction of
+submission_candidate/main.tex:745:implemented in the same exact arithmetic, and the certificate below covers the
+submission_candidate/main.tex:746:complete selection.
+submission_candidate/main.tex:748:\subsection{The certificate}
+submission_candidate/main.tex:760:reproduced independently at each of $\exactJacPoints$ certified sample
+submission_candidate/main.tex:777:integer reduction, a single prime with nonvanishing determinant already proves
+submission_candidate/main.tex:778:the integer minor is nonzero; the determinant is computed by two independent
+submission_candidate/main.tex:789:\emph{dependencies}; they are not an independent set, and nothing here says they
+submission_candidate/main.tex:796:\paragraph{Corroboration across primes and seeds.} The certificate above is
+submission_candidate/main.tex:809:The computations here provide an independent, exact, tolerance-free lower bound
+submission_candidate/main.tex:811:claimed to prove it by themselves.
+submission_candidate/main.tex:831:$\dimQten$ independent directions of degree-ten local structure that the flow
+submission_candidate/main.tex:837:degree-ten term could be compared against the published structures only, and if
+submission_candidate/main.tex:838:it failed to match, nothing followed --- the published list was not known to be
+submission_candidate/main.tex:839:complete or independent. Now any degree-ten invariant can be expanded in a
+submission_candidate/main.tex:840:certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+submission_candidate/main.tex:875:      \bpCapRelation \bpCapQ$ likewise. The published-candidate coordinates were
+submission_candidate/main.tex:883:\item \textbf{No canonicality claim.} The compact $Q_{10}$ basis is a certified
+submission_candidate/main.tex:885:\item \textbf{Implementation independence, not clean-room independence.} The two
+submission_candidate/main.tex:889:      published expression admits more than one index reading. We report the
+submission_candidate/main.tex:921:self-dual five-form is now known exactly, together with its product, published,
+submission_candidate/main.tex:926:published span with the products --- were settled by exact rational computations
+submission_candidate/main.tex:934:is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+submission_candidate/main.tex:963:\section{Basis and quotient certificates}
+submission_candidate/main.tex:964:\label{app:certificates}
+submission_candidate/main.tex:965:\input{appendices/certificates}
+manuscript/prd/main.tex:50:% REVTeX provides no theorem environments of its own.
+manuscript/prd/main.tex:88:Working in two independent formulations --- a tensor formulation built from
+manuscript/prd/main.tex:90:construct an explicit map between them and certify that it is injective with
+manuscript/prd/main.tex:102:first by the second therefore has dimension $\dimQtenQ$: there are three
+manuscript/prd/main.tex:103:independent degree-ten invariant directions that this flow does not reach. We
+manuscript/prd/main.tex:104:also show that the span of the previously published degree-ten structures meets
+manuscript/prd/main.tex:108:For the generic functional rank of the full candidate family we certify the
+manuscript/prd/main.tex:111:analytic and is due to earlier work, which we cite rather than reprove.
+manuscript/prd/main.tex:113:All results are supported by machine-checked certificates, and the computations
+manuscript/prd/main.tex:115:theorems, which are exact certificates, which rest on agreement across several
+manuscript/prd/main.tex:195:functions exist, how many are independent, and how they are related is therefore
+manuscript/prd/main.tex:199:conformal invariance have been completely
+manuscript/prd/main.tex:211:by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
+manuscript/prd/main.tex:246:between the published structures and the products of lower invariants.
+manuscript/prd/main.tex:254:computational side is not the workflow but the certification: we replace
+manuscript/prd/main.tex:256:dimension a certificate that a reader can check independently.
+manuscript/prd/main.tex:271:five-form, certified to have rank $\bridgeForwardRank$ onto the gamma-traceless
+manuscript/prd/main.tex:286:as an integer identity (section~\ref{sec:published}).
+manuscript/prd/main.tex:287:\item An exact certification of the generic functional rank
+manuscript/prd/main.tex:288:$\charZeroLowerBound$ as a lower bound, over the complete
+manuscript/prd/main.tex:292:generated from a certificate rather than transcribed
+manuscript/prd/main.tex:372:functionally independent invariants at a generic point is correspondingly
+manuscript/prd/main.tex:502:\begin{proposition}[Certified properties of the bridge]
+manuscript/prd/main.tex:557:appendix~\ref{app:bridge-exact}. What we claim is the certification, not the
+manuscript/prd/main.tex:635:check even though the construction is sound. The independent check is a different
+manuscript/prd/main.tex:643:No number in this paper changed as a result of this fix. Every certificate had
+manuscript/prd/main.tex:655:\paragraph{Two independent evaluators.}
+manuscript/prd/main.tex:676:unlucky coincidence implausible but does not prove anything. Two arguments close
+manuscript/prd/main.tex:690:published structures are lifted to $\Q$ outright (appendix~\ref{app:b10}), so it
+manuscript/prd/main.tex:713:to fix a degree, enumerate a spanning family in two independent ways, and
+manuscript/prd/main.tex:725:gives an independent handle on differentiation errors: a row that fails Euler is
+manuscript/prd/main.tex:729:Where a determinant certifies a rank we compute it twice, by fraction-free
+manuscript/prd/main.tex:730:Bareiss elimination~\cite{Bareiss:1968} and by an independent exact routine, and
+manuscript/prd/main.tex:735:separate, read-only, order-independent step. This separation exists because an
+manuscript/prd/main.tex:743:reconstruction are classical. What is new here is the certification layer: the
+manuscript/prd/main.tex:756:Equality of the first and third means the spinor family adds nothing the tensor
+manuscript/prd/main.tex:830:nothing. Two independent constructions --- contraction graphs and chiral
+manuscript/prd/main.tex:834:proof of exhaustiveness, and we do not present it as one; the point is recorded
+manuscript/prd/main.tex:859:Each row carries an independent check. Since $I_i$ is homogeneous of field
+manuscript/prd/main.tex:881:\subsection{The certificate}
+manuscript/prd/main.tex:884:determinant is non-zero, computed by two independent routines that agree. Since a
+manuscript/prd/main.tex:894:realise it. Since the certificate names its own rows, that question can be
+manuscript/prd/main.tex:906:\caption{The $\minorSize$ pivot rows of the certified minor, read from the
+manuscript/prd/main.tex:907:certificate's own row list. Left, by the field degree of the candidate; right,
+manuscript/prd/main.tex:922:were not independently recomputed here, and cells from one run agreeing with each
+manuscript/prd/main.tex:924:across primes and seeds is therefore corroboration, not independent
+manuscript/prd/main.tex:926:thirteen: the two cells recomputed in this repository agree with the certificate
+manuscript/prd/main.tex:945:$\genericFunctionalDim$ exactly. We claim the lower bound and the certificate,
+manuscript/prd/main.tex:951:candidates are algebraically independent, which is a different and stronger
+manuscript/prd/main.tex:953:independently in this repository and agree with the certificate on every recorded
+manuscript/prd/main.tex:954:quantity; the remaining thirteen were not independently recomputed here, and for
+manuscript/prd/main.tex:1015:was checked independently at every prime, with no exceptions.
+manuscript/prd/main.tex:1128:The lower-bound side is certified by an explicit $\czMinorSize \times
+manuscript/prd/main.tex:1130:elimination and confirmed by an independent exact rational verifier. Three exact
+manuscript/prd/main.tex:1137:There are $\dimQtenQ$ independent degree-ten invariant directions that the stress
+manuscript/prd/main.tex:1153:are established in section~\ref{sec:published}. Every dimension in
+manuscript/prd/main.tex:1162:\begin{proof}
+manuscript/prd/main.tex:1166:\end{proof}
+manuscript/prd/main.tex:1167:This is elementary linear algebra and we claim no novelty for it. We state it
+manuscript/prd/main.tex:1179:degree at which $\operatorname{Tr}(\tau)$ first contributes. If it began at degree
+manuscript/prd/main.tex:1186:trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
+manuscript/prd/main.tex:1189:\begin{proof}
+manuscript/prd/main.tex:1191:its general improved form,
+manuscript/prd/main.tex:1203:with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+manuscript/prd/main.tex:1204:the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+manuscript/prd/main.tex:1213:The conclusion below is therefore independent of the improvement term and of the
+manuscript/prd/main.tex:1238:\end{proof}
+manuscript/prd/main.tex:1246:$\langle F,F\rangle$. The two steps are independent, and a test suite that
+manuscript/prd/main.tex:1251:control the first three checks would be satisfied vacuously by a quantity that
+manuscript/prd/main.tex:1279:$p$-form shape with an arbitrary improvement term. Whether the object appearing
+manuscript/prd/main.tex:1282:computation, and we have not been able to settle it from the published text
+manuscript/prd/main.tex:1285:intended object is of a different shape, the improvement-independence above means
+manuscript/prd/main.tex:1295:unprojected five-form. Without that control the vanishing tests would prove
+manuscript/prd/main.tex:1310:\section{The published basis and the product sector}
+manuscript/prd/main.tex:1311:\label{sec:published}
+manuscript/prd/main.tex:1320:all $\dimBten$ published coordinate vectors by CRT across $\bpFitPrimes$ fitting
+manuscript/prd/main.tex:1331:published structures in the numbering of \cite{Cederwall:2025invariants} and
+manuscript/prd/main.tex:1341:$\bpFreshSamples$ independently drawn samples, none of which were used in the
+manuscript/prd/main.tex:1347:normalisation of the published structures in \cite{Cederwall:2025invariants} and
+manuscript/prd/main.tex:1350:coefficients transform by the inverse factors; what is normalisation-independent
+manuscript/prd/main.tex:1352:is supported on the four published structures listed. The published basis is
+manuscript/prd/main.tex:1360:The published span contains exactly one product direction, so its non-product
+manuscript/prd/main.tex:1361:content is $\publishedPrimitiveContent$-dimensional. In particular $\Bten$ is not
+manuscript/prd/main.tex:1362:a complement to the products. This is a structural fact about the published
+manuscript/prd/main.tex:1380:\section{Reproducibility and proof architecture}
+manuscript/prd/main.tex:1405:unscoped completeness or canonicality claim appears, that a quantity certified as
+manuscript/prd/main.tex:1411:once and aggregated read-only, with the aggregation independent of order.
+manuscript/prd/main.tex:1417:suites run, the certificate scripts regenerate their artifacts, the figures and
+manuscript/prd/main.tex:1421:Table~\ref{tab:certificates} lists every certificate the draft rests on, with
+manuscript/prd/main.tex:1423:environment the certified runs were made in.
+manuscript/prd/main.tex:1425:\input{tables/tab10_certificates.tex}
+manuscript/prd/main.tex:1437:appendix~\ref{app:conventions}, does not reach $\dimQtenQ$ independent directions
+manuscript/prd/main.tex:1447:sector may be the first place in this programme where the flow provably fails to
+manuscript/prd/main.tex:1448:be exhaustive --- but establishing that it is the first would require a survey we
+manuscript/prd/main.tex:1507:arbitrary $GL$ change of basis would require regenerating the certificates in the
+manuscript/prd/main.tex:1513:\item \textbf{Enumeration exhaustiveness is corroborated, not proved.} Every
+manuscript/prd/main.tex:1517:prove that it is. What we have is two independently implemented constructions,
+manuscript/prd/main.tex:1520:different languages. That is corroboration and it is not a theorem. A proof
+manuscript/prd/main.tex:1526:\item \textbf{Degree twelve.} Degree twelve supplies partial certified input to
+manuscript/prd/main.tex:1528:equivalence and degree-ten classification claims. We do not claim a complete
+manuscript/prd/main.tex:1538:\item \textbf{Rank-matrix independence.} Two of the $\matrixCells$ cells were
+manuscript/prd/main.tex:1539:independently recomputed in this repository. The other thirteen carry internal
+manuscript/prd/main.tex:1543:published degree-ten expressions are ambiguous as printed, because bracket colour
+manuscript/prd/main.tex:1557:cardinality equal to the dimension'', which is what is certified.
+manuscript/prd/main.tex:1559:\item \textbf{No Hilbert-series cross-check.} The natural independent check on
+manuscript/prd/main.tex:1569:\item \textbf{Independence of the two determinant routines.} The Bareiss and
+manuscript/prd/main.tex:1577:The mitigation is that the gates compare macros against \emph{independently
+manuscript/prd/main.tex:1581:\item \textbf{Optional-dependency code path.} The certified runs used the
+manuscript/prd/main.tex:1584:affects speed and not arithmetic, but we did not run the full certification both
+manuscript/prd/main.tex:1599:five-form in ten dimensions, exactly and with certificates.
+manuscript/prd/main.tex:1603:quotient therefore has dimension $\dimQtenQ$: three independent directions the
+manuscript/prd/main.tex:1606:fixed point in exact rational arithmetic. The span of the published degree-ten
+manuscript/prd/main.tex:1611:Supporting these are an exact tensor--spinor bridge of certified rank
+manuscript/prd/main.tex:1615:functional rank of the candidate family, certified by an explicit
+manuscript/prd/main.tex:1643:a human independently of the system that produced them; what a human did was
+manuscript/prd/main.tex:1653:The source code, result artifacts and certificates supporting this paper are in
+manuscript/jhep/main.tex:59:Working in two independent formulations --- a tensor formulation built from
+manuscript/jhep/main.tex:61:construct an explicit map between them and certify that it is injective with
+manuscript/jhep/main.tex:73:first by the second therefore has dimension $\dimQtenQ$: there are three
+manuscript/jhep/main.tex:74:independent degree-ten invariant directions that this flow does not reach. We
+manuscript/jhep/main.tex:75:also show that the span of the previously published degree-ten structures meets
+manuscript/jhep/main.tex:79:For the generic functional rank of the full candidate family we certify the
+manuscript/jhep/main.tex:82:analytic and is due to earlier work, which we cite rather than reprove.
+manuscript/jhep/main.tex:84:All results are supported by machine-checked certificates, and the computations
+manuscript/jhep/main.tex:86:theorems, which are exact certificates, which rest on agreement across several
+manuscript/jhep/main.tex:158:functions exist, how many are independent, and how they are related is therefore
+manuscript/jhep/main.tex:162:conformal invariance have been completely
+manuscript/jhep/main.tex:174:by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
+manuscript/jhep/main.tex:209:between the published structures and the products of lower invariants.
+manuscript/jhep/main.tex:217:computational side is not the workflow but the certification: we replace
+manuscript/jhep/main.tex:219:dimension a certificate that a reader can check independently.
+manuscript/jhep/main.tex:234:five-form, certified to have rank $\bridgeForwardRank$ onto the gamma-traceless
+manuscript/jhep/main.tex:249:as an integer identity (section~\ref{sec:published}).
+manuscript/jhep/main.tex:250:\item An exact certification of the generic functional rank
+manuscript/jhep/main.tex:251:$\charZeroLowerBound$ as a lower bound, over the complete
+manuscript/jhep/main.tex:255:generated from a certificate rather than transcribed
+manuscript/jhep/main.tex:335:functionally independent invariants at a generic point is correspondingly
+manuscript/jhep/main.tex:465:\begin{proposition}[Certified properties of the bridge]
+manuscript/jhep/main.tex:516:appendix~\ref{app:bridge-exact}. What we claim is the certification, not the
+manuscript/jhep/main.tex:594:check even though the construction is sound. The independent check is a different
+manuscript/jhep/main.tex:602:No number in this paper changed as a result of this fix. Every certificate had
+manuscript/jhep/main.tex:614:\paragraph{Two independent evaluators.}
+manuscript/jhep/main.tex:635:unlucky coincidence implausible but does not prove anything. Two arguments close
+manuscript/jhep/main.tex:649:published structures are lifted to $\Q$ outright (appendix~\ref{app:b10}), so it
+manuscript/jhep/main.tex:672:to fix a degree, enumerate a spanning family in two independent ways, and
+manuscript/jhep/main.tex:684:gives an independent handle on differentiation errors: a row that fails Euler is
+manuscript/jhep/main.tex:688:Where a determinant certifies a rank we compute it twice, by fraction-free
+manuscript/jhep/main.tex:689:Bareiss elimination~\cite{Bareiss:1968} and by an independent exact routine, and
+manuscript/jhep/main.tex:694:separate, read-only, order-independent step. This separation exists because an
+manuscript/jhep/main.tex:702:reconstruction are classical. What is new here is the certification layer: the
+manuscript/jhep/main.tex:715:Equality of the first and third means the spinor family adds nothing the tensor
+manuscript/jhep/main.tex:789:nothing. Two independent constructions --- contraction graphs and chiral
+manuscript/jhep/main.tex:793:proof of exhaustiveness, and we do not present it as one; the point is recorded
+manuscript/jhep/main.tex:816:Each row carries an independent check. Since $I_i$ is homogeneous of field
+manuscript/jhep/main.tex:838:\subsection{The certificate}
+manuscript/jhep/main.tex:841:determinant is non-zero, computed by two independent routines that agree. Since a
+manuscript/jhep/main.tex:851:realise it. Since the certificate names its own rows, that question can be
+manuscript/jhep/main.tex:863:\caption{The $\minorSize$ pivot rows of the certified minor, read from the
+manuscript/jhep/main.tex:864:certificate's own row list. Left, by the field degree of the candidate; right,
+manuscript/jhep/main.tex:879:were not independently recomputed here, and cells from one run agreeing with each
+manuscript/jhep/main.tex:881:across primes and seeds is therefore corroboration, not independent
+manuscript/jhep/main.tex:883:thirteen: the two cells recomputed in this repository agree with the certificate
+manuscript/jhep/main.tex:902:$\genericFunctionalDim$ exactly. We claim the lower bound and the certificate,
+manuscript/jhep/main.tex:908:candidates are algebraically independent, which is a different and stronger
+manuscript/jhep/main.tex:910:independently in this repository and agree with the certificate on every recorded
+manuscript/jhep/main.tex:911:quantity; the remaining thirteen were not independently recomputed here, and for
+manuscript/jhep/main.tex:968:was checked independently at every prime, with no exceptions.
+manuscript/jhep/main.tex:1077:The lower-bound side is certified by an explicit $\czMinorSize \times
+manuscript/jhep/main.tex:1079:elimination and confirmed by an independent exact rational verifier. Three exact
+manuscript/jhep/main.tex:1086:There are $\dimQtenQ$ independent degree-ten invariant directions that the stress
+manuscript/jhep/main.tex:1102:are established in section~\ref{sec:published}. Every dimension in
+manuscript/jhep/main.tex:1111:\begin{proof}
+manuscript/jhep/main.tex:1115:\end{proof}
+manuscript/jhep/main.tex:1116:This is elementary linear algebra and we claim no novelty for it. We state it
+manuscript/jhep/main.tex:1128:degree at which $\operatorname{Tr}(\tau)$ first contributes. If it began at degree
+manuscript/jhep/main.tex:1135:trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
+manuscript/jhep/main.tex:1138:\begin{proof}
+manuscript/jhep/main.tex:1140:its general improved form,
+manuscript/jhep/main.tex:1152:with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+manuscript/jhep/main.tex:1153:the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+manuscript/jhep/main.tex:1162:The conclusion below is therefore independent of the improvement term and of the
+manuscript/jhep/main.tex:1187:\end{proof}
+manuscript/jhep/main.tex:1195:$\langle F,F\rangle$. The two steps are independent, and a test suite that
+manuscript/jhep/main.tex:1200:control the first three checks would be satisfied vacuously by a quantity that
+manuscript/jhep/main.tex:1228:$p$-form shape with an arbitrary improvement term. Whether the object appearing
+manuscript/jhep/main.tex:1231:computation, and we have not been able to settle it from the published text
+manuscript/jhep/main.tex:1234:intended object is of a different shape, the improvement-independence above means
+manuscript/jhep/main.tex:1244:unprojected five-form. Without that control the vanishing tests would prove
+manuscript/jhep/main.tex:1259:\section{The published basis and the product sector}
+manuscript/jhep/main.tex:1260:\label{sec:published}
+manuscript/jhep/main.tex:1269:all $\dimBten$ published coordinate vectors by CRT across $\bpFitPrimes$ fitting
+manuscript/jhep/main.tex:1280:published structures in the numbering of \cite{Cederwall:2025invariants} and
+manuscript/jhep/main.tex:1290:$\bpFreshSamples$ independently drawn samples, none of which were used in the
+manuscript/jhep/main.tex:1296:normalisation of the published structures in \cite{Cederwall:2025invariants} and
+manuscript/jhep/main.tex:1299:coefficients transform by the inverse factors; what is normalisation-independent
+manuscript/jhep/main.tex:1301:is supported on the four published structures listed. The published basis is
+manuscript/jhep/main.tex:1309:The published span contains exactly one product direction, so its non-product
+manuscript/jhep/main.tex:1310:content is $\publishedPrimitiveContent$-dimensional. In particular $\Bten$ is not
+manuscript/jhep/main.tex:1311:a complement to the products. This is a structural fact about the published
+manuscript/jhep/main.tex:1329:\section{Reproducibility and proof architecture}
+manuscript/jhep/main.tex:1354:unscoped completeness or canonicality claim appears, that a quantity certified as
+manuscript/jhep/main.tex:1360:once and aggregated read-only, with the aggregation independent of order.
+manuscript/jhep/main.tex:1366:suites run, the certificate scripts regenerate their artifacts, the figures and
+manuscript/jhep/main.tex:1370:Table~\ref{tab:certificates} lists every certificate the draft rests on, with
+manuscript/jhep/main.tex:1372:environment the certified runs were made in.
+manuscript/jhep/main.tex:1374:\input{tables/tab10_certificates.tex}
+manuscript/jhep/main.tex:1386:appendix~\ref{app:conventions}, does not reach $\dimQtenQ$ independent directions
+manuscript/jhep/main.tex:1396:sector may be the first place in this programme where the flow provably fails to
+manuscript/jhep/main.tex:1397:be exhaustive --- but establishing that it is the first would require a survey we
+manuscript/jhep/main.tex:1456:arbitrary $GL$ change of basis would require regenerating the certificates in the
+manuscript/jhep/main.tex:1462:\item \textbf{Enumeration exhaustiveness is corroborated, not proved.} Every
+manuscript/jhep/main.tex:1466:prove that it is. What we have is two independently implemented constructions,
+manuscript/jhep/main.tex:1469:different languages. That is corroboration and it is not a theorem. A proof
+manuscript/jhep/main.tex:1475:\item \textbf{Degree twelve.} Degree twelve supplies partial certified input to
+manuscript/jhep/main.tex:1477:equivalence and degree-ten classification claims. We do not claim a complete
+manuscript/jhep/main.tex:1487:\item \textbf{Rank-matrix independence.} Two of the $\matrixCells$ cells were
+manuscript/jhep/main.tex:1488:independently recomputed in this repository. The other thirteen carry internal
+manuscript/jhep/main.tex:1492:published degree-ten expressions are ambiguous as printed, because bracket colour
+manuscript/jhep/main.tex:1506:cardinality equal to the dimension'', which is what is certified.
+manuscript/jhep/main.tex:1508:\item \textbf{No Hilbert-series cross-check.} The natural independent check on
+manuscript/jhep/main.tex:1518:\item \textbf{Independence of the two determinant routines.} The Bareiss and
+manuscript/jhep/main.tex:1526:The mitigation is that the gates compare macros against \emph{independently
+manuscript/jhep/main.tex:1530:\item \textbf{Optional-dependency code path.} The certified runs used the
+manuscript/jhep/main.tex:1533:affects speed and not arithmetic, but we did not run the full certification both
+manuscript/jhep/main.tex:1548:five-form in ten dimensions, exactly and with certificates.
+manuscript/jhep/main.tex:1552:quotient therefore has dimension $\dimQtenQ$: three independent directions the
+manuscript/jhep/main.tex:1555:fixed point in exact rational arithmetic. The span of the published degree-ten
+manuscript/jhep/main.tex:1560:Supporting these are an exact tensor--spinor bridge of certified rank
+manuscript/jhep/main.tex:1564:functional rank of the candidate family, certified by an explicit
+manuscript/jhep/main.tex:1592:a human independently of the system that produced them; what a human did was
+manuscript/jhep/main.tex:1602:The source code, result artifacts and certificates supporting this paper are in
+manuscript/prl/end_matter.tex:37:avoids an index ambiguity present in the published expressions, are listed in
+manuscript/prl/end_matter.tex:52:independent formula-free reverse recovery that reaches the same quotient span,
+manuscript/prl/end_matter.tex:53:and by the spinor-side computation, but it is not a symbolic proof and we do not
+manuscript/prl/end_matter.tex:59:Degree twelve is not classified. The three representatives are a certified choice,
+manuscript/prl/supplemental.tex:76:an independent polarisation. Euler homogeneity
+manuscript/prl/supplemental.tex:90:on search; it is corroborated by an independent formula-free reverse recovery and
+manuscript/prl/supplemental.tex:91:by the spinor computation, but it is not a symbolic proof.
+manuscript/prl/supplemental.tex:97:\texttt{docs/SOURCE\_OVERLAP\_AUDIT.md}. Implementation independence holds;
+manuscript/prl/supplemental.tex:98:clean-room independence is not claimed.
+manuscript/prd/appendices/app_h_closure.tex:30:rule independently at every prime, with no exceptions.
+manuscript/prd/appendices/app_h_closure.tex:56:\paragraph{Lower-bound certificate.}
+manuscript/prd/appendices/app_h_closure.tex:61:elimination~\cite{Bareiss:1968} and confirmed by an independent exact rational
+manuscript/prd/appendices/app_h_closure.tex:73:independent on $\Ften$. They give the quotient map to $\Qten$ directly, and the
+manuscript/prd/appendices/app_i_gten.tex:17:where $c$ is an improvement coefficient. Different conventions in the literature
+manuscript/prd/appendices/app_i_gten.tex:22:Taking the trace of \eqref{eq:stress} with $\eta^{\mu\nu}$, the first term gives
+manuscript/prd/appendices/app_i_gten.tex:49:By \eqref{eq:trace} the free stress tensor is traceless, for any improvement
+manuscript/prd/appendices/app_i_gten.tex:51:degree two and first contributes at degree four.
+manuscript/prd/appendices/app_i_gten.tex:56:choice of improvement term, or the overall normalisation. That robustness is why
+manuscript/prd/appendices/app_i_gten.tex:76:      be checked against the independent derivation.
+manuscript/jhep/appendices/app_h_closure.tex:28:rule independently at every prime, with no exceptions.
+manuscript/jhep/appendices/app_h_closure.tex:54:\paragraph{Lower-bound certificate.}
+manuscript/jhep/appendices/app_h_closure.tex:59:elimination~\cite{Bareiss:1968} and confirmed by an independent exact rational
+manuscript/jhep/appendices/app_h_closure.tex:71:independent on $\Ften$. They give the quotient map to $\Qten$ directly, and the
+manuscript/prd/appendices/app_e_bases.tex:8:and never reused, so a candidate referenced in a certificate can always be
+manuscript/prd/appendices/app_e_bases.tex:36:\item $\Bten$, the span of the published structures, $\dim_\Q \Bten = \dimBten$;
+manuscript/prd/appendices/app_e_bases.tex:48:\paragraph{The ambiguous published candidates.}
+manuscript/prd/appendices/app_e_bases.tex:49:Two of the published degree-ten expressions cannot be read unambiguously from the
+manuscript/prd/appendices/app_e_bases.tex:59:rank-$\czMinorSize$ certificate of appendix~\ref{app:closure}, and are listed in
+manuscript/jhep/appendices/app_f_maps.tex:13:certified properties are:
+manuscript/prd/appendices/app_j_b10.tex:1:\section{Reconstruction of the published span}
+manuscript/prd/appendices/app_j_b10.tex:5:The published degree-ten structures are given as explicit expressions. To compare
+manuscript/prd/appendices/app_j_b10.tex:10:Each published structure was evaluated at $\bpFitPrimes$ fitting primes. The
+manuscript/prd/appendices/app_j_b10.tex:13:rational reconstruction~\cite{Wang:1982}. All $\dimBten$ published structures
+manuscript/prd/appendices/app_j_b10.tex:42:$\bpFreshPrime$ on $\bpFreshSamples$ independently drawn samples that took no
+manuscript/prd/appendices/app_j_b10.tex:55:normalising the two sides independently; no coefficient was altered to make the
+manuscript/prd/appendices/app_j_b10.tex:59:The published structures were presented as explicit expressions, not as a basis
+manuscript/prd/appendices/app_j_b10.tex:62:structural observation about the published choice, and the direction of the
+manuscript/prd/appendices/app_j_b10.tex:64:a naive reading would suggest --- can only weaken a claim about the published
+manuscript/jhep/appendices/app_e_bases.tex:8:and never reused, so a candidate referenced in a certificate can always be
+manuscript/jhep/appendices/app_e_bases.tex:36:\item $\Bten$, the span of the published structures, $\dim_\Q \Bten = \dimBten$;
+manuscript/jhep/appendices/app_e_bases.tex:48:\paragraph{The ambiguous published candidates.}
+manuscript/jhep/appendices/app_e_bases.tex:49:Two of the published degree-ten expressions cannot be read unambiguously from the
+manuscript/jhep/appendices/app_e_bases.tex:59:rank-$\czMinorSize$ certificate of appendix~\ref{app:closure}, and are listed in
+manuscript/jhep/appendices/app_i_gten.tex:17:where $c$ is an improvement coefficient. Different conventions in the literature
+manuscript/jhep/appendices/app_i_gten.tex:22:Taking the trace of \eqref{eq:stress} with $\eta^{\mu\nu}$, the first term gives
+manuscript/jhep/appendices/app_i_gten.tex:49:By \eqref{eq:trace} the free stress tensor is traceless, for any improvement
+manuscript/jhep/appendices/app_i_gten.tex:51:degree two and first contributes at degree four.
+manuscript/jhep/appendices/app_i_gten.tex:56:choice of improvement term, or the overall normalisation. That robustness is why
+manuscript/jhep/appendices/app_i_gten.tex:76:      be checked against the independent derivation.
+manuscript/jhep/appendices/app_k_algorithms.tex:23:in the environment that produced the certified results.
+manuscript/jhep/appendices/app_k_algorithms.tex:48:Ranks over $\Fp$ come from exact Gaussian elimination. Determinants certifying a
+manuscript/jhep/appendices/app_k_algorithms.tex:50:which keeps every intermediate an integer, and by an independent exact routine.
+manuscript/jhep/appendices/app_k_algorithms.tex:58:too many random points, so agreement on independently drawn samples bounds the
+manuscript/jhep/appendices/app_k_algorithms.tex:86:\item A rank reported from an incomplete evaluation schedule.
+manuscript/jhep/appendices/app_j_b10.tex:1:\section{Reconstruction of the published span}
+manuscript/jhep/appendices/app_j_b10.tex:5:The published degree-ten structures are given as explicit expressions. To compare
+manuscript/jhep/appendices/app_j_b10.tex:10:Each published structure was evaluated at $\bpFitPrimes$ fitting primes. The
+manuscript/jhep/appendices/app_j_b10.tex:13:rational reconstruction~\cite{Wang:1982}. All $\dimBten$ published structures
+manuscript/jhep/appendices/app_j_b10.tex:42:$\bpFreshPrime$ on $\bpFreshSamples$ independently drawn samples that took no
+manuscript/jhep/appendices/app_j_b10.tex:55:normalising the two sides independently; no coefficient was altered to make the
+manuscript/jhep/appendices/app_j_b10.tex:59:The published structures were presented as explicit expressions, not as a basis
+manuscript/jhep/appendices/app_j_b10.tex:62:structural observation about the published choice, and the direction of the
+manuscript/jhep/appendices/app_j_b10.tex:64:a naive reading would suggest --- can only weaken a claim about the published
+manuscript/prd/appendices/app_g_rank81.tex:1:\section{The generic-rank certificate}
+manuscript/prd/appendices/app_g_rank81.tex:5:The $\dimSelfDualModule$ coordinates are the independent components of a
+manuscript/prd/appendices/app_g_rank81.tex:15:\paragraph{Schedule completeness.}
+manuscript/prd/appendices/app_g_rank81.tex:32:because an earlier stage of this project reported a rank from an incomplete
+manuscript/prd/appendices/app_g_rank81.tex:49:by two independent routines --- fraction-free Bareiss elimination and a separate
+manuscript/prd/appendices/app_g_rank81.tex:67:$\Lambda^5_+$~\cite{Hutomo:2025chiral}. We cite it and do not reprove it. The
+manuscript/prd/appendices/app_g_rank81.tex:72:The certified statement is that \emph{the selected family has generic functional
+manuscript/prd/appendices/app_g_rank81.tex:74:$\exactJacScheduled$ candidates are algebraically independent: functional
+manuscript/prd/appendices/app_g_rank81.tex:75:independence at a generic point and algebraic independence are different
+manuscript/prd/appendices/app_c_bridge.tex:12:independent components in a fixed ordering of index five-tuples, and $\Phi$ is a
+manuscript/prd/appendices/app_c_bridge.tex:25:The certified statement is that $\mathrm{im}\,\Phi \subseteq
+manuscript/prd/appendices/app_c_bridge.tex:36:and is constructed explicitly by exact elimination. The certified identity is
+manuscript/prd/appendices/app_c_bridge.tex:47:corresponding spinor representative, the certified statement is
+manuscript/prd/appendices/app_c_bridge.tex:57:\paragraph{Normalisation independence.}
+manuscript/prd/appendices/app_b_orientation.tex:33:Nothing raises an error; the first symptom is a downstream rank of zero where
+manuscript/prd/appendices/app_b_orientation.tex:55:\paragraph{Independent verification.}
+manuscript/prd/appendices/app_b_orientation.tex:60:which is precisely the situation that produced the defect in the first place.
+manuscript/prd/appendices/app_b_orientation.tex:62:\paragraph{Effect on published values.}
+manuscript/prd/appendices/app_b_orientation.tex:63:None. Every certificate had been computed at a prime where the unpinned code
+manuscript/prd/appendices/app_l_reproduction.tex:26:certified results were produced under Python 3.13. This requirement was
+manuscript/prd/appendices/app_l_reproduction.tex:51:\paragraph{Regenerating the certificates.}
+manuscript/prd/appendices/app_l_reproduction.tex:59:The first two are the exact rational computations of
+manuscript/prd/appendices/app_l_reproduction.tex:61:matrix; it is read-only with respect to the cells and is order-independent, so it
+manuscript/prd/appendices/app_l_reproduction.tex:87:The exact rational closure is the most expensive step, dominated by the rational
+manuscript/prd/appendices/app_l_reproduction.tex:90:job; individual cells are independent and may be run in parallel, but they must
+manuscript/prd/appendices/app_l_reproduction.tex:122:than certifying a reproducible one.
+manuscript/prd/appendices/app_k_algorithms.tex:23:in the environment that produced the certified results.
+manuscript/prd/appendices/app_k_algorithms.tex:48:Ranks over $\Fp$ come from exact Gaussian elimination. Determinants certifying a
+manuscript/prd/appendices/app_k_algorithms.tex:50:which keeps every intermediate an integer, and by an independent exact routine.
+manuscript/prd/appendices/app_k_algorithms.tex:58:too many random points, so agreement on independently drawn samples bounds the
+manuscript/prd/appendices/app_k_algorithms.tex:86:\item A rank reported from an incomplete evaluation schedule.
+manuscript/prd/appendices/app_d_blocks.tex:32:computed by explicit contraction, and their ranks are what is certified. The
+manuscript/jhep/appendices/app_a_conventions.tex:76:On the chiral subspace $\Gamma^{(5)}$ is not independent of its dual: the
+manuscript/jhep/appendices/app_l_reproduction.tex:26:certified results were produced under Python 3.13. This requirement was
+manuscript/jhep/appendices/app_l_reproduction.tex:47:\paragraph{Regenerating the certificates.}
+manuscript/jhep/appendices/app_l_reproduction.tex:53:The first two are the exact rational computations of
+manuscript/jhep/appendices/app_l_reproduction.tex:55:matrix; it is read-only with respect to the cells and is order-independent, so it
+manuscript/jhep/appendices/app_l_reproduction.tex:79:The exact rational closure is the most expensive step, dominated by the rational
+manuscript/jhep/appendices/app_l_reproduction.tex:82:job; individual cells are independent and may be run in parallel, but they must
+manuscript/jhep/appendices/app_l_reproduction.tex:114:than certifying a reproducible one.
+manuscript/prd/appendices/app_f_maps.tex:13:certified properties are:
+manuscript/jhep/appendices/app_g_rank81.tex:1:\section{The generic-rank certificate}
+manuscript/jhep/appendices/app_g_rank81.tex:5:The $\dimSelfDualModule$ coordinates are the independent components of a
+manuscript/jhep/appendices/app_g_rank81.tex:15:\paragraph{Schedule completeness.}
+manuscript/jhep/appendices/app_g_rank81.tex:30:because an earlier stage of this project reported a rank from an incomplete
+manuscript/jhep/appendices/app_g_rank81.tex:47:by two independent routines --- fraction-free Bareiss elimination and a separate
+manuscript/jhep/appendices/app_g_rank81.tex:65:$\Lambda^5_+$~\cite{Hutomo:2025chiral}. We cite it and do not reprove it. The
+manuscript/jhep/appendices/app_g_rank81.tex:70:The certified statement is that \emph{the selected family has generic functional
+manuscript/jhep/appendices/app_g_rank81.tex:72:$\exactJacScheduled$ candidates are algebraically independent: functional
+manuscript/jhep/appendices/app_g_rank81.tex:73:independence at a generic point and algebraic independence are different
+manuscript/jhep/appendices/app_b_orientation.tex:33:Nothing raises an error; the first symptom is a downstream rank of zero where
+manuscript/jhep/appendices/app_b_orientation.tex:55:\paragraph{Independent verification.}
+manuscript/jhep/appendices/app_b_orientation.tex:60:which is precisely the situation that produced the defect in the first place.
+manuscript/jhep/appendices/app_b_orientation.tex:62:\paragraph{Effect on published values.}
+manuscript/jhep/appendices/app_b_orientation.tex:63:None. Every certificate had been computed at a prime where the unpinned code
+manuscript/prd/appendices/app_a_conventions.tex:76:On the chiral subspace $\Gamma^{(5)}$ is not independent of its dual: the
+manuscript/jhep/appendices/app_d_blocks.tex:32:computed by explicit contraction, and their ranks are what is certified. The
+manuscript/jhep/appendices/app_c_bridge.tex:12:independent components in a fixed ordering of index five-tuples, and $\Phi$ is a
+manuscript/jhep/appendices/app_c_bridge.tex:25:The certified statement is that $\mathrm{im}\,\Phi \subseteq
+manuscript/jhep/appendices/app_c_bridge.tex:36:and is constructed explicitly by exact elimination. The certified identity is
+manuscript/jhep/appendices/app_c_bridge.tex:47:corresponding spinor representative, the certified statement is
+manuscript/jhep/appendices/app_c_bridge.tex:57:\paragraph{Normalisation independence.}

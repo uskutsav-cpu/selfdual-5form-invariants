@@ -1,0 +1,131 @@
+SHA256 b4d9de0dfe9966969897924848c08eb445dbce7746b89ec920f340da25945e85
+{
+  "method": "Stacked independently evaluated gradients of 10 products + 62 graph polynomials",
+  "fields": [
+    {
+      "prime": 50021,
+      "points": [
+        {
+          "seed": 16999642918068834541,
+          "coordinates": {
+            "length": 126,
+            "first": 13730
+          },
+          "values": {
+            "length": 72,
+            "first": 39712
+          }
+        },
+        {
+          "seed": 288608476638820389658980143954101742752,
+          "coordinates": {
+            "length": 126,
+            "first": 49210
+          },
+          "coordinate_generator": "Python random.Random(fresh secrets.randbits(128) seed), randrange(prime)",
+          "records": {
+            "length": 71,
+            "first": {
+              "id": "I4_1",
+              "value": 8432,
+              "jacobian_row": {
+                "length": 126,
+                "first": 20814
+              },
+              "seconds": 0.13987195899244398
+            }
+          },
+          "values": {
+            "length": 72,
+            "first": 11770
+          },
+          "engine_stats": {
+            "dot_products": 2009,
+            "largest_dot_bound": 250200040000000,
+            "max_cached_bytes": 268400032,
+            "cache_hits": 202
+          }
+        }
+      ],
+      "stacked_gradient": {
+        "length": 72,
+        "first": {
+          "length": 252,
+          "first": 43739
+        }
+      },
+      "rank": 72,
+      "pivot_columns": {
+        "length": 72,
+        "first": 0
+      },
+      "integer_minor_determinant": "590655061746591332211092525786553289123362457189037822520214048331509374796627468336904007816772871609092508557498575265453616018803808711998681913648345534191616564666689635540407985897875443110680868393807525733611969292232971587242262855625069913231085976254498084376283619616117895182694288148659088169278065896630098082677558816174175233860542081",
+      "determinant_mod_prime": 43334,
+      "row_swaps": 0,
+      "status": "PASS"
+    },
+    {
+      "prime": 32749,
+      "points": [
+        {
+          "seed": 9932584768098142723,
+          "coordinates": {
+            "length": 126,
+            "first": 28419
+          },
+          "values": {
+            "length": 72,
+            "first": 8489
+          }
+        },
+        {
+          "seed": 334597984840887674588212264716327215093,
+          "coordinates": {
+            "length": 126,
+            "first": 23069
+          },
+          "coordinate_generator": "Python random.Random(fresh secrets.randbits(128) seed), randrange(prime)",
+          "records": {
+            "length": 71,
+            "first": {
+              "id": "I4_1",
+              "value": 9185,
+              "jacobian_row": {
+                "length": 126,
+                "first": 10198
+              },
+              "seconds": 0.06683975004125386
+            }
+          },
+          "values": {
+            "length": 72,
+            "first": 19220
+          },
+          "engine_stats": {
+            "dot_products": 2009,
+            "largest_dot_bound": 107243150400000,
+            "max_cached_bytes": 268400032,
+            "cache_hits": 202
+          }
+        }
+      ],
+      "stacked_gradient": {
+        "length": 72,
+        "first": {
+          "length": 252,
+          "first": 13383
+        }
+      },
+      "rank": 72,
+      "pivot_columns": {
+        "length": 72,
+        "first": 0
+      },
+      "integer_minor_determinant": "1835884997942544379043171466584451314115972190677650717939104840838308607704477832143482386171620875070772314321354965958429900957123110814749550003599125552022757793898731266056874634624489557840070970481660090604775528862337572269482876074809213632687206466912513642950232882662245202912924947758724119120387989320200425809634060755031022",
+      "determinant_mod_prime": 12699,
+      "row_swaps": 0,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

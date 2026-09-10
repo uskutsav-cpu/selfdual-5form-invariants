@@ -1,0 +1,6 @@
+key,authors_verified,title_verified,journal_verified,volume,year,pages_or_article,doi_verified,arxiv_id,version_cited,how_verified,notes
+Cederwall:2025invariants,yes,yes,yes,59,2026,065203,yes,2509.14350,v2 (29 Jan 2026),arXiv landing page + repository ingest record with PDF hash,journal version is the source of record
+Hutomo:2025chiral,yes,yes,n/a,,2026,,arXiv DOI only,2509.14351,v2 (6 Jan 2026),arXiv landing page fetched 2026-07-31,no journal reference listed upstream at time of writing
+Kugo:1982bn,yes,yes,yes,221,1983,357--380,yes,,journal version,publisher record,cited only for Majorana-Weyl existence by signature
+Schwartz:1980,yes,yes,yes,27,1980,701--717,yes,,journal version,standard reference,cited for the probabilistic identity-testing bound
+Zippel:1979,yes,yes,n/a (proceedings),72,1979,216--226,yes,,proceedings version,standard reference,cited alongside Schwartz

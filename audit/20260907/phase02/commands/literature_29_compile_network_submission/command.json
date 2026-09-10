@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "python3",
+    "/Users/swethasunilkumar/.codex/plugins/cache/openai-bundled/latex/0.2.6/scripts/compile_latex.py",
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/submission_candidate/main.tex",
+    "--compiler",
+    "tectonic",
+    "--output-directory",
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/compiled/submission",
+    "--json"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/submission_candidate",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788831622.240457,
+  "status": "completed",
+  "pid": 11537,
+  "exit_code": 0,
+  "seconds": 4.7750882499385625,
+  "finished_unix": 1788831627.0160902,
+  "logs": {
+    "stdout.log": {
+      "sha256": "6efb353de9cee87a2a3b4e385a9cbed6f47b6794bf0873b87362273ba1eb18bb",
+      "bytes": 20581
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

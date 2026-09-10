@@ -1,0 +1,460 @@
+manuscript/main.tex-369-$\dimDten$ bounded $\dim_{\mathbb{Q}} D_{10}$ only from below, and
+manuscript/main.tex-370-$\dim_{\mathbb{Q}} Q_{10} \le \dimQten$ was all that followed.
+manuscript/main.tex-371-
+manuscript/main.tex:372:Running the same fixed point in exact rational arithmetic removes the modular
+manuscript/main.tex-373-admission test, and with it the gap. The obstacle is that the flow targets are
+manuscript/main.tex-374-not all integral: of the targets at degrees four through ten,
+manuscript/main.tex-375-$\czIntegerRows$ have identical integer coordinates at every prime and
+manuscript/main.tex-376-$\czLiftedRows$ are reductions of rationals. Those were lifted by CRT across
+manuscript/main.tex-377-$\czFitPrimes$ primes followed by rational reconstruction, and every
+manuscript/main.tex-378-reconstructed entry was then required to reduce correctly at a held-out
+manuscript/main.tex-379-prime~$\czHoldoutPrime$ that took no part in the lift. No lift failed and no
+manuscript/main.tex-380-held-out reduction disagreed.
+manuscript/main.tex-381-
+manuscript/main.tex:382:The closure then reaches its fixed point in $\czSweeps$ sweeps under exact
+manuscript/main.tex-383-rational arithmetic, giving
+manuscript/main.tex-384-\begin{equation}
+manuscript/main.tex-385-  \dim_{\mathbb{Q}} D_{10} = \dimDtenQ ,
+manuscript/main.tex-386-  \qquad
+manuscript/main.tex-387-  \dim_{\mathbb{Q}} Q_{10} \czQtenRelation \dimQtenQ .
+manuscript/main.tex-388-  \label{eq:czero}
+manuscript/main.tex-389-\end{equation}
+manuscript/main.tex:390:This is an equality and not a bound, because at a fixed point reached over
+manuscript/main.tex-391-$\mathbb{Q}$ no generated direction raises the rank over $\mathbb{Q}$: the
+manuscript/main.tex-392-reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+manuscript/main.tex-393-upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+manuscript/main.tex-394-checkable witness the certificate records an explicit
+manuscript/main.tex-395-$\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+manuscript/main.tex-396-determinant, computed by fraction-free elimination, is non-zero.
+manuscript/main.tex-397-
+manuscript/main.tex-398-\paragraph{The one analytic input.} The closure assigns each generated target
+manuscript/main.tex-399-to a graded piece using the leading field degree of its generator, and that
+manuscript/main.tex-400-bookkeeping rests on a single physical statement: the free stress tensor of a
+manuscript/main.tex-401-self-dual five-form is traceless, so $\operatorname{Tr}\tau$ first contributes
+manuscript/main.tex-402-at degree four rather than two. The statement is not assumed here. For any
+manuscript/main.tex-403-improvement convention
+manuscript/main.tex-404-$T_{\mu\nu} \sim F_{\mu\ldots}F_\nu{}^{\ldots}
+manuscript/main.tex-405- - c\,\eta_{\mu\nu}\langle F,F\rangle$
+--
+manuscript/main.tex-426-basis, and it is worth isolating the one consequence that does not depend on that
+manuscript/main.tex-427-choice.
+manuscript/main.tex-428-
+manuscript/main.tex:429:\begin{proposition}
+manuscript/main.tex-430-\label{prop:cardinality}
+manuscript/main.tex-431-Let $A$ be the degree-$d$ atlas, $D\subseteq A$ the reachable subspace, and
+manuscript/main.tex-432-$\pi : A \to Q = A/D$ the quotient map. If a finite set $S\subseteq A$ closes the
+manuscript/main.tex-433-degree, that is $D + \mathrm{span}(S) = A$, then $|S| \ge \dim Q$.
+manuscript/main.tex-434-\end{proposition}
+manuscript/main.tex-435-
+manuscript/main.tex:436:\begin{proof}
+manuscript/main.tex-437-Applying $\pi$ to $D+\mathrm{span}(S)=A$ and using $\pi(D)=0$ and the
+manuscript/main.tex-438-surjectivity of $\pi$ gives $\mathrm{span}(\pi(S)) = Q$. A span of $|S|$ vectors
+manuscript/main.tex-439-has dimension at most $|S|$, so $\dim Q \le |S|$.
+manuscript/main.tex-440-\end{proof}
+manuscript/main.tex-441-
+manuscript/main.tex-442-The statement is basis-free: $A$, $D$ and $Q$ are defined without reference to
+manuscript/main.tex-443-coordinates, and a change of basis of $A$ induces an isomorphism of $Q$ and
+manuscript/main.tex-444-leaves $\dim Q$ unchanged. Since $\dim Q_{10} = \dimQten$ and the exhibited
+manuscript/main.tex-445-completion has exactly $\dimQten$ elements, that completion is of \emph{minimum
+manuscript/main.tex-446-cardinality in any basis} --- no relabelling or linear redefinition of the atlas
+manuscript/main.tex-447-can close degree ten with fewer.
+manuscript/main.tex-448-
+manuscript/main.tex-449-We are deliberately narrow about what this covers. It bounds the \emph{number} of
+manuscript/main.tex-450-directions required. It says nothing about \emph{which} directions those are, and
+manuscript/main.tex-451-it is not the stronger statement that no single element of the exhibited set may
+--
+manuscript/main.tex-640-change-of-basis map validated on holdout samples. The union rank is the
+manuscript/main.tex-641-load-bearing number: two \emph{different} seven-dimensional subspaces would also
+manuscript/main.tex-642-give equal ranks, and a union of eight; the union being $\dEightUnionRank$ is
+manuscript/main.tex:643:what makes this span equality rather than dimension agreement.
+manuscript/main.tex-644-
+manuscript/main.tex-645-Dropping each spinor family in turn and re-ranking then isolates the
+manuscript/main.tex-646-responsible one. Removing the port graphs, the products or the structured
+manuscript/main.tex-647-candidates leaves the rank at $\dEightUnionRank$; removing the
+manuscript/main.tex-648-\dEightIndispensable{} candidates drops it to $\dEightRankWithoutWords$. So the
+manuscript/main.tex-649-direction that a port-graph-only family misses is not reachable by any
+manuscript/main.tex-650-single-graph contraction of the invariant tensor, and the structured family does
+manuscript/main.tex-651-not supply it either. That is a positive statement about where the invariant
+manuscript/main.tex-652-lives, not merely an observation that two counts differ.
+manuscript/main.tex-653-
+manuscript/main.tex-654-The consequence for reading table~\ref{tab:comparison} is that a ``no'' in the
+manuscript/main.tex-655-degree-eight row is a statement about the candidate family, not about the
+manuscript/main.tex-656-correspondence between the two descriptions.
+manuscript/main.tex-657-
+manuscript/main.tex-658-\subsection{A degree-by-degree structural correspondence}
+--
+manuscript/prd_letter/main.tex-210-\label{eq:dimcount}
+manuscript/prd_letter/main.tex-211-\end{equation}
+manuscript/prd_letter/main.tex-212-
+manuscript/prd_letter/main.tex:213:\begin{proposition}[certified]
+manuscript/prd_letter/main.tex-214-\label{prop:bridge}
+manuscript/prd_letter/main.tex-215-Over $\Fp$ at each prime used, $\mathrm{im}\,\Phi=\ker(\gamma\text{-}\mathrm{tr})$,
+manuscript/prd_letter/main.tex-216-$\mathrm{rank}\,\Phi=\bridgeForwardRank$, $\ker\Phi\cap\Lambda^5_+=0$, and
+manuscript/prd_letter/main.tex-217-$\Phi|_{\Lambda^5_-}\equiv0$. There is an exact left inverse with
+manuscript/prd_letter/main.tex-218-$\Phi^-\Phi=\mathrm{id}$, while $\Phi\Phi^-$ is the projector onto
+manuscript/prd_letter/main.tex-219-$\ker(\gamma\text{-}\mathrm{tr})$ and not the identity. Equivariance holds with
+manuscript/prd_letter/main.tex-220-the intertwining character solved for, not assumed, and found to be unity.
+manuscript/prd_letter/main.tex-221-\end{proposition}
+manuscript/prd_letter/main.tex-222-
+manuscript/prd_letter/main.tex-223-Two points are easy to get wrong. $\Phi$ has full column rank but is not onto,
+manuscript/prd_letter/main.tex-224-so it admits a left inverse and no two-sided one; both identities are verified
+manuscript/prd_letter/main.tex-225-as matrix statements, since one that holds on sampled vectors can still fail on
+manuscript/prd_letter/main.tex-226-a subspace. And the vanishing on $\Lambda^5_-$ is exact, not approximate: on
+manuscript/prd_letter/main.tex-227-$S_+$ the anti-self-dual part of $\Gamma^{(5)}$ annihilates the module. That
+manuscript/prd_letter/main.tex-228-blindness makes an orientation error silent. The null frame over $\Fp$ solves
+--
+manuscript/prd_letter/main.tex-255-\emph{The trace theorem.}---Everything at degree ten turns on the field degree
+manuscript/prd_letter/main.tex-256-at which $\operatorname{Tr}\tau$ begins.
+manuscript/prd_letter/main.tex-257-
+manuscript/prd_letter/main.tex:258:\begin{theorem}
+manuscript/prd_letter/main.tex-259-\label{thm:gten}
+manuscript/prd_letter/main.tex-260-For a self-dual five-form in ten dimensions the free stress tensor is traceless,
+manuscript/prd_letter/main.tex-261-for every improvement coefficient. Hence $\operatorname{Tr}\tau$ first
+manuscript/prd_letter/main.tex-262-contributes at field degree four.
+manuscript/prd_letter/main.tex-263-\end{theorem}
+manuscript/prd_letter/main.tex-264-
+manuscript/prd_letter/main.tex:265:\begin{proof}
+manuscript/prd_letter/main.tex-266-Take the general improved form
+manuscript/prd_letter/main.tex-267-\begin{equation}
+manuscript/prd_letter/main.tex-268-T_{\mu\nu}=\frac{1}{(p-1)!}F_{\mu\alpha_2\dots\alpha_p}F_\nu{}^{\alpha_2\dots\alpha_p}
+manuscript/prd_letter/main.tex-269--c\,\eta_{\mu\nu}\langle F,F\rangle,
+manuscript/prd_letter/main.tex-270-\label{eq:stress}
+manuscript/prd_letter/main.tex-271-\end{equation}
+manuscript/prd_letter/main.tex-272-with $\langle F,G\rangle=F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p}$ and $c$ free.
+manuscript/prd_letter/main.tex-273-Contracting with $\eta^{\mu\nu}$,
+manuscript/prd_letter/main.tex-274-\begin{equation}
+manuscript/prd_letter/main.tex-275-T^\mu{}_\mu=(1-cd)\,\langle F,F\rangle,
+manuscript/prd_letter/main.tex-276-\label{eq:trace}
+manuscript/prd_letter/main.tex-277-\end{equation}
+manuscript/prd_letter/main.tex-278-a multiple of the single scalar $\langle F,F\rangle$ whatever $c$ is: no other
+manuscript/prd_letter/main.tex-279-quadratic Lorentz invariant exists, the full contraction being the only way to
+manuscript/prd_letter/main.tex-280-pair two $p$-forms into a scalar. Now specialise to $p=5$, $d=10$, so $F$ has
+--
+manuscript/prd_letter/main.tex-327-
+manuscript/prd_letter/main.tex-328-A target is \emph{generated} when the flow produces it formally and
+manuscript/prd_letter/main.tex-329-\emph{activated} at degree $d$ when \eqref{eq:leading} lets it contribute there.
+manuscript/prd_letter/main.tex:330:Concretely, the reachable space at degree $d$ is the least fixed point of
+manuscript/prd_letter/main.tex-331-\begin{equation}
+manuscript/prd_letter/main.tex-332-V\longmapsto V+\mathrm{span}\bigl\{g:\ g\ \text{generated from}\ V,\
+manuscript/prd_letter/main.tex-333-\deg_F g\le d\bigr\},
+manuscript/prd_letter/main.tex-334-\label{eq:closureop}
+manuscript/prd_letter/main.tex-335-\end{equation}
+manuscript/prd_letter/main.tex-336-started from the degree-four seed and iterated until a sweep raises no rank.
+manuscript/prd_letter/main.tex-337-Over $\Q$ the reachable dimensions by degree are $1$, $2$, $7$ and $\dimDtenQ$
+manuscript/prd_letter/main.tex-338-at degrees four, six, eight and ten.
+manuscript/prd_letter/main.tex-339-
+manuscript/prd_letter/main.tex-340-The distinction between generated and activated is the whole result. Writing
+manuscript/prd_letter/main.tex-341-$\mathcal{T}$ for the generated targets and $\mathcal{A}$ for activation,
+manuscript/prd_letter/main.tex-342-\begin{equation}
+manuscript/prd_letter/main.tex-343-\mathrm{span}\,\mathcal{T}=\Ften
+manuscript/prd_letter/main.tex-344-\quad\text{but}\quad
+manuscript/prd_letter/main.tex-345-\Dten=\mathrm{span}\!\bigcup_{k\ge0}\mathcal{A}^{k}(\mathcal{T}_0)\subsetneq\Ften .
+--
+manuscript/prd_letter/main.tex-348-The left equality is why conflating them is tempting; doing so returns quotient
+manuscript/prd_letter/main.tex-349-dimension zero, which is the answer this project held before catching the error.
+manuscript/prd_letter/main.tex-350-
+manuscript/prd_letter/main.tex:351:Running the closure modulo $p$ would expose the fixed point to exceptional
+manuscript/prd_letter/main.tex-352-primes precisely where no spanning-set argument is available, so it is run over
+manuscript/prd_letter/main.tex-353-$\Q$. Of its target rows $\czIntegerRows$ were already integral; the remaining
+manuscript/prd_letter/main.tex-354-$\czLiftedRows$ were lifted by the Chinese remainder theorem across
+manuscript/prd_letter/main.tex-355-$\czFitPrimes$ primes with rational reconstruction~\cite{Wang:1982} and
+manuscript/prd_letter/main.tex-356-validated at the held-out prime $\czHoldoutPrime$, with no mismatches. This is
+manuscript/prd_letter/main.tex-357-not fastidiousness. Figure~\ref{fig:heights} plots the size of the largest
+manuscript/prd_letter/main.tex-358-coefficient the closure actually produces at each degree. Through degree eight
+manuscript/prd_letter/main.tex-359-the coordinates are small integers and nothing is at risk. At degree ten one
+manuscript/prd_letter/main.tex-360-basis vector of $\Dten$ carries a numerator of twenty-nine bits over a
+manuscript/prd_letter/main.tex-361-five-digit denominator --- an order of magnitude past what a single prime near
+manuscript/prd_letter/main.tex-362-$2^{15}$ can represent. Read modulo one such prime that coefficient is
+manuscript/prd_letter/main.tex:363:indistinguishable from a small residue, and the fixed point would have been
+manuscript/prd_letter/main.tex-364-reported at the wrong dimension with nothing in the output to indicate it.
+manuscript/prd_letter/main.tex-365-Iteration terminated after $\czSweeps$ sweeps.
+manuscript/prd_letter/main.tex-366-
+manuscript/prd_letter/main.tex-367-\begin{figure}[t]
+manuscript/prd_letter/main.tex-368-\centering
+manuscript/prd_letter/main.tex-369-\includegraphics[width=\columnwidth]{figures/fig05_rational_heights.pdf}
+manuscript/prd_letter/main.tex-370-\caption{Largest numerator and denominator in a basis vector of $\Dten$, by
+manuscript/prd_letter/main.tex-371-field degree, in bits. The dashed line is the range of a single prime near
+manuscript/prd_letter/main.tex-372-$2^{15}$. Degree ten is the first place the exact coefficients leave it, which
+manuscript/prd_letter/main.tex-373-is why that row is lifted rather than read off one modular solve.}
+manuscript/prd_letter/main.tex-374-\label{fig:heights}
+manuscript/prd_letter/main.tex-375-\end{figure}
+manuscript/prd_letter/main.tex-376-
+manuscript/prd_letter/main.tex:377:\begin{theorem}
+manuscript/prd_letter/main.tex-378-\label{thm:main}
+manuscript/prd_letter/main.tex-379-Over the rationals,
+manuscript/prd_letter/main.tex-380-\begin{equation}
+manuscript/prd_letter/main.tex-381-\dim_\Q\Ften=\dimAtenQ,\quad
+manuscript/prd_letter/main.tex-382-\dim_\Q\Dten=\dimDtenQ,\quad
+manuscript/prd_letter/main.tex-383-\dim_\Q\Qten=\dimQtenQ .
+manuscript/prd_letter/main.tex-384-\end{equation}
+manuscript/prd_letter/main.tex-385-\end{theorem}
+manuscript/prd_letter/main.tex-386-
+manuscript/prd_letter/main.tex-387-The lower bound is certified by an explicit
+manuscript/prd_letter/main.tex-388-$\czMinorSize\times\czMinorSize$ integer minor with non-vanishing determinant,
+manuscript/prd_letter/main.tex-389-computed by Bareiss elimination~\cite{Bareiss:1968} and confirmed by an
+manuscript/prd_letter/main.tex-390-independent exact rational routine. No separate upper bound is needed: over $\Q$
+manuscript/prd_letter/main.tex-391-the modular admission test that made the predecessor a bound disappears, and at
+manuscript/prd_letter/main.tex:392:the fixed point no further generated direction raises the rank, so the reached
+manuscript/prd_letter/main.tex-393-span \emph{is} $\Dten$ and $\dim_\Q\Dten=\dimDtenQ$ is an equality. Three exact
+manuscript/prd_letter/main.tex-394-annihilating covectors give the quotient map directly. Forcing
+manuscript/prd_letter/main.tex-395-$\operatorname{Tr}\tau$ to begin at degree two instead activates $24$ further
+manuscript/prd_letter/main.tex-396-targets, raises the reachable dimension to $\dimAten$, and returns
+manuscript/prd_letter/main.tex-397-$\Qten=0$; that counterfactual is retained as a regression fixture.
+manuscript/prd_letter/main.tex-398-
+manuscript/prd_letter/main.tex-399-How many directions must be added to close the gap is a basis-dependent question
+manuscript/prd_letter/main.tex-400-only in appearance.
+manuscript/prd_letter/main.tex-401-
+manuscript/prd_letter/main.tex:402:\begin{proposition}
+manuscript/prd_letter/main.tex-403-\label{prop:card}
+manuscript/prd_letter/main.tex-404-If $S\subset\Ften$ satisfies $\Dten+\mathrm{span}(S)=\Ften$, then
+manuscript/prd_letter/main.tex-405-$|S|\ge\dim\Qten=\dimQtenQ$.
+manuscript/prd_letter/main.tex-406-\end{proposition}
+manuscript/prd_letter/main.tex-407-
+manuscript/prd_letter/main.tex:408:\begin{proof}
+manuscript/prd_letter/main.tex-409-Apply the quotient map $\pi:\Ften\to\Qten$. From
+manuscript/prd_letter/main.tex-410-$\Dten+\mathrm{span}(S)=\Ften$ we get $\mathrm{span}(\pi(S))=\Qten$, and a span
+manuscript/prd_letter/main.tex-411-of $|S|$ vectors has dimension at most $|S|$.
+manuscript/prd_letter/main.tex-412-\end{proof}
+manuscript/prd_letter/main.tex-413-
+manuscript/prd_letter/main.tex-414-This is elementary and we claim no novelty for it; we state it because it
+manuscript/prd_letter/main.tex-415-converts a basis-dependent assertion into a basis-free one. No closing set of
+manuscript/prd_letter/main.tex-416-any kind, in any basis, has fewer than $\dimQtenQ$ elements. Removal minimality
+manuscript/prd_letter/main.tex-417-of the particular closing set we exhibit --- that no element can be dropped ---
+manuscript/prd_letter/main.tex-418-is checked only in a fixed graph basis and under the permutation subgroup, and
+manuscript/prd_letter/main.tex-419-we do not claim it under arbitrary $GL$.
+manuscript/prd_letter/main.tex-420-
+manuscript/prd_letter/main.tex-421-\emph{Degree-resolved agreement.}---The two formulations are compared on
+manuscript/prd_letter/main.tex-422-$\nCommonSamples$ common samples at prime $\comparisonPrime$. Ranks agree at
+manuscript/prd_letter/main.tex-423-degrees four, six, eight and ten [Fig.~\ref{fig:spectrum}(c)], which is
+--
+manuscript/jhep/main.tex-68-Three results are established exactly over the rationals rather than modulo a
+manuscript/jhep/main.tex-69-prime. The full degree-ten invariant space has dimension $\dimAtenQ$. The
+manuscript/jhep/main.tex-70-subspace reachable by the stress-tensor flow has dimension $\dimDtenQ$, computed
+manuscript/jhep/main.tex:71:by running the closure to its fixed point in exact rational arithmetic after
+manuscript/jhep/main.tex-72-lifting its non-integral targets by rational reconstruction. The quotient of the
+manuscript/jhep/main.tex-73-first by the second therefore has dimension $\dimQtenQ$: there are three
+manuscript/jhep/main.tex-74-independent degree-ten invariant directions that this flow does not reach. We
+manuscript/jhep/main.tex-75-also show that the span of the previously published degree-ten structures meets
+manuscript/jhep/main.tex-76-the product sector in exactly one dimension, and we write that intersection out
+manuscript/jhep/main.tex-77-as an explicit integer identity.
+manuscript/jhep/main.tex-78-
+manuscript/jhep/main.tex-79-For the generic functional rank of the full candidate family we certify the
+manuscript/jhep/main.tex-80-lower bound $\charZeroLowerBound$ by an exact modular Jacobian computation with
+manuscript/jhep/main.tex-81-an explicit $\minorSize\times\minorSize$ minor; the matching upper bound is
+manuscript/jhep/main.tex-82-analytic and is due to earlier work, which we cite rather than reprove.
+manuscript/jhep/main.tex-83-
+manuscript/jhep/main.tex-84-All results are supported by machine-checked certificates, and the computations
+manuscript/jhep/main.tex-85-are reproducible from a public repository. We state explicitly which claims are
+manuscript/jhep/main.tex-86-theorems, which are exact certificates, which rest on agreement across several
+--
+manuscript/jhep/main.tex-462-equality of spaces, and the substance of the following proposition is that the
+manuscript/jhep/main.tex-463-map realises the isomorphism the count permits.
+manuscript/jhep/main.tex-464-
+manuscript/jhep/main.tex:465:\begin{proposition}[Certified properties of the bridge]
+manuscript/jhep/main.tex-466-\label{prop:bridge}
+manuscript/jhep/main.tex-467-Over $\Fp$, for each prime used, the map \eqref{eq:bridge} satisfies
+manuscript/jhep/main.tex-468-\begin{align}
+manuscript/jhep/main.tex-469-\mathrm{im}\,\Phi &\;=\; \ker(\gamma\text{-}\mathrm{tr}),
+manuscript/jhep/main.tex-470-  &\mathrm{rank}\,\Phi &\;=\; \bridgeForwardRank,
+manuscript/jhep/main.tex-471-  \label{eq:bridgerank}\\
+manuscript/jhep/main.tex-472-\ker\Phi \cap \Lambda^5_+ &\;=\; 0,
+manuscript/jhep/main.tex-473-  &\Phi\big|_{\Lambda^5_-} &\;\equiv\; 0,
+manuscript/jhep/main.tex-474-  \label{eq:bridgekernel}\\
+manuscript/jhep/main.tex-475-\Phi^-\Phi &\;=\; \mathrm{id}_{\dimSelfDualModule},
+manuscript/jhep/main.tex-476-  &\Phi\,\Phi^- &\;=\; \Pi_{\gamma\text{-}\mathrm{tr}},
+manuscript/jhep/main.tex-477-  \label{eq:bridgeinverse}
+manuscript/jhep/main.tex-478-\end{align}
+manuscript/jhep/main.tex-479-where $\Pi_{\gamma\text{-}\mathrm{tr}}$ is the projector onto
+manuscript/jhep/main.tex-480-$\ker(\gamma\text{-}\mathrm{tr})$, and, for $\Lambda$ in the Lorentz group with
+--
+manuscript/jhep/main.tex-970-A target is \emph{generated} when the flow produces it formally, and
+manuscript/jhep/main.tex-971-\emph{activated} at degree $d$ when \eqref{eq:leadingdegree} permits it to
+manuscript/jhep/main.tex-972-contribute there. Writing $V_d$ for the span reached at degree $d$, the closure
+manuscript/jhep/main.tex:973:is the least fixed point of
+manuscript/jhep/main.tex-974-\begin{equation}
+manuscript/jhep/main.tex-975-V \;\longmapsto\;
+manuscript/jhep/main.tex-976- V + \mathrm{span}\bigl\{\,g \;:\; g \text{ generated from } V,\;
+manuscript/jhep/main.tex-977- \deg_F g \le d \,\bigr\},
+manuscript/jhep/main.tex-978-\label{eq:closureoperator}
+manuscript/jhep/main.tex-979-\end{equation}
+manuscript/jhep/main.tex-980-started from the degree-four seed and iterated until a sweep raises no rank.
+manuscript/jhep/main.tex-981-Termination occurred after $\czSweeps$ sweeps, and over $\Q$ the reachable
+manuscript/jhep/main.tex-982-dimensions by degree are $1$, $2$, $7$ and $\dimDtenQ$ at degrees four, six,
+manuscript/jhep/main.tex-983-eight and ten.
+manuscript/jhep/main.tex-984-
+manuscript/jhep/main.tex-985-Two structural facts make the question below well posed. The map induced by
+manuscript/jhep/main.tex-986-\eqref{eq:flow} on each graded piece is linear, and $\Dten$ is by construction
+manuscript/jhep/main.tex-987-the \emph{span} of the reachable elements; so $\Dten$ is a linear subspace of
+manuscript/jhep/main.tex-988-$\Ften$ and the quotient $\Qten = \Ften/\Dten$ is defined. Asking what the flow
+--
+manuscript/jhep/main.tex-994-\item The \emph{raw target span}: the span of every target the flow generates,
+manuscript/jhep/main.tex-995-      \emph{ignoring} whether the flow can actually activate it at this degree.
+manuscript/jhep/main.tex-996-\item The \emph{activated closure} $\Dten$: the span of what the flow actually
+manuscript/jhep/main.tex:997:      reaches, obtained by iterating activation to a fixed point.
+manuscript/jhep/main.tex-998-\end{itemize}
+manuscript/jhep/main.tex-999-\end{definition}
+manuscript/jhep/main.tex-1000-
+manuscript/jhep/main.tex-1001-The raw target span has dimension $\dimAten$ --- the same as $\dim \Ften$. If one
+manuscript/jhep/main.tex-1002-identifies it with $\Dten$, the quotient comes out zero and the conclusion is
+manuscript/jhep/main.tex-1003-that the flow reaches everything. That identification is false, and this project
+manuscript/jhep/main.tex-1004-made it before catching it. In symbols, writing $\mathcal{T}$ for the set of targets the flow generates and
+manuscript/jhep/main.tex-1005-$\mathcal{A}$ for the activation rule of section~\ref{sec:gten},
+manuscript/jhep/main.tex-1006-\begin{equation}
+manuscript/jhep/main.tex-1007-\mathrm{span}\,\mathcal{T} \;=\; \Ften
+manuscript/jhep/main.tex-1008-\qquad\text{but}\qquad
+manuscript/jhep/main.tex-1009-\Dten \;=\; \mathrm{span}\!\left(\bigcup_{k\ge 0}\mathcal{A}^{k}(\mathcal{T}_0)\right)
+manuscript/jhep/main.tex-1010- \;\subsetneq\; \Ften,
+manuscript/jhep/main.tex-1011-\label{eq:rawvsactivated}
+manuscript/jhep/main.tex-1012-\end{equation}
+--
+manuscript/jhep/main.tex-1025-$\czLiftedRows$ were lifted by CRT across $\czFitPrimes$ fitting primes followed
+manuscript/jhep/main.tex-1026-by rational reconstruction, and the lift was validated at the held-out prime
+manuscript/jhep/main.tex-1027-$\czHoldoutPrime$, with no mismatches. The closure was then iterated in exact
+manuscript/jhep/main.tex:1028:$\mathbb{Q}$ arithmetic and reached its fixed point after $\czSweeps$ sweeps.
+manuscript/jhep/main.tex-1029-
+manuscript/jhep/main.tex-1030-It is worth showing why this was necessary rather than merely careful, because
+manuscript/jhep/main.tex-1031-the cost of exact arithmetic is real and a reader is entitled to ask whether one
+manuscript/jhep/main.tex-1032-modular solve would have done. Figure~\ref{fig:heights} plots the size of the
+manuscript/jhep/main.tex-1033-largest coefficient the closure actually produces at each degree, taken from its
+manuscript/jhep/main.tex-1034-own exact output. Through degree eight the coordinates are small integers and
+manuscript/jhep/main.tex-1035-nothing is at risk. At degree ten one basis vector of the reachable space
+manuscript/jhep/main.tex-1036-carries a numerator of twenty-nine bits over a five-digit denominator --- an
+manuscript/jhep/main.tex-1037-order of magnitude beyond what a single prime near $2^{15}$ can represent. Read
+manuscript/jhep/main.tex-1038-modulo one such prime that coefficient is indistinguishable from a small
+manuscript/jhep/main.tex:1039:residue, and the fixed point would have been reported at the wrong dimension
+manuscript/jhep/main.tex-1040-with nothing in the output to indicate it. The lift is what makes the degree-ten
+manuscript/jhep/main.tex-1041-row recoverable at all.
+manuscript/jhep/main.tex-1042-
+manuscript/jhep/main.tex-1043-\begin{figure}[htbp]
+manuscript/jhep/main.tex-1044-\centering
+manuscript/jhep/main.tex-1045-\includegraphics[width=0.72\textwidth]{figures/fig05_rational_heights.pdf}
+manuscript/jhep/main.tex-1046-\caption{Size of the largest numerator and denominator appearing in a basis
+manuscript/jhep/main.tex-1047-vector of the flow-reachable space, by degree, in bits. The dashed line is the
+manuscript/jhep/main.tex-1048-representable range of a single prime near $2^{15}$. Degree ten is the first
+manuscript/jhep/main.tex-1049-place the exact coefficients leave that range, which is why that row is lifted
+manuscript/jhep/main.tex-1050-by the Chinese remainder theorem and rational reconstruction rather than read
+manuscript/jhep/main.tex-1051-off one modular solve.}
+manuscript/jhep/main.tex-1052-\label{fig:heights}
+manuscript/jhep/main.tex-1053-\end{figure}
+manuscript/jhep/main.tex-1054-
+manuscript/jhep/main.tex:1055:\begin{theorem}[Exact degree-ten reachability]
+manuscript/jhep/main.tex-1056-\label{thm:reach}
+manuscript/jhep/main.tex-1057-Over the rationals,
+manuscript/jhep/main.tex-1058-\begin{equation}
+manuscript/jhep/main.tex-1059-\dim_\Q \Ften = \dimAtenQ,
+manuscript/jhep/main.tex-1060-\qquad
+manuscript/jhep/main.tex-1061-\dim_\Q \Dten = \dimDtenQ,
+manuscript/jhep/main.tex-1062-\qquad
+manuscript/jhep/main.tex-1063-\dim_\Q \Qten \;\czQtenRelation\; \dimQtenQ .
+manuscript/jhep/main.tex-1064-\end{equation}
+manuscript/jhep/main.tex-1065-\end{theorem}
+manuscript/jhep/main.tex-1066-
+manuscript/jhep/main.tex-1067-The last equality deserves a word, because it is stronger than the modular
+manuscript/jhep/main.tex-1068-computation it replaced. Running the closure over $\Q$ removes the modular
+manuscript/jhep/main.tex:1069:admission test that made the earlier figure a lower bound. At the fixed point no
+manuscript/jhep/main.tex-1070-further generated direction raises the rank over $\Q$, so the reached span
+manuscript/jhep/main.tex-1071-\emph{is} $\Dten$ and its rank is an equality, not a bound. No separate
+manuscript/jhep/main.tex-1072-upper-bound argument is required. Table~\ref{tab:degree10} lists the
+manuscript/jhep/main.tex-1073-degree-ten invariants and the block each occupies.
+manuscript/jhep/main.tex-1074-
+manuscript/jhep/main.tex-1075-\input{tables/tab07_degree10.tex}
+manuscript/jhep/main.tex-1076-
+manuscript/jhep/main.tex-1077-The lower-bound side is certified by an explicit $\czMinorSize \times
+manuscript/jhep/main.tex-1078-\czMinorSize$ integer minor with non-zero determinant, computed by Bareiss
+manuscript/jhep/main.tex-1079-elimination and confirmed by an independent exact rational verifier. Three exact
+manuscript/jhep/main.tex-1080-annihilating covectors exhibit the quotient directly, and the quotient
+manuscript/jhep/main.tex-1081-representatives are indexed by the free columns not occupied by a pivot.
+manuscript/jhep/main.tex-1082-
+manuscript/jhep/main.tex-1083-\input{tables/tab08_quotient.tex}
+manuscript/jhep/main.tex-1084-
+--
+manuscript/jhep/main.tex-1103-\eqref{eq:incidence} is exact over $\Q$, not modulo a prime.
+manuscript/jhep/main.tex-1104-
+manuscript/jhep/main.tex-1105-\subsection{How many directions are needed, in any basis}
+manuscript/jhep/main.tex:1106:\begin{proposition}[Cardinality minimality]
+manuscript/jhep/main.tex-1107-\label{prop:cardinality}
+manuscript/jhep/main.tex-1108-If $S \subset \Ften$ is any set with $\Dten + \mathrm{span}(S) = \Ften$, then
+manuscript/jhep/main.tex-1109-$|S| \ge \dim \Qten$.
+manuscript/jhep/main.tex-1110-\end{proposition}
+manuscript/jhep/main.tex:1111:\begin{proof}
+manuscript/jhep/main.tex-1112-Apply the quotient map $\pi: \Ften \to \Qten$. From
+manuscript/jhep/main.tex-1113-$\Dten + \mathrm{span}(S) = \Ften$ we get $\mathrm{span}(\pi(S)) = \Qten$, and a
+manuscript/jhep/main.tex-1114-span of $|S|$ vectors has dimension at most $|S|$.
+manuscript/jhep/main.tex-1115-\end{proof}
+manuscript/jhep/main.tex-1116-This is elementary linear algebra and we claim no novelty for it. We state it
+manuscript/jhep/main.tex-1117-because it converts a basis-dependent assertion into a basis-free one: no
+manuscript/jhep/main.tex-1118-closing set of any kind, in any basis, has fewer than $\dimQtenQ$ elements. What
+manuscript/jhep/main.tex-1119-it does \emph{not} give is removal minimality of the particular set we exhibit,
+manuscript/jhep/main.tex-1120-which we have checked only in the fixed graph basis and under the permutation
+manuscript/jhep/main.tex-1121-subgroup, and which remains open in general (section~\ref{sec:limitations}).
+manuscript/jhep/main.tex-1122-
+manuscript/jhep/main.tex-1123-% ================================================================ 10
+manuscript/jhep/main.tex-1124-\section{The free stress-tensor trace and activation}
+manuscript/jhep/main.tex-1125-\label{sec:gten}
+manuscript/jhep/main.tex-1126-
+--
+manuscript/jhep/main.tex-1129-two rather than four, every generated target would land in the wrong graded piece
+manuscript/jhep/main.tex-1130-and theorem~\ref{thm:reach} would fall with it. This section derives the input.
+manuscript/jhep/main.tex-1131-
+manuscript/jhep/main.tex:1132:\begin{theorem}[Vanishing of the quadratic trace]
+manuscript/jhep/main.tex-1133-\label{thm:gten}
+manuscript/jhep/main.tex-1134-For a self-dual five-form in ten dimensions, the free stress tensor has vanishing
+manuscript/jhep/main.tex-1135-trace, so $\operatorname{Tr}(\tau)$ first contributes at field degree four.
+manuscript/jhep/main.tex-1136-\end{theorem}
+manuscript/jhep/main.tex-1137-
+manuscript/jhep/main.tex:1138:\begin{proof}
+manuscript/jhep/main.tex-1139-Write the free stress tensor of a $p$-form field strength in $d$ dimensions in
+manuscript/jhep/main.tex-1140-its general improved form,
+manuscript/jhep/main.tex-1141-\begin{equation}
+manuscript/jhep/main.tex-1142-\begin{gathered}
+manuscript/jhep/main.tex-1143-T_{\mu\nu}
+manuscript/jhep/main.tex-1144- \;=\; \frac{1}{(p-1)!}\,F_{\mu\alpha_2\dots\alpha_p}\,
+manuscript/jhep/main.tex-1145-        F_\nu{}^{\alpha_2\dots\alpha_p}
+manuscript/jhep/main.tex-1146- \;-\; c\,\eta_{\mu\nu}\,\langle F,F\rangle,
+manuscript/jhep/main.tex-1147-\\[2pt]
+manuscript/jhep/main.tex-1148-\langle F,G\rangle \;=\; F_{\mu_1\dots\mu_p}G^{\mu_1\dots\mu_p},
+manuscript/jhep/main.tex-1149-\end{gathered}
+manuscript/jhep/main.tex-1150-\label{eq:stresstensor}
+manuscript/jhep/main.tex-1151-\end{equation}
+manuscript/jhep/main.tex-1152-with $c$ an improvement coefficient left free. Contracting with $\eta^{\mu\nu}$,
+manuscript/jhep/main.tex-1153-the first term returns $\langle F,F\rangle$ up to the normalisation carried by
+--
+manuscript/jhep/main.tex-1270-primes and rational reconstruction, validated at the held-out prime
+manuscript/jhep/main.tex-1271-$\bpHoldoutPrime$ with no mismatches, and computed the intersection exactly.
+manuscript/jhep/main.tex-1272-
+manuscript/jhep/main.tex:1273:\begin{theorem}
+manuscript/jhep/main.tex-1274-\label{thm:bp}
+manuscript/jhep/main.tex-1275-$\dim_\Q(\Bten \cap \Pten) \;\bpCapRelation\; \dimBcapP$, and
+manuscript/jhep/main.tex-1276-$\dim_\Q(\Bten + \Pten) = \dimBplusP$.
+manuscript/jhep/main.tex-1277-\end{theorem}
+manuscript/jhep/main.tex-1278-
+manuscript/jhep/main.tex-1279-The one-dimensional intersection can be written out. With $I^{(k)}$ denoting the
+manuscript/jhep/main.tex-1280-published structures in the numbering of \cite{Cederwall:2025invariants} and
+manuscript/jhep/main.tex-1281-$I^{(4)}_1 I^{(6)}_1$ the product of the degree-four and degree-six invariants,
+manuscript/jhep/main.tex-1282-\begin{equation}
+manuscript/jhep/main.tex-1283-\begin{split}
+manuscript/jhep/main.tex-1284--55\,I^{(1)} - 252\,I^{(2)}& + 4200\,I^{(5)} + 5040\,I^{(6)} \\
+manuscript/jhep/main.tex-1285- &=\; -1040\,I^{(4)}_1 I^{(6)}_1 .
+manuscript/jhep/main.tex-1286-\end{split}
+manuscript/jhep/main.tex-1287-\label{eq:bpidentity}
+manuscript/jhep/main.tex-1288-\end{equation}
+--
+manuscript/jhep/main.tex-1552-quotient therefore has dimension $\dimQtenQ$: three independent directions the
+manuscript/jhep/main.tex-1553-flow does not reach. Both dimensions are established over the rationals, not
+manuscript/jhep/main.tex-1554-merely modulo a prime, by lifting the closure's targets and running it to its
+manuscript/jhep/main.tex:1555:fixed point in exact rational arithmetic. The span of the published degree-ten
+manuscript/jhep/main.tex-1556-structures meets the product sector in exactly one dimension, and that
+manuscript/jhep/main.tex-1557-intersection is written out as an explicit integer identity,
+manuscript/jhep/main.tex-1558-equation~\eqref{eq:bpidentity}.
+manuscript/jhep/main.tex-1559-
+manuscript/jhep/main.tex-1560-Supporting these are an exact tensor--spinor bridge of certified rank
+manuscript/jhep/main.tex-1561-$\bridgeForwardRank$ with an exact left inverse, a degree-resolved verification
+manuscript/jhep/main.tex-1562-that the two formulations span the same invariants at degrees four, six, eight
+manuscript/jhep/main.tex-1563-and ten, and an exact lower bound of $\charZeroLowerBound$ on the generic
+manuscript/jhep/main.tex-1564-functional rank of the candidate family, certified by an explicit
+manuscript/jhep/main.tex-1565-$\minorSize\times\minorSize$ minor. The matching upper bound is analytic and is
+manuscript/jhep/main.tex-1566-due to earlier work.
+manuscript/jhep/main.tex-1567-
+manuscript/jhep/main.tex-1568-Along the way two defects in our own earlier treatment were found and corrected:
+manuscript/jhep/main.tex-1569-the conflation of the raw target span with the flow-reachable subspace, which had
+manuscript/jhep/main.tex-1570-produced a quotient dimension of zero, and an unpinned square-root branch in the

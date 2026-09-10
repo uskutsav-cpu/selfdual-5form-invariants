@@ -1,0 +1,1433 @@
+[
+  {
+    "name": "checkout-frozen",
+    "argv": [
+      "git",
+      "checkout",
+      "--detach",
+      "2b7663bbf5a06d1340973434f195a84ae2773e8f"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788826898.679013,
+    "status": "completed",
+    "pid": 99276,
+    "exit_code": 0,
+    "seconds": 0.5069249160587788,
+    "finished_unix": 1788826899.186217,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "9ec8c1ebd5e031633603c73c9f9e697b96b0d47a064c483b6cd132909780d4a4",
+        "bytes": 94
+      }
+    }
+  },
+  {
+    "name": "source-status",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788826899.309758,
+    "status": "completed",
+    "pid": 99287,
+    "exit_code": 0,
+    "seconds": 0.1564531249459833,
+    "finished_unix": 1788826899.4668102,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "environment-create",
+    "argv": [
+      "python3",
+      "-m",
+      "venv",
+      "../environment"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788826899.557088,
+    "status": "completed",
+    "pid": 99291,
+    "exit_code": 0,
+    "seconds": 5.5149509579641744,
+    "finished_unix": 1788826905.07268,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_initial_inspect",
+    "argv": [
+      "python3",
+      "-c",
+      "from pathlib import Path; p=Path(\"checkout\"); print(Path(\"run_command.py\").read_text()); print(\"CHECKOUT FILES\\n\"+\"\\n\".join(str(x.relative_to(p)) for x in p.iterdir())); print(\"CERTIFICATE\\n\"+(p/\"results/rank81_certificate.json\").read_text()[:12000])"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788826972.503673,
+    "status": "completed",
+    "pid": 290,
+    "exit_code": 0,
+    "seconds": 0.08819204207975417,
+    "finished_unix": 1788826972.592609,
+    "logs": {
+      "stdout.log": {
+        "sha256": "2cf7f774565d2ff8300522dc18a96a9940454a01587dbed9775891ac5afc6d61",
+        "bytes": 14534
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_001_wrapper_info",
+    "argv": [
+      "python3",
+      "-c",
+      "from pathlib import Path; print(Path(\"run_command.py\").read_text())"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788826988.475324,
+    "status": "completed",
+    "pid": 589,
+    "exit_code": 0,
+    "seconds": 0.06199349998496473,
+    "finished_unix": 1788826988.537641,
+    "logs": {
+      "stdout.log": {
+        "sha256": "9d5f346a817e5ab2827947810c86bc0b340258c57b89eb9b59a694103241603c",
+        "bytes": 2210
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-initial-read-001",
+    "argv": [
+      "sh",
+      "-c",
+      "cat paper/manuscript.tex; printf \"\\n---FILES---\\n\"; rg --files paper | sort"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827000.4918559,
+    "status": "completed",
+    "pid": 811,
+    "exit_code": 0,
+    "seconds": 0.07145937508903444,
+    "finished_unix": 1788827000.5639648,
+    "logs": {
+      "stdout.log": {
+        "sha256": "9b617879ead0c7e3cd80e4ff1de8ecd327e1578fa380ce45711154acce6eda7b",
+        "bytes": 8331
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "environment-install",
+    "argv": [
+      "../environment/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-cache-dir",
+      "-r",
+      "requirements-lock.txt"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827001.845525,
+    "status": "completed",
+    "pid": 852,
+    "exit_code": 0,
+    "seconds": 37.506159082986414,
+    "finished_unix": 1788827039.3517041,
+    "logs": {
+      "stdout.log": {
+        "sha256": "9083e8ec8785a5569b864541a5fbf6e4472eddc12a774eaf120aa57cf02387cc",
+        "bytes": 2884
+      },
+      "stderr.log": {
+        "sha256": "4f109f92d2862477c32271db1f61d4d054842bee7cc58b90b180803f0792b4ba",
+        "bytes": 230
+      }
+    }
+  },
+  {
+    "name": "math_schema_inspect",
+    "argv": [
+      "python3",
+      "-c",
+      "from pathlib import Path; import json; p=Path(\"checkout\"); Path(\"math-review\").mkdir(exist_ok=True); c=json.loads((p/\"results/rank81_certificate.json\").read_text()); print(\"WITNESS KEYS\",c[\"witnesses\"][0].keys()); print(\"WITNESS METADATA\", [{k:v for k,v in w.items() if k not in (\"jacobian\",\"coordinates\",\"values\",\"invariant_ids\")} for w in c[\"witnesses\"]]); print(\"RELEVANT FILES\\n\"+\"\\n\".join(str(x.relative_to(p)) for d in [\"src\",\"tests\",\"docs\",\"results\",\"manuscript\"] for x in (p/d).rglob(\"*\") if x.is_file() and not any(s in x.parts for s in [\"tmp\",\"checkpoints\",\"caches\"]))); print(\"README\\n\"+(p/\"README.md\").read_text())"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827017.600936,
+    "status": "completed",
+    "pid": 1853,
+    "exit_code": 0,
+    "seconds": 0.10167204099707305,
+    "finished_unix": 1788827017.702951,
+    "logs": {
+      "stdout.log": {
+        "sha256": "80d57d00cc1301650bca96df9871976426a7d580699d555ce1e9836282eb5c07",
+        "bytes": 41071
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_read_conventions",
+    "argv": [
+      "python3",
+      "-c",
+      "from pathlib import Path; import json; p=Path(\"../checkout\"); files=[\"src/sdinv/forms.py\",\"src/sdinv/contract.py\",\"paper/manuscript.tex\",\"results/rank81_basis.json\"]; print(\"FILES\\n\"+\"\\n\".join(str(x) for x in (p/\"paper\").iterdir())); [(print(\"FILE\",f), print((p/f).read_text()[:65000])) for f in files if (p/f).exists()]"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827036.960371,
+    "status": "completed",
+    "pid": 2763,
+    "exit_code": 0,
+    "seconds": 0.11701170797459781,
+    "finished_unix": 1788827037.077914,
+    "logs": {
+      "stdout.log": {
+        "sha256": "5c5216b0806323ba4cc5e731faded0d22157e3548df2031dd14eda6a9d21b398",
+        "bytes": 101240
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_002_fetch",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827060.536078,
+    "status": "completed",
+    "pid": 3067,
+    "exit_code": 0,
+    "seconds": 0.5616820409195498,
+    "finished_unix": 1788827061.098201,
+    "logs": {
+      "stdout.log": {
+        "sha256": "f360cf84f0393336d83f3ec27bfe84b13254e730973d4dcfe1fb02cd19647eb4",
+        "bytes": 492
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-artifact-inventory-002",
+    "argv": [
+      "sh",
+      "-c",
+      "nl -ba paper/manuscript.tex; cat paper/tables/certificate_cells.tex; rg --files | rg \"(rank81|literature|order12|order10|order8|invariant|README|test|\\.tex$)\""
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827062.8903282,
+    "status": "completed",
+    "pid": 3094,
+    "exit_code": 0,
+    "seconds": 0.1527808749815449,
+    "finished_unix": 1788827063.043592,
+    "logs": {
+      "stdout.log": {
+        "sha256": "152e8e10b190c3bb07389d94bb63273a0aef48cce11ad7baa37953aa5b24eb77",
+        "bytes": 20747
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_bareiss_minors",
+    "argv": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/bin/python",
+      "bareiss_minors.py"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827089.6657732,
+    "status": "completed",
+    "pid": 3376,
+    "exit_code": 0,
+    "seconds": 2.330639291089028,
+    "finished_unix": 1788827091.997046,
+    "logs": {
+      "stdout.log": {
+        "sha256": "63c20c31e82cd89144c2f71a50b050f0d0a86808a873ebdc97798377f143a711",
+        "bytes": 3809
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-artifact-read-003",
+    "argv": [
+      "sh",
+      "-c",
+      "cat scripts/verify_rank81.py; cat scripts/graph_to_latex.py; cat scripts/validate_rank81_lorentz.py; rg -n \"^def |def test|oracle|boost|Euler|euler|checkpoint|submit|primitive|product|quotient\" scripts/search_rank81.py scripts/map_literature_basis.py src/sdinv/*.py tests/test_core.py tests/test_graph_to_tensor.py tests/test_roadmap.py"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827096.148978,
+    "status": "completed",
+    "pid": 3458,
+    "exit_code": 0,
+    "seconds": 0.07433187507558614,
+    "finished_unix": 1788827096.223704,
+    "logs": {
+      "stdout.log": {
+        "sha256": "f2e9fcd0abf8ab3f4ace74e6e2f5d8c38aaaedb227e0dbf2be407267545c06b4",
+        "bytes": 45845
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_003_fetch_network",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827099.941685,
+    "status": "completed",
+    "pid": 3536,
+    "exit_code": 0,
+    "seconds": 0.7711350420722738,
+    "finished_unix": 1788827100.713687,
+    "logs": {
+      "stdout.log": {
+        "sha256": "dd2011cc9c41b38032f503c191299b51c329825b2d649b70522dde232b7afd22",
+        "bytes": 666
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "environment-declared-requirements",
+    "argv": [
+      "../environment/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-cache-dir",
+      "-r",
+      "requirements.txt"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827113.064561,
+    "status": "completed",
+    "pid": 3707,
+    "exit_code": 0,
+    "seconds": 2.136376415961422,
+    "finished_unix": 1788827115.201359,
+    "logs": {
+      "stdout.log": {
+        "sha256": "9f0d99bebff98bdc16aea3d9d90558d02c18764cb0e6da120a42641bbdf8a547",
+        "bytes": 1890
+      },
+      "stderr.log": {
+        "sha256": "4f109f92d2862477c32271db1f61d4d054842bee7cc58b90b180803f0792b4ba",
+        "bytes": 230
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-certificate-read-004",
+    "argv": [
+      "sh",
+      "-c",
+      "nl -ba src/sdinv/certificate.py; nl -ba scripts/search_rank81.py; nl -ba scripts/map_literature_basis.py; nl -ba tests/test_roadmap.py; rg -n \"nonzero|independent|functional|span|basis|rank 81|complet\" manuscript/main.tex manuscript/prd/main.tex manuscript/jhep/main.tex manuscript/prl/main.tex submission_candidate/main.tex"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827123.735662,
+    "status": "completed",
+    "pid": 3838,
+    "exit_code": 0,
+    "seconds": 0.07652233401313424,
+    "finished_unix": 1788827123.812583,
+    "logs": {
+      "stdout.log": {
+        "sha256": "135f44caa322495940ce34824372e30bacc197d76a20549676a415d2d6dd06a3",
+        "bytes": 78562
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_004_source_extract",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827130.1875892,
+    "status": "completed",
+    "pid": 3967,
+    "exit_code": 0,
+    "seconds": 0.08282633300404996,
+    "finished_unix": 1788827130.270883,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_005_curl_pdf",
+    "argv": [
+      "curl",
+      "-fL",
+      "--max-time",
+      "45",
+      "https://arxiv.org/pdf/2509.14350v2",
+      "-o",
+      "source-review/arxiv-v2.pdf"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827152.659755,
+    "status": "completed",
+    "pid": 4037,
+    "exit_code": 0,
+    "seconds": 0.399655457935296,
+    "finished_unix": 1788827153.059964,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "1cfdb6f8e7b0e3b4f8b35101880bea41378c7e47788a152e8789cad9ee291d2c",
+        "bytes": 317
+      }
+    }
+  },
+  {
+    "name": "math_convention_source_details",
+    "argv": [
+      "python3",
+      "-c",
+      "from pathlib import Path; import json; p=Path(\"../checkout\"); print((p/\"src/sdinv/graph_to_tensor.py\").read_text()); print((p/\"src/sdinv/certificate.py\").read_text()[:21000]); print(\"BASIS TOP KEYS\",json.loads((p/\"results/rank81_basis.json\").read_text()).keys())"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827153.7091908,
+    "status": "completed",
+    "pid": 4051,
+    "exit_code": 0,
+    "seconds": 0.10574033297598362,
+    "finished_unix": 1788827153.815295,
+    "logs": {
+      "stdout.log": {
+        "sha256": "94591f4ffb46825e488805b8f0eb98fe176499715d520a681a8bae0a771b5627",
+        "bytes": 15232
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_006_curl_source",
+    "argv": [
+      "curl",
+      "-fL",
+      "--max-time",
+      "45",
+      "https://arxiv.org/src/2509.14350v2",
+      "-o",
+      "source-review/arxiv-v2-source.tar"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827155.3494642,
+    "status": "completed",
+    "pid": 4065,
+    "exit_code": 0,
+    "seconds": 0.21321466600056738,
+    "finished_unix": 1788827155.563352,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "3b48aa02c1f7bb98b86f5a8c17b221610188274c0ebf38150ae03a0e19006af4",
+        "bytes": 396
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-focused-artifacts-005",
+    "argv": [
+      "sh",
+      "-c",
+      "nl -ba tests/test_roadmap.py; nl -ba src/sdinv/published_degree8_invariants.py; nl -ba src/sdinv/latex.py; rg -n \"gradient|concaten|functional_increment|polynomial|rank|samples|basis\" scripts/degree12_pipeline.py | head -90; sed -n \"730,825p\" manuscript/main.tex; sed -n \"345,405p\" manuscript/main.tex"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827165.457072,
+    "status": "completed",
+    "pid": 4093,
+    "exit_code": 0,
+    "seconds": 0.1168674590298906,
+    "finished_unix": 1788827165.574566,
+    "logs": {
+      "stdout.log": {
+        "sha256": "feeb4d4b1d0e7d44fb81ffef66b8a9490e5e4e516af2fb89b0bafee786f2b7ab",
+        "bytes": 28558
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_007_pdf_skill_and_extract",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827174.265128,
+    "status": "completed",
+    "pid": 4117,
+    "exit_code": 0,
+    "seconds": 0.13406933296937495,
+    "finished_unix": 1788827174.39993,
+    "logs": {
+      "stdout.log": {
+        "sha256": "74b2b30f897bc4ea0aaf8a996cbc6daa1c345a2e1640f5d2d6b4574acbab2f43",
+        "bytes": 7425
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_008_tex_and_pdf_tools",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827191.247412,
+    "status": "completed",
+    "pid": 4177,
+    "exit_code": 0,
+    "seconds": 0.0739730839850381,
+    "finished_unix": 1788827191.321737,
+    "logs": {
+      "stdout.log": {
+        "sha256": "06ebfc54d08e4d85d351941892cc5f756624a8f712fc9fe096a0fda6b271e081",
+        "bytes": 14104
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_009_pdf_text",
+    "argv": [
+      "pdftotext",
+      "-layout",
+      "source-review/arxiv-v2.pdf",
+      "source-review/arxiv-v2.txt"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827215.8239129,
+    "status": "completed",
+    "pid": 4218,
+    "exit_code": 0,
+    "seconds": 0.6908165409695357,
+    "finished_unix": 1788827216.515146,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_010_pdf_pages",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827216.9494872,
+    "status": "completed",
+    "pid": 4235,
+    "exit_code": 0,
+    "seconds": 0.11961341695860028,
+    "finished_unix": 1788827217.0694652,
+    "logs": {
+      "stdout.log": {
+        "sha256": "80c3867fc5f94f8ba2ea06902b09a60c63b7b8383ff177d52a2d86df0e42b24a",
+        "bytes": 1911
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_011_pdf_render",
+    "argv": [
+      "pdftoppm",
+      "-f",
+      "22",
+      "-l",
+      "25",
+      "-r",
+      "120",
+      "-png",
+      "source-review/arxiv-v2.pdf",
+      "source-review/page"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827233.470028,
+    "status": "completed",
+    "pid": 4267,
+    "exit_code": 0,
+    "seconds": 1.67187591700349,
+    "finished_unix": 1788827235.14216,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "literature-manuscript-json-summary-006",
+    "argv": [
+      "python3",
+      "-c",
+      "import json,hashlib, pathlib; paths=[\"results/10d_order8.json\",\"results/10d_order10.json\",\"results/10d_order12.json\",\"results/rank81_basis.json\",\"results/rank81_certificate.json\",\"results/rank81_lorentz.json\",\"results/order8_change_of_basis.json\",\"results/order10_change_of_basis.json\"]; print(json.dumps([{ \"path\":p,\"sha256\":hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest(),\"keys\":list((d:=json.loads(pathlib.Path(p).read_text()))),\"summary\":{k:(len(v) if isinstance(v,list) and (k in [\"generators\",\"invariants\"] or len(v)>10) else v) for k,v in d.items() if k not in [\"prime_witnesses\",\"directions\",\"jacobian\",\"adjacency_matrix\",\"matrix_12x14\",\"graph_to_literature\",\"literature_to_graph\",\"sources\",\"source_files\"] and not isinstance(v,dict) and k not in [\"witnesses\"]},\"witness_summary\":[{k:v for k,v in w.items() if k in [\"prime\",\"seed\",\"rank\",\"determinant_mod_p\",\"cumulative_rank_by_degree\"]} for w in d.get(\"witnesses\",[])]} for p in paths],indent=2))"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827244.519907,
+    "status": "completed",
+    "pid": 4284,
+    "exit_code": 0,
+    "seconds": 0.0915685830404982,
+    "finished_unix": 1788827244.611846,
+    "logs": {
+      "stdout.log": {
+        "sha256": "48007b1aef9faa602d5cb7f98b9f694da848cb99bfe32d3a7c7e9e61d632cafa",
+        "bytes": 14452
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_conventions",
+    "argv": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/bin/python",
+      "independent_conventions.py"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827256.825834,
+    "status": "completed",
+    "pid": 4304,
+    "exit_code": 0,
+    "seconds": 0.4561435419600457,
+    "finished_unix": 1788827257.282311,
+    "logs": {
+      "stdout.log": {
+        "sha256": "0e515184c6789578d85ec6fa8c9de3bc2c337fcce27b1444bef37679c8700e7f",
+        "bytes": 1193
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "environment-freeze",
+    "argv": [
+      "../environment/bin/python",
+      "-m",
+      "pip",
+      "freeze",
+      "--all"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827297.207773,
+    "status": "completed",
+    "pid": 4436,
+    "exit_code": 0,
+    "seconds": 0.3611494580982253,
+    "finished_unix": 1788827297.5691981,
+    "logs": {
+      "stdout.log": {
+        "sha256": "74bf254dbe7f7960ff7b6e10909db602924148479c63b911eee6150467c72cf2",
+        "bytes": 138
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "root-pytest",
+    "argv": [
+      "../environment/bin/python",
+      "-m",
+      "pytest",
+      "-x",
+      "-vv",
+      "-o",
+      "addopts=",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827297.733661,
+    "status": "completed",
+    "pid": 4453,
+    "exit_code": 0,
+    "seconds": 461.18435412494,
+    "finished_unix": 1788827758.913698,
+    "logs": {
+      "stdout.log": {
+        "sha256": "c6e028b0e6cff18f4e1549daa2bf8405bb27a020be1008adbb294100d56d1eff",
+        "bytes": 27976
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "recompute-frozen-four",
+    "argv": [
+      "../environment/bin/python",
+      "-u",
+      "scripts/verify_rank81.py",
+      "--recompute"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827298.93538,
+    "status": "completed",
+    "pid": 4467,
+    "exit_code": 0,
+    "seconds": 208.17388291598763,
+    "finished_unix": 1788827507.1073852,
+    "logs": {
+      "stdout.log": {
+        "sha256": "1d32792aa7fd338cebef286544f984c64a280cf0f87633cfa67b4de01be34d42",
+        "bytes": 661
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "bridge-pytest",
+    "argv": [
+      "../../environment/bin/python",
+      "-m",
+      "pytest",
+      "-x",
+      "-vv",
+      "-o",
+      "addopts=",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout/spinor_trace_bridge",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827300.289005,
+    "status": "completed",
+    "pid": 4481,
+    "exit_code": 0,
+    "seconds": 225.60731912509073,
+    "finished_unix": 1788827525.894371,
+    "logs": {
+      "stdout.log": {
+        "sha256": "9efd1bec0d090e784e91c13b130c38354c36097f4434e18dea0794f4137a629f",
+        "bytes": 8163
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_012_freeze_manual_transcription",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827316.461889,
+    "status": "completed",
+    "pid": 4498,
+    "exit_code": 0,
+    "seconds": 0.0814395829802379,
+    "finished_unix": 1788827316.543833,
+    "logs": {
+      "stdout.log": {
+        "sha256": "d630b24d3063693c7c217098adf2bf495304b46874f2c491cb03a13a07b8f40a",
+        "bytes": 225
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_013_read_frozen",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827349.27405,
+    "status": "completed",
+    "pid": 4555,
+    "exit_code": 0,
+    "seconds": 0.07394375000149012,
+    "finished_unix": 1788827349.348554,
+    "logs": {
+      "stdout.log": {
+        "sha256": "db6130e8e91ce42d103c7cea1328c6c987d56e55f1ab1668662585ff4d4c76a3",
+        "bytes": 249093
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_oracle_profile",
+    "argv": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/bin/python",
+      "independent_oracle.py",
+      "--profile"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827383.040184,
+    "status": "completed",
+    "pid": 4614,
+    "exit_code": 0,
+    "seconds": 0.7074433750240132,
+    "finished_unix": 1788827383.747967,
+    "logs": {
+      "stdout.log": {
+        "sha256": "dfe1ffd3471cc083c55b96c442f7c88192541d467a74763b1513a7946b7c4de5",
+        "bytes": 151
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "math_fresh_point",
+    "argv": [
+      "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/environment/bin/python",
+      "-c",
+      "import json,secrets,time; from pathlib import Path; seed=secrets.randbits(64); import random; p=32749; rng=random.Random(seed); d={\"prime\":p,\"seed\":seed,\"created_unix\":time.time(),\"coordinate_generator\":\"Python random.Random(fresh secrets.randbits(64) seed), randrange(p) repeated 126 times\",\"coordinates\":[rng.randrange(p) for _ in range(126)]}; Path(\"fresh_point.json\").write_text(json.dumps(d,indent=2)+\"\\n\"); print(json.dumps(d))"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827400.221405,
+    "status": "completed",
+    "pid": 4660,
+    "exit_code": 0,
+    "seconds": 0.08092104096431285,
+    "finished_unix": 1788827400.3026419,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e8392596b184e24b75b28dbc7bee3eeb236ff9a52aa9cfa2c401129e89b444fa",
+        "bytes": 1046
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_014_package_discrepancy_only",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827768.7357628,
+    "status": "completed",
+    "pid": 5083,
+    "exit_code": 0,
+    "seconds": 0.04200570797547698,
+    "finished_unix": 1788827768.777961,
+    "logs": {
+      "stdout.log": {
+        "sha256": "02385072b3e0a5de2f03c88a34220fcebf846808318af732f81a98a271fe075c",
+        "bytes": 1365
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "post-stop-source-status",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827837.834717,
+    "status": "completed",
+    "pid": 5170,
+    "exit_code": 0,
+    "seconds": 0.26003208302427083,
+    "finished_unix": 1788827838.094932,
+    "logs": {
+      "stdout.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "post-stop-environment-metadata",
+    "argv": [
+      "../environment/bin/python",
+      "-c",
+      "import sys, platform, sysconfig, json, importlib.metadata; print(json.dumps({\"python\":sys.version,\"executable\":sys.executable,\"platform\":platform.platform(),\"machine\":platform.machine(),\"implementation\":platform.python_implementation(),\"packages\":{name:importlib.metadata.version(name) for name in [\"numpy\",\"opt_einsum\",\"pynauty\",\"pytest\",\"pip\"]}},indent=2))"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/checkout",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827838.236741,
+    "status": "completed",
+    "pid": 5186,
+    "exit_code": 0,
+    "seconds": 0.12126820895355195,
+    "finished_unix": 1788827838.358216,
+    "logs": {
+      "stdout.log": {
+        "sha256": "a4fbe76f619febda5f74342514141360a32c5da53843fae2426e94f2b1774ae5",
+        "bytes": 483
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "name": "source_015_write_final_discrepancy_report",
+    "argv": [
+      "python3",
+      "-"
+    ],
+    "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+    "environment_overrides": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+      "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+      "PIP_NO_CACHE_DIR": "1",
+      "PIP_CONFIG_FILE": "/dev/null",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "started_unix": 1788827884.091121,
+    "status": "completed",
+    "pid": 5237,
+    "exit_code": 0,
+    "seconds": 0.04020183300599456,
+    "finished_unix": 1788827884.1315289,
+    "logs": {
+      "stdout.log": {
+        "sha256": "8c6652b04f7c051783f8de32c4cc70cb909c8736682d352208253415b3b9e9fb",
+        "bytes": 185
+      },
+      "stderr.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  }
+]

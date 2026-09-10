@@ -1,0 +1,694 @@
+
+FILE paper/manuscript.tex
+1: \documentclass[11pt]{article}
+2: \usepackage[margin=1in]{geometry}
+3: \usepackage{amsmath,amssymb,longtable,booktabs}
+4: \usepackage[colorlinks=true,allcolors=blue]{hyperref}
+5: \title{Explicit graph invariants and exact Jacobian certificates\\
+6: for a self-dual five-form in ten dimensions}
+7: \author{\texttt{uskutsav-cpu}}
+8: \date{September 7, 2026}
+9: \begin{document}
+10: \maketitle
+11: \begin{abstract}
+12: We give a reproducible certificate for 81 explicit contractions of a real
+13: self-dual five-form in signature $(1,9)$. The fixed selection consists of one
+14: quartic, two sextic, six octic, twelve degree-ten, and sixty degree-twelve
+15: polynomials. Their Jacobian has a nonzero $81\times81$ minor at four exact
+16: finite-field specializations, using the same ordered functions in every
+17: case. An integral coordinate convention makes each nonzero minor a
+18: characteristic-zero independence witness when its entries are verified as
+19: derivatives of the specified contractions. Together with the generic quotient
+20: dimension from the literature, this gives a maximal generically independent
+21: family. It does not determine all polynomial generators or syzygies.
+22: \end{abstract}
+23: 
+24: \section{Scope and conventions}
+25: Let $F$ be an alternating five-form, with metric
+26: $\eta=\operatorname{diag}(-1,1,\ldots,1)$ and Hodge convention
+27: $\star F=F$. The self-dual subspace has dimension 126.
+28: The literature supplies the generic quotient dimension 81 and the
+29: low-degree Hilbert coefficients \cite{cederwall,hutomo}. The present
+30: certificate supplies the matching lower bound using explicit graph
+31: contractions. The contraction catalogs and previously discovered bases are
+32: inherited from the repository's research branches; the certificate reported
+33: here re-evaluates those functions at new points.
+34: Graph enumeration and tensor-network contraction followed by numerical linear
+35: algebra are established methods for tensor invariants: see
+36: Elamaran, Ferko and Scarlett \cite{elamaran}, whose six-dimensional three-form
+37: study leaves the ten-dimensional chiral five-form application for future work.
+38: We make no claim of priority for this method or for an 81-invariant family.
+39: 
+40: A graph has one vertex per copy of $F$, no loops, and valence five.
+41: An edge of multiplicity $m$ contracts $m$ index pairs with inverse metrics.
+42: Vertices and edges are ordered; slot order is fixed by lexicographic edge
+43: order. Graph isomorphism alone does not fix the sign of an odd-form
+44: contraction, so the formula identifier hashes the ordered edge record.
+45: Disconnected contractions are products. The quadratic contraction vanishes
+46: on this self-dual space: $F\wedge\star F=F\wedge F=0$, since $F$ has odd
+47: degree, so its metric norm vanishes. Complete contraction with the invariant
+48: metric proves Lorentz invariance of each graph polynomial.
+49: 
+50: For each increasing five-tuple $I$ containing 0, define
+51: $A_I=F_I$ and let $e_I$ denote its compact alternating component vector.
+52: The integral parametrization is
+53: \[
+54:  F(A)=\sum_{I\ni0} A_I(e_I+\star e_I).
+55: \]
+56: The 126 columns contain only $0,1,-1$; their components indexed by $I\ni0$
+57: form an identity matrix. Every graph polynomial therefore has integer
+58: coefficients in $A$, with no projector denominators.
+59: 
+60: \section{Fixed selection and exact witness}
+61: The nine low-degree functions are those in
+62: \path{results/10d_order8.json}; the next twelve come from
+63: \path{results/10d_order10.json}. The first sixty selected functional
+64: directions in \path{results/10d_order12.json} complete the list.
+65: The inherited inventory labels two further degree-twelve directions as
+66: primitive polynomial directions; they are not included in the 81-function
+67: Jacobian. That label requires the separate homogeneous-space evidence below. A dependent Jacobian row does not identify a polynomial syzygy.
+68: 
+69: \begin{center}
+70: \begin{tabular}{rrr}
+71: \toprule
+72: Field degree & New functional directions & Cumulative rank\\
+73: \midrule
+74: 4 & 1 & 1\\
+75: 6 & 2 & 3\\
+76: 8 & 6 & 9\\
+77: 10 & 12 & 21\\
+78: 12 & 60 & 81\\
+79: \bottomrule
+80: \end{tabular}
+81: \end{center}
+82: 
+83: Write $J_{aI}=\partial G_a/\partial A_I$. Each certificate cell records
+84: the prime, all 126 coordinates, all 252 self-dual compact components,
+85: the same ordered 81 graph identifiers, all entries of the $81\times126$
+86: Jacobian, 81 pivot columns, and the determinant of that minor.
+87: \input{tables/certificate_cells.tex}
+88: The determinant is recomputed by Python-integer elimination independently
+89: of the streaming rank sieve. Euler's identity
+90: $\sum_I A_I J_{aI}=\deg(G_a)G_a$ is checked for every row.
+91: 
+92: Suppose the recorded entries have been verified as the Jacobian of the
+93: specified integral graph polynomials at the recorded point. A nonzero minor
+94: modulo $p$ then proves that the corresponding integer determinant polynomial
+95: is not identically zero. In characteristic zero the Jacobian criterion gives
+96: algebraic independence of these 81 polynomials, and their differentials are
+97: independent on the nonempty Zariski-open locus where that minor is nonzero.
+98: Invariance and the cited generic quotient dimension supply the matching upper
+99: bound. On a regular local quotient this gives local coordinates. It proves
+100: neither global orbit separation, generation of the invariant field by rational
+101: functions in this list, nor polynomial generation of the entire ring.
+102: 
+103: \section{Polynomial spaces and literature comparison}
+104: The homogeneous-space dimensions reported in equation (4.2) of
+105: \cite{cederwall} through degree twelve are $1,2,7,14,72$.
+106: These representation-theoretic counts are an external input here. Products must be included in value-space comparisons.
+107: At degree twelve the ten product monomials are $I_4^3$, the three symmetric
+108: products of sextics, and the six products $I_4 I_{8,j}$. The inherited
+109: degree-twelve computation reaches rank 72 using these products and 62 graph
+110: directions. A rank-72 concatenated evaluation proves independence of that
+111: homogeneous list only after the evaluated polynomial rows are verified; the
+112: matching Hilbert coefficient supplies completeness. This inherited computation
+113: is separate from the 81-function certificate. Polynomial-space evidence uses
+114: gradients concatenated at several points; the functional Jacobian uses one
+115: point. These are separate sieves. The prose of section 4.1.4 of
+116: \cite{cederwall} says 64 new degree-twelve directions, inconsistent with its
+117: equation (4.2), which has exponent 62. The inventory here uses the latter;
+118: we do not treat the inconsistent prose as an additional verified count.
+119: Factor exponents in a Hilbert product are not automatically generator counts
+120: at higher degrees when generators and relations may coexist.
+121: 
+122: The octic comparison uses a selection of six displayed literature
+123: contractions: the first five expressions from equations (4.12)--(4.15) of
+124: \cite{cederwall}, together with the hatted expression (4.18). The
+125: machine-readable matrix has exact reconstructed rational entries and includes
+126: the quartic-square product explicitly. Its interpretation as a polynomial
+127: change of basis is supported by modular fits and fresh value holdouts;
+128: these finite checks are not a proof of every proposed polynomial identity.
+129: The $6\times6$ block compares primitive classes modulo products; any product
+130: correction is retained in the full $7\times7$ matrix.
+131: 
+132: The archived degree-ten map concerns the repository's implemented readings,
+133: whose reconstructed $12\times14$ coordinate matrix has rank twelve and
+134: intersection dimension one with the two-dimensional product subspace.
+135: A source audit found that the antisymmetrizers in the archived implementations
+136: of candidates $J_{10}$--$J_{12}$ differ from the primary PDF and TeX source.
+137: Consequently these matrix ranks cannot be attributed to the twelve published
+138: expressions. Any repaired source map must be identified by its own formula
+139: registry and fresh evaluation artifacts; the archived atlas is not silently
+140: reinterpreted as that map. The archived degree-ten regeneration reads stored
+141: per-prime coordinates and checks rational reconstruction against a held-out
+142: stored prime; it performs no fresh tensor evaluations. Even fresh finite
+143: holdouts would not by themselves prove characteristic-zero polynomial
+144: identities. This source-transcription failure concerns the literature map;
+145: the graph-only nonzero-minor argument has separate inputs.
+146: 
+147: \section{Reproduction and validation}
+148: Use the declared dependencies and run the regression suite before evaluating
+149: certificates. The original low-degree commit is preserved by
+150: \texttt{v0.1-low-degree-complete}. The release commands are:
+151: \begin{verbatim}
+152: python scripts/graph_to_latex.py
+153: python scripts/search_rank81.py
+154: python scripts/verify_rank81.py
+155: python scripts/verify_rank81.py --recompute
+156: python scripts/validate_rank81_lorentz.py
+157: python scripts/map_literature_basis.py --degree 8
+158: python scripts/map_literature_basis.py --degree 10
+159: \end{verbatim}
+160: The default verifier checks the saved matrix and metadata; the explicit
+161: \texttt{--recompute} mode repeats the graph evaluations with the production
+162: evaluator. This recomputation does not by itself constitute an independent
+163: implementation of the derivative. These modes are reported separately. The search stage checkpoints each raw row and its
+164: pivot, checks run identity on resume, and bounds worker submissions.
+165: Degree-specific discovery remains available through the existing nauty
+166: pipelines. \texttt{run\_degree.py} accepts additional edge-list JSONL streams
+167: and separates polynomial completeness from functional rank.
+168: 
+169: Regression tests cover the 6D reproduction, self-duality,
+170: the zero quadratic contraction, exact integer arithmetic, reverse
+171: Jacobians against an independent oracle, graph parsing beyond ten vertices,
+172: and genuine Lorentz boosts. The final graph selection is checked under both
+173: a spatial rotation and a boost at the recorded finite-field point; neither uses
+174: floating-point tolerances. These are implementation checks at specified inputs,
+175: while invariance itself follows from the complete-contraction definition.
+176: 
+177: \begin{thebibliography}{9}
+178: \bibitem{cederwall} M. Cederwall, J. Hutomo, S. M. Kuzenko, K. Lechner,
+179: and D. P. Sorokin, \emph{Some remarks on invariants},
+180: \href{https://arxiv.org/abs/2509.14350v2}{arXiv:2509.14350v2}.
+181: \bibitem{hutomo} J. Hutomo, K. Lechner, and D. P. Sorokin,
+182: \emph{On non-linear chiral 4-form theories in D=10},
+183: \href{https://arxiv.org/abs/2509.14351}{arXiv:2509.14351}.
+184: \bibitem{elamaran} A. Elamaran, C. Ferko and S. Scarlett,
+185: \emph{Machine Learning Invariants of Tensors}, Phys. Rev. D 114 (2026) 026016,
+186: \href{https://doi.org/10.1103/ny3m-drnj}{doi:10.1103/ny3m-drnj},
+187: \href{https://arxiv.org/abs/2512.23750}{arXiv:2512.23750}.
+188: \end{thebibliography}
+189: 
+190: \clearpage\appendix
+191: \section{Ordered Einstein-index formulas}
+192: Each repeated index labels exactly one graph edge; its upper and lower
+193: occurrences supply one inverse metric. The machine-readable companion
+194: \texttt{results/rank81\_basis.json} gives the edge lists, adjacency matrices,
+195: formula hashes, and contraction costs.
+196: \small
+197: \input{tables/rank81_formulas.tex}
+198: \end{document}
+
+FILE scripts/validate_rank81_lorentz.py
+1: #!/usr/bin/env python3
+2: """Check every fixed graph under an exact spatial rotation and a genuine boost."""
+3: 
+4: import json
+5: from pathlib import Path
+6: import sys
+7: 
+8: ROOT = Path(__file__).resolve().parents[1]
+9: sys.path.insert(0, str(ROOT / "src"))
+10: 
+11: import numpy as np
+12: from sdinv.catalog import atomic_write_json
+13: from sdinv.certificate import context, digest, validate_basis
+14: from sdinv.contract import planned_value
+15: from sdinv.serialize import from_record
+16: from sdinv.published_degree8_invariants import evaluate_selected_basis
+17: 
+18: 
+19: def transform(form, matrix, prime):
+20:     for axis in range(5):
+21:         # A sum of ten reduced products fits exactly in int64 for our primes.
+22:         form = np.moveaxis(np.tensordot(matrix, form, axes=(1, axis)), 0, axis) % prime
+23:     return form
+24: 
+25: 
+26: def main():
+27:     manifest = json.loads((ROOT / "results/rank81_basis.json").read_text())
+28:     certificate = json.loads((ROOT / "results/rank81_certificate.json").read_text())
+29:     if not certificate["complete"]:
+30:         raise ValueError("finish the rank certificate first")
+31:     items = validate_basis(manifest)
+32:     witness = certificate["witnesses"][0]
+33:     prime = witness["prime"]
+34:     form, _, _ = context(prime, witness["coordinates"])
+35:     eta = np.diag([-1] + [1] * 9)
+36:     rotations = {}
+37:     rotation = np.eye(10, dtype=np.int64)
+38:     t = 5
+39:     c, s = (1 - t*t) * pow(1 + t*t, -1, prime) % prime, 2*t * pow(1 + t*t, -1, prime) % prime
+40:     rotation[2, 2], rotation[3, 3], rotation[2, 3], rotation[3, 2] = c, c, s, -s % prime
+41:     rotations["spatial_rotation"] = rotation
+42:     boost = np.eye(10, dtype=np.int64)
+43:     t = 7
+44:     c, s = (1 + t*t) * pow(1 - t*t, -1, prime) % prime, 2*t * pow(1 - t*t, -1, prime) % prime
+45:     boost[0, 0], boost[1, 1], boost[0, 1], boost[1, 0] = c, c, s, s
+46:     rotations["lorentz_boost"] = boost
+47:     tensor_values = evaluate_selected_basis(form, prime)
+48:     result = {"schema": 1, "prime": prime, "seed": witness["seed"],
+49:               "basis_sha256": digest(manifest), "checks": {}, "passed": False}
+50:     for name, matrix in rotations.items():
+51:         if not np.array_equal(matrix.T @ eta @ matrix % prime, eta % prime):
+52:             raise ValueError("test matrix is not Lorentz")
+53:         transformed = transform(form, matrix, prime)
+54:         matched = []
+55:         for item, expected in zip(items, witness["values"]):
+56:             scalar = planned_value(from_record(item["graph"]), transformed, 10, 5, True, prime,
+57:                                    max_memory_bytes=2 * 1024**3)
+58:             if scalar != expected:
+59:                 raise ValueError(f"{name} fails for {item['id']}")
+60:             matched.append(item["id"])
+61:         if evaluate_selected_basis(transformed, prime) != tensor_values:
+62:             raise ValueError(f"{name} fails for selected literature basis")
+63:         result["checks"][name] = {"matrix": matrix.tolist(), "matched_invariants": matched,
+64:                                    "literature_order8_basis_matched": True}
+65:         print(f"PASS: {name}, all {len(matched)} graphs and six literature tensors", flush=True)
+66:     result["passed"] = True
+67:     atomic_write_json(ROOT / "results/rank81_lorentz.json", result)
+68: 
+69: 
+70: if __name__ == "__main__":
+71:     main()
+
+FILE scripts/graph_to_latex.py
+1: #!/usr/bin/env python3
+2: """Export the same fixed 81 ordered graph formulas used by the certificate."""
+3: 
+4: import argparse
+5: import json
+6: from pathlib import Path
+7: import sys
+8: 
+9: ROOT = Path(__file__).resolve().parents[1]
+10: sys.path.insert(0, str(ROOT / "src"))
+11: 
+12: from sdinv.catalog import atomic_write_json
+13: from sdinv.certificate import digest, validate_basis
+14: from sdinv.contract import contraction_plan_profile
+15: from sdinv.graphs import graph_from_label
+16: from sdinv.latex import graph_to_latex, factor_lines
+17: from sdinv.serialize import to_record
+18: 
+19: 
+20: def export_basis():
+21:     items, sources = [], {}
+22:     for degree in (8, 10, 12):
+23:         path = ROOT / "results" / f"10d_order{degree}.json"
+24:         data = json.loads(path.read_text())
+25:         sources[str(path.relative_to(ROOT))] = digest(data)
+26:         for item in data["generators"]:
+27:             if degree == 12 and not item["functional_increment"]:
+28:                 continue
+29:             matrix = graph_from_label(item["graph"])
+30:             record = to_record(matrix)
+31:             items.append({"id": item["id"], "degree": item["order"],
+32:                           "graph": record, "label": item["graph"],
+33:                           "formula_sha256": digest(record),
+34:                           "adjacency_matrix": matrix.tolist(),
+35:                           "einstein_formula": graph_to_latex(matrix),
+36:                           "contraction_cost": contraction_plan_profile(matrix, 10, 5)})
+37:     manifest = {"schema": 1, "invariants": items, "sources": sources,
+38:                 "metric": [-1] + [1] * 9,
+39:                 "formula_convention": "Lexicographic edges and slots; incoming indices raised, outgoing indices lowered; one metric per edge.",
+40:                 "scope": "81 generically algebraically independent invariants; local generic coordinates, not global orbit separation or the full invariant ring."}
+41:     validate_basis(manifest)
+42:     return manifest
+43: 
+44: 
+45: def main():
+46:     parser = argparse.ArgumentParser(description=__doc__)
+47:     parser.add_argument("--out", default=str(ROOT / "results/rank81_basis.json"))
+48:     parser.add_argument("--latex-out", default=str(ROOT / "paper/tables/rank81_formulas.tex"))
+49:     parser.add_argument("--certificate", type=Path, default=ROOT / "results/rank81_certificate.json")
+50:     parser.add_argument("--cells-out", type=Path, default=ROOT / "paper/tables/certificate_cells.tex")
+51:     args = parser.parse_args()
+52:     manifest = export_basis()
+53:     atomic_write_json(args.out, manifest)
+54:     lines = ["% Generated by scripts/graph_to_latex.py; do not edit."]
+55:     for item in manifest["invariants"]:
+56:         matrix = graph_from_label(item["label"])
+57:         lines += [rf"\paragraph{{\texttt{{{item['id'].replace('_', r'\_')}}}}}",
+58:                   r"\begin{equation*}\begin{aligned}",
+59:                   "&" + factor_lines(matrix), r"\end{aligned}\end{equation*}"]
+60:     path = Path(args.latex_out)
+61:     path.parent.mkdir(parents=True, exist_ok=True)
+62:     path.write_text("\n".join(lines) + "\n")
+63:     if args.certificate.exists():
+64:         certificate = json.loads(args.certificate.read_text())
+65:         if certificate.get("complete") and certificate["basis_sha256"] == digest(manifest):
+66:             cells = [r"\begin{center}\begin{tabular}{rrrr}",
+67:                      r"\toprule Prime & Seed & Rank & $\det J_*\bmod p$\\\midrule"]
+68:             for witness in certificate["witnesses"]:
+69:                 cells.append(f"{witness['prime']} & {witness['seed']} & {witness['rank']} & {witness['determinant_mod_p']}" + r"\\")
+70:             cells.append(r"\bottomrule\end{tabular}\end{center}")
+71:             args.cells_out.parent.mkdir(parents=True, exist_ok=True)
+72:             args.cells_out.write_text("\n".join(cells) + "\n")
+73:     print(f"Exported {len(manifest['invariants'])} formulas; basis SHA256 {digest(manifest)}")
+74: 
+75: 
+76: if __name__ == "__main__":
+77:     main()
+
+FILE scripts/search_rank81.py
+1: #!/usr/bin/env python3
+2: """Rebuild a graph-only rank-81 witness from the existing discovered basis.
+3: 
+4: Discovery is already complete: degree10_pipeline.py and degree12_pipeline.py
+5: retain their resumable catalog searches. This final stage evaluates exactly
+6: the same 81 graphs in each field. Checkpoints retain every accepted raw row.
+7: """
+8: 
+9: import argparse
+10: from concurrent.futures import ProcessPoolExecutor
+11: import json
+12: import os
+13: from pathlib import Path
+14: import sys
+15: 
+16: for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+17:     os.environ.setdefault(name, "1")
+18: 
+19: ROOT = Path(__file__).resolve().parents[1]
+20: sys.path.insert(0, str(ROOT / "src"))
+21: 
+22: import numpy as np
+23: from sdinv.catalog import atomic_write_json
+24: from sdinv.certificate import (digest, evaluate_item, integral_directions,
+25:                                make_witness, require_prime, validate_basis, verify_witness)
+26: from sdinv.checkpoint import load_checkpoint, write_checkpoint
+27: from sdinv.modp import RankSieve
+28: 
+29: 
+30: def _job(args):
+31:     return evaluate_item(*args)
+32: 
+33: 
+34: def evaluate_cell(manifest, prime, seed, checkpoint_dir, workers):
+35:     require_prime(prime)
+36:     coordinates = np.random.default_rng(seed).integers(0, prime, 126).tolist()
+37:     engine = {str(path.relative_to(ROOT)): path.read_bytes().hex() for path in
+38:               [ROOT / "src/sdinv" / f"{name}.py" for name in
+39:                ("certificate", "contract", "forms", "modp", "serialize", "graphs")]}
+40:     identity = {"schema": 1, "basis_sha256": digest(manifest), "prime": prime,
+41:                 "seed": seed, "coordinates": coordinates, "engine_sha256": digest(engine)}
+42:     checkpoint = checkpoint_dir / f"p{prime}_s{seed}.json"
+43:     state = load_checkpoint(checkpoint, identity) if checkpoint.exists() else {"evaluated": [], "pivots": [], "rank": 0}
+44:     items = validate_basis(manifest)
+45:     evaluated = state["evaluated"]
+46:     if [r["id"] for r in evaluated] != [x["id"] for x in items[:len(evaluated)]]:
+47:         raise ValueError("checkpoint is not a prefix of the fixed basis")
+48:     sieve = RankSieve(126, prime)
+49:     for row in evaluated:
+50:         if not sieve.add(row["jacobian_row"]):
+51:             raise ValueError("checkpoint contains dependent rows")
+52:     if state["rank"] != sieve.rank or state["pivots"] != sieve.pivots:
+53:         raise ValueError("checkpoint pivot metadata mismatch")
+54:     # Batches bound both the submission queue and completed rows awaiting the
+55:     # coordinator. Worker count is explicit because contractions can use GiB.
+56:     pool = ProcessPoolExecutor(max_workers=workers) if workers > 1 else None
+57:     try:
+58:         for start in range(len(evaluated), len(items), workers):
+59:             jobs = [(item, prime, coordinates) for item in items[start:start + workers]]
+60:             output = pool.map(_job, jobs) if pool else map(_job, jobs)
+61:             for result in output:
+62:                 if not sieve.add(result["jacobian_row"]):
+63:                     raise ValueError(f"fixed basis lost rank at {result['id']}")
+64:                 evaluated.append(result)
+65:                 state = {"evaluated": evaluated, "pivots": sieve.pivots, "rank": sieve.rank}
+66:                 write_checkpoint(checkpoint, identity, state)
+67:                 if sieve.rank % 10 == 0 or sieve.rank == 81:
+68:                     print(f"p={prime} seed={seed}: {sieve.rank}/81", flush=True)
+69:     finally:
+70:         if pool:
+71:             pool.shutdown(wait=True, cancel_futures=True)
+72:     witness = make_witness(manifest, prime, seed, coordinates, evaluated)
+73:     verify_witness(manifest, witness)
+74:     return witness
+75: 
+76: 
+77: def main():
+78:     parser = argparse.ArgumentParser(description=__doc__)
+79:     parser.add_argument("--basis", default=str(ROOT / "results/rank81_basis.json"))
+80:     parser.add_argument("--out", default=str(ROOT / "results/rank81_certificate.json"))
+81:     parser.add_argument("--checkpoint-dir", type=Path, default=ROOT / "work/rank81")
+82:     parser.add_argument("--primes", type=int, nargs="+", default=[32749, 32719])
+83:     parser.add_argument("--seeds", type=int, nargs="+", default=[20260907, 20260908])
+84:     parser.add_argument("--workers", type=int, default=1)
+85:     args = parser.parse_args()
+86:     if args.workers < 1 or len(set(args.primes)) != len(args.primes) or len(set(args.seeds)) != len(args.seeds):
+87:         parser.error("workers must be positive and primes/seeds must be distinct")
+88:     manifest = json.loads(Path(args.basis).read_text())
+89:     validate_basis(manifest)
+90:     directions, indices = integral_directions()
+91:     certificate = {"schema": 1, "basis_sha256": digest(manifest),
+92:                    "coordinate_convention": "A_I = F_I for sorted 5-tuples I containing 0; F = sum_I A_I (e_I + *e_I).",
+93:                    "coordinate_component_indices": indices,
+94:                    "integral_directions_sha256": digest(directions.tolist()),
+95:                    "proof": "Each graph is an integer polynomial in A. A nonzero 81x81 Jacobian minor modulo a prime proves generic characteristic-zero rank at least 81. The known quotient dimension supplies the upper bound; this is not a full invariant-ring presentation or a global coordinate chart.",
+96:                    "upper_bound_source": "https://arxiv.org/abs/2509.14350v2",
+97:                    "planned_cells": [[p, s] for p in args.primes for s in args.seeds],
+98:                    "complete": False, "witnesses": []}
+99:     for prime, seed in certificate["planned_cells"]:
+100:         certificate["witnesses"].append(evaluate_cell(manifest, prime, seed, args.checkpoint_dir, args.workers))
+101:         atomic_write_json(args.out, certificate)
+102:     certificate["complete"] = True
+103:     atomic_write_json(args.out, certificate)
+104:     print(f"PASS: fixed 81 graphs, {len(certificate['witnesses'])} exact nonzero minors")
+105: 
+106: 
+107: if __name__ == "__main__":
+108:     main()
+
+FILE scripts/run_degree.py
+1: #!/usr/bin/env python3
+2: """Checkpointed degree runner with separate polynomial and functional sieves.
+3: 
+4: By default, revalidate the discovered graph inventory at the chosen degree.
+5: For new searches, --candidates accepts edge-list JSONL records, optionally
+6: wrapped as {"id": ..., "graph": ...}. Nothing is exhaustively enumerated by
+7: default. Exact nauty generation remains in the existing degree pipelines.
+8: """
+9: 
+10: import argparse
+11: from concurrent.futures import ProcessPoolExecutor
+12: import hashlib
+13: import json
+14: import os
+15: from pathlib import Path
+16: import sys
+17: 
+18: for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+19:     os.environ.setdefault(name, "1")
+20: 
+21: ROOT = Path(__file__).resolve().parents[1]
+22: sys.path.insert(0, str(ROOT / "src"))
+23: 
+24: import numpy as np
+25: from sdinv.catalog import atomic_write_json
+26: from sdinv.certificate import digest, evaluate_item, require_prime
+27: from sdinv.checkpoint import load_checkpoint, write_checkpoint
+28: from sdinv.graphs import graph_from_label, validate_graph
+29: from sdinv.modp import RankSieve
+30: from sdinv.primitive import HILBERT_DIMENSIONS, HILBERT_FACTOR_EXPONENTS, PolynomialSieve, product_monomials
+31: from sdinv.serialize import loads, to_record
+32: 
+33: 
+34: def inventory():
+35:     result = []
+36:     for degree in (8, 10, 12):
+37:         for item in json.loads((ROOT / f"results/10d_order{degree}.json").read_text())["generators"]:
+38:             result.append({"id": item["id"], "degree": item["order"],
+39:                            "graph": to_record(graph_from_label(item["graph"]))})
+40:     return result
+41: 
+42: 
+43: def candidate_stream(path, known, degree):
+44:     if path is None:
+45:         yield from (item for item in known if item["degree"] == degree)
+46:         return
+47:     with Path(path).open() as stream:
+48:         for line in stream:
+49:             if not line.strip():
+50:                 continue
+51:             record = json.loads(line)
+52:             matrix = loads(record.get("graph", record))
+53:             validate_graph(matrix, 5, 4)
+54:             if len(matrix) != degree:
+55:                 raise ValueError("candidate degree mismatch")
+56:             graph = to_record(matrix)
+57:             yield {"id": record.get("id", digest(graph)), "degree": degree, "graph": graph}
+58: 
+59: 
+60: def _evaluate(job):
+61:     item, prime, points = job
+62:     return {"item": item, "samples": [evaluate_item(item, prime, point) for point in points]}
+63: 
+64: 
+65: def _product_gradient(factors, cache, sample, prime):
+66:     scalar, row = 1, np.zeros(126, dtype=np.int64)
+67:     for factor in factors:
+68:         value = cache[factor][sample]["value"]
+69:         derivative = np.array(cache[factor][sample]["jacobian_row"])
+70:         row = (row * value + scalar * derivative) % prime
+71:         scalar = scalar * value % prime
+72:     return row
+73: 
+74: 
+75: def run(degree, prime, seeds, candidates=None, checkpoint=None, workers=1, max_candidates=None):
+76:     require_prime(prime)
+77:     if degree <= 0 or degree % 2 or degree * 5 // 2 > 52:
+78:         raise ValueError("positive even degree with at most 52 contracted pairs required")
+79:     if len(seeds) < 2 or len(set(seeds)) != len(seeds) or workers < 1:
+80:         raise ValueError("at least two distinct sample seeds and positive workers required")
+81:     known = inventory()
+82:     lower = [x for x in known if x["degree"] < degree]
+83:     # Above degree 14, the committed lower-degree inventory is no longer
+84:     # polynomially complete. Rank evidence is still useful, but do not call
+85:     # a candidate primitive relative to uncomputed lower generators.
+86:     lower_polynomial_inventory_complete = degree <= 14
+87:     if degree > 12 and candidates is None:
+88:         raise ValueError("supply --candidates JSONL for degrees above the discovered inventory")
+89:     points = [np.random.default_rng(s).integers(0, prime, 126).tolist() for s in seeds]
+90:     sources = [ROOT / "src/sdinv" / f"{name}.py" for name in ("certificate", "contract", "forms", "modp", "primitive", "serialize", "graphs")]
+91:     sources.append(Path(__file__))
+92:     identity = {"degree": degree, "prime": prime, "seeds": seeds, "points": points,
+93:                 "inventory_sha256": digest(known), "engine_sha256": digest([hashlib.sha256(p.read_bytes()).hexdigest() for p in sources]),
+94:                 "candidates_sha256": hashlib.sha256(Path(candidates).read_bytes()).hexdigest() if candidates else None}
+95:     state = load_checkpoint(checkpoint, identity) if checkpoint and Path(checkpoint).exists() else {"lower": [], "accepted": [], "cursor": 0}
+96:     if [r["item"] for r in state["lower"]] != lower[:len(state["lower"])]:
+97:         raise ValueError("checkpoint lower inventory mismatch")
+98: 
+99:     def save():
+100:         if checkpoint:
+101:             write_checkpoint(checkpoint, identity, state)
+102: 
+103:     # Lower computations are also resumable; never lose expensive warmup rows.
+104:     for item in lower[len(state["lower"]):]:
+105:         state["lower"].append(_evaluate((item, prime, points)))
+106:         save()
+107:     functional = RankSieve(126, prime)
+108:     cache = {r["item"]["id"]: r["samples"] for r in state["lower"]}
+109:     for r in state["lower"]:
+110:         functional.add(r["samples"][0]["jacobian_row"])
+111:     polynomial = PolynomialSieve(degree, 126 * len(points), prime, "stacked_gradients")
+112:     products = product_monomials({x["id"]: x["degree"] for x in lower}, degree)
+113:     for factors in products:
+114:         row = np.concatenate([_product_gradient(factors, cache, k, prime) for k in range(len(points))])
+115:         polynomial.add("*".join(factors), row, product=True)
+116:     for r in state["accepted"]:
+117:         polynomial.add(r["item"]["id"], np.concatenate([s["jacobian_row"] for s in r["samples"]]))
+118:         functional.add(r["samples"][0]["jacobian_row"])
+119:     stream = iter(candidate_stream(candidates, known, degree))
+120:     for _ in range(state["cursor"]):
+121:         next(stream)
+122:     pool = ProcessPoolExecutor(max_workers=workers) if workers > 1 else None
+123:     try:
+124:         while not polynomial.complete and (max_candidates is None or state["cursor"] < max_candidates):
+125:             batch = []
+126:             for _ in range(workers):
+127:                 if max_candidates is not None and state["cursor"] + len(batch) >= max_candidates:
+128:                     break
+129:                 item = next(stream, None)
+130:                 if item is None:
+131:                     break
+132:                 batch.append((item, prime, points))
+133:             if not batch:
+134:                 break
+135:             for evaluated in (pool.map(_evaluate, batch) if pool else map(_evaluate, batch)):
+136:                 state["cursor"] += 1
+137:                 item, samples = evaluated["item"], evaluated["samples"]
+138:                 primitive = polynomial.add(item["id"], np.concatenate([s["jacobian_row"] for s in samples]))
+139:                 functional_increment = functional.add(samples[0]["jacobian_row"])
+140:                 if functional_increment and not primitive:
+141:                     raise ValueError("functional pivot without a polynomial pivot")
+142:                 if primitive:
+143:                     evaluated.update({"functional_increment": functional_increment, "polynomial_rank": polynomial.rank,
+144:                                       "functional_rank": functional.rank, "functional_pivots": list(functional.pivots),
+145:                                       "polynomial_pivots": list(polynomial.sieve.pivots)})
+146:                     state["accepted"].append(evaluated)
+147:                     print(f"degree {degree} p={prime}: polynomial {polynomial.rank}, functional {functional.rank}", flush=True)
+148:                 save()
+149:                 if polynomial.complete:
+150:                     break
+151:     finally:
+152:         if pool:
+153:             pool.shutdown(wait=True, cancel_futures=True)
+154:     return {"schema": 1, "degree": degree, "prime": prime, "seeds": seeds, "coordinates": points,
+155:             "polynomial_method": "gradients stacked across independently sampled points",
+156:             "polynomial_rank": polynomial.rank, "product_rank": len(polynomial.product_ids),
+157:             "primitive_directions_found": len(polynomial.primitive_ids), "functional_rank": functional.rank,
+158:             "primitive_count_certified_relative_to_all_lower_degrees": lower_polynomial_inventory_complete,
+159:             "hilbert_dimension": HILBERT_DIMENSIONS.get(degree),
+160:             "hilbert_factor_exponent": HILBERT_FACTOR_EXPONENTS.get(degree),
+161:             "polynomial_complete": polynomial.complete, "candidates_evaluated": state["cursor"],
+162:             "accepted": state["accepted"], "identity": identity,
+163:             "scope": "Rank lower bounds from fixed exact samples. Polynomial completeness uses the supplied Hilbert upper bound; a rejected row alone is not a symbolic relation. Above degree 14, candidate pivots are only relative to the supplied, incomplete lower inventory."}
+164: 
+165: 
+166: def main(argv=None):
+167:     parser = argparse.ArgumentParser(description=__doc__)
+168:     parser.add_argument("--degree", type=int, required=True)
+169:     parser.add_argument("--primes", type=int, nargs="+", default=[32749, 32719])
+170:     parser.add_argument("--seeds", type=int, nargs="+", default=[20260907, 20260908])
+171:     parser.add_argument("--candidates", type=Path)
+172:     parser.add_argument("--checkpoint-dir", type=Path, default=ROOT / "work/degrees")
+173:     parser.add_argument("--workers", type=int, default=1)
+174:     parser.add_argument("--max-candidates", type=int)
+175:     parser.add_argument("--out", type=Path)
+176:     args = parser.parse_args(argv)
+177:     results = []
+178:     for prime in args.primes:
+179:         results.append(run(args.degree, prime, args.seeds, args.candidates,
+180:                            args.checkpoint_dir / f"degree{args.degree}_p{prime}.json",
+181:                            args.workers, args.max_candidates))
+182:     selection = [[r["item"]["graph"] for r in result["accepted"]] for result in results]
+183:     same_basis = all(basis == selection[0] for basis in selection)
+184:     payload = {"runs": results, "same_selected_basis": same_basis,
+185:                "complete": same_basis and all(r["polynomial_complete"] for r in results)}
+186:     atomic_write_json(args.out or ROOT / f"results/degree{args.degree}_verification.json", payload)
+187:     if not payload["complete"]:
+188:         print("INCOMPLETE: search evidence saved; no degree-completeness claim")
+189:         return 2
+190:     print("PASS: same selected basis, independently checked polynomial and functional ranks")
+191:     return 0
+192: 
+193: 
+194: if __name__ == "__main__":
+195:     raise SystemExit(main())
+
+TESTFILES
+tests/test_leading_degree_rule.py
+tests/test_published_degree12_invariants.py
+tests/test_graph_to_tensor.py
+tests/test_roadmap.py
+tests/test_stress_flow_closure.py
+tests/test_repository_conventions.py
+tests/test_projection_checkpoint_semantics.py
+tests/test_projection_checkpoint_resume.py
+tests/test_M_only_quotients.py
+tests/test_core.py
+tests/test_degree12.py
+tests/test_interacting_flow_equations.py
+tests/test_minimal_generalized_flow.py
+tests/test_static_stress_degree12.py
+tests/test_index_symmetry_ops.py
+tests/test_k6_flow_role.py
+tests/test_quotient_cardinality_bound.py
+tests/test_G10_trace_activation.py
+tests/test_published_degree10_invariants.py
+tests/test_d10_characteristic_zero.py
+tests/test_sextic.py
+tests/test_q10_wording_freeze.py
+tests/test_stress_flow.py
+tests/test_reverse_block_decomposition.py
+tests/test_modular_overflow_guards.py
+tests/test_published_degree10_source_reading.py
+tests/test_generalized_flow_deficits.py
+tests/test_formal_flow.py
+
+BRIDGETESTFILES
+spinor_trace_bridge/tests/test_orientation.py
+spinor_trace_bridge/tests/test_adversarial.py
+spinor_trace_bridge/tests/test_bridge.py

@@ -1,0 +1,245 @@
+{
+  "status": "PASS",
+  "primes": [
+    32749,
+    32719,
+    32693,
+    32713,
+    32717,
+    32771,
+    32779
+  ],
+  "all_primes_trial_division_verified": true,
+  "prime_product": 40274678413255193510345405666987,
+  "maximum_cleared_absolute_bound": 352866326400000000000000000000,
+  "twice_maximum_bound": 705732652800000000000000000000,
+  "CRT_unique_signed_reconstruction": true,
+  "integer_uniqueness_margin": 39568945760455193510345405666987,
+  "denominator_lcm_degree10": 37800000,
+  "blocks": {
+    "F": 1,
+    "M": 3024,
+    "N": 42,
+    "Q": 42,
+    "T": 42,
+    "B": 42,
+    "P": 1224
+  },
+  "degree10": [
+    {
+      "candidate": 1,
+      "clearing_denominator": 1,
+      "M_QTB_P_factor_counts": [
+        5,
+        0,
+        0
+      ],
+      "summed_index_count": 5,
+      "cleared_absolute_bound": 25287676914460262400000
+    },
+    {
+      "candidate": 2,
+      "clearing_denominator": 336,
+      "M_QTB_P_factor_counts": [
+        4,
+        0,
+        1
+      ],
+      "summed_index_count": 7,
+      "cleared_absolute_bound": 343912406036659568640000000
+    },
+    {
+      "candidate": 3,
+      "clearing_denominator": 100,
+      "M_QTB_P_factor_counts": [
+        3,
+        2,
+        0
+      ],
+      "summed_index_count": 9,
+      "cleared_absolute_bound": 4878024096153600000000000
+    },
+    {
+      "candidate": 4,
+      "clearing_denominator": 2400,
+      "M_QTB_P_factor_counts": [
+        3,
+        2,
+        0
+      ],
+      "summed_index_count": 9,
+      "cleared_absolute_bound": 117072578307686400000000000
+    },
+    {
+      "candidate": 5,
+      "clearing_denominator": 400,
+      "M_QTB_P_factor_counts": [
+        3,
+        2,
+        0
+      ],
+      "summed_index_count": 9,
+      "cleared_absolute_bound": 19512096384614400000000000
+    },
+    {
+      "candidate": 6,
+      "clearing_denominator": 3360,
+      "M_QTB_P_factor_counts": [
+        3,
+        1,
+        1
+      ],
+      "summed_index_count": 9,
+      "cleared_absolute_bound": 4776561194953605120000000000
+    },
+    {
+      "candidate": 7,
+      "clearing_denominator": 1000,
+      "M_QTB_P_factor_counts": [
+        2,
+        3,
+        0
+      ],
+      "summed_index_count": 11,
+      "cleared_absolute_bound": 67750334668800000000000000
+    },
+    {
+      "candidate": 8,
+      "clearing_denominator": 2000,
+      "M_QTB_P_factor_counts": [
+        2,
+        3,
+        0
+      ],
+      "summed_index_count": 11,
+      "cleared_absolute_bound": 135500669337600000000000000
+    },
+    {
+      "candidate": 9,
+      "clearing_denominator": 60000,
+      "M_QTB_P_factor_counts": [
+        1,
+        4,
+        0
+      ],
+      "summed_index_count": 13,
+      "cleared_absolute_bound": 5645861222400000000000000000
+    },
+    {
+      "candidate": 10,
+      "clearing_denominator": 200000,
+      "M_QTB_P_factor_counts": [
+        0,
+        5,
+        0
+      ],
+      "summed_index_count": 15,
+      "cleared_absolute_bound": 26138246400000000000000000000
+    },
+    {
+      "candidate": 11,
+      "clearing_denominator": 2700000,
+      "M_QTB_P_factor_counts": [
+        0,
+        5,
+        0
+      ],
+      "summed_index_count": 15,
+      "cleared_absolute_bound": 352866326400000000000000000000
+    },
+    {
+      "candidate": 12,
+      "clearing_denominator": 2700000,
+      "M_QTB_P_factor_counts": [
+        0,
+        5,
+        0
+      ],
+      "summed_index_count": 15,
+      "cleared_absolute_bound": 352866326400000000000000000000
+    }
+  ],
+  "degree8_primary": [
+    {
+      "candidate": 1,
+      "clearing_denominator": 1,
+      "M_QTB_P_factor_counts": [
+        4,
+        0,
+        0
+      ],
+      "summed_index_count": 4,
+      "cleared_absolute_bound": 836232702197760000
+    },
+    {
+      "candidate": 2,
+      "clearing_denominator": 336,
+      "M_QTB_P_factor_counts": [
+        3,
+        0,
+        1
+      ],
+      "summed_index_count": 6,
+      "cleared_absolute_bound": 11372764749889536000000
+    },
+    {
+      "candidate": 3,
+      "clearing_denominator": 100,
+      "M_QTB_P_factor_counts": [
+        2,
+        2,
+        0
+      ],
+      "summed_index_count": 8,
+      "cleared_absolute_bound": 161310320640000000000
+    },
+    {
+      "candidate": 4,
+      "clearing_denominator": 240000,
+      "M_QTB_P_factor_counts": [
+        0,
+        4,
+        0
+      ],
+      "summed_index_count": 12,
+      "cleared_absolute_bound": 746807040000000000000000
+    },
+    {
+      "candidate": 5,
+      "clearing_denominator": 400,
+      "M_QTB_P_factor_counts": [
+        2,
+        2,
+        0
+      ],
+      "summed_index_count": 8,
+      "cleared_absolute_bound": 645241282560000000000
+    },
+    {
+      "candidate": 6,
+      "clearing_denominator": 3360,
+      "M_QTB_P_factor_counts": [
+        2,
+        1,
+        1
+      ],
+      "summed_index_count": 8,
+      "cleared_absolute_bound": 157955065970688000000000
+    }
+  ],
+  "degree8_hatted": {
+    "H1_through_H5_denominator": 810000,
+    "H1_through_H5_bound": 2520473760000000000000000,
+    "H6_denominator": 336,
+    "H6_bound": 11372764749889536000000
+  },
+  "graph_bound_degree10": 10000000000000000000000000,
+  "graph_bound_degree8": 100000000000000000000,
+  "source_quartic_square_bound": 836232702197760000,
+  "assumptions": [
+    "Every coordinate is0or1 in the same integral self-dual convention.",
+    "Source definitions are normalized averages and the specified closed contractions.",
+    "Q is alternating in its first five slots, so T has denominator30.",
+    "Residue evaluations implement those fixed definitions exactly."
+  ]
+}

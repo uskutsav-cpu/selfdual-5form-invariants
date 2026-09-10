@@ -1,0 +1,270 @@
+{
+ "clean": true,
+ "commit": "aa0f98e9054ab1725d6093ce81a80a4960673e60",
+ "generated_by": "manuscript/jhep/scripts/build_input_manifest.py",
+ "inputs": [
+  {
+   "artifact": "results/stress_flow/Q10_characteristic_zero.json",
+   "claim": "A10-dim",
+   "field": "A10_dim_over_Q",
+   "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+   "status": "ok",
+   "value": 14
+  },
+  {
+   "artifact": "results/stress_flow/Q10_characteristic_zero.json",
+   "claim": "D10-dim",
+   "field": "D10_dim_over_Q",
+   "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+   "status": "ok",
+   "value": 11
+  },
+  {
+   "artifact": "results/stress_flow/Q10_characteristic_zero.json",
+   "claim": "Q10-dim",
+   "field": "Q10_dim_over_Q",
+   "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+   "status": "ok",
+   "value": 3
+  },
+  {
+   "artifact": "results/stress_flow/Q10_characteristic_zero.json",
+   "claim": "Q10-status",
+   "field": "status",
+   "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+   "status": "ok",
+   "value": "exact"
+  },
+  {
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "claim": "D10-settled",
+   "field": "settled",
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+   "status": "ok",
+   "value": true
+  },
+  {
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "claim": "D10-holdout-prime",
+   "field": "lift.holdout_prime",
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+   "status": "ok",
+   "value": 32771
+  },
+  {
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "claim": "D10-holdout-mismatches",
+   "field": "lift.holdout_mismatches",
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+   "status": "ok",
+   "value": []
+  },
+  {
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "claim": "D10-minor-size",
+   "field": "lower_bound_certificate.size",
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+   "status": "ok",
+   "value": 11
+  },
+  {
+   "artifact": "results/stress_flow/D10_characteristic_zero.json",
+   "claim": "D10-minor-nonzero",
+   "field": "lower_bound_certificate.nonzero",
+   "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+   "status": "ok",
+   "value": true
+  },
+  {
+   "artifact": "results/stress_flow/G10_counterfactual.json",
+   "claim": "G10-counterfactual-Q10",
+   "field": "counterfactual_Q10",
+   "sha256": "f40ae706e5a021344bfdfd0fa5de9271e6531e6b74ca20679d96350c73df2c9d",
+   "status": "ok",
+   "value": 0
+  },
+  {
+   "artifact": "results/stress_flow/G10_counterfactual.json",
+   "claim": "G10-derived-Q10",
+   "field": "as_derived_Q10",
+   "sha256": "f40ae706e5a021344bfdfd0fa5de9271e6531e6b74ca20679d96350c73df2c9d",
+   "status": "ok",
+   "value": 3
+  },
+  {
+   "artifact": "results/stress_flow/G10_counterfactual.json",
+   "claim": "G10-load-bearing",
+   "field": "activation_is_load_bearing",
+   "sha256": "f40ae706e5a021344bfdfd0fa5de9271e6531e6b74ca20679d96350c73df2c9d",
+   "status": "ok",
+   "value": true
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-rank",
+   "field": "rank",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": 81
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-cells",
+   "field": "cells_complete",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": 15
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-agree",
+   "field": "all_cells_agree",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": true
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-coord-dim",
+   "field": "coordinate_dimension",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": 126
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-cumulative",
+   "field": "cumulative_rank_by_degree",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": {
+    "10": 21,
+    "12": 81,
+    "4": 1,
+    "6": 3,
+    "8": 9
+   }
+  },
+  {
+   "artifact": "results/rank81/full_rank_matrix_publication_final.json",
+   "claim": "rank81-primes",
+   "field": "primes",
+   "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+   "status": "ok",
+   "value": [
+    32693,
+    32713,
+    32717,
+    32719,
+    32749
+   ]
+  },
+  {
+   "artifact": "results/rank81/minor81_certificate.json",
+   "claim": "minor81",
+   "keys": [
+    "column_indices",
+    "determinant_routines",
+    "minor_size",
+    "per_prime",
+    "row_candidate_ids",
+    "row_indices_in_evaluated_order",
+    "sample_seed",
+    "schema",
+    "selection_prime",
+    "summary",
+    "why_nonvanishing_suffices",
+    "why_several_primes_anyway"
+   ],
+   "sha256": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
+   "status": "ok"
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-cap-dim",
+   "field": "dim_B10_cap_P10_over_Q",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": 1
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-B10-dim",
+   "field": "dim_B10_over_Q",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": 12
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-P10-dim",
+   "field": "dim_P10_over_Q",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": 2
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-settled",
+   "field": "settled",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": true
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-holdout-prime",
+   "field": "holdout_prime",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": 32783
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_exact.json",
+   "claim": "BP-holdout-mismatches",
+   "field": "holdout_mismatches",
+   "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+   "status": "ok",
+   "value": []
+  },
+  {
+   "artifact": "results/degree10/B10_P10_intersection_generator.json",
+   "claim": "BP-generator",
+   "keys": [
+    "atlas_combination_integer",
+    "fresh_samples",
+    "generated_by",
+    "identity",
+    "identity_holds",
+    "published_combination_integer",
+    "schema",
+    "supported_only_on_products",
+    "verified_at_fresh_prime"
+   ],
+   "sha256": "bed2fc6d3623b02537a7702923b457f263d095c3f66c43c63d410c2830ee778b",
+   "status": "ok"
+  },
+  {
+   "artifact": "results/stress_flow/G10_publication_certificate.json",
+   "claim": "G10-certificate",
+   "keys": [
+    "argument",
+    "commit",
+    "computational_verification",
+    "counterfactual",
+    "generated_by",
+    "historical_note",
+    "load_bearing",
+    "remaining_for_mentor",
+    "schema",
+    "statement"
+   ],
+   "sha256": "97e8e65f748813348cc602d691bc95561ed52f183b4cc814bedec481b5058f31",
+   "status": "ok"
+  }
+ ],
+ "n_inputs": 27,
+ "n_ok": 27,
+ "problems": [],
+ "schema": 1
+}

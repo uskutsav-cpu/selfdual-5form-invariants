@@ -1,0 +1,303 @@
+{
+ "blocks_per_candidate": 6,
+ "canonical_lower_bound": 13499,
+ "dim_Q12": 4,
+ "do_not": [
+  "launch the complete Q12 search automatically",
+  "claim exhaustion of any capped sector",
+  "import published_degree12_invariants into generation"
+ ],
+ "first_shard": {
+  "canonical_lower_bound": 107,
+  "rationale": "the degree-10 recovery came entirely from the analogous N4125^5 sector, which was also the cheapest N-only sector. That is an empirical prior from THIS project's own reverse search, not from the published formulas, so using it does not compromise independence.",
+  "sector": "N4125+N4125+N4125+N4125+N4125+N4125",
+  "shard_modulus": 4,
+  "shard_residue": 0
+ },
+ "known_input": {
+  "P12_01": "Q12 image zero",
+  "P12_02": "Q12 image zero",
+  "P12_03": "Q12 image zero",
+  "combined_rank": "0 of 4 on primes 32749 and 32717",
+  "consequence": "all four compact Q12 directions remain unknown"
+ },
+ "measured_cost_basis": {
+  "degree10_block_build_s": 4.4,
+  "degree10_contraction_ms": 150,
+  "note": "degree-12 contractions are over six 6-index operands rather than five, so per-candidate cost is expected to exceed the degree-10 150 ms; this is an EXTRAPOLATION and must be measured before any duration is forecast. This project has already recorded one wrong runtime forecast made from too few points."
+ },
+ "objective": "independently recover Q12 rank 4 from quadratic-block topology, without importing or encoding the published equation-(4.25) structures",
+ "protocol": {
+  "checkpoint_root": "local temp, never iCloud (SDINV_CKPT_ROOT)",
+  "fit_prime": 32749,
+  "hard_limits": {
+   "max_rss_mb": 1500,
+   "stop_after_candidates": 400,
+   "stop_after_seconds": 5400
+  },
+  "heavy_workers": 1,
+  "holdout_prime": 32717,
+  "immutable_checkpoints": true,
+  "streamed_generation": true
+ },
+ "schema": 1,
+ "sector_order_cheapest_first": [
+  "M+M+M+M+M+M",
+  "M+M+M+M+M+N4125",
+  "M+M+M+M+M+N1050",
+  "M+M+M+M+N4125+N4125",
+  "M+M+M+M+N1050+N4125",
+  "M+M+M+M+N1050+N1050",
+  "M+M+M+N4125+N4125+N4125",
+  "M+M+M+N1050+N4125+N4125",
+  "M+M+M+N1050+N1050+N1050",
+  "M+M+M+N1050+N1050+N4125",
+  "M+M+N1050+N1050+N1050+N1050",
+  "M+M+N4125+N4125+N4125+N4125",
+  "M+M+N1050+N4125+N4125+N4125",
+  "M+M+N1050+N1050+N4125+N4125",
+  "M+M+N1050+N1050+N1050+N4125",
+  "M+N4125+N4125+N4125+N4125+N4125",
+  "M+N1050+N4125+N4125+N4125+N4125",
+  "M+N1050+N1050+N4125+N4125+N4125",
+  "M+N1050+N1050+N1050+N1050+N1050",
+  "M+N1050+N1050+N1050+N1050+N4125",
+  "M+N1050+N1050+N1050+N4125+N4125",
+  "N1050+N1050+N1050+N1050+N1050+N1050",
+  "N4125+N4125+N4125+N4125+N4125+N4125",
+  "N1050+N1050+N4125+N4125+N4125+N4125",
+  "N1050+N4125+N4125+N4125+N4125+N4125",
+  "N1050+N1050+N1050+N4125+N4125+N4125",
+  "N1050+N1050+N1050+N1050+N4125+N4125",
+  "N1050+N1050+N1050+N1050+N1050+N4125"
+ ],
+ "sectors": [
+  {
+   "canonical_sampled": 1,
+   "capped": false,
+   "enum_seconds": 0.3,
+   "raw_walked": 130,
+   "sector": "M+M+M+M+M+M",
+   "slots": 12
+  },
+  {
+   "canonical_sampled": 6,
+   "capped": false,
+   "enum_seconds": 0.4,
+   "raw_walked": 355,
+   "sector": "M+M+M+M+M+N1050",
+   "slots": 16
+  },
+  {
+   "canonical_sampled": 2,
+   "capped": false,
+   "enum_seconds": 0.1,
+   "raw_walked": 55,
+   "sector": "M+M+M+M+M+N4125",
+   "slots": 16
+  },
+  {
+   "canonical_sampled": 106,
+   "capped": false,
+   "enum_seconds": 4.6,
+   "raw_walked": 3227,
+   "sector": "M+M+M+M+N1050+N1050",
+   "slots": 20
+  },
+  {
+   "canonical_sampled": 42,
+   "capped": false,
+   "enum_seconds": 0.7,
+   "raw_walked": 735,
+   "sector": "M+M+M+M+N1050+N4125",
+   "slots": 20
+  },
+  {
+   "canonical_sampled": 11,
+   "capped": false,
+   "enum_seconds": 0.1,
+   "raw_walked": 209,
+   "sector": "M+M+M+M+N4125+N4125",
+   "slots": 20
+  },
+  {
+   "canonical_sampled": 483,
+   "capped": true,
+   "enum_seconds": 7.0,
+   "raw_walked": 4000,
+   "sector": "M+M+M+N1050+N1050+N1050",
+   "slots": 24
+  },
+  {
+   "canonical_sampled": 667,
+   "capped": true,
+   "enum_seconds": 5.3,
+   "raw_walked": 4000,
+   "sector": "M+M+M+N1050+N1050+N4125",
+   "slots": 24
+  },
+  {
+   "canonical_sampled": 186,
+   "capped": false,
+   "enum_seconds": 1.8,
+   "raw_walked": 1705,
+   "sector": "M+M+M+N1050+N4125+N4125",
+   "slots": 24
+  },
+  {
+   "canonical_sampled": 23,
+   "capped": false,
+   "enum_seconds": 0.4,
+   "raw_walked": 424,
+   "sector": "M+M+M+N4125+N4125+N4125",
+   "slots": 24
+  },
+  {
+   "canonical_sampled": 59,
+   "capped": true,
+   "enum_seconds": 8.3,
+   "raw_walked": 4000,
+   "sector": "M+M+N1050+N1050+N1050+N1050",
+   "slots": 28
+  },
+  {
+   "canonical_sampled": 1294,
+   "capped": true,
+   "enum_seconds": 5.4,
+   "raw_walked": 4000,
+   "sector": "M+M+N1050+N1050+N1050+N4125",
+   "slots": 28
+  },
+  {
+   "canonical_sampled": 652,
+   "capped": true,
+   "enum_seconds": 4.3,
+   "raw_walked": 4000,
+   "sector": "M+M+N1050+N1050+N4125+N4125",
+   "slots": 28
+  },
+  {
+   "canonical_sampled": 548,
+   "capped": true,
+   "enum_seconds": 4.0,
+   "raw_walked": 4000,
+   "sector": "M+M+N1050+N4125+N4125+N4125",
+   "slots": 28
+  },
+  {
+   "canonical_sampled": 68,
+   "capped": false,
+   "enum_seconds": 2.2,
+   "raw_walked": 1720,
+   "sector": "M+M+N4125+N4125+N4125+N4125",
+   "slots": 28
+  },
+  {
+   "canonical_sampled": 931,
+   "capped": true,
+   "enum_seconds": 10.0,
+   "raw_walked": 4000,
+   "sector": "M+N1050+N1050+N1050+N1050+N1050",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 1465,
+   "capped": true,
+   "enum_seconds": 7.2,
+   "raw_walked": 4000,
+   "sector": "M+N1050+N1050+N1050+N1050+N4125",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 1743,
+   "capped": true,
+   "enum_seconds": 4.5,
+   "raw_walked": 4000,
+   "sector": "M+N1050+N1050+N1050+N4125+N4125",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 817,
+   "capped": true,
+   "enum_seconds": 4.2,
+   "raw_walked": 4000,
+   "sector": "M+N1050+N1050+N4125+N4125+N4125",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 379,
+   "capped": true,
+   "enum_seconds": 4.5,
+   "raw_walked": 4000,
+   "sector": "M+N1050+N4125+N4125+N4125+N4125",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 87,
+   "capped": true,
+   "enum_seconds": 7.1,
+   "raw_walked": 4000,
+   "sector": "M+N4125+N4125+N4125+N4125+N4125",
+   "slots": 32
+  },
+  {
+   "canonical_sampled": 59,
+   "capped": true,
+   "enum_seconds": 9.4,
+   "raw_walked": 4000,
+   "sector": "N1050+N1050+N1050+N1050+N1050+N1050",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 1607,
+   "capped": true,
+   "enum_seconds": 7.7,
+   "raw_walked": 4000,
+   "sector": "N1050+N1050+N1050+N1050+N1050+N4125",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 1037,
+   "capped": true,
+   "enum_seconds": 5.2,
+   "raw_walked": 4000,
+   "sector": "N1050+N1050+N1050+N1050+N4125+N4125",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 716,
+   "capped": true,
+   "enum_seconds": 4.6,
+   "raw_walked": 4000,
+   "sector": "N1050+N1050+N1050+N4125+N4125+N4125",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 198,
+   "capped": true,
+   "enum_seconds": 5.2,
+   "raw_walked": 4000,
+   "sector": "N1050+N1050+N4125+N4125+N4125+N4125",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 205,
+   "capped": true,
+   "enum_seconds": 7.5,
+   "raw_walked": 4000,
+   "sector": "N1050+N4125+N4125+N4125+N4125+N4125",
+   "slots": 36
+  },
+  {
+   "canonical_sampled": 107,
+   "capped": true,
+   "enum_seconds": 19.7,
+   "raw_walked": 4000,
+   "sector": "N4125+N4125+N4125+N4125+N4125+N4125",
+   "slots": 36
+  }
+ ],
+ "sectors_capped_at_4000_in_survey": 19,
+ "sectors_total": 28,
+ "status": "PREPARED, NOT LAUNCHED"
+}

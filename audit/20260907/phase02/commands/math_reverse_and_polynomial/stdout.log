@@ -1,0 +1,310 @@
+{"prime": 50021, "id": "I4_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.08126087510026991}
+{"prime": 50021, "id": "I6_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.09591375000309199}
+{"prime": 50021, "id": "I6_2", "checks": "Euler, independent forward dual, full production row", "seconds": 3.1189526660600677}
+{"prime": 50021, "id": "I8_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.17432991694658995}
+{"prime": 50021, "id": "I8_2", "checks": "Euler, independent forward dual, full production row", "seconds": 0.17168449994642287}
+{"prime": 50021, "id": "I8_3", "checks": "Euler, independent forward dual, full production row", "seconds": 0.17614041699562222}
+{"prime": 50021, "id": "I8_4", "checks": "Euler, independent forward dual, full production row", "seconds": 0.3918130419915542}
+{"prime": 50021, "id": "I8_5", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5233066660584882}
+{"prime": 50021, "id": "I8_6", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5760587078984827}
+{"prime": 50021, "id": "I10_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.4985940409824252}
+{"prime": 50021, "id": "I10_2", "checks": "Euler, independent forward dual, full production row", "seconds": 0.30554379208479077}
+{"prime": 50021, "id": "I10_3", "checks": "Euler, independent forward dual, full production row", "seconds": 0.7697965418919921}
+{"prime": 50021, "id": "I10_4", "checks": "Euler, independent forward dual, full production row", "seconds": 0.8383172499015927}
+{"prime": 50021, "id": "I10_5", "checks": "Euler, independent forward dual, full production row", "seconds": 0.8633274160092697}
+{"prime": 50021, "id": "I10_6", "checks": "Euler, independent forward dual, full production row", "seconds": 1.1518441250082105}
+{"prime": 50021, "id": "I10_7", "checks": "Euler, independent forward dual, full production row", "seconds": 0.626942583010532}
+{"prime": 50021, "id": "I10_8", "checks": "Euler, independent forward dual, full production row", "seconds": 0.47393274994101375}
+{"prime": 50021, "id": "I10_9", "checks": "Euler, independent forward dual, full production row", "seconds": 0.6649353340035304}
+{"prime": 50021, "id": "I10_10", "checks": "Euler, independent forward dual, full production row", "seconds": 0.6287432500394061}
+{"prime": 50021, "id": "I10_11", "checks": "Euler, independent forward dual, full production row", "seconds": 1.1403800420230255}
+{"prime": 50021, "id": "I10_12", "checks": "Euler, independent forward dual, full production row", "seconds": 0.8969508339650929}
+{"prime": 50021, "id": "I12_1", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7201070409500971}
+{"prime": 50021, "id": "I12_2", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7202144169714302}
+{"prime": 50021, "id": "I12_3", "checks": "Euler, independent forward dual, full production row", "seconds": 2.4231820419663563}
+{"prime": 50021, "id": "I12_4", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7063387499656528}
+{"prime": 50021, "id": "I12_5", "checks": "Euler, independent forward dual, full production row", "seconds": 1.551264166017063}
+{"prime": 50021, "id": "I12_6", "checks": "Euler, independent forward dual, full production row", "seconds": 2.6823144579539075}
+{"prime": 50021, "id": "I12_7", "checks": "Euler, independent forward dual, full production row", "seconds": 2.0237549169687554}
+{"prime": 50021, "id": "I12_8", "checks": "Euler, independent forward dual, full production row", "seconds": 5.056952125043608}
+{"prime": 50021, "id": "I12_9", "checks": "Euler, independent forward dual, full production row", "seconds": 5.659513332997449}
+{"prime": 50021, "id": "I12_10", "checks": "Euler, independent forward dual, full production row", "seconds": 2.333813083008863}
+{"prime": 50021, "id": "I12_11", "checks": "Euler, independent forward dual, full production row", "seconds": 3.811817583045922}
+{"prime": 50021, "id": "I12_12", "checks": "Euler, independent forward dual, full production row", "seconds": 2.163150083972141}
+{"prime": 50021, "id": "I12_13", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7299402920762077}
+{"prime": 50021, "id": "I12_14", "checks": "Euler, independent forward dual, full production row", "seconds": 3.281145374989137}
+{"prime": 50021, "id": "I12_15", "checks": "Euler, independent forward dual, full production row", "seconds": 1.608696624985896}
+{"prime": 50021, "id": "I12_16", "checks": "Euler, independent forward dual, full production row", "seconds": 1.8215479160426185}
+{"prime": 50021, "id": "I12_17", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4454527080524713}
+{"prime": 50021, "id": "I12_18", "checks": "Euler, independent forward dual, full production row", "seconds": 3.63955962494947}
+{"prime": 50021, "id": "I12_19", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9066441250033677}
+{"prime": 50021, "id": "I12_20", "checks": "Euler, independent forward dual, full production row", "seconds": 1.735969082918018}
+{"prime": 50021, "id": "I12_21", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6402865840354934}
+{"prime": 50021, "id": "I12_22", "checks": "Euler, independent forward dual, full production row", "seconds": 3.5339089590124786}
+{"prime": 50021, "id": "I12_23", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4439183750655502}
+{"prime": 50021, "id": "I12_24", "checks": "Euler, independent forward dual, full production row", "seconds": 1.669530792045407}
+{"prime": 50021, "id": "I12_25", "checks": "Euler, independent forward dual, full production row", "seconds": 1.602734083076939}
+{"prime": 50021, "id": "I12_26", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4475247089285403}
+{"prime": 50021, "id": "I12_27", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6102053750073537}
+{"prime": 50021, "id": "I12_28", "checks": "Euler, independent forward dual, full production row", "seconds": 2.197397500043735}
+{"prime": 50021, "id": "I12_29", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4179937919834629}
+{"prime": 50021, "id": "I12_30", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6026999580208212}
+{"prime": 50021, "id": "I12_31", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6470927910413593}
+{"prime": 50021, "id": "I12_32", "checks": "Euler, independent forward dual, full production row", "seconds": 1.762096333084628}
+{"prime": 50021, "id": "I12_33", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9178455419605598}
+{"prime": 50021, "id": "I12_34", "checks": "Euler, independent forward dual, full production row", "seconds": 4.6081723750103265}
+{"prime": 50021, "id": "I12_35", "checks": "Euler, independent forward dual, full production row", "seconds": 1.809308125055395}
+{"prime": 50021, "id": "I12_36", "checks": "Euler, independent forward dual, full production row", "seconds": 1.730733708012849}
+{"prime": 50021, "id": "I12_37", "checks": "Euler, independent forward dual, full production row", "seconds": 4.3061048339586705}
+{"prime": 50021, "id": "I12_38", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5552458750316873}
+{"prime": 50021, "id": "I12_39", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9171401250641793}
+{"prime": 50021, "id": "I12_40", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9643537090159953}
+{"prime": 50021, "id": "I12_41", "checks": "Euler, independent forward dual, full production row", "seconds": 1.0879962909966707}
+{"prime": 50021, "id": "I12_42", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6422461250331253}
+{"prime": 50021, "id": "I12_43", "checks": "Euler, independent forward dual, full production row", "seconds": 4.336620375048369}
+{"prime": 50021, "id": "I12_44", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5808970830403268}
+{"prime": 50021, "id": "I12_45", "checks": "Euler, independent forward dual, full production row", "seconds": 1.3174500409513712}
+{"prime": 50021, "id": "I12_46", "checks": "Euler, independent forward dual, full production row", "seconds": 2.196724583976902}
+{"prime": 50021, "id": "I12_47", "checks": "Euler, independent forward dual, full production row", "seconds": 1.495141917024739}
+{"prime": 50021, "id": "I12_48", "checks": "Euler, independent forward dual, full production row", "seconds": 4.492284415988252}
+{"prime": 50021, "id": "I12_49", "checks": "Euler, independent forward dual, full production row", "seconds": 4.308309624902904}
+{"prime": 50021, "id": "I12_50", "checks": "Euler, independent forward dual, full production row", "seconds": 2.1158816668903455}
+{"prime": 50021, "id": "I12_51", "checks": "Euler, independent forward dual, full production row", "seconds": 2.0056942499941215}
+{"prime": 50021, "id": "I12_52", "checks": "Euler, independent forward dual, full production row", "seconds": 2.1334112499607727}
+{"prime": 50021, "id": "I12_53", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7387848340440542}
+{"prime": 50021, "id": "I12_54", "checks": "Euler, independent forward dual, full production row", "seconds": 2.2001214580377564}
+{"prime": 50021, "id": "I12_55", "checks": "Euler, independent forward dual, full production row", "seconds": 2.1303447500104085}
+{"prime": 50021, "id": "I12_56", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5188303330214694}
+{"prime": 50021, "id": "I12_57", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9108147920342162}
+{"prime": 50021, "id": "I12_58", "checks": "Euler, independent forward dual, full production row", "seconds": 2.0183135420084}
+{"prime": 50021, "id": "I12_59", "checks": "Euler, independent forward dual, full production row", "seconds": 7.289561124984175}
+{"prime": 50021, "id": "I12_60", "checks": "Euler, independent forward dual, full production row", "seconds": 0.9475379170617089}
+{"prime": 50021, "id": "I12_61", "checks": "Euler, independent forward dual", "seconds": 2.03910783410538}
+{"prime": 50021, "id": "I12_62", "checks": "Euler, independent forward dual", "seconds": 2.576457916991785}
+{"polynomial_prime": 50021, "point": 1, "id": "I4_1", "seconds": 0.14292329200543463}
+{"polynomial_prime": 50021, "point": 1, "id": "I6_1", "seconds": 0.11468512495048344}
+{"polynomial_prime": 50021, "point": 1, "id": "I6_2", "seconds": 3.9395025830017403}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_1", "seconds": 0.16705050005111843}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_2", "seconds": 0.24242183403111994}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_3", "seconds": 0.21530720801092684}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_4", "seconds": 0.43719833297654986}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_5", "seconds": 0.5052847920451313}
+{"polynomial_prime": 50021, "point": 1, "id": "I8_6", "seconds": 0.5644968749256805}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_1", "seconds": 2.189048875006847}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_2", "seconds": 2.698583666002378}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_3", "seconds": 3.1098825000226498}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_4", "seconds": 3.3946936250431463}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_5", "seconds": 2.9363177090417594}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_6", "seconds": 2.984082958078943}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_7", "seconds": 2.327945917029865}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_8", "seconds": 4.851683709071949}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_9", "seconds": 4.225958792027086}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_10", "seconds": 1.6622592080384493}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_11", "seconds": 2.87278299999889}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_12", "seconds": 1.953179124975577}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_13", "seconds": 1.760480333934538}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_14", "seconds": 3.65743195801042}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_15", "seconds": 1.6797274999553338}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_16", "seconds": 2.3717924159718677}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_17", "seconds": 1.4712314170319587}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_18", "seconds": 3.9197294589830562}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_19", "seconds": 2.103811666020192}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_20", "seconds": 1.520770417060703}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_21", "seconds": 1.6219576658913866}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_22", "seconds": 3.7824349580332637}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_23", "seconds": 1.5876258339267224}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_24", "seconds": 1.897340583964251}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_25", "seconds": 1.7875324169872329}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_26", "seconds": 1.570208582910709}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_27", "seconds": 1.7024459160165861}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_28", "seconds": 2.1925222920253873}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_29", "seconds": 1.5945618329569697}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_30", "seconds": 1.9062278749188408}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_31", "seconds": 1.668785374960862}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_32", "seconds": 1.366895499988459}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_33", "seconds": 1.9241341250017285}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_34", "seconds": 3.592523292056285}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_35", "seconds": 1.481967750005424}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_36", "seconds": 1.489558000001125}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_37", "seconds": 3.373729291022755}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_38", "seconds": 1.3849361250177026}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_39", "seconds": 1.5884688750375062}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_40", "seconds": 1.6964066249784082}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_41", "seconds": 0.9944781250087544}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_42", "seconds": 1.4795492920093238}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_43", "seconds": 3.2618070000316948}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_44", "seconds": 1.3979192500701174}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_45", "seconds": 1.1853164579952136}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_46", "seconds": 1.9550553750013933}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_47", "seconds": 1.3421344590606168}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_48", "seconds": 3.158175958087668}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_49", "seconds": 4.037793292081915}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_50", "seconds": 2.0814791249576956}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_51", "seconds": 2.04723029199522}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_52", "seconds": 2.2869100000243634}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_53", "seconds": 1.7483774169813842}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_54", "seconds": 1.666574125061743}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_55", "seconds": 1.8363770000869408}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_56", "seconds": 1.2486037079943344}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_57", "seconds": 1.5431184999179095}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_58", "seconds": 1.823354166932404}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_59", "seconds": 5.363943415926769}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_60", "seconds": 0.8331196251092479}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_61", "seconds": 0.7794511669781059}
+{"polynomial_prime": 50021, "point": 1, "id": "I12_62", "seconds": 0.9906360839959234}
+{"polynomial_prime": 50021, "points": 2, "rank": 72, "determinant_mod_prime": 43334}
+{"prime": 32749, "id": "I4_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.07956966711208224}
+{"prime": 32749, "id": "I6_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.0843681669794023}
+{"prime": 32749, "id": "I6_2", "checks": "Euler, independent forward dual, full production row", "seconds": 2.3740704159718007}
+{"prime": 32749, "id": "I8_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.0973059160169214}
+{"prime": 32749, "id": "I8_2", "checks": "Euler, independent forward dual, full production row", "seconds": 0.1369335000636056}
+{"prime": 32749, "id": "I8_3", "checks": "Euler, independent forward dual, full production row", "seconds": 0.13996624993160367}
+{"prime": 32749, "id": "I8_4", "checks": "Euler, independent forward dual, full production row", "seconds": 0.3087190000806004}
+{"prime": 32749, "id": "I8_5", "checks": "Euler, independent forward dual, full production row", "seconds": 0.41202187503222376}
+{"prime": 32749, "id": "I8_6", "checks": "Euler, independent forward dual, full production row", "seconds": 0.4184804999968037}
+{"prime": 32749, "id": "I10_1", "checks": "Euler, independent forward dual, full production row", "seconds": 0.36189387494232506}
+{"prime": 32749, "id": "I10_2", "checks": "Euler, independent forward dual, full production row", "seconds": 0.1835928331129253}
+{"prime": 32749, "id": "I10_3", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5974428339395672}
+{"prime": 32749, "id": "I10_4", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5639637500280514}
+{"prime": 32749, "id": "I10_5", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5882233340526}
+{"prime": 32749, "id": "I10_6", "checks": "Euler, independent forward dual, full production row", "seconds": 0.9297002910170704}
+{"prime": 32749, "id": "I10_7", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5780936250230297}
+{"prime": 32749, "id": "I10_8", "checks": "Euler, independent forward dual, full production row", "seconds": 0.36636033293325454}
+{"prime": 32749, "id": "I10_9", "checks": "Euler, independent forward dual, full production row", "seconds": 0.5167304170317948}
+{"prime": 32749, "id": "I10_10", "checks": "Euler, independent forward dual, full production row", "seconds": 0.39714600006118417}
+{"prime": 32749, "id": "I10_11", "checks": "Euler, independent forward dual, full production row", "seconds": 0.7585153329418972}
+{"prime": 32749, "id": "I10_12", "checks": "Euler, independent forward dual, full production row", "seconds": 0.6643840000033379}
+{"prime": 32749, "id": "I12_1", "checks": "Euler, independent forward dual, full production row", "seconds": 1.3231459590606391}
+{"prime": 32749, "id": "I12_2", "checks": "Euler, independent forward dual, full production row", "seconds": 1.349943625042215}
+{"prime": 32749, "id": "I12_3", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9011748749762774}
+{"prime": 32749, "id": "I12_4", "checks": "Euler, independent forward dual, full production row", "seconds": 1.50264625006821}
+{"prime": 32749, "id": "I12_5", "checks": "Euler, independent forward dual, full production row", "seconds": 1.156286499928683}
+{"prime": 32749, "id": "I12_6", "checks": "Euler, independent forward dual, full production row", "seconds": 1.8939813330071047}
+{"prime": 32749, "id": "I12_7", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4537505839252844}
+{"prime": 32749, "id": "I12_8", "checks": "Euler, independent forward dual, full production row", "seconds": 3.5324899590341374}
+{"prime": 32749, "id": "I12_9", "checks": "Euler, independent forward dual, full production row", "seconds": 3.858838292071596}
+{"prime": 32749, "id": "I12_10", "checks": "Euler, independent forward dual, full production row", "seconds": 1.8195685000391677}
+{"prime": 32749, "id": "I12_11", "checks": "Euler, independent forward dual, full production row", "seconds": 2.6337526669958606}
+{"prime": 32749, "id": "I12_12", "checks": "Euler, independent forward dual, full production row", "seconds": 2.042620167019777}
+{"prime": 32749, "id": "I12_13", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7345577090745792}
+{"prime": 32749, "id": "I12_14", "checks": "Euler, independent forward dual, full production row", "seconds": 3.8380743329180405}
+{"prime": 32749, "id": "I12_15", "checks": "Euler, independent forward dual, full production row", "seconds": 1.548664457979612}
+{"prime": 32749, "id": "I12_16", "checks": "Euler, independent forward dual, full production row", "seconds": 1.8811367080779746}
+{"prime": 32749, "id": "I12_17", "checks": "Euler, independent forward dual, full production row", "seconds": 1.497440499952063}
+{"prime": 32749, "id": "I12_18", "checks": "Euler, independent forward dual, full production row", "seconds": 3.7607763330452144}
+{"prime": 32749, "id": "I12_19", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9675077080028132}
+{"prime": 32749, "id": "I12_20", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7314835420111194}
+{"prime": 32749, "id": "I12_21", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6550861250143498}
+{"prime": 32749, "id": "I12_22", "checks": "Euler, independent forward dual, full production row", "seconds": 4.053582458989695}
+{"prime": 32749, "id": "I12_23", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5898000000743195}
+{"prime": 32749, "id": "I12_24", "checks": "Euler, independent forward dual, full production row", "seconds": 2.9611710410099477}
+{"prime": 32749, "id": "I12_25", "checks": "Euler, independent forward dual, full production row", "seconds": 2.149414916988462}
+{"prime": 32749, "id": "I12_26", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7858238340122625}
+{"prime": 32749, "id": "I12_27", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7964052080642432}
+{"prime": 32749, "id": "I12_28", "checks": "Euler, independent forward dual, full production row", "seconds": 2.281226208084263}
+{"prime": 32749, "id": "I12_29", "checks": "Euler, independent forward dual, full production row", "seconds": 1.56235933303833}
+{"prime": 32749, "id": "I12_30", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9795346249593422}
+{"prime": 32749, "id": "I12_31", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7468959159450606}
+{"prime": 32749, "id": "I12_32", "checks": "Euler, independent forward dual, full production row", "seconds": 1.2628929170314223}
+{"prime": 32749, "id": "I12_33", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7404184580082074}
+{"prime": 32749, "id": "I12_34", "checks": "Euler, independent forward dual, full production row", "seconds": 4.295586209045723}
+{"prime": 32749, "id": "I12_35", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7639999999664724}
+{"prime": 32749, "id": "I12_36", "checks": "Euler, independent forward dual, full production row", "seconds": 1.886154833016917}
+{"prime": 32749, "id": "I12_37", "checks": "Euler, independent forward dual, full production row", "seconds": 4.51742191601079}
+{"prime": 32749, "id": "I12_38", "checks": "Euler, independent forward dual, full production row", "seconds": 1.774164207978174}
+{"prime": 32749, "id": "I12_39", "checks": "Euler, independent forward dual, full production row", "seconds": 1.99115604092367}
+{"prime": 32749, "id": "I12_40", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9237872080411762}
+{"prime": 32749, "id": "I12_41", "checks": "Euler, independent forward dual, full production row", "seconds": 0.9720721249468625}
+{"prime": 32749, "id": "I12_42", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4820692079374567}
+{"prime": 32749, "id": "I12_43", "checks": "Euler, independent forward dual, full production row", "seconds": 3.3827308329055086}
+{"prime": 32749, "id": "I12_44", "checks": "Euler, independent forward dual, full production row", "seconds": 1.4445747080026194}
+{"prime": 32749, "id": "I12_45", "checks": "Euler, independent forward dual, full production row", "seconds": 1.1826778330141678}
+{"prime": 32749, "id": "I12_46", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9491446670144796}
+{"prime": 32749, "id": "I12_47", "checks": "Euler, independent forward dual, full production row", "seconds": 1.2945848749950528}
+{"prime": 32749, "id": "I12_48", "checks": "Euler, independent forward dual, full production row", "seconds": 3.1825613329419866}
+{"prime": 32749, "id": "I12_49", "checks": "Euler, independent forward dual, full production row", "seconds": 3.243094499921426}
+{"prime": 32749, "id": "I12_50", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6982293329201639}
+{"prime": 32749, "id": "I12_51", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5579546670196578}
+{"prime": 32749, "id": "I12_52", "checks": "Euler, independent forward dual, full production row", "seconds": 1.9970550830475986}
+{"prime": 32749, "id": "I12_53", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5017122080316767}
+{"prime": 32749, "id": "I12_54", "checks": "Euler, independent forward dual, full production row", "seconds": 1.6543570409994572}
+{"prime": 32749, "id": "I12_55", "checks": "Euler, independent forward dual, full production row", "seconds": 1.7732538749696687}
+{"prime": 32749, "id": "I12_56", "checks": "Euler, independent forward dual, full production row", "seconds": 1.2280233340570703}
+{"prime": 32749, "id": "I12_57", "checks": "Euler, independent forward dual, full production row", "seconds": 1.5076103330357}
+{"prime": 32749, "id": "I12_58", "checks": "Euler, independent forward dual, full production row", "seconds": 1.785717666032724}
+{"prime": 32749, "id": "I12_59", "checks": "Euler, independent forward dual, full production row", "seconds": 6.235022292006761}
+{"prime": 32749, "id": "I12_60", "checks": "Euler, independent forward dual, full production row", "seconds": 0.804385875002481}
+{"prime": 32749, "id": "I12_61", "checks": "Euler, independent forward dual", "seconds": 1.6789740420645103}
+{"prime": 32749, "id": "I12_62", "checks": "Euler, independent forward dual", "seconds": 2.1740766670554876}
+{"polynomial_prime": 32749, "point": 1, "id": "I4_1", "seconds": 0.0741115000564605}
+{"polynomial_prime": 32749, "point": 1, "id": "I6_1", "seconds": 0.09357554197777063}
+{"polynomial_prime": 32749, "point": 1, "id": "I6_2", "seconds": 2.2141361250542104}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_1", "seconds": 0.10535024991258979}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_2", "seconds": 0.14682366698980331}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_3", "seconds": 0.1519554170081392}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_4", "seconds": 0.3398772500222549}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_5", "seconds": 0.4076949160080403}
+{"polynomial_prime": 32749, "point": 1, "id": "I8_6", "seconds": 0.43523441604338586}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_1", "seconds": 1.354073999915272}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_2", "seconds": 1.6716504578944296}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_3", "seconds": 2.3383497920585796}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_4", "seconds": 1.5854597500292584}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_5", "seconds": 1.1482740830397233}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_6", "seconds": 1.7127409579697996}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_7", "seconds": 1.5096268749330193}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_8", "seconds": 3.495400166953914}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_9", "seconds": 4.181630583014339}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_10", "seconds": 1.6748276250436902}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_11", "seconds": 2.952293875045143}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_12", "seconds": 2.027473875088617}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_13", "seconds": 1.8892733750399202}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_14", "seconds": 4.206858167075552}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_15", "seconds": 1.9230557089904323}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_16", "seconds": 2.4040586249902844}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_17", "seconds": 1.6988825000589713}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_18", "seconds": 4.33131237491034}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_19", "seconds": 2.022327624959871}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_20", "seconds": 1.6222163339843974}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_21", "seconds": 1.8996642499696463}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_22", "seconds": 4.787919208058156}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_23", "seconds": 1.7398071660427377}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_24", "seconds": 2.4572554170154035}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_25", "seconds": 1.9827057499205694}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_26", "seconds": 1.713867541984655}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_27", "seconds": 1.9644436670932919}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_28", "seconds": 2.4481196250999346}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_29", "seconds": 1.7324290829710662}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_30", "seconds": 1.9469337079208344}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_31", "seconds": 1.9134240839630365}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_32", "seconds": 1.421778624993749}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_33", "seconds": 2.412743082968518}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_34", "seconds": 5.519568208022974}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_35", "seconds": 1.8884985409677029}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_36", "seconds": 2.1359574160305783}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_37", "seconds": 4.523272417020053}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_38", "seconds": 1.83040900004562}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_39", "seconds": 2.190339166088961}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_40", "seconds": 1.821355541003868}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_41", "seconds": 1.2717132080579177}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_42", "seconds": 1.8880299580050632}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_43", "seconds": 3.6086012090090662}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_44", "seconds": 1.5372610839549452}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_45", "seconds": 1.2719052920583636}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_46", "seconds": 2.0018023749580607}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_47", "seconds": 1.367142750066705}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_48", "seconds": 3.459218292031437}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_49", "seconds": 3.6060549579560757}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_50", "seconds": 1.8217866669874638}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_51", "seconds": 1.6768990830751136}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_52", "seconds": 2.0380172500154004}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_53", "seconds": 1.6215901669347659}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_54", "seconds": 1.7295089169638231}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_55", "seconds": 1.944398041930981}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_56", "seconds": 1.298081333981827}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_57", "seconds": 1.5800735839875415}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_58", "seconds": 1.9363454580307007}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_59", "seconds": 5.941155707929283}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_60", "seconds": 0.8887479590484872}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_61", "seconds": 0.7508396249031648}
+{"polynomial_prime": 32749, "point": 1, "id": "I12_62", "seconds": 1.0199825000017881}
+{"polynomial_prime": 32749, "points": 2, "rank": 72, "determinant_mod_prime": 12699}

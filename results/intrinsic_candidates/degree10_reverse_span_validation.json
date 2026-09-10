@@ -1,0 +1,218 @@
+{
+ "all_checks_pass": true,
+ "per_prime": {
+  "32717": {
+   "fresh": {
+    "all_in_atlas_span": true,
+    "dim_Q10": 3,
+    "rank": 3,
+    "vectors": [
+     [
+      2575,
+      23575,
+      14540
+     ],
+     [
+      27240,
+      7380,
+      26658
+     ],
+     [
+      14033,
+      8112,
+      7270
+     ]
+    ]
+   },
+   "original": {
+    "all_in_atlas_span": true,
+    "dim_Q10": 3,
+    "rank": 3,
+    "vectors": [
+     [
+      2575,
+      23575,
+      14540
+     ],
+     [
+      27240,
+      7380,
+      26658
+     ],
+     [
+      14033,
+      8112,
+      7270
+     ]
+    ]
+   }
+  },
+  "32749": {
+   "fresh": {
+    "all_in_atlas_span": true,
+    "dim_Q10": 3,
+    "rank": 3,
+    "vectors": [
+     [
+      16093,
+      21692,
+      18193
+     ],
+     [
+      31483,
+      19632,
+      27897
+     ],
+     [
+      28082,
+      30819,
+      25471
+     ]
+    ]
+   },
+   "original": {
+    "all_in_atlas_span": true,
+    "dim_Q10": 3,
+    "rank": 3,
+    "vectors": [
+     [
+      16093,
+      21692,
+      18193
+     ],
+     [
+      31483,
+      19632,
+      27897
+     ],
+     [
+      28082,
+      30819,
+      25471
+     ]
+    ]
+   }
+  }
+ },
+ "published_basis": [
+  "P10_10",
+  "P10_11",
+  "P10_12"
+ ],
+ "recovered_einsums": [
+  "abcdef,abcdgh,efijkl,ghimno,jklmno->",
+  "abcdef,abcdgh,efijkl,gijmno,hklmno->",
+  "abcdef,abcdgh,egijkl,fhimno,jklmno->"
+ ],
+ "recovered_multisets": [
+  [
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125"
+  ],
+  [
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125"
+  ],
+  [
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125",
+   "N4125"
+  ]
+ ],
+ "relationship": "DIFFERENT compact basis, equivalent span. Every recovered direction comes from the N4125^5 sector, whereas all three published basis elements are N1050-based. The reverse search did not rediscover the published formulas; it found an independent set spanning the same quotient.",
+ "schema": 1,
+ "span_comparison": {
+  "32717": {
+   "dim_Q10": 3,
+   "mutually_inverse": true,
+   "published_in_reverse_basis": [
+    [
+     32349,
+     11966,
+     32033
+    ],
+    [
+     7391,
+     31173,
+     29870
+    ],
+    [
+     28945,
+     6593,
+     24960
+    ]
+   ],
+   "rank_published": 3,
+   "rank_reverse": 3,
+   "rank_union": 3,
+   "reverse_in_published_basis": [
+    [
+     22542,
+     14020,
+     6511
+    ],
+    [
+     7514,
+     7824,
+     4779
+    ],
+    [
+     11271,
+     19892,
+     11128
+    ]
+   ],
+   "spans_equal": true
+  },
+  "32749": {
+   "dim_Q10": 3,
+   "mutually_inverse": true,
+   "published_in_reverse_basis": [
+    [
+     24917,
+     23659,
+     24805
+    ],
+    [
+     7964,
+     6455,
+     23434
+    ],
+    [
+     6759,
+     14174,
+     20698
+    ]
+   ],
+   "rank_published": 3,
+   "rank_reverse": 3,
+   "rank_union": 3,
+   "reverse_in_published_basis": [
+    [
+     2753,
+     27246,
+     18100
+    ],
+    [
+     11834,
+     11404,
+     32259
+    ],
+    [
+     17751,
+     28852,
+     20989
+    ]
+   ],
+   "spans_equal": true
+  }
+ }
+}

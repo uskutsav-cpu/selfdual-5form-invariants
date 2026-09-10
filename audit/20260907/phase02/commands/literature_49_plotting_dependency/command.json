@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/environment/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-cache-dir",
+    "--target",
+    "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review/plotting-runtime",
+    "matplotlib"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/literature-review",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788832414.172948,
+  "status": "completed",
+  "pid": 13761,
+  "exit_code": 0,
+  "seconds": 30.793982665985823,
+  "finished_unix": 1788832444.9675572,
+  "logs": {
+    "stdout.log": {
+      "sha256": "e756d41e53af7896efc42027a4b0c43717ca0783bfabaa67aabbeba46be18a29",
+      "bytes": 2995
+    },
+    "stderr.log": {
+      "sha256": "7ca04818930d5158dc5f861b224d0fcb2d1d0493c85c5b0616093f4833c33a00",
+      "bytes": 230
+    }
+  }
+}

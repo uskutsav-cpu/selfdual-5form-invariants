@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{rrrrrll}
+\toprule
+seed & scale & step & zero rows & sweep ranks & gap at 81 & classification \\
+\midrule
+20260627 & 0.25 & 1e-05 & 0 & 81 & 2.0e+07 & nondegenerate generic \\
+20260626 & 0.35 & 1e-05 & 48 & 35 & 1.3e+00 & degenerate sample \\
+\bottomrule
+\end{tabular}
+\caption{Controlled float64 Jacobian matrix using the original finite-difference procedure. A run is degenerate when candidate rows evaluate to numerical zero at the sample point; rows at or below the declared noise floor are never normalised, since doing so rescales rounding noise into unit vectors and manufactures rank.}
+\label{tab:jacruns}
+\end{table}

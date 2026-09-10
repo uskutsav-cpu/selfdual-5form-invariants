@@ -1,0 +1,28 @@
+\paragraph{Canonicalisation.} Contraction graphs are reduced to a canonical form
+so that two labellings of the same contraction are identified. A regression test
+pins a known hash collision on regular multigraphs, so that a future change to
+the hash cannot silently merge distinct graphs.
+
+\paragraph{Modular rank.} A streaming row-reduced sieve accepts rows one at a
+time and reports whether each is independent of everything seen so far. Memory is
+proportional to the rank, not to the candidate count.
+
+\paragraph{Span comparison.} Two subspaces are compared by two-way containment,
+never by dimension. A dimension match alone would leave open that two spaces of
+equal dimension are different subspaces, which is exactly the error that the
+$12=12$ coincidence of section~\ref{sec:decomp} would otherwise have caused.
+
+\paragraph{Contraction scheduling.} Spinor-side contractions are executed as
+pairwise steps in an order found by a greedy path search, with a reduction mod
+$p$ after each step so no intermediate overflows. Both a memory budget and a
+floating-point-operation budget are enforced; a candidate exceeding either is
+recorded as skipped, with the reason, rather than being silently dropped or
+allowed to stall the run.
+
+\paragraph{Derivative validation.} The analytic amputated derivative is validated
+against Euler's identity $\sum_r c_r \partial_r I = (\deg I) I$, exactly, at every
+degree used. The batched evaluator is separately validated against a literal
+transcription of the port-graph definition.
+
+\paragraph{Test counts.} The tensor-side suite has 199 tests; the bridge suite has
+49, run at both primes.

@@ -1,0 +1,82 @@
+[
+  {
+    "file": "exact-source-evaluation-certificate.json",
+    "sha256": "01f9ab8d8f966827f820541a6e0bfec8e8bf64f710ec5b9f3be6dc825c61ed12",
+    "keys": [
+      "schema",
+      "status",
+      "source_reading",
+      "frozen_base_commit",
+      "proof_scope",
+      "certificate",
+      "invariance_argument",
+      "graph_definitions",
+      "audit_source_sha256",
+      "primes",
+      "modulus",
+      "seeds",
+      "coordinates",
+      "bounds",
+      "exact_integer_numerator_evaluations",
+      "exact_rational_evaluations",
+      "ranks",
+      "point_evidence",
+      "dense_modular_crosschecks",
+      "maps"
+    ]
+  },
+  {
+    "file": "order8_change_of_basis_exact.json",
+    "sha256": "1a98b3c2c5073662ee9a93adcfb3184d2e03611072afb4b184e9dce472917372",
+    "keys": [
+      "schema",
+      "status",
+      "source_reading",
+      "frozen_base_commit",
+      "proof_scope",
+      "certificate",
+      "degree",
+      "literature_basis",
+      "graph_basis",
+      "product",
+      "matrix_convention",
+      "literature_to_graph",
+      "graph_to_literature",
+      "product_correction",
+      "exact_6x6_without_products",
+      "all_displayed_literature_to_graph",
+      "all_displayed_order",
+      "verified",
+      "primitive_quotient_matrix_6x6",
+      "holdout_prime",
+      "prime_witnesses",
+      "literature_source",
+      "source_qualification"
+    ]
+  },
+  {
+    "file": "order10_change_of_basis_exact.json",
+    "sha256": "9a672693ee237a98406595a1b7540ceaa686853148b8a0d142b06f544964424d",
+    "keys": [
+      "schema",
+      "status",
+      "source_reading",
+      "frozen_base_commit",
+      "proof_scope",
+      "certificate",
+      "degree",
+      "literature_basis",
+      "graph_and_product_basis",
+      "matrix_convention",
+      "matrix_12x14",
+      "published_span_rank",
+      "product_span_rank",
+      "union_rank",
+      "intersection_rank",
+      "primitive_quotient_rank",
+      "product_intersection_witnesses",
+      "verified_reconstruction",
+      "literature_source"
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+{
+ "bracket_convention": "the symmetrization and/or anti-symmetrization of the indices within the red brackets is made upon the anti-symmetrization within the black brackets (arXiv v2 p.26, journal p.18)",
+ "corroboration": "the paper states 83 candidates against a ring dimension of 81 and therefore 'at least 2 non-linear relations'. The repository independently found cumulative functional rank 81 with exactly two functional dependencies (I12_61, I12_62). Note the paper conjectures NON-LINEAR RELATIONS while the repository established JACOBIAN dependence; these are related but not identical, and PO-03 remains open.",
+ "equations": {
+  "4.24": {
+   "arxiv_pdf_page": 25,
+   "content": "twelve degree-10 candidates I^(1..12)_10",
+   "journal_pdf_page": 17,
+   "transcription_status": "extracted, not yet implemented"
+  },
+  "4.25": {
+   "arxiv_pdf_page": 26,
+   "content": "three degree-12 structures I^(1..3)_12",
+   "journal_pdf_page": 18,
+   "transcription_status": "extracted AND implemented"
+  }
+ },
+ "note": "PDFs are NOT committed; only hashes, citations and page references.",
+ "schema": 1,
+ "source_discrepancy": {
+  "action": "recorded, not resolved; no convention altered",
+  "arithmetic": "1+2+6+12+64 = 85, not 83; 1+2+6+12+62 = 83",
+  "issue": "internal arithmetic inconsistency, present in BOTH versions",
+  "repository_value": "62 primitives at degree 12, consistent with the stated total of 83",
+  "text": "At the 10th order there are 12 linearly independent invariants and at order 12 there are 64 ... their number is 83"
+ },
+ "sources": [
+  {
+   "authors": "Cederwall, Hutomo, Kuzenko, Lechner, Sorokin",
+   "bytes": 1068103,
+   "doi": "10.1088/1751-8121/ae3bb8",
+   "downloaded_utc": "2026-07-30",
+   "journal": "J. Phys. A 59 (2026) 065203",
+   "pages": 35,
+   "role": "source of record",
+   "sha256": "0437ffc2a5fce3cfcaf45601a972a966198059b60a799d0f03d33d8df9e940cc",
+   "title": "Some remarks on invariants",
+   "url": "https://research.chalmers.se/publication/550755/file/550755_Fulltext.pdf"
+  },
+  {
+   "arxiv": "2509.14350v2",
+   "bytes": 668474,
+   "downloaded_utc": "2026-07-30",
+   "pages": 52,
+   "role": "cross-check",
+   "sha256": "ec51d9e22c4d75651e2024d09b17562bc5c4d89c191c3ab11cf86697a9c7880e",
+   "title": "Some remarks on invariants",
+   "url": "https://arxiv.org/pdf/2509.14350"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+\section{Tensor building blocks}
+\label{app:blocks}
+
+\paragraph{The quadratic block.}
+\begin{equation}
+M_{\mu\nu} \;=\; F_{\mu\alpha\beta\gamma\delta}\,
+                 F_\nu{}^{\alpha\beta\gamma\delta}.
+\end{equation}
+$M$ is symmetric. For self-dual $F$ its trace vanishes,
+$M^\mu{}_\mu = \langle F,F\rangle = 0$, by the argument of
+appendix~\ref{app:gten}; this is the same vanishing that fixes the leading degree
+of the stress-tensor trace, and it means the family
+$\operatorname{Tr}(M^k)$ starts contributing at $k = 2$.
+
+\paragraph{Quartic blocks.}
+From four copies of $F$ two irreducible structures are needed. We label them
+$N^{(1050)}$ and $N^{(4125)}$ by the dimensions of the $\mathrm{Spin}(10)$
+representations in which they transform. They are obtained by projecting the
+four-fold product onto those irreducible components; the projectors are built
+from $\eta$ and $\epsilon$ contractions in the fixed index ordering used
+throughout.
+
+\paragraph{Index placement.}
+All blocks are stored with indices in the down position and raised only at
+contraction time, so that no expression depends on an implicit metric factor.
+Contractions are performed in a fixed order determined by the contraction planner,
+with reduction mod $p$ after every step.
+
+\paragraph{Why the labels matter and where they do not.}
+The representation labels are descriptive. Nothing in the results depends on the
+irreducible decomposition being the one the labels suggest --- the invariants are
+computed by explicit contraction, and their ranks are what is certified. The
+labels are retained because they make the candidate inventory of
+appendix~\ref{app:bases} readable, not because any claim rests on them.
+
+\paragraph{Products versus primitives.}
+At degree ten the product subspace $\Pten$ is spanned by
+$I^{(4)}_1 I^{(6)}_1$ and $\bigl(I^{(4)}_1\bigr)$-type combinations formed from
+lower-degree invariants; its exact dimension is $\dimPten$. Everything not in
+$\Pten$ is called primitive. The decomposition
+$\Ften = \Gten \oplus \Pten$ holds with $\dim \Gten = \dimGten$ and
+$\dim \Pten = \dimPten$, summing to $\dimAtenQ$, and the graph generators are
+therefore a complement to the products.

@@ -1,0 +1,9 @@
+iniconfig==2.3.0
+numpy==2.5.1
+opt_einsum==3.4.0
+packaging==26.3
+pip==25.1.1
+pluggy==1.6.0
+Pygments==2.21.0
+pynauty==2.8.8.1
+pytest==9.1.1

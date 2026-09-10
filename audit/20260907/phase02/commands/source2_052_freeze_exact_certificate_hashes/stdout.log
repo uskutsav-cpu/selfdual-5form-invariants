@@ -1,0 +1,6 @@
+{
+  "exact-source-evaluation-certificate.json": "01f9ab8d8f966827f820541a6e0bfec8e8bf64f710ec5b9f3be6dc825c61ed12",
+  "order8_change_of_basis_exact.json": "1a98b3c2c5073662ee9a93adcfb3184d2e03611072afb4b184e9dce472917372",
+  "order10_change_of_basis_exact.json": "9a672693ee237a98406595a1b7540ceaa686853148b8a0d142b06f544964424d",
+  "exact_evaluation_certificate.py": "3fd45a5579f6efe3f7dbe3a9ace25f05cf6bc8157bfde537e7a04ec65a5b12c8"
+}

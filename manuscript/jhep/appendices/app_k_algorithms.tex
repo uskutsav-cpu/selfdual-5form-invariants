@@ -1,0 +1,90 @@
+\section{Algorithms and tests}
+\label{app:algorithms}
+
+\paragraph{Graph canonicalisation.}
+Contraction patterns are encoded as vertex-coloured multigraphs and canonicalised
+with \texttt{nauty}~\cite{McKay:2013} through the \texttt{pynauty} bindings. Ports
+are modelled by auxiliary vertices so that the five slots of an $F$ are
+distinguishable from one another only up to the symmetries the tensor actually
+has.
+
+An earlier version used a Weisfeiler--Leman style hash as a fallback when the
+bindings were unavailable. It collided: $49$ order-six classes collapsed onto
+$39$ keys, undercounting the atlas. The fallback has been removed rather than
+fixed. A canonicalisation that is exact at every degree used is a precondition for
+every dimension in this paper, and a fallback that is silently approximate is
+worse than no fallback.
+
+\paragraph{Tensor contractions.}
+Contractions are planned once per invariant and then executed with reduction mod
+$p$ after every step, so intermediates never grow. Planning uses a greedy
+ordering; \texttt{opt\_einsum}~\cite{Smith:2018} is supported as an optional
+accelerator and produces better orderings when present, but it was not installed
+in the environment that produced the certified results.
+
+\paragraph{Spinor contractions.}
+Spinor-side invariants contract gamma and charge-conjugation matrices along the
+closed paths of a port graph. The same reduce-after-every-step discipline applies.
+
+\paragraph{Modular arithmetic.}
+Primes are chosen near $2^{15}$ so that a product of two residues fits in a
+machine integer with room to accumulate. Reductions are explicit; there is no
+reliance on a library's implicit modulus. An overflow guard checks that no
+intermediate exceeds the safe range, and fails rather than wrapping.
+
+\paragraph{What the Euler check is for.}
+Every Jacobian row is tested against Euler's homogeneity relation. It is fair to
+ask what this catches, since homogeneity of the invariants is guaranteed by the
+construction. The answer is that the check does not test homogeneity of the
+invariant; it tests the \emph{differentiation}. Euler's relation ties the
+computed derivative row back to the value of the invariant at the same point, so
+a row produced by a mis-amputated contraction --- the realistic failure mode when
+derivatives are taken analytically by removing one copy of $F$ --- fails it,
+whatever rank that row would otherwise have contributed. A row that fails Euler
+is wrong, and this is the only check in the pipeline that says so about a single
+row in isolation.
+
+\paragraph{Elimination and determinants.}
+Ranks over $\Fp$ come from exact Gaussian elimination. Determinants certifying a
+rank are computed twice: by fraction-free Bareiss elimination~\cite{Bareiss:1968},
+which keeps every intermediate an integer, and by an independent exact routine.
+Agreement is required.
+
+\paragraph{Rational reconstruction.}
+CRT combination followed by rational reconstruction~\cite{Wang:1982}, always with
+at least one prime held out of the fit for validation. Sampling arguments
+elsewhere in the pipeline are Schwartz--Zippel in
+character~\cite{Zippel:1979,Schwartz:1980}: a non-zero polynomial cannot vanish at
+too many random points, so agreement on independently drawn samples bounds the
+probability of coincidence, though it does not eliminate it.
+
+\paragraph{Test structure.}
+$\nTraceTests$ tensor-side and $\nBridgeTests$ bridge-side tests. Beyond the
+ordinary unit tests, the suite contains three categories that carry more weight:
+\begin{itemize}\itemsep2pt
+\item \textbf{Controls.} Tests asserting that a quantity does \emph{not} vanish
+      where it should not, without which the corresponding vanishing tests are
+      vacuous. The $\langle F,F\rangle$ control of appendix~\ref{app:gten} is the
+      clearest example.
+\item \textbf{Counterfactuals.} Tests that deliberately assume something false
+      and assert the consequence --- the G-10 counterfactual, the orientation
+      branch flip. These detect an assumption becoming silently unnecessary.
+\item \textbf{Negative fixtures.} Objects retained specifically because they
+      reproduce a historical error, such as the raw target span.
+\end{itemize}
+
+\paragraph{Historical defects, retained as fixtures.}
+\begin{enumerate}\itemsep2pt
+\item Colliding graph canonicalisation, undercounting the atlas.
+\item The raw target span identified with the flow closure, giving
+      $\Qten = 0$.
+\item An unpinned square-root branch in the frame congruence, silently selecting
+      the wrong eigenspace at some primes.
+\item A control test calling the projector with a signature flag mistaken for a
+      duality flag.
+\item An identity check that normalised the two sides of an equation separately.
+\item A rank reported from an incomplete evaluation schedule.
+\end{enumerate}
+Each is now covered by a test that fails if the defect returns. We list them
+because the credibility of a computational result rests as much on the errors
+that were found and fixed as on the checks that passed.

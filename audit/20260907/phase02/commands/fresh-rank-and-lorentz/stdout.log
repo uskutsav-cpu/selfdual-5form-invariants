@@ -1,0 +1,26 @@
+prime 50021 seed 16999642918068834541: rows 10/81, rank 10
+prime 50021 seed 16999642918068834541: rows 20/81, rank 20
+prime 50021 seed 16999642918068834541: rows 30/81, rank 30
+prime 50021 seed 16999642918068834541: rows 40/81, rank 40
+prime 50021 seed 16999642918068834541: rows 50/81, rank 50
+prime 50021 seed 16999642918068834541: rows 60/81, rank 60
+prime 50021 seed 16999642918068834541: rows 70/81, rank 70
+prime 50021 seed 16999642918068834541: rows 80/81, rank 80
+prime 50021 seed 16999642918068834541: rows 81/81, rank 81
+prime 32749 seed 9932584768098142723: rows 10/81, rank 10
+prime 32749 seed 9932584768098142723: rows 20/81, rank 20
+prime 32749 seed 9932584768098142723: rows 30/81, rank 30
+prime 32749 seed 9932584768098142723: rows 40/81, rank 40
+prime 32749 seed 9932584768098142723: rows 50/81, rank 50
+prime 32749 seed 9932584768098142723: rows 60/81, rank 60
+prime 32749 seed 9932584768098142723: rows 70/81, rank 70
+prime 32749 seed 9932584768098142723: rows 80/81, rank 80
+prime 32749 seed 9932584768098142723: rows 81/81, rank 81
+prime 50021: rotation plane [9, 8] parameter [16, 29], all81 PASS
+prime 50021: rotation plane [7, 3] parameter [8, 41], all81 PASS
+prime 50021: boost plane [0, 9] parameter [3, 11], all81 PASS
+prime 50021: boost plane [0, 3] parameter [26, 27], all81 PASS
+prime 32749: rotation plane [5, 6] parameter [18, 53], all81 PASS
+prime 32749: rotation plane [8, 3] parameter [13, 29], all81 PASS
+prime 32749: boost plane [0, 9] parameter [29, 55], all81 PASS
+prime 32749: boost plane [0, 8] parameter [14, 39], all81 PASS

@@ -1,0 +1,102 @@
+{
+ "schema": 1,
+ "commit": "c862241445ab4debab194eda9e3cc735887d392d",
+ "excluded": [
+  "third-party spinor archive (redistribution unresolved)",
+  "row caches (regenerable)",
+  "LaTeX build artifacts"
+ ],
+ "artifacts": [
+  {
+   "path": "results/rank81/certificate.json",
+   "present": true,
+   "bytes": 56013,
+   "sha256": "339b810940554f4d07ddc0f61c228520aea2d33c602ede1eaa0d5c08aa31579c",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "results/rank81/minor81_certificate.json",
+   "present": true,
+   "bytes": 4530,
+   "sha256": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "results/stress_flow/trace_sector.json",
+   "present": true,
+   "bytes": 3273,
+   "sha256": "7906b67afd2fc14697497836542dd98d5f729d167ef210a97b1516fdd197e083",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "results/stress_flow/theorem_status.json",
+   "present": true,
+   "bytes": 1102,
+   "sha256": "d4bc2ed81ac1662d52849d7f5baed9736daa29268ee47eeb2df7bd144ea501c4",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "verification/degree8_span_equality.json",
+   "present": true,
+   "bytes": 6407,
+   "sha256": "9100d557a4189185ace35fea1edc6dd2c398676f8a3ad7d0e756385ac639b380",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "verification/spinor_trace_comparison.json",
+   "present": true,
+   "bytes": 10203,
+   "sha256": "a3ea0bf9448e65f9b7efeba641bf5fa7d2405b2825c69800c75dce0d5ce49f25",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "verification/COMMON_SAMPLE_REGISTRY.json",
+   "present": true,
+   "bytes": 208923,
+   "sha256": "5095d6c3bb8e11f467ca488ebd436641cdbff1b2f53adf41453f4937d89914c8",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "spinor_trace_bridge/results/bridge_validation.json",
+   "present": true,
+   "bytes": 7141,
+   "sha256": "93db9f8af7c6f25d330dc750565d9b3bdcec23f575e470a9a2139a8414e297ea",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "results/intrinsic_candidates/degree10_space_incidence.json",
+   "present": true,
+   "bytes": 3618,
+   "sha256": "0ea95d3b3857fc92c65848db1a93b1b0c90444034b0657927e23ea2e060d38c8",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "results/intrinsic_candidates/degree10_published_product_intersection.json",
+   "present": true,
+   "bytes": 1980,
+   "sha256": "727de55463d55271142f5a2ce1157db36e051b9299206a871e4daeb71f0f5109",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "manuscript/prl/main.pdf",
+   "present": true,
+   "bytes": 262628,
+   "sha256": "21810b08b9c86d83e048a6c616b6f01ee399cd585b11615c3904401d1f2c35df",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "manuscript/prl/supplemental.pdf",
+   "present": true,
+   "bytes": 195700,
+   "sha256": "64d473e80191ec45dc6fd3a1b70a12023f0a1cf8db66e2773e95fa251867b382",
+   "classification": "git-tracked"
+  },
+  {
+   "path": "manuscript/main.pdf",
+   "present": true,
+   "bytes": 378559,
+   "sha256": "9982bb40b0d768b9296693194c605549559551c8eae8687a29af699ea706d494",
+   "classification": "git-tracked"
+  }
+ ]
+}

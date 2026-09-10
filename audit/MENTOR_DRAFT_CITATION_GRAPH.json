@@ -1,0 +1,235 @@
+{
+ "cited_but_undefined": [],
+ "edges": {
+  "Avetisyan:2021heg": [
+   "main:Introduction"
+  ],
+  "Avetisyan:2022zza": [
+   "main:Introduction"
+  ],
+  "Bandos:2020hgy": [
+   "main:Introduction"
+  ],
+  "Bandos:2020jsw": [
+   "main:Introduction"
+  ],
+  "Bandos:2021rqy": [
+   "main:Introduction"
+  ],
+  "Bareiss:1968": [
+   "app_h_closure:Lower-bound certificate.",
+   "app_k_algorithms:Elimination and determinants.",
+   "main:Determinants."
+  ],
+  "Bekaert:1998yp": [
+   "main:Introduction"
+  ],
+  "Bekaert:2002dt": [
+   "main:Introduction"
+  ],
+  "Bonelli:2018kik": [
+   "main:Introduction"
+  ],
+  "Born:1934gh": [
+   "main:Introduction"
+  ],
+  "Brizio:2026ttbar": [
+   "main:Introduction",
+   "main:Physical interpretation"
+  ],
+  "Cavaglia:2016oda": [
+   "main:Introduction"
+  ],
+  "Cederwall:2025invariants": [
+   "main:Consequences.",
+   "main:Introduction",
+   "main:The published basis and the product sector"
+  ],
+  "Cohen:1993": [
+   "main:What a modular rank does and does not establish."
+  ],
+  "Conti:2018tca": [
+   "main:Introduction"
+  ],
+  "DallAgata:1998ahf": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Deger:2024jyq": [
+   "main:Introduction"
+  ],
+  "Derksen:2002": [
+   "main:Where this sits in invariant theory."
+  ],
+  "Deser:1976iy": [
+   "main:Introduction"
+  ],
+  "Elamaran:2025mlinv": [
+   "main:Prior computational method.",
+   "main:What is prior work."
+  ],
+  "Evnin:2022kqf": [
+   "main:Introduction"
+  ],
+  "Ferko:2023wyi": [
+   "main:Introduction"
+  ],
+  "Ferko:2024chiral": [
+   "main:Introduction",
+   "main:Physical interpretation",
+   "main:Reachability of the stress flow at degree ten"
+  ],
+  "Freedman:2012zz": [
+   "app_a_conventions:Clifford algebra."
+  ],
+  "Gaillard:1981rj": [
+   "main:Introduction"
+  ],
+  "Gibbons:1995cv": [
+   "main:Introduction"
+  ],
+  "Green:1997as": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Green:1997di": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Green:1997tv": [
+   "main:Type IIB, as motivation only."
+  ],
+  "GreenSchwarzWitten:1987": [
+   "app_a_conventions:Clifford algebra."
+  ],
+  "Guica:2020eab": [
+   "main:Introduction"
+  ],
+  "Harris:2020": [
+   "app_l_reproduction:Environment.",
+   "main:Exact modular evaluation."
+  ],
+  "Henneaux:1988gg": [
+   "main:Introduction"
+  ],
+  "Howe:1983sra": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Hunter:2007": [
+   "app_l_reproduction:Environment."
+  ],
+  "Hutomo:2025chiral": [
+   "app_g_rank81:The upper bound.",
+   "main:Generic functional rank",
+   "main:Generic orbit dimension.",
+   "main:Introduction",
+   "main:Physical interpretation",
+   "main:Reachability of the stress flow at degree ten",
+   "main:The free stress-tensor trace and activation"
+  ],
+  "Kugo:1982bn": [
+   "main:Spinor formulation"
+  ],
+  "Lawson:1989": [
+   "app_a_conventions:Clifford algebra."
+  ],
+  "Liu:2022bfg": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Marcus:1982yu": [
+   "main:Introduction",
+   "main:Ten-dimensional self-dual five-forms",
+   "main:Type IIB, as motivation only."
+  ],
+  "McKay:2013": [
+   "app_k_algorithms:Graph canonicalisation.",
+   "app_l_reproduction:Environment.",
+   "main:Tensor formulation",
+   "main:What is prior work."
+  ],
+  "Mkrtchyan:2019wnk": [
+   "main:Introduction"
+  ],
+  "Monagan:2004": [
+   "main:What a modular rank does and does not establish."
+  ],
+  "Pasti:1995tn": [
+   "main:Introduction"
+  ],
+  "Pasti:1997gx": [
+   "main:Introduction"
+  ],
+  "Paulos:2008tn": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Perry:1996mk": [
+   "main:Introduction"
+  ],
+  "Polchinski:1998rr": [
+   "app_a_conventions:Clifford algebra."
+  ],
+  "Popov:1994": [
+   "main:Where this sits in invariant theory."
+  ],
+  "Russo:2024kto": [
+   "main:Causality, which we do not address."
+  ],
+  "Schwartz:1980": [
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ],
+  "Schwarz:1983qr": [
+   "main:Type IIB, as motivation only."
+  ],
+  "Schwarz:1993vs": [
+   "main:Introduction"
+  ],
+  "Sen:2015nph": [
+   "main:Introduction"
+  ],
+  "Sen:2019qit": [
+   "main:Introduction",
+   "main:Type IIB, as motivation only."
+  ],
+  "Smirnov:2016lqw": [
+   "main:Introduction"
+  ],
+  "Smith:2018": [
+   "app_k_algorithms:Tensor contractions.",
+   "app_l_reproduction:Environment.",
+   "main:Exact modular evaluation."
+  ],
+  "Sturmfels:2008": [
+   "main:Where this sits in invariant theory."
+  ],
+  "Townsend:2019ftg": [
+   "main:Introduction"
+  ],
+  "VanProeyen:1999ni": [
+   "app_a_conventions:Clifford algebra."
+  ],
+  "Wang:1982": [
+   "app_h_closure:The exact rational calculation.",
+   "app_j_b10:CRT and rational reconstruction.",
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ],
+  "Weyl:1946": [
+   "main:Where this sits in invariant theory."
+  ],
+  "Witten:1996hc": [
+   "main:Introduction"
+  ],
+  "Zamolodchikov:2004ce": [
+   "main:Introduction"
+  ],
+  "Zippel:1979": [
+   "app_k_algorithms:Rational reconstruction.",
+   "main:What a modular rank does and does not establish."
+  ],
+  "vzGathen:2013": [
+   "main:What a modular rank does and does not establish."
+  ]
+ },
+ "n_cited": 66,
+ "n_entries": 66,
+ "schema": 1,
+ "uncited": []
+}

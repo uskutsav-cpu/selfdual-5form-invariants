@@ -1,5 +1,27 @@
 # Lorentz invariants of a self-dual 5-form in 10D
 
+**Science completion:** an independent D5 character calculation now derives the
+Hilbert dimensions through degree 22, closes degree-12 completeness, and removes
+the literature-count premise from the corrected source maps. See
+[the completion ledger](SCIENCE_STATUS.md) and the minimal
+[standalone rank/orbit verifier](science/rank81/README.md).
+
+**September 2026 graph-certificate release:** the same explicit 81 graphs now
+have fresh nonzero 81×81 Jacobian minors at two points under each of two
+primes. See [the roadmap and proof scope](docs/CLASSIFICATION_ROADMAP.md),
+[the ordered basis](results/rank81_basis.json),
+[the complete witnesses](results/rank81_certificate.json), and
+[the manuscript with all formulas](paper/manuscript.pdf).
+The independent audit preserved a failure in the frozen literature
+transcription and repaired the J10–J12 antisymmetrizers. See
+[the audit report](INDEPENDENT_AUDIT.md) for the frozen failure, corrected
+source maps, exact evidence and remaining assumptions. Independent fresh
+checks verify every Jacobian entry at two further points, the degree-12
+polynomial rank 72, and generic orbit dimension 45. Run
+`python scripts/verify_rank81.py --recompute` to re-evaluate the four frozen
+graph witnesses, and `python scripts/verify_independent_audit.py` to check
+the saved independent certificates using integer and rational arithmetic.
+
 Extension of Elamaran–Ferko–Scarlett, *Machine Learning Invariants of Tensors*
 ([arXiv:2512.23750](https://arxiv.org/abs/2512.23750), Phys. Rev. D).
 
@@ -25,9 +47,11 @@ generators; the seventh degree-8 scalar is the product $I_4^2$. The literature
 gives a tensor basis for the octic generators. This repo supplies an explicit
 contraction-graph basis and independently checks its Jacobian rank.
 
-Physics payoff: the most general Lagrangian depending on $F_5$ but not its
-derivatives is an arbitrary function of those scalars, which controls
-ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
+On the regular local quotient, these scalars give local coordinates for
+Lorentz-invariant functions of $F_5$. This supports local descriptions of
+interactions without derivatives, including chiral 4-form theories. Global
+orbit separation and a presentation of the full polynomial invariant ring
+are not established here.
 
 ## Status
 
@@ -37,6 +61,9 @@ ModMax-type and $T\bar{T}$-like flows for chiral 4-form theories (type IIB).
 | 10D self-dual 5-form, order 4 | **1** independent invariant (all 4 candidate graphs enumerated — complete) |
 | 10D, order 6 | **2** new independent invariants, running rank **3 / 81** (49 exact graph classes) |
 | 10D, order 8 | **6** new independent invariants, running rank **9 / 81** (1,689 exact graph classes; complete under two primes) |
+| 10D, order 10 | **12** new connected primitive directions, running rank **21 / 81**; degree-10 value rank **14** after adding $I_4I_{6,1}$ and $I_4I_{6,2}$ (187,392 exact graph classes; two primes, three Jacobian samples per prime) |
+| 10D, order 12 | **62** connected primitive polynomial directions plus **10** lower products give degree-12 rank **72**; 60 add functional directions, giving the full cumulative rank **81 / 81**. The remaining `I12_61` and `I12_62` are linearly independent homogeneous directions modulo lower products but add no cumulative functional direction (three primes, four samples per prime). |
+| Exact stress-flow map through degree 10 | **PASS** — free-stress dimensions **1,1,2,2** inside five-form value dimensions **1,2,7,14**; exact ModMax $I_8/I_{12}$ reproduction under three primes |
 
 Artifacts:
 
@@ -46,6 +73,67 @@ Artifacts:
   4, 49, and 1,689 exact isomorphism classes at orders 4, 6, and 8.
 - [`results/10d_baseline.json`](results/10d_baseline.json) — the original
   order-4/order-6 baseline.
+- [`results/10d_order10.json`](results/10d_order10.json) — the twelve
+  explicit degree-10 graph generators, the two product directions, and exact
+  two-prime validation evidence.
+- [`results/degree10_benchmarks.json`](results/degree10_benchmarks.json) —
+  stage distributions and before/after optimization measurements.
+- [`docs/degree10.md`](docs/degree10.md) — catalog, checkpoint, reproduction,
+  benchmark, and limitation details.
+- [`results/10d_order12.json`](results/10d_order12.json) — all 62 explicit
+  order-12 graphs, ten product directions, 83-candidate primitive inventory,
+  and the 3-prime by 4-sample exact certificate.
+- [`results/degree12_benchmarks.json`](results/degree12_benchmarks.json) —
+  generation, planning, contraction, rank, checkpoint, width, and RSS
+  distributions.
+- [`docs/degree12.md`](docs/degree12.md) — proof scope, exact shard hashes,
+  staged reproduction, memory bounds, and clean-checkout revalidation.
+- [`results/stress_flow_exact_low_degree.json`](results/stress_flow_exact_low_degree.json)
+  — five-prime rational change-of-basis matrices, exact complement
+  certificates, ModMax regressions, and the flow-closure pilot.
+- [`docs/stress_flow.md`](docs/stress_flow.md) — paper conventions,
+  normalization, maps, obstructions, perturbative scope, and degree-12 import
+  contract.
+
+### The degree-12 result
+
+The homogeneous degree-12 scalar space has exact rank **72** on the committed
+basis:
+
+- $I_{4,1}^3$;
+- $I_{6,1}^2$, $I_{6,1}I_{6,2}$, and $I_{6,2}^2$;
+- $I_{4,1}I_{8,k}$ for $k=1,\ldots,6$; and
+- 62 explicit connected contractions
+  $I_{12,1},\ldots,I_{12,62}$.
+
+Polynomial independence is certified by exact ranks of gradients stacked
+across four independent generic points. This matters: at one point the ten
+product gradients lie in the lower tangent span and cannot themselves have
+rank ten. Across four points, the ten products and all 62 connected
+directions are pivots, giving rank 72. Attaining the supplied Hilbert-series
+upper bound proves degree-12 completeness.
+
+For functional independence, the 21 lower primitive rows and the first 60
+order-12 rows give rank **81**. `I12_61` and `I12_62` remain new homogeneous
+polynomials but their Jacobian rows reduce to zero against that cumulative
+basis. This exact pattern repeats at all four seeds under each of primes
+32749, 32719, and 32693. All selected values are nonzero in those runs, and
+all 62 graphs pass an exact SO(1,9) boost check under every prime.
+
+### The degree-10 result
+
+The exact degree-10 value space has rank **14** on the saved basis:
+twelve connected contractions $I_{10,1},\ldots,I_{10,12}$ plus the two lower
+products $I_{4,1}I_{6,1}$ and $I_{4,1}I_{6,2}$. The twelve graph formulas and
+canonical SHA-256 IDs are explicit in
+[`results/10d_order10.json`](results/10d_order10.json).
+
+At each of seeds 20260729, 20260730, and 20260731, and under both primes 32749
+and 32719, the lower generators have cumulative Jacobian rank 9 and the twelve
+degree-10 rows raise it to **21**. Separately, sixteen value samples per prime
+give exact rank **14** for the homogeneous degree-10 basis. Reaching the
+published upper bound of twelve new primitives proves completeness at this
+degree; it does not claim a polynomial generating set through all degrees.
 
 ### The six order-8 graph generators
 
@@ -105,11 +193,18 @@ form vanishes), and $m_{ij} \le p-1$ for the self-dual case (multiplicity $p$
 forces a factor $F\cdot F = 0$). Disconnected graphs are products of lower
 invariants and can never raise the rank, so they are dropped.
 
-**Independence is a Jacobian rank.** Given candidates $I_a$, the generic rank
+**Functional independence is a Jacobian rank.** Given candidates $I_a$, the generic rank
 of $\partial I_a/\partial A^k$ is the number of functionally independent
 invariants. A uniformly random point over a large finite field attains that
-generic rank with high probability. The complete order-8 basis is recomputed
-under a second prime to guard against an unlucky specialization.
+generic rank with high probability. The order-12 certificate is recomputed at
+four points under three primes to guard against unlucky specializations.
+
+**Homogeneous polynomial independence uses stacked gradients.** If a linear
+combination of same-degree homogeneous polynomials vanishes identically, its
+gradient vanishes at every point. Therefore a rank-$r$ matrix obtained by
+concatenating their exact gradients at several points proves at least $r$
+linearly independent polynomials. The order-12 run attains the known upper
+bound 72, so the lower and upper bounds coincide.
 
 $I$ is multilinear in its $n$ vertices, so
 $\partial I/\partial A^k = \sum_v [\text{graph with } F \text{ at } v \to P(e_k)]$.
@@ -163,13 +258,44 @@ then run:
 python3 scripts/generate_graph_catalog.py
 ```
 
+The checkpointed degree-10 workflow uses nauty 2.9.3 and is documented with
+copy-paste commands in [`docs/degree10.md`](docs/degree10.md). A clean checkout
+can revalidate the committed formulas without regenerating the discovery
+catalog:
+
+```bash
+python3 scripts/degree10_pipeline.py validate \
+  --selection-result results/10d_order10.json \
+  --skip-catalog-check \
+  --primes 32749 32719 \
+  --jacobian-seeds 20260729 20260730 20260731 \
+  --value-seed-start 20260801 --value-samples 16 \
+  --out /tmp/10d_order10_revalidated.json
+```
+
+The committed order-12 formulas can likewise be revalidated without any
+generated catalog or checkpoint:
+
+```bash
+.venv/bin/python scripts/degree12_pipeline.py validate \
+  --selection-result results/10d_order12.json \
+  --primes 32749 32719 32693 \
+  --seeds 20260729 20260730 20260731 20260732 \
+  --out /tmp/10d_order12_revalidated.json
+```
+
+See [`docs/degree12.md`](docs/degree12.md) for exact shard generation and
+discovery commands.
+
 ## Scope
 
-The repository is now complete through order 8. It does **not** claim to have
-all 81 functionally independent invariants: the partition function has 12 new
-generators at order 10 and 62 at order 12, and candidate graph counts grow
-superexponentially. Extending this explicit graph basis beyond order 8 remains
-open.
+The repository now gives an explicit trace-contraction realization of all
+**81 functionally independent invariants through order 12**, along with all
+72 homogeneous degree-12 directions. It does not claim that these 81
+functions form a freely generated polynomial ring, nor does it claim an
+exhaustive count of every order-12 contraction graph. Degree-12 completeness
+uses the known Hilbert-series upper bound together with the exact rank-72
+lower bound.
 
 ## Layout
 
@@ -178,16 +304,32 @@ src/sdinv/modp.py      exact F_p linear algebra, overflow-safe pairwise einsum
 src/sdinv/forms.py     p-forms, Hodge dual via index complement, self-dual projector
 src/sdinv/graphs.py    exact multigraph certificates, nauty generation, catalogs
 src/sdinv/contract.py  contraction evaluation, optimized reverse-mode Jacobian
+src/sdinv/catalog.py   atomic checksummed streaming graph shards
+src/sdinv/checkpoint.py durable identity-checked rank checkpoints
+src/sdinv/spinor_adapter.py future exact trace/spinor column-space comparison
+src/sdinv/stress.py      paper-normalized M, N, T, ModMax I8/I12 identities
+src/sdinv/invariant_registry.py committed low-degree and degree-12 import registry
+src/sdinv/exactmap.py    modular solves, CRT, rational maps, complements
 scripts/run_6d.py      reproduction gate
 scripts/run_10d.py     two-prime complete computation through order 8
 scripts/generate_graph_catalog.py  exact nauty catalog generation
-tests/test_core.py     correctness gates
+scripts/degree10_pipeline.py generation, scheduling, discovery, validation, benchmarks
+scripts/degree12_pipeline.py bounded order-12 shards, discovery, validation, benchmarks
+scripts/stress_flow_pipeline.py exact stress map and physics-stage artifact
+tests/test_core.py     core correctness gates
+tests/test_degree12.py committed order-12 certificate gates
+tests/test_stress_flow.py paper, Lorentz, map, and closure-pilot gates
 ```
 
 ## Next questions
 
-1. What is the explicit change of basis between these six graph contractions
-   and the six tensor expressions in arXiv:2509.14350v2?
-2. Which graph topologies give the most efficient order-10 basis?
-3. At what degree do the first nonlinear relations among the published
+1. The octic map is resolved for the explicitly selected six source expressions
+   plus the quartic square; the full seven-dimensional map and product
+   correction are in `results/order8_change_of_basis.json`. Other source
+   selections must be specified and their span checked independently.
+2. What are compact tensor-word expressions for the 62 saved order-12 graph
+   contractions?
+3. What are explicit differential relations for `I12_61` and `I12_62`
+   against the 81-row functional basis?
+4. At what degree do the first nonlinear relations among the published
    generator counts appear?

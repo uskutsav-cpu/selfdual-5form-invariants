@@ -1,0 +1,226 @@
+{
+ "claim": "holdout agreement for the twelve published degree-10 candidates",
+ "fit_holdout_rank_agree": true,
+ "fit_primes": [
+  "32749"
+ ],
+ "holdout_primes": [
+  "32717"
+ ],
+ "note": "Quotient VECTORS are prime-specific and are not expected to match across primes; what must agree is which candidates reach Q10 and the resulting rank.",
+ "per_candidate": {
+  "P10_01": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_02": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_03": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_04": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_05": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_06": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_07": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_08": {
+   "per_prime_quotient": {
+    "32717": [
+     0,
+     0,
+     0
+    ],
+    "32749": [
+     0,
+     0,
+     0
+    ]
+   },
+   "reaches_Q10": false,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_09": {
+   "per_prime_quotient": {
+    "32717": [
+     30992,
+     15284,
+     0
+    ],
+    "32749": [
+     28088,
+     575,
+     0
+    ]
+   },
+   "reaches_Q10": true,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_10": {
+   "per_prime_quotient": {
+    "32717": [
+     15788,
+     13584,
+     14050
+    ],
+    "32749": [
+     26346,
+     9877,
+     9547
+    ]
+   },
+   "reaches_Q10": true,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_11": {
+   "per_prime_quotient": {
+    "32717": [
+     1539,
+     18934,
+     0
+    ],
+    "32749": [
+     15468,
+     21541,
+     0
+    ]
+   },
+   "reaches_Q10": true,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  },
+  "P10_12": {
+   "per_prime_quotient": {
+    "32717": [
+     9234,
+     28791,
+     0
+    ],
+    "32749": [
+     27310,
+     1310,
+     0
+    ]
+   },
+   "reaches_Q10": true,
+   "reaches_Q10_consistent": true,
+   "status_all_solved": true
+  }
+ },
+ "rank_by_role": {
+  "fit": [
+   3
+  ],
+  "holdout": [
+   3
+  ]
+ },
+ "schema": 1
+}

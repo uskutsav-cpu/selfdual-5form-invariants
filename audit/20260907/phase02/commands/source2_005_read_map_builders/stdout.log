@@ -1,0 +1,628 @@
+#!/usr/bin/env python3
+"""Build a deterministic, graph-only reproducibility archive and file manifest."""
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import sys
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(ROOT / "src"), str(ROOT / "scripts")]
+
+from sdinv.catalog import atomic_write_json
+from verify_rank81 import verify
+
+
+def build():
+    basis = json.loads((ROOT / "results/rank81_basis.json").read_text())
+    certificate = json.loads((ROOT / "results/rank81_certificate.json").read_text())
+    verify(basis, certificate)
+    for path in ("results/rank81_lorentz.json", "results/order8_change_of_basis.json",
+                 "results/order10_change_of_basis.json", "results/classification_validation.json",
+                 "paper/manuscript.pdf"):
+        if not (ROOT / path).is_file():
+            raise ValueError(f"missing release deliverable {path}")
+    validation = json.loads((ROOT / "results/classification_validation.json").read_text())
+    if not validation["passed"]:
+        raise ValueError("release validation did not pass")
+    # This bundle's pytest entry point is deliberately its portable delivery
+    # suite. The full historical tensor suite remains in the Git repository.
+    files = list((ROOT / "src/sdinv").glob("*.py"))
+    files += [ROOT / "scripts" / f"{name}.py" for name in (
+        "run_6d", "run_10d", "run_degree", "degree10_pipeline", "degree12_pipeline",
+        "graph_to_latex", "search_rank81", "verify_rank81", "map_literature_basis",
+        "validate_rank81_lorentz", "build_classification_release")]
+    files += [ROOT / p for p in (
+        "tests/test_roadmap.py", "requirements.txt", "requirements-lock.txt", "pytest.ini",
+        "docs/CLASSIFICATION_ROADMAP.md", "docs/degree10.md", "docs/degree12.md",
+        "docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md",
+        "results/10d_order8.json", "results/10d_order10.json", "results/10d_order12.json",
+        "results/10d_graph_catalog.json", "results/degree10/B10_coordinates_per_prime.json",
+        "results/rank81_basis.json", "results/rank81_certificate.json", "results/rank81_lorentz.json",
+        "results/order8_change_of_basis.json", "results/order10_change_of_basis.json",
+        "results/classification_validation.json", "paper/manuscript.tex", "paper/manuscript.pdf",
+        "paper/tables/certificate_cells.tex", "paper/tables/rank81_formulas.tex")]
+    files = sorted(set(files))
+    entries = [{"path": str(p.relative_to(ROOT)), "bytes": p.stat().st_size,
+                "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
+    directory = ROOT / "release/classification"
+    directory.mkdir(parents=True, exist_ok=True)
+    manifest = {"schema": 1, "files": entries, "scope": "Portable graph-only certificate, delivery tests, formulas and literature-map evidence. Full historical test suite is available in the Git repository."}
+    atomic_write_json(directory / "manifest.json", manifest)
+    readme = """# Exact graph classification package
+
+Create a Python environment, install requirements.txt, then run:
+
+    python -m pytest tests/test_roadmap.py -o addopts='' -q
+    python scripts/verify_rank81.py
+    python scripts/verify_rank81.py --recompute
+    python scripts/validate_rank81_lorentz.py
+
+The first verification command checks saved matrices; --recompute repeats
+every graph evaluation. All 81 functions and all 126 coordinates are explicit.
+See docs/CLASSIFICATION_ROADMAP.md for proof boundaries and literature maps.
+manifest.json records SHA-256 hashes of every payload file.
+
+This portable delivery suite is distinct from the full historical tensor
+suite in the repository. No external spinor archive is required.
+"""
+    (directory / "README.md").write_text(readme)
+    archive = directory / "rank81-graph-classification.zip"
+    payload = {entry["path"]: (ROOT / entry["path"]).read_bytes() for entry in entries}
+    payload["manifest.json"] = (directory / "manifest.json").read_bytes()
+    payload["README.md"] = readme.encode()
+    with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as stream:
+        for name, content in sorted(payload.items()):
+            info = zipfile.ZipInfo(name, date_time=(2026, 9, 7, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            stream.writestr(info, content)
+    checksum = hashlib.sha256(archive.read_bytes()).hexdigest()
+    (directory / "SHA256SUMS").write_text(f"{checksum}  {archive.name}\n")
+    print(f"Built {archive.name}: {len(files)} payload files; SHA256 {checksum}")
+
+
+if __name__ == "__main__":
+    build()
+
+GRAPH_BASIS results/order8_change_of_basis.json [{'catalog_index': 1, 'graph': 'n8[04^4,05^1,14^1,16^4,25^4,27^1,36^1,37^4]', 'id': 'I8_1', 'order': 8}, {'catalog_index': 73, 'graph': 'n8[03^4,06^1,14^4,16^1,25^4,26^1,37^1,47^1,57^1,67^2]', 'id': 'I8_2', 'order': 8}, {'catalog_index': 444, 'graph': 'n8[03^4,04^1,14^1,15^1,16^2,17^1,25^4,26^1,37^1,46^1,47^2,67^1]', 'id': 'I8_3', 'order': 8}, {'catalog_index': 84, 'graph': 'n8[03^2,06^2,07^1,14^4,16^1,25^4,26^1,36^1,37^2,47^1,57^1]', 'id': 'I8_4', 'order': 8}, {'catalog_index': 324, 'graph': 'n8[03^2,04^1,06^2,14^2,15^1,17^2,25^4,26^1,36^2,37^1,47^2]', 'id': 'I8_5', 'order': 8}, {'catalog_index': 971, 'graph': 'n8[03^2,06^2,07^1,14^2,15^1,16^2,24^1,25^2,27^2,36^1,37^2,45^2]', 'id': 'I8_6', 'order': 8}]
+GRAPH_BASIS results/order10_change_of_basis.json ['I10_1', 'I10_2', 'I10_3', 'I10_4', 'I10_5', 'I10_6', 'I10_7', 'I10_8', 'I10_9', 'I10_10', 'I10_11', 'I10_12', 'I4_1*I6_1', 'I4_1*I6_2']
+FILE src/sdinv/exactmap.py
+"""Exact finite-field change-of-basis and obstruction certificates."""
+
+from fractions import Fraction
+from math import gcd, isqrt
+
+import numpy as np
+
+from .forms import random_form, selfdual_projector, to_dense
+from .modp import inv
+from .stress import (
+    five_form_moment,
+    matrix_trace_power,
+    symmetric_inner,
+    stress_correction_r,
+    stress_mixed,
+)
+
+
+DEFAULT_PRIMES = (32749, 32719, 32693, 32717, 32771)
+DEFAULT_SAMPLE_SEEDS = tuple(range(20260901, 20260919))
+
+
+def rank_mod(matrix, mod):
+    """Exact rank of a small dense matrix over ``F_mod``."""
+    work = np.asarray(matrix, dtype=np.int64).copy() % mod
+    if work.ndim != 2:
+        raise ValueError("matrix must be two-dimensional")
+    row = 0
+    for column in range(work.shape[1]):
+        pivots = np.nonzero(work[row:, column])[0]
+        if not len(pivots):
+            continue
+        pivot = row + int(pivots[0])
+        if pivot != row:
+            work[[row, pivot]] = work[[pivot, row]]
+        work[row] = work[row] * inv(work[row, column], mod) % mod
+        for other in range(work.shape[0]):
+            if other != row and work[other, column]:
+                work[other] = (
+                    work[other] - int(work[other, column]) * work[row]
+                ) % mod
+        row += 1
+        if row == work.shape[0]:
+            break
+    return int(row)
+
+
+def solve_full_column_rank(matrix, target, mod):
+    """Solve ``matrix @ x = target`` over ``F_mod``.
+
+    The coefficient matrix may be tall but must have full column rank, which
+    makes the solution unique.  Inconsistency is reported explicitly.
+    """
+    matrix = np.asarray(matrix, dtype=np.int64) % mod
+    target = np.asarray(target, dtype=np.int64).reshape(-1) % mod
+    if matrix.ndim != 2 or matrix.shape[0] != target.shape[0]:
+        raise ValueError("incompatible matrix and target dimensions")
+    rows, columns = matrix.shape
+    augmented = np.column_stack((matrix, target)) % mod
+    pivot_rows = {}
+    row = 0
+    for column in range(columns):
+        candidates = np.nonzero(augmented[row:, column])[0]
+        if not len(candidates):
+            continue
+        pivot = row + int(candidates[0])
+        if pivot != row:
+            augmented[[row, pivot]] = augmented[[pivot, row]]
+        augmented[row] = (
+            augmented[row] * inv(augmented[row, column], mod)
+        ) % mod
+        for other in range(rows):
+            if other != row and augmented[other, column]:
+                augmented[other] = (
+                    augmented[other]
+                    - int(augmented[other, column]) * augmented[row]
+                ) % mod
+        pivot_rows[column] = row
+        row += 1
+        if row == rows:
+            break
+    if len(pivot_rows) != columns:
+        raise ValueError(
+            f"basis matrix has rank {len(pivot_rows)}, expected {columns}")
+    for residual in augmented:
+        if not np.any(residual[:columns]) and residual[columns]:
+            raise ValueError("target is outside the supplied basis span")
+    solution = np.zeros(columns, dtype=np.int64)
+    for column, pivot_row in pivot_rows.items():
+        solution[column] = augmented[pivot_row, columns]
+    if not np.array_equal(matrix @ solution % mod, target):
+        raise AssertionError("internal modular solve verification failed")
+    return solution
+
+
+def independent_row_indices(matrix, mod):
+    """Deterministically select a maximal independent set of matrix rows."""
+    matrix = np.asarray(matrix, dtype=np.int64) % mod
+    selected = []
+    current_rank = 0
+    for index in range(matrix.shape[0]):
+        candidate = selected + [index]
+        next_rank = rank_mod(matrix[candidate], mod)
+        if next_rank > current_rank:
+            selected.append(index)
+            current_rank = next_rank
+        if current_rank == matrix.shape[1]:
+            break
+    return selected
+
+
+def _crt_pair(a, modulus_a, b, modulus_b):
+    """Chinese-remainder combination for coprime moduli."""
+    if gcd(modulus_a, modulus_b) != 1:
+        raise ValueError("CRT moduli must be coprime")
+    step = ((b - a) * pow(modulus_a, -1, modulus_b)) % modulus_b
+    modulus = modulus_a * modulus_b
+    return int((a + modulus_a * step) % modulus), int(modulus)
+
+
+def crt(residues, moduli):
+    residues = [int(x) for x in residues]
+    moduli = [int(x) for x in moduli]
+    if not residues or len(residues) != len(moduli):
+        raise ValueError("residue/modulus count mismatch")
+    value, modulus = residues[0] % moduli[0], moduli[0]
+    for residue, next_modulus in zip(residues[1:], moduli[1:]):
+        value, modulus = _crt_pair(
+            value, modulus, residue % next_modulus, next_modulus)
+    return value, modulus
+
+
+def rational_reconstruct(residue, modulus):
+    """Recover the unique small rational represented modulo ``modulus``.
+
+    Numerator and denominator are bounded by ``floor(sqrt(modulus/2))``.
+    This is sufficient for the low-degree integer-normalized contractions;
+    every reconstructed result is rechecked under each prime.
+    """
+    residue = int(residue) % int(modulus)
+    modulus = int(modulus)
+    if residue == 0:
+        return Fraction(0, 1)
+    bound = isqrt(modulus // 2)
+    old_r, r = modulus, residue
+    old_t, t = 0, 1
+    while r and r > bound:
+        quotient = old_r // r
+        old_r, r = r, old_r - quotient * r
+        old_t, t = t, old_t - quotient * t
+    if r == 0 or t == 0:
+        raise ValueError("rational reconstruction failed")
+    numerator, denominator = int(r), int(t)
+    if denominator < 0:
+        numerator, denominator = -numerator, -denominator
+    common = gcd(abs(numerator), denominator)
+    numerator //= common
+    denominator //= common
+    if abs(numerator) > bound or denominator > bound:
+        raise ValueError("reconstructed fraction exceeds uniqueness bound")
+    if gcd(denominator, modulus) != 1:
+        raise ValueError("reconstructed denominator is not invertible")
+    if (numerator * pow(denominator, -1, modulus)) % modulus != residue:
+        raise ValueError("reconstructed fraction has the wrong residue")
+    return Fraction(numerator, denominator)
+
+
+def reconstruct_vector(vectors, primes):
+    """CRT and rationally reconstruct matching modular vectors."""
+    if len(vectors) != len(primes):
+        raise ValueError("one coefficient vector is required per prime")
+    lengths = {len(vector) for vector in vectors}
+    if len(lengths) != 1:
+        raise ValueError("coefficient vectors have different lengths")
+    result = []
+    for column in range(len(vectors[0])):
+        residue, modulus = crt(
+            [int(vector[column]) for vector in vectors], primes)
+        try:
+            fraction = rational_reconstruct(residue, modulus)
+        except ValueError as exc:
+            raise ValueError(
+                f"rational reconstruction failed at column {column}: {exc}"
+            ) from exc
+        for vector, prime in zip(vectors, primes):
+            expected = (
+                fraction.numerator
+                * inv(fraction.denominator, prime)
+            ) % prime
+            if expected != int(vector[column]) % prime:
+                raise AssertionError(
+                    "rational reconstruction failed prime verification")
+        result.append(fraction)
+    return result
+
+
+def fraction_record(value):
+    value = Fraction(value)
+    return {
+        "numerator": int(value.numerator),
+        "denominator": int(value.denominator),
+        "text": str(value),
+    }
+
+
+def sample_selfdual_five_form(seed, prime):
+    projector = selfdual_projector(10, 5, True, prime)
+    rng = np.random.default_rng(int(seed))
+    compact = (
+        projector @ random_form(10, 5, rng, prime)
+    ) % prime
+    return to_dense(compact, 10, 5, prime)
+
+
+def trace_targets(five_form, mod, extra_targets=()):
+    """Evaluate the unnormalized stress-building contractions.
+
+    The free stress tensor is ``M/48``.  Keeping the M-normalized targets
+    gives small rational change-of-basis coefficients; the physical powers
+    of 48 are attached separately to the artifact.
+    """
+    _, mixed = five_form_moment(five_form, mod)
+    traces = {
+        power: matrix_trace_power(mixed, power, mod)
+        for power in range(2, 11)
+    }
+    result = {
+        "tr_M2": traces[2],
+        "tr_M3": traces[3],
+        "tr_M4": traces[4],
+        "tr_M5": traces[5],
+        "tr_M2^2": traces[2] * traces[2] % mod,
+        "tr_M2*tr_M3": traces[2] * traces[3] % mod,
+    }
+    extra_targets = set(extra_targets)
+    if {"tr_M2R", "paper_I8"} & extra_targets:
+        r_tensor = stress_correction_r(five_form, mod)
+        r_mixed = stress_mixed(r_tensor, mod)
+        if "paper_I8" in extra_targets:
+            m_lower, _ = five_form_moment(five_form, mod)
+            result["paper_I8"] = symmetric_inner(
+                m_lower, r_tensor, mod)
+        if "tr_M2R" in extra_targets:
+            m2 = mixed @ mixed % mod
+            result["tr_M2R"] = int(np.trace(m2 @ r_mixed % mod) % mod)
+    return result
+
+
+STRESS_TARGETS = {
+    4: ("tr_M2",),
+    6: ("tr_M3",),
+    8: ("tr_M4", "tr_M2^2"),
+    10: ("tr_M5", "tr_M2*tr_M3"),
+}
+
+
+def compute_degree_map(registry, degree, primes=DEFAULT_PRIMES,
+                       sample_seeds=DEFAULT_SAMPLE_SEEDS,
+                       extra_targets=()):
+    """Compute and reconstruct a degree-specific exact basis map."""
+    degree = int(degree)
+    targets = tuple(STRESS_TARGETS[degree]) + tuple(extra_targets)
+    items = registry.basis(degree)
+    if len(sample_seeds) <= len(items):
+        raise ValueError(
+            f"degree {degree} requires more than {len(items)} samples "
+            "to reserve at least one held-out validation row"
+        )
+    per_prime = {}
+    modular_solutions = {target: [] for target in targets}
+
+    for prime in primes:
+        basis_rows = []
+        target_columns = {target: [] for target in targets}
+        for seed in sample_seeds:
+            five_form = sample_selfdual_five_form(seed, prime)
+            basis_rows.append(
+                registry.evaluate_degree(degree, five_form, prime))
+            values = trace_targets(
+                five_form,
+                prime,
+                extra_targets=targets,
+            )
+            for target in targets:
+                target_columns[target].append(values[target])
+        basis_matrix = np.asarray(basis_rows, dtype=np.int64) % prime
+        basis_rank = rank_mod(basis_matrix, prime)
+        if basis_rank != len(items):
+            raise RuntimeError(
+                f"degree {degree}, prime {prime}: sampled basis rank "
+                f"{basis_rank}, expected {len(items)}")
+        fit_indices = independent_row_indices(basis_matrix, prime)
+        if len(fit_indices) != len(items):
+            raise RuntimeError("failed to select a full-rank fit sample set")
+        validation_indices = [
+            index for index in range(len(sample_seeds))
+            if index not in set(fit_indices)
+        ]
+        solutions = {}
+        for target in targets:
+            solution = solve_full_column_rank(
+                basis_matrix[fit_indices],
+                np.asarray(target_columns[target], dtype=np.int64)[fit_indices],
+                prime,
+            )
+            all_values = (
+                basis_matrix @ solution % prime
+            )
+            if not np.array_equal(
+                    all_values,
+                    np.asarray(target_columns[target], dtype=np.int64) % prime):
+                raise AssertionError(
+                    f"{target} failed held-out sample validation")
+            solutions[target] = [int(x) for x in solution]
+            modular_solutions[target].append(solution)
+        per_prime[str(prime)] = {
+            "sample_count": len(sample_seeds),
+            "sample_seeds": [int(seed) for seed in sample_seeds],
+            "fit_sample_seeds": [
+                int(sample_seeds[index]) for index in fit_indices],
+            "held_out_sample_seeds": [
+                int(sample_seeds[index]) for index in validation_indices],
+            "held_out_validation_passed": True,
+            "basis_rank": basis_rank,
+            "sample_values": {
+                "basis": [
+                    [int(value) for value in row]
+                    for row in basis_matrix
+                ],
+                "targets": {
+                    target: [int(value) for value in target_columns[target]]
+                    for target in targets
+                },
+            },
+            "solutions": solutions,
+        }
+
+    reconstructed = {
+        target: reconstruct_vector(modular_solutions[target], primes)
+        for target in targets
+    }
+    return {
+        "degree": degree,
+        "basis": [item.id for item in items],
+        "basis_dimension": len(items),
+        "targets": {
+            target: [fraction_record(value) for value in coefficients]
+            for target, coefficients in reconstructed.items()
+        },
+        "primes": [int(prime) for prime in primes],
+        "per_prime": per_prime,
+    }
+
+
+def select_standard_complement(stress_rows):
+    """Select standard-coordinate rows which complement ``stress_rows``."""
+    rational_rows = [
+        [Fraction(value) for value in row] for row in stress_rows]
+    if not rational_rows:
+        raise ValueError("at least one stress row is required")
+    width = len(rational_rows[0])
+    if any(len(row) != width for row in rational_rows):
+        raise ValueError("stress rows have inconsistent widths")
+
+    # Rational Gaussian rank is tiny here; Fraction keeps this proof exact.
+    def rational_rank(rows):
+        work = [list(row) for row in rows]
+        pivot_row = 0
+        for column in range(width):
+            pivot = next(
+                (row for row in range(pivot_row, len(work))
+                 if work[row][column]),
+                None,
+            )
+            if pivot is None:
+                continue
+            work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+            scale = work[pivot_row][column]
+            work[pivot_row] = [entry / scale for entry in work[pivot_row]]
+            for row in range(len(work)):
+                if row != pivot_row and work[row][column]:
+                    scale = work[row][column]
+                    work[row] = [
+                        left - scale * right
+                        for left, right in zip(work[row], work[pivot_row])
+                    ]
+            pivot_row += 1
+            if pivot_row == len(work):
+                break
+        return pivot_row
+
+    selected = []
+    rows = list(rational_rows)
+    current_rank = rational_rank(rows)
+    for column in range(width):
+        candidate = [
+            Fraction(int(index == column), 1) for index in range(width)]
+        next_rank = rational_rank(rows + [candidate])
+        if next_rank > current_rank:
+            rows.append(candidate)
+            selected.append(column)
+            current_rank = next_rank
+        if current_rank == width:
+            break
+    if current_rank != width:
+        raise AssertionError("failed to construct a complete complement")
+    return selected
+
+
+def rational_target_rows(degree_map):
+    """Decode reconstructed target rows from a map artifact."""
+    rows = []
+    for target in STRESS_TARGETS[int(degree_map["degree"])]:
+        rows.append([
+            Fraction(
+                entry["numerator"],
+                entry["denominator"],
+            )
+            for entry in degree_map["targets"][target]
+        ])
+    return rows
+
+FILE src/sdinv/forms.py
+"""Antisymmetric p-forms in d dimensions, over F_p.
+
+A form is stored two ways:
+  - "sparse": a vector of length C(d,p) indexed by SORTED index tuples.
+    This is the honest count of independent components (20 for a 3-form in
+    6D, 252 for a 5-form in 10D).
+  - "dense": a full (d,)*p numpy array, needed for einsum contraction.
+
+The Hodge dual is computed on the sparse representation via index
+complement -- O(C(d,p)) work. Never build the d^d epsilon tensor.
+"""
+
+import itertools
+import numpy as np
+
+from .modp import P, inv
+
+
+def basis_tuples(d, p):
+    """All sorted index tuples -- one per independent component."""
+    return list(itertools.combinations(range(d), p))
+
+
+def metric_signs(d, lorentzian=True):
+    """Diagonal metric. Lorentzian = diag(-1, +1, ..., +1)."""
+    s = np.ones(d, dtype=np.int64)
+    if lorentzian:
+        s[0] = -1
+    return s
+
+
+def perm_sign(perm):
+    """Sign of a permutation given as a sequence."""
+    perm = list(perm)
+    n = len(perm)
+    seen = [False] * n
+    sign = 1
+    for i in range(n):
+        if seen[i]:
+            continue
+        j, ln = i, 0
+        while not seen[j]:
+            seen[j] = True
+            j = perm[j]
+            ln += 1
+        if ln % 2 == 0:
+            sign = -sign
+    return sign
+
+
+def to_dense(vec, d, p_deg, mod=P):
+    """Expand sparse component vector to a dense antisymmetric array."""
+    T = np.zeros((d,) * p_deg, dtype=np.int64)
+    for k, idx in enumerate(basis_tuples(d, p_deg)):
+        v = int(vec[k]) % mod
+        if v == 0:
+            continue
+        for perm in itertools.permutations(range(p_deg)):
+            sgn = perm_sign(perm)
+            T[tuple(idx[perm[i]] for i in range(p_deg))] = (
+                v * sgn) % mod
+    return T
+
+
+def random_form(d, p_deg, rng, mod=P):
+    """Random sparse component vector."""
+    n = len(basis_tuples(d, p_deg))
+    return rng.integers(1, mod, size=n, dtype=np.int64)
+
+
+def hodge_matrix(d, p_deg, lorentzian=True, mod=P):
+    """Matrix of the Hodge star on sparse components.
+
+    (*F)_{I} = (1/(d-p)!) eps_{I J} F^{J}, which on sorted multi-indices is
+    just +/- the component on the complementary index set, times the metric
+    signs from raising J.
+    """
+    src = basis_tuples(d, p_deg)
+    dst = basis_tuples(d, d - p_deg)
+    dst_pos = {t: i for i, t in enumerate(dst)}
+    s = metric_signs(d, lorentzian)
+    M = np.zeros((len(dst), len(src)), dtype=np.int64)
+    for j, I in enumerate(src):
+        Ic = tuple(sorted(set(range(d)) - set(I)))
+        # sign of the permutation (Ic, I) relative to (0,1,...,d-1)
+        perm = list(Ic) + list(I)
+        sgn = perm_sign([perm.index(k) for k in range(d)])
+        raise_sign = int(np.prod(s[list(I)]))
+        M[dst_pos[Ic], j] = (sgn * raise_sign) % mod
+    return M
+
+
+def selfdual_projector(d, p_deg, lorentzian=True, mod=P):
+    """P = (1 + *) / 2, valid when *^2 = +1 (true for 5-forms in 10D
+    Lorentzian: (-1)^{p(d-p)} * (-1)^s = (-1)^25 * (-1)^1 = +1)."""
+    assert d == 2 * p_deg, "star maps p-forms to p-forms only when d = 2p"
+    H = hodge_matrix(d, p_deg, lorentzian, mod)
+    n = H.shape[0]
+    I = np.eye(n, dtype=np.int64)
+    half = inv(2, mod)
+    return ((I + H) * half) % mod
+
+
+def check_star_squared(d, p_deg, lorentzian=True, mod=P):
+    """Sanity check: returns the scalar c with *^2 = c * identity."""
+    H = hodge_matrix(d, p_deg, lorentzian, mod)
+    H2 = (H @ H) % mod
+    n = H.shape[0]
+    c = H2[0, 0]
+    assert np.array_equal(H2, (c * np.eye(n, dtype=np.int64)) % mod), \
+        "star^2 is not a multiple of the identity"
+    return int(c) if c < mod // 2 else int(c) - mod
+

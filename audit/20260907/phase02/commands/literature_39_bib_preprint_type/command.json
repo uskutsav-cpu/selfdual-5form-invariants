@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; p=Path(\"manuscript/prd_letter/references.bib\");s=p.read_text();assert s.count(\"@article{Zamolodchikov:2004ce,\")==1;p.write_text(s.replace(\"@article{Zamolodchikov:2004ce,\",\"@misc{Zamolodchikov:2004ce,\",1));print(\"Changed preprint entry type to misc; all citation fields retained.\")"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788832175.174928,
+  "status": "completed",
+  "pid": 13004,
+  "exit_code": 0,
+  "seconds": 0.1697829170152545,
+  "finished_unix": 1788832175.350749,
+  "logs": {
+    "stdout.log": {
+      "sha256": "2496f8652a17c6337453eb07ba506d6b0c0c8936b55f805f196f0cca0c3ef664",
+      "bytes": 67
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

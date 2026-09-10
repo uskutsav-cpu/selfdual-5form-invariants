@@ -1,0 +1,62 @@
+manuscript/jhep/main.tex-1115-span of $|S|$ vectors has dimension at most $|S|$.
+manuscript/jhep/main.tex-1116-\end{proof}
+manuscript/jhep/main.tex:1117:This is elementary linear algebra and we claim no novelty for it. We state it
+manuscript/jhep/main.tex-1118-because it converts a basis-dependent assertion into a basis-free one: no
+manuscript/jhep/main.tex-1119-closing set of any kind, in any basis, has fewer than $\dimQtenQ$ elements. What
+manuscript/jhep/main.tex-1120-it does \emph{not} give is removal minimality of the particular set we exhibit,
+--
+manuscript/jhep/main.tex-1398-characterisation from those works; we have not verified their results and the
+manuscript/jhep/main.tex-1399-comparison is theirs, not ours. Read that way, the ten-dimensional degree-ten
+manuscript/jhep/main.tex:1400:sector may be the first place in this programme where the flow provably fails to
+manuscript/jhep/main.tex-1401-be exhaustive --- but establishing that it is the first would require a survey we
+manuscript/jhep/main.tex-1402-have not done. Whether the missed directions correspond to genuinely inaccessible
+manuscript/jhep/main.tex-1403-deformations, or merely to deformations this particular flow does not generate,
+--
+submission_candidate/main.tex-79-acknowledgments, funding, licence and data DOI are unresolved placeholders and
+submission_candidate/main.tex-80-are listed in \texttt{submission\_candidate/AUTHORSHIP\_DECISION\_REQUIRED.md}.
+submission_candidate/main.tex:81:The physics interpretation of section~\ref{sec:physics} and the novelty
+submission_candidate/main.tex-82-statements require coauthor confirmation. Not for distribution.}}
+submission_candidate/main.tex-83-\end{center}
+submission_candidate/main.tex-84-
+--
+submission_candidate/main.tex-132-presented in spinor variables, and a separate implementation exists that does so
+submission_candidate/main.tex-133---- but the two implementations use different frames, and no map between them had
+submission_candidate/main.tex:134:been constructed, so their agreement had never been tested at the level of
+submission_candidate/main.tex-135-values.
+submission_candidate/main.tex-136-
+submission_candidate/main.tex-137-\paragraph{Results.} We answer all three, exactly.
+--
+manuscript/prd/main.tex-1187-span of $|S|$ vectors has dimension at most $|S|$.
+manuscript/prd/main.tex-1188-\end{proof}
+manuscript/prd/main.tex:1189:This is elementary linear algebra and we claim no novelty for it. We state it
+manuscript/prd/main.tex-1190-because it converts a basis-dependent assertion into a basis-free one: no
+manuscript/prd/main.tex-1191-closing set of any kind, in any basis, has fewer than $\dimQtenQ$ elements. What
+manuscript/prd/main.tex-1192-it does \emph{not} give is removal minimality of the particular set we exhibit,
+--
+manuscript/prd/main.tex-1470-characterisation from those works; we have not verified their results and the
+manuscript/prd/main.tex-1471-comparison is theirs, not ours. Read that way, the ten-dimensional degree-ten
+manuscript/prd/main.tex:1472:sector may be the first place in this programme where the flow provably fails to
+manuscript/prd/main.tex-1473-be exhaustive --- but establishing that it is the first would require a survey we
+manuscript/prd/main.tex-1474-have not done. Whether the missed directions correspond to genuinely inaccessible
+manuscript/prd/main.tex-1475-deformations, or merely to deformations this particular flow does not generate,
+--
+manuscript/prd_letter/main.tex-434-\end{proof}
+manuscript/prd_letter/main.tex-435-
+manuscript/prd_letter/main.tex:436:This is elementary and we claim no novelty for it; we state it because it
+manuscript/prd_letter/main.tex-437-converts a basis-dependent assertion into a basis-free one. No closing set of
+manuscript/prd_letter/main.tex-438-any kind, in any basis, has fewer than $\dimQtenQ$ elements. Removal minimality
+manuscript/prd_letter/main.tex-439-of the particular closing set we exhibit --- that no element can be dropped ---
+--
+manuscript/main.tex-79-acknowledgments, funding, licence and data DOI are unresolved placeholders and
+manuscript/main.tex-80-are listed in \texttt{submission\_candidate/AUTHORSHIP\_DECISION\_REQUIRED.md}.
+manuscript/main.tex:81:The physics interpretation of section~\ref{sec:physics} and the novelty
+manuscript/main.tex-82-statements require coauthor confirmation. Not for distribution.}}
+manuscript/main.tex-83-\end{center}
+manuscript/main.tex-84-
+--
+manuscript/main.tex-132-presented in spinor variables, and a separate implementation exists that does so
+manuscript/main.tex-133---- but the two implementations use different frames, and no map between them had
+manuscript/main.tex:134:been constructed, so their agreement had never been tested at the level of
+manuscript/main.tex-135-values.
+manuscript/main.tex-136-
+manuscript/main.tex-137-\paragraph{Results.} We answer all three, exactly.

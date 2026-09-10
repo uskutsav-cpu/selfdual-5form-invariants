@@ -1,0 +1,25 @@
+{
+  "comparison_only": "No frozen coefficients were used to compute the new maps. This comparison occurred after independent exact evaluation solve.",
+  "frozen_map_sha256": {
+    "8": "30140fa0bef549b6f6c221e3fcc5f971416930ca3802084ca3d40933f782beec",
+    "10": "429dbf74b37f84baf3b14c8e64bb718d74a0d88b25221848e7f547dc1fd3cb89"
+  },
+  "exact_map_sha256": {
+    "8": "8e2599c1b6153acf49554c5141e9c81ef1b33ff1b4031b401abab8eed5e7fd29",
+    "10": "c84cb539a73e029c648aa8105aa6a78a30d3ccf98b7cfd1025fae7770de86141"
+  },
+  "octic_forward_inverse_product_correction_unchanged": true,
+  "degree10_changed_rows": [
+    10,
+    11,
+    12
+  ],
+  "degree10_difference_rank": 3,
+  "degree10_primitive_difference_rank": 3,
+  "corrected_ranks": {
+    "published_span_rank": 12,
+    "primitive_quotient_rank": 11,
+    "union_rank": 13,
+    "intersection_rank": 1
+  }
+}

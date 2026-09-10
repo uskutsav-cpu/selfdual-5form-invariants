@@ -1,0 +1,3708 @@
+{
+ "all_validated": true,
+ "claim": "Level-A explicit Einstein-index representatives for the seven generalized-flow quotient classes, validated against an independent dense evaluator.",
+ "classes": {
+  "Q10_A": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 10-fold contraction with 25 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 10,
+   "graph": "n10[04^2,06^1,08^1,09^1,15^1,16^1,18^1,19^2,25^2,27^2,28^1,36^3,37^1,39^1,47^1,48^2,57^1,59^1]",
+   "graph_basis_label": "I10_6",
+   "intrinsic_id": "Q10_A",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 10,
+    "form_rank": 5,
+    "label": "n10[04^2,06^1,08^1,09^1,15^1,16^1,18^1,19^2,25^2,27^2,28^1,36^3,37^1,39^1,47^1,48^2,57^1,59^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{i15 i16 i17 i18 i19} F_{j0 j1 i20 i21 i22} F_{j5 j10 j11 i23 i24} F_{j2 j6 j15 j16 j17} F_{j12 j13 j18 j20 j23} F_{j3 j7 j14 j21 j22} F_{j4 j8 j9 j19 j24}",
+    "metric_factor_count": 25,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      2,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      2,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      2,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "i15",
+      "i16",
+      "i17",
+      "i18",
+      "i19"
+     ],
+     "4": [
+      "j0",
+      "j1",
+      "i20",
+      "i21",
+      "i22"
+     ],
+     "5": [
+      "j5",
+      "j10",
+      "j11",
+      "i23",
+      "i24"
+     ],
+     "6": [
+      "j2",
+      "j6",
+      "j15",
+      "j16",
+      "j17"
+     ],
+     "7": [
+      "j12",
+      "j13",
+      "j18",
+      "j20",
+      "j23"
+     ],
+     "8": [
+      "j3",
+      "j7",
+      "j14",
+      "j21",
+      "j22"
+     ],
+     "9": [
+      "j4",
+      "j8",
+      "j9",
+      "j19",
+      "j24"
+     ]
+    },
+    "vertices": 10
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 10670,
+      "fresh_sample": false,
+      "graph_evaluator": 10670,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 9882,
+      "fresh_sample": false,
+      "graph_evaluator": 9882,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 25531,
+      "fresh_sample": false,
+      "graph_evaluator": 25531,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 14856,
+      "fresh_sample": false,
+      "graph_evaluator": 14856,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 24008,
+      "fresh_sample": true,
+      "graph_evaluator": 24008,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31588,
+      "fresh_sample": true,
+      "graph_evaluator": 31588,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 26886,
+      "fresh_sample": false,
+      "graph_evaluator": 26886,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 15226,
+      "fresh_sample": false,
+      "graph_evaluator": 15226,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 3243,
+      "fresh_sample": false,
+      "graph_evaluator": 3243,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 12245,
+      "fresh_sample": false,
+      "graph_evaluator": 12245,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 17007,
+      "fresh_sample": true,
+      "graph_evaluator": 17007,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 16040,
+      "fresh_sample": true,
+      "graph_evaluator": 16040,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 5924,
+      "fresh_sample": false,
+      "graph_evaluator": 5924,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 12525,
+      "fresh_sample": false,
+      "graph_evaluator": 12525,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18045,
+      "fresh_sample": false,
+      "graph_evaluator": 18045,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 15080,
+      "fresh_sample": false,
+      "graph_evaluator": 15080,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 21893,
+      "fresh_sample": true,
+      "graph_evaluator": 21893,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 14843,
+      "fresh_sample": true,
+      "graph_evaluator": 14843,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q10_B": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 10-fold contraction with 25 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 10,
+   "graph": "n10[03^1,05^2,07^1,09^1,14^2,16^1,18^2,26^4,27^1,35^2,38^1,39^1,47^1,48^1,49^1,59^1,78^1,79^1]",
+   "graph_basis_label": "I10_7",
+   "intrinsic_id": "Q10_B",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 10,
+    "form_rank": 5,
+    "label": "n10[03^1,05^2,07^1,09^1,14^2,16^1,18^2,26^4,27^1,35^2,38^1,39^1,47^1,48^1,49^1,59^1,78^1,79^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{j0 i15 i16 i17 i18} F_{j5 j6 i19 i20 i21} F_{j1 j2 j15 j16 i22} F_{j7 j10 j11 j12 j13} F_{j3 j14 j19 i23 i24} F_{j8 j9 j17 j20 j23} F_{j4 j18 j21 j22 j24}",
+    "metric_factor_count": 25,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      1,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      0,
+      2,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      2,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "j0",
+      "i15",
+      "i16",
+      "i17",
+      "i18"
+     ],
+     "4": [
+      "j5",
+      "j6",
+      "i19",
+      "i20",
+      "i21"
+     ],
+     "5": [
+      "j1",
+      "j2",
+      "j15",
+      "j16",
+      "i22"
+     ],
+     "6": [
+      "j7",
+      "j10",
+      "j11",
+      "j12",
+      "j13"
+     ],
+     "7": [
+      "j3",
+      "j14",
+      "j19",
+      "i23",
+      "i24"
+     ],
+     "8": [
+      "j8",
+      "j9",
+      "j17",
+      "j20",
+      "j23"
+     ],
+     "9": [
+      "j4",
+      "j18",
+      "j21",
+      "j22",
+      "j24"
+     ]
+    },
+    "vertices": 10
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 19658,
+      "fresh_sample": false,
+      "graph_evaluator": 19658,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 15486,
+      "fresh_sample": false,
+      "graph_evaluator": 15486,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 25365,
+      "fresh_sample": false,
+      "graph_evaluator": 25365,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 21564,
+      "fresh_sample": false,
+      "graph_evaluator": 21564,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 10570,
+      "fresh_sample": true,
+      "graph_evaluator": 10570,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 22192,
+      "fresh_sample": true,
+      "graph_evaluator": 22192,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 13939,
+      "fresh_sample": false,
+      "graph_evaluator": 13939,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 724,
+      "fresh_sample": false,
+      "graph_evaluator": 724,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8636,
+      "fresh_sample": false,
+      "graph_evaluator": 8636,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 32207,
+      "fresh_sample": false,
+      "graph_evaluator": 32207,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 309,
+      "fresh_sample": true,
+      "graph_evaluator": 309,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 30745,
+      "fresh_sample": true,
+      "graph_evaluator": 30745,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 29205,
+      "fresh_sample": false,
+      "graph_evaluator": 29205,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 29172,
+      "fresh_sample": false,
+      "graph_evaluator": 29172,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 19411,
+      "fresh_sample": false,
+      "graph_evaluator": 19411,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 340,
+      "fresh_sample": false,
+      "graph_evaluator": 340,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28164,
+      "fresh_sample": true,
+      "graph_evaluator": 28164,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 21259,
+      "fresh_sample": true,
+      "graph_evaluator": 21259,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q10_C": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 10-fold contraction with 25 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 10,
+   "graph": "n10[03^1,05^2,08^1,09^1,14^2,16^1,17^1,19^1,26^2,27^1,28^2,35^2,38^1,39^1,46^1,47^2,58^1,69^1,79^1]",
+   "graph_basis_label": "I10_12",
+   "intrinsic_id": "Q10_C",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 10,
+    "form_rank": 5,
+    "label": "n10[03^1,05^2,08^1,09^1,14^2,16^1,17^1,19^1,26^2,27^1,28^2,35^2,38^1,39^1,46^1,47^2,58^1,69^1,79^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{j0 i15 i16 i17 i18} F_{j5 j6 i19 i20 i21} F_{j1 j2 j15 j16 i22} F_{j7 j10 j11 j19 i23} F_{j8 j12 j20 j21 i24} F_{j3 j13 j14 j17 j22} F_{j4 j9 j18 j23 j24}",
+    "metric_factor_count": 25,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      1,
+      2,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "j0",
+      "i15",
+      "i16",
+      "i17",
+      "i18"
+     ],
+     "4": [
+      "j5",
+      "j6",
+      "i19",
+      "i20",
+      "i21"
+     ],
+     "5": [
+      "j1",
+      "j2",
+      "j15",
+      "j16",
+      "i22"
+     ],
+     "6": [
+      "j7",
+      "j10",
+      "j11",
+      "j19",
+      "i23"
+     ],
+     "7": [
+      "j8",
+      "j12",
+      "j20",
+      "j21",
+      "i24"
+     ],
+     "8": [
+      "j3",
+      "j13",
+      "j14",
+      "j17",
+      "j22"
+     ],
+     "9": [
+      "j4",
+      "j9",
+      "j18",
+      "j23",
+      "j24"
+     ]
+    },
+    "vertices": 10
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 1716,
+      "fresh_sample": false,
+      "graph_evaluator": 1716,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 22816,
+      "fresh_sample": false,
+      "graph_evaluator": 22816,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 11396,
+      "fresh_sample": false,
+      "graph_evaluator": 11396,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 9727,
+      "fresh_sample": false,
+      "graph_evaluator": 9727,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18766,
+      "fresh_sample": true,
+      "graph_evaluator": 18766,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8016,
+      "fresh_sample": true,
+      "graph_evaluator": 8016,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 17477,
+      "fresh_sample": false,
+      "graph_evaluator": 17477,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 10895,
+      "fresh_sample": false,
+      "graph_evaluator": 10895,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8242,
+      "fresh_sample": false,
+      "graph_evaluator": 8242,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 23679,
+      "fresh_sample": false,
+      "graph_evaluator": 23679,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 307,
+      "fresh_sample": true,
+      "graph_evaluator": 307,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 10192,
+      "fresh_sample": true,
+      "graph_evaluator": 10192,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4333,
+      "fresh_sample": false,
+      "graph_evaluator": 4333,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 9739,
+      "fresh_sample": false,
+      "graph_evaluator": 9739,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 419,
+      "fresh_sample": false,
+      "graph_evaluator": 419,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 3680,
+      "fresh_sample": false,
+      "graph_evaluator": 3680,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 94,
+      "fresh_sample": true,
+      "graph_evaluator": 94,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 21752,
+      "fresh_sample": true,
+      "graph_evaluator": 21752,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q12_A": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 12-fold contraction with 30 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 12,
+   "graph": "n12[0-4^2,0-6^2,0-8^1,1-5^2,1-7^1,1-8^1,1-9^1,2-7^2,2-9^1,2-10^1,2-11^1,3-9^2,3-10^2,3-11^1,4-6^1,4-9^1,4-10^1,5-7^1,5-8^1,5-11^1,6-10^1,6-11^1,7-8^1,8-11^1]",
+   "graph_basis_label": "I12_59",
+   "intrinsic_id": "Q12_A",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 12,
+    "form_rank": 5,
+    "label": "n12[0-4^2,0-6^2,0-8^1,1-5^2,1-7^1,1-8^1,1-9^1,2-7^2,2-9^1,2-10^1,2-11^1,3-9^2,3-10^2,3-11^1,4-6^1,4-9^1,4-10^1,5-7^1,5-8^1,5-11^1,6-10^1,6-11^1,7-8^1,8-11^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\eta^{i25j25} \\eta^{i26j26} \\eta^{i27j27} \\eta^{i28j28} \\eta^{i29j29} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{i15 i16 i17 i18 i19} F_{j0 j1 i20 i21 i22} F_{j5 j6 i23 i24 i25} F_{j2 j3 j20 i26 i27} F_{j7 j10 j11 j23 i28} F_{j4 j8 j24 j28 i29} F_{j9 j12 j15 j16 j21} F_{j13 j17 j18 j22 j26} F_{j14 j19 j25 j27 j29}",
+    "metric_factor_count": 30,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ],
+     [
+      "i25",
+      "j25"
+     ],
+     [
+      "i26",
+      "j26"
+     ],
+     [
+      "i27",
+      "j27"
+     ],
+     [
+      "i28",
+      "j28"
+     ],
+     [
+      "i29",
+      "j29"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1,
+      2,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "10": [
+      "j13",
+      "j17",
+      "j18",
+      "j22",
+      "j26"
+     ],
+     "11": [
+      "j14",
+      "j19",
+      "j25",
+      "j27",
+      "j29"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "i15",
+      "i16",
+      "i17",
+      "i18",
+      "i19"
+     ],
+     "4": [
+      "j0",
+      "j1",
+      "i20",
+      "i21",
+      "i22"
+     ],
+     "5": [
+      "j5",
+      "j6",
+      "i23",
+      "i24",
+      "i25"
+     ],
+     "6": [
+      "j2",
+      "j3",
+      "j20",
+      "i26",
+      "i27"
+     ],
+     "7": [
+      "j7",
+      "j10",
+      "j11",
+      "j23",
+      "i28"
+     ],
+     "8": [
+      "j4",
+      "j8",
+      "j24",
+      "j28",
+      "i29"
+     ],
+     "9": [
+      "j9",
+      "j12",
+      "j15",
+      "j16",
+      "j21"
+     ]
+    },
+    "vertices": 12
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 7566,
+      "fresh_sample": false,
+      "graph_evaluator": 7566,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 1086,
+      "fresh_sample": false,
+      "graph_evaluator": 1086,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 11405,
+      "fresh_sample": false,
+      "graph_evaluator": 11405,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18422,
+      "fresh_sample": false,
+      "graph_evaluator": 18422,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4570,
+      "fresh_sample": true,
+      "graph_evaluator": 4570,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18780,
+      "fresh_sample": true,
+      "graph_evaluator": 18780,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28435,
+      "fresh_sample": false,
+      "graph_evaluator": 28435,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 21439,
+      "fresh_sample": false,
+      "graph_evaluator": 21439,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 6230,
+      "fresh_sample": false,
+      "graph_evaluator": 6230,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 29383,
+      "fresh_sample": false,
+      "graph_evaluator": 29383,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 27141,
+      "fresh_sample": true,
+      "graph_evaluator": 27141,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 1561,
+      "fresh_sample": true,
+      "graph_evaluator": 1561,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 1491,
+      "fresh_sample": false,
+      "graph_evaluator": 1491,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4343,
+      "fresh_sample": false,
+      "graph_evaluator": 4343,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 5758,
+      "fresh_sample": false,
+      "graph_evaluator": 5758,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 7245,
+      "fresh_sample": false,
+      "graph_evaluator": 7245,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 29506,
+      "fresh_sample": true,
+      "graph_evaluator": 29506,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 20452,
+      "fresh_sample": true,
+      "graph_evaluator": 20452,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q12_B": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 12-fold contraction with 30 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 12,
+   "graph": "n12[0-4^1,0-6^2,0-10^1,0-11^1,1-5^1,1-7^2,1-8^1,1-9^1,2-7^1,2-9^2,2-10^1,2-11^1,3-8^1,3-9^1,3-10^2,3-11^1,4-6^2,4-10^1,4-11^1,5-7^1,5-8^2,5-9^1,6-11^1,7-8^1]",
+   "graph_basis_label": "I12_60",
+   "intrinsic_id": "Q12_B",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 12,
+    "form_rank": 5,
+    "label": "n12[0-4^1,0-6^2,0-10^1,0-11^1,1-5^1,1-7^2,1-8^1,1-9^1,2-7^1,2-9^2,2-10^1,2-11^1,3-8^1,3-9^1,3-10^2,3-11^1,4-6^2,4-10^1,4-11^1,5-7^1,5-8^2,5-9^1,6-11^1,7-8^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\eta^{i25j25} \\eta^{i26j26} \\eta^{i27j27} \\eta^{i28j28} \\eta^{i29j29} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{i15 i16 i17 i18 i19} F_{j0 i20 i21 i22 i23} F_{j5 i24 i25 i26 i27} F_{j1 j2 j20 j21 i28} F_{j6 j7 j10 j24 i29} F_{j8 j15 j25 j26 j29} F_{j9 j11 j12 j16 j27} F_{j3 j13 j17 j18 j22} F_{j4 j14 j19 j23 j28}",
+    "metric_factor_count": 30,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ],
+     [
+      "i25",
+      "j25"
+     ],
+     [
+      "i26",
+      "j26"
+     ],
+     [
+      "i27",
+      "j27"
+     ],
+     [
+      "i28",
+      "j28"
+     ],
+     [
+      "i29",
+      "j29"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      2,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      2,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      1,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "10": [
+      "j3",
+      "j13",
+      "j17",
+      "j18",
+      "j22"
+     ],
+     "11": [
+      "j4",
+      "j14",
+      "j19",
+      "j23",
+      "j28"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "i15",
+      "i16",
+      "i17",
+      "i18",
+      "i19"
+     ],
+     "4": [
+      "j0",
+      "i20",
+      "i21",
+      "i22",
+      "i23"
+     ],
+     "5": [
+      "j5",
+      "i24",
+      "i25",
+      "i26",
+      "i27"
+     ],
+     "6": [
+      "j1",
+      "j2",
+      "j20",
+      "j21",
+      "i28"
+     ],
+     "7": [
+      "j6",
+      "j7",
+      "j10",
+      "j24",
+      "i29"
+     ],
+     "8": [
+      "j8",
+      "j15",
+      "j25",
+      "j26",
+      "j29"
+     ],
+     "9": [
+      "j9",
+      "j11",
+      "j12",
+      "j16",
+      "j27"
+     ]
+    },
+    "vertices": 12
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 8818,
+      "fresh_sample": false,
+      "graph_evaluator": 8818,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 25812,
+      "fresh_sample": false,
+      "graph_evaluator": 25812,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 24500,
+      "fresh_sample": false,
+      "graph_evaluator": 24500,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 7001,
+      "fresh_sample": false,
+      "graph_evaluator": 7001,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31544,
+      "fresh_sample": true,
+      "graph_evaluator": 31544,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 542,
+      "fresh_sample": true,
+      "graph_evaluator": 542,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31941,
+      "fresh_sample": false,
+      "graph_evaluator": 31941,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 24699,
+      "fresh_sample": false,
+      "graph_evaluator": 24699,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28259,
+      "fresh_sample": false,
+      "graph_evaluator": 28259,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28373,
+      "fresh_sample": false,
+      "graph_evaluator": 28373,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 24298,
+      "fresh_sample": true,
+      "graph_evaluator": 24298,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 25773,
+      "fresh_sample": true,
+      "graph_evaluator": 25773,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8456,
+      "fresh_sample": false,
+      "graph_evaluator": 8456,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 9502,
+      "fresh_sample": false,
+      "graph_evaluator": 9502,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4813,
+      "fresh_sample": false,
+      "graph_evaluator": 4813,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 14923,
+      "fresh_sample": false,
+      "graph_evaluator": 14923,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8792,
+      "fresh_sample": true,
+      "graph_evaluator": 8792,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 9972,
+      "fresh_sample": true,
+      "graph_evaluator": 9972,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q12_C": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 12-fold contraction with 30 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 12,
+   "graph": "n12[0-4^1,0-6^2,0-9^1,0-10^1,1-5^1,1-7^1,1-8^1,1-9^1,1-11^1,2-7^2,2-8^2,2-11^1,3-9^2,3-10^2,3-11^1,4-6^2,4-10^1,4-11^1,5-7^1,5-8^1,5-9^1,5-11^1,6-10^1,7-8^1]",
+   "graph_basis_label": "I12_61",
+   "intrinsic_id": "Q12_C",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 12,
+    "form_rank": 5,
+    "label": "n12[0-4^1,0-6^2,0-9^1,0-10^1,1-5^1,1-7^1,1-8^1,1-9^1,1-11^1,2-7^2,2-8^2,2-11^1,3-9^2,3-10^2,3-11^1,4-6^2,4-10^1,4-11^1,5-7^1,5-8^1,5-9^1,5-11^1,6-10^1,7-8^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\eta^{i25j25} \\eta^{i26j26} \\eta^{i27j27} \\eta^{i28j28} \\eta^{i29j29} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{i15 i16 i17 i18 i19} F_{j0 i20 i21 i22 i23} F_{j5 i24 i25 i26 i27} F_{j1 j2 j20 j21 i28} F_{j6 j10 j11 j24 i29} F_{j7 j12 j13 j25 j29} F_{j3 j8 j15 j16 j26} F_{j4 j17 j18 j22 j28} F_{j9 j14 j19 j23 j27}",
+    "metric_factor_count": 30,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ],
+     [
+      "i25",
+      "j25"
+     ],
+     [
+      "i26",
+      "j26"
+     ],
+     [
+      "i27",
+      "j27"
+     ],
+     [
+      "i28",
+      "j28"
+     ],
+     [
+      "i29",
+      "j29"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      1,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      1
+     ],
+     [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      2,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "10": [
+      "j4",
+      "j17",
+      "j18",
+      "j22",
+      "j28"
+     ],
+     "11": [
+      "j9",
+      "j14",
+      "j19",
+      "j23",
+      "j27"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "i15",
+      "i16",
+      "i17",
+      "i18",
+      "i19"
+     ],
+     "4": [
+      "j0",
+      "i20",
+      "i21",
+      "i22",
+      "i23"
+     ],
+     "5": [
+      "j5",
+      "i24",
+      "i25",
+      "i26",
+      "i27"
+     ],
+     "6": [
+      "j1",
+      "j2",
+      "j20",
+      "j21",
+      "i28"
+     ],
+     "7": [
+      "j6",
+      "j10",
+      "j11",
+      "j24",
+      "i29"
+     ],
+     "8": [
+      "j7",
+      "j12",
+      "j13",
+      "j25",
+      "j29"
+     ],
+     "9": [
+      "j3",
+      "j8",
+      "j15",
+      "j16",
+      "j26"
+     ]
+    },
+    "vertices": 12
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 3802,
+      "fresh_sample": false,
+      "graph_evaluator": 3802,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 1021,
+      "fresh_sample": false,
+      "graph_evaluator": 1021,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8455,
+      "fresh_sample": false,
+      "graph_evaluator": 8455,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28250,
+      "fresh_sample": false,
+      "graph_evaluator": 28250,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18917,
+      "fresh_sample": true,
+      "graph_evaluator": 18917,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 12068,
+      "fresh_sample": true,
+      "graph_evaluator": 12068,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 24128,
+      "fresh_sample": false,
+      "graph_evaluator": 24128,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 3588,
+      "fresh_sample": false,
+      "graph_evaluator": 3588,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 18439,
+      "fresh_sample": false,
+      "graph_evaluator": 18439,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 8159,
+      "fresh_sample": false,
+      "graph_evaluator": 8159,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 32390,
+      "fresh_sample": true,
+      "graph_evaluator": 32390,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 27559,
+      "fresh_sample": true,
+      "graph_evaluator": 27559,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 30222,
+      "fresh_sample": false,
+      "graph_evaluator": 30222,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 27607,
+      "fresh_sample": false,
+      "graph_evaluator": 27607,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 11662,
+      "fresh_sample": false,
+      "graph_evaluator": 11662,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 20482,
+      "fresh_sample": false,
+      "graph_evaluator": 20482,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 28407,
+      "fresh_sample": true,
+      "graph_evaluator": 28407,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4616,
+      "fresh_sample": true,
+      "graph_evaluator": 4616,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  },
+  "Q12_D": {
+   "caveat": "Level A is explicit and coordinate-independent but is a 12-fold contraction with 30 metric factors. It must not be described as compact, canonical, or explanatory.",
+   "field_degree": 12,
+   "graph": "n12[0-4^2,0-6^2,0-9^1,1-5^2,1-7^1,1-8^1,1-9^1,2-7^2,2-9^1,2-10^1,2-11^1,3-8^1,3-9^2,3-10^1,3-11^1,4-6^1,4-10^1,4-11^1,5-7^1,5-8^2,6-10^1,6-11^1,7-8^1,10-11^1]",
+   "graph_basis_label": "I12_62",
+   "intrinsic_id": "Q12_D",
+   "level": "A",
+   "level_A_specification": {
+    "field_degree": 12,
+    "form_rank": 5,
+    "label": "n12[0-4^2,0-6^2,0-9^1,1-5^2,1-7^1,1-8^1,1-9^1,2-7^2,2-9^1,2-10^1,2-11^1,3-8^1,3-9^2,3-10^1,3-11^1,4-6^1,4-10^1,4-11^1,5-7^1,5-8^2,6-10^1,6-11^1,7-8^1,10-11^1]",
+    "latex": "\\eta^{i0j0} \\eta^{i1j1} \\eta^{i2j2} \\eta^{i3j3} \\eta^{i4j4} \\eta^{i5j5} \\eta^{i6j6} \\eta^{i7j7} \\eta^{i8j8} \\eta^{i9j9} \\eta^{i10j10} \\eta^{i11j11} \\eta^{i12j12} \\eta^{i13j13} \\eta^{i14j14} \\eta^{i15j15} \\eta^{i16j16} \\eta^{i17j17} \\eta^{i18j18} \\eta^{i19j19} \\eta^{i20j20} \\eta^{i21j21} \\eta^{i22j22} \\eta^{i23j23} \\eta^{i24j24} \\eta^{i25j25} \\eta^{i26j26} \\eta^{i27j27} \\eta^{i28j28} \\eta^{i29j29} \\, F_{i0 i1 i2 i3 i4} F_{i5 i6 i7 i8 i9} F_{i10 i11 i12 i13 i14} F_{i15 i16 i17 i18 i19} F_{j0 j1 i20 i21 i22} F_{j5 j6 i23 i24 i25} F_{j2 j3 j20 i26 i27} F_{j7 j10 j11 j23 i28} F_{j8 j15 j24 j25 j28} F_{j4 j9 j12 j16 j17} F_{j13 j18 j21 j26 i29} F_{j14 j19 j22 j27 j29}",
+    "metric_factor_count": 30,
+    "metric_pairs": [
+     [
+      "i0",
+      "j0"
+     ],
+     [
+      "i1",
+      "j1"
+     ],
+     [
+      "i2",
+      "j2"
+     ],
+     [
+      "i3",
+      "j3"
+     ],
+     [
+      "i4",
+      "j4"
+     ],
+     [
+      "i5",
+      "j5"
+     ],
+     [
+      "i6",
+      "j6"
+     ],
+     [
+      "i7",
+      "j7"
+     ],
+     [
+      "i8",
+      "j8"
+     ],
+     [
+      "i9",
+      "j9"
+     ],
+     [
+      "i10",
+      "j10"
+     ],
+     [
+      "i11",
+      "j11"
+     ],
+     [
+      "i12",
+      "j12"
+     ],
+     [
+      "i13",
+      "j13"
+     ],
+     [
+      "i14",
+      "j14"
+     ],
+     [
+      "i15",
+      "j15"
+     ],
+     [
+      "i16",
+      "j16"
+     ],
+     [
+      "i17",
+      "j17"
+     ],
+     [
+      "i18",
+      "j18"
+     ],
+     [
+      "i19",
+      "j19"
+     ],
+     [
+      "i20",
+      "j20"
+     ],
+     [
+      "i21",
+      "j21"
+     ],
+     [
+      "i22",
+      "j22"
+     ],
+     [
+      "i23",
+      "j23"
+     ],
+     [
+      "i24",
+      "j24"
+     ],
+     [
+      "i25",
+      "j25"
+     ],
+     [
+      "i26",
+      "j26"
+     ],
+     [
+      "i27",
+      "j27"
+     ],
+     [
+      "i28",
+      "j28"
+     ],
+     [
+      "i29",
+      "j29"
+     ]
+    ],
+    "multiplicity_matrix": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      2,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      1
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      1,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; one inverse metric per contracted index pair; vertex valence 5",
+    "slots": {
+     "0": [
+      "i0",
+      "i1",
+      "i2",
+      "i3",
+      "i4"
+     ],
+     "1": [
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9"
+     ],
+     "10": [
+      "j13",
+      "j18",
+      "j21",
+      "j26",
+      "i29"
+     ],
+     "11": [
+      "j14",
+      "j19",
+      "j22",
+      "j27",
+      "j29"
+     ],
+     "2": [
+      "i10",
+      "i11",
+      "i12",
+      "i13",
+      "i14"
+     ],
+     "3": [
+      "i15",
+      "i16",
+      "i17",
+      "i18",
+      "i19"
+     ],
+     "4": [
+      "j0",
+      "j1",
+      "i20",
+      "i21",
+      "i22"
+     ],
+     "5": [
+      "j5",
+      "j6",
+      "i23",
+      "i24",
+      "i25"
+     ],
+     "6": [
+      "j2",
+      "j3",
+      "j20",
+      "i26",
+      "i27"
+     ],
+     "7": [
+      "j7",
+      "j10",
+      "j11",
+      "j23",
+      "i28"
+     ],
+     "8": [
+      "j8",
+      "j15",
+      "j24",
+      "j25",
+      "j28"
+     ],
+     "9": [
+      "j4",
+      "j9",
+      "j12",
+      "j16",
+      "j17"
+     ]
+    },
+    "vertices": 12
+   },
+   "level_B_status": "NOT DERIVED (M / N^(1050) / N^(4125) form)",
+   "level_C_status": "NOT DERIVED (canonical compact form)",
+   "validation": {
+    "all_agree": true,
+    "dense_vs_graph_checks": 18,
+    "detail": [
+     {
+      "agree": true,
+      "dense_evaluator": 5934,
+      "fresh_sample": false,
+      "graph_evaluator": 5934,
+      "prime": 32749,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 22279,
+      "fresh_sample": false,
+      "graph_evaluator": 22279,
+      "prime": 32749,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4101,
+      "fresh_sample": false,
+      "graph_evaluator": 4101,
+      "prime": 32749,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 19047,
+      "fresh_sample": false,
+      "graph_evaluator": 19047,
+      "prime": 32749,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4847,
+      "fresh_sample": true,
+      "graph_evaluator": 4847,
+      "prime": 32749,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 19118,
+      "fresh_sample": true,
+      "graph_evaluator": 19118,
+      "prime": 32749,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31583,
+      "fresh_sample": false,
+      "graph_evaluator": 31583,
+      "prime": 32719,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 22442,
+      "fresh_sample": false,
+      "graph_evaluator": 22442,
+      "prime": 32719,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 7790,
+      "fresh_sample": false,
+      "graph_evaluator": 7790,
+      "prime": 32719,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 23648,
+      "fresh_sample": false,
+      "graph_evaluator": 23648,
+      "prime": 32719,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31685,
+      "fresh_sample": true,
+      "graph_evaluator": 31685,
+      "prime": 32719,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 3076,
+      "fresh_sample": true,
+      "graph_evaluator": 3076,
+      "prime": 32719,
+      "seed": 20261202
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 31110,
+      "fresh_sample": false,
+      "graph_evaluator": 31110,
+      "prime": 32693,
+      "seed": 20260729
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 4899,
+      "fresh_sample": false,
+      "graph_evaluator": 4899,
+      "prime": 32693,
+      "seed": 20260730
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 23600,
+      "fresh_sample": false,
+      "graph_evaluator": 23600,
+      "prime": 32693,
+      "seed": 20260731
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 12669,
+      "fresh_sample": false,
+      "graph_evaluator": 12669,
+      "prime": 32693,
+      "seed": 20260732
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 13730,
+      "fresh_sample": true,
+      "graph_evaluator": 13730,
+      "prime": 32693,
+      "seed": 20261201
+     },
+     {
+      "agree": true,
+      "dense_evaluator": 7609,
+      "fresh_sample": true,
+      "graph_evaluator": 7609,
+      "prime": 32693,
+      "seed": 20261202
+     }
+    ],
+    "fresh_samples": [
+     20261201,
+     20261202
+    ],
+    "homogeneity_degree_check": true,
+    "primes": [
+     32749,
+     32719,
+     32693
+    ],
+    "samples": [
+     20260729,
+     20260730,
+     20260731,
+     20260732
+    ]
+   }
+  }
+ },
+ "levels": {
+  "A": "explicit F-index contraction \u2014 COMPLETE for all seven",
+  "B": "M / N^(1050) / N^(4125) form \u2014 not derived",
+  "C": "canonical compact form \u2014 not derived"
+ },
+ "schema": 1,
+ "translation_rule": "I = prod_v F_{slots[v]} x prod_pairs eta^{pair}; implemented with one einsum letter per contracted pair and the metric applied by raising one slot of each pair"
+}

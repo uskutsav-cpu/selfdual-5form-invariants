@@ -1,0 +1,103 @@
+{
+  "frozen_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "source_url": "https://arxiv.org/src/2509.14350v2",
+  "source_pdf_url": "https://arxiv.org/pdf/2509.14350v2",
+  "source_pdf_page": 25,
+  "source_equation": "4.24 candidate list, superscripts 10,11,12; TeX labels I1010,I1011,I1012",
+  "source_excerpts": [
+    {
+      "needle": "\\label{I1010}",
+      "match_line": 1641,
+      "start_line": 1641,
+      "end_line": 1647,
+      "text": "1641: \\label{I1010}\n1642: I_{10}^{^{(10)}}&=&\\Big (N^{^{(1050)}}_{[\\rho_1\\rho_2\\rho_3,\\rho_4{\\color{red}[}\\mu_1]\\mu_2{\\color{red}]}}N_{_{(1050)}}^{[\\rho_1 \\rho_2 \\rho_3,}{}_{\\alpha_1 \\alpha_2 ]\\alpha_3}{}N_{_{(1050)}}^{[\\rho_4\\nu_1\\nu_2,\\alpha_1 \\alpha_3 ]\\alpha_2}\\Big)\n1643: \\Big(N^{^{(1050)}}_{[\\beta_1\\beta_2\\beta_3,\\beta_4\\nu_1]\\nu_2}N_{_{(1050)}}^{[\\beta_1\\beta_2\\beta_3,\\beta_4\\mu_1]\\mu_2}\\Big)\\,,\\nonumber\\\\\n1644: \\nonumber\\\\\n1645: \\label{I1011}\n1646: I_{10}^{^{(11)}}&=&\\Big(N^{^{(1050)}}_{[\\rho_1 \\rho_2 \\rho_3,}{}^{\\alpha_1 \\alpha_2 ]\\alpha_3}{}N^{^{(1050)}}_{[\\mu_1\\mu_2\\mu_3,\\alpha_1 \\alpha_2 ]\\alpha_3}\\Big)\n1647: \\Big(N_{_{(1050)}}^{[\\mu_1 \\mu_2 \\mu_3 {\\color{red}[}\\nu_1 \\nu_2] \\nu_3 {\\color{red}]}}"
+    },
+    {
+      "needle": "\\label{I1011}",
+      "match_line": 1645,
+      "start_line": 1645,
+      "end_line": 1651,
+      "text": "1645: \\label{I1011}\n1646: I_{10}^{^{(11)}}&=&\\Big(N^{^{(1050)}}_{[\\rho_1 \\rho_2 \\rho_3,}{}^{\\alpha_1 \\alpha_2 ]\\alpha_3}{}N^{^{(1050)}}_{[\\mu_1\\mu_2\\mu_3,\\alpha_1 \\alpha_2 ]\\alpha_3}\\Big)\n1647: \\Big(N_{_{(1050)}}^{[\\mu_1 \\mu_2 \\mu_3 {\\color{red}[}\\nu_1 \\nu_2] \\nu_3 {\\color{red}]}}\n1648: N_{_{(1050)}}^{[\\rho_1 \\rho_2 \\lambda_1 {\\color{red}[}\\lambda_2 \\lambda_3]}{}_{ \\nu_1{\\color{red}]}}  N_{_{(1050)}}^{[\\rho_3}{}_{\\nu_2 \\lambda_2 {\\color{red}[}\\lambda_1 \\lambda_3] \\nu_3 {\\color{red}]}}\\Big)\\,,\\nonumber\\\\\n1649: \\nonumber\\\\\n1650: \\label{I1012}\n1651: I_{10}^{^{(12)}}&=&\\Big(N^{^{(1050)}}_{[\\rho_1 \\rho_2 \\rho_3,}{}^{\\alpha_1 \\alpha_2 ]\\alpha_3}{}N^{^{(1050)}}_{[\\mu_1\\mu_2\\mu_3,\\alpha_1 \\alpha_2 ]\\alpha_3}\\Big)\\Big(N_{_{(1050)}}^{[\\mu_1 \\mu_2 \\mu_3 {\\color{red}[}\\nu_1 \\nu_2] \\nu_3 {\\color{red}]}}N^{^{(1050)}}_{[\\nu_1}{}^{\\rho_1\\lambda_1 {\\color{red}[}\\rho_2 \\lambda_2] \\lambda_3 {\\color{red}]}} N_{_{(1050)}}^{[\\rho_3}{}_{\\nu_2\\lambda_2 {\\color{red}[}\\nu_3 \\lambda_1] \\lambda_3 {\\color{red}]}}\\Big)\\,,\\nonumber"
+    },
+    {
+      "needle": "\\label{I1012}",
+      "match_line": 1650,
+      "start_line": 1650,
+      "end_line": 1656,
+      "text": "1650: \\label{I1012}\n1651: I_{10}^{^{(12)}}&=&\\Big(N^{^{(1050)}}_{[\\rho_1 \\rho_2 \\rho_3,}{}^{\\alpha_1 \\alpha_2 ]\\alpha_3}{}N^{^{(1050)}}_{[\\mu_1\\mu_2\\mu_3,\\alpha_1 \\alpha_2 ]\\alpha_3}\\Big)\\Big(N_{_{(1050)}}^{[\\mu_1 \\mu_2 \\mu_3 {\\color{red}[}\\nu_1 \\nu_2] \\nu_3 {\\color{red}]}}N^{^{(1050)}}_{[\\nu_1}{}^{\\rho_1\\lambda_1 {\\color{red}[}\\rho_2 \\lambda_2] \\lambda_3 {\\color{red}]}} N_{_{(1050)}}^{[\\rho_3}{}_{\\nu_2\\lambda_2 {\\color{red}[}\\nu_3 \\lambda_1] \\lambda_3 {\\color{red}]}}\\Big)\\,,\\nonumber\n1652: \\eea\n1653: where the symmetrization and/or anti-symmetrization of the indices within the red brackets is made upon the anti-symmetrization within the black brackets.\n1654: \n1655: 12th-order invariants that have appeared in certain models of the non-linear self-dual 5-form theory \\cite{Hutomo:2025dfx} are\n1656: \\bea"
+    },
+    {
+      "needle": "where the symmetrization and/or anti-symmetrization",
+      "match_line": 1653,
+      "start_line": 1653,
+      "end_line": 1659,
+      "text": "1653: where the symmetrization and/or anti-symmetrization of the indices within the red brackets is made upon the anti-symmetrization within the black brackets.\n1654: \n1655: 12th-order invariants that have appeared in certain models of the non-linear self-dual 5-form theory \\cite{Hutomo:2025dfx} are\n1656: \\bea\n1657: I_{12}^{^{(1)}}=\\tr M^6, \\qquad I_{12}^{^{(2)}}&=&(M^3)^{\\mu \\nu} \\Big(N^{^{(4125)}}_{\\mu \\alpha_1 \\alpha_2, \\nu \\beta_1 \\beta_2} M^{\\alpha_1 \\beta_1} M^{\\alpha_2 \\beta_2}\\Big)\\equiv (M^3)^{\\mu \\nu} (N^{^{^{(4125)}}} MM)_{\\mu \\nu}\\,,\\qquad\\nonumber\\\\\n1658: I_{12}^{^{(3)}}&=&(N^{^{(4125)}} MM)_{\\mu \\nu} (N^{^{(4125)}}MM)^{\\mu \\nu}\\,.\n1659: \\eea"
+    }
+  ],
+  "frozen_code_excerpts": [
+    {
+      "needle": "def _nested_pair",
+      "match_line": 395,
+      "start_line": 395,
+      "end_line": 420,
+      "text": "395: def _nested_pair(tensor, mod, reading, label):\n396:     \"\"\"Apply the AMB-02 inner bracket on the two trailing slots, or not.\"\"\"\n397:     if reading == \"outer\":\n398:         return tensor\n399:     if reading != \"nested\":\n400:         raise ValueError(f\"unknown reading {reading!r}\")\n401:     program = BracketProgram(\n402:         ops=[BracketOp(\"antisym\", (4, 5), BLACK, True, label)], source=label)\n403:     return program.apply(tensor, mod)\n404: \n405: \n406: def p10_10_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n407:     \"\"\"I^(10)_10 = ( N_{[r1r2r3,r4[m1]m2]} N^{[r1r2r3,}{}_{a1a2]a3}\n408:                      N^{[r4 n1n2, a1a3]a2} )\n409:                    ( N_{[b1b2b3,b4 n1]n2} N^{[b1b2b3,b4 m1]m2} )\n410: \n411:     Five N^(1050) blocks, degree 10. See AMB-02 above for `reading`.\n412: \n413:     Slots, in the order the einsum uses them:\n414:         N1 (r1,r2,r3,r4,m1,m2)   N2 (r1,r2,r3,a1,a2,a3)\n415:         N3 (r4,n1,n2,a1,a3,a2)   N4 (b1,b2,b3,b4,n1,n2)\n416:         N5 (b1,b2,b3,b4,m1,m2)\n417:     \"\"\"\n418:     n = composite_n1050(five_form, mod, backend)\n419:     n1 = _nested_pair(n, mod, reading, \"eq (4.24) I^(10)_10 inner [m1]m2]\")\n420:     n2 = _raise_axes(n, (0, 1, 2), mod)"
+    },
+    {
+      "needle": "def p10_10_five_n1050",
+      "match_line": 406,
+      "start_line": 406,
+      "end_line": 431,
+      "text": "406: def p10_10_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n407:     \"\"\"I^(10)_10 = ( N_{[r1r2r3,r4[m1]m2]} N^{[r1r2r3,}{}_{a1a2]a3}\n408:                      N^{[r4 n1n2, a1a3]a2} )\n409:                    ( N_{[b1b2b3,b4 n1]n2} N^{[b1b2b3,b4 m1]m2} )\n410: \n411:     Five N^(1050) blocks, degree 10. See AMB-02 above for `reading`.\n412: \n413:     Slots, in the order the einsum uses them:\n414:         N1 (r1,r2,r3,r4,m1,m2)   N2 (r1,r2,r3,a1,a2,a3)\n415:         N3 (r4,n1,n2,a1,a3,a2)   N4 (b1,b2,b3,b4,n1,n2)\n416:         N5 (b1,b2,b3,b4,m1,m2)\n417:     \"\"\"\n418:     n = composite_n1050(five_form, mod, backend)\n419:     n1 = _nested_pair(n, mod, reading, \"eq (4.24) I^(10)_10 inner [m1]m2]\")\n420:     n2 = _raise_axes(n, (0, 1, 2), mod)\n421:     n3 = _raise_axes(n, (0, 3, 4, 5), mod)\n422:     n4 = _raise_axes(n, (4, 5), mod)\n423:     n5 = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)\n424:     return int(mod_einsum(\n425:         \"abcdmn,abcxyz,dpqxzy,efghpq,efghmn->\",\n426:         [n1, n2, n3, n4, n5], mod) % mod)\n427: \n428: \n429: def p10_11_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n430:     \"\"\"I^(11)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )\n431:                    ( N^{[m1m2m3[n1n2]n3]} N^{[r1r2 l1[l2l3]}{}_{n1]}"
+    },
+    {
+      "needle": "def p10_11_five_n1050",
+      "match_line": 429,
+      "start_line": 429,
+      "end_line": 454,
+      "text": "429: def p10_11_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n430:     \"\"\"I^(11)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )\n431:                    ( N^{[m1m2m3[n1n2]n3]} N^{[r1r2 l1[l2l3]}{}_{n1]}\n432:                      N^{[r3}{}_{n2 l2[l1l3]n3]} )\n433: \n434:     Slots:\n435:         A (r1,r2,r3,a1,a2,a3)   B (m1,m2,m3,a1,a2,a3)\n436:         C (m1,m2,m3,n1,n2,n3)   D (r1,r2,l1,l2,l3,n1)\n437:         E (r3,n2,l2,l1,l3,n3)\n438:     \"\"\"\n439:     n = composite_n1050(five_form, mod, backend)\n440:     a = n\n441:     b = _raise_axes(n, (3, 4, 5), mod)\n442:     c = _nested_pair(_raise_axes(n, (0, 1, 2), mod), mod, reading,\n443:                      \"eq (4.24) I^(11)_10 inner [n1n2]n3]\")\n444:     d = _raise_axes(n, (0, 1, 5), mod)\n445:     e = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)\n446:     return int(mod_einsum(\n447:         \"abcxyz,mnoxyz,mnopqr,abstup,cqtsur->\",\n448:         [a, b, c, d, e], mod) % mod)\n449: \n450: \n451: def p10_12_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n452:     \"\"\"I^(12)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )\n453:                    ( N^{[m1m2m3[n1n2]n3]} N_{[n1}{}^{r1 l1[r2 l2]l3]}\n454:                      N^{[r3}{}_{n2 l2[n3 l1]l3]} )"
+    },
+    {
+      "needle": "def p10_12_five_n1050",
+      "match_line": 451,
+      "start_line": 451,
+      "end_line": 476,
+      "text": "451: def p10_12_five_n1050(five_form, mod=P, backend=\"optimized\", reading=\"outer\"):\n452:     \"\"\"I^(12)_10 = ( N_{[r1r2r3,}{}^{a1a2]a3} N_{[m1m2m3,a1a2]a3} )\n453:                    ( N^{[m1m2m3[n1n2]n3]} N_{[n1}{}^{r1 l1[r2 l2]l3]}\n454:                      N^{[r3}{}_{n2 l2[n3 l1]l3]} )\n455: \n456:     Differs from I^(11) only in the index arrangement of the last two blocks:\n457:     D is (n1,r1,l1,r2,l2,l3) and E is (r3,n2,l2,n3,l1,l3).\n458:     \"\"\"\n459:     n = composite_n1050(five_form, mod, backend)\n460:     a = n\n461:     b = _raise_axes(n, (3, 4, 5), mod)\n462:     c = _nested_pair(_raise_axes(n, (0, 1, 2), mod), mod, reading,\n463:                      \"eq (4.24) I^(12)_10 inner [n1n2]n3]\")\n464:     d = _raise_axes(n, (0, 1, 3), mod)\n465:     e = _raise_axes(n, (0, 1, 2, 3, 4, 5), mod)\n466:     return int(mod_einsum(\n467:         \"abcxyz,mnoxyz,mnopqr,pasbtu,cqtrsu->\",\n468:         [a, b, c, d, e], mod) % mod)\n469: \n470: \n471: def _nested_variant(fn):\n472:     def wrapped(five_form, mod=P, backend=\"optimized\"):\n473:         return fn(five_form, mod, backend, reading=\"nested\")\n474:     wrapped.__name__ = fn.__name__ + \"_nested\"\n475:     wrapped.__doc__ = f\"{fn.__name__} under the AMB-02 'nested' reading.\"\n476:     return wrapped"
+    },
+    {
+      "needle": "    \"P10_10\": {",
+      "match_line": 529,
+      "start_line": 529,
+      "end_line": 554,
+      "text": "529:     \"P10_10\": {\"source_label\": \"I^(10)_10\",\n530:                \"formula\": \"five N^(1050), nested brackets\",\n531:                \"evaluator\": p10_10_five_n1050, \"implemented\": True,\n532:                \"blocks\": {\"N1050\": 5},\n533:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n534:                            \"group unresolved, reading 'outer'\",\n535:                \"ambiguity\": \"AMB-02\"},\n536:     \"P10_11\": {\"source_label\": \"I^(11)_10\",\n537:                \"formula\": \"five N^(1050), nested brackets\",\n538:                \"evaluator\": p10_11_five_n1050, \"implemented\": True,\n539:                \"blocks\": {\"N1050\": 5},\n540:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n541:                            \"group unresolved, reading 'outer'\",\n542:                \"ambiguity\": \"AMB-02\"},\n543:     \"P10_12\": {\"source_label\": \"I^(12)_10\",\n544:                \"formula\": \"five N^(1050), nested brackets\",\n545:                \"evaluator\": p10_12_five_n1050, \"implemented\": True,\n546:                \"blocks\": {\"N1050\": 5},\n547:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n548:                            \"group unresolved, reading 'outer'\",\n549:                \"ambiguity\": \"AMB-02\"},\n550:     \"P10_07\": {\"source_label\": \"I^(7)_10\",\n551:                \"formula\": \"N^(1050) (MM) (N^(1050) N^(1050))\",\n552:                \"evaluator\": p10_07_n1050_mm_n1050_n1050, \"implemented\": True,\n553:                \"blocks\": {\"M\": 2, \"N1050\": 3},\n554:                \"brackets\": \"black only\"},"
+    },
+    {
+      "needle": "    \"P10_11\": {",
+      "match_line": 536,
+      "start_line": 536,
+      "end_line": 561,
+      "text": "536:     \"P10_11\": {\"source_label\": \"I^(11)_10\",\n537:                \"formula\": \"five N^(1050), nested brackets\",\n538:                \"evaluator\": p10_11_five_n1050, \"implemented\": True,\n539:                \"blocks\": {\"N1050\": 5},\n540:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n541:                            \"group unresolved, reading 'outer'\",\n542:                \"ambiguity\": \"AMB-02\"},\n543:     \"P10_12\": {\"source_label\": \"I^(12)_10\",\n544:                \"formula\": \"five N^(1050), nested brackets\",\n545:                \"evaluator\": p10_12_five_n1050, \"implemented\": True,\n546:                \"blocks\": {\"N1050\": 5},\n547:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n548:                            \"group unresolved, reading 'outer'\",\n549:                \"ambiguity\": \"AMB-02\"},\n550:     \"P10_07\": {\"source_label\": \"I^(7)_10\",\n551:                \"formula\": \"N^(1050) (MM) (N^(1050) N^(1050))\",\n552:                \"evaluator\": p10_07_n1050_mm_n1050_n1050, \"implemented\": True,\n553:                \"blocks\": {\"M\": 2, \"N1050\": 3},\n554:                \"brackets\": \"black only\"},\n555: }\n556: \n557: NOT_IMPLEMENTED = {}\n558: \n559: # The AMB-02 alternative readings, evaluated alongside the primary registry so\n560: # the ambiguity is measured rather than assumed away.\n561: def p10_09_rholambda(five_form, mod=P, backend=\"optimized\"):"
+    },
+    {
+      "needle": "    \"P10_12\": {",
+      "match_line": 543,
+      "start_line": 543,
+      "end_line": 568,
+      "text": "543:     \"P10_12\": {\"source_label\": \"I^(12)_10\",\n544:                \"formula\": \"five N^(1050), nested brackets\",\n545:                \"evaluator\": p10_12_five_n1050, \"implemented\": True,\n546:                \"blocks\": {\"N1050\": 5},\n547:                \"brackets\": \"outer black supplied by composite_n1050; inner \"\n548:                            \"group unresolved, reading 'outer'\",\n549:                \"ambiguity\": \"AMB-02\"},\n550:     \"P10_07\": {\"source_label\": \"I^(7)_10\",\n551:                \"formula\": \"N^(1050) (MM) (N^(1050) N^(1050))\",\n552:                \"evaluator\": p10_07_n1050_mm_n1050_n1050, \"implemented\": True,\n553:                \"blocks\": {\"M\": 2, \"N1050\": 3},\n554:                \"brackets\": \"black only\"},\n555: }\n556: \n557: NOT_IMPLEMENTED = {}\n558: \n559: # The AMB-02 alternative readings, evaluated alongside the primary registry so\n560: # the ambiguity is measured rather than assumed away.\n561: def p10_09_rholambda(five_form, mod=P, backend=\"optimized\"):\n562:     \"\"\"I^(9)_10 with the red bracket enclosing only (rho, lambda); see AMB-01.\"\"\"\n563:     return p10_09_red_n1050_m_n1050_n1050_n1050(\n564:         five_form, mod, backend, red_reading=\"rholambda\")\n565: \n566: \n567: AMBIGUITY_VARIANTS = {\n568:     \"P10_04\": (\"AMB-01\", \"pairs\", p10_04_pairs),"
+    },
+    {
+      "needle": "BRACKET_STAGES =",
+      "match_line": 578,
+      "start_line": 578,
+      "end_line": 590,
+      "text": "578: BRACKET_STAGES = {\n579:     \"P10_03\": \"black only\", \"P10_04\": \"RED present: (mu ... rho]lambda)\",\n580:     \"P10_05\": \"black only\", \"P10_06\": \"black only\",\n581:     \"P10_07\": \"black only\", \"P10_08\": \"black only\",\n582:     \"P10_09\": \"RED present: (nu ... rho]lambda)\",\n583:     \"P10_10\": \"black only (nested)\", \"P10_11\": \"black only (nested)\",\n584:     \"P10_12\": \"black only (nested)\",\n585: }\n586: \n587: \n588: def evaluate_implemented(five_form, mod=P, backend=\"optimized\"):\n589:     return {name: spec[\"evaluator\"](five_form, mod, backend)\n590:             for name, spec in PUBLISHED_DEGREE10.items()}"
+    }
+  ],
+  "hashes": {
+    "source-review/original-InvariantsV2.tex": "a4e9f50e0047400e383820c9ba35c6cd2447faddcea627f890a5f9a6826957f2",
+    "source-review/arxiv-v2.pdf": "ec51d9e22c4d75651e2024d09b17562bc5c4d89c191c3ab11cf86697a9c7880e",
+    "source-review/arxiv-v2-source.tar": "f3f1f2fed99595545a972aa788bf70212a134f65b16882466939d22840dcb540",
+    "source-review/manual-transcription.md": "39695b36bc78a70e80c38a7981b40976dd08bc31fb98fccccbe7157a9ff9620c",
+    "checkout/src/sdinv/published_degree10_invariants.py": "f3a5ce94b4f9066e58e9aa893e33c95079bf6fc5b069644756847ec3dc5ad6ef"
+  },
+  "scientific_limit": "A transcription/program discrepancy only. No tensor evaluation, polynomial inequality, atlas rank/intersection conclusion, or refutation of frozen rank-81 graph minors was performed."
+}

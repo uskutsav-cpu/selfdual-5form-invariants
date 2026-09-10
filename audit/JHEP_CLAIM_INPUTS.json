@@ -1,0 +1,89 @@
+{
+ "generated_utc": "2026-08-01T19:13:12+00:00",
+ "head": "a962e7f8111fe90cc02f5fb7760b5fd27db5a1d3",
+ "claims": [
+  {
+   "claim_id": "JHEP-C1",
+   "statement": "The tensor module Lambda^5_+ V and the gamma-traceless symmetric chiral bispinors Sym^2_{gamma-tr} S_+ are related by an explicit equivariant map, exact over the fields in which it is constructed.",
+   "kind": "certified",
+   "artifacts": [
+    "spinor_trace_bridge/results/bridge_validation.json"
+   ],
+   "tests": [
+    "spinor_trace_bridge/tests/test_bridge.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  },
+  {
+   "claim_id": "JHEP-C2",
+   "statement": "The forward map has rank 126 on the self-dual channel, kernel exactly the anti-self-dual 126, and an exact left inverse whose composition with the forward map is the self-dual projector.",
+   "kind": "certified",
+   "artifacts": [
+    "spinor_trace_bridge/results/bridge_validation.json"
+   ],
+   "tests": [
+    "spinor_trace_bridge/tests/test_bridge.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  },
+  {
+   "claim_id": "JHEP-C3",
+   "statement": "Independently constructed tensor and spinor invariant families span the same space at degrees 4, 6 and 10; at degree 8 the port-graph family alone is strictly contained and the structured tensor-word family supplies the missing direction.",
+   "kind": "certified",
+   "artifacts": [
+    "verification/COMMON_SAMPLE_REGISTRY.json"
+   ],
+   "tests": [
+    "spinor_trace_bridge/tests/test_bridge.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  },
+  {
+   "claim_id": "JHEP-C4",
+   "statement": "The 83 selected invariant functions have exact modular Jacobian rank 81, which is an unconditional lower bound on the rank over Q because the gamma-traceless basis is integral.",
+   "kind": "certified",
+   "artifacts": [
+    "results/rank81/certificate.json",
+    "results/rank81/minor81_certificate.json"
+   ],
+   "tests": [
+    "spinor_trace_bridge/tests/test_adversarial.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  },
+  {
+   "claim_id": "JHEP-C5",
+   "statement": "The generic functional rank is exactly 81: the lower bound is certified, the matching upper bound 126 - 45 = 81 is analytic.",
+   "kind": "proved (upper bound analytic) + certified (lower bound)",
+   "artifacts": [
+    "results/rank81/certificate.json",
+    "docs/RANK81_CHARACTERISTIC_ZERO_PROOF.md"
+   ],
+   "tests": [
+    "spinor_trace_bridge/tests/test_adversarial.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  },
+  {
+   "claim_id": "JHEP-C6",
+   "statement": "Application: dim A10 = 14, dim D10 = 11, dim Q10 = 3, with compact representatives and a basis-independent cardinality bound.",
+   "kind": "certified + proved (cardinality bound)",
+   "artifacts": [
+    "results/10d_order10.json",
+    "results/stress_flow_exact_low_degree.json"
+   ],
+   "tests": [
+    "tests/test_published_degree10_invariants.py",
+    "tests/test_quotient_cardinality_bound.py"
+   ],
+   "missing_artifacts": [],
+   "input_status": "READY"
+  }
+ ],
+ "missing_artifacts": []
+}

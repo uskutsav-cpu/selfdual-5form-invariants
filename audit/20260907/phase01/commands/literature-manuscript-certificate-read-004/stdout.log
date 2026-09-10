@@ -1,0 +1,1068 @@
+     1	"""Self-contained exact Jacobian witnesses for the ordered graph basis.
+     2	
+     3	All directions and polynomials are integral. A nonzero minor modulo one
+     4	prime therefore proves a characteristic-zero lower bound. Recomputing graph
+     5	contractions is a separate verification step from checking the saved matrix.
+     6	"""
+     7	
+     8	import hashlib
+     9	import json
+    10	from math import isqrt
+    11	
+    12	import numpy as np
+    13	
+    14	from .contract import CompactDerivativeBasis, value_and_jacobian_row
+    15	from .forms import basis_tuples, hodge_matrix, to_dense
+    16	from .graphs import validate_graph
+    17	from .modp import RankSieve
+    18	from .serialize import from_record
+    19	
+    20	
+    21	def digest(data):
+    22	    return hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    23	
+    24	
+    25	def require_prime(prime):
+    26	    # These modest primes also keep all compact linear algebra below int64.
+    27	    if type(prime) is not int or not 13 < prime <= 65521:
+    28	        raise ValueError("certificate prime must lie between 13 and 65521")
+    29	    if any(prime % d == 0 for d in range(2, isqrt(prime) + 1)):
+    30	        raise ValueError("certificate modulus is not prime")
+    31	
+    32	
+    33	def integral_directions():
+    34	    """Columns e_I + *e_I for lexicographic I containing the time index 0.
+    35	
+    36	    The first 126 sorted components form an identity matrix. Thus the
+    37	    coordinates are exactly F_{0abcd}, with no 1/2 projector denominators.
+    38	    """
+    39	    hodge = hodge_matrix(10, 5, True, 32749)
+    40	    hodge = np.where(hodge > 32749 // 2, hodge - 32749, hodge)
+    41	    indices = [k for k, t in enumerate(basis_tuples(10, 5)) if t[0] == 0]
+    42	    directions = (np.eye(252, dtype=np.int64) + hodge)[:, indices]
+    43	    if not np.array_equal(directions[indices], np.eye(126, dtype=np.int64)):
+    44	        raise ValueError("unexpected self-dual coordinate convention")
+    45	    if not np.array_equal(hodge @ directions, directions):
+    46	        raise ValueError("integral directions are not self-dual")
+    47	    return directions, indices
+    48	
+    49	
+    50	def context(prime, coordinates):
+    51	    require_prime(prime)
+    52	    directions, indices = integral_directions()
+    53	    a = np.asarray(coordinates)
+    54	    if a.dtype.kind not in "iu":
+    55	        raise ValueError("point coordinates must be integers")
+    56	    if a.shape != (126,) or np.any(a < 0) or np.any(a >= prime):
+    57	        raise ValueError("point must contain 126 reduced coordinates")
+    58	    a = a.astype(np.int64)
+    59	    compact = directions @ a % prime
+    60	    basis = CompactDerivativeBasis(10, 5, directions, indices, prime)
+    61	    return to_dense(compact, 10, 5, prime), basis, compact
+    62	
+    63	
+    64	def determinant_mod(matrix, prime):
+    65	    """Python-integer Gaussian determinant; independent of RankSieve."""
+    66	    require_prime(prime)
+    67	    rows = [[int(x) % prime for x in row] for row in matrix]
+    68	    n = len(rows)
+    69	    if any(len(row) != n for row in rows):
+    70	        raise ValueError("determinant requires a square matrix")
+    71	    result = 1
+    72	    for k in range(n):
+    73	        pivot = next((i for i in range(k, n) if rows[i][k]), None)
+    74	        if pivot is None:
+    75	            return 0
+    76	        if pivot != k:
+    77	            rows[k], rows[pivot] = rows[pivot], rows[k]
+    78	            result = -result
+    79	        result = result * rows[k][k] % prime
+    80	        inverse = pow(rows[k][k], -1, prime)
+    81	        for i in range(k + 1, n):
+    82	            scale = rows[i][k] * inverse % prime
+    83	            for j in range(k + 1, n):
+    84	                rows[i][j] = (rows[i][j] - scale * rows[k][j]) % prime
+    85	            rows[i][k] = 0
+    86	    return result % prime
+    87	
+    88	
+    89	def validate_basis(manifest):
+    90	    items = manifest["invariants"]
+    91	    if len(items) != 81 or len({x["id"] for x in items}) != 81:
+    92	        raise ValueError("certificate requires exactly 81 distinct invariant IDs")
+    93	    if [x["degree"] for x in items] != [4, 6, 6] + [8] * 6 + [10] * 12 + [12] * 60:
+    94	        raise ValueError("unexpected ordered degree inventory")
+    95	    for item in items:
+    96	        graph = from_record(item["graph"])
+    97	        validate_graph(graph, valence=5, max_mult=4)
+    98	        if len(graph) != item["degree"] or item["formula_sha256"] != digest(item["graph"]):
+    99	            raise ValueError("graph degree or formula hash mismatch")
+   100	        from .graphs import graph_from_label
+   101	        from .latex import graph_to_latex
+   102	        if item["adjacency_matrix"] != graph.tolist() or not np.array_equal(graph_from_label(item["label"]), graph):
+   103	            raise ValueError("graph representations disagree")
+   104	        if item["einstein_formula"] != graph_to_latex(graph):
+   105	            raise ValueError("Einstein formula does not match graph")
+   106	    return items
+   107	
+   108	
+   109	def evaluate_item(item, prime, coordinates, max_memory_bytes=2 * 1024**3):
+   110	    form, basis, _ = context(prime, coordinates)
+   111	    scalar, row = value_and_jacobian_row(from_record(item["graph"]), form, basis,
+   112	                                        10, 5, True, prime,
+   113	                                        max_memory_bytes=max_memory_bytes)
+   114	    if int(row @ np.asarray(coordinates, dtype=np.int64) % prime) != item["degree"] * scalar % prime:
+   115	        raise ValueError(f"Euler homogeneity failed for {item['id']}")
+   116	    return {"id": item["id"], "degree": item["degree"], "value": int(scalar),
+   117	            "jacobian_row": row.tolist()}
+   118	
+   119	
+   120	def make_witness(manifest, prime, seed, coordinates, evaluated):
+   121	    items = validate_basis(manifest)
+   122	    if [r["id"] for r in evaluated] != [x["id"] for x in items]:
+   123	        raise ValueError("evaluated rows do not match the fixed basis")
+   124	    form, _, compact = context(prime, coordinates)
+   125	    rows = np.asarray([r["jacobian_row"] for r in evaluated], dtype=np.int64)
+   126	    if rows.shape != (81, 126):
+   127	        raise ValueError("Jacobian has wrong shape")
+   128	    sieve, ranks = RankSieve(126, prime), {}
+   129	    for item, row in zip(items, rows):
+   130	        if not sieve.add(row):
+   131	            raise ValueError(f"fixed basis loses rank at {item['id']}")
+   132	        ranks[str(item["degree"])] = sieve.rank
+   133	    columns = sieve.pivots
+   134	    determinant = determinant_mod(rows[:, columns], prime)
+   135	    if not determinant:
+   136	        raise ValueError("minor is zero")
+   137	    return {"prime": prime, "seed": seed, "basis_sha256": digest(manifest),
+   138	            "coordinates": list(map(int, coordinates)), "selfdual_components": compact.tolist(),
+   139	            "invariant_ids": [x["id"] for x in items], "values": [r["value"] for r in evaluated],
+   140	            "jacobian": rows.tolist(), "pivot_columns": columns,
+   141	            "determinant_mod_p": determinant, "rank": sieve.rank,
+   142	            "cumulative_rank_by_degree": ranks, "euler_homogeneity": True}
+   143	
+   144	
+   145	def verify_witness(manifest, witness, recompute=False):
+   146	    items = validate_basis(manifest)
+   147	    prime = witness["prime"]
+   148	    require_prime(prime)
+   149	    if witness["basis_sha256"] != digest(manifest):
+   150	        raise ValueError("basis hash mismatch")
+   151	    if witness["invariant_ids"] != [x["id"] for x in items]:
+   152	        raise ValueError("invariant ordering mismatch")
+   153	    coordinates = witness["coordinates"]
+   154	    _, _, compact = context(prime, coordinates)
+   155	    if witness["selfdual_components"] != compact.tolist():
+   156	        raise ValueError("self-dual point mismatch")
+   157	    rows = np.asarray(witness["jacobian"])
+   158	    values = np.asarray(witness["values"])
+   159	    if rows.shape != (81, 126) or rows.dtype.kind not in "iu":
+   160	        raise ValueError("Jacobian must contain 81 by 126 integers")
+   161	    if values.shape != (81,) or values.dtype.kind not in "iu":
+   162	        raise ValueError("values must contain 81 integers")
+   163	    if np.any(rows < 0) or np.any(rows >= prime) or np.any(values < 0) or np.any(values >= prime):
+   164	        raise ValueError("values and rows must be reduced modulo the prime")
+   165	    degrees = np.asarray([x["degree"] for x in items], dtype=np.int64)
+   166	    if not np.array_equal(rows @ np.asarray(coordinates) % prime, degrees * values % prime):
+   167	        raise ValueError("Euler homogeneity mismatch")
+   168	    if witness.get("euler_homogeneity") is not True:
+   169	        raise ValueError("Euler validation metadata mismatch")
+   170	    columns = witness["pivot_columns"]
+   171	    if len(columns) != 81 or len(set(columns)) != 81 or any(type(c) is not int or not 0 <= c < 126 for c in columns):
+   172	        raise ValueError("invalid pivot columns")
+   173	    determinant = determinant_mod(rows[:, columns], prime)
+   174	    if determinant == 0 or determinant != witness["determinant_mod_p"]:
+   175	        raise ValueError("minor determinant mismatch")
+   176	    sieve, ranks = RankSieve(126, prime), {}
+   177	    for item, row in zip(items, rows):
+   178	        sieve.add(row)
+   179	        ranks[str(item["degree"])] = sieve.rank
+   180	    if witness["rank"] != 81 or ranks != witness["cumulative_rank_by_degree"]:
+   181	        raise ValueError("rank metadata mismatch")
+   182	    if recompute:
+   183	        for item, saved_row, saved_value in zip(items, rows, values):
+   184	            fresh = evaluate_item(item, prime, coordinates)
+   185	            if fresh["value"] != saved_value or fresh["jacobian_row"] != saved_row.tolist():
+   186	                raise ValueError(f"graph recomputation mismatch: {item['id']}")
+   187	    return {"prime": prime, "seed": witness["seed"], "rank": 81,
+   188	            "determinant_mod_p": determinant, "graph_rows_recomputed": recompute}
+     1	#!/usr/bin/env python3
+     2	"""Rebuild a graph-only rank-81 witness from the existing discovered basis.
+     3	
+     4	Discovery is already complete: degree10_pipeline.py and degree12_pipeline.py
+     5	retain their resumable catalog searches. This final stage evaluates exactly
+     6	the same 81 graphs in each field. Checkpoints retain every accepted raw row.
+     7	"""
+     8	
+     9	import argparse
+    10	from concurrent.futures import ProcessPoolExecutor
+    11	import json
+    12	import os
+    13	from pathlib import Path
+    14	import sys
+    15	
+    16	for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+    17	    os.environ.setdefault(name, "1")
+    18	
+    19	ROOT = Path(__file__).resolve().parents[1]
+    20	sys.path.insert(0, str(ROOT / "src"))
+    21	
+    22	import numpy as np
+    23	from sdinv.catalog import atomic_write_json
+    24	from sdinv.certificate import (digest, evaluate_item, integral_directions,
+    25	                               make_witness, require_prime, validate_basis, verify_witness)
+    26	from sdinv.checkpoint import load_checkpoint, write_checkpoint
+    27	from sdinv.modp import RankSieve
+    28	
+    29	
+    30	def _job(args):
+    31	    return evaluate_item(*args)
+    32	
+    33	
+    34	def evaluate_cell(manifest, prime, seed, checkpoint_dir, workers):
+    35	    require_prime(prime)
+    36	    coordinates = np.random.default_rng(seed).integers(0, prime, 126).tolist()
+    37	    engine = {str(path.relative_to(ROOT)): path.read_bytes().hex() for path in
+    38	              [ROOT / "src/sdinv" / f"{name}.py" for name in
+    39	               ("certificate", "contract", "forms", "modp", "serialize", "graphs")]}
+    40	    identity = {"schema": 1, "basis_sha256": digest(manifest), "prime": prime,
+    41	                "seed": seed, "coordinates": coordinates, "engine_sha256": digest(engine)}
+    42	    checkpoint = checkpoint_dir / f"p{prime}_s{seed}.json"
+    43	    state = load_checkpoint(checkpoint, identity) if checkpoint.exists() else {"evaluated": [], "pivots": [], "rank": 0}
+    44	    items = validate_basis(manifest)
+    45	    evaluated = state["evaluated"]
+    46	    if [r["id"] for r in evaluated] != [x["id"] for x in items[:len(evaluated)]]:
+    47	        raise ValueError("checkpoint is not a prefix of the fixed basis")
+    48	    sieve = RankSieve(126, prime)
+    49	    for row in evaluated:
+    50	        if not sieve.add(row["jacobian_row"]):
+    51	            raise ValueError("checkpoint contains dependent rows")
+    52	    if state["rank"] != sieve.rank or state["pivots"] != sieve.pivots:
+    53	        raise ValueError("checkpoint pivot metadata mismatch")
+    54	    # Batches bound both the submission queue and completed rows awaiting the
+    55	    # coordinator. Worker count is explicit because contractions can use GiB.
+    56	    pool = ProcessPoolExecutor(max_workers=workers) if workers > 1 else None
+    57	    try:
+    58	        for start in range(len(evaluated), len(items), workers):
+    59	            jobs = [(item, prime, coordinates) for item in items[start:start + workers]]
+    60	            output = pool.map(_job, jobs) if pool else map(_job, jobs)
+    61	            for result in output:
+    62	                if not sieve.add(result["jacobian_row"]):
+    63	                    raise ValueError(f"fixed basis lost rank at {result['id']}")
+    64	                evaluated.append(result)
+    65	                state = {"evaluated": evaluated, "pivots": sieve.pivots, "rank": sieve.rank}
+    66	                write_checkpoint(checkpoint, identity, state)
+    67	                if sieve.rank % 10 == 0 or sieve.rank == 81:
+    68	                    print(f"p={prime} seed={seed}: {sieve.rank}/81", flush=True)
+    69	    finally:
+    70	        if pool:
+    71	            pool.shutdown(wait=True, cancel_futures=True)
+    72	    witness = make_witness(manifest, prime, seed, coordinates, evaluated)
+    73	    verify_witness(manifest, witness)
+    74	    return witness
+    75	
+    76	
+    77	def main():
+    78	    parser = argparse.ArgumentParser(description=__doc__)
+    79	    parser.add_argument("--basis", default=str(ROOT / "results/rank81_basis.json"))
+    80	    parser.add_argument("--out", default=str(ROOT / "results/rank81_certificate.json"))
+    81	    parser.add_argument("--checkpoint-dir", type=Path, default=ROOT / "work/rank81")
+    82	    parser.add_argument("--primes", type=int, nargs="+", default=[32749, 32719])
+    83	    parser.add_argument("--seeds", type=int, nargs="+", default=[20260907, 20260908])
+    84	    parser.add_argument("--workers", type=int, default=1)
+    85	    args = parser.parse_args()
+    86	    if args.workers < 1 or len(set(args.primes)) != len(args.primes) or len(set(args.seeds)) != len(args.seeds):
+    87	        parser.error("workers must be positive and primes/seeds must be distinct")
+    88	    manifest = json.loads(Path(args.basis).read_text())
+    89	    validate_basis(manifest)
+    90	    directions, indices = integral_directions()
+    91	    certificate = {"schema": 1, "basis_sha256": digest(manifest),
+    92	                   "coordinate_convention": "A_I = F_I for sorted 5-tuples I containing 0; F = sum_I A_I (e_I + *e_I).",
+    93	                   "coordinate_component_indices": indices,
+    94	                   "integral_directions_sha256": digest(directions.tolist()),
+    95	                   "proof": "Each graph is an integer polynomial in A. A nonzero 81x81 Jacobian minor modulo a prime proves generic characteristic-zero rank at least 81. The known quotient dimension supplies the upper bound; this is not a full invariant-ring presentation or a global coordinate chart.",
+    96	                   "upper_bound_source": "https://arxiv.org/abs/2509.14350v2",
+    97	                   "planned_cells": [[p, s] for p in args.primes for s in args.seeds],
+    98	                   "complete": False, "witnesses": []}
+    99	    for prime, seed in certificate["planned_cells"]:
+   100	        certificate["witnesses"].append(evaluate_cell(manifest, prime, seed, args.checkpoint_dir, args.workers))
+   101	        atomic_write_json(args.out, certificate)
+   102	    certificate["complete"] = True
+   103	    atomic_write_json(args.out, certificate)
+   104	    print(f"PASS: fixed 81 graphs, {len(certificate['witnesses'])} exact nonzero minors")
+   105	
+   106	
+   107	if __name__ == "__main__":
+   108	    main()
+     1	#!/usr/bin/env python3
+     2	"""Exact finite-field basis comparisons with explicit product directions.
+     3	
+     4	Rational reconstruction plus finite holdouts is reported as evidence for
+     5	polynomial identities, not a symbolic proof of those identities.
+     6	"""
+     7	
+     8	import argparse
+     9	from fractions import Fraction
+    10	import json
+    11	from pathlib import Path
+    12	import sys
+    13	
+    14	ROOT = Path(__file__).resolve().parents[1]
+    15	sys.path.insert(0, str(ROOT / "src"))
+    16	
+    17	import numpy as np
+    18	from sdinv.catalog import atomic_write_json
+    19	from sdinv.certificate import context, digest
+    20	from sdinv.contract import planned_value
+    21	from sdinv.exactmap import reconstruct_vector, solve_full_column_rank, rank_mod
+    22	from sdinv.graphs import graph_from_label
+    23	from sdinv.published_degree8_invariants import SELECTED_BASIS as BASIS, SOURCE, evaluate_selected_basis
+    24	
+    25	
+    26	def rational_rank(matrix):
+    27	    a = [list(map(Fraction, row)) for row in matrix]
+    28	    rank = 0
+    29	    for j in range(len(a[0])):
+    30	        pivot = next((i for i in range(rank, len(a)) if a[i][j]), None)
+    31	        if pivot is None:
+    32	            continue
+    33	        a[rank], a[pivot] = a[pivot], a[rank]
+    34	        scale = a[rank][j]
+    35	        a[rank] = [x / scale for x in a[rank]]
+    36	        for i in range(len(a)):
+    37	            if i != rank:
+    38	                scale = a[i][j]
+    39	                a[i] = [x - scale * y for x, y in zip(a[i], a[rank])]
+    40	        rank += 1
+    41	        if rank == len(a):
+    42	            break
+    43	    return rank
+    44	
+    45	
+    46	def inverse(matrix):
+    47	    n = len(matrix)
+    48	    a = [[Fraction(x) for x in row] + [Fraction(i == j) for j in range(n)]
+    49	         for i, row in enumerate(matrix)]
+    50	    for j in range(n):
+    51	        pivot = next((i for i in range(j, n) if a[i][j]), None)
+    52	        if pivot is None:
+    53	            raise ValueError("rational matrix is singular")
+    54	        a[j], a[pivot] = a[pivot], a[j]
+    55	        scale = a[j][j]
+    56	        a[j] = [x / scale for x in a[j]]
+    57	        for i in range(n):
+    58	            if i != j:
+    59	                scale = a[i][j]
+    60	                a[i] = [x - scale * y for x, y in zip(a[i], a[j])]
+    61	    return [row[n:] for row in a]
+    62	
+    63	
+    64	def reduce_matrix(matrix, prime):
+    65	    return np.array([[int(x.numerator * pow(x.denominator, -1, prime) % prime)
+    66	                      for x in row] for row in matrix], dtype=np.int64)
+    67	
+    68	
+    69	def _sample8(prime, seed, graph_items):
+    70	    a = np.random.default_rng(seed).integers(0, prime, 126).tolist()
+    71	    form, _, _ = context(prime, a)
+    72	    graph_values = [planned_value(graph_from_label(g["graph"]), form, 10, 5, True, prime)
+    73	                    for g in graph_items]
+    74	    quartic_squared = graph_values[0] ** 2 % prime
+    75	    graphs = graph_values[1:] + [quartic_squared]
+    76	    tensors = evaluate_selected_basis(form, prime) + [quartic_squared]
+    77	    return {"seed": seed, "coordinates": a, "graphs": graphs, "tensors": tensors}
+    78	
+    79	
+    80	def order8(out, cache_dir):
+    81	    low = json.loads((ROOT / "results/10d_order8.json").read_text())
+    82	    graph_items = [g for g in low["generators"] if g["order"] in (4, 8)]
+    83	    primes, holdout = [32749, 32719, 32693, 32713, 32717], 32771
+    84	    fit_seeds, fresh_seeds = list(range(2026090700, 2026090709)), [2026090801, 2026090802, 2026090803]
+    85	    evidence = {}
+    86	    sources = ["src/sdinv/published_degree8_invariants.py", "src/sdinv/stress.py",
+    87	               "src/sdinv/contract.py", "src/sdinv/modp.py", "scripts/map_literature_basis.py"]
+    88	    identity = digest({"graphs": graph_items, "sources": {s: (ROOT / s).read_bytes().hex() for s in sources}})
+    89	    for p in primes + [holdout]:
+    90	        cache = cache_dir / f"order8_p{p}.json"
+    91	        data = json.loads(cache.read_text()) if cache.exists() else {"identity": identity, "prime": p, "samples": []}
+    92	        if data["identity"] != identity:
+    93	            raise ValueError("order-8 cache engine mismatch; use a new cache directory")
+    94	        seeds = fit_seeds + fresh_seeds if p in primes else fresh_seeds
+    95	        if [s["seed"] for s in data["samples"]] != seeds[:len(data["samples"])]:
+    96	            raise ValueError("order-8 cache sample mismatch")
+    97	        for seed in seeds[len(data["samples"]):]:
+    98	            data["samples"].append(_sample8(p, seed, graph_items))
+    99	            atomic_write_json(cache, data)
+   100	            print(f"order8 p={p}: sample {len(data['samples'])}/{len(seeds)}", flush=True)
+   101	        if p in primes:
+   102	            design = np.array([s["graphs"] for s in data["samples"][:len(fit_seeds)]])
+   103	            target = np.array([s["tensors"] for s in data["samples"][:len(fit_seeds)]])
+   104	            data["tensor_to_graph_matrix_mod_p"] = [solve_full_column_rank(design, target[:, j], p).tolist() for j in range(7)]
+   105	            data["graph_rank"] = rank_mod(design, p)
+   106	            data["tensor_rank"] = rank_mod(target, p)
+   107	        evidence[str(p)] = data
+   108	    tensor_to_graph = [reconstruct_vector([evidence[str(p)]["tensor_to_graph_matrix_mod_p"][i] for p in primes], primes) for i in range(7)]
+   109	    graph_to_tensor = inverse(tensor_to_graph)
+   110	    for p in primes + [holdout]:
+   111	        forward, backward = reduce_matrix(tensor_to_graph, p), reduce_matrix(graph_to_tensor, p)
+   112	        for sample in evidence[str(p)]["samples"]:
+   113	            g, t = np.array(sample["graphs"]), np.array(sample["tensors"])
+   114	            if not np.array_equal(forward @ g % p, t) or not np.array_equal(backward @ t % p, g):
+   115	                raise ValueError(f"order-8 holdout mismatch at prime {p}")
+   116	    result = {"schema": 1, "degree": 8, "literature_source": SOURCE,
+   117	              "literature_basis": BASIS, "graph_basis": graph_items[1:],
+   118	              "basis_selection": "T8_1 through T8_5 from (4.12)--(4.15), and H8_1 from (4.18); this selection spans all seven degree-8 directions after adjoining the quartic square.",
+   119	              "product": "I4_1^2 (repository normalization)",
+   120	              "matrix_convention": "[G1,...,G6,P]^T = graph_to_literature * [T1,...,T6,P]^T",
+   121	              "graph_to_literature": [[str(x) for x in row] for row in graph_to_tensor],
+   122	              "literature_to_graph": [[str(x) for x in row] for row in tensor_to_graph],
+   123	              "primitive_quotient_matrix_6x6": [[str(x) for x in row[:6]] for row in graph_to_tensor[:6]],
+   124	              "product_correction": [str(row[6]) for row in graph_to_tensor[:6]],
+   125	              "exact_6x6_without_products": all(row[6] == 0 for row in graph_to_tensor[:6]),
+   126	              "fitting_primes": primes, "holdout_prime": holdout,
+   127	              "verification_seeds": fresh_seeds, "prime_witnesses": evidence,
+   128	              "verified": True,
+   129	              "proof_scope": "Exact modular solves, unique bounded rational reconstruction and fresh value holdouts; polynomial identity validity over Q is not proved by finite samples alone."}
+   130	    atomic_write_json(out, result)
+   131	    print("PASS: order-8 rational map and fresh holdouts")
+   132	
+   133	
+   134	def order10(out):
+   135	    source = ROOT / "results/degree10/B10_coordinates_per_prime.json"
+   136	    store = json.loads(source.read_text())["per_prime"]
+   137	    primes = sorted(map(int, store))
+   138	    fit, holdout = primes[:-1], primes[-1]
+   139	    names = store[str(primes[0])]["basis"]
+   140	    ids = sorted(store[str(primes[0])]["coordinates"])
+   141	    matrices = [reconstruct_vector([store[str(p)]["coordinates"][cid] for p in fit], fit) for cid in ids]
+   142	    reduced = reduce_matrix(matrices, holdout)
+   143	    if reduced.tolist() != [store[str(holdout)]["coordinates"][cid] for cid in ids]:
+   144	        raise ValueError("degree-10 held-out prime does not match rational reconstruction")
+   145	    products = [[int(i == j) for i in range(len(names))] for j, name in enumerate(names) if "*" in name]
+   146	    b_rank, p_rank, union_rank = rational_rank(matrices), rational_rank(products), rational_rank(matrices + products)
+   147	    result = {"schema": 1, "degree": 10,
+   148	              "status": "requested invertible 12x12 map does not exist for the implemented source readings",
+   149	              "literature_basis": ids, "graph_and_product_basis": names,
+   150	              "matrix_convention": "T_i = sum_j matrix[i][j] * atlas_j",
+   151	              "matrix_12x14": [[str(x) for x in row] for row in matrices],
+   152	              "published_span_rank": b_rank, "product_span_rank": p_rank,
+   153	              "union_rank": union_rank, "intersection_rank": b_rank + p_rank - union_rank,
+   154	              "primitive_quotient_rank": union_rank - p_rank,
+   155	              "fitting_primes": fit, "holdout_prime": holdout,
+   156	              "prime_witnesses": store, "verified_reconstruction": True,
+   157	              "source_artifact": str(source.relative_to(ROOT)), "source_sha256": digest(json.loads(source.read_text())),
+   158	              "source_readings": "See src/sdinv/published_degree10_invariants.py and docs/PUBLISHED_DEGREE10_INDEX_AUDIT.md; AMB-01/AMB-02 readings remain explicit.",
+   159	              "proof_scope": "Rational matrix ranks are exact. Inherited polynomial maps were fitted and checked on finite samples; this regeneration checks arithmetic and a held-out prime, not new tensor evaluations."}
+   160	    atomic_write_json(out, result)
+   161	    print(f"PASS: degree-10 rational map has ranks published={b_rank}, products={p_rank}, union={union_rank}")
+   162	
+   163	
+   164	def main():
+   165	    parser = argparse.ArgumentParser(description=__doc__)
+   166	    parser.add_argument("--degree", type=int, choices=[8, 10], required=True)
+   167	    parser.add_argument("--out")
+   168	    parser.add_argument("--cache-dir", type=Path, default=ROOT / "work/literature-maps")
+   169	    args = parser.parse_args()
+   170	    out = args.out or ROOT / f"results/order{args.degree}_change_of_basis.json"
+   171	    if args.degree == 8:
+   172	        order8(out, args.cache_dir)
+   173	    else:
+   174	        order10(out)
+   175	
+   176	
+   177	if __name__ == "__main__":
+   178	    main()
+     1	"""Regression and adversarial checks on the classification deliverables."""
+     2	
+     3	import copy
+     4	import json
+     5	from pathlib import Path
+     6	import sys
+     7	
+     8	import numpy as np
+     9	import pytest
+    10	
+    11	ROOT = Path(__file__).resolve().parents[1]
+    12	sys.path.insert(0, str(ROOT / "src"))
+    13	sys.path.insert(0, str(ROOT / "scripts"))
+    14	
+    15	from sdinv.certificate import (context, determinant_mod, digest, evaluate_item,
+    16	                               integral_directions, verify_witness)
+    17	from sdinv.forms import hodge_matrix
+    18	from sdinv.graphs import graph_from_label, graph_label, graph_to_record
+    19	from sdinv.latex import graph_to_latex
+    20	from sdinv.modp import RankSieve
+    21	from sdinv.primitive import PolynomialSieve, product_monomials
+    22	from sdinv.serialize import dumps, loads, to_record
+    23	
+    24	
+    25	def _regular_graph(n):
+    26	    matrix = np.zeros((n, n), dtype=np.int64)
+    27	    for i in range(n):
+    28	        for d in (-2, -1, 1, 2, n // 2):
+    29	            matrix[i, (i + d) % n] = 1
+    30	    return matrix
+    31	
+    32	
+    33	@pytest.mark.parametrize("n", [10, 12, 14])
+    34	def test_graph_interchange_preserves_order_and_old_formats(n):
+    35	    graph = _regular_graph(n)
+    36	    for encoding in (dumps(graph), graph_label(graph), graph_to_record(graph)):
+    37	        assert np.array_equal(loads(encoding), graph)
+    38	    assert loads(dumps(graph))[0, n - 1] == 1
+    39	
+    40	
+    41	@pytest.mark.parametrize("record", [
+    42	    {"n": 12, "edges": [[0, 11, 1], [0, 11, 2]]},
+    43	    {"n": 12, "edges": [[0, 12, 1]]},
+    44	    {"n": 12, "edges": [[0, 0, 1]]},
+    45	    {"n": 12, "edges": [[0, 11, 1.5]]},
+    46	    {"n": 12, "edges": [[0, 11, True]]},
+    47	    {"n": -1, "edges": []},
+    48	    {"order": 4, "upper_triangle": [0, 1, 1, 1, 1, -1]},
+    49	    "n12[011^1]",
+    50	])
+    51	def test_graph_interchange_rejects_ambiguous_or_lossy_data(record):
+    52	    with pytest.raises(ValueError):
+    53	        loads(record)
+    54	
+    55	
+    56	def test_product_and_functional_ranks_are_different():
+    57	    # x^2 and y^2 are independent homogeneous polynomials on two variables.
+    58	    # Their gradients add no functional directions after x and y.
+    59	    polynomial = PolynomialSieve(2, 3, 32749)
+    60	    assert polynomial.add("x^2", [1, 4, 9])
+    61	    assert polynomial.add("y^2", [4, 9, 25])
+    62	    functional = RankSieve(2, 32749)
+    63	    assert functional.add([1, 0]) and functional.add([0, 1])
+    64	    assert not functional.add([2, 0]) and not functional.add([0, 4])
+    65	    assert polynomial.rank == functional.rank == 2
+    66	
+    67	
+    68	def test_degree12_product_inventory_is_ten_monomials():
+    69	    generators = {"I4_1": 4, "I6_1": 6, "I6_2": 6}
+    70	    generators.update({f"I8_{k}": 8 for k in range(1, 7)})
+    71	    generators.update({f"I10_{k}": 10 for k in range(1, 13)})
+    72	    products = product_monomials(generators, 12)
+    73	    assert len(products) == len(set(products)) == 10
+    74	    assert ("I4_1",) * 3 in products
+    75	    assert ("I6_1", "I6_2") in products
+    76	
+    77	
+    78	def test_integral_coordinates_are_selfdual_and_have_no_denominators():
+    79	    directions, indices = integral_directions()
+    80	    assert set(np.unique(directions)) == {-1, 0, 1}
+    81	    for prime in (32749, 32719):
+    82	        assert np.array_equal(hodge_matrix(10, 5, True, prime) @ directions % prime, directions % prime)
+    83	        _, basis, compact = context(prime, list(range(126)))
+    84	        assert compact[indices].tolist() == list(range(126))
+    85	        assert basis.ncols == 126
+    86	
+    87	
+    88	def test_determinant_handles_row_swaps_and_singular_matrices():
+    89	    assert determinant_mod([[0, 2], [3, 4]], 32749) == 32743
+    90	    assert determinant_mod([[2, 4], [3, 6]], 32749) == 0
+    91	    with pytest.raises(ValueError, match="prime"):
+    92	        determinant_mod([[1]], 32745)
+    93	
+    94	
+    95	def test_integral_jacobian_matches_finite_difference_directional_polynomial():
+    96	    # Quartic directional derivative recovered independently by exact
+    97	    # interpolation from five values (not a floating difference quotient).
+    98	    from sdinv.contract import planned_value
+    99	    from sdinv.exactmap import solve_full_column_rank
+   100	    item = json.loads((ROOT / "results/10d_order8.json").read_text())["generators"][0]
+   101	    graph = graph_from_label(item["graph"])
+   102	    record = {"id": item["id"], "degree": 4, "graph": to_record(graph)}
+   103	    prime = 32749
+   104	    a = np.random.default_rng(178).integers(0, prime, 126)
+   105	    direction = np.random.default_rng(179).integers(0, prime, 126)
+   106	    evaluated = evaluate_item(record, prime, a)
+   107	    values = []
+   108	    for t in range(5):
+   109	        form, _, _ = context(prime, (a + t * direction) % prime)
+   110	        values.append(planned_value(graph, form, 10, 5, True, prime))
+   111	    vandermonde = [[pow(t, k, prime) for k in range(5)] for t in range(5)]
+   112	    coefficients = solve_full_column_rank(vandermonde, values, prime)
+   113	    assert int(np.array(evaluated["jacobian_row"]) @ direction % prime) == coefficients[1]
+   114	
+   115	
+   116	def test_latex_has_one_upper_and_one_lower_occurrence_per_edge():
+   117	    graph = _regular_graph(12)
+   118	    formula = graph_to_latex(graph)
+   119	    for i, j, mult in to_record(graph)["edges"]:
+   120	        for k in range(1, mult + 1):
+   121	            assert formula.count(rf"\mu_{{{i},{j},{k}}}") == 2
+   122	    assert formula.count("F") == 12
+   123	
+   124	
+   125	def test_saved_certificate_and_tamper_rejection():
+   126	    from verify_rank81 import verify
+   127	    basis_path, certificate_path = ROOT / "results/rank81_basis.json", ROOT / "results/rank81_certificate.json"
+   128	    if not certificate_path.exists():
+   129	        pytest.skip("run scripts/search_rank81.py to produce release certificate")
+   130	    manifest, certificate = json.loads(basis_path.read_text()), json.loads(certificate_path.read_text())
+   131	    if not certificate.get("complete"):
+   132	        pytest.skip("certificate generation is still in progress")
+   133	    assert len(verify(manifest, certificate)) >= 4
+   134	    witness = certificate["witnesses"][0]
+   135	    for key, replacement in [("determinant_mod_p", 0), ("pivot_columns", [0] * 81),
+   136	                              ("invariant_ids", list(reversed(witness["invariant_ids"]))),
+   137	                              ("rank", 80)]:
+   138	        corrupted = copy.deepcopy(witness)
+   139	        corrupted[key] = replacement
+   140	        with pytest.raises(ValueError):
+   141	            verify_witness(manifest, corrupted)
+   142	    altered = copy.deepcopy(manifest)
+   143	    altered["invariants"][0]["graph"]["edges"][0][2] += 1
+   144	    with pytest.raises(ValueError):
+   145	        verify_witness(altered, witness)
+   146	
+   147	
+   148	def test_published_degree10_map_does_not_invent_an_invertible_matrix():
+   149	    path = ROOT / "results/order10_change_of_basis.json"
+   150	    if not path.exists():
+   151	        pytest.skip("run scripts/map_literature_basis.py --degree 10")
+   152	    result = json.loads(path.read_text())
+   153	    assert result["published_span_rank"] == 12
+   154	    assert result["union_rank"] == 13
+   155	    assert result["primitive_quotient_rank"] == 11
+   156	    assert len(result["matrix_12x14"]) == 12
+   157	    assert all(len(row) == 14 for row in result["matrix_12x14"])
+   158	
+   159	
+   160	def test_degree_runner_resume_and_bounded_workers_reproduce(tmp_path):
+   161	    from run_degree import run
+   162	    checkpoint = tmp_path / "degree4.json"
+   163	    first = run(4, 32749, [178, 179], checkpoint=checkpoint)
+   164	    resumed = run(4, 32749, [178, 179], checkpoint=checkpoint)
+   165	    parallel = run(4, 32749, [178, 179], workers=2)
+   166	    assert first == resumed == parallel
+   167	    assert first["polynomial_complete"] and first["functional_rank"] == 1
+   168	    with pytest.raises(ValueError, match="identity"):
+   169	        run(4, 32749, [180, 181], checkpoint=checkpoint)
+   170	
+   171	
+   172	def test_octic_map_checks_products_and_current_tensor_evaluator():
+   173	    from fractions import Fraction
+   174	    from map_literature_basis import reduce_matrix, inverse
+   175	    from sdinv.published_degree8_invariants import evaluate_selected_basis
+   176	    path = ROOT / "results/order8_change_of_basis.json"
+   177	    if not path.exists():
+   178	        pytest.skip("generate the octic literature map")
+   179	    result = json.loads(path.read_text())
+   180	    matrix = [[Fraction(x) for x in row] for row in result["graph_to_literature"]]
+   181	    assert inverse(matrix) == [[Fraction(x) for x in row] for row in result["literature_to_graph"]]
+   182	    assert len(result["primitive_quotient_matrix_6x6"]) == 6
+   183	    assert not result["exact_6x6_without_products"]
+   184	    prime = result["holdout_prime"]
+   185	    for sample in result["prime_witnesses"][str(prime)]["samples"]:
+   186	        assert np.array_equal(reduce_matrix(matrix, prime) @ np.array(sample["tensors"]) % prime, sample["graphs"])
+   187	    sample = result["prime_witnesses"][str(prime)]["samples"][0]
+   188	    form, _, _ = context(prime, sample["coordinates"])
+   189	    assert evaluate_selected_basis(form, prime) == sample["tensors"][:6]
+manuscript/prl/main.tex:33:which spans the quotient. Products of lower-degree invariants are all reachable, so the missing
+manuscript/prl/main.tex:35:arithmetic and recovered independently in graph, block-tensor and spinor
+manuscript/prl/main.tex:38:therefore enlarge its generator set by at least three independent structures.
+manuscript/prl/main.tex:47:The science below is complete and certified; the venue judgement is not. Author
+manuscript/prl/main.tex:65:and there are $\genericFunctionalDim$ functionally independent
+manuscript/prl/main.tex:74:claimed to be complete, and with their linear relations undetermined. Without the
+manuscript/prl/main.tex:91:\item $\Pten \subset \Aten$ --- the span of products of lower-degree invariants;
+manuscript/prl/main.tex:92:\item $\Dten \subset \Aten$ --- the span of degree-ten invariants generated by
+manuscript/prl/main.tex:112:span $\Qten$; within that fixed set, removing any one leaves only
+manuscript/prl/main.tex:113:\dimQtenMinusOne\ independent classes, so no proper subset spans the quotient.
+manuscript/prl/main.tex:134:\emph{The count is representation-independent.} $\Qten$ is computed in three
+manuscript/prl/main.tex:144:floating point. The reason is not fastidiousness: invariant values span an
+manuscript/prl/main.tex:161:matrix, which holds here because the coordinate basis is integral. Where an
+manuscript/prl/main.tex:162:upper bound is needed it comes from counting an explicit spanning set, not from
+manuscript/prl/main.tex:163:a modular computation: a space spanned by exactly $k$ invariants has dimension at
+manuscript/prl/main.tex:171:The same principle settles the functional count. Replacing the finite-difference
+manuscript/prl/main.tex:174:$\exactJacRank$ over the complete selection of $\exactJacScheduled$ candidates,
+manuscript/prl/main.tex:182:candidates carry functional dependencies.
+manuscript/prl/main.tex:188:$\dimGammaTraceless$, both by span equality, with a left inverse that reproduces
+manuscript/prl/main.tex:213:numbers are ranks established by two-way span containment on a common sample
+manuscript/prl/main.tex:228:nonzero class in $\Qten$: no choice of flow parameters produces it, because its
+manuscript/prl/main.tex:229:image in the quotient is nonzero while every element of $\Dten$ has zero image.
+manuscript/prl/main.tex:233:generator set by at least three independent structures beyond the stress-tensor
+manuscript/prl/main.tex:240:supersymmetric completion, causality, or type~IIB coefficients.
+manuscript/prl/main.tex:250:dimensions. In lower dimensions it is a complete parametrisation. Here it is a
+manuscript/main.tex:39:atlas of degree-ten invariants and resolve its internal structure completely:
+manuscript/main.tex:41:twelve-dimensional span of the published candidate structures, the
+manuscript/main.tex:42:twelve-dimensional span of the graph generators, and the eleven-dimensional
+manuscript/main.tex:46:plus two are not the same decomposition: the published span contains one product
+manuscript/main.tex:53:at a common registry of five-forms and their invariant spans compared directly.
+manuscript/main.tex:55:an exact modular one over the complete candidate selection. Because the
+manuscript/main.tex:56:coordinate basis is integral, the resulting rank is an unconditional lower bound
+manuscript/main.tex:81:dimensions has $\dimSelfDualModule$ independent components. The Lorentz group
+manuscript/main.tex:84:of functionally independent invariants is~\cite{Hutomo:2025chiral}
+manuscript/main.tex:116:basis, and their linear relations were not determined.
+manuscript/main.tex:120:published structures span it? Second, the theories that motivate this problem
+manuscript/main.tex:133:\item Its internal structure is determined completely
+manuscript/main.tex:135:      $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+manuscript/main.tex:136:      generator span $G_{10}$ has dimension $\dimGten$, the stress-flow reachable
+manuscript/main.tex:141:      span is \emph{not} a complement of the products:
+manuscript/main.tex:143:      non-product content of the published span is
+manuscript/main.tex:199:  counts \emph{functionally} independent invariants and is cumulative over all
+manuscript/main.tex:210:$\exactJacRank$, so exactly two functional relations hold among functions that
+manuscript/main.tex:237:structural rather than one of convenience: invariant values span an enormous
+manuscript/main.tex:275:Twelve of the fourteen basis elements are graph invariants $I_{10,1},\ldots,
+manuscript/main.tex:289:  \dimAten &= \dimBten + 2  &&\text{published span } B_{10} + \text{complement},\\
+manuscript/main.tex:294:``the published candidates span the non-product part''.
+manuscript/main.tex:304:The published span therefore contains exactly one product direction and misses
+manuscript/main.tex:331:$Q_{10}$. The complete pairwise incidence data are in
+manuscript/main.tex:341:published span is a third subspace which is not complementary to the products.}
+manuscript/main.tex:352:whole degree-ten space: there are $\dimQten$ independent directions of local
+manuscript/main.tex:360:them that costs nothing: a space spanned by exactly $k$ explicit invariants has
+manuscript/main.tex:366:spanning set; it is assembled by a closure that admits a generated flow direction
+manuscript/main.tex:368:$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+manuscript/main.tex:392:reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+manuscript/main.tex:393:upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+manuscript/main.tex:395:$\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+manuscript/main.tex:410:conclusion is therefore independent of the improvement term and of the
+manuscript/main.tex:420:itself complete is a separate question and is unchanged.
+manuscript/main.tex:422:\subsection{How many directions are needed, in any basis}
+manuscript/main.tex:426:basis, and it is worth isolating the one consequence that does not depend on that
+manuscript/main.tex:433:degree, that is $D + \mathrm{span}(S) = A$, then $|S| \ge \dim Q$.
+manuscript/main.tex:437:Applying $\pi$ to $D+\mathrm{span}(S)=A$ and using $\pi(D)=0$ and the
+manuscript/main.tex:438:surjectivity of $\pi$ gives $\mathrm{span}(\pi(S)) = Q$. A span of $|S|$ vectors
+manuscript/main.tex:442:The statement is basis-free: $A$, $D$ and $Q$ are defined without reference to
+manuscript/main.tex:443:coordinates, and a change of basis of $A$ induces an isomorphism of $Q$ and
+manuscript/main.tex:445:completion has exactly $\dimQten$ elements, that completion is of \emph{minimum
+manuscript/main.tex:446:cardinality in any basis} --- no relabelling or linear redefinition of the atlas
+manuscript/main.tex:452:be dropped. That removal-minimality is verified only in the fixed basis and under
+manuscript/main.tex:460:A basis is only useful if its elements can be written down. We give a
+manuscript/main.tex:466:We do \emph{not} call this basis canonical. It is a choice, certified to span
+manuscript/main.tex:471:\section{Formula-independent reverse recovery}
+manuscript/main.tex:477:are capped, one is enumerated fully. It recovers rank three and its span agrees
+manuscript/main.tex:478:with both the graph-derived and the published-candidate quotient spans.
+manuscript/main.tex:495:exactly the self-dual five-form. An independently written implementation
+manuscript/main.tex:513:nonzero isotropic vectors, whereas every basis vector here is null.
+manuscript/main.tex:550:\caption{The bridge. Both the kernel and the image are identified by two-way span
+manuscript/main.tex:557:At each prime, and by two-way span containment rather than by dimension
+manuscript/main.tex:602:Where the spans agree, the agreement is established by two-way containment and
+manuscript/main.tex:603:the change-of-basis matrix is fitted on the fitting samples only and then
+manuscript/main.tex:608:result.} At degrees four, six and ten the two evaluation spans are equal, with
+manuscript/main.tex:609:the change-of-basis map validated on holdout samples that took no part in the
+manuscript/main.tex:611:spans coincide, which is the cross-validation this comparison was built to test.
+manuscript/main.tex:615:containment is strict: every spinor-side invariant lies in the tensor-side span,
+manuscript/main.tex:640:change-of-basis map validated on holdout samples. The union rank is the
+manuscript/main.tex:643:what makes this span equality rather than dimension agreement.
+manuscript/main.tex:661:products of lower-degree invariants. Those splits are computed independently, in
+manuscript/main.tex:679:being explicit about what it does not say: the published-candidate span $B_{10}$
+manuscript/main.tex:686:\section{Exact Jacobian and the generic functional dimension}
+manuscript/main.tex:691:The generic functional dimension $\genericFunctionalDim$
+manuscript/main.tex:732:Because the gamma-traceless basis is computed over $\mathbb{Z}$ --- its entries
+manuscript/main.tex:746:complete selection.
+manuscript/main.tex:760:reproduced independently at each of $\exactJacPoints$ certified sample
+manuscript/main.tex:775:$\minorSize \times \minorSize$ minor whose determinant is nonzero
+manuscript/main.tex:778:the integer minor is nonzero; the determinant is computed by two independent
+manuscript/main.tex:788:rank $\exactJacRank$ means the selected candidates carry functional
+manuscript/main.tex:789:\emph{dependencies}; they are not an independent set, and nothing here says they
+manuscript/main.tex:793:functional dimension, but only the lower half is established here, and only at
+manuscript/main.tex:807:\paragraph{Permitted claim.} The generic functional dimension
+manuscript/main.tex:809:The computations here provide an independent, exact, tolerance-free lower bound
+manuscript/main.tex:831:$\dimQten$ independent directions of degree-ten local structure that the flow
+manuscript/main.tex:839:complete or independent. Now any degree-ten invariant can be expanded in a
+manuscript/main.tex:840:certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+manuscript/main.tex:844:completion, a causality statement, an amplitude, or an all-orders theorem. None
+manuscript/main.tex:857:      \emph{Unexposed.} A space spanned by exactly $k$ explicit elements has
+manuscript/main.tex:861:      $\dim G_{10} = \dimGten$ and $\dim B_{10} = \dimBten$, each spanned by
+manuscript/main.tex:883:\item \textbf{No canonicality claim.} The compact $Q_{10}$ basis is a certified
+manuscript/main.tex:891:      without changing the span. We do not claim to have settled the source's
+manuscript/main.tex:905:      Proposition~\ref{prop:cardinality} shows no basis admits a smaller closing
+manuscript/main.tex:907:      under an arbitrary linear change of basis; that is verified in the fixed
+manuscript/main.tex:908:      graph basis and under relabellings of it, and no more.
+manuscript/main.tex:924:prime: the four spanned subspaces are pinned by counting their spanning sets, and
+manuscript/main.tex:926:published span with the products --- were settled by exact rational computations
+manuscript/main.tex:934:is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+submission_candidate/main.tex:39:atlas of degree-ten invariants and resolve its internal structure completely:
+submission_candidate/main.tex:41:twelve-dimensional span of the published candidate structures, the
+submission_candidate/main.tex:42:twelve-dimensional span of the graph generators, and the eleven-dimensional
+submission_candidate/main.tex:46:plus two are not the same decomposition: the published span contains one product
+submission_candidate/main.tex:53:at a common registry of five-forms and their invariant spans compared directly.
+submission_candidate/main.tex:55:an exact modular one over the complete candidate selection. Because the
+submission_candidate/main.tex:56:coordinate basis is integral, the resulting rank is an unconditional lower bound
+submission_candidate/main.tex:81:dimensions has $\dimSelfDualModule$ independent components. The Lorentz group
+submission_candidate/main.tex:84:of functionally independent invariants is~\cite{Hutomo:2025chiral}
+submission_candidate/main.tex:116:basis, and their linear relations were not determined.
+submission_candidate/main.tex:120:published structures span it? Second, the theories that motivate this problem
+submission_candidate/main.tex:133:\item Its internal structure is determined completely
+submission_candidate/main.tex:135:      $\dimPten$, the published span $B_{10}$ has dimension $\dimBten$, the graph
+submission_candidate/main.tex:136:      generator span $G_{10}$ has dimension $\dimGten$, the stress-flow reachable
+submission_candidate/main.tex:141:      span is \emph{not} a complement of the products:
+submission_candidate/main.tex:143:      non-product content of the published span is
+submission_candidate/main.tex:199:  counts \emph{functionally} independent invariants and is cumulative over all
+submission_candidate/main.tex:210:$\exactJacRank$, so exactly two functional relations hold among functions that
+submission_candidate/main.tex:237:structural rather than one of convenience: invariant values span an enormous
+submission_candidate/main.tex:275:Twelve of the fourteen basis elements are graph invariants $I_{10,1},\ldots,
+submission_candidate/main.tex:289:  \dimAten &= \dimBten + 2  &&\text{published span } B_{10} + \text{complement},\\
+submission_candidate/main.tex:294:``the published candidates span the non-product part''.
+submission_candidate/main.tex:304:The published span therefore contains exactly one product direction and misses
+submission_candidate/main.tex:331:$Q_{10}$. The complete pairwise incidence data are in
+submission_candidate/main.tex:341:published span is a third subspace which is not complementary to the products.}
+submission_candidate/main.tex:352:whole degree-ten space: there are $\dimQten$ independent directions of local
+submission_candidate/main.tex:360:them that costs nothing: a space spanned by exactly $k$ explicit invariants has
+submission_candidate/main.tex:366:spanning set; it is assembled by a closure that admits a generated flow direction
+submission_candidate/main.tex:368:$p$ still lies in $D_{10}$ and could be independent over $\mathbb{Q}$. So
+submission_candidate/main.tex:392:reached span \emph{is} $D_{10}$. No separate upper-bound argument is needed --- the
+submission_candidate/main.tex:393:upper bound was an artefact of computing in $\mathbb{F}_p$. As an independently
+submission_candidate/main.tex:395:$\czMinorSize \times \czMinorSize$ minor of the reached span whose integer
+submission_candidate/main.tex:410:conclusion is therefore independent of the improvement term and of the
+submission_candidate/main.tex:420:itself complete is a separate question and is unchanged.
+submission_candidate/main.tex:422:\subsection{How many directions are needed, in any basis}
+submission_candidate/main.tex:426:basis, and it is worth isolating the one consequence that does not depend on that
+submission_candidate/main.tex:433:degree, that is $D + \mathrm{span}(S) = A$, then $|S| \ge \dim Q$.
+submission_candidate/main.tex:437:Applying $\pi$ to $D+\mathrm{span}(S)=A$ and using $\pi(D)=0$ and the
+submission_candidate/main.tex:438:surjectivity of $\pi$ gives $\mathrm{span}(\pi(S)) = Q$. A span of $|S|$ vectors
+submission_candidate/main.tex:442:The statement is basis-free: $A$, $D$ and $Q$ are defined without reference to
+submission_candidate/main.tex:443:coordinates, and a change of basis of $A$ induces an isomorphism of $Q$ and
+submission_candidate/main.tex:445:completion has exactly $\dimQten$ elements, that completion is of \emph{minimum
+submission_candidate/main.tex:446:cardinality in any basis} --- no relabelling or linear redefinition of the atlas
+submission_candidate/main.tex:452:be dropped. That removal-minimality is verified only in the fixed basis and under
+submission_candidate/main.tex:460:A basis is only useful if its elements can be written down. We give a
+submission_candidate/main.tex:466:We do \emph{not} call this basis canonical. It is a choice, certified to span
+submission_candidate/main.tex:471:\section{Formula-independent reverse recovery}
+submission_candidate/main.tex:477:are capped, one is enumerated fully. It recovers rank three and its span agrees
+submission_candidate/main.tex:478:with both the graph-derived and the published-candidate quotient spans.
+submission_candidate/main.tex:495:exactly the self-dual five-form. An independently written implementation
+submission_candidate/main.tex:513:nonzero isotropic vectors, whereas every basis vector here is null.
+submission_candidate/main.tex:550:\caption{The bridge. Both the kernel and the image are identified by two-way span
+submission_candidate/main.tex:557:At each prime, and by two-way span containment rather than by dimension
+submission_candidate/main.tex:602:Where the spans agree, the agreement is established by two-way containment and
+submission_candidate/main.tex:603:the change-of-basis matrix is fitted on the fitting samples only and then
+submission_candidate/main.tex:608:result.} At degrees four, six and ten the two evaluation spans are equal, with
+submission_candidate/main.tex:609:the change-of-basis map validated on holdout samples that took no part in the
+submission_candidate/main.tex:611:spans coincide, which is the cross-validation this comparison was built to test.
+submission_candidate/main.tex:615:containment is strict: every spinor-side invariant lies in the tensor-side span,
+submission_candidate/main.tex:640:change-of-basis map validated on holdout samples. The union rank is the
+submission_candidate/main.tex:643:what makes this span equality rather than dimension agreement.
+submission_candidate/main.tex:661:products of lower-degree invariants. Those splits are computed independently, in
+submission_candidate/main.tex:679:being explicit about what it does not say: the published-candidate span $B_{10}$
+submission_candidate/main.tex:686:\section{Exact Jacobian and the generic functional dimension}
+submission_candidate/main.tex:691:The generic functional dimension $\genericFunctionalDim$
+submission_candidate/main.tex:732:Because the gamma-traceless basis is computed over $\mathbb{Z}$ --- its entries
+submission_candidate/main.tex:746:complete selection.
+submission_candidate/main.tex:760:reproduced independently at each of $\exactJacPoints$ certified sample
+submission_candidate/main.tex:775:$\minorSize \times \minorSize$ minor whose determinant is nonzero
+submission_candidate/main.tex:778:the integer minor is nonzero; the determinant is computed by two independent
+submission_candidate/main.tex:788:rank $\exactJacRank$ means the selected candidates carry functional
+submission_candidate/main.tex:789:\emph{dependencies}; they are not an independent set, and nothing here says they
+submission_candidate/main.tex:793:functional dimension, but only the lower half is established here, and only at
+submission_candidate/main.tex:807:\paragraph{Permitted claim.} The generic functional dimension
+submission_candidate/main.tex:809:The computations here provide an independent, exact, tolerance-free lower bound
+submission_candidate/main.tex:831:$\dimQten$ independent directions of degree-ten local structure that the flow
+submission_candidate/main.tex:839:complete or independent. Now any degree-ten invariant can be expanded in a
+submission_candidate/main.tex:840:certified basis, its coefficients read off exactly, and its class in $Q_{10}$
+submission_candidate/main.tex:844:completion, a causality statement, an amplitude, or an all-orders theorem. None
+submission_candidate/main.tex:857:      \emph{Unexposed.} A space spanned by exactly $k$ explicit elements has
+submission_candidate/main.tex:861:      $\dim G_{10} = \dimGten$ and $\dim B_{10} = \dimBten$, each spanned by
+submission_candidate/main.tex:883:\item \textbf{No canonicality claim.} The compact $Q_{10}$ basis is a certified
+submission_candidate/main.tex:891:      without changing the span. We do not claim to have settled the source's
+submission_candidate/main.tex:905:      Proposition~\ref{prop:cardinality} shows no basis admits a smaller closing
+submission_candidate/main.tex:907:      under an arbitrary linear change of basis; that is verified in the fixed
+submission_candidate/main.tex:908:      graph basis and under relabellings of it, and no more.
+submission_candidate/main.tex:924:prime: the four spanned subspaces are pinned by counting their spanning sets, and
+submission_candidate/main.tex:926:published span with the products --- were settled by exact rational computations
+submission_candidate/main.tex:934:is $A_{10} = G_{10}\oplus P_{10}$. The failure is concrete: the published span
+manuscript/jhep/main.tex:59:Working in two independent formulations --- a tensor formulation built from
+manuscript/jhep/main.tex:65:degree on common samples, and their spans agree at degrees four, six, eight and
+manuscript/jhep/main.tex:74:independent degree-ten invariant directions that this flow does not reach. We
+manuscript/jhep/main.tex:75:also show that the span of the previously published degree-ten structures meets
+manuscript/jhep/main.tex:79:For the generic functional rank of the full candidate family we certify the
+manuscript/jhep/main.tex:158:functions exist, how many are independent, and how they are related is therefore
+manuscript/jhep/main.tex:162:conformal invariance have been completely
+manuscript/jhep/main.tex:174:by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
+manuscript/jhep/main.tex:219:dimension a certificate that a reader can check independently.
+manuscript/jhep/main.tex:237:\item A degree-resolved verification that the tensor and spinor formulations span
+manuscript/jhep/main.tex:250:\item An exact certification of the generic functional rank
+manuscript/jhep/main.tex:251:$\charZeroLowerBound$ as a lower bound, over the complete
+manuscript/jhep/main.tex:335:functionally independent invariants at a generic point is correspondingly
+manuscript/jhep/main.tex:384:not. The product subspace at degree ten is written $\Pten$; the span of the
+manuscript/jhep/main.tex:594:check even though the construction is sound. The independent check is a different
+manuscript/jhep/main.tex:614:\paragraph{Two independent evaluators.}
+manuscript/jhep/main.tex:638:First, the spanning-set argument. If a space is spanned by exactly $k$ explicit
+manuscript/jhep/main.tex:640:rational dimension with no prime excluded. Applying this requires the spanning
+manuscript/jhep/main.tex:647:evaluated. So $\Ften$, $\Gten$ and $\Pten$ are each spanned by an explicit
+manuscript/jhep/main.tex:652:Second, where no spanning-set argument is available --- for
+manuscript/jhep/main.tex:668:normally apply --- Gr\"obner-basis computation of generators and relations,
+manuscript/jhep/main.tex:672:to fix a degree, enumerate a spanning family in two independent ways, and
+manuscript/jhep/main.tex:684:gives an independent handle on differentiation errors: a row that fails Euler is
+manuscript/jhep/main.tex:689:Bareiss elimination~\cite{Bareiss:1968} and by an independent exact routine, and
+manuscript/jhep/main.tex:694:separate, read-only, order-independent step. This separation exists because an
+manuscript/jhep/main.tex:733:two-dimensional, in both formulations, with the spans equal and the equality
+manuscript/jhep/main.tex:781:At degree ten both formulations give rank $\traceRankDegTen$, with equal spans
+manuscript/jhep/main.tex:787:span of the candidates we enumerate; reading it as the dimension of \emph{all}
+manuscript/jhep/main.tex:789:nothing. Two independent constructions --- contraction graphs and chiral
+manuscript/jhep/main.tex:797:\section{Generic functional rank}
+manuscript/jhep/main.tex:803:The generic functional rank of the family is the rank at a generic point of the
+manuscript/jhep/main.tex:816:Each row carries an independent check. Since $I_i$ is homogeneous of field
+manuscript/jhep/main.tex:841:determinant is non-zero, computed by two independent routines that agree. Since a
+manuscript/jhep/main.tex:846:\text{generic functional rank} \;\ge\; \charZeroLowerBound
+manuscript/jhep/main.tex:879:were not independently recomputed here, and cells from one run agreeing with each
+manuscript/jhep/main.tex:881:across primes and seeds is therefore corroboration, not independent
+manuscript/jhep/main.tex:905:Two further cautions. First, the statement is about \emph{functional} rank at a
+manuscript/jhep/main.tex:906:generic point: the selected family has generic functional rank
+manuscript/jhep/main.tex:908:candidates are algebraically independent, which is a different and stronger
+manuscript/jhep/main.tex:910:independently in this repository and agree with the certificate on every recorded
+manuscript/jhep/main.tex:911:quantity; the remaining thirteen were not independently recomputed here, and for
+manuscript/jhep/main.tex:968:was checked independently at every prime, with no exceptions.
+manuscript/jhep/main.tex:972:contribute there. Writing $V_d$ for the span reached at degree $d$, the closure
+manuscript/jhep/main.tex:976: V + \mathrm{span}\bigl\{\,g \;:\; g \text{ generated from } V,\;
+manuscript/jhep/main.tex:987:the \emph{span} of the reachable elements; so $\Dten$ is a linear subspace of
+manuscript/jhep/main.tex:994:\item The \emph{raw target span}: the span of every target the flow generates,
+manuscript/jhep/main.tex:996:\item The \emph{activated closure} $\Dten$: the span of what the flow actually
+manuscript/jhep/main.tex:1001:The raw target span has dimension $\dimAten$ --- the same as $\dim \Ften$. If one
+manuscript/jhep/main.tex:1007:\mathrm{span}\,\mathcal{T} \;=\; \Ften
+manuscript/jhep/main.tex:1009:\Dten \;=\; \mathrm{span}\!\left(\bigcup_{k\ge 0}\mathcal{A}^{k}(\mathcal{T}_0)\right)
+manuscript/jhep/main.tex:1014:tempting --- the raw span really does exhaust $\Ften$ --- and the strict
+manuscript/jhep/main.tex:1016:span is retained in the test suite as a negative fixture so the error cannot
+manuscript/jhep/main.tex:1022:spanning-set argument is available. We therefore ran it over $\Q$.
+manuscript/jhep/main.tex:1035:nothing is at risk. At degree ten one basis vector of the reachable space
+manuscript/jhep/main.tex:1046:\caption{Size of the largest numerator and denominator appearing in a basis
+manuscript/jhep/main.tex:1070:further generated direction raises the rank over $\Q$, so the reached span
+manuscript/jhep/main.tex:1079:elimination and confirmed by an independent exact rational verifier. Three exact
+manuscript/jhep/main.tex:1086:There are $\dimQtenQ$ independent degree-ten invariant directions that the stress
+manuscript/jhep/main.tex:1105:\subsection{How many directions are needed, in any basis}
+manuscript/jhep/main.tex:1108:If $S \subset \Ften$ is any set with $\Dten + \mathrm{span}(S) = \Ften$, then
+manuscript/jhep/main.tex:1113:$\Dten + \mathrm{span}(S) = \Ften$ we get $\mathrm{span}(\pi(S)) = \Qten$, and a
+manuscript/jhep/main.tex:1114:span of $|S|$ vectors has dimension at most $|S|$.
+manuscript/jhep/main.tex:1117:because it converts a basis-dependent assertion into a basis-free one: no
+manuscript/jhep/main.tex:1118:closing set of any kind, in any basis, has fewer than $\dimQtenQ$ elements. What
+manuscript/jhep/main.tex:1120:which we have checked only in the fixed graph basis and under the permutation
+manuscript/jhep/main.tex:1162:The conclusion below is therefore independent of the improvement term and of the
+manuscript/jhep/main.tex:1195:$\langle F,F\rangle$. The two steps are independent, and a test suite that
+manuscript/jhep/main.tex:1259:\section{The published basis and the product sector}
+manuscript/jhep/main.tex:1262:Let $\Bten$ denote the span of the degree-ten structures given in
+manuscript/jhep/main.tex:1264:spanned by explicit elements, so their rational dimensions follow from modular
+manuscript/jhep/main.tex:1290:$\bpFreshSamples$ independently drawn samples, none of which were used in the
+manuscript/jhep/main.tex:1299:coefficients transform by the inverse factors; what is normalisation-independent
+manuscript/jhep/main.tex:1301:is supported on the four published structures listed. The published basis is
+manuscript/jhep/main.tex:1306:\input{tables/tab04_spans.tex}
+manuscript/jhep/main.tex:1309:The published span contains exactly one product direction, so its non-product
+manuscript/jhep/main.tex:1314:presented as explicit expressions rather than as a basis with specified relations.
+manuscript/jhep/main.tex:1354:unscoped completeness or canonicality claim appears, that a quantity certified as
+manuscript/jhep/main.tex:1360:once and aggregated read-only, with the aggregation independent of order.
+manuscript/jhep/main.tex:1386:appendix~\ref{app:conventions}, does not reach $\dimQtenQ$ independent directions
+manuscript/jhep/main.tex:1453:cardinality minimality in any basis. Removal minimality of the particular closing
+manuscript/jhep/main.tex:1455:in the fixed graph basis and under the permutation subgroup. Minimality under
+manuscript/jhep/main.tex:1456:arbitrary $GL$ change of basis would require regenerating the certificates in the
+manuscript/jhep/main.tex:1457:new basis and has not been attempted.
+manuscript/jhep/main.tex:1460:canonical or unique, and no such claim should be read into the word ``basis''.
+manuscript/jhep/main.tex:1463:dimension in this paper is exact for the span of the candidate family we
+manuscript/jhep/main.tex:1464:enumerate. Identifying that span with the space of \emph{all} degree-ten
+manuscript/jhep/main.tex:1466:prove that it is. What we have is two independently implemented constructions,
+manuscript/jhep/main.tex:1467:contraction graphs and chiral bispinors, whose spans agree at degrees four, six,
+manuscript/jhep/main.tex:1477:equivalence and degree-ten classification claims. We do not claim a complete
+manuscript/jhep/main.tex:1488:independently recomputed in this repository. The other thirteen carry internal
+manuscript/jhep/main.tex:1495:$\Qten$ basis is chosen to avoid the ambiguous candidates entirely, so no result
+manuscript/jhep/main.tex:1503:\item \textbf{``Basis'' is used loosely.} We exhibit spanning sets of the stated
+manuscript/jhep/main.tex:1505:(item 2), a reader should read ``basis'' throughout as ``spanning set of
+manuscript/jhep/main.tex:1508:\item \textbf{No Hilbert-series cross-check.} The natural independent check on
+manuscript/jhep/main.tex:1526:The mitigation is that the gates compare macros against \emph{independently
+manuscript/jhep/main.tex:1552:quotient therefore has dimension $\dimQtenQ$: three independent directions the
+manuscript/jhep/main.tex:1555:fixed point in exact rational arithmetic. The span of the published degree-ten
+manuscript/jhep/main.tex:1562:that the two formulations span the same invariants at degrees four, six, eight
+manuscript/jhep/main.tex:1564:functional rank of the candidate family, certified by an explicit
+manuscript/jhep/main.tex:1569:the conflation of the raw target span with the flow-reachable subspace, which had
+manuscript/jhep/main.tex:1592:a human independently of the system that produced them; what a human did was
+manuscript/prd/main.tex:88:Working in two independent formulations --- a tensor formulation built from
+manuscript/prd/main.tex:94:degree on common samples, and their spans agree at degrees four, six, eight and
+manuscript/prd/main.tex:103:independent degree-ten invariant directions that this flow does not reach. We
+manuscript/prd/main.tex:104:also show that the span of the previously published degree-ten structures meets
+manuscript/prd/main.tex:108:For the generic functional rank of the full candidate family we certify the
+manuscript/prd/main.tex:195:functions exist, how many are independent, and how they are related is therefore
+manuscript/prd/main.tex:199:conformal invariance have been completely
+manuscript/prd/main.tex:211:by Smirnov and Zamolodchikov~\cite{Smirnov:2016lqw} and, independently, by
+manuscript/prd/main.tex:256:dimension a certificate that a reader can check independently.
+manuscript/prd/main.tex:274:\item A degree-resolved verification that the tensor and spinor formulations span
+manuscript/prd/main.tex:287:\item An exact certification of the generic functional rank
+manuscript/prd/main.tex:288:$\charZeroLowerBound$ as a lower bound, over the complete
+manuscript/prd/main.tex:372:functionally independent invariants at a generic point is correspondingly
+manuscript/prd/main.tex:421:not. The product subspace at degree ten is written $\Pten$; the span of the
+manuscript/prd/main.tex:635:check even though the construction is sound. The independent check is a different
+manuscript/prd/main.tex:655:\paragraph{Two independent evaluators.}
+manuscript/prd/main.tex:679:First, the spanning-set argument. If a space is spanned by exactly $k$ explicit
+manuscript/prd/main.tex:681:rational dimension with no prime excluded. Applying this requires the spanning
+manuscript/prd/main.tex:688:evaluated. So $\Ften$, $\Gten$ and $\Pten$ are each spanned by an explicit
+manuscript/prd/main.tex:693:Second, where no spanning-set argument is available --- for
+manuscript/prd/main.tex:709:normally apply --- Gr\"obner-basis computation of generators and relations,
+manuscript/prd/main.tex:713:to fix a degree, enumerate a spanning family in two independent ways, and
+manuscript/prd/main.tex:725:gives an independent handle on differentiation errors: a row that fails Euler is
+manuscript/prd/main.tex:730:Bareiss elimination~\cite{Bareiss:1968} and by an independent exact routine, and
+manuscript/prd/main.tex:735:separate, read-only, order-independent step. This separation exists because an
+manuscript/prd/main.tex:774:two-dimensional, in both formulations, with the spans equal and the equality
+manuscript/prd/main.tex:822:At degree ten both formulations give rank $\traceRankDegTen$, with equal spans
+manuscript/prd/main.tex:828:span of the candidates we enumerate; reading it as the dimension of \emph{all}
+manuscript/prd/main.tex:830:nothing. Two independent constructions --- contraction graphs and chiral
+manuscript/prd/main.tex:838:\section{Generic functional rank}
+manuscript/prd/main.tex:844:The generic functional rank of the family is the rank at a generic point of the
+manuscript/prd/main.tex:859:Each row carries an independent check. Since $I_i$ is homogeneous of field
+manuscript/prd/main.tex:884:determinant is non-zero, computed by two independent routines that agree. Since a
+manuscript/prd/main.tex:889:\text{generic functional rank} \;\ge\; \charZeroLowerBound
+manuscript/prd/main.tex:922:were not independently recomputed here, and cells from one run agreeing with each
+manuscript/prd/main.tex:924:across primes and seeds is therefore corroboration, not independent
+manuscript/prd/main.tex:948:Two further cautions. First, the statement is about \emph{functional} rank at a
+manuscript/prd/main.tex:949:generic point: the selected family has generic functional rank
+manuscript/prd/main.tex:951:candidates are algebraically independent, which is a different and stronger
+manuscript/prd/main.tex:953:independently in this repository and agree with the certificate on every recorded
+manuscript/prd/main.tex:954:quantity; the remaining thirteen were not independently recomputed here, and for
+manuscript/prd/main.tex:1015:was checked independently at every prime, with no exceptions.
+manuscript/prd/main.tex:1019:contribute there. Writing $V_d$ for the span reached at degree $d$, the closure
+manuscript/prd/main.tex:1024: V + \mathrm{span}\bigl\{\,g \;:\; g \text{ generated from } V,\;
+manuscript/prd/main.tex:1036:the \emph{span} of the reachable elements; so $\Dten$ is a linear subspace of
+manuscript/prd/main.tex:1043:\item The \emph{raw target span}: the span of every target the flow generates,
+manuscript/prd/main.tex:1045:\item The \emph{activated closure} $\Dten$: the span of what the flow actually
+manuscript/prd/main.tex:1050:The raw target span has dimension $\dimAten$ --- the same as $\dim \Ften$. If one
+manuscript/prd/main.tex:1057:\mathrm{span}\,\mathcal{T} \;=\; \Ften
+manuscript/prd/main.tex:1059:\Dten \;=\; \mathrm{span}\!\left(\bigcup_{k\ge 0}\mathcal{A}^{k}(\mathcal{T}_0)\right)
+manuscript/prd/main.tex:1065:tempting --- the raw span really does exhaust $\Ften$ --- and the strict
+manuscript/prd/main.tex:1067:span is retained in the test suite as a negative fixture so the error cannot
+manuscript/prd/main.tex:1073:spanning-set argument is available. We therefore ran it over $\Q$.
+manuscript/prd/main.tex:1086:nothing is at risk. At degree ten one basis vector of the reachable space
+manuscript/prd/main.tex:1097:\caption{Size of the largest numerator and denominator appearing in a basis
+manuscript/prd/main.tex:1121:further generated direction raises the rank over $\Q$, so the reached span
+manuscript/prd/main.tex:1130:elimination and confirmed by an independent exact rational verifier. Three exact
+manuscript/prd/main.tex:1137:There are $\dimQtenQ$ independent degree-ten invariant directions that the stress
+manuscript/prd/main.tex:1156:\subsection{How many directions are needed, in any basis}
+manuscript/prd/main.tex:1159:If $S \subset \Ften$ is any set with $\Dten + \mathrm{span}(S) = \Ften$, then
+manuscript/prd/main.tex:1164:$\Dten + \mathrm{span}(S) = \Ften$ we get $\mathrm{span}(\pi(S)) = \Qten$, and a
+manuscript/prd/main.tex:1165:span of $|S|$ vectors has dimension at most $|S|$.
+manuscript/prd/main.tex:1168:because it converts a basis-dependent assertion into a basis-free one: no
+manuscript/prd/main.tex:1169:closing set of any kind, in any basis, has fewer than $\dimQtenQ$ elements. What
+manuscript/prd/main.tex:1171:which we have checked only in the fixed graph basis and under the permutation
+manuscript/prd/main.tex:1213:The conclusion below is therefore independent of the improvement term and of the
+manuscript/prd/main.tex:1246:$\langle F,F\rangle$. The two steps are independent, and a test suite that
+manuscript/prd/main.tex:1310:\section{The published basis and the product sector}
+manuscript/prd/main.tex:1313:Let $\Bten$ denote the span of the degree-ten structures given in
+manuscript/prd/main.tex:1315:spanned by explicit elements, so their rational dimensions follow from modular
+manuscript/prd/main.tex:1341:$\bpFreshSamples$ independently drawn samples, none of which were used in the
+manuscript/prd/main.tex:1350:coefficients transform by the inverse factors; what is normalisation-independent
+manuscript/prd/main.tex:1352:is supported on the four published structures listed. The published basis is
+manuscript/prd/main.tex:1357:\input{tables/tab04_spans.tex}
+manuscript/prd/main.tex:1360:The published span contains exactly one product direction, so its non-product
+manuscript/prd/main.tex:1365:presented as explicit expressions rather than as a basis with specified relations.
+manuscript/prd/main.tex:1405:unscoped completeness or canonicality claim appears, that a quantity certified as
+manuscript/prd/main.tex:1411:once and aggregated read-only, with the aggregation independent of order.
+manuscript/prd/main.tex:1437:appendix~\ref{app:conventions}, does not reach $\dimQtenQ$ independent directions
+manuscript/prd/main.tex:1504:cardinality minimality in any basis. Removal minimality of the particular closing
+manuscript/prd/main.tex:1506:in the fixed graph basis and under the permutation subgroup. Minimality under
+manuscript/prd/main.tex:1507:arbitrary $GL$ change of basis would require regenerating the certificates in the
+manuscript/prd/main.tex:1508:new basis and has not been attempted.
+manuscript/prd/main.tex:1511:canonical or unique, and no such claim should be read into the word ``basis''.
+manuscript/prd/main.tex:1514:dimension in this paper is exact for the span of the candidate family we
+manuscript/prd/main.tex:1515:enumerate. Identifying that span with the space of \emph{all} degree-ten
+manuscript/prd/main.tex:1517:prove that it is. What we have is two independently implemented constructions,
+manuscript/prd/main.tex:1518:contraction graphs and chiral bispinors, whose spans agree at degrees four, six,
+manuscript/prd/main.tex:1528:equivalence and degree-ten classification claims. We do not claim a complete
+manuscript/prd/main.tex:1539:independently recomputed in this repository. The other thirteen carry internal
+manuscript/prd/main.tex:1546:$\Qten$ basis is chosen to avoid the ambiguous candidates entirely, so no result
+manuscript/prd/main.tex:1554:\item \textbf{``Basis'' is used loosely.} We exhibit spanning sets of the stated
+manuscript/prd/main.tex:1556:(item 2), a reader should read ``basis'' throughout as ``spanning set of
+manuscript/prd/main.tex:1559:\item \textbf{No Hilbert-series cross-check.} The natural independent check on
+manuscript/prd/main.tex:1577:The mitigation is that the gates compare macros against \emph{independently
+manuscript/prd/main.tex:1603:quotient therefore has dimension $\dimQtenQ$: three independent directions the
+manuscript/prd/main.tex:1606:fixed point in exact rational arithmetic. The span of the published degree-ten
+manuscript/prd/main.tex:1613:that the two formulations span the same invariants at degrees four, six, eight
+manuscript/prd/main.tex:1615:functional rank of the candidate family, certified by an explicit
+manuscript/prd/main.tex:1620:the conflation of the raw target span with the flow-reachable subspace, which had
+manuscript/prd/main.tex:1643:a human independently of the system that produced them; what a human did was

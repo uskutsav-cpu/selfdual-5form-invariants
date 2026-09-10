@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "passed": true,
+  "archive_sha256": "fb62d38723cba5b9825ee5a55d493ec18dd140c5172944160c38f2f17ef8947d",
+  "manifest_entries_verified": 333,
+  "tests_passed": 30,
+  "tests_skipped": 0,
+  "tests_failed": 0,
+  "post_test_payload_unchanged": true,
+  "checks": [
+    {
+      "name": "repaired-portable-extract-and-hashes",
+      "argv": [
+        "environment/bin/python",
+        "release-review/extract_repaired.py"
+      ],
+      "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02",
+      "environment_overrides": {
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+        "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+        "PIP_NO_CACHE_DIR": "1",
+        "PIP_CONFIG_FILE": "/dev/null",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
+      "started_unix": 1788834061.379929,
+      "status": "completed",
+      "pid": 16524,
+      "exit_code": 0,
+      "seconds": 0.5952205830253661,
+      "finished_unix": 1788834061.976224,
+      "logs": {
+        "stdout.log": {
+          "sha256": "8721acafd02906df5bbb78f9c23213b55cc33bab22e63bd468c7a5ae8662df4e",
+          "bytes": 516
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-portable-full-pytest",
+      "argv": [
+        "../environment/bin/python",
+        "-m",
+        "pytest",
+        "-vv",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-repaired",
+      "environment_overrides": {
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+        "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+        "PIP_NO_CACHE_DIR": "1",
+        "PIP_CONFIG_FILE": "/dev/null",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
+      "started_unix": 1788834088.997662,
+      "status": "completed",
+      "pid": 16591,
+      "exit_code": 0,
+      "seconds": 13.833536499994807,
+      "finished_unix": 1788834102.831973,
+      "logs": {
+        "stdout.log": {
+          "sha256": "9a9efb4cf85ea181481f7433cc890a4362f8d5121726e5beec0ee6d223d40548",
+          "bytes": 3648
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-portable-independent-certificates",
+      "argv": [
+        "../environment/bin/python",
+        "scripts/verify_independent_audit.py"
+      ],
+      "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-repaired",
+      "environment_overrides": {
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+        "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+        "PIP_NO_CACHE_DIR": "1",
+        "PIP_CONFIG_FILE": "/dev/null",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
+      "started_unix": 1788834088.993793,
+      "status": "completed",
+      "pid": 16589,
+      "exit_code": 0,
+      "seconds": 4.7481974579859525,
+      "finished_unix": 1788834093.745261,
+      "logs": {
+        "stdout.log": {
+          "sha256": "a1f607ad29444daa6ae2250dd9d13dc9dc201163358956f36b34d16a5b4db3ac",
+          "bytes": 853
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-portable-octic-cli",
+      "argv": [
+        "../environment/bin/python",
+        "scripts/map_literature_basis.py",
+        "--degree",
+        "8"
+      ],
+      "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-repaired",
+      "environment_overrides": {
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+        "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+        "PIP_NO_CACHE_DIR": "1",
+        "PIP_CONFIG_FILE": "/dev/null",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
+      "started_unix": 1788834088.9952471,
+      "status": "completed",
+      "pid": 16588,
+      "exit_code": 0,
+      "seconds": 1.2742592500289902,
+      "finished_unix": 1788834090.2698932,
+      "logs": {
+        "stdout.log": {
+          "sha256": "dc604c46ac5ce20f66c4fa75bd44d3a9bb6657253046310d0d12cfbe6db42df4",
+          "bytes": 903
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "repaired-portable-decic-cli",
+      "argv": [
+        "../environment/bin/python",
+        "scripts/map_literature_basis.py",
+        "--degree",
+        "10"
+      ],
+      "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/portable-repaired",
+      "environment_overrides": {
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/pycache",
+        "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/cache",
+        "PIP_NO_CACHE_DIR": "1",
+        "PIP_CONFIG_FILE": "/dev/null",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
+      "started_unix": 1788834088.995797,
+      "status": "completed",
+      "pid": 16590,
+      "exit_code": 0,
+      "seconds": 1.2750042920233682,
+      "finished_unix": 1788834090.2718358,
+      "logs": {
+        "stdout.log": {
+          "sha256": "3aeee194ca9209cfbe1f2a5ad09084f6e39171d23060f018819e35b900371358",
+          "bytes": 905
+        },
+        "stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "graph_recomputation_scope": "portable-frozen-recompute recomputed all four frozen cells with these identical graph modules and witnesses; corrected source modules are verified separately.",
+  "unchanged_graph_engine_and_frozen_witnesses": [
+    {
+      "path": "src/sdinv/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/sdinv/catalog.py",
+      "sha256": "0155e70bc9a7f389c8e94055a6537065d49b0c2e60867fb1515d8e1f0ad35e39"
+    },
+    {
+      "path": "src/sdinv/certificate.py",
+      "sha256": "ee178514912a877107091832a6a7e2ee69bbd125c80d811d4ea4861783f2a9d4"
+    },
+    {
+      "path": "src/sdinv/checkpoint.py",
+      "sha256": "e5d4f8325ab0de4a778be57a9c7c3a12d7ad7fc3c2d615134b8eb07344c540f2"
+    },
+    {
+      "path": "src/sdinv/contract.py",
+      "sha256": "21d2ac842fb51abf96acc26ab081fdd7c7e0258c1a76804e84b9f15d9bb584a4"
+    },
+    {
+      "path": "src/sdinv/exactmap.py",
+      "sha256": "30563ea66918536ca0906e3e3ed23381afcebf893eeaab5854767952980c8bd9"
+    },
+    {
+      "path": "src/sdinv/formal_flow.py",
+      "sha256": "593a7bd8a75ae98d9e87c0b9ea2201eb495c0874fcb1a8a8a353b1117f1fc6bb"
+    },
+    {
+      "path": "src/sdinv/forms.py",
+      "sha256": "a6a922cbd5ae9dd410b179da9e2fadb877887ff973402420280e4e0a17d6a024"
+    },
+    {
+      "path": "src/sdinv/graph_to_tensor.py",
+      "sha256": "f78ffa5558574a399186f1fa9710b38ea2c9d9e3a98426b6a51ddf56ad7475fe"
+    },
+    {
+      "path": "src/sdinv/graphs.py",
+      "sha256": "f4a38980556c20369d86193c5bc2afd0ff39c5558592c6bc52b68e0bfc6d9b73"
+    },
+    {
+      "path": "src/sdinv/index_symmetry_ops.py",
+      "sha256": "d9a716bae998e946a8a6635ae0ca0a15161d2f76669ce395f4759678948e4d7d"
+    },
+    {
+      "path": "src/sdinv/interaction.py",
+      "sha256": "906c88b0622dbfe0cf2e91a94521b5a394c4b11148b307c1925743ca5819bc46"
+    },
+    {
+      "path": "src/sdinv/invariant_registry.py",
+      "sha256": "3c42297dd4c4b5390909f15c5ea3a06bf06e0e2d66204e291a7b88b84f1775b2"
+    },
+    {
+      "path": "src/sdinv/latex.py",
+      "sha256": "0b208544776e3d7fccada033d4b89620ecf8feba1be186d3837a728389d959d1"
+    },
+    {
+      "path": "src/sdinv/modp.py",
+      "sha256": "2cd58f7bda71dc92f64a3e32b936499f2343ee32f00b265d25b3f1c0fd40daec"
+    },
+    {
+      "path": "src/sdinv/primitive.py",
+      "sha256": "2815e036ffc4369854aa30be20e33ffcff6ab730f32b3019279744e3d427d963"
+    },
+    {
+      "path": "src/sdinv/projection_checkpoint.py",
+      "sha256": "94e91aea23d5b1e86583d5e387ecec7ae94154c7eeac3691c7c93196bdedf819"
+    },
+    {
+      "path": "src/sdinv/published_degree12_invariants.py",
+      "sha256": "75f3234873714fc35e96c9ecce1925b8d3fe3a13e6dc6c0909c31fc74064bf59"
+    },
+    {
+      "path": "src/sdinv/reverse_block_decomposition.py",
+      "sha256": "348c82db2f0dd6b197519c3ef62abc8c007c3199d46dc963cd0aa8784506ffeb"
+    },
+    {
+      "path": "src/sdinv/serialize.py",
+      "sha256": "8165ec13586e3900664e3aa9221705ad4a91f481d3408960f83211a0999e1823"
+    },
+    {
+      "path": "src/sdinv/sextic.py",
+      "sha256": "92108074b8f339525f947ccc8e4a33dbd0e5dc0f8db4705cebbe85a2e18d2798"
+    },
+    {
+      "path": "src/sdinv/spinor_adapter.py",
+      "sha256": "30a7e57bd1a58eb4b0e7a228988a74f49705b3a8f62eeaa1ef55fc746817df8b"
+    },
+    {
+      "path": "src/sdinv/stress.py",
+      "sha256": "1d46450aa5832195143ab53ebacdc945cbfe9d589a49b7a779128813fe9e74df"
+    },
+    {
+      "path": "scripts/verify_rank81.py",
+      "sha256": "a7f22b57e32f691c6da469b20b605924bc601e3dd9cbb86d891a7b05bd4c06ff"
+    },
+    {
+      "path": "results/rank81_basis.json",
+      "sha256": "59848eb1e3024f33da8b8235796b0ea99429f21c88243070437172b50a6473fb"
+    },
+    {
+      "path": "results/rank81_certificate.json",
+      "sha256": "c329edc407c0624633abeda7e9de097fc92ed0b17224d2f19d1aba43d54d656d"
+    }
+  ],
+  "source_identity_assumptions": "Published Hilbert upper bounds7/14 and analytic tensor invariance; no independent Hilbert derivation.",
+  "metadata_scope": "Post-build sidecar intentionally outside ZIP to avoid circular hashing. Full historical suites and raw command logs are in the Git repository."
+}

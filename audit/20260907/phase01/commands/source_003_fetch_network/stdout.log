@@ -1,0 +1,14 @@
+{
+  "arxiv-v2.html": {
+    "url": "https://arxiv.org/html/2509.14350v2",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+  },
+  "arxiv-v2.pdf": {
+    "url": "https://arxiv.org/pdf/2509.14350v2",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+  },
+  "arxiv-v2-source.tar": {
+    "url": "https://arxiv.org/src/2509.14350v2",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+  }
+}

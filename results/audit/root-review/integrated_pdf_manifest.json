@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "manuscript/main.pdf",
+      "sha256": "cdd981d6c50a48abae025163315fb2017e75772ac3d9b2562d8d47ac1adab19b",
+      "pages": 26
+    },
+    {
+      "path": "manuscript/jhep/main.pdf",
+      "sha256": "a8b1f396dacc6e046225b3910ea5271eb37536e2a8b72b43dd6d230b4bdd6adb",
+      "pages": 49
+    },
+    {
+      "path": "manuscript/prd/main.pdf",
+      "sha256": "3a73218bbf4bdd2a8a6a9aa81f9ef8dd22c10cdede3bfcfde774d9d55f39f89b",
+      "pages": 26
+    },
+    {
+      "path": "manuscript/prd_letter/main.pdf",
+      "sha256": "9e7087d3725a7066af327a95a695af09311924c6b7dd68dd873feb1ca6689fee",
+      "pages": 6
+    },
+    {
+      "path": "manuscript/prl/main.pdf",
+      "sha256": "1459a11422bfd278432a3baa6842590c2f4f12b3a1c4f3d38a42570a06084d6b",
+      "pages": 4
+    },
+    {
+      "path": "submission_candidate/compiled_manuscript.pdf",
+      "sha256": "6f1acb341b3d76ac95938512520c83cfd70bd54fa0172b29a3b446c782c238f9",
+      "pages": 26
+    },
+    {
+      "path": "paper/manuscript.pdf",
+      "sha256": "148914ab81bf42d0e0679e79195e701b6ba54276ad2887ce4b59f7f1d1bf5e89",
+      "pages": 20
+    }
+  ]
+}

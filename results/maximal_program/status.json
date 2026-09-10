@@ -1,0 +1,106 @@
+{
+ "baseline_commit": "3ed32805b38ce34216b34888f6539e3538e90fb9",
+ "branch": "research/maximal-chiral-four-form-program",
+ "current_phase": "Phase 1: degree-10 reverse benchmark (recovery goal)",
+ "hazards": [
+  "canonical tree is iCloud-synced: no active checkpoints there; judge activity by mtime not ps"
+ ],
+ "machine": {
+  "constraint": "frequently <100MB free; three pytest runs killed by memory pressure in Phase 0",
+  "cores": 8,
+  "cpu": "Apple M1",
+  "ram_gib": 8
+ },
+ "measured_costs_seconds": {
+  "closure_fixed_point_four_primes": 95.7,
+  "flow_assembly": 5,
+  "full_test_suite_clean": 170.6,
+  "full_test_suite_under_memory_pressure": 233.2,
+  "interacting_flow_per_prime": 530.2,
+  "order6_10d_graph_enumeration": 64.9,
+  "static_degree12_per_prime": 154.3
+ },
+ "nothing_pushed_beyond": "stress-flow/classification-through-degree12",
+ "phase_1": {
+  "closure_is_coordinate_aligned": true,
+  "conjecture_CJ01": "functional dependence implies dynamical unreachability (2/2; converse false)",
+  "degree10_missing": [
+   "I10_6",
+   "I10_7",
+   "I10_12"
+  ],
+  "degree12_missing": [
+   "I12_59",
+   "I12_60",
+   "I12_61",
+   "I12_62"
+  ],
+  "falsification_tests": {
+   "test_18_minimal_set_removal": "PASSED for removal; subset lattice owed",
+   "test_4_basis_change": "PARTIAL - permutation subgroup passed; general GL open",
+   "test_5_reordering": "PASSED - 5 trials/degree, not an ordering artifact",
+   "test_7_nongeneric_configs": "NOT RUN"
+  },
+  "gate_blocker": "directions are graph labels, not intrinsic tensor expressions",
+  "gate_met": false,
+  "total_minimal_completion_through_degree12": 12
+ },
+ "phases": {
+  "0": "complete: baseline reproduced, 14-point claim audit, resource plan",
+  "1": "partial: deficits located and minimal; intrinsic expressions outstanding",
+  "10": "not_started",
+  "11": "not_started",
+  "12": "blocked_by_design",
+  "13": "not_started",
+  "2": "not_started",
+  "3": "not_started",
+  "4": "not_started",
+  "5": "not_started",
+  "6": "not_started",
+  "7": "not_started",
+  "8": "not_started",
+  "9": "not_started"
+ },
+ "pillars": {
+  "1_general_structure": "partial: degree-10/12 closure deficits open",
+  "2_proof": "not_started: no induction exists (PO-10)",
+  "3_new_theory": "not_started",
+  "4_string_theory": "not_started",
+  "5_independent_reproducibility": "not_started: no clean-room implementation"
+ },
+ "resource_plan": {
+  "binding_constraint": "RAM not CPU; peak RSS 1.18GB recorded, <100MB often free",
+  "document": "docs/RESOURCE_PLAN.md",
+  "infeasible_on_this_machine": [
+   "degree14_16_extension"
+  ],
+  "not_compute_bound": [
+   "phase1_intrinsic_expressions",
+   "phase2_analytic_identity",
+   "phase5_induction",
+   "phase8_typeIIB_reading",
+   "phase10_independence"
+  ]
+ },
+ "reverse_pilot": {
+  "candidates": 588,
+  "canonical_candidates_total": 16522,
+  "checkpoint_path": "scratchpad/ckpt/reverse10 (local temp, NOT iCloud)",
+  "checkpoint_units": 309,
+  "commit": "e800e7b140a023fcf0b50e05d1d8d1ba2f68b127",
+  "evaluation_rss_mb": 260,
+  "fit_prime": 32749,
+  "holdout_prime_pending": 32717,
+  "output": "results/intrinsic_candidates/degree10_reverse_benchmark.json",
+  "peak_rss_stage": "enumeration (topology objects retained across sectors)",
+  "pid": 77396,
+  "samples_done": 17,
+  "samples_total": 22,
+  "seconds_per_sample": 133.7,
+  "sectors": 21,
+  "sectors_capped": 5,
+  "state": "running",
+  "worker_peak_rss_mb": 2611
+ },
+ "schema": 1
+}

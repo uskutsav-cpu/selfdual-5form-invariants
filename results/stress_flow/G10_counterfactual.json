@@ -1,0 +1,19 @@
+{
+ "schema": 1,
+ "as_derived_dims": {
+  "4": 1,
+  "6": 2,
+  "8": 7,
+  "10": 11
+ },
+ "as_derived_Q10": 3,
+ "counterfactual_dims": {
+  "4": 1,
+  "6": 2,
+  "8": 7,
+  "10": 14
+ },
+ "counterfactual_Q10": 0,
+ "targets_forced_active": 24,
+ "activation_is_load_bearing": true
+}

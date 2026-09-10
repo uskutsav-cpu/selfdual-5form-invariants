@@ -123,6 +123,17 @@ if __name__ == "__main__":
     ap.add_argument("--single-prime", action="store_true")
     ap.add_argument("--out", default="results/10d_order8.json")
     a = ap.parse_args()
+    if any(order >= 10 for order in a.orders):
+        # Preserve the historical low-degree regression runner. The generic
+        # runner includes lower generators and products and keeps the two
+        # rank notions separate, which is essential at degree 12.
+        from run_degree import main as degree_main
+        output = a.out if a.out != "results/10d_order8.json" else (
+            f"results/degree{max(a.orders)}_verification.json")
+        arguments = ["--degree", str(max(a.orders)), "--out", output]
+        if a.single_prime:
+            arguments += ["--primes", str(P)]
+        raise SystemExit(degree_main(arguments))
     print(f"10D self-dual 5-form: 126 components, target {TARGET}")
     primes = [P] if a.single_prime else [P, ALT_P]
     logs = []

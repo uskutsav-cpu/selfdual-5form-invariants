@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json; p=Path(\"checkout\"); Path(\"math-review\").mkdir(exist_ok=True); c=json.loads((p/\"results/rank81_certificate.json\").read_text()); print(\"WITNESS KEYS\",c[\"witnesses\"][0].keys()); print(\"WITNESS METADATA\", [{k:v for k,v in w.items() if k not in (\"jacobian\",\"coordinates\",\"values\",\"invariant_ids\")} for w in c[\"witnesses\"]]); print(\"RELEVANT FILES\\n\"+\"\\n\".join(str(x.relative_to(p)) for d in [\"src\",\"tests\",\"docs\",\"results\",\"manuscript\"] for x in (p/d).rglob(\"*\") if x.is_file() and not any(s in x.parts for s in [\"tmp\",\"checkpoints\",\"caches\"]))); print(\"README\\n\"+(p/\"README.md\").read_text())"
+  ],
+  "cwd": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01",
+  "environment_overrides": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPYCACHEPREFIX": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/pycache",
+    "XDG_CACHE_HOME": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/cache",
+    "PIP_NO_CACHE_DIR": "1",
+    "PIP_CONFIG_FILE": "/dev/null",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_unix": 1788827017.600936,
+  "status": "completed",
+  "pid": 1853,
+  "exit_code": 0,
+  "seconds": 0.10167204099707305,
+  "finished_unix": 1788827017.702951,
+  "logs": {
+    "stdout.log": {
+      "sha256": "80d57d00cc1301650bca96df9871976426a7d580699d555ce1e9836282eb5c07",
+      "bytes": 41071
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"ts": "2026-07-30T15:39:10", "ps": ["62403", "97.8", "1382112", "38:02"], "free_mb": 62.5938, "last_log_line": "36/72 cols  1771s", "log_lines": 5, "observed_rate_s_per_col": {"1-12": 6.3, "13-24": 50.8, "25-36": 90.5}, "assessment": "healthy but decelerating ~linearly with RSS growing past the 1.5GB ceiling; OOM kill before completion is likely"}

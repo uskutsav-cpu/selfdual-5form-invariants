@@ -1,0 +1,764 @@
+[
+  {
+    "source": "frozen-checkout/scripts/degree10_pipeline.py",
+    "destination": "repair-checkout/release_candidate/trace-code/scripts/degree10_pipeline.py",
+    "sha256": "e2afe99e482f9a67970fa4f60e38509a4e480093e0b7ac965bad614349babca0",
+    "reason": "Required by archived test suite; omitted from frozen release copy."
+  },
+  {
+    "source": "frozen-checkout/scripts/degree12_pipeline.py",
+    "destination": "repair-checkout/release_candidate/trace-code/scripts/degree12_pipeline.py",
+    "sha256": "4d000af175c33e53961b56e99eb8d1999b196c99d2fed4dde606ae79b7489f90",
+    "reason": "Required by archived test suite; omitted from frozen release copy."
+  },
+  {
+    "source": "frozen-checkout/scripts/stress_flow_closure.py",
+    "destination": "repair-checkout/release_candidate/trace-code/scripts/stress_flow_closure.py",
+    "sha256": "0bbc173f8b3efc220ed9d3784edf62142aa8811a2f6b2b68f0ea2028bb3ad2fa",
+    "reason": "Required by archived test suite; omitted from frozen release copy."
+  },
+  {
+    "source": "frozen-checkout/results/10d_baseline.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/10d_baseline.json",
+    "sha256": "29f559359b3fd5f241159e484cc39f78265fd568d5c8f2bc25fa3d54c1c6d52d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/10d_graph_catalog.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/10d_graph_catalog.json",
+    "sha256": "a9ecaf225b2dac4c67d62abf848ae8b427f1d16242ca7672240797127321788c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/10d_order10.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/10d_order10.json",
+    "sha256": "92b02433d82e641cce0d2dbb5f1bec9878c191ccbda7e906f27ef1f555b0fee5",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/10d_order12.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/10d_order12.json",
+    "sha256": "9a784dc56a2bc8186a4abb59e9177051be05640e95b4d7d24a4538bb45335113",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/10d_order8.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/10d_order8.json",
+    "sha256": "e780f0972fb8bfcfbed0dcda89361fe9810763549bc6f2ac9bf0833585e7f16c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/classification_validation.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/classification_validation.json",
+    "sha256": "a8765f8182e895c8e64deff1cfa2935a91e7f901bc698f657445de491f3ba0dc",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree10/B10_P10_intersection_exact.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree10/B10_P10_intersection_exact.json",
+    "sha256": "b6ef2788044eb157427a46f2813ff1215aba627b02d575991deb71d39c3dbf59",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree10/B10_P10_intersection_generator.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree10/B10_P10_intersection_generator.json",
+    "sha256": "bed2fc6d3623b02537a7702923b457f263d095c3f66c43c63d410c2830ee778b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree10/B10_coordinates_per_prime.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree10/B10_coordinates_per_prime.json",
+    "sha256": "f3438821d65fc301efb1f0528a0e326180ab3a7cdd0be07e7127644c8143b50e",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree10/no_stop_terminal.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree10/no_stop_terminal.json",
+    "sha256": "032a9a22a34b899b18165234c17181faed69ed2416adb5199d8de2996204fbc4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree10_benchmarks.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree10_benchmarks.json",
+    "sha256": "544e14d31c435eef86c87fd83a61852585c6d13ddb96215aeac45225087f2fcf",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/degree12_benchmarks.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/degree12_benchmarks.json",
+    "sha256": "8e24c05655d7be304b21835eb9fe2013df31a922427e72f8a2b1996ab0ba2a42",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/degree10_missing_directions.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/degree10_missing_directions.json",
+    "sha256": "04fe1dcc85636b1121c3e925fdf24d2add67d66476978da7d7e9a3702e286899",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/degree12_missing_directions.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/degree12_missing_directions.json",
+    "sha256": "b7c33e15e685d51af91701c58a42bbaf6cd95dff51535aba908b49ed36e9629a",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/minimality_certificates/basis_permutation.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/minimality_certificates/basis_permutation.json",
+    "sha256": "52529e35c3e7ee3fc46548f78d984b8c355ed5be882e2991d97ed4150181a35b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/minimality_certificates/ordering_falsification.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/minimality_certificates/ordering_falsification.json",
+    "sha256": "3cf2b8af2a973db98a04870d3d8c8dc3f8f639cd46dce646c9c046cba9450653",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/quotient_degree10.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/quotient_degree10.json",
+    "sha256": "2e67f854f37e9f413dcdf85e1548cc5b929771727307016c0bb037395ba18627",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/generalized_flow/quotient_degree12.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/generalized_flow/quotient_degree12.json",
+    "sha256": "def10f38278a5a7530acc2267aeaf68e87f696f79858ee5fd10180311345a9a6",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/M_only_quotient_test_deg10.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/M_only_quotient_test_deg10.json",
+    "sha256": "4aafa302c478c4c2e9626ae811d6b78ee0c5360979e343aeb4e75e90e842a25a",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_ambiguity_relationship.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_ambiguity_relationship.json",
+    "sha256": "427ab5d0a927f5351c300be47d4e8b42ae525e2aad9f9ce9c8f3cf568704e0c2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_basis_comparison.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_basis_comparison.json",
+    "sha256": "3ec56cf5e77a85b8b9e15ba12ffd09eba7cebf082bd47f10bc0f4503ba83d65f",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_basis_search.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_basis_search.json",
+    "sha256": "32c6bec876b11ecade4f27cb3b82117b1d33852b60cf89969a8f1f29bdc00505",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_canonicality_manifest.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_canonicality_manifest.json",
+    "sha256": "b5d5f8e02951199abac7c8acdd155bc7922630f5d82ebe12d4dca9d52abe7a81",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_levelA_levelB_map.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_levelA_levelB_map.json",
+    "sha256": "9cb1f7497e685997493f5bf47dc352c841d857cf629c2bdd9949ec2378c469fb",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_pure_N4125_basis.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_pure_N4125_basis.json",
+    "sha256": "33dbec137d84f65a15baf198c389ba805db6ef2232e36d6a8dbb449ec48b5eec",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/Q10_pure_N4125_basis_maps.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/Q10_pure_N4125_basis_maps.json",
+    "sha256": "196e68d735d2d9686ec5f52257c4b20eef16e9f3101daff4f925c6e36506e10d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_positive_control.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_positive_control.json",
+    "sha256": "0d3da7cc133e572930b353eced0414abff6f00c4e9a9c00151a94bfec64780da",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_published_product_intersection.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_published_product_intersection.json",
+    "sha256": "405422f875bde5824951c941be52cdf5b86150d6cdae4e626b54e60a773669ad",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_reverse_benchmark.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_reverse_benchmark.json",
+    "sha256": "a1aeb80164de643e73dee44288a96de8399a083f7258221da336277d0b81092e",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_reverse_corrected.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_reverse_corrected.json",
+    "sha256": "a1aeb80164de643e73dee44288a96de8399a083f7258221da336277d0b81092e",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_reverse_exceptions.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_reverse_exceptions.json",
+    "sha256": "73e0ae6bfd48e2c00a93d5a40bfcfb2d84d363ac6ced0f6d80407453da0e06d7",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_reverse_span_validation.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_reverse_span_validation.json",
+    "sha256": "f91bf5002ab6d927b54ad5abe47f064076ca944ff5526805412d9e19ff8a69f3",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree10_space_incidence.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree10_space_incidence.json",
+    "sha256": "fe4d1d629aa89860a286fae7ad582bd010c7183fbc9098e49edca4ed4d858f5d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/degree12_reverse_pilot_plan.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/degree12_reverse_pilot_plan.json",
+    "sha256": "afeb13d0a9bb115d9d0ece3db731bc9880eb316fdf24dc735d9cf873229be36f",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/explicit_F_contractions.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/explicit_F_contractions.json",
+    "sha256": "ec8a289f84e3a86d661047a1f40459745ec44f2f1a486167dd2f5557f85f5888",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/intrinsic_Q10_levelB_basis.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/intrinsic_Q10_levelB_basis.json",
+    "sha256": "130c6843c77c92f303dc85b3c909c26cc11259b857f8c11dc639a7842075619b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/p12_projection_monitor.jsonl",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/p12_projection_monitor.jsonl",
+    "sha256": "34e253afa3a2a538a4cd967a1b22b2b8f865c78cfc750263abef676c86f4867b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/primary_source_manifest.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/primary_source_manifest.json",
+    "sha256": "dfdaafd21ab233a48f7160f9dbccf955c9141e1bfd989549f9c8f89c101c9e25",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/published_degree10_formula_status.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/published_degree10_formula_status.json",
+    "sha256": "7288238b1a4bc8dcb589adb9f3bc611d6fe519beb484c224ee4baba413d639c6",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/published_degree10_holdouts.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/published_degree10_holdouts.json",
+    "sha256": "82142c0e1261fc086ab167342896ca9878e437ea1494f4c056baefd6c34f5c53",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/published_degree10_map.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/published_degree10_map.json",
+    "sha256": "08f97a91f1793fabdcb7223dd7a07f25ea2b6287abb4d9275ae264c01e11d6e3",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/intrinsic_candidates/published_degree12_map.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/intrinsic_candidates/published_degree12_map.json",
+    "sha256": "9a8f4e32627ee5bef06324169dc823a4add9ecc742402d1f88df31c3a67c98ce",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/jhep/final_certified_baseline.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/jhep/final_certified_baseline.json",
+    "sha256": "edcc8450c579acec965b597a1468d016413e453409176669f2914fc7e867a618",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/jhep/final_clean_clone.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/jhep/final_clean_clone.json",
+    "sha256": "7d502b3cbf3af427ef345853af8f55a385b2c52e5792f94e14dca0b5242fe27f",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/jhep/publishability_clean_clone_final.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/jhep/publishability_clean_clone_final.json",
+    "sha256": "e1996f72c8737def83ff45cd422efef3f002c38c0820f3d23bbd9e5097d51fe2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/baseline_manifest.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/baseline_manifest.json",
+    "sha256": "3ef0368c8a724cffeacd0702e7d77a981dc4e16fa206b8bccd11111092a003b3",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/claim_audit.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/claim_audit.json",
+    "sha256": "44c2fbe33491732c2ab29c986676fe94ecba2554922bc33e91e090abb6694203",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/degree10_reproduction_record.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/degree10_reproduction_record.json",
+    "sha256": "620be3d6719ad58410eb472154e87607e599336bd4a5ff41c6c2b63763839725",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/environment.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/environment.json",
+    "sha256": "c6010ea22d3f67658079b9f1e4ee9238dd7de4e140a2a0ca5aafdadff88f893c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/proof_obligations.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/proof_obligations.json",
+    "sha256": "13ad919fd76acb726314c3183630f99875429717fab2f17fa249ca4e6a02380f",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/maximal_program/status.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/maximal_program/status.json",
+    "sha256": "203dc856aace014c8ab0d3e5975290a9a3bfe6a843426d58f5a2c445eb283a57",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/mentor_draft/ferko_clean_clone.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/mentor_draft/ferko_clean_clone.json",
+    "sha256": "5c3b6ba2ec68d8c595f44bd4ab244ad796381c7a6fff999b38f5a2b0aca5a9ea",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/mentor_draft/scientific_input_manifest.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/mentor_draft/scientific_input_manifest.json",
+    "sha256": "2317dadc2558a66e615734ec70e7bf619c981a1978e9bcd88978090b35182987",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/order10_change_of_basis.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/order10_change_of_basis.json",
+    "sha256": "429dbf74b37f84baf3b14c8e64bb718d74a0d88b25221848e7f547dc1fd3cb89",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/order8_change_of_basis.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/order8_change_of_basis.json",
+    "sha256": "30140fa0bef549b6f6c221e3fcc5f971416930ca3802084ca3d40933f782beec",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32693_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32693_s11.json",
+    "sha256": "60209634676b44a0b1fde80101329766bda0b8c6d5e8093f21244f5ef44b2821",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32693_s22.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32693_s22.json",
+    "sha256": "2b24c7140a5fb868cf285728e43dcade6ed857438192bb79582a3dcdf0bcacd1",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32693_s33.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32693_s33.json",
+    "sha256": "fb185a3bd890b7e48c00f95c3ebd2b8cea5cf5a394d759514a8594aff8b2c55d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32713_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32713_s11.json",
+    "sha256": "d3ff05f04ccd5f4352275535aa8151d9508e84714c2431b7382edcf404a71dda",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32713_s22.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32713_s22.json",
+    "sha256": "0d9e4e7a48c7f45bb8e6468d08a077c02d9eee7bffbe4aa6cb3fb7a8ebbfd6fd",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32713_s33.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32713_s33.json",
+    "sha256": "304f952c8454e107665f62bd3986e87a91a853962cbf8bfaa017bc41e30d0ef4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32717_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32717_s11.json",
+    "sha256": "dfc6b8134b4aa75365edde3ef2f6535e0fb746d171be04f88997ce454e43246a",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32717_s22.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32717_s22.json",
+    "sha256": "7d397711fc08f50e6ba2aadf3b2ff28267eea4f85aee6c1e227cd9c2535e02d2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32717_s33.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32717_s33.json",
+    "sha256": "256851f8f37211fa24caf62c6e4f94b22109627a8a7dd31f1bbba118bf6dd70b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32719_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32719_s11.json",
+    "sha256": "349acf7332034cfef7afac8932a4d3544c85b3859a9ff3d4e9f577799a3b9bb2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32719_s22.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32719_s22.json",
+    "sha256": "73ea2f00a3332db0dea8707f2093f1d7a0fe734604da2de9383a99a687ec752d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32719_s33.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32719_s33.json",
+    "sha256": "a2bbad78f28afbaf8bb9a6917e35c15976d3f9da704bab6aa981f2facef1be59",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32749_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32749_s11.json",
+    "sha256": "1e439220c8893b6d3f2a2f24a978b31c444ad7ad3360011a78e94f3a12031c94",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32749_s22.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32749_s22.json",
+    "sha256": "023d07047ba6c2133f7f87549691fde7c4497eaeedafd0dea3ffc307caf1f97e",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/cells/cell_p32749_s33.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/cells/cell_p32749_s33.json",
+    "sha256": "ebc1dbe6c0580d59caa4e0290961d73033c2e76537db1c46ebed640b1e455aac",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/certificate.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/certificate.json",
+    "sha256": "6acecda746fd9490c6ff18d4fc4ad10f90c8ecd9e5fd4398cb72b2d90de6a02a",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/full_rank_matrix_publication_final.csv",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/full_rank_matrix_publication_final.csv",
+    "sha256": "1f4aca69a9db6fb9cfe081cbb932b33de2e39c0037ebd034aa1f423c3f3ce9bf",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/full_rank_matrix_publication_final.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/full_rank_matrix_publication_final.json",
+    "sha256": "0301cbe71a386aed2de4ea3c0a514608e2147be0338507eec89eaf3fdd4ee0d4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/full_rank_matrix_publication_final.sha256",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/full_rank_matrix_publication_final.sha256",
+    "sha256": "9d25e3301b348dde3a3d2441f6401f0badfc5426c5ad712faf04d8e48266ff9a",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/minor81_certificate.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/minor81_certificate.json",
+    "sha256": "745f36b55427656e41f63b5912545339a1263a9759a14d1cde228442b846d20e",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81/rowcache_p32749_s11.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81/rowcache_p32749_s11.json",
+    "sha256": "910c783c278ccbb00d7a8a58a118767e4bf285be15056df7a1dbf31029a32849",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81_basis.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81_basis.json",
+    "sha256": "59848eb1e3024f33da8b8235796b0ea99429f21c88243070437172b50a6473fb",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81_certificate.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81_certificate.json",
+    "sha256": "c329edc407c0624633abeda7e9de097fc92ed0b17224d2f19d1aba43d54d656d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/rank81_lorentz.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/rank81_lorentz.json",
+    "sha256": "973a982ab0100a967050251386c84d8b7f466cfb13606752d3ea3183496494f0",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/D10_characteristic_zero.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/D10_characteristic_zero.json",
+    "sha256": "aebf38967d08f9b1d8e3b240dcdb2e7c15d72ca441c6776cc6cfba2e9ef542ce",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/G10_counterfactual.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/G10_counterfactual.json",
+    "sha256": "f40ae706e5a021344bfdfd0fa5de9271e6531e6b74ca20679d96350c73df2c9d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/G10_publication_certificate.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/G10_publication_certificate.json",
+    "sha256": "97e8e65f748813348cc602d691bc95561ed52f183b4cc814bedec481b5058f31",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/Q10_characteristic_zero.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/Q10_characteristic_zero.json",
+    "sha256": "17b7e6c6f5313d4e2b155228c013e0323b9da26441ba3003aa136bbafc695194",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32693.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32693.json",
+    "sha256": "7a7bc3450be3957eb6f56294a51f2d3cd32e739456c0bb617cc2a565aa6629cc",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32713.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32713.json",
+    "sha256": "9a0dfb4649e5b611d526df2f0e4a65474ab233ac40477bbbdea55fa75ca088ff",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32717.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32717.json",
+    "sha256": "f289d6bf4b61fc24b6f5cd48ede8323b112df86b55a7eb85c875f597fdd6f9f4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32719.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32719.json",
+    "sha256": "461c052bf949e28360a2106f26e45ef2811095ac502c709a5d3452dd0a1d7b57",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32749.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32749.json",
+    "sha256": "1bbfd45b5a2affaa541a6abc9565f91b6bcc80ce3f131b57137dab2070ee8c68",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/interacting_degree12_32771.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/interacting_degree12_32771.json",
+    "sha256": "87f7616adaef128363afe63ec12523ebc332df957d1ed55bc290fa4617585ea2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32603.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32603.json",
+    "sha256": "cc1399df29fdd2bb5b0c27834eeddf69764e2c673ff64c333c32e55b4357f0b7",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32609.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32609.json",
+    "sha256": "8d4d074c80bc913ad6d7e5253bb038b63feebc6a3a0c42f65154f67c24f7027c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32611.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32611.json",
+    "sha256": "f3744583f0fff48ebfc8d9ae8876de511102f1701e56d8d0485e5bb749253d34",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32621.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32621.json",
+    "sha256": "989ca01674c782f088a88139c1d09a3ec6838140a994d93925251e55fd7aaa41",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32633.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32633.json",
+    "sha256": "f2d2465214e5f65c1e3484a1a1a6e650fba5bd1179b580b0fffccad13d150eeb",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32647.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32647.json",
+    "sha256": "e2f96b278d89a6f515aff73819c786d103a60d3fc54454a367a47a16fb04784f",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32653.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32653.json",
+    "sha256": "fe0cdc0e5beeae27551401d7f5c7ff3ad0fdd0bafe8d7b91342247e2ce7ac76b",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32687.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32687.json",
+    "sha256": "d3df54ac058161ef6cbd9fc874d43f911add89296231f11bc4a7f4a8687ff5ea",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32693.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32693.json",
+    "sha256": "2866860c112fdc15e3dd314e11c04a9b23d577a285731f681a7e15e444754253",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32707.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32707.json",
+    "sha256": "69b15e0f2a116d33b412c384cf2c4ca6a165d20de8de305e95ae7b430a63a518",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32713.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32713.json",
+    "sha256": "56c989918c6549bcd3594324210175c3e048af2d0dae7d3b643124f1862f9916",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32717.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32717.json",
+    "sha256": "3d2c8624576aee1b975824e9daceff05bb927bb3b9d8c25396e42f3a4f1d6c37",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32719.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32719.json",
+    "sha256": "5ab0a598593ef148f07ccb7846ef289e9af15d438ae4379676dcccbecc32b51c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32749.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32749.json",
+    "sha256": "cc73d1d5f32e12d3e2b7208578c8c0d99f7719c23dc7414103931d5119cf74b9",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/certificates/static_degree12_32771.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/certificates/static_degree12_32771.json",
+    "sha256": "d4123bb6e9fb0be6dd49c673bcfec97d0c6d41c84d9abe4e0a018571a98a89cd",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/change_of_basis/sextic_intrinsic.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/change_of_basis/sextic_intrinsic.json",
+    "sha256": "081466f1b58690b81d896120ea8e751008c9aa12c97432fb5b203dbd8d91d3d5",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/closure_and_minimality.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/closure_and_minimality.json",
+    "sha256": "6786d8452fa2e52824508f014ec830cd8d644616dc61a377b210939db8a630a2",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/dimension_table.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/dimension_table.json",
+    "sha256": "877677300afbd732c44c2f5cd09a64c73b5d2aaabc914b14b27f85b4e06e1efc",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/interacting_flow_equations.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/interacting_flow_equations.json",
+    "sha256": "53402d37036a216d0ea77224e15b2243082071ec26d15f3aad1931171d809b16",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/theorem_status.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/theorem_status.json",
+    "sha256": "d4bc2ed81ac1662d52849d7f5baed9736daa29268ee47eeb2df7bd144ea501c4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow/trace_sector.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow/trace_sector.json",
+    "sha256": "7906b67afd2fc14697497836542dd98d5f729d167ef210a97b1516fdd197e083",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/results/stress_flow_exact_low_degree.json",
+    "destination": "repair-checkout/release_candidate/trace-code/results/stress_flow_exact_low_degree.json",
+    "sha256": "98f8bd513bbb5c06949a35d2bb8621105e0b8e5ff45294c9b1626df3f9b9442c",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/CLEAN_CLONE_REPRODUCTION.md",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/CLEAN_CLONE_REPRODUCTION.md",
+    "sha256": "5d18640808c3590faf2c17a8f4c5f1f4e951f257c02fdd486d30b2ab22340376",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/COMMON_SAMPLE_REGISTRY.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/COMMON_SAMPLE_REGISTRY.json",
+    "sha256": "5095d6c3bb8e11f467ca488ebd436641cdbff1b2f53adf41453f4937d89914c8",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/DEGREE8_SPAN_EQUALITY.md",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/DEGREE8_SPAN_EQUALITY.md",
+    "sha256": "2c93913f4a8ec7bde7ff2cfe5ba90c0f0d82b1d65126bdcd200ff7009593625d",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/REPRODUCTION_RECORD.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/REPRODUCTION_RECORD.json",
+    "sha256": "d5caf85ef30f0a27c691d2bc3b260d23f6f5535ca5e0d8b9ddfa099673943dbc",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/REPRODUCTION_RECORD.md",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/REPRODUCTION_RECORD.md",
+    "sha256": "74eb194fb174df5a2ba243ed9d89e33428b3f132d57789f0146d4021c313d7a1",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/SPINOR_DEGREE10_NO_STOP.md",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/SPINOR_DEGREE10_NO_STOP.md",
+    "sha256": "1d32e22b15c892732168671ccbddf7a9c3c4368975a8ebb8415464c90a686baa",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/SPINOR_JACOBIAN_RUNS.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/SPINOR_JACOBIAN_RUNS.json",
+    "sha256": "0102a12f331807291bf28c10ffb0f72bd8996214be26b3e3decbcb54803fe7d0",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/SPINOR_JACOBIAN_STABILITY.md",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/SPINOR_JACOBIAN_STABILITY.md",
+    "sha256": "d4cf51a06b95d3e70bace49851961e8380c8bf52c74905b64807e3a03d1f93f4",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/degree8_span_equality.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/degree8_span_equality.json",
+    "sha256": "9100d557a4189185ace35fea1edc6dd2c398676f8a3ad7d0e756385ac639b380",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/spinor_archive_jacobian_exact.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/spinor_archive_jacobian_exact.json",
+    "sha256": "14aba99dc96055ac359a1bc2dfd6108c8298be2011bdfd99d782c162081e47d6",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/spinor_degree10_no_stop.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/spinor_degree10_no_stop.json",
+    "sha256": "30609265493e4f7cd1bce093bdae994385231e6f5292ae0be98ed1c782125659",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/verification/spinor_trace_comparison.json",
+    "destination": "repair-checkout/release_candidate/trace-code/verification/spinor_trace_comparison.json",
+    "sha256": "a3ea0bf9448e65f9b7efeba641bf5fa7d2405b2825c69800c75dce0d5ce49f25",
+    "reason": "Committed frozen input/certificate referenced by archived tests; omitted by packaging."
+  },
+  {
+    "source": "frozen-checkout/scripts/stress_flow_pipeline.py",
+    "destination": "repair-checkout/release_candidate/trace-code/scripts/stress_flow_pipeline.py",
+    "sha256": "b52f1f1a676c50527f597672a9fc709dc85c82589902226965e6dadbcaa08223",
+    "reason": "Final archived test subprocess needs this omitted entry point;253 other tests passed."
+  }
+]

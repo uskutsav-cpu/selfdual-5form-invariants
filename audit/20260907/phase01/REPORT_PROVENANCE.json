@@ -1,0 +1,5 @@
+{
+  "body_sha256": "566c7864c17448a5a0c4aa5727fdd913a607aa504359ee674f3b5294558128f4",
+  "delivered_report_sha256": "52d3b5d58e02d0d3c9774938cd1bcc5078c1f94bf008ad66ca7f86f633d6db47",
+  "difference": "The originally delivered report appends the exact command appendix to the unchanged original failure-report body. Both are preserved."
+}

@@ -1,0 +1,7 @@
+{
+  "INCLUDE": true,
+  "SECRET_PATTERNS": true,
+  "HOME_PATH": true,
+  "scan": true,
+  "archive_manifest": true
+}

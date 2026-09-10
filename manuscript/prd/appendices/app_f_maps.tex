@@ -1,0 +1,43 @@
+\section{Degree-resolved change-of-basis maps}
+\label{app:maps}
+
+For each degree at which the two formulations are compared we record an explicit
+change-of-basis matrix taking the spinor-side basis to the tensor-side basis. The
+matrices are integer matrices reduced mod $p$; they are too large to print for
+degrees eight and ten and are shipped as machine-readable artifacts, but their
+defining properties are stated here and each is checked.
+
+\paragraph{What is checked for each map.}
+Let $T$ be the tensor-side evaluation matrix on the common samples and $S$ the
+spinor-side one, at a given degree. The map $X$ satisfies $S = TX$, and the
+certified properties are:
+\begin{enumerate}\itemsep2pt
+\item $X$ exists, i.e.\ the system $S = TX$ is consistent --- equivalently
+      $\mathrm{rank}\,T = \mathrm{rank}[T\,|\,S]$, which is exactly the statement
+      that the spinor family introduces nothing new;
+\item $\mathrm{rank}\,X$ equals the common rank at that degree;
+\item the identity $S = TX$ continues to hold on the $\nSampleHoldout$ held-out
+      samples, which were not used to solve for $X$.
+\end{enumerate}
+The third item is the one that carries weight. Solving $S = TX$ on the fitting
+samples and then reporting that $S = TX$ holds on those same samples would be
+circular; the held-out check is what makes it a prediction.
+
+\paragraph{Sample families.}
+The $\nCommonSamples$ common samples divide into $\nSampleSparse$ sparse,
+$\nSampleStructured$ structured, $\nSampleGeneric$ generic and
+$\nSampleHoldout$ held-out points. The sparse and structured families are
+included deliberately: a relation that holds only on generic points would be
+missed by generic sampling alone, and a relation that fails on structured points
+is a sign that a projector has been mis-specified.
+
+\paragraph{Status by degree.}
+\begin{itemize}\itemsep2pt
+\item Degree four: rank $\traceRankDegFour$, spans equal, holdout passes.
+\item Degree six: rank $\traceRankDegSix$, spans equal, holdout passes.
+\item Degree eight: rank $\dEightUnionRank$ for the full family, agreeing at all
+      $\dEightPrimesEqual$ primes tested. The narrower family without tensor
+      words reaches only $\dEightRankWithoutWords$ and no consistent $X$ exists
+      for it --- which is the precise sense in which the words are needed.
+\item Degree ten: rank $\traceRankDegTen$, spans equal, holdout passes.
+\end{itemize}

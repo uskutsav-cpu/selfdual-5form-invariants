@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/evaluate_fresh_points.py", line 80, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/evaluate_fresh_points.py", line 76, in main
+    data=point(args.prime,seed,args.compare);data['source_hashes']=hashes
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/source-review/evaluate_fresh_points.py", line 42, in point
+    if not checks['block_'+name]:raise AssertionError('independent block differs: '+name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: independent block differs: Q

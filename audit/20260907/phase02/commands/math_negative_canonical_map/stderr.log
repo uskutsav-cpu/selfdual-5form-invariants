@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/scripts/verify_independent_audit.py", line 122, in <module>
+    if __name__=="__main__":main()
+                            ~~~~^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/scripts/verify_independent_audit.py", line 36, in main
+    require(canonical==certificate["maps"][f"degree{degree}"],f"canonical degree{degree} map differs from exact certificate")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/repair-checkout/scripts/verify_independent_audit.py", line 17, in require
+    if not condition:raise ValueError(message)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: canonical degree8 map differs from exact certificate

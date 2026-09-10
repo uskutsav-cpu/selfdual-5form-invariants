@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "frozen_input_commit": "2b7663bbf5a06d1340973434f195a84ae2773e8f",
+  "scope": "Historical snapshot repaired by restoring omitted committed test dependencies; source readings here remain historical.",
+  "files_scanned": 326,
+  "scan_problems": [],
+  "archive_included": false,
+  "archive_manifest_included": false,
+  "full_tensor_suite": {
+    "command": "repaired-archived-trace-pytest-final",
+    "passed": 254,
+    "skipped": 0
+  }
+}

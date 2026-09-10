@@ -1,0 +1,7812 @@
+{
+  "prime": 50021,
+  "seed": 16999642918068834541,
+  "records": [
+    {
+      "id": "I4_1",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "numeric_induced_sign": 1,
+      "numeric_observed": 16446,
+      "numeric_expected": 16446,
+      "odd_slot_swap_observed": 33575,
+      "odd_slot_swap_expected": 33575,
+      "sign_cocycle": true,
+      "seconds": 0.03262579208239913
+    },
+    {
+      "id": "I6_1",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5
+      ],
+      "numeric_induced_sign": 1,
+      "numeric_observed": 20602,
+      "numeric_expected": 20602,
+      "odd_slot_swap_observed": 29419,
+      "odd_slot_swap_expected": 29419,
+      "sign_cocycle": true,
+      "seconds": 0.0104011669754982
+    },
+    {
+      "id": "I6_2",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 40153,
+      "numeric_expected": 40153,
+      "odd_slot_swap_observed": 40153,
+      "odd_slot_swap_expected": 40153,
+      "sign_cocycle": true,
+      "seconds": 2.7711202080827206
+    },
+    {
+      "id": "I8_1",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": 1,
+      "numeric_observed": 5260,
+      "numeric_expected": 5260,
+      "odd_slot_swap_observed": 44761,
+      "odd_slot_swap_expected": 44761,
+      "sign_cocycle": true,
+      "seconds": 0.011269957991316915
+    },
+    {
+      "id": "I8_2",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 9969,
+      "numeric_expected": 9969,
+      "odd_slot_swap_observed": 9969,
+      "odd_slot_swap_expected": 9969,
+      "sign_cocycle": true,
+      "seconds": 0.04243841697461903
+    },
+    {
+      "id": "I8_3",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 1010,
+      "numeric_expected": 1010,
+      "odd_slot_swap_observed": 1010,
+      "odd_slot_swap_expected": 1010,
+      "sign_cocycle": true,
+      "seconds": 0.03172116703353822
+    },
+    {
+      "id": "I8_4",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 47958,
+      "numeric_expected": 47958,
+      "odd_slot_swap_observed": 47958,
+      "odd_slot_swap_expected": 47958,
+      "sign_cocycle": true,
+      "seconds": 0.22620012506376952
+    },
+    {
+      "id": "I8_5",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": 1,
+      "numeric_observed": 30028,
+      "numeric_expected": 30028,
+      "odd_slot_swap_observed": 19993,
+      "odd_slot_swap_expected": 19993,
+      "sign_cocycle": true,
+      "seconds": 0.2776499999454245
+    },
+    {
+      "id": "I8_6",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7
+      ],
+      "numeric_induced_sign": 1,
+      "numeric_observed": 26051,
+      "numeric_expected": 26051,
+      "odd_slot_swap_observed": 23970,
+      "odd_slot_swap_expected": 23970,
+      "sign_cocycle": true,
+      "seconds": 0.15757412498351187
+    },
+    {
+      "id": "I10_1",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 12024,
+      "numeric_expected": 12024,
+      "odd_slot_swap_observed": 12024,
+      "odd_slot_swap_expected": 12024,
+      "sign_cocycle": true,
+      "seconds": 0.13501475006341934
+    },
+    {
+      "id": "I10_2",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 48006,
+      "numeric_expected": 48006,
+      "odd_slot_swap_observed": 48006,
+      "odd_slot_swap_expected": 48006,
+      "sign_cocycle": true,
+      "seconds": 0.032402000040747225
+    },
+    {
+      "id": "I10_3",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 6551,
+      "numeric_expected": 6551,
+      "odd_slot_swap_observed": 6551,
+      "odd_slot_swap_expected": 6551,
+      "sign_cocycle": true,
+      "seconds": 0.5538247500080615
+    },
+    {
+      "id": "I10_4",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 22537,
+      "numeric_expected": 22537,
+      "odd_slot_swap_observed": 22537,
+      "odd_slot_swap_expected": 22537,
+      "sign_cocycle": true,
+      "seconds": 0.3736057919450104
+    },
+    {
+      "id": "I10_5",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 38361,
+      "numeric_expected": 38361,
+      "odd_slot_swap_observed": 38361,
+      "odd_slot_swap_expected": 38361,
+      "sign_cocycle": true,
+      "seconds": 0.40491975005716085
+    },
+    {
+      "id": "I10_6",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 6036,
+      "numeric_expected": 6036,
+      "odd_slot_swap_observed": 6036,
+      "odd_slot_swap_expected": 6036,
+      "sign_cocycle": true,
+      "seconds": 0.454770665965043
+    },
+    {
+      "id": "I10_7",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 9317,
+      "numeric_expected": 9317,
+      "odd_slot_swap_observed": 9317,
+      "odd_slot_swap_expected": 9317,
+      "sign_cocycle": true,
+      "seconds": 0.41262929094955325
+    },
+    {
+      "id": "I10_8",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 38398,
+      "numeric_expected": 38398,
+      "odd_slot_swap_observed": 38398,
+      "odd_slot_swap_expected": 38398,
+      "sign_cocycle": true,
+      "seconds": 0.2848349999403581
+    },
+    {
+      "id": "I10_9",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 35181,
+      "numeric_expected": 35181,
+      "odd_slot_swap_observed": 35181,
+      "odd_slot_swap_expected": 35181,
+      "sign_cocycle": true,
+      "seconds": 0.17151879204902798
+    },
+    {
+      "id": "I10_10",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 40573,
+      "numeric_expected": 40573,
+      "odd_slot_swap_observed": 40573,
+      "odd_slot_swap_expected": 40573,
+      "sign_cocycle": true,
+      "seconds": 0.2995693339034915
+    },
+    {
+      "id": "I10_11",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 27279,
+      "numeric_expected": 27279,
+      "odd_slot_swap_observed": 27279,
+      "odd_slot_swap_expected": 27279,
+      "sign_cocycle": true,
+      "seconds": 0.5555080829653889
+    },
+    {
+      "id": "I10_12",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 9164,
+      "numeric_expected": 9164,
+      "odd_slot_swap_observed": 9164,
+      "odd_slot_swap_expected": 9164,
+      "sign_cocycle": true,
+      "seconds": 0.34643208398483694
+    },
+    {
+      "id": "I12_1",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 15514,
+      "numeric_expected": 15514,
+      "odd_slot_swap_observed": 15514,
+      "odd_slot_swap_expected": 15514,
+      "sign_cocycle": true,
+      "seconds": 0.8167235420551151
+    },
+    {
+      "id": "I12_2",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 2067,
+      "numeric_expected": 2067,
+      "odd_slot_swap_observed": 2067,
+      "odd_slot_swap_expected": 2067,
+      "sign_cocycle": true,
+      "seconds": 1.2280378750292584
+    },
+    {
+      "id": "I12_3",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 43634,
+      "numeric_expected": 43634,
+      "odd_slot_swap_observed": 43634,
+      "odd_slot_swap_expected": 43634,
+      "sign_cocycle": true,
+      "seconds": 1.3859654580010101
+    },
+    {
+      "id": "I12_4",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 8746,
+      "numeric_expected": 8746,
+      "odd_slot_swap_observed": 8746,
+      "odd_slot_swap_expected": 8746,
+      "sign_cocycle": true,
+      "seconds": 0.7010361250722781
+    },
+    {
+      "id": "I12_5",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 7577,
+      "numeric_expected": 7577,
+      "odd_slot_swap_observed": 7577,
+      "odd_slot_swap_expected": 7577,
+      "sign_cocycle": true,
+      "seconds": 0.08864291699137539
+    },
+    {
+      "id": "I12_6",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 5054,
+      "numeric_expected": 5054,
+      "odd_slot_swap_observed": 5054,
+      "odd_slot_swap_expected": 5054,
+      "sign_cocycle": true,
+      "seconds": 0.9597710830857977
+    },
+    {
+      "id": "I12_7",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 48272,
+      "numeric_expected": 48272,
+      "odd_slot_swap_observed": 48272,
+      "odd_slot_swap_expected": 48272,
+      "sign_cocycle": true,
+      "seconds": 0.7672708340687677
+    },
+    {
+      "id": "I12_8",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 38855,
+      "numeric_expected": 38855,
+      "odd_slot_swap_observed": 38855,
+      "odd_slot_swap_expected": 38855,
+      "sign_cocycle": true,
+      "seconds": 1.6793265839805827
+    },
+    {
+      "id": "I12_9",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 33945,
+      "numeric_expected": 33945,
+      "odd_slot_swap_observed": 33945,
+      "odd_slot_swap_expected": 33945,
+      "sign_cocycle": true,
+      "seconds": 1.8164890829939395
+    },
+    {
+      "id": "I12_10",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 8576,
+      "numeric_expected": 8576,
+      "odd_slot_swap_observed": 8576,
+      "odd_slot_swap_expected": 8576,
+      "sign_cocycle": true,
+      "seconds": 0.9687637500464916
+    },
+    {
+      "id": "I12_11",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 23984,
+      "numeric_expected": 23984,
+      "odd_slot_swap_observed": 23984,
+      "odd_slot_swap_expected": 23984,
+      "sign_cocycle": true,
+      "seconds": 0.2999567500082776
+    },
+    {
+      "id": "I12_12",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 31249,
+      "numeric_expected": 31249,
+      "odd_slot_swap_observed": 31249,
+      "odd_slot_swap_expected": 31249,
+      "sign_cocycle": true,
+      "seconds": 1.2262738330755383
+    },
+    {
+      "id": "I12_13",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 47749,
+      "numeric_expected": 47749,
+      "odd_slot_swap_observed": 47749,
+      "odd_slot_swap_expected": 47749,
+      "sign_cocycle": true,
+      "seconds": 1.270080832997337
+    },
+    {
+      "id": "I12_14",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 21251,
+      "numeric_expected": 21251,
+      "odd_slot_swap_observed": 21251,
+      "odd_slot_swap_expected": 21251,
+      "sign_cocycle": true,
+      "seconds": 1.6890926669584587
+    },
+    {
+      "id": "I12_15",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 6172,
+      "numeric_expected": 6172,
+      "odd_slot_swap_observed": 6172,
+      "odd_slot_swap_expected": 6172,
+      "sign_cocycle": true,
+      "seconds": 0.7899818749865517
+    },
+    {
+      "id": "I12_16",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 6522,
+      "numeric_expected": 6522,
+      "odd_slot_swap_observed": 6522,
+      "odd_slot_swap_expected": 6522,
+      "sign_cocycle": true,
+      "seconds": 1.2661640830338001
+    },
+    {
+      "id": "I12_17",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 5372,
+      "numeric_expected": 5372,
+      "odd_slot_swap_observed": 5372,
+      "odd_slot_swap_expected": 5372,
+      "sign_cocycle": true,
+      "seconds": 0.9327694170642644
+    },
+    {
+      "id": "I12_18",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 16995,
+      "numeric_expected": 16995,
+      "odd_slot_swap_observed": 16995,
+      "odd_slot_swap_expected": 16995,
+      "sign_cocycle": true,
+      "seconds": 2.232907500001602
+    },
+    {
+      "id": "I12_19",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 2758,
+      "numeric_expected": 2758,
+      "odd_slot_swap_observed": 2758,
+      "odd_slot_swap_expected": 2758,
+      "sign_cocycle": true,
+      "seconds": 1.4396855839295313
+    },
+    {
+      "id": "I12_20",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 1591,
+      "numeric_expected": 1591,
+      "odd_slot_swap_observed": 1591,
+      "odd_slot_swap_expected": 1591,
+      "sign_cocycle": true,
+      "seconds": 0.9162683330941945
+    },
+    {
+      "id": "I12_21",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 27727,
+      "numeric_expected": 27727,
+      "odd_slot_swap_observed": 27727,
+      "odd_slot_swap_expected": 27727,
+      "sign_cocycle": true,
+      "seconds": 1.1923748339759186
+    },
+    {
+      "id": "I12_22",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 35997,
+      "numeric_expected": 35997,
+      "odd_slot_swap_observed": 35997,
+      "odd_slot_swap_expected": 35997,
+      "sign_cocycle": true,
+      "seconds": 2.073662874987349
+    },
+    {
+      "id": "I12_23",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 26098,
+      "numeric_expected": 26098,
+      "odd_slot_swap_observed": 26098,
+      "odd_slot_swap_expected": 26098,
+      "sign_cocycle": true,
+      "seconds": 1.2205534590175375
+    },
+    {
+      "id": "I12_24",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 17397,
+      "numeric_expected": 17397,
+      "odd_slot_swap_observed": 17397,
+      "odd_slot_swap_expected": 17397,
+      "sign_cocycle": true,
+      "seconds": 0.8475054170703515
+    },
+    {
+      "id": "I12_25",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 43172,
+      "numeric_expected": 43172,
+      "odd_slot_swap_observed": 43172,
+      "odd_slot_swap_expected": 43172,
+      "sign_cocycle": true,
+      "seconds": 1.3619059999473393
+    },
+    {
+      "id": "I12_26",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 28158,
+      "numeric_expected": 28158,
+      "odd_slot_swap_observed": 28158,
+      "odd_slot_swap_expected": 28158,
+      "sign_cocycle": true,
+      "seconds": 0.855053124949336
+    },
+    {
+      "id": "I12_27",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 43119,
+      "numeric_expected": 43119,
+      "odd_slot_swap_observed": 43119,
+      "odd_slot_swap_expected": 43119,
+      "sign_cocycle": true,
+      "seconds": 1.2233162909979
+    },
+    {
+      "id": "I12_28",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 44389,
+      "numeric_expected": 44389,
+      "odd_slot_swap_observed": 44389,
+      "odd_slot_swap_expected": 44389,
+      "sign_cocycle": true,
+      "seconds": 1.186587666044943
+    },
+    {
+      "id": "I12_29",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 5650,
+      "numeric_expected": 5650,
+      "odd_slot_swap_observed": 5650,
+      "odd_slot_swap_expected": 5650,
+      "sign_cocycle": true,
+      "seconds": 0.7403642499120906
+    },
+    {
+      "id": "I12_30",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 33827,
+      "numeric_expected": 33827,
+      "odd_slot_swap_observed": 33827,
+      "odd_slot_swap_expected": 33827,
+      "sign_cocycle": true,
+      "seconds": 1.0255058329785243
+    },
+    {
+      "id": "I12_31",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 24235,
+      "numeric_expected": 24235,
+      "odd_slot_swap_observed": 24235,
+      "odd_slot_swap_expected": 24235,
+      "sign_cocycle": true,
+      "seconds": 1.862585625029169
+    },
+    {
+      "id": "I12_32",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 37050,
+      "numeric_expected": 37050,
+      "odd_slot_swap_observed": 37050,
+      "odd_slot_swap_expected": 37050,
+      "sign_cocycle": true,
+      "seconds": 0.4417010840261355
+    },
+    {
+      "id": "I12_33",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 1248,
+      "numeric_expected": 1248,
+      "odd_slot_swap_observed": 1248,
+      "odd_slot_swap_expected": 1248,
+      "sign_cocycle": true,
+      "seconds": 0.7860314169665799
+    },
+    {
+      "id": "I12_34",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 43160,
+      "numeric_expected": 43160,
+      "odd_slot_swap_observed": 43160,
+      "odd_slot_swap_expected": 43160,
+      "sign_cocycle": true,
+      "seconds": 3.95217587496154
+    },
+    {
+      "id": "I12_35",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 38702,
+      "numeric_expected": 38702,
+      "odd_slot_swap_observed": 38702,
+      "odd_slot_swap_expected": 38702,
+      "sign_cocycle": true,
+      "seconds": 1.3543007909320295
+    },
+    {
+      "id": "I12_36",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 2020,
+      "numeric_expected": 2020,
+      "odd_slot_swap_observed": 2020,
+      "odd_slot_swap_expected": 2020,
+      "sign_cocycle": true,
+      "seconds": 1.4716843749629334
+    },
+    {
+      "id": "I12_37",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 18900,
+      "numeric_expected": 18900,
+      "odd_slot_swap_observed": 18900,
+      "odd_slot_swap_expected": 18900,
+      "sign_cocycle": true,
+      "seconds": 2.6797147078905255
+    },
+    {
+      "id": "I12_38",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 33956,
+      "numeric_expected": 33956,
+      "odd_slot_swap_observed": 33956,
+      "odd_slot_swap_expected": 33956,
+      "sign_cocycle": true,
+      "seconds": 0.9382247918983921
+    },
+    {
+      "id": "I12_39",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 42415,
+      "numeric_expected": 42415,
+      "odd_slot_swap_observed": 42415,
+      "odd_slot_swap_expected": 42415,
+      "sign_cocycle": true,
+      "seconds": 0.8669987090397626
+    },
+    {
+      "id": "I12_40",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 32033,
+      "numeric_expected": 32033,
+      "odd_slot_swap_observed": 32033,
+      "odd_slot_swap_expected": 32033,
+      "sign_cocycle": true,
+      "seconds": 1.1839965420076624
+    },
+    {
+      "id": "I12_41",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 30659,
+      "numeric_expected": 30659,
+      "odd_slot_swap_observed": 30659,
+      "odd_slot_swap_expected": 30659,
+      "sign_cocycle": true,
+      "seconds": 0.04696629208046943
+    },
+    {
+      "id": "I12_42",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 31896,
+      "numeric_expected": 31896,
+      "odd_slot_swap_observed": 31896,
+      "odd_slot_swap_expected": 31896,
+      "sign_cocycle": true,
+      "seconds": 1.1828894999343902
+    },
+    {
+      "id": "I12_43",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 48150,
+      "numeric_expected": 48150,
+      "odd_slot_swap_observed": 48150,
+      "odd_slot_swap_expected": 48150,
+      "sign_cocycle": true,
+      "seconds": 3.4930828330107033
+    },
+    {
+      "id": "I12_44",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 40860,
+      "numeric_expected": 40860,
+      "odd_slot_swap_observed": 40860,
+      "odd_slot_swap_expected": 40860,
+      "sign_cocycle": true,
+      "seconds": 1.152621625107713
+    },
+    {
+      "id": "I12_45",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 974,
+      "numeric_expected": 974,
+      "odd_slot_swap_observed": 974,
+      "odd_slot_swap_expected": 974,
+      "sign_cocycle": true,
+      "seconds": 0.9160615829750896
+    },
+    {
+      "id": "I12_46",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 16820,
+      "numeric_expected": 16820,
+      "odd_slot_swap_observed": 16820,
+      "odd_slot_swap_expected": 16820,
+      "sign_cocycle": true,
+      "seconds": 1.7085966659942642
+    },
+    {
+      "id": "I12_47",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 40763,
+      "numeric_expected": 40763,
+      "odd_slot_swap_observed": 40763,
+      "odd_slot_swap_expected": 40763,
+      "sign_cocycle": true,
+      "seconds": 0.49482783302664757
+    },
+    {
+      "id": "I12_48",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 21431,
+      "numeric_expected": 21431,
+      "odd_slot_swap_observed": 21431,
+      "odd_slot_swap_expected": 21431,
+      "sign_cocycle": true,
+      "seconds": 3.469579791999422
+    },
+    {
+      "id": "I12_49",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 5041,
+      "numeric_expected": 5041,
+      "odd_slot_swap_observed": 5041,
+      "odd_slot_swap_expected": 5041,
+      "sign_cocycle": true,
+      "seconds": 2.6945747500285506
+    },
+    {
+      "id": "I12_50",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 158,
+      "numeric_expected": 158,
+      "odd_slot_swap_observed": 158,
+      "odd_slot_swap_expected": 158,
+      "sign_cocycle": true,
+      "seconds": 1.3385047909105197
+    },
+    {
+      "id": "I12_51",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 8739,
+      "numeric_expected": 8739,
+      "odd_slot_swap_observed": 8739,
+      "odd_slot_swap_expected": 8739,
+      "sign_cocycle": true,
+      "seconds": 0.953529083984904
+    },
+    {
+      "id": "I12_52",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 45377,
+      "numeric_expected": 45377,
+      "odd_slot_swap_observed": 45377,
+      "odd_slot_swap_expected": 45377,
+      "sign_cocycle": true,
+      "seconds": 1.8293680000351742
+    },
+    {
+      "id": "I12_53",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 15910,
+      "numeric_expected": 15910,
+      "odd_slot_swap_observed": 15910,
+      "odd_slot_swap_expected": 15910,
+      "sign_cocycle": true,
+      "seconds": 1.1648034170502797
+    },
+    {
+      "id": "I12_54",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 47609,
+      "numeric_expected": 47609,
+      "odd_slot_swap_observed": 47609,
+      "odd_slot_swap_expected": 47609,
+      "sign_cocycle": true,
+      "seconds": 1.4419649170013145
+    },
+    {
+      "id": "I12_55",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 6901,
+      "numeric_expected": 6901,
+      "odd_slot_swap_observed": 6901,
+      "odd_slot_swap_expected": 6901,
+      "sign_cocycle": true,
+      "seconds": 1.4039410830009729
+    },
+    {
+      "id": "I12_56",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 25533,
+      "numeric_expected": 25533,
+      "odd_slot_swap_observed": 25533,
+      "odd_slot_swap_expected": 25533,
+      "sign_cocycle": true,
+      "seconds": 0.7370660830056295
+    },
+    {
+      "id": "I12_57",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 38191,
+      "numeric_expected": 38191,
+      "odd_slot_swap_observed": 38191,
+      "odd_slot_swap_expected": 38191,
+      "sign_cocycle": true,
+      "seconds": 0.9387039580615237
+    },
+    {
+      "id": "I12_58",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 35490,
+      "numeric_expected": 35490,
+      "odd_slot_swap_observed": 35490,
+      "odd_slot_swap_expected": 35490,
+      "sign_cocycle": true,
+      "seconds": 1.024528207955882
+    },
+    {
+      "id": "I12_59",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": 1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 20755,
+      "numeric_expected": 20755,
+      "odd_slot_swap_observed": 20755,
+      "odd_slot_swap_expected": 20755,
+      "sign_cocycle": true,
+      "seconds": 4.869142042007297
+    },
+    {
+      "id": "I12_60",
+      "adjacent_swap_checks": [
+        {
+          "adjacent_vertices": [
+            0,
+            1
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            1,
+            2
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            2,
+            3
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            3,
+            4
+          ],
+          "induced_sign": -1
+        },
+        {
+          "adjacent_vertices": [
+            4,
+            5
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            5,
+            6
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            6,
+            7
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            7,
+            8
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            8,
+            9
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            9,
+            10
+          ],
+          "induced_sign": 1
+        },
+        {
+          "adjacent_vertices": [
+            10,
+            11
+          ],
+          "induced_sign": -1
+        }
+      ],
+      "numeric_vertex_permutation": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "numeric_induced_sign": -1,
+      "numeric_observed": 19644,
+      "numeric_expected": 19644,
+      "odd_slot_swap_observed": 19644,
+      "odd_slot_swap_expected": 19644,
+      "sign_cocycle": true,
+      "seconds": 0.31033908401150256
+    }
+  ],
+  "engine_stats": {
+    "dot_products": 1044,
+    "largest_dot_bound": 250200040000000,
+    "max_cached_bytes": 268410584,
+    "cache_hits": 602
+  },
+  "complete": true
+}

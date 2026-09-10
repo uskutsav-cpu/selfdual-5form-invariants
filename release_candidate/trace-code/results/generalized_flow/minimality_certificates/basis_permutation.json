@@ -1,0 +1,122 @@
+{
+ "degrees": {
+  "10": {
+   "expected": [
+    "I10_12",
+    "I10_6",
+    "I10_7"
+   ],
+   "invariant_under_relabelling": true,
+   "trials": [
+    {
+     "closure_dimension": 11,
+     "invariant": true,
+     "missing_count": 3,
+     "recovered_under_inverse_relabelling": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "trial": 0
+    },
+    {
+     "closure_dimension": 11,
+     "invariant": true,
+     "missing_count": 3,
+     "recovered_under_inverse_relabelling": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "trial": 1
+    },
+    {
+     "closure_dimension": 11,
+     "invariant": true,
+     "missing_count": 3,
+     "recovered_under_inverse_relabelling": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "trial": 2
+    },
+    {
+     "closure_dimension": 11,
+     "invariant": true,
+     "missing_count": 3,
+     "recovered_under_inverse_relabelling": [
+      "I10_12",
+      "I10_6",
+      "I10_7"
+     ],
+     "trial": 3
+    }
+   ]
+  },
+  "12": {
+   "expected": [
+    "I12_59",
+    "I12_60",
+    "I12_61",
+    "I12_62"
+   ],
+   "invariant_under_relabelling": true,
+   "trials": [
+    {
+     "closure_dimension": 68,
+     "invariant": true,
+     "missing_count": 4,
+     "recovered_under_inverse_relabelling": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "trial": 0
+    },
+    {
+     "closure_dimension": 68,
+     "invariant": true,
+     "missing_count": 4,
+     "recovered_under_inverse_relabelling": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "trial": 1
+    },
+    {
+     "closure_dimension": 68,
+     "invariant": true,
+     "missing_count": 4,
+     "recovered_under_inverse_relabelling": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "trial": 2
+    },
+    {
+     "closure_dimension": 68,
+     "invariant": true,
+     "missing_count": 4,
+     "recovered_under_inverse_relabelling": [
+      "I12_59",
+      "I12_60",
+      "I12_61",
+      "I12_62"
+     ],
+     "trial": 3
+    }
+   ]
+  }
+ },
+ "prime": 32749,
+ "schema": 1,
+ "scope": "permutation subgroup only; general GL basis change requires regenerating certificates and is NOT discharged here",
+ "trials": 4,
+ "verdict": "closure dimension and missing-set identity are relabelling-invariant"
+}

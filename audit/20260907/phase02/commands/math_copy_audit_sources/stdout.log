@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review/bareiss_minors.py",
+    "destination": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/math-review/bareiss_minors.py",
+    "sha256": "3a10669fbde92769dc12b16071f781efd4597c919f1fb272a3f759685a94c036"
+  },
+  {
+    "source": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review/independent_conventions.py",
+    "destination": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/math-review/independent_conventions.py",
+    "sha256": "f9f86e5d3aba5c408fab9b9af8188b87b9137d53d08a774dcd1a4c78006f8c84"
+  },
+  {
+    "source": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-01/math-review/independent_oracle.py",
+    "destination": "/Users/swethasunilkumar/Documents/Codex/2026-09-07/here/work/independent-audit-20260907-02/math-review/independent_oracle.py",
+    "sha256": "1503d4fb6f6aebb5e959912a9931880c1b8856bee16bb3ab1269770245981dae"
+  }
+]

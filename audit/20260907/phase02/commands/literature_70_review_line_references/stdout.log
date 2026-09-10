@@ -1,0 +1,12 @@
+README.md:11:[the audit report](INDEPENDENT_AUDIT.md) for the frozen failure, corrected
+README.md:41:gives a tensor basis for the octic generators. This repo supplies an explicit
+README.md:59:| 10D, order 12 | **62** connected primitive polynomial directions plus **10** lower products give degree-12 rank **72**; 60 add functional directions, giving the full cumulative rank **81 / 81**. The remaining `I12_61` and `I12_62` are polynomially independent but add no cumulative functional direction (three primes, four samples per prime). |
+README.md:149:the disconnected product $I_4^2$.
+README.md:187:forces a factor $F\cdot F = 0$). Disconnected graphs are products of lower
+README.md:318:## Next questions
+README.md:320:1. What is the explicit change of basis between these six graph contractions
+scripts/map_literature_basis.py:174:    if not args.legacy:
+scripts/map_literature_basis.py:178:        if args.out and Path(args.out).resolve() != canonical.resolve():
+scripts/map_literature_basis.py:182:    out = Path(args.out) if args.out else ROOT / f"work/legacy-order{args.degree}-change-of-basis.json"
+scripts/map_literature_basis.py:183:    protected = {ROOT / f"results/order{degree}_change_of_basis.json" for degree in (8, 10)}
+docs/CLASSIFICATION_ROADMAP.md:66:`INDEPENDENT_AUDIT.md` for the actual ranks, product intersection and checks.

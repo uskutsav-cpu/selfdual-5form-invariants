@@ -1,0 +1,81 @@
+{
+ "already_correct": [
+  "static span vs closure",
+  "I6_2 vs intrinsic K6",
+  "transported-not-created wording"
+ ],
+ "corrections_required": [],
+ "fourteen_point_audit": {
+  "10_degree10_12_deficits": "C-MIN-02 RESOLVED Phase 1: {I10_6,I10_7,I10_12} and {I12_59..62}; gate still unmet (labels not intrinsic)",
+  "11_TrM6_coordinates": "C-TRM6-01 \u2014 rank certified, coordinates BLOCKED (29/72 columns over CRT bound at 15 primes)",
+  "12_finite_vs_all_orders": "C-SCOPE-01 \u2014 everything is degree <= 12; no induction exists (PO-10)",
+  "13_formal_local_generic_global": "C-SCOPE-02 \u2014 formal in lambda, generic in configuration, local in theory space; non-generic strata untested",
+  "14_typeIIB": "C-SCOPE-03 \u2014 NO Type IIB result exists; PO-07 gates any physical reading",
+  "1_degree12_rank_72": "C-ATLAS-02 (MOD-CERT, FINITE-ORDER)",
+  "2_cumulative_functional_rank_81": "C-ATLAS-03 (MOD-CERT); forbidden: 'we have all 81'",
+  "3_I12_61_62": "C-ATLAS-04 \u2014 polynomially independent (in the rank-72 basis) but NOT new generic functional directions; forbidden: 'syzygies' (PO-03)",
+  "4_static_stress_span": "C-STATIC-01 (MOD-CERT); forbidden: presenting as reachable set",
+  "5_new_forcing": "C-FLOW-01 (RAT-RECON); two holdouts, PO-06 discharged",
+  "6_iterative_closure": "C-CLOSURE-01/02 (MOD-CERT); must not be conflated with 4 or 5",
+  "7_K6_transported_not_generated": "C-FLOW-03 (EXACT-CA-THM); forbidden: 'K6 must vanish'",
+  "8_for_all_lambda_scope": "C-FLOW-02 \u2014 all orders in LAMBDA at FIXED field degree 6, formal power series, convergence unproved",
+  "9_generalized_completion_degree8": "C-MIN-01 (MOD-CERT); removal-minimal in a fixed basis only (PO-08)"
+ },
+ "numerical_reverification": {
+  "all_reported_dimensions_agree_with_artifacts": true,
+  "degree12_artifact_sha_matches_certificate_field": true,
+  "forcing_plus_complement_equals_full_at_every_degree": true
+ },
+ "objective_baseline_note": "objective lists primitive counts 1+2+6+12+62=83; homogeneous space dims are 1,2,7,14,72. Different quantities, not in conflict; tracked as separate claims.",
+ "phase": 0,
+ "schema": 1,
+ "stale_claim_fixed_in_place": [
+  {
+   "file": "docs/assumptions_limitations_and_open_questions.md",
+   "now": "three fit primes fail; five succeed and pass an independent holdout",
+   "section": "2.2",
+   "was": "interacting flow equations have no rational lift"
+  }
+ ],
+ "strengthenings_justified": [
+  {
+   "claim": "C-GEN-01",
+   "to": "EXACT-CA-THM",
+   "why": "enumeration verified complete"
+  },
+  {
+   "claim": "C-ATLAS-05",
+   "why": "PO-01 discharged"
+  },
+  {
+   "claim": "C-FLOW-01",
+   "why": "PO-06 discharged, two holdouts"
+  }
+ ],
+ "weakenings_enforced": [
+  {
+   "claim": "C-ATLAS-03",
+   "rule": "rank saturation is not a generating set"
+  },
+  {
+   "claim": "C-ATLAS-04",
+   "rule": "never call I12_61/I12_62 syzygies (PO-03)"
+  },
+  {
+   "claim": "C-FLOW-02",
+   "rule": "must say formal power series, at field degree six"
+  },
+  {
+   "claim": "C-MIN-01",
+   "rule": "minimal under removal in a fixed basis only (PO-08)"
+  },
+  {
+   "claim": "C-SEXTIC-*",
+   "rule": "do not identify K6 with published Sigma_2 (PO-04)"
+  },
+  {
+   "claim": "all MOD-CERT",
+   "rule": "modular rank is a characteristic-zero lower bound (PO-09)"
+  }
+ ]
+}

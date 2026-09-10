@@ -1,0 +1,707 @@
+{
+ "accounting": {
+  "evaluated": 259,
+  "evaluation_error": 0,
+  "interrupted": 0,
+  "planned": 259,
+  "structurally_rejected": 0
+ },
+ "accounting_reconciles": true,
+ "ambiguity_facts": {
+  "P10_09": "source-reading dependent (AMB-01); quotient image differs between readings; excluded from the basis, retained as a valid implemented interpretation",
+  "P10_10": "forced -- appears in every independent triple; sole carrier of the third quotient coordinate",
+  "P10_11": "source-reading dependent (AMB-02); quotient image differs between readings; in the basis because at least one non-robust member is unavoidable",
+  "P10_12": "tested alternative AMB-02 reading gives identical evaluations and identical quotient vectors",
+  "no_fully_robust_published_triple": true
+ },
+ "atlas_columns": 14,
+ "basis_wording": "Preferred ambiguity-minimal Level-B basis among the twelve published degree-10 candidates under the documented deterministic simplicity rule.",
+ "dim_Q10": 3,
+ "exceptions": [],
+ "fit_prime": 32749,
+ "forbidden_wording": [
+  "ambiguity-robust",
+  "universally canonical",
+  "the unique compact basis"
+ ],
+ "independence": "generation never imports or inspects published_degree10_invariants or its coordinates",
+ "limit_per_multiset": 15,
+ "max_topologies": 30000,
+ "outside_atlas_span": [],
+ "peak_rss_mb": 2810.9,
+ "per_multiset": {
+  "M+M+M+M+M": {
+   "canonical": 1,
+   "disconnected": 10,
+   "duplicate_canonical": 11,
+   "enumeration_seconds": 0.0,
+   "evaluated": 1,
+   "evaluation_error": 0,
+   "in_atlas_span": 1,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 22,
+   "selected_for_evaluation": 1,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+M+M+N1050": {
+   "canonical": 4,
+   "disconnected": 6,
+   "duplicate_canonical": 35,
+   "enumeration_seconds": 0.0,
+   "evaluated": 4,
+   "evaluation_error": 0,
+   "in_atlas_span": 4,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 45,
+   "selected_for_evaluation": 4,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+M+M+N4125": {
+   "canonical": 1,
+   "disconnected": 0,
+   "duplicate_canonical": 5,
+   "enumeration_seconds": 0.0,
+   "evaluated": 1,
+   "evaluation_error": 0,
+   "in_atlas_span": 1,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 6,
+   "selected_for_evaluation": 1,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+M+N1050+N1050": {
+   "canonical": 15,
+   "disconnected": 13,
+   "duplicate_canonical": 17,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 45,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+M+N1050+N4125": {
+   "canonical": 15,
+   "disconnected": 7,
+   "duplicate_canonical": 34,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 56,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+M+N4125+N4125": {
+   "canonical": 5,
+   "disconnected": 4,
+   "duplicate_canonical": 20,
+   "enumeration_seconds": 0.0,
+   "evaluated": 5,
+   "evaluation_error": 0,
+   "in_atlas_span": 5,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 29,
+   "selected_for_evaluation": 5,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+N1050+N1050+N1050": {
+   "canonical": 15,
+   "disconnected": 36,
+   "duplicate_canonical": 3,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 54,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+N1050+N1050+N4125": {
+   "canonical": 15,
+   "disconnected": 10,
+   "duplicate_canonical": 0,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 25,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+N1050+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 4,
+   "duplicate_canonical": 22,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 41,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+M+N4125+N4125+N4125": {
+   "canonical": 8,
+   "disconnected": 1,
+   "duplicate_canonical": 37,
+   "enumeration_seconds": 0.0,
+   "evaluated": 8,
+   "evaluation_error": 0,
+   "in_atlas_span": 8,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.6,
+   "raw_topologies": 46,
+   "selected_for_evaluation": 8,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+N1050+N1050+N1050+N1050": {
+   "canonical": 15,
+   "disconnected": 0,
+   "duplicate_canonical": 3,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.7,
+   "raw_topologies": 18,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+N1050+N1050+N1050+N4125": {
+   "canonical": 15,
+   "disconnected": 0,
+   "duplicate_canonical": 0,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.7,
+   "raw_topologies": 15,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+N1050+N1050+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 1,
+   "duplicate_canonical": 10,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.7,
+   "raw_topologies": 26,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+N1050+N4125+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 0,
+   "duplicate_canonical": 40,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 2,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.7,
+   "raw_topologies": 55,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "M+N4125+N4125+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 1,
+   "duplicate_canonical": 17,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 9,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.7,
+   "raw_topologies": 33,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N1050+N1050+N1050+N1050+N1050": {
+   "canonical": 15,
+   "disconnected": 36,
+   "duplicate_canonical": 3,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 54,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N1050+N1050+N1050+N1050+N4125": {
+   "canonical": 15,
+   "disconnected": 10,
+   "duplicate_canonical": 0,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 25,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N1050+N1050+N1050+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 3,
+   "duplicate_canonical": 5,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 23,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N1050+N1050+N4125+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 1,
+   "duplicate_canonical": 16,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 32,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N1050+N4125+N4125+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 1,
+   "duplicate_canonical": 32,
+   "enumeration_seconds": 0.0,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 0,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 48,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  },
+  "N4125+N4125+N4125+N4125+N4125": {
+   "canonical": 15,
+   "disconnected": 4,
+   "duplicate_canonical": 171,
+   "enumeration_seconds": 0.1,
+   "evaluated": 15,
+   "evaluation_error": 0,
+   "in_atlas_span": 15,
+   "nonzero_quotient": 11,
+   "outside_atlas_span": 0,
+   "peak_rss_mb_after_sector": 64.8,
+   "raw_topologies": 190,
+   "selected_for_evaluation": 15,
+   "structurally_rejected": 0,
+   "truncated": false
+  }
+ },
+ "recovered_candidates": [
+  {
+   "atlas_coordinates": [
+    20385,
+    11155,
+    27334,
+    3063,
+    20424,
+    21806,
+    21881,
+    24856,
+    24548,
+    16696,
+    12475,
+    0,
+    15320,
+    28522
+   ],
+   "einsum": "ab,acdefb,cdghij,efgklm,hijklm->",
+   "id": "M+N1050+N4125+N4125+N4125#0010",
+   "multiset": [
+    "M",
+    "N1050",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    21806,
+    21881,
+    0
+   ],
+   "rank_after": 1,
+   "topology": [
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     1
+    ],
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     1
+    ],
+    [
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      1,
+      0
+     ],
+     [
+      3,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      2,
+      0
+     ],
+     [
+      3,
+      0
+     ],
+     1
+    ],
+    [
+     [
+      2,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     3
+    ],
+    [
+     [
+      3,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     3
+    ]
+   ]
+  },
+  {
+   "atlas_coordinates": [
+    2316,
+    12719,
+    9855,
+    10842,
+    23725,
+    12134,
+    15763,
+    7454,
+    22094,
+    31684,
+    14464,
+    0,
+    30356,
+    30176
+   ],
+   "einsum": "ab,acdefg,bcdehi,fgjklm,hijklm->",
+   "id": "M+N4125+N4125+N4125+N4125#0005",
+   "multiset": [
+    "M",
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    12134,
+    15763,
+    0
+   ],
+   "rank_after": 2,
+   "topology": [
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     1
+    ],
+    [
+     [
+      0,
+      0
+     ],
+     [
+      2,
+      0
+     ],
+     1
+    ],
+    [
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      0
+     ],
+     3
+    ],
+    [
+     [
+      1,
+      0
+     ],
+     [
+      3,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      2,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      3,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     4
+    ]
+   ]
+  },
+  {
+   "atlas_coordinates": [
+    25535,
+    27342,
+    21028,
+    4001,
+    7399,
+    16093,
+    21692,
+    15093,
+    8161,
+    15556,
+    2825,
+    18193,
+    14988,
+    29978
+   ],
+   "einsum": "abcdef,abcdgh,efijkl,ghimno,jklmno->",
+   "id": "N4125+N4125+N4125+N4125+N4125#0003",
+   "multiset": [
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125",
+    "N4125"
+   ],
+   "quotient_vector": [
+    16093,
+    21692,
+    18193
+   ],
+   "rank_after": 3,
+   "topology": [
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     4
+    ],
+    [
+     [
+      0,
+      0
+     ],
+     [
+      2,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      1,
+      0
+     ],
+     [
+      3,
+      0
+     ],
+     2
+    ],
+    [
+     [
+      2,
+      0
+     ],
+     [
+      3,
+      0
+     ],
+     1
+    ],
+    [
+     [
+      2,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     3
+    ],
+    [
+     [
+      3,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     3
+    ]
+   ]
+  }
+ ],
+ "recovered_rank": 3,
+ "recovered_vectors": [
+  [
+   21806,
+   21881,
+   0
+  ],
+  [
+   12134,
+   15763,
+   0
+  ],
+  [
+   16093,
+   21692,
+   18193
+  ]
+ ],
+ "runtime_seconds": 925.9,
+ "schema": 2,
+ "search_is_exhaustive": false
+}
